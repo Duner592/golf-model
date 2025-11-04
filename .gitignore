@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+*.ipynb_checkpoints
+
+# Env and caches
+.env
+.dg_cache*
+.dg_cache.sqlite
+dg_cache*
+.venv/
+*.sqlite
+*.db
+
+# IDE
+.vscode/
+.idea/
+
+# Project outputs
+snapshot/
+data/raw/
+data/meta/
+data/processed/*weather_hourly.json
+data/processed/*_weather_round_*.parquet
+data/processed/*_field*.csv
+data/features/
+data/preds/
+logs/

@@ -1,0 +1,46 @@
+base_url: "https://feeds.datagolf.com"
+
+auth:
+  key_param: "key"
+  env_var: "DATAGOLF_API_KEY"
+
+defaults:
+  tour: "pga"
+  timezone: "UTC"
+  file_format: "json"
+  history_years_back: 5
+
+rate_limits:
+  requests_per_minute: 60
+  min_sleep_seconds: 0.5
+
+endpoints:
+  field_updates:
+    path: "field-updates"
+    required: ["tour"]
+    optional: []
+    notes: "Upcoming-event field and updates (adds, WDs, alts) for the specified tour."
+
+  schedule:
+    path: "get-schedule"
+    required: ["tour"]
+    optional: []
+    notes: "Includes course lat/lon and start date; use to drive weather fetch."
+
+  dg_rankings:
+    path: "preds/get-dg-rankings"
+    required: []
+    optional: ["file_format"]
+    notes: "Returns DataGolf rankings; pass file_format if you want csv."
+
+  skill_ratings:
+    path: "preds/skill-ratings"
+    required: []
+    optional: ["display", "file_format"]
+    notes: "Returns skill ratings; 'display' is per API docs; file_format for output type."
+
+  historical_rounds:
+    path: "historical-raw-data/rounds"
+    required: [ "tour", "event_id", "year" ]
+    optional: [ "file_format" ]
+    notes: "Raw round-level data for a specific event and year."

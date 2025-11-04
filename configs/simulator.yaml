@@ -1,0 +1,18 @@
+# Simulator configuration (tune without code edits)
+
+seed: 42
+n_sims: 30000
+cut_top: 65   # top 65 and ties approximation
+
+weights:
+  beta_course_hist: -0.30   # effect per 1 SG at venue (shrunk)
+  beta_course_fit:  -0.10   # effect per 1 unit of DIY course-fit score
+
+shocks:
+  round_sd: 0.20            # round-level shared shock (strokes)
+  wave_sd:  0.12            # AM/PM shared shock (strokes) in R1/R2
+
+sigma:
+  default: 2.8
+  min: 1.8
+  max: 3.8

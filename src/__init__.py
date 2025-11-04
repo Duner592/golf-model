@@ -1,0 +1,3 @@
+# src/__init__.py
+# Make src a package so scripts can import helpers:
+#   from src.utils_event import resolve_event_id, load_field_table, ...
