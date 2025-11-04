@@ -14,14 +14,22 @@
 #   data/preds/{tour}/event_{id}_{slug}_{date}_leaderboard_top{N}.csv
 #   data/preds/{tour}/event_{id}_{slug}_{date}_summary.json
 
-from pathlib import Path
-import argparse
-import json
-import pandas as pd
-from datetime import datetime
-import re
+from __future__ import annotations
 
-from src.utils_event import resolve_event_id
+# stdlib/third-party
+from pathlib import Path
+import json
+import argparse
+import pandas as pd
+import re
+from datetime import datetime
+
+# ensure src import works when running directly
+import _bootstrap  # noqa: F401
+
+from src.utils_event import (
+    resolve_event_id,
+)
 
 TOUR_DEFAULT = "pga"
 

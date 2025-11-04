@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 # scripts/verify_leaderboard.py
+from __future__ import annotations
+
+# stdlib/third-party
 from pathlib import Path
 import json
 import pandas as pd
+
+# ensure src import works when running directly
+import _bootstrap  # noqa: F401
+
 
 TOUR = "pga"
 

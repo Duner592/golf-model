@@ -17,26 +17,22 @@
 #!/usr/bin/env python3
 # scripts/simulate_event_with_course.py
 
-# --- bootstrap so 'src' is always importable when running from scripts/ ---
 from __future__ import annotations
 
-# 1) Standard imports first (keeps ruff happy)
-import argparse
+# stdlib/third-party
 from pathlib import Path
+import argparse
 
 import numpy as np
 import pandas as pd
 import yaml
 
-# 2) Bootstrap so 'src' is importable when running scripts directly
-import sys  # noqa: E402
+# ensure src import works when running directly
+import _bootstrap  # noqa: F401
 
-REPO_ROOT = Path(__file__).resolve().parents[1]  # noqa: E402
-if str(REPO_ROOT) not in sys.path:  # noqa: E402
-    sys.path.insert(0, str(REPO_ROOT))  # noqa: E402
-
-# 3) Now import from src (suppress E402 just for this line)
-from src.utils_event import resolve_event_id  # noqa: E402
+from src.utils_event import (
+    resolve_event_id,
+)
 
 TOUR = "pga"
 

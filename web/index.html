@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Golf Model — Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1.25rem; color: #111; }
+        h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
+        .muted { color: #555; font-size: 0.95rem; }
+        .layout { display: grid; grid-template-columns: 1fr 320px; gap: 1rem; }
+        .card { border: 1px solid #e2e2e2; border-radius: 8px; padding: 0.75rem 1rem; background: #fff; }
+        table { border-collapse: collapse; width: 100%; background: #fff; }
+        th, td { padding: 0.5rem; border-bottom: 1px solid #eee; text-align: left; }
+        th { cursor: pointer; background: #fafafa; position: sticky; top: 0; z-index: 1; }
+        input[type="search"] { padding: 0.4rem 0.6rem; width: 260px; border: 1px solid #ddd; border-radius: 6px; }
+        .right { text-align: right; }
+        .num { font-variant-numeric: tabular-nums; }
+        .links a { margin-right: 1rem; }
+        .small { font-size: 0.9rem; color: #333; }
+        .stack { display: flex; flex-direction: column; gap: 0.5rem; }
+        @media (max-width: 900px) {
+          .layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<h1 id="title">Golf Model — Leaderboard</h1>
+<div class="muted" id="subtitle"></div>
+
+<div class="layout">
+    <!-- Main column -->
+    <div>
+        <div class="card" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom: 1rem;">
+            <div>
+                <div><strong>Field size</strong>: <span id="field"></span></div>
+                <div><strong>Sum p_win</strong>: <span id="psum"></span></div>
+                <div><strong>Max p_win</strong>: <span id="pmax"></span></div>
+                <div><strong>Median p_win</strong>: <span id="pmed"></span></div>
+                <div class="muted small" id="refreshed"></div>
+            </div>
+            <div class="links small">
+                <a id="dlCsv" href="#" download>CSV</a>
+                <a id="dlHtml" href="#" download style="display:none;">HTML</a>
+            </div>
+            <div>
+                <label>Filter:&nbsp;<input type="search" id="filterBox" placeholder="Search player" /></label>
+            </div>
+        </div>
+
+        <table id="tbl">
+            <thead>
+            <tr>
+                <th data-key="rank">Rank</th>
+                <th data-key="player_name">Player</th>
+                <th data-key="p_win_%">Win %</th>
+                <th data-key="p_top10_%">Top-10 %</th>
+                <th data-key="p_mc_%">Make Cut %</th>
+                <th data-key="course_fit_score">Course Fit</th>
+                <th data-key="r1_datetime_local">R1 (local)</th>
+                <th data-key="r2_datetime_local">R2 (local)</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="stack">
+        <div class="card">
+            <div><strong>Weather (mph, %)</strong></div>
+            <div id="wxList" class="small" style="line-height:1.5;"></div>
+        </div>
+
+        <div class="card">
+            <div><strong>Resources</strong></div>
+            <ul id="resources" class="small" style="margin:0.3rem 0 0 1rem;"></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Formatting helpers
+    const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
+    const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
+
+    // JSON loader
+    async function loadJSON(path){
+      const r = await fetch(path, {cache: "no-store"});
+      if (!r.ok) throw new Error(`${path}: ${r.status}`);
+      return r.json();
+    }
+
+    // Table rendering
+    let data = [];
+    let sortKey = "rank";
+    let sortAsc = true;
+
+    function renderTable(rows) {
+      const tbody = document.querySelector("#tbl tbody");
+      tbody.innerHTML = "";
+      for (const r of rows) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="num right">${r.rank ?? ""}</td>
+          <td>${r.player_name ?? ""}</td>
+          <td class="num right">${fmtPct(r["p_win_%"])}</td>
+          <td class="num right">${fmtPct(r["p_top10_%"])}</td>
+          <td class="num right">${fmtPct(r["p_mc_%"])}</td>
+          <td class="num right">${r.course_fit_score != null ? Number(r.course_fit_score).toFixed(6) : ""}</td>
+          <td>${r.r1_datetime_local ?? ""}</td>
+          <td>${r.r2_datetime_local ?? ""}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function sortRows(rows, key, asc=true) {
+      const k = key;
+      const f = (v) => (v == null ? "" : v);
+      const sorted = [...rows].sort((a,b) => {
+        const A = f(a[k]), B = f(b[k]);
+        const nA = Number(A), nB = Number(B);
+        if (!Number.isNaN(nA) && !Number.isNaN(nB)) {
+          return asc ? nA - nB : nB - nA;
+        }
+        return asc ? String(A).localeCompare(String(B)) : String(B).localeCompare(String(A));
+      });
+      return sorted;
+    }
+
+    function applyFilter(){
+      const q = document.getElementById("filterBox").value.trim().toLowerCase();
+      let rows = data;
+      if (q) rows = data.filter(r => String(r.player_name ?? "").toLowerCase().includes(q));
+      rows = sortRows(rows, sortKey, sortAsc);
+      renderTable(rows);
+    }
+
+    function attachSortHandlers(){
+      document.querySelectorAll("#tbl thead th").forEach(th => {
+        th.addEventListener("click", () => {
+          const key = th.dataset.key;
+          if (!key) return;
+          if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
+          applyFilter();
+        });
+      });
+      document.getElementById("filterBox").addEventListener("input", applyFilter);
+    }
+
+    // Sidebar helpers
+    function link(text, href){
+      const a = document.createElement("a");
+      a.textContent = text; a.href = href; a.target = "_blank"; a.rel = "noopener";
+      const el = document.createElement("li"); el.appendChild(a); return el;
+    }
+
+    async function renderSidebar(meta){
+      // Last refreshed (UTC) already formatted by build_web_assets.py
+      const sum = await loadJSON("summary.json");
+      const refreshed = sum.generated_utc ? `Last refreshed (UTC): ${sum.generated_utc}` : "";
+      document.getElementById("refreshed").textContent = refreshed;
+
+      // Weather list
+      const wxList = document.getElementById("wxList");
+      wxList.innerHTML = "";
+
+      // Helpers to format lines
+      const lineNeutral = (r) =>
+        `R${r.round}: wind ${fmtNum(r.wind_mph,1)} mph (gust ${fmtNum(r.gust_mph,1)} mph) • rain ${fmtNum(r.precip_pct,0)}%`;
+      const lineWave = (round, am, pm) => {
+        const amTxt = am ? `AM: wind ${fmtNum(am.wind_mph,1)} mph • rain ${fmtNum(am.precip_pct,0)}%` : "AM: —";
+        const pmTxt = pm ? `PM: wind ${fmtNum(pm.wind_mph,1)} mph • rain ${fmtNum(pm.precip_pct,0)}%` : "PM: —";
+        return `(R${round} AM/PM) ${amTxt} / ${pmTxt}`;
+      };
+
+      let wn = [];
+      let ww = [];
+      try { wn = await loadJSON("weather_round_neutral.json"); } catch {}
+      try { ww = await loadJSON("weather_round_wave.json"); } catch {}
+
+      const byR = {};
+      (ww || []).forEach(x => { (byR[x.round] = byR[x.round] || []).push(x); });
+
+      [1,2,3,4].forEach(rn => {
+        const n = wn.find(x => x.round === rn);
+        if (n) {
+          const div = document.createElement("div");
+          div.textContent = lineNeutral(n);
+          wxList.appendChild(div);
+        }
+        if (rn <= 2 && byR[rn]) {
+          const am = byR[rn].find(x => x.wave === "AM");
+          const pm = byR[rn].find(x => x.wave === "PM");
+          const sub = document.createElement("div");
+          sub.className = "muted small";
+          sub.textContent = lineWave(rn, am, pm);
+          wxList.appendChild(sub);
+        }
+      });
+
+      // Resources
+      const ul = document.getElementById("resources"); ul.innerHTML = "";
+      const res = meta.resources || {};
+      if (res.downloads_csv)  ul.appendChild(link("Leaderboard CSV", res.downloads_csv));
+      if (res.downloads_html) ul.appendChild(link("Leaderboard HTML", res.downloads_html));
+      if (res.weather_meta)   ul.appendChild(link("Weather meta (JSON)", res.weather_meta));
+      if (meta.lat!=null && meta.lon!=null){
+        ul.appendChild(link("Open course in Maps", `https://www.google.com/maps?q=${meta.lat},${meta.lon}`));
+      }
+      if (res.weather_round_neutral) ul.appendChild(link("Neutral weather (JSON)", res.weather_round_neutral));
+      if (res.weather_round_wave)    ul.appendChild(link("Wave-aware weather (JSON)", res.weather_round_wave));
+      if (res.course_fit_weights)    ul.appendChild(link("Course-fit weights (DIY, JSON)", res.course_fit_weights));
+      if (res.course_history_summary)ul.appendChild(link("Course-history summary (JSON)", res.course_history_summary));
+    }
+
+    // Main
+    async function main(){
+      const meta = await loadJSON("meta.json");
+      const summary = await loadJSON("summary.json");
+      const rows = await loadJSON("leaderboard.json");
+
+      document.getElementById("title").textContent = `${meta.event_name} — Leaderboard`;
+      document.getElementById("subtitle").textContent = `event_id=${meta.event_id}`;
+
+      const m = summary.metrics || {};
+      document.getElementById("field").textContent = m.field_size ?? rows.length;
+      document.getElementById("psum").textContent  = fmtNum(m.p_win_sum, 2);
+      document.getElementById("pmax").textContent  = fmtNum(m.p_win_max, 2);
+      document.getElementById("pmed").textContent  = fmtNum(m.p_win_median, 2);
+
+      // Downloads
+      const dlCsv  = document.getElementById("dlCsv");
+      const dlHtml = document.getElementById("dlHtml");
+      dlCsv.href   = meta.resources?.downloads_csv ?? "#";
+      if (meta.resources?.downloads_html){ dlHtml.href = meta.resources.downloads_html; dlHtml.style.display="inline"; }
+
+      // Normalize rows for display
+      data = rows.map((r, idx) => ({
+        rank: r.rank ?? (idx+1),
+        player_name: r.player_name ?? r["Player"] ?? "",
+        "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
+        "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
+        "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
+        course_fit_score: r.course_fit_score ?? "",
+        r1_datetime_local: r.r1_datetime_local ?? "",
+        r2_datetime_local: r.r2_datetime_local ?? "",
+      }));
+
+      attachSortHandlers();
+      renderTable(sortRows(data, "rank", true));
+      await renderSidebar(meta);
+    }
+
+    // Kick off
+    main().catch(err => {
+      document.body.innerHTML = `<pre style="color:#b00">${err}</pre>`;
+      console.error(err);
+    });
+</script>
+</body>
+</html>

@@ -113,6 +113,7 @@ def fetch_open_meteo_hourly(
         "start_date": start_date,
         "end_date": end_date,
         "timezone": tz,
+        "windspeed_unit": "mph",  # IMPORTANT: return mph directly
     }
     r = requests.get(url, params=params, timeout=20)
     r.raise_for_status()

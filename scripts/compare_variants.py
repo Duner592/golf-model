@@ -6,42 +6,20 @@
 #   - with_course vs baseline
 #   - common_shock vs baseline
 #
-# Outputs:
-#   - Rank agreement (Spearman rho) between variants
-#   - Top-K delta table (p_win differences) for each comparison
-#
 # Usage:
 #   python scripts/compare_variants.py
 #   python scripts/compare_variants.py --event_id 457 --topK 15
-#
-# Notes:
-# - Avoids next(sorted(...)) TypeError by selecting the last element from a list.
-# - Joins robustly on dg_id -> player_id -> player_name and coerces types to str.
 
 from pathlib import Path
 import argparse
-import json
 import pandas as pd
 
+# Ensure src is importable when running scripts directly
+import _bootstrap  # noqa: F401
+from src.utils_event import resolve_event_id
+
+
 TOUR_DEFAULT = "pga"
-
-
-def latest_meta_path(processed_dir: Path) -> Path:
-    metas = sorted(processed_dir.glob("event_*_meta.json"))
-    if not metas:
-        raise FileNotFoundError(f"No meta files found under {processed_dir}")
-    return metas[-1]  # last in sorted list
-
-
-def resolve_event_id(processed_dir: Path, override: str | None) -> str:
-    if override:
-        return str(override)
-    meta_p = latest_meta_path(processed_dir)
-    meta = json.loads(meta_p.read_text(encoding="utf-8"))
-    eid = meta.get("event_id")
-    if eid is None:
-        raise ValueError(f"event_id missing in {meta_p}")
-    return str(eid)
 
 
 def load_preds(preds_dir: Path, event_id: str, stem: str) -> pd.DataFrame | None:
@@ -63,8 +41,7 @@ def choose_join_key(a: pd.DataFrame, b: pd.DataFrame) -> str | None:
     return None
 
 
-def align_variants(a: pd.DataFrame, b: pd.DataFrame) -> pd.DataFrame:
-    # pick key and coerce to string
+def align_variants(a: pd.DataFrame, b: pd.DataFrame) -> tuple[pd.DataFrame, str]:
     a = a.copy()
     b = b.copy()
     key = choose_join_key(a, b)
@@ -72,12 +49,11 @@ def align_variants(a: pd.DataFrame, b: pd.DataFrame) -> pd.DataFrame:
         raise ValueError(
             "Could not find a common join key (dg_id/player_id/player_name)."
         )
-
     a[key] = a[key].astype(str)
     b[key] = b[key].astype(str)
 
-    cols = [c for c in [key, "player_name", "p_win"] if c in a.columns]
-    a_small = a[cols].copy()
+    cols_a = [c for c in [key, "player_name", "p_win"] if c in a.columns]
+    a_small = a[cols_a].copy()
     if "player_name" not in a_small.columns and "player_name" in b.columns:
         a_small = a_small.merge(
             b[[key, "player_name"]].drop_duplicates(), on=key, how="left"
@@ -91,14 +67,13 @@ def align_variants(a: pd.DataFrame, b: pd.DataFrame) -> pd.DataFrame:
 
 
 def rank_agreement(df_merged: pd.DataFrame) -> float:
-    # Spearman rank (no scipy dependency)
+    # Spearman rank without scipy
     ra = df_merged["p_win_a"].rank(ascending=False, method="first")
     rb = df_merged["p_win_b"].rank(ascending=False, method="first")
-    rho = ra.corr(rb, method="spearman")
-    return float(rho)
+    return float(ra.corr(rb, method="spearman"))
 
 
-def compare_pair(a: pd.DataFrame, b: pd.DataFrame, label: str, topK: int):
+def compare_pair(a: pd.DataFrame | None, b: pd.DataFrame | None, label: str, topK: int):
     if a is None or b is None:
         print(f"[skip] Missing preds for {label}")
         return
@@ -106,15 +81,15 @@ def compare_pair(a: pd.DataFrame, b: pd.DataFrame, label: str, topK: int):
     rho = rank_agreement(merged)
     print(f"\n{label}: Spearman rho={rho:.3f}  (n={len(merged)})")
 
-    # Top-K deltas by variant A rank
     merged = merged.sort_values("p_win_a", ascending=False)
-    show_cols = [c for c in [key, "player_name"] if c in merged.columns] + [
-        "p_win_a",
-        "p_win_b",
-    ]
     merged["delta"] = merged["p_win_a"] - merged["p_win_b"]
+    show_cols = [
+        c
+        for c in [key, "player_name", "p_win_a", "p_win_b", "delta"]
+        if c in merged.columns
+    ]
     print(f"Top-{topK} deltas (p_win_a - p_win_b):")
-    print(merged[show_cols + ["delta"]].head(topK).to_string(index=False))
+    print(merged[show_cols].head(topK).to_string(index=False))
 
 
 def main():
@@ -128,9 +103,8 @@ def main():
     )
     args = ap.parse_args()
 
-    processed_dir = Path("data/processed") / args.tour
     preds_dir = Path("data/preds") / args.tour
-    event_id = resolve_event_id(processed_dir, args.event_id)
+    event_id = resolve_event_id(args.event_id)
 
     with_course = load_preds(preds_dir, event_id, "preds_with_course")
     common_shock = load_preds(preds_dir, event_id, "preds_common_shock")

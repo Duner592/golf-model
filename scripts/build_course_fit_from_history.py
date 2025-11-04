@@ -28,15 +28,21 @@
 # - The skill_ratings parquet must include either OTT/APP/ARG/PUTT or T2G + PUTT (prefixed names are auto-mapped).
 # - This is a first-pass heuristic; tune and calibrate with backtesting.
 
+from __future__ import annotations
+
+# stdlib/third-party
 from pathlib import Path
 import json
-import re
-import numpy as np
 import pandas as pd
-
-from sklearn.linear_model import Ridge
-from sklearn.preprocessing import StandardScaler
+import numpy as np
+import re
 from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Ridge
+
+# ensure src import works when running directly
+import _bootstrap  # noqa: F401
+
 
 TOUR = "pga"
 

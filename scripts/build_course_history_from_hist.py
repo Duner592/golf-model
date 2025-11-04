@@ -11,10 +11,17 @@
 # Output:
 #   data/processed/{tour}/event_{event_id}_course_history_stats.parquet
 
+from __future__ import annotations
+
+# stdlib/third-party
 from pathlib import Path
 import json
-import re
 import pandas as pd
+import re
+
+# ensure src import works when running directly
+import _bootstrap  # noqa: F401
+
 
 TOUR = "pga"
 N0 = 16.0  # prior pseudo-rounds for shrinkage

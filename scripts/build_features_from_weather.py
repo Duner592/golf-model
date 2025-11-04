@@ -13,9 +13,15 @@
 # - Load neutral/wave weather (build neutral from wave if missing)
 # - Emit features_weather parquet
 
+from __future__ import annotations
+
+# stdlib/third-party
 from pathlib import Path
 import argparse
 import pandas as pd
+
+# ensure src import works when running directly
+import _bootstrap  # noqa: F401
 
 from src.utils_event import (
     resolve_event_id,

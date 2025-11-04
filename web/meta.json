@@ -1,0 +1,17 @@
+{
+  "tour": "pga",
+  "event_id": "457",
+  "event_name": "World Wide Technology Championship",
+  "lat": 22.901,
+  "lon": -109.985,
+  "generated_utc": "2025-11-04T125325Z",
+  "resources": {
+    "downloads_csv": "downloads/event_457_world_wide_technology_championship_2025-11-04_leaderboard.csv",
+    "downloads_html": "downloads/event_457_world_wide_technology_championship_2025-11-04_leaderboard.html",
+    "weather_meta": "weather_meta.json",
+    "weather_round_neutral": "weather_round_neutral.json",
+    "weather_round_wave": "weather_round_wave.json",
+    "course_fit_weights": "course_fit_weights.json",
+    "course_history_summary": "course_history_summary.json"
+  }
+}
