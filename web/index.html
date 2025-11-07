@@ -26,7 +26,6 @@
 </head>
 <body>
 <h1 id="title">Golf Model — Leaderboard</h1>
-<div class="muted" id="subtitle"></div>
 
 <div class="layout">
     <!-- Main column -->
@@ -57,8 +56,8 @@
                 <th data-key="p_top10_%">Top-10 %</th>
                 <th data-key="p_mc_%">Make Cut %</th>
                 <th data-key="course_fit_score">Course Fit</th>
-                <th data-key="r1_datetime_local">R1 (local)</th>
-                <th data-key="r2_datetime_local">R2 (local)</th>
+                <th data-key="r1_teetime">R1 Tee</th>
+                <th data-key="r2_teetime">R2 Tee</th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -70,6 +69,11 @@
         <div class="card">
             <div><strong>Weather (mph, %)</strong></div>
             <div id="wxList" class="small" style="line-height:1.5;"></div>
+        </div>
+
+        <div class="card" id="tournamentCard">
+            <div><strong>Tournament</strong></div>
+            <div id="tournament" class="small" style="line-height:1.5;"></div>
         </div>
 
         <div class="card">
@@ -107,9 +111,9 @@
           <td class="num right">${fmtPct(r["p_win_%"])}</td>
           <td class="num right">${fmtPct(r["p_top10_%"])}</td>
           <td class="num right">${fmtPct(r["p_mc_%"])}</td>
-          <td class="num right">${r.course_fit_score != null ? Number(r.course_fit_score).toFixed(6) : ""}</td>
-          <td>${r.r1_datetime_local ?? ""}</td>
-          <td>${r.r2_datetime_local ?? ""}</td>
+          <td class="num right">${r.course_fit_score != null ? Number(r.course_fit_score).toFixed(2) : ""}</td>
+          <td>${r.r1_teetime ?? ""}</td>
+          <td>${r.r2_teetime ?? ""}</td>
         `;
         tbody.appendChild(tr);
       }
@@ -213,6 +217,30 @@
       if (res.weather_round_wave)    ul.appendChild(link("Wave-aware weather (JSON)", res.weather_round_wave));
       if (res.course_fit_weights)    ul.appendChild(link("Course-fit weights (DIY, JSON)", res.course_fit_weights));
       if (res.course_history_summary)ul.appendChild(link("Course-history summary (JSON)", res.course_history_summary));
+      if (res.tournament_summary)    ul.appendChild(link("Tournament summary (JSON)", res.tournament_summary));
+    }
+
+    // Tournament summary
+    async function renderTournament() {
+      const el = document.getElementById("tournament");
+      if (!el) return;
+      let t = null;
+      try { t = await loadJSON("tournament_summary.json"); } catch {}
+      if (!t) { el.textContent = "No summary."; return; }
+
+      const lines = [];
+      if (t.course) lines.push(`Course: ${t.course}`);
+      if (t.total_yardage != null) lines.push(`Total yardage: ${Number(t.total_yardage).toLocaleString()}`);
+      if (t.course_location) lines.push(`Location: ${t.course_location}`);
+      if (t.start_date) lines.push(`Start date: ${t.start_date}`);
+      if (t.field_size != null) lines.push(`Field size: ${t.field_size}`);
+
+      if (Array.isArray(t.previous_winners) && t.previous_winners.length) {
+        const top = t.previous_winners.slice(0, 5);
+        const list = top.map(w => `• ${w.year}: ${w.winner}${w.score ? ` (${w.score})` : ""}`).join("<br/>");
+        lines.push(`<div style="margin-top:0.25rem;"><strong>Previous winners</strong><br/>${list}</div>`);
+      }
+      el.innerHTML = lines.join("<br/>");
     }
 
     // Main
@@ -222,7 +250,6 @@
       const rows = await loadJSON("leaderboard.json");
 
       document.getElementById("title").textContent = `${meta.event_name} — Leaderboard`;
-      document.getElementById("subtitle").textContent = `event_id=${meta.event_id}`;
 
       const m = summary.metrics || {};
       document.getElementById("field").textContent = m.field_size ?? rows.length;
@@ -244,13 +271,14 @@
         "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
         "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
         course_fit_score: r.course_fit_score ?? "",
-        r1_datetime_local: r.r1_datetime_local ?? "",
-        r2_datetime_local: r.r2_datetime_local ?? "",
+        r1_teetime: r.r1_teetime ?? "",
+        r2_teetime: r.r2_teetime ?? "",
       }));
 
       attachSortHandlers();
       renderTable(sortRows(data, "rank", true));
       await renderSidebar(meta);
+      await renderTournament();
     }
 
     // Kick off

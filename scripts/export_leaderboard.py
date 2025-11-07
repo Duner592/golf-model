@@ -58,17 +58,28 @@ def load_latest_meta(tour: str, root: Path) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
+def load_meta_for_event(root: Path, tour: str, event_id: str) -> dict:
+    processed = root / "data" / "processed" / tour
+    for name in (f"event_{event_id}_meta.json",):
+        p = processed / name
+        if p.exists():
+            return json.loads(p.read_text(encoding="utf-8"))
+    # fallback: weather_meta also has event_id/name
+    p = processed / f"event_{event_id}_weather_meta.json"
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    raise FileNotFoundError(f"No meta for event_id={event_id} in {processed}")
+
+
 def pick_preds_file(tour: str, event_id: str, root: Path) -> Path:
     preds_dir = root / "data" / "preds" / tour
-    candidates = [
-        preds_dir / f"event_{event_id}_preds_with_course.parquet",
-        preds_dir / f"event_{event_id}_preds_common_shock.parquet",
-        preds_dir / f"event_{event_id}_preds_baseline.parquet",
-    ]
-    for p in candidates:
+    for stem in ["preds_with_course", "preds_common_shock", "preds_baseline"]:
+        p = preds_dir / f"event_{event_id}_{stem}.parquet"
         if p.exists():
             return p
-    raise FileNotFoundError(f"No predictions found in {preds_dir}")
+    raise FileNotFoundError(
+        f"No predictions found for event_id={event_id} in {preds_dir}"
+    )
 
 
 def load_features_snapshot(tour: str, event_id: str, root: Path) -> pd.DataFrame | None:
@@ -246,24 +257,25 @@ def main():
     parser.add_argument("--tour", type=str, default=TOUR_DEFAULT)
     parser.add_argument("--topN", type=int, default=20)
     parser.add_argument("--html", action="store_true")
-    parser.add_argument("--event_id", type=str, default=None)  # optional override
+    parser.add_argument("--event_id", type=str, default=None)  # NEW
     args = parser.parse_args()
 
     root = Path(__file__).resolve().parent.parent
     preds_dir = root / "data" / "preds" / args.tour
     preds_dir.mkdir(parents=True, exist_ok=True)
 
-    # Resolve meta and preds
-    # (keep meta for event_name/slug)
-    meta = load_latest_meta(args.tour, root)
+    # IMPORTANT: resolve explicit event id (pinned) if provided
     event_id = resolve_event_id(args.event_id, args.tour)
-    event_name = meta.get("event_name") or "event"
+
+    meta = load_meta_for_event(root, args.tour, event_id)
+    event_name = meta.get("event_name") or f"event_{event_id}"
 
     preds_path = pick_preds_file(args.tour, event_id, root)
     preds_raw = pd.read_parquet(preds_path)
-    feats = load_features_snapshot(args.tour, event_id, root)
 
+    feats = load_features_snapshot(args.tour, event_id, root)
     leaderboard = build_display_table(preds_raw, feats)
+
     save_outputs(
         leaderboard, preds_raw, preds_dir, event_id, event_name, args.topN, args.html
     )

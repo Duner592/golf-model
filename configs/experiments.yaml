@@ -1,0 +1,24 @@
+# configs/experiments.yaml
+backtest:
+  tour: "pga"
+  years: [2025]
+  max_events_per_year: 999
+  use_weather: true
+  use_course: true
+  use_sigma: true
+  seed: 42
+  exclude_event_ids: [60, 27]   # skip TOUR Championship and FedEx St. Jude (for now)
+
+metrics:
+  calibration_bins: 10
+
+tune:
+  n_trials: 50
+  params:
+    beta_course_hist:   {low: -0.6, high: 0.0}
+    beta_course_fit:    {low: -0.4, high: 0.0}
+    round_shock_sd:     {low: 0.00, high: 0.35}
+    wave_shock_sd:      {low: 0.00, high: 0.25}
+    sigma_default:      {low: 2.2,  high: 3.2}
+    sigma_min:          {low: 1.6,  high: 2.2}
+    sigma_max:          {low: 3.2,  high: 4.2}

@@ -1,0 +1,9 @@
+"60": { no_cut: true, use_starting_strokes: true }
+"16": { no_cut: true }  # if Sentry no-cut (verify your rules)
+
+"60":  { no_cut: true, use_starting_strokes: true }  # TOUR Championship (already handled)
+"27":  { no_cut: true }                               # FedEx St. Jude (excluded for now)
+
+# New: likely no-cut/small-field behavior
+"16":  { no_cut: true }                               # The Sentry (verify your season rules)
+"480": { no_cut: true }                               # Truist Championship (observed as small-field outlier)

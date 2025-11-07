@@ -1,12 +1,12 @@
 {
   "event_id": "457",
   "event_name": "World Wide Technology Championship",
-  "source_csv": "data/preds/pga/event_457_world_wide_technology_championship_2025-11-04_leaderboard.csv",
-  "generated_utc": "2025-11-04T125325Z",
+  "source_csv": "data/preds/pga/event_457_world_wide_technology_championship_2025-11-05_leaderboard.csv",
+  "generated_utc": "05-Nov-2025 10:39:49",
   "metrics": {
     "field_size": 120,
-    "p_win_max": 0.07603333333333333,
-    "p_win_median": 0.00505,
-    "p_win_sum": 1.0
+    "p_win_max": 0.0784,
+    "p_win_median": 0.0052833333333333335,
+    "p_win_sum": 0.9999999999999999
   }
 }

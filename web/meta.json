@@ -4,14 +4,15 @@
   "event_name": "World Wide Technology Championship",
   "lat": 22.901,
   "lon": -109.985,
-  "generated_utc": "2025-11-04T125325Z",
+  "generated_utc": "05-Nov-2025 10:39:49",
   "resources": {
-    "downloads_csv": "downloads/event_457_world_wide_technology_championship_2025-11-04_leaderboard.csv",
-    "downloads_html": "downloads/event_457_world_wide_technology_championship_2025-11-04_leaderboard.html",
+    "downloads_csv": "downloads/event_457_world_wide_technology_championship_2025-11-05_leaderboard.csv",
+    "downloads_html": "downloads/event_457_world_wide_technology_championship_2025-11-05_leaderboard.html",
     "weather_meta": "weather_meta.json",
     "weather_round_neutral": "weather_round_neutral.json",
     "weather_round_wave": "weather_round_wave.json",
     "course_fit_weights": "course_fit_weights.json",
-    "course_history_summary": "course_history_summary.json"
+    "course_history_summary": "course_history_summary.json",
+    "tournament_summary": "tournament_summary.json"
   }
 }

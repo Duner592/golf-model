@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 # scripts/fetch_weather_from_schedule.py
+#
+# Fetch hourly weather for an event and write:
+#   data/processed/{tour}/event_{event_id}_weather_hourly.json
+#   data/processed/{tour}/event_{event_id}_weather_meta.json
+#
+# Behavior:
+# - Default: use schedule to pick the next event (existing logic).
+# - Override: --event_id will fetch lat/lon/start from processed meta for that event_id
+#             (pinned/backtest mode) and save files with that event_id.
+
 import os
 import json
+import argparse
 from datetime import datetime, timedelta, timezone, date
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -66,8 +77,7 @@ def pick_event_from_schedule(
         for e in events:
             if str(e.get("event_id")) == str(known_event_id):
                 return e
-
-    # Otherwise pick the next upcoming by start date, else first in list
+    # Otherwise pick the next upcoming by start date, else the most recent past
     candidates = []
     today = datetime.utcnow().date()
     for e in events:
@@ -80,10 +90,7 @@ def pick_event_from_schedule(
         for sd, e in candidates:
             if sd >= today:
                 return e
-        # If all are in the past, return the last one (most recent)
         return candidates[-1][1]
-
-    # No parseable dates; return first event if available
     return events[0] if events else None
 
 
@@ -113,11 +120,72 @@ def fetch_open_meteo_hourly(
         "start_date": start_date,
         "end_date": end_date,
         "timezone": tz,
-        "windspeed_unit": "mph",  # IMPORTANT: return mph directly
+        "windspeed_unit": "mph",  # return mph directly
     }
     r = requests.get(url, params=params, timeout=20)
     r.raise_for_status()
     return r.json()
+
+
+def fetch_open_meteo_archive(
+    lat: float, lon: float, start_date: str, end_date: str, tz: str = "auto"
+) -> dict:
+    """
+    Historical weather via ERA5 archive. Note:
+    - Units are m/s (no windspeed_unit param here).
+    - No precipitation_probability; we derive a 0/100% proxy from 'precipitation' > 0.
+    """
+    url = "https://archive-api.open-meteo.com/v1/era5"
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "start_date": start_date,
+        "end_date": end_date,
+        "timezone": tz,
+        "hourly": "wind_speed_10m,wind_gusts_10m,temperature_2m,precipitation",
+    }
+    r = requests.get(url, params=params, timeout=20)
+    r.raise_for_status()
+    data = r.json()
+
+    # Derive precipitation_probability (0 or 100) from precipitation > 0
+    if "hourly" in data and "precipitation" in data["hourly"]:
+        pp = []
+        for p in data["hourly"]["precipitation"]:
+            try:
+                pp.append(100.0 if float(p) > 0 else 0.0)
+            except Exception:
+                pp.append(0.0)
+        data["hourly"]["precipitation_probability"] = pp
+    return data
+
+
+def fetch_hourly_auto(
+    lat: float, lon: float, start_date: str, end_date: str, tz: str = "auto"
+) -> dict:
+    """
+    Choose forecast vs archive automatically:
+    - If end_date is in the past (< today), use archive (ERA5).
+    - Else use forecast (as your current code does).
+    """
+    today = datetime.utcnow().date()
+    ed = parse_date(end_date)
+    if ed and ed < today:
+        # Archive path (m/s units, no windspeed_unit)
+        return fetch_open_meteo_archive(lat, lon, start_date, end_date, tz=tz)
+    # Forecast path (keeps your existing behavior)
+    return fetch_open_meteo_hourly(lat, lon, start_date, end_date, tz=tz)
+
+
+def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
+    # Prefer weather_meta (if exists), else use meta
+    wm = processed_dir / f"event_{event_id}_weather_meta.json"
+    if wm.exists():
+        return json.loads(wm.read_text(encoding="utf-8"))
+    m = processed_dir / f"event_{event_id}_meta.json"
+    if not m.exists():
+        raise FileNotFoundError(f"Missing meta for pinned event_id={event_id}: {m}")
+    return json.loads(m.read_text(encoding="utf-8"))
 
 
 # -------------------------
@@ -126,6 +194,17 @@ def fetch_open_meteo_hourly(
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Fetch hourly weather for event (schedule or pinned via --event_id)."
+    )
+    parser.add_argument(
+        "--event_id",
+        type=str,
+        default=None,
+        help="Pinned event id; if set, use processed meta for lat/lon/dates",
+    )
+    args = parser.parse_args()
+
     script_dir = Path(__file__).resolve().parent
     root = script_dir.parent
 
@@ -140,11 +219,56 @@ def main():
     tour = cfg.get("defaults", {}).get("tour", "pga")
     sched_path = cfg["endpoints"]["schedule"]["path"]
 
+    out_dir = root / "data" / "processed" / tour
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # If pinned (--event_id), bypass schedule, read meta, and fetch for that event id.
+    if args.event_id:
+        pinned_meta = load_meta_for_event(out_dir, args.event_id)
+        lat = pinned_meta.get("lat")
+        lon = pinned_meta.get("lon")
+        start = pinned_meta.get("r1_date")
+        if not (lat and lon and start):
+            raise ValueError(
+                f"Pinned meta for event_id={args.event_id} missing lat/lon/start"
+            )
+        start_date, end_date, round_dates = to_round_dates(str(start))
+        weather = fetch_hourly_auto(
+            float(lat), float(lon), start_date, end_date, tz="auto"
+        )
+        (out_dir / f"event_{args.event_id}_weather_hourly.json").write_text(
+            json.dumps(weather, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        pinned_weather_meta = {
+            "event_id": int(args.event_id),
+            "event_name": pinned_meta.get("event_name"),
+            "lat": float(lat),
+            "lon": float(lon),
+            "r1_date": round_dates[1],
+            "r2_date": round_dates[2],
+            "r3_date": round_dates[3],
+            "r4_date": round_dates[4],
+            "saved_at_utc": now_utc().strftime("%Y-%m-%dT%H%M%SZ"),
+            "source": "pinned + open-meteo",
+        }
+        (out_dir / f"event_{args.event_id}_weather_meta.json").write_text(
+            json.dumps(pinned_weather_meta, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        print(
+            f"[pinned] Saved hourly weather: {out_dir / f'event_{args.event_id}_weather_hourly.json'}"
+        )
+        print(
+            f"[pinned] Saved weather meta: {out_dir / f'event_{args.event_id}_weather_meta.json'}"
+        )
+        return
+
+    # Default behavior (existing): use schedule to pick an event
     # Optionally, try to use latest meta to match event_id
     known_event_id = None
     meta_dirs = [
         root / "data" / "meta" / tour,
-        root / "data" / "processed" / tour,
+        out_dir,
     ]
     for mdir in meta_dirs:
         metas = sorted(mdir.glob("event_*_meta.json"))
@@ -158,10 +282,7 @@ def main():
     session = requests.Session()
     sched_url = f"{base_url}/{sched_path.lstrip('/')}"
     params = {key_param: api_key, "tour": tour}
-    # If your schedule endpoint supports season/weeks filters, you can add them here:
-    # params.update({"season": 2025, "weeks_ahead": 6})
     resp = session.get(sched_url, params=params, timeout=20)
-
     try:
         resp.raise_for_status()
     except requests.HTTPError as e:
@@ -179,11 +300,9 @@ def main():
 
     events = extract_events(sched_data)
     if not events:
-        # Extra diagnostics to help adjust the parser/params
         print("Schedule payload top-level type:", type(sched_data))
         if isinstance(sched_data, dict):
             print("Top-level keys:", list(sched_data.keys()))
-            # Print a short preview of values
             for k in list(sched_data.keys())[:5]:
                 v = sched_data.get(k)
                 print(f"- {k}: type={type(v)} preview={str(v)[:120]}")
@@ -193,7 +312,6 @@ def main():
 
     ev = pick_event_from_schedule(events, known_event_id)
     if not ev:
-        # Show first event to help adjust matching logic
         print(
             "Could not pick an event. First event preview:",
             json.dumps(events[0], indent=2)[:1000],
@@ -214,7 +332,6 @@ def main():
         or deep_get(ev, "course", "lon")
     )
     start = ev.get("start") or ev.get("start_date") or deep_get(ev, "dates", "start")
-
     if lat is None or lon is None or not start:
         print("Event preview:\n", json.dumps(ev, indent=2)[:1000])
         raise ValueError(
@@ -229,9 +346,6 @@ def main():
     weather = fetch_open_meteo_hourly(
         float(lat), float(lon), start_date, end_date, tz="auto"
     )
-
-    out_dir = root / "data" / "processed" / tour
-    out_dir.mkdir(parents=True, exist_ok=True)
 
     weather_path = out_dir / f"event_{event_id}_weather_hourly.json"
     weather_path.write_text(
@@ -253,7 +367,6 @@ def main():
     (out_dir / f"event_{event_id}_weather_meta.json").write_text(
         json.dumps(weather_meta, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-
     print(f"Saved hourly weather: {weather_path}")
     print(f"Saved weather meta: {out_dir / f'event_{event_id}_weather_meta.json'}")
 

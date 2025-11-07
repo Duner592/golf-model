@@ -1,140 +1,146 @@
 #!/usr/bin/env python3
 # scripts/evaluate_preds.py
 #
-# Evaluate predictions for one event using realized outcomes.
-# Inputs:
-#   - data/preds/{tour}/event_{event_id}_preds_with_course.parquet (or fallback)
-#   - data/processed/{tour}/event_{event_id}_results.csv   (columns: player_name or dg_id/player_id, winner_flag [0/1])
+# Evaluate predictions for a specific event (log-loss, Brier).
+# Resolution order for event_id:
+#   1) --event_id
+#   2) Most recent event that has predictions in data/preds/{tour}
+#
 # Outputs:
-#   - data/preds/{tour}/event_{event_id}_eval_summary.json
-#   - prints Brier, log-loss, and calibration by deciles
+#   data/preds/{tour}/event_{event_id}_eval_summary.json
 
+from __future__ import annotations
 from pathlib import Path
+import argparse
 import json
+import re
 import numpy as np
 import pandas as pd
-from sklearn.metrics import brier_score_loss, log_loss
+from sklearn.metrics import log_loss, brier_score_loss
 
 TOUR = "pga"
 
 
-def load_preds(root: Path, event_id: str) -> pd.DataFrame:
-    preds_dir = root / "data" / "preds" / TOUR
-    for name in [
-        f"event_{event_id}_preds_with_course.parquet",
-        f"event_{event_id}_preds_common_shock.parquet",
-        f"event_{event_id}_preds_baseline.parquet",
-    ]:
-        p = preds_dir / name
+def scan_pred_events(preds_dir: Path) -> list[str]:
+    """Return sorted unique event_ids that have preds files."""
+    ids = set()
+    for p in preds_dir.glob("event_*_preds_*.parquet"):
+        m = re.match(r"event_(\d+)_preds_", p.name)
+        if m:
+            ids.add(m.group(1))
+    return sorted(ids)
+
+
+def resolve_event_id(preds_dir: Path, arg_event_id: str | None) -> str:
+    if arg_event_id:
+        return str(arg_event_id)
+    cand = scan_pred_events(preds_dir)
+    if not cand:
+        raise FileNotFoundError(f"No prediction files found under {preds_dir}")
+    return cand[-1]  # most recent event_id by numeric sort
+
+
+def load_preds_for_event(preds_dir: Path, event_id: str) -> pd.DataFrame:
+    """Load predictions for event_id with preference order."""
+    for stem in ["with_course", "common_shock", "baseline"]:
+        p = preds_dir / f"event_{event_id}_preds_{stem}.parquet"
         if p.exists():
             return pd.read_parquet(p)
-    raise FileNotFoundError("No predictions found.")
+    raise FileNotFoundError(
+        f"No predictions found for event_id={event_id} in {preds_dir}"
+    )
 
 
-def load_results(root: Path, event_id: str) -> pd.DataFrame:
-    processed = root / "data" / "processed" / TOUR
-    # Expected columns: winner_flag plus a join key
-    # Example schema: player_name, winner_flag (1=winner, else 0)
-    p = processed / f"event_{event_id}_results.csv"
+def load_results_for_event(processed_dir: Path, event_id: str) -> pd.DataFrame:
+    p = processed_dir / f"event_{event_id}_results.csv"
     if not p.exists():
-        raise FileNotFoundError(
-            f"Missing results file: {p}. Create it with columns [player_name, winner_flag]."
-        )
+        raise FileNotFoundError(f"Missing results CSV: {p}")
     return pd.read_csv(p)
 
 
-def best_key_match(df1: pd.DataFrame, df2: pd.DataFrame):
-    # Try to join on dg_id or player_id or player_name
-    for k in ["dg_id", "player_id", "player_name"]:
-        if k in df1.columns and k in df2.columns:
-            return k
-    # Try fallback: rename in results if needed
-    for k in ["dg_id", "player_id", "player_name"]:
-        for r in ["dg_id", "player_id", "player_name"]:
-            if k in df1.columns and r in df2.columns:
-                d2 = df2.rename(columns={r: k})
-                return k, d2
-    return None
+def pick_join_key(preds: pd.DataFrame, results: pd.DataFrame) -> str:
+    if "dg_id" in preds.columns and "dg_id" in results.columns:
+        return "dg_id"
+    return "player_name"
 
 
-def calibration_table(y_true: np.ndarray, p: np.ndarray, bins=10) -> pd.DataFrame:
-    cuts = np.quantile(p, np.linspace(0, 1, bins + 1))
-    cuts[0], cuts[-1] = 0.0, 1.0
-    idx = np.digitize(p, cuts[1:-1], right=False)
-    df = pd.DataFrame({"y": y_true, "p": p, "bin": idx})
-    out = (
-        df.groupby("bin")
-        .agg(obs_rate=("y", "mean"), avg_p=("p", "mean"), count=("p", "size"))
-        .reset_index()
-    )
-    out["abs_gap"] = (out["obs_rate"] - out["avg_p"]).abs()
+def evaluate(y_true: pd.Series, p: pd.Series) -> dict:
+    """Compute metrics, handling the 'single label' case gracefully."""
+    y = y_true.astype(int).to_numpy()
+    ps = np.clip(p.to_numpy().astype(float), 1e-12, 1 - 1e-12)
+
+    # Default metrics
+    out = {
+        "p_win_sum": float(ps.sum()),
+        "p_win_max": float(ps.max()),
+        "p_win_median": float(np.median(ps)),
+        "n": int(len(y)),
+    }
+
+    unique = np.unique(y)
+    if unique.size == 1:
+        # Incomplete results (all zeros) or no winner flagged: report log_loss with labels=[0,1]
+        out["log_loss"] = float(log_loss(y, ps, labels=[0, 1]))
+        out["brier"] = float(brier_score_loss(y, ps))
+        out["note"] = (
+            "winner_flag has a single class; used labels=[0,1] (event likely not completed)"
+        )
+    else:
+        out["log_loss"] = float(log_loss(y, ps))
+        out["brier"] = float(brier_score_loss(y, ps))
+
     return out
 
 
 def main():
+    ap = argparse.ArgumentParser(description="Evaluate predictions for an event.")
+    ap.add_argument("--tour", default=TOUR)
+    ap.add_argument(
+        "--event_id",
+        type=str,
+        default=None,
+        help="Specific event_id (recommended in backtests)",
+    )
+    args = ap.parse_args()
+
     root = Path(__file__).resolve().parent.parent
-    processed = root / "data" / "processed" / TOUR
-    preds_dir = root / "data" / "preds" / TOUR
+    preds_dir = root / "data" / "preds" / args.tour
+    processed_dir = root / "data" / "processed" / args.tour
 
-    # Load meta to get event_id
-    meta = json.loads(
-        sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8")
-    )
-    event_id = str(meta["event_id"])
+    event_id = resolve_event_id(preds_dir, args.event_id)
+    preds = load_preds_for_event(preds_dir, event_id)
+    results = load_results_for_event(processed_dir, event_id)
 
-    preds = load_preds(root, event_id)
-    results = load_results(root, event_id)
+    key = pick_join_key(preds, results)
+    preds[key] = preds[key].astype(str)
+    results[key] = results[key].astype(str)
 
-    # Pick join key
-    key = None
-    if "dg_id" in preds.columns and "dg_id" in results.columns:
-        key = "dg_id"
-    elif "dg_id" in preds.columns and "player_id" in results.columns:
-        results = results.rename(columns={"player_id": "dg_id"})
-        key = "dg_id"
-    elif "player_name" in preds.columns and "player_name" in results.columns:
-        key = "player_name"
-    else:
-        raise ValueError("Could not align join key between predictions and results.")
+    merged = preds.merge(results[[key, "winner_flag"]], on=key, how="inner")
+    if merged.empty or "p_win" not in merged.columns:
+        raise ValueError(
+            f"No overlap or missing p_win for event_id={event_id} (key={key})"
+        )
 
-    # Merge
-    df = preds.merge(results[[key, "winner_flag"]], on=key, how="inner")
-    if df.empty:
-        raise ValueError("No overlap between predictions and results after merge.")
+    metrics = evaluate(merged["winner_flag"], merged["p_win"])
 
-    # Metrics
-    y = df["winner_flag"].astype(int).to_numpy()
-    p = df["p_win"].astype(float).to_numpy()
-    eps = 1e-12
-    p_clip = np.clip(p, eps, 1 - eps)
-
-    brier = float(brier_score_loss(y, p_clip))
-    ll = float(log_loss(y, p_clip))
-
-    cal = calibration_table(y, p)
-    eval_summary = {
-        "event_id": event_id,
-        "field_size": int(len(df)),
-        "brier": brier,
-        "log_loss": ll,
-        "p_win_sum": float(p.sum()),
-        "p_win_max": float(p.max()),
-        "p_win_median": float(np.median(p)),
-        "calibration_bins": cal.to_dict(orient="records"),
-    }
-
+    # Write summary
     out = preds_dir / f"event_{event_id}_eval_summary.json"
-    out.write_text(json.dumps(eval_summary, indent=2), encoding="utf-8")
+    out.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
 
-    print("Brier:", round(brier, 6), "  Log-loss:", round(ll, 6))
+    # Diagnostics
     print(
-        "Sum p_win:",
-        round(eval_summary["p_win_sum"], 6),
-        "  Max p_win:",
-        round(eval_summary["p_win_max"], 4),
+        json.dumps(
+            {
+                "event_id": event_id,
+                "join_key": key,
+                "preds_rows": len(preds),
+                "results_rows": len(results),
+                "merged_rows": len(merged),
+                **metrics,
+            },
+            indent=2,
+        )
     )
-    print("\nCalibration by decile (obs vs avg_p):")
-    print(cal.to_string(index=False))
 
 
 if __name__ == "__main__":
