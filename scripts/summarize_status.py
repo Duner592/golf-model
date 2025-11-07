@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 # scripts/summarize_status.py
 #
-# Summarizes the current event’s artifacts:
-# - processed: field, meta, weather (hourly + summaries), player data, sigma, course fit DIY (+ driving inside DIY)
-# - features: features_weather, features_full, features_course
-# - preds: baseline / common_shock / with_course
+# Summarize artifacts for a specific event. If --event_id is not provided,
+# resolves the most recent event that has predictions in data/preds/{tour}.
 #
-# Note:
-# - Driving features are already included in DIY course fit (da_input, dd_input, da_z, dd_z).
-# - We no longer check (or warn) about a standalone driving_features parquet.
+from __future__ import annotations
 
+import argparse
 import json
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -18,44 +16,79 @@ import pandas as pd
 TOUR = "pga"
 
 
-def exists(p: Path) -> bool:
-    return p.exists()
+def scan_pred_events(preds_dir: Path) -> list[str]:
+    ids = set()
+    for p in preds_dir.glob("event_*_preds_*.parquet"):
+        m = re.match(r"event_(\d+)_preds_", p.name)
+        if m:
+            ids.add(m.group(1))
+    return sorted(ids)
 
 
-def head_cols(df: pd.DataFrame, k=8) -> list:
-    return list(df.columns[:k])
+def resolve_event_id_arg_or_preds(arg_eid: str | None, tour: str) -> str:
+    if arg_eid:
+        return str(arg_eid)
+    preds_dir = Path("data/preds") / tour
+    cand = scan_pred_events(preds_dir)
+    if not cand:
+        # fall back to latest meta if there are no preds files at all
+        processed = Path("data/processed") / tour
+        metas = sorted(processed.glob("event_*_meta.json"))
+        if not metas:
+            raise FileNotFoundError("No predictions or meta found. Run the weekly pipeline first.")
+        meta = json.loads(metas[-1].read_text(encoding="utf-8"))
+        return str(meta["event_id"])
+    return cand[-1]
 
 
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def print_section(title: str):
-    print("\n" + "=" * 80)
-    print(title)
-    print("=" * 80)
+def head_cols(df: pd.DataFrame, k=8) -> list:
+    return list(df.columns[:k])
+
+
+def exists(p: Path) -> bool:
+    return p.exists()
 
 
 def main():
-    root = Path(__file__).resolve().parent.parent
-    processed = root / "data" / "processed" / TOUR
-    features = root / "data" / "features" / TOUR
-    preds = root / "data" / "preds" / TOUR
-    raw_hist = root / "data" / "raw" / "historical" / TOUR
+    ap = argparse.ArgumentParser(description="Summarize artifacts for an event.")
+    ap.add_argument("--tour", default=TOUR)
+    ap.add_argument("--event_id", type=str, default=None, help="Event id to summarize")
+    args = ap.parse_args()
 
-    # Meta
-    metas = sorted(processed.glob("event_*_meta.json"))
-    if not metas:
-        print("No meta found. Run parse_field_updates.py first.")
-        return
-    meta = load_json(metas[-1])
-    event_id = str(meta.get("event_id"))
+    tour = args.tour
+    root = Path(__file__).resolve().parent.parent
+    processed = root / "data" / "processed" / tour
+    features = root / "data" / "features" / tour
+    preds = root / "data" / "preds" / tour
+    raw_hist = root / "data" / "raw" / "historical" / tour
+
+    # Resolve event_id (prefer CLI; else most recent that has preds)
+    event_id = resolve_event_id_arg_or_preds(args.event_id, tour)
+
+    # Meta (by event id)
+    meta_path = processed / f"event_{event_id}_meta.json"
+    if not meta_path.exists():
+        # fallback: use latest meta if specific one missing (but print a warning)
+        metas = sorted(processed.glob("event_*_meta.json"))
+        if not metas:
+            raise FileNotFoundError("No meta found. Run parse_field_updates.py first.")
+        meta_path = metas[-1]
+        print(f"[warn] Specific meta for event_{event_id} not found. Using latest: {meta_path.name}")
+    meta = load_json(meta_path)
     event_name = meta.get("event_name")
-    print_section(f"Event Meta: {event_name} (event_id={event_id})")
+    print("\n" + "=" * 80)
+    print(f"Event Meta: {event_name} (event_id={meta.get('event_id')})")
+    print("=" * 80)
     print(json.dumps(meta, indent=2))
 
-    # Field + tee times
-    print_section("Field / Tee Times")
+    # Field + tee-times (by event id)
+    print("\n" + "=" * 80)
+    print("Field / Tee Times")
+    print("=" * 80)
     fld_parquet = processed / f"event_{event_id}_field.parquet"
     fld_csv = processed / f"event_{event_id}_field.csv"
     tt_parquet = processed / f"event_{event_id}_field_teetimes.parquet"
@@ -74,8 +107,10 @@ def main():
     else:
         print("Tee-time table missing (may be null until release).")
 
-    # Weather (hourly + summaries)
-    print_section("Weather")
+    # Weather
+    print("\n" + "=" * 80)
+    print("Weather")
+    print("=" * 80)
     wh = processed / f"event_{event_id}_weather_hourly.json"
     wn = processed / f"event_{event_id}_weather_round_neutral.parquet"
     ww = processed / f"event_{event_id}_weather_round_wave.parquet"
@@ -97,8 +132,10 @@ def main():
     else:
         print("Wave-aware round weather summary missing.")
 
-    # Player data: rankings / skill ratings
-    print_section("Player Ratings / Rankings")
+    # Player data
+    print("\n" + "=" * 80)
+    print("Player Ratings / Rankings")
+    print("=" * 80)
     dr = processed / f"event_{event_id}_dg_rankings.parquet"
     sr = processed / f"event_{event_id}_skill_ratings.parquet"
     if dr.exists():
@@ -113,7 +150,9 @@ def main():
         print("Skill ratings missing.")
 
     # Sigma
-    print_section("Volatility (Sigma)")
+    print("\n" + "=" * 80)
+    print("Volatility (Sigma)")
+    print("=" * 80)
     sp = processed / f"event_{event_id}_player_sigma.parquet"
     if sp.exists():
         df_sigma = pd.read_parquet(sp)
@@ -121,14 +160,15 @@ def main():
     else:
         print("Sigma parquet missing.")
 
-    # DIY course fit + weights (includes driving inputs already)
-    print_section("Course Fit (DIY) + Weights")
+    # Course fit / weights
+    print("\n" + "=" * 80)
+    print("Course Fit (DIY) + Weights")
+    print("=" * 80)
     diy = processed / f"event_{event_id}_course_fit_diy.parquet"
     wts = processed / f"event_{event_id}_course_fit_weights.json"
     if diy.exists():
         df_diy = pd.read_parquet(diy)
         print(f"DIY course fit: {len(df_diy)} rows; cols: {head_cols(df_diy)}")
-        # Highlight presence of driving inputs within DIY
         has_da = "da_input" in df_diy.columns or "da_z" in df_diy.columns
         has_dd = "dd_input" in df_diy.columns or "dd_z" in df_diy.columns
         print(f"Driving in DIY: DA present={has_da}, DD present={has_dd}")
@@ -140,10 +180,10 @@ def main():
     else:
         print("Course fit weights json missing.")
 
-    # NOTE: We no longer check (or warn) about a standalone driving_features parquet.
-
-    # Features tables
-    print_section("Features Tables")
+    # Features
+    print("\n" + "=" * 80)
+    print("Features Tables")
+    print("=" * 80)
     fw = features / f"event_{event_id}_features_weather.parquet"
     ff = features / f"event_{event_id}_features_full.parquet"
     fc = features / f"event_{event_id}_features_course.parquet"
@@ -163,15 +203,13 @@ def main():
     else:
         print("Features (course) missing (might still be equal to full).")
 
-    # Predictions
-    print_section("Predictions")
-    pred_files = [
-        preds / f"event_{event_id}_preds_baseline.parquet",
-        preds / f"event_{event_id}_preds_common_shock.parquet",
-        preds / f"event_{event_id}_preds_with_course.parquet",
-    ]
+    # Predictions (by event id)
+    print("\n" + "=" * 80)
+    print("Predictions")
+    print("=" * 80)
     any_preds = False
-    for pf in pred_files:
+    for stem in ["with_course", "common_shock", "baseline"]:
+        pf = preds / f"event_{event_id}_preds_{stem}.parquet"
         if pf.exists():
             any_preds = True
             dfp = pd.read_parquet(pf)
@@ -180,10 +218,12 @@ def main():
                 print("Top 10 by p_win:")
                 print(dfp.sort_values("p_win", ascending=False).head(10).to_string(index=False))
     if not any_preds:
-        print("No predictions found yet.")
+        print("No predictions found yet for this event.")
 
-    # Historical combined parquet presence (optional)
-    print_section("Historical Combined (optional)")
+    # Historical combined (optional)
+    print("\n" + "=" * 80)
+    print("Historical Combined (optional)")
+    print("=" * 80)
     hist_glob = list(raw_hist.glob("tournament_*_rounds_combined.parquet"))
     if hist_glob:
         print("Found historical combined parquet(s):")

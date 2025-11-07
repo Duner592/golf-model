@@ -112,7 +112,7 @@ def fetch_open_meteo_hourly(lat: float, lon: float, start_date: str, end_date: s
     params = {
         "latitude": lat,
         "longitude": lon,
-        "hourly": "wind_speed_10m,wind_gusts_10m,temperature_2m,precipitation_probability",
+        "hourly": "wind_speed_10m,wind_gusts_10m,temperature_2m,precipitation_probability,weathercode",
         "start_date": start_date,
         "end_date": end_date,
         "timezone": tz,

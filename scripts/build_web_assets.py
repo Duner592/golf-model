@@ -15,12 +15,20 @@
 #
 from __future__ import annotations
 
+import argparse
 import json
+import math
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
+
+# ensure repo root is importable when running scripts directly
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 
 TOUR = "pga"
 MPH_PER_MPS = 2.237
@@ -62,9 +70,31 @@ def pick_matching_summary(preds_dir: Path, csv_path: Path) -> Path | None:
     return cand[-1] if cand else None
 
 
+def _sanitize_jsonable(obj):
+    """
+    Recursively replace NaN/Inf with None so JSON is standards-compliant.
+    """
+    if isinstance(obj, dict):
+        return {k: _sanitize_jsonable(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_sanitize_jsonable(x) for x in obj]
+    if isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return None
+        return obj
+    # numpy scalars
+    if isinstance(obj, (np.floating,)):
+        f = float(obj)
+        if math.isnan(f) or math.isinf(f):
+            return None
+        return f
+    return obj
+
+
 def write_json(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2), encoding="utf-8")
+    safe_obj = _sanitize_jsonable(obj)
+    path.write_text(json.dumps(safe_obj, indent=2, allow_nan=False), encoding="utf-8")
 
 
 # ---------- formatting helpers ----------
@@ -276,6 +306,11 @@ def build_tournament_summary(
 
 # ---------- load start-holes from processed field (robust) ----------
 def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
+    """
+    Return a small DataFrame with columns:
+      [player_name, r1_start_hole, r2_start_hole, name_key]
+    Built from the processed field/teetimes tables if available.
+    """
     for name in [
         f"event_{event_id}_field_teetimes.parquet",
         f"event_{event_id}_field_teetimes.csv",
@@ -283,73 +318,186 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
         f"event_{event_id}_field.csv",
     ]:
         p = processed_dir / name
-        if p.exists():
-            df = pd.read_parquet(p) if p.suffix == ".parquet" else pd.read_csv(p)
-            # canonical name
-            if "player_name" not in df.columns:
-                for c in ["name", "Player", "player"]:
-                    if c in df.columns:
-                        df = df.rename(columns={c: "player_name"})
-                        break
-            if "player_name" not in df.columns:
-                continue
-            # candidate columns for R1/R2
-            cands_r1 = [
-                "r1_start_hole",
-                "start_hole_r1",
-                "r1_start",
-                "r1_starttee",
-                "start_hole",
-            ]
-            cands_r2 = [
-                "r2_start_hole",
-                "start_hole_r2",
-                "r2_start",
-                "r2_starttee",
-                "start_hole",
-            ]
+        if not p.exists():
+            continue
 
-            def pick(row: dict, cols: list[str], frame_columns: pd.Index) -> str | None:
-                for c in cols:
-                    if c in frame_columns and pd.notna(row.get(c)):
-                        return row.get(c)
-                return None
+        df = pd.read_parquet(p) if p.suffix == ".parquet" else pd.read_csv(p)
+        # canonicalize player_name
+        if "player_name" not in df.columns:
+            for c in ["name", "Player", "player"]:
+                if c in df.columns:
+                    df = df.rename(columns={c: "player_name"})
+                    break
+        if "player_name" not in df.columns:
+            continue
 
-            r1, r2 = [], []
-            for _, row in df.iterrows():
-                r1.append(pick(row, cands_r1))
-                r2.append(pick(row, cands_r2))
-            out = pd.DataFrame(
-                {
-                    "player_name": df["player_name"].astype(str),
-                    "r1_start_hole": pd.Series(r1, index=df.index),
-                    "r2_start_hole": pd.Series(r2, index=df.index),
-                }
-            )
-            # normalize names for merge
-            out["name_key"] = out["player_name"].map(_norm_name)
-            return out.drop_duplicates(subset=["name_key"])
+        # Candidate columns for R1/R2 start holes
+        cands_r1 = [
+            "r1_start_hole",
+            "start_hole_r1",
+            "r1_start",
+            "r1_starttee",
+            "start_hole",
+        ]
+        cands_r2 = [
+            "r2_start_hole",
+            "start_hole_r2",
+            "r2_start",
+            "r2_starttee",
+            "start_hole",
+        ]
+
+        frame_columns = set(df.columns)
+
+        def pick(row: dict, cols: list[str], frame_columns: set) -> str | None:
+            for c in cols:
+                if c in frame_columns:
+                    v = row.get(c)
+                    if pd.notna(v):
+                        return v
+            return None
+
+        r1, r2 = [], []
+        # Use dict-like access for row to be robust across CSV/Parquet
+        for _, row in df.iterrows():
+            r1.append(pick(row, cands_r1, frame_columns))
+            r2.append(pick(row, cands_r2, frame_columns))
+
+        out = pd.DataFrame(
+            {
+                "player_name": df["player_name"].astype(str),
+                "r1_start_hole": pd.Series(r1, index=df.index),
+                "r2_start_hole": pd.Series(r2, index=df.index),
+            }
+        )
+
+        # normalize names for merge with leaderboard
+        def _norm_name(s: str | None) -> str:
+            if not isinstance(s, str):
+                return ""
+            t = s.lower().strip()
+            t = re.sub(r"[^a-z0-9]+", " ", t)
+            t = re.sub(r"\s+", " ", t).strip()
+            return t
+
+        out["name_key"] = out["player_name"].map(_norm_name)
+        # Keep unique per player
+        return out.drop_duplicates(subset=["name_key"])
+
     return None
+
+
+def scan_latest_stamped_leaderboard(preds_dir: Path) -> tuple[Path | None, str | None]:
+    """
+    Return (latest_stamped_csv, event_id) by file mtime.
+    Looks for event_{eid}_{slug}_{date}_leaderboard.csv
+    """
+    stamped = sorted(preds_dir.glob("event_*_*_leaderboard.csv"), key=lambda p: p.stat().st_mtime)
+    if not stamped:
+        return None, None
+    p = stamped[-1]
+    m = re.match(r"event_(\d+)_.*_leaderboard\.csv$", p.name)
+    eid = m.group(1) if m else None
+    return p, eid
+
+
+def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
+    """
+    Prefer processed event_{event_id}_meta.json; fallback to weather_meta.
+    """
+    p = processed_dir / f"event_{event_id}_meta.json"
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    w = processed_dir / f"event_{event_id}_weather_meta.json"
+    if w.exists():
+        return json.loads(w.read_text(encoding="utf-8"))
+    raise FileNotFoundError(f"No meta for event_id={event_id} (looked for meta and weather_meta).")
 
 
 # ---------- main ----------
 def main():
+    # NEW: allow --event_id and fallback to the most recent stamped leaderboard
+    ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
+    ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets")
+    args = ap.parse_args()
+
     root = Path(__file__).resolve().parent.parent
     processed_dir = root / "data" / "processed" / TOUR
     preds_dir = root / "data" / "preds" / TOUR
-    meta_proc = latest_meta(processed_dir)
-    event_id = str(meta_proc["event_id"])
+
+    # Resolve event_id
+    from src.utils_event import resolve_event_id as _resolve  # centralized resolver
+
+    event_id = None
+
+    # 1) explicit CLI
+    if args.event_id:
+        event_id = str(args.event_id)
+
+    # 2) latest stamped leaderboard (most recent export)
+    if not event_id:
+        latest_lb, eid_from_lb = scan_latest_stamped_leaderboard(preds_dir)
+        if eid_from_lb:
+            event_id = str(eid_from_lb)
+
+    # 3) fallback to centralized resolver (this week)
+    if not event_id:
+        event_id = _resolve(None)
+
+    # Load meta for that event
+    meta_proc = load_meta_for_event(processed_dir, event_id)
     event_name = meta_proc.get("event_name", f"event_{event_id}")
     lat = meta_proc.get("lat")
     lon = meta_proc.get("lon")
+
+    # Load r1_date from weather_meta.json if available
+    weather_meta_path = processed_dir / f"event_{event_id}_weather_meta.json"
+    r1_date = None
+    if weather_meta_path.exists():
+        try:
+            weather_meta = json.loads(weather_meta_path.read_text(encoding="utf-8"))
+            r1_date = weather_meta.get("r1_date")
+        except Exception:
+            pass
+
+    # Pick leaderboard CSV/HTML for this event
     lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
     summary_json = pick_matching_summary(preds_dir, lb_csv)
+
     web_dir = root / "web"
     dl_dir = web_dir / "downloads"
     dl_dir.mkdir(parents=True, exist_ok=True)
 
-    # load leaderboard CSV and create name_key for robust join
+    # Leaderboard JSON (apply HH:MM + '*' for 10th tee starts, then drop start_hole cols)
     df_lb = pd.read_csv(lb_csv)
+
+    def tee_time_with_tee(time_val, start_val):
+        base = _time_only(time_val)
+        try:
+            ten = (str(start_val).strip() == "10") or (int(str(start_val).strip() or "0") == 10)
+        except Exception:
+            ten = False
+        return f"{base}*" if base and ten else base
+
+    for r in [1, 2]:
+        time_col = f"r{r}_teetime"
+        # prefer round-specific start hole if present
+        start_col = f"r{r}_start_hole" if f"r{r}_start_hole" in df_lb.columns else "start_hole"
+        if time_col in df_lb.columns:
+            if start_col in df_lb.columns:
+                df_lb[time_col] = [tee_time_with_tee(t, s) for t, s in zip(df_lb[time_col], df_lb[start_col], strict=False)]
+            else:
+                df_lb[time_col] = df_lb[time_col].apply(_time_only)
+
+    # DROP start_hole columns to avoid NaN in JSON (browser-unsafe)
+    drop_cols = [c for c in ("r1_start_hole", "r2_start_hole", "start_hole") if c in df_lb.columns]
+    if drop_cols:
+        df_lb = df_lb.drop(columns=drop_cols)
+
+    # Optional: ensure any remaining NaN/Inf are removed before dict conversion
+    df_lb = df_lb.replace({np.nan: None, np.inf: None, -np.inf: None})
+
+    write_json(web_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
     # find player name column (your CSV typically has 'player_name' already)
     name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
     if not name_col:
@@ -447,12 +595,18 @@ def main():
     ts_path = web_dir / "tournament_summary.json"
     build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, ts_path)
 
+    # Copy field_teetimes.csv to web
+    import shutil
+
+    shutil.copy(processed_dir / f"event_{event_id}_field_teetimes.csv", web_dir / "field_teetimes.csv")
+
     meta_out = {
         "tour": TOUR,
         "event_id": event_id,
         "event_name": event_name,
         "lat": lat,
         "lon": lon,
+        "r1_date": r1_date,
         "generated_utc": summary["generated_utc"],
         "resources": {
             "downloads_csv": f"downloads/{lb_csv.name}",
@@ -478,6 +632,7 @@ def main():
         "course_fit_weights.json",
         "course_history_summary.json",
         "tournament_summary.json",
+        "field_teetimes.csv",
     ]:
         q = web_dir / p
         print("-", q if q.exists() else f"- (not generated) {q}")

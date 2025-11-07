@@ -5,11 +5,11 @@
     "p_win_%": 7.84,
     "p_top10_%": 38.3,
     "p_mc_%": 83.4,
-    "r1_teetime": "07:14*",
-    "r2_teetime": "11:49*",
+    "r1_teetime": "07:14",
+    "r2_teetime": "11:49",
     "course_fit_score": 0.3702672788682412,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 2,
@@ -17,11 +17,11 @@
     "p_win_%": 6.83,
     "p_top10_%": 36.4,
     "p_mc_%": 82.6,
-    "r1_teetime": "07:14*",
-    "r2_teetime": "11:49*",
+    "r1_teetime": "07:14",
+    "r2_teetime": "11:49",
     "course_fit_score": 0.3317324528304147,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 3,
@@ -32,8 +32,8 @@
     "r1_teetime": "12:11",
     "r2_teetime": "07:36",
     "course_fit_score": 0.9082615156029792,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 4,
@@ -41,11 +41,11 @@
     "p_win_%": 3.78,
     "p_top10_%": 25.6,
     "p_mc_%": 76.5,
-    "r1_teetime": "11:27*",
-    "r2_teetime": "06:52*",
+    "r1_teetime": "11:27",
+    "r2_teetime": "06:52",
     "course_fit_score": 0.6699183505829506,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 5,
@@ -56,8 +56,8 @@
     "r1_teetime": "11:05",
     "r2_teetime": "06:30",
     "course_fit_score": 0.2663253477156695,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 6,
@@ -68,8 +68,8 @@
     "r1_teetime": "11:49",
     "r2_teetime": "07:14",
     "course_fit_score": 0.2137578690446488,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 7,
@@ -77,11 +77,11 @@
     "p_win_%": 2.48,
     "p_top10_%": 20.2,
     "p_mc_%": 72.4,
-    "r1_teetime": "11:49*",
-    "r2_teetime": "07:14*",
+    "r1_teetime": "11:49",
+    "r2_teetime": "07:14",
     "course_fit_score": 0.1756769295402654,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 8,
@@ -89,11 +89,11 @@
     "p_win_%": 2.46,
     "p_top10_%": 19.2,
     "p_mc_%": 71.8,
-    "r1_teetime": "07:03*",
-    "r2_teetime": "11:38*",
+    "r1_teetime": "07:03",
+    "r2_teetime": "11:38",
     "course_fit_score": -0.0033645563804459,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 9,
@@ -104,8 +104,8 @@
     "r1_teetime": "11:05",
     "r2_teetime": "06:30",
     "course_fit_score": 0.2197176517156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 10,
@@ -113,11 +113,11 @@
     "p_win_%": 2.14,
     "p_top10_%": 18.1,
     "p_mc_%": 70.5,
-    "r1_teetime": "07:03*",
-    "r2_teetime": "11:38*",
+    "r1_teetime": "07:03",
+    "r2_teetime": "11:38",
     "course_fit_score": 0.6775191298915085,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 11,
@@ -128,8 +128,8 @@
     "r1_teetime": "12:00",
     "r2_teetime": "07:25",
     "course_fit_score": 0.1259636758205601,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 12,
@@ -137,11 +137,11 @@
     "p_win_%": 1.93,
     "p_top10_%": 16.5,
     "p_mc_%": 69.2,
-    "r1_teetime": "07:03*",
-    "r2_teetime": "11:38*",
+    "r1_teetime": "07:03",
+    "r2_teetime": "11:38",
     "course_fit_score": 0.7413464815154934,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 13,
@@ -152,8 +152,8 @@
     "r1_teetime": "12:44",
     "r2_teetime": "08:09",
     "course_fit_score": 0.760988898236788,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 14,
@@ -164,8 +164,8 @@
     "r1_teetime": "11:49",
     "r2_teetime": "07:14",
     "course_fit_score": 0.183075887735038,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 15,
@@ -176,8 +176,8 @@
     "r1_teetime": "06:30",
     "r2_teetime": "11:05",
     "course_fit_score": 0.2111231567156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 16,
@@ -188,8 +188,8 @@
     "r1_teetime": "11:38",
     "r2_teetime": "07:03",
     "course_fit_score": 0.1432100057156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 17,
@@ -200,8 +200,8 @@
     "r1_teetime": "07:36",
     "r2_teetime": "12:11",
     "course_fit_score": 0.1882556684466137,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 18,
@@ -209,11 +209,11 @@
     "p_win_%": 1.4,
     "p_top10_%": 14.0,
     "p_mc_%": 66.5,
-    "r1_teetime": "07:58*",
-    "r2_teetime": "12:33*",
+    "r1_teetime": "07:58",
+    "r2_teetime": "12:33",
     "course_fit_score": 0.1333098717156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 19,
@@ -224,8 +224,8 @@
     "r1_teetime": "07:25",
     "r2_teetime": "12:00",
     "course_fit_score": -0.0811108122908832,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 20,
@@ -233,11 +233,11 @@
     "p_win_%": 1.24,
     "p_top10_%": 13.3,
     "p_mc_%": 65.3,
-    "r1_teetime": "06:30*",
-    "r2_teetime": "11:05*",
+    "r1_teetime": "06:30",
+    "r2_teetime": "11:05",
     "course_fit_score": 0.2256920063654721,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 21,
@@ -245,11 +245,11 @@
     "p_win_%": 1.19,
     "p_top10_%": 12.5,
     "p_mc_%": 64.4,
-    "r1_teetime": "12:00*",
-    "r2_teetime": "07:25*",
+    "r1_teetime": "12:00",
+    "r2_teetime": "07:25",
     "course_fit_score": 0.1902760047156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 22,
@@ -260,8 +260,8 @@
     "r1_teetime": "11:38",
     "r2_teetime": "07:03",
     "course_fit_score": -0.0283472401951734,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 23,
@@ -272,8 +272,8 @@
     "r1_teetime": "06:30",
     "r2_teetime": "11:05",
     "course_fit_score": 0.024389172976944,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 24,
@@ -281,11 +281,11 @@
     "p_win_%": 1.12,
     "p_top10_%": 11.3,
     "p_mc_%": 62.7,
-    "r1_teetime": "11:16*",
-    "r2_teetime": "06:41*",
+    "r1_teetime": "11:16",
+    "r2_teetime": "06:41",
     "course_fit_score": 0.1646485247156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 25,
@@ -293,11 +293,11 @@
     "p_win_%": 1.07,
     "p_top10_%": 11.6,
     "p_mc_%": 62.8,
-    "r1_teetime": "06:41*",
-    "r2_teetime": "11:16*",
+    "r1_teetime": "06:41",
+    "r2_teetime": "11:16",
     "course_fit_score": 0.7132014835054984,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 26,
@@ -308,8 +308,8 @@
     "r1_teetime": "12:00",
     "r2_teetime": "07:25",
     "course_fit_score": 0.0645289043471402,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 27,
@@ -317,11 +317,11 @@
     "p_win_%": 0.96,
     "p_top10_%": 10.8,
     "p_mc_%": 62.6,
-    "r1_teetime": "07:36*",
-    "r2_teetime": "12:11*",
+    "r1_teetime": "07:36",
+    "r2_teetime": "12:11",
     "course_fit_score": 0.0228061899392424,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 28,
@@ -332,8 +332,8 @@
     "r1_teetime": "07:36",
     "r2_teetime": "12:11",
     "course_fit_score": -0.0159200776242006,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 29,
@@ -341,11 +341,11 @@
     "p_win_%": 0.94,
     "p_top10_%": 10.6,
     "p_mc_%": 62.0,
-    "r1_teetime": "07:14*",
-    "r2_teetime": "11:49*",
+    "r1_teetime": "07:14",
+    "r2_teetime": "11:49",
     "course_fit_score": 0.1275940847156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 30,
@@ -356,8 +356,8 @@
     "r1_teetime": "07:03",
     "r2_teetime": "11:38",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": null,
+    "r2_start_hole": null
   },
   {
     "rank": 31,
@@ -368,8 +368,8 @@
     "r1_teetime": "11:27",
     "r2_teetime": "06:52",
     "course_fit_score": -0.072030738445676,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 32,
@@ -377,11 +377,11 @@
     "p_win_%": 0.9,
     "p_top10_%": 10.3,
     "p_mc_%": 61.1,
-    "r1_teetime": "11:38*",
-    "r2_teetime": "07:03*",
+    "r1_teetime": "11:38",
+    "r2_teetime": "07:03",
     "course_fit_score": 0.0859457597156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 33,
@@ -392,8 +392,8 @@
     "r1_teetime": "06:41",
     "r2_teetime": "11:16",
     "course_fit_score": 0.1438704717156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 34,
@@ -404,8 +404,8 @@
     "r1_teetime": "12:11",
     "r2_teetime": "07:36",
     "course_fit_score": -0.0839988789469313,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 35,
@@ -413,11 +413,11 @@
     "p_win_%": 0.87,
     "p_top10_%": 10.1,
     "p_mc_%": 61.0,
-    "r1_teetime": "06:30*",
-    "r2_teetime": "11:05*",
+    "r1_teetime": "06:30",
+    "r2_teetime": "11:05",
     "course_fit_score": 0.0119704490249306,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 36,
@@ -428,8 +428,8 @@
     "r1_teetime": "11:27",
     "r2_teetime": "06:52",
     "course_fit_score": -0.2441019462883122,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 37,
@@ -437,11 +437,11 @@
     "p_win_%": 0.78,
     "p_top10_%": 8.8,
     "p_mc_%": 58.9,
-    "r1_teetime": "06:52*",
-    "r2_teetime": "11:27*",
+    "r1_teetime": "06:52",
+    "r2_teetime": "11:27",
     "course_fit_score": 0.0733431314507773,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 38,
@@ -449,11 +449,11 @@
     "p_win_%": 0.76,
     "p_top10_%": 9.2,
     "p_mc_%": 59.1,
-    "r1_teetime": "11:16*",
-    "r2_teetime": "06:41*",
+    "r1_teetime": "11:16",
+    "r2_teetime": "06:41",
     "course_fit_score": 0.1189565717156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 39,
@@ -464,8 +464,8 @@
     "r1_teetime": "11:27",
     "r2_teetime": "06:52",
     "course_fit_score": -0.2536486232503538,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 40,
@@ -473,11 +473,11 @@
     "p_win_%": 0.72,
     "p_top10_%": 8.8,
     "p_mc_%": 58.9,
-    "r1_teetime": "11:05*",
-    "r2_teetime": "06:30*",
+    "r1_teetime": "11:05",
+    "r2_teetime": "06:30",
     "course_fit_score": -0.291197879070942,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 41,
@@ -485,11 +485,11 @@
     "p_win_%": 0.68,
     "p_top10_%": 8.1,
     "p_mc_%": 57.6,
-    "r1_teetime": "08:09*",
-    "r2_teetime": "12:44*",
+    "r1_teetime": "08:09",
+    "r2_teetime": "12:44",
     "course_fit_score": 0.1701155937156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 42,
@@ -497,11 +497,11 @@
     "p_win_%": 0.68,
     "p_top10_%": 7.8,
     "p_mc_%": 56.9,
-    "r1_teetime": "11:05*",
-    "r2_teetime": "06:30*",
+    "r1_teetime": "11:05",
+    "r2_teetime": "06:30",
     "course_fit_score": 0.2431599799013711,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 43,
@@ -509,11 +509,11 @@
     "p_win_%": 0.67,
     "p_top10_%": 7.8,
     "p_mc_%": 57.3,
-    "r1_teetime": "12:11*",
-    "r2_teetime": "07:36*",
+    "r1_teetime": "12:11",
+    "r2_teetime": "07:36",
     "course_fit_score": 0.1391614127156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 44,
@@ -524,8 +524,8 @@
     "r1_teetime": "12:22",
     "r2_teetime": "07:47",
     "course_fit_score": 0.1484991677156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 45,
@@ -533,11 +533,11 @@
     "p_win_%": 0.64,
     "p_top10_%": 8.0,
     "p_mc_%": 57.3,
-    "r1_teetime": "06:30*",
-    "r2_teetime": "11:05*",
+    "r1_teetime": "06:30",
+    "r2_teetime": "11:05",
     "course_fit_score": -0.4471971310037742,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 46,
@@ -548,8 +548,8 @@
     "r1_teetime": "06:30",
     "r2_teetime": "11:05",
     "course_fit_score": 0.2439582885038308,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 47,
@@ -557,11 +557,11 @@
     "p_win_%": 0.6,
     "p_top10_%": 7.2,
     "p_mc_%": 55.8,
-    "r1_teetime": "12:11*",
-    "r2_teetime": "07:36*",
+    "r1_teetime": "12:11",
+    "r2_teetime": "07:36",
     "course_fit_score": 0.1147017917156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 48,
@@ -569,11 +569,11 @@
     "p_win_%": 0.6,
     "p_top10_%": 7.6,
     "p_mc_%": 57.4,
-    "r1_teetime": "06:52*",
-    "r2_teetime": "11:27*",
+    "r1_teetime": "06:52",
+    "r2_teetime": "11:27",
     "course_fit_score": 0.5176158628266527,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 49,
@@ -584,8 +584,8 @@
     "r1_teetime": "07:58",
     "r2_teetime": "12:33",
     "course_fit_score": 0.0877150277156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 50,
@@ -596,8 +596,8 @@
     "r1_teetime": "07:14",
     "r2_teetime": "11:49",
     "course_fit_score": 0.5709993645421807,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 51,
@@ -608,8 +608,8 @@
     "r1_teetime": "06:41",
     "r2_teetime": "11:16",
     "course_fit_score": 0.2125803831325174,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 52,
@@ -620,8 +620,8 @@
     "r1_teetime": "07:58",
     "r2_teetime": "12:33",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 53,
@@ -629,11 +629,11 @@
     "p_win_%": 0.56,
     "p_top10_%": 6.6,
     "p_mc_%": 54.7,
-    "r1_teetime": "12:44*",
-    "r2_teetime": "08:09*",
+    "r1_teetime": "12:44",
+    "r2_teetime": "08:09",
     "course_fit_score": 0.0625139537156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 54,
@@ -644,8 +644,8 @@
     "r1_teetime": "12:33",
     "r2_teetime": "07:58",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 55,
@@ -656,8 +656,8 @@
     "r1_teetime": "07:47",
     "r2_teetime": "12:22",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 56,
@@ -665,11 +665,11 @@
     "p_win_%": 0.54,
     "p_top10_%": 7.2,
     "p_mc_%": 56.2,
-    "r1_teetime": "07:36*",
-    "r2_teetime": "12:11*",
+    "r1_teetime": "07:36",
+    "r2_teetime": "12:11",
     "course_fit_score": 0.1031350667156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 57,
@@ -677,11 +677,11 @@
     "p_win_%": 0.54,
     "p_top10_%": 6.6,
     "p_mc_%": 54.5,
-    "r1_teetime": "08:09*",
-    "r2_teetime": "12:44*",
+    "r1_teetime": "08:09",
+    "r2_teetime": "12:44",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 58,
@@ -692,8 +692,8 @@
     "r1_teetime": "11:16",
     "r2_teetime": "06:41",
     "course_fit_score": 0.0338599175496611,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 59,
@@ -701,11 +701,11 @@
     "p_win_%": 0.53,
     "p_top10_%": 7.4,
     "p_mc_%": 56.9,
-    "r1_teetime": "11:05*",
-    "r2_teetime": "06:30*",
+    "r1_teetime": "11:05",
+    "r2_teetime": "06:30",
     "course_fit_score": 0.1947209797156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 60,
@@ -713,11 +713,11 @@
     "p_win_%": 0.53,
     "p_top10_%": 7.4,
     "p_mc_%": 56.4,
-    "r1_teetime": "11:27*",
-    "r2_teetime": "06:52*",
+    "r1_teetime": "11:27",
+    "r2_teetime": "06:52",
     "course_fit_score": 0.5634265551720372,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 61,
@@ -725,11 +725,11 @@
     "p_win_%": 0.53,
     "p_top10_%": 6.9,
     "p_mc_%": 54.9,
-    "r1_teetime": "07:47*",
-    "r2_teetime": "12:22*",
+    "r1_teetime": "07:47",
+    "r2_teetime": "12:22",
     "course_fit_score": 0.1020716131549307,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 62,
@@ -740,8 +740,8 @@
     "r1_teetime": "11:16",
     "r2_teetime": "06:41",
     "course_fit_score": 0.0644697397156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 63,
@@ -749,11 +749,11 @@
     "p_win_%": 0.52,
     "p_top10_%": 7.6,
     "p_mc_%": 56.5,
-    "r1_teetime": "07:25*",
-    "r2_teetime": "12:00*",
+    "r1_teetime": "07:25",
+    "r2_teetime": "12:00",
     "course_fit_score": -0.1674214494272146,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 64,
@@ -764,8 +764,8 @@
     "r1_teetime": "12:22",
     "r2_teetime": "07:47",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 65,
@@ -776,8 +776,8 @@
     "r1_teetime": "12:11",
     "r2_teetime": "07:36",
     "course_fit_score": 0.0828259682458647,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 66,
@@ -788,8 +788,8 @@
     "r1_teetime": "11:38",
     "r2_teetime": "07:03",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 67,
@@ -797,11 +797,11 @@
     "p_win_%": 0.5,
     "p_top10_%": 6.8,
     "p_mc_%": 55.6,
-    "r1_teetime": "07:58*",
-    "r2_teetime": "12:33*",
+    "r1_teetime": "07:58",
+    "r2_teetime": "12:33",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 68,
@@ -812,8 +812,8 @@
     "r1_teetime": "12:22",
     "r2_teetime": "07:47",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 69,
@@ -821,11 +821,11 @@
     "p_win_%": 0.49,
     "p_top10_%": 7.0,
     "p_mc_%": 55.8,
-    "r1_teetime": "12:44*",
-    "r2_teetime": "08:09*",
+    "r1_teetime": "12:44",
+    "r2_teetime": "08:09",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 70,
@@ -836,8 +836,8 @@
     "r1_teetime": "08:09",
     "r2_teetime": "12:44",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 71,
@@ -848,8 +848,8 @@
     "r1_teetime": "07:58",
     "r2_teetime": "12:33",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 72,
@@ -860,8 +860,8 @@
     "r1_teetime": "12:33",
     "r2_teetime": "07:58",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 73,
@@ -869,11 +869,11 @@
     "p_win_%": 0.47,
     "p_top10_%": 7.1,
     "p_mc_%": 56.0,
-    "r1_teetime": "12:22*",
-    "r2_teetime": "07:47*",
+    "r1_teetime": "12:22",
+    "r2_teetime": "07:47",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 74,
@@ -881,11 +881,11 @@
     "p_win_%": 0.47,
     "p_top10_%": 5.9,
     "p_mc_%": 53.1,
-    "r1_teetime": "12:33*",
-    "r2_teetime": "07:58*",
+    "r1_teetime": "12:33",
+    "r2_teetime": "07:58",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 75,
@@ -896,8 +896,8 @@
     "r1_teetime": "11:49",
     "r2_teetime": "07:14",
     "course_fit_score": 0.3050455039867784,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 76,
@@ -905,11 +905,11 @@
     "p_win_%": 0.44,
     "p_top10_%": 7.2,
     "p_mc_%": 55.9,
-    "r1_teetime": "07:47*",
-    "r2_teetime": "12:22*",
+    "r1_teetime": "07:47",
+    "r2_teetime": "12:22",
     "course_fit_score": 0.1325507687156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 77,
@@ -917,11 +917,11 @@
     "p_win_%": 0.43,
     "p_top10_%": 5.7,
     "p_mc_%": 52.4,
-    "r1_teetime": "11:16*",
-    "r2_teetime": "06:41*",
+    "r1_teetime": "11:16",
+    "r2_teetime": "06:41",
     "course_fit_score": 0.2684733525439853,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 78,
@@ -929,11 +929,11 @@
     "p_win_%": 0.41,
     "p_top10_%": 6.2,
     "p_mc_%": 53.7,
-    "r1_teetime": "12:33*",
-    "r2_teetime": "07:58*",
+    "r1_teetime": "12:33",
+    "r2_teetime": "07:58",
     "course_fit_score": 0.0912083267156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 79,
@@ -944,8 +944,8 @@
     "r1_teetime": "07:36",
     "r2_teetime": "12:11",
     "course_fit_score": 0.2108214569280396,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 80,
@@ -956,8 +956,8 @@
     "r1_teetime": "06:52",
     "r2_teetime": "11:27",
     "course_fit_score": 0.0655632267156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 81,
@@ -968,8 +968,8 @@
     "r1_teetime": "06:41",
     "r2_teetime": "11:16",
     "course_fit_score": 0.6607756560050663,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 82,
@@ -980,8 +980,8 @@
     "r1_teetime": "12:33",
     "r2_teetime": "07:58",
     "course_fit_score": -0.016720821364278,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 83,
@@ -992,8 +992,8 @@
     "r1_teetime": "12:00",
     "r2_teetime": "07:25",
     "course_fit_score": -0.5086571824845202,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 84,
@@ -1004,8 +1004,8 @@
     "r1_teetime": "11:05",
     "r2_teetime": "06:30",
     "course_fit_score": 0.1256585340354995,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 85,
@@ -1016,8 +1016,8 @@
     "r1_teetime": "07:14",
     "r2_teetime": "11:49",
     "course_fit_score": -0.0401298091093462,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 86,
@@ -1025,11 +1025,11 @@
     "p_win_%": 0.3,
     "p_top10_%": 4.8,
     "p_mc_%": 49.9,
-    "r1_teetime": "12:11*",
-    "r2_teetime": "07:36*",
+    "r1_teetime": "12:11",
+    "r2_teetime": "07:36",
     "course_fit_score": 0.0814306697156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 87,
@@ -1037,11 +1037,11 @@
     "p_win_%": 0.29,
     "p_top10_%": 5.1,
     "p_mc_%": 50.9,
-    "r1_teetime": "08:09*",
-    "r2_teetime": "12:44*",
+    "r1_teetime": "08:09",
+    "r2_teetime": "12:44",
     "course_fit_score": 0.0784522127156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 88,
@@ -1052,8 +1052,8 @@
     "r1_teetime": "07:25",
     "r2_teetime": "12:00",
     "course_fit_score": -0.2564962615666851,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 89,
@@ -1061,11 +1061,11 @@
     "p_win_%": 0.28,
     "p_top10_%": 4.3,
     "p_mc_%": 48.3,
-    "r1_teetime": "07:25*",
-    "r2_teetime": "12:00*",
+    "r1_teetime": "07:25",
+    "r2_teetime": "12:00",
     "course_fit_score": -0.1725088032046841,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 90,
@@ -1073,11 +1073,11 @@
     "p_win_%": 0.27,
     "p_top10_%": 4.2,
     "p_mc_%": 48.8,
-    "r1_teetime": "12:00*",
-    "r2_teetime": "07:25*",
+    "r1_teetime": "12:00",
+    "r2_teetime": "07:25",
     "course_fit_score": 0.0794704062223358,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 91,
@@ -1085,11 +1085,11 @@
     "p_win_%": 0.26,
     "p_top10_%": 4.0,
     "p_mc_%": 47.5,
-    "r1_teetime": "07:25*",
-    "r2_teetime": "12:00*",
+    "r1_teetime": "07:25",
+    "r2_teetime": "12:00",
     "course_fit_score": 0.6828561568788076,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 92,
@@ -1097,11 +1097,11 @@
     "p_win_%": 0.25,
     "p_top10_%": 4.2,
     "p_mc_%": 48.4,
-    "r1_teetime": "06:52*",
-    "r2_teetime": "11:27*",
+    "r1_teetime": "06:52",
+    "r2_teetime": "11:27",
     "course_fit_score": -0.0832286354649241,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 93,
@@ -1109,11 +1109,11 @@
     "p_win_%": 0.24,
     "p_top10_%": 3.7,
     "p_mc_%": 47.1,
-    "r1_teetime": "12:22*",
-    "r2_teetime": "07:47*",
+    "r1_teetime": "12:22",
+    "r2_teetime": "07:47",
     "course_fit_score": 0.0022383057156696,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 94,
@@ -1124,8 +1124,8 @@
     "r1_teetime": "07:14",
     "r2_teetime": "11:49",
     "course_fit_score": -0.1043054235933875,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 95,
@@ -1133,11 +1133,11 @@
     "p_win_%": 0.23,
     "p_top10_%": 3.7,
     "p_mc_%": 46.6,
-    "r1_teetime": "11:38*",
-    "r2_teetime": "07:03*",
+    "r1_teetime": "11:38",
+    "r2_teetime": "07:03",
     "course_fit_score": 0.0550798891045027,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 96,
@@ -1148,8 +1148,8 @@
     "r1_teetime": "12:44",
     "r2_teetime": "08:09",
     "course_fit_score": -0.0152775772843303,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 97,
@@ -1157,11 +1157,11 @@
     "p_win_%": 0.21,
     "p_top10_%": 3.4,
     "p_mc_%": 45.6,
-    "r1_teetime": "06:41*",
-    "r2_teetime": "11:16*",
+    "r1_teetime": "06:41",
+    "r2_teetime": "11:16",
     "course_fit_score": -0.0664854649326773,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 98,
@@ -1169,11 +1169,11 @@
     "p_win_%": 0.18,
     "p_top10_%": 3.6,
     "p_mc_%": 46.3,
-    "r1_teetime": "11:49*",
-    "r2_teetime": "07:14*",
+    "r1_teetime": "11:49",
+    "r2_teetime": "07:14",
     "course_fit_score": -0.170972434148355,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 99,
@@ -1181,11 +1181,11 @@
     "p_win_%": 0.16,
     "p_top10_%": 3.1,
     "p_mc_%": 43.9,
-    "r1_teetime": "11:27*",
-    "r2_teetime": "06:52*",
+    "r1_teetime": "11:27",
+    "r2_teetime": "06:52",
     "course_fit_score": -0.0177346362843303,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 100,
@@ -1196,8 +1196,8 @@
     "r1_teetime": "07:03",
     "r2_teetime": "11:38",
     "course_fit_score": -0.1851854375192857,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 101,
@@ -1208,8 +1208,8 @@
     "r1_teetime": "11:16",
     "r2_teetime": "06:41",
     "course_fit_score": -0.0154211935065278,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 102,
@@ -1217,11 +1217,11 @@
     "p_win_%": 0.13,
     "p_top10_%": 2.6,
     "p_mc_%": 41.6,
-    "r1_teetime": "11:38*",
-    "r2_teetime": "07:03*",
+    "r1_teetime": "11:38",
+    "r2_teetime": "07:03",
     "course_fit_score": -0.0035487302843303,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 103,
@@ -1232,8 +1232,8 @@
     "r1_teetime": "07:25",
     "r2_teetime": "12:00",
     "course_fit_score": -0.4083063375749223,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 104,
@@ -1244,8 +1244,8 @@
     "r1_teetime": "07:47",
     "r2_teetime": "12:22",
     "course_fit_score": 0.0131225857156696,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 105,
@@ -1256,8 +1256,8 @@
     "r1_teetime": "07:03",
     "r2_teetime": "11:38",
     "course_fit_score": -0.0535494672843303,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 106,
@@ -1265,11 +1265,11 @@
     "p_win_%": 0.08,
     "p_top10_%": 2.2,
     "p_mc_%": 39.6,
-    "r1_teetime": "12:33*",
-    "r2_teetime": "07:58*",
+    "r1_teetime": "12:33",
+    "r2_teetime": "07:58",
     "course_fit_score": -0.0142211622843303,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 107,
@@ -1277,11 +1277,11 @@
     "p_win_%": 0.07,
     "p_top10_%": 2.1,
     "p_mc_%": 39.6,
-    "r1_teetime": "06:41*",
-    "r2_teetime": "11:16*",
+    "r1_teetime": "06:41",
+    "r2_teetime": "11:16",
     "course_fit_score": 0.0141332087974746,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 108,
@@ -1289,11 +1289,11 @@
     "p_win_%": 0.07,
     "p_top10_%": 1.6,
     "p_mc_%": 36.6,
-    "r1_teetime": "07:58*",
-    "r2_teetime": "12:33*",
+    "r1_teetime": "07:58",
+    "r2_teetime": "12:33",
     "course_fit_score": -0.2901949144183129,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 109,
@@ -1301,11 +1301,11 @@
     "p_win_%": 0.06,
     "p_top10_%": 1.7,
     "p_mc_%": 37.4,
-    "r1_teetime": "07:36*",
-    "r2_teetime": "12:11*",
+    "r1_teetime": "07:36",
+    "r2_teetime": "12:11",
     "course_fit_score": 0.0021966303065834,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 110,
@@ -1316,8 +1316,8 @@
     "r1_teetime": "07:47",
     "r2_teetime": "12:22",
     "course_fit_score": -0.0600886282843303,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 111,
@@ -1325,11 +1325,11 @@
     "p_win_%": 0.04,
     "p_top10_%": 1.0,
     "p_mc_%": 31.7,
-    "r1_teetime": "12:00*",
-    "r2_teetime": "07:25*",
+    "r1_teetime": "12:00",
+    "r2_teetime": "07:25",
     "course_fit_score": -0.1198441601452798,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 112,
@@ -1340,8 +1340,8 @@
     "r1_teetime": "08:09",
     "r2_teetime": "12:44",
     "course_fit_score": -0.1158769342843303,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 113,
@@ -1352,8 +1352,8 @@
     "r1_teetime": "08:09",
     "r2_teetime": "12:44",
     "course_fit_score": -0.1660247052843303,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 114,
@@ -1361,11 +1361,11 @@
     "p_win_%": 0.03,
     "p_top10_%": 1.0,
     "p_mc_%": 30.9,
-    "r1_teetime": "11:49*",
-    "r2_teetime": "07:14*",
+    "r1_teetime": "11:49",
+    "r2_teetime": "07:14",
     "course_fit_score": -0.2976817325864012,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 115,
@@ -1373,11 +1373,11 @@
     "p_win_%": 0.02,
     "p_top10_%": 0.6,
     "p_mc_%": 27.3,
-    "r1_teetime": "12:44*",
-    "r2_teetime": "08:09*",
+    "r1_teetime": "12:44",
+    "r2_teetime": "08:09",
     "course_fit_score": -0.1482503552843303,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 116,
@@ -1388,8 +1388,8 @@
     "r1_teetime": "12:44",
     "r2_teetime": "08:09",
     "course_fit_score": -0.1958096422843303,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 117,
@@ -1400,8 +1400,8 @@
     "r1_teetime": "06:52",
     "r2_teetime": "11:27",
     "course_fit_score": -0.2576462134621969,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   },
   {
     "rank": 118,
@@ -1409,11 +1409,11 @@
     "p_win_%": 0.01,
     "p_top10_%": 0.5,
     "p_mc_%": 26.1,
-    "r1_teetime": "07:47*",
-    "r2_teetime": "12:22*",
+    "r1_teetime": "07:47",
+    "r2_teetime": "12:22",
     "course_fit_score": -0.1563049512843304,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 119,
@@ -1421,11 +1421,11 @@
     "p_win_%": 0.01,
     "p_top10_%": 0.5,
     "p_mc_%": 24.9,
-    "r1_teetime": "12:22*",
-    "r2_teetime": "07:47*",
+    "r1_teetime": "12:22",
+    "r2_teetime": "07:47",
     "course_fit_score": -0.1652121042843304,
-    "r1_start_hole": 10,
-    "r2_start_hole": 10
+    "r1_start_hole": 1.0,
+    "r2_start_hole": 1.0
   },
   {
     "rank": 120,
@@ -1436,7 +1436,7 @@
     "r1_teetime": "06:52",
     "r2_teetime": "11:27",
     "course_fit_score": -0.3967482933237334,
-    "r1_start_hole": 1,
-    "r2_start_hole": 1
+    "r1_start_hole": 10.0,
+    "r2_start_hole": 10.0
   }
 ]

@@ -7,37 +7,60 @@
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1.25rem; color: #111; }
         h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
+        h2 { font-size: 1.2rem; margin: 0 0 0.5rem; color: #666; }
         .muted { color: #555; font-size: 0.95rem; }
         .layout { display: grid; grid-template-columns: 1fr 320px; gap: 1rem; }
         .card { border: 1px solid #e2e2e2; border-radius: 8px; padding: 0.75rem 1rem; background: #fff; }
-        table { border-collapse: collapse; width: 100%; background: #fff; }
-        th, td { padding: 0.5rem; border-bottom: 1px solid #eee; text-align: left; }
-        th { cursor: pointer; background: #fafafa; position: sticky; top: 0; z-index: 1; }
+        table { border-collapse: collapse; width: 100%; background: #fff; table-layout: fixed; }
+        th, td { padding: 0.4rem 0.3rem; border-bottom: 1px solid #eee; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        th { cursor: pointer; background: #fafafa; position: sticky; top: 0; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,.06); }
+        th:nth-child(1), td:nth-child(1) { width: 35px; } /* Rank */
+        th:nth-child(2), td:nth-child(2) { width: 100px; } /* Player */
+        th:nth-child(3), td:nth-child(3) { width: 65px; } /* Win % */
+        th:nth-child(4), td:nth-child(4) { width: 65px; } /* Top-10 % */
+        th:nth-child(5), td:nth-child(5) { width: 65px; } /* Make Cut % */
+        th:nth-child(6), td:nth-child(6) { width: 70px; } /* Course Fit */
+        th:nth-child(7), td:nth-child(7) { width: 75px; } /* R1 Tee */
+        th:nth-child(8), td:nth-child(8) { width: 75px; } /* R2 Tee */
+        .tooltip {
+          position: absolute;
+          background: #333;
+          color: #fff;
+          padding: 5px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          white-space: normal;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s;
+          z-index: 1000;
+          max-width: 400px;
+          word-wrap: break-word;
+        }
+        .tooltip.show {
+          opacity: 1;
+        }
         input[type="search"] { padding: 0.4rem 0.6rem; width: 260px; border: 1px solid #ddd; border-radius: 6px; }
-        .right { text-align: right; }
         .num { font-variant-numeric: tabular-nums; }
         .links a { margin-right: 1rem; }
         .small { font-size: 0.9rem; color: #333; }
         .stack { display: flex; flex-direction: column; gap: 0.5rem; }
+        .table-container { overflow-x: auto; position: relative; }
         @media (max-width: 900px) {
           .layout { grid-template-columns: 1fr; }
+          input[type="search"] { width: 100%; }
+          table { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-<h1 id="title">Golf Model — Leaderboard</h1>
+<h1>Eds Golf Model - Prediction Leaderboard</h1>
+<h2 id="subtitle"></h2>
 
 <div class="layout">
     <!-- Main column -->
     <div>
-        <div class="card" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom: 1rem;">
-            <div>
-                <div><strong>Field size</strong>: <span id="field"></span></div>
-                <div><strong>Sum p_win</strong>: <span id="psum"></span></div>
-                <div><strong>Max p_win</strong>: <span id="pmax"></span></div>
-                <div><strong>Median p_win</strong>: <span id="pmed"></span></div>
-                <div class="muted small" id="refreshed"></div>
-            </div>
+        <div class="card" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom: 0.5rem;">
             <div class="links small">
                 <a id="dlCsv" href="#" download>CSV</a>
                 <a id="dlHtml" href="#" download style="display:none;">HTML</a>
@@ -47,21 +70,26 @@
             </div>
         </div>
 
-        <table id="tbl">
-            <thead>
-            <tr>
-                <th data-key="rank">Rank</th>
-                <th data-key="player_name">Player</th>
-                <th data-key="p_win_%">Win %</th>
-                <th data-key="p_top10_%">Top-10 %</th>
-                <th data-key="p_mc_%">Make Cut %</th>
-                <th data-key="course_fit_score">Course Fit</th>
-                <th data-key="r1_teetime">R1 Tee</th>
-                <th data-key="r2_teetime">R2 Tee</th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="card small muted" style="margin-bottom: 1rem;">* Teeing off from 10th tee</div>
+
+        <div class="table-container">
+            <div id="tooltip" class="tooltip"></div>
+            <table id="tbl">
+                <thead>
+                <tr>
+                    <th data-key="rank" data-tooltip="Player ranking based on predicted performance">Rank</th>
+                    <th data-key="player_name" data-tooltip="Player name">Player</th>
+                    <th data-key="p_win_%" data-tooltip="Predicted win percentage based on model simulations">Win %</th>
+                    <th data-key="p_top10_%" data-tooltip="Predicted top-10 finish percentage based on model simulations">Top-10 %</th>
+                    <th data-key="p_mc_%" data-tooltip="Predicted make cut percentage based on model simulations">Make Cut %</th>
+                    <th data-key="course_fit_score" data-tooltip="Course fit score: a model-based metric measuring how well the player's skills match the course characteristics (e.g., par, length, hazards)">Course Fit</th>
+                    <th data-key="r1_teetime" data-tooltip="Round 1 tee time; * indicates teeing off from 10th hole">R1 Tee</th>
+                    <th data-key="r2_teetime" data-tooltip="Round 2 tee time; * indicates teeing off from 10th hole">R2 Tee</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Sidebar -->
@@ -88,6 +116,16 @@
     const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
     const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
 
+    // Helpers to detect 1st/10th tee starts from various possible fields in leaderboard.json
+    const is10 = (x) => x === 10 || x === "10" || (typeof x === "string" && /\b10\b/.test(x));
+    const is1  = (x) => x === 1  || x === "1"  || (typeof x === "string" && /\b1\b(?!\d)/.test(x));
+    const isBackSide = (x) =>
+      typeof x === "string" && /^b(ack)?$/i.test(x); // if your data uses "front"/"back"
+    const isFrontSide = (x) =>
+      typeof x === "string" && /^f(ront)?$/i.test(x);
+
+
+
     // JSON loader
     async function loadJSON(path){
       const r = await fetch(path, {cache: "no-store"});
@@ -106,14 +144,14 @@
       for (const r of rows) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="num right">${r.rank ?? ""}</td>
+          <td class="num">${r.rank ?? ""}</td>
           <td>${r.player_name ?? ""}</td>
-          <td class="num right">${fmtPct(r["p_win_%"])}</td>
-          <td class="num right">${fmtPct(r["p_top10_%"])}</td>
-          <td class="num right">${fmtPct(r["p_mc_%"])}</td>
-          <td class="num right">${r.course_fit_score != null ? Number(r.course_fit_score).toFixed(2) : ""}</td>
-          <td>${r.r1_teetime ?? ""}</td>
-          <td>${r.r2_teetime ?? ""}</td>
+          <td class="num">${fmtPct(r["p_win_%"])}</td>
+          <td class="num">${fmtPct(r["p_top10_%"])}</td>
+          <td class="num">${fmtPct(r["p_mc_%"])}</td>
+          <td class="num">${fmtNum(r.course_fit_score)}</td>
+          <td>${r.r1_teetime ?? ""}${r.r1_from_10th ? "<sup>*</sup>" : ""}</td>
+          <td>${r.r2_teetime ?? ""}${r.r2_from_10th ? "<sup>*</sup>" : ""}</td>
         `;
         tbody.appendChild(tr);
       }
@@ -128,7 +166,8 @@
         if (!Number.isNaN(nA) && !Number.isNaN(nB)) {
           return asc ? nA - nB : nB - nA;
         }
-        return asc ? String(A).localeCompare(String(B)) : String(B).localeCompare(String(A));
+        const cmp = String(A).localeCompare(String(B));
+        return asc ? cmp : -cmp;
       });
       return sorted;
     }
@@ -142,6 +181,8 @@
     }
 
     function attachSortHandlers(){
+      const tooltip = document.getElementById("tooltip");
+
       document.querySelectorAll("#tbl thead th").forEach(th => {
         th.addEventListener("click", () => {
           const key = th.dataset.key;
@@ -149,7 +190,29 @@
           if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
           applyFilter();
         });
+
+        th.addEventListener("mouseover", (e) => {
+          const desc = th.getAttribute("data-tooltip");
+          if (desc) {
+            tooltip.textContent = desc;
+            tooltip.classList.add("show");
+            tooltip.style.left = e.pageX + "px";
+            tooltip.style.top = e.pageY + "px";
+          }
+        });
+
+        th.addEventListener("mousemove", (e) => {
+          if (tooltip.classList.contains("show")) {
+            tooltip.style.left = e.pageX + "px";
+            tooltip.style.top = e.pageY + "px";
+          }
+        });
+
+        th.addEventListener("mouseout", () => {
+          tooltip.classList.remove("show");
+        });
       });
+
       document.getElementById("filterBox").addEventListener("input", applyFilter);
     }
 
@@ -161,22 +224,45 @@
     }
 
     async function renderSidebar(meta){
-      // Last refreshed (UTC) already formatted by build_web_assets.py
-      const sum = await loadJSON("summary.json");
-      const refreshed = sum.generated_utc ? `Last refreshed (UTC): ${sum.generated_utc}` : "";
-      document.getElementById("refreshed").textContent = refreshed;
-
       // Weather list
       const wxList = document.getElementById("wxList");
       wxList.innerHTML = "";
 
-      // Helpers to format lines
-      const lineNeutral = (r) =>
-        `R${r.round}: wind ${fmtNum(r.wind_mph,1)} mph (gust ${fmtNum(r.gust_mph,1)} mph) • rain ${fmtNum(r.precip_pct,0)}%`;
-      const lineWave = (round, am, pm) => {
-        const amTxt = am ? `AM: wind ${fmtNum(am.wind_mph,1)} mph • rain ${fmtNum(am.precip_pct,0)}%` : "AM: —";
-        const pmTxt = pm ? `PM: wind ${fmtNum(pm.wind_mph,1)} mph • rain ${fmtNum(pm.precip_pct,0)}%` : "PM: —";
-        return `(R${round} AM/PM) ${amTxt} / ${pmTxt}`;
+      // Helpers to format lines with emojis
+      const formatNeutral = (r) => {
+        const wind = fmtNum(r.wind_mph, 1);
+        const gust = fmtNum(r.gust_mph, 1);
+        const rain = fmtNum(r.precip_pct, 0);
+        const temp = r.temp_c != null ? fmtNum(r.temp_c, 1) + "°C" : "—";
+        let rainEmoji = "🌧️";
+        if (r.weathercode !== null && r.weathercode >= 0 && r.weathercode <= 3 && rain === "0") {
+          rainEmoji = "☀️";  // Sunny if clear code and no rain
+        }
+        let extra = "";
+        if (r.weathercode !== null && r.weathercode >= 95 && r.weathercode <= 99) {
+          extra = " ⚡ Thunderstorm threat";
+        }
+        return `🌬️ Wind: ${wind} mph (💨 gust ${gust} mph) • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
+      };
+      const formatWave = (am, pm) => {
+        const formatPart = (part) => {
+          if (!part) return "—";
+          const wind = fmtNum(part.wind_mph, 1);
+          const rain = fmtNum(part.precip_pct, 0);
+          const temp = fmtNum(part.temp_c, 1) + "°C";
+          let rainEmoji = "🌧️";
+          if (part.weathercode !== null && part.weathercode >= 0 && part.weathercode <= 3 && rain === "0") {
+            rainEmoji = "☀️";
+          }
+          let extra = "";
+          if (part.weathercode !== null && part.weathercode >= 95 && part.weathercode <= 99) {
+            extra = " ⚡ Thunderstorm threat";
+          }
+          return `🌬️ Wind: ${wind} mph • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
+        };
+        const amTxt = formatPart(am);
+        const pmTxt = formatPart(pm);
+        return `AM: ${amTxt} <br/> PM: ${pmTxt}`;
       };
 
       let wn = [];
@@ -187,37 +273,59 @@
       const byR = {};
       (ww || []).forEach(x => { (byR[x.round] = byR[x.round] || []).push(x); });
 
-      [1,2,3,4].forEach(rn => {
+      [1, 2, 3, 4].forEach(rn => {
         const n = wn.find(x => x.round === rn);
-        if (n) {
-          const div = document.createElement("div");
-          div.textContent = lineNeutral(n);
-          wxList.appendChild(div);
-        }
-        if (rn <= 2 && byR[rn]) {
-          const am = byR[rn].find(x => x.wave === "AM");
-          const pm = byR[rn].find(x => x.wave === "PM");
-          const sub = document.createElement("div");
-          sub.className = "muted small";
-          sub.textContent = lineWave(rn, am, pm);
-          wxList.appendChild(sub);
+        if (n || byR[rn]) {
+          const roundDiv = document.createElement("div");
+          roundDiv.innerHTML = `<strong>Round ${rn}</strong>`;
+          const ul = document.createElement("ul");
+          ul.style.margin = "0.25rem 0 0.5rem 1rem";
+          ul.style.padding = "0";
+
+          if (n) {
+            const li = document.createElement("li");
+            li.innerHTML = formatNeutral(n);
+            li.style.listStyle = "none";
+            ul.appendChild(li);
+          }
+
+          if (rn <= 2 && byR[rn]) {
+            const am = byR[rn].find(x => x.wave === "AM");
+            const pm = byR[rn].find(x => x.wave === "PM");
+            if (am || pm) {
+              const li = document.createElement("li");
+              li.innerHTML = `<em>Wave (AM/PM):</em><br/>${formatWave(am, pm)}`;
+              li.style.listStyle = "none";
+              li.style.marginTop = "0.25rem";
+              ul.appendChild(li);
+            }
+          }
+
+          roundDiv.appendChild(ul);
+          wxList.appendChild(roundDiv);
         }
       });
 
+      // If no weather data at all, show a placeholder
+      if (!wn.length && !Object.keys(byR).length) {
+        wxList.innerHTML = "<div class='small muted'>No weather data available.</div>";
+      }
+
       // Resources
-      const ul = document.getElementById("resources"); ul.innerHTML = "";
+      const ul = document.getElementById("resources");
+      ul.innerHTML = "";
       const res = meta.resources || {};
-      if (res.downloads_csv)  ul.appendChild(link("Leaderboard CSV", res.downloads_csv));
+      if (res.downloads_csv) ul.appendChild(link("Leaderboard CSV", res.downloads_csv));
       if (res.downloads_html) ul.appendChild(link("Leaderboard HTML", res.downloads_html));
-      if (res.weather_meta)   ul.appendChild(link("Weather meta (JSON)", res.weather_meta));
-      if (meta.lat!=null && meta.lon!=null){
+      if (res.weather_meta) ul.appendChild(link("Weather meta (JSON)", res.weather_meta));
+      if (meta.lat != null && meta.lon != null) {
         ul.appendChild(link("Open course in Maps", `https://www.google.com/maps?q=${meta.lat},${meta.lon}`));
       }
       if (res.weather_round_neutral) ul.appendChild(link("Neutral weather (JSON)", res.weather_round_neutral));
-      if (res.weather_round_wave)    ul.appendChild(link("Wave-aware weather (JSON)", res.weather_round_wave));
-      if (res.course_fit_weights)    ul.appendChild(link("Course-fit weights (DIY, JSON)", res.course_fit_weights));
-      if (res.course_history_summary)ul.appendChild(link("Course-history summary (JSON)", res.course_history_summary));
-      if (res.tournament_summary)    ul.appendChild(link("Tournament summary (JSON)", res.tournament_summary));
+      if (res.weather_round_wave) ul.appendChild(link("Wave-aware weather (JSON)", res.weather_round_wave));
+      if (res.course_fit_weights) ul.appendChild(link("Course-fit weights (DIY, JSON)", res.course_fit_weights));
+      if (res.course_history_summary) ul.appendChild(link("Course-history summary (JSON)", res.course_history_summary));
+      if (res.tournament_summary) ul.appendChild(link("Tournament summary (JSON)", res.tournament_summary));
     }
 
     // Tournament summary
@@ -246,16 +354,17 @@
     // Main
     async function main(){
       const meta = await loadJSON("meta.json");
-      const summary = await loadJSON("summary.json");
       const rows = await loadJSON("leaderboard.json");
 
-      document.getElementById("title").textContent = `${meta.event_name} — Leaderboard`;
+      // Extract year from meta.r1_date
+      let year = '';
+      if (meta.r1_date) {
+        year = meta.r1_date.split('-')[0];
+        console.log("Year from meta.r1_date:", year);
+      }
 
-      const m = summary.metrics || {};
-      document.getElementById("field").textContent = m.field_size ?? rows.length;
-      document.getElementById("psum").textContent  = fmtNum(m.p_win_sum, 2);
-      document.getElementById("pmax").textContent  = fmtNum(m.p_win_max, 2);
-      document.getElementById("pmed").textContent  = fmtNum(m.p_win_median, 2);
+      const subtitle = year ? `${year} - ${meta.event_name || ''}` : meta.event_name || '';
+      document.getElementById("subtitle").textContent = subtitle;
 
       // Downloads
       const dlCsv  = document.getElementById("dlCsv");
@@ -263,17 +372,54 @@
       dlCsv.href   = meta.resources?.downloads_csv ?? "#";
       if (meta.resources?.downloads_html){ dlHtml.href = meta.resources.downloads_html; dlHtml.style.display="inline"; }
 
-      // Normalize rows for display
-      data = rows.map((r, idx) => ({
-        rank: r.rank ?? (idx+1),
-        player_name: r.player_name ?? r["Player"] ?? "",
-        "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
-        "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
-        "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
-        course_fit_score: r.course_fit_score ?? "",
-        r1_teetime: r.r1_teetime ?? "",
-        r2_teetime: r.r2_teetime ?? "",
-      }));
+      data = rows.map((r, idx) => {
+        // Detect explicit sides for each round (tri-state: true/false/undefined)
+        const r1_is10 = r.r1_from_10th === true ||
+                        is10(r.r1_start_hole) || is10(r.r1_start) || is10(r.r1_tee) ||
+                        isBackSide(r.r1_side);
+        const r1_is1  = r.r1_from_1st === true ||
+                        is1(r.r1_start_hole) || is1(r.r1_start) || is1(r.r1_tee) ||
+                        isFrontSide(r.r1_side);
+        let r1_from_10th = r1_is10 ? true : (r1_is1 ? false : undefined);
+
+        const r2_is10 = r.r2_from_10th === true ||
+                        is10(r.r2_start_hole) || is10(r.r2_start) || is10(r.r2_tee) ||
+                        isBackSide(r.r2_side);
+        const r2_is1  = r.r2_from_1st === true ||
+                        is1(r.r2_start_hole) || is1(r.r2_start) || is1(r.r2_tee) ||
+                        isFrontSide(r.r2_side);
+        let r2_from_10th = r2_is10 ? true : (r2_is1 ? false : undefined);
+
+        // Enforce alternation between R1 and R2:
+        // - If one round's side is known, the other is the opposite.
+        // - If both are known but equal, flip R1 to be opposite of R2.
+        if (r1_from_10th === undefined && r2_from_10th !== undefined) {
+          r1_from_10th = !r2_from_10th;
+        } else if (r2_from_10th === undefined && r1_from_10th !== undefined) {
+          r2_from_10th = !r1_from_10th;
+        } else if (r1_from_10th !== undefined && r2_from_10th !== undefined && r1_from_10th === r2_from_10th) {
+          // Contradiction (both same). Prefer R2 and flip R1.
+          r1_from_10th = !r2_from_10th;
+        }
+
+        // Default to false if still unknown (no asterisk shown)
+        r1_from_10th = !!r1_from_10th;
+        r2_from_10th = !!r2_from_10th;
+
+        return {
+          rank: r.rank ?? (idx+1),
+          player_name: r.player_name ?? r["Player"] ?? "",
+          "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
+          "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
+          "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
+          course_fit_score: r.course_fit_score ?? "",
+          r1_teetime: r.r1_teetime ?? "",
+          r2_teetime: r.r2_teetime ?? "",
+          // flags used by renderTable to append the asterisk
+          r1_from_10th,
+          r2_from_10th,
+        };
+      });
 
       attachSortHandlers();
       renderTable(sortRows(data, "rank", true));
