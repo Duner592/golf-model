@@ -17,12 +17,12 @@
 # - pandas, requests, requests_cache, pyyaml
 
 from __future__ import annotations
+
+import argparse
+import json
 import os
 import re
-import json
-import argparse
 from pathlib import Path
-from typing import List, Optional, Tuple
 
 import pandas as pd
 import requests
@@ -63,13 +63,9 @@ def latest_meta(processed_dir: Path) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
-def schedule_events(
-    base_url: str, key_param: str, api_key: str, sched_path: str, tour: str, year: int
-) -> List[dict]:
+def schedule_events(base_url: str, key_param: str, api_key: str, sched_path: str, tour: str, year: int) -> list[dict]:
     url = f"{base_url}/{sched_path.lstrip('/')}"
-    r = requests.get(
-        url, params={key_param: api_key, "tour": tour, "year": str(year)}, timeout=30
-    )
+    r = requests.get(url, params={key_param: api_key, "tour": tour, "year": str(year)}, timeout=30)
     r.raise_for_status()
     payload = r.json()
     if isinstance(payload, list):
@@ -91,7 +87,7 @@ def ensure_rounds_json(
     event_id: str,
     year: int,
     out_dir: Path,
-) -> Optional[Path]:
+) -> Path | None:
     """
     Guarantee data/raw/historical/{tour}/event_{eid}_{year}_rounds.json exists; download if not.
     """
@@ -118,13 +114,9 @@ def ensure_rounds_json(
         return None
 
 
-def extract_rows_from_json(path: Path) -> List[dict]:
+def extract_rows_from_json(path: Path) -> list[dict]:
     data = json.loads(path.read_text(encoding="utf-8"))
-    rows = (
-        data
-        if isinstance(data, list)
-        else next((v for v in data.values() if isinstance(v, list)), [])
-    )
+    rows = data if isinstance(data, list) else next((v for v in data.values() if isinstance(v, list)), [])
     return rows or []
 
 
@@ -142,14 +134,7 @@ def json_wide_to_long(df: pd.DataFrame, event_id: str, year: int) -> pd.DataFram
     if "dg_id" not in df.columns and "player_id" in df.columns:
         df = df.rename(columns={"player_id": "dg_id"})
         keep_cols.append("dg_id")
-    round_nums = sorted(
-        {
-            int(m.group(1))
-            for c in df.columns
-            for m in [re.match(r"^round_(\d+)\.", c)]
-            if m
-        }
-    )
+    round_nums = sorted({int(m.group(1)) for c in df.columns for m in [re.match(r"^round_(\d+)\.", c)] if m})
     recs = []
     for _, row in df.iterrows():
         base = {c: row.get(c) for c in keep_cols}
@@ -171,9 +156,7 @@ def json_wide_to_long(df: pd.DataFrame, event_id: str, year: int) -> pd.DataFram
     return pd.DataFrame(recs)
 
 
-def pick_base_event_name(
-    meta: dict, override_id: Optional[str], override_name: Optional[str]
-) -> Tuple[str, Optional[str]]:
+def pick_base_event_name(meta: dict, override_id: str | None, override_name: str | None) -> tuple[str, str | None]:
     """
     Return (base_event_name, base_event_id_for_name_only).
     If override_name is provided, use it and leave id None unless override_id given too.
@@ -184,15 +167,11 @@ def pick_base_event_name(
     if override_id and str(meta.get("event_id")) != str(override_id):
         # can't rely on meta name; use id-only for matching (will pull schedule names by id each year)
         return f"event_{override_id}", str(override_id)
-    return meta.get("event_name") or f"event_{meta.get('event_id')}", str(
-        meta.get("event_id")
-    )
+    return meta.get("event_name") or f"event_{meta.get('event_id')}", str(meta.get("event_id"))
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Build combined historical rounds parquet for a tournament."
-    )
+    ap = argparse.ArgumentParser(description="Build combined historical rounds parquet for a tournament.")
     ap.add_argument(
         "--event_id",
         type=str,
@@ -244,9 +223,7 @@ def main():
     meta = latest_meta(processed_dir)
     base_name, base_id_for_name = pick_base_event_name(meta, args.event_id, args.name)
     base_slug = slugify(base_name)
-    print(
-        f"[base] name={base_name!r} slug={base_slug} event_id_hint={base_id_for_name}"
-    )
+    print(f"[base] name={base_name!r} slug={base_slug} event_id_hint={base_id_for_name}")
 
     # Determine years to process
     if args.years:
@@ -259,7 +236,7 @@ def main():
     print(f"[years] {years}")
 
     requests_cache.install_cache("dg_cache", expire_after=600)
-    combined_frames: List[pd.DataFrame] = []
+    combined_frames: list[pd.DataFrame] = []
 
     for yr in years:
         # Pull the schedule for the year
@@ -300,9 +277,7 @@ def main():
             # Ensure rounds JSON exists
             jpath = hist_dir / f"event_{ev_id}_{yr}_rounds.json"
             if not jpath.exists():
-                jpath = ensure_rounds_json(
-                    base_url, keyp, api_key, hist_path, tour, ev_id, yr, hist_dir
-                )
+                jpath = ensure_rounds_json(base_url, keyp, api_key, hist_path, tour, ev_id, yr, hist_dir)
                 if jpath is None:
                     print(f"  -> skip: no rounds JSON available for {ev_id} {yr}")
                     continue
@@ -317,9 +292,7 @@ def main():
                 combined_frames.append(df_long)
 
     if not combined_frames:
-        raise FileNotFoundError(
-            "No historical rounds parsed/matched; nothing to combine."
-        )
+        raise FileNotFoundError("No historical rounds parsed/matched; nothing to combine.")
 
     combined = pd.concat(combined_frames, ignore_index=True)
     # Basic cleanup: ensure numeric types where possible

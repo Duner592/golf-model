@@ -10,8 +10,9 @@
 #   - data/features/{tour}/event_{event_id}_features_full.parquet  (updated with DIY columns)
 #   - data/features/{tour}/event_{event_id}_features_course.parquet (snapshot with same content, for simulator)
 
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -42,17 +43,13 @@ def main():
     # Load base features
     feats_path = features / f"event_{event_id}_features_full.parquet"
     if not feats_path.exists():
-        raise FileNotFoundError(
-            "Missing features_full; run merge_player_data_into_features.py first."
-        )
+        raise FileNotFoundError("Missing features_full; run merge_player_data_into_features.py first.")
     feats = pd.read_parquet(feats_path)
 
     # Load DIY course fit
     diy_path = processed / f"event_{event_id}_course_fit_diy.parquet"
     if not diy_path.exists():
-        raise FileNotFoundError(
-            "Missing DIY course fit parquet. Run build_course_fit_from_history.py first."
-        )
+        raise FileNotFoundError("Missing DIY course fit parquet. Run build_course_fit_from_history.py first.")
     diy = pd.read_parquet(diy_path)
 
     # Align ID column
@@ -73,21 +70,13 @@ def main():
             if key:
                 break
     if key is None:
-        raise ValueError(
-            "Could not align ID columns between features_full and DIY course fit."
-        )
+        raise ValueError("Could not align ID columns between features_full and DIY course fit.")
 
     # Select DIY columns to merge (keep whatever exists)
     diy_cols_available = [c for c in DIY_COLS_PREFERRED if c in diy.columns]
     # Include any skill category columns if they exist (sg_ott, sg_app, sg_arg, sg_putt or sg_t2g)
-    extra_skill_cols = [
-        c
-        for c in ["sg_ott", "sg_app", "sg_arg", "sg_putt", "sg_t2g"]
-        if c in diy.columns
-    ]
-    merge_cols = [key] + list(
-        dict.fromkeys(diy_cols_available + extra_skill_cols)
-    )  # preserve order, dedupe
+    extra_skill_cols = [c for c in ["sg_ott", "sg_app", "sg_arg", "sg_putt", "sg_t2g"] if c in diy.columns]
+    merge_cols = [key] + list(dict.fromkeys(diy_cols_available + extra_skill_cols))  # preserve order, dedupe
 
     diy_small = diy[merge_cols].drop_duplicates(subset=[key]).copy()
 
@@ -104,9 +93,7 @@ def main():
     if "course_fit_score" in out.columns:
         out["course_fit_score"] = out["course_fit_score"].astype(float)
         if out["course_fit_score"].isna().any():
-            out["course_fit_score"] = out["course_fit_score"].fillna(
-                out["course_fit_score"].median()
-            )
+            out["course_fit_score"] = out["course_fit_score"].fillna(out["course_fit_score"].median())
 
     # driving z-scores default to 0 (neutral vs field)
     for zcol in ["da_z", "dd_z"]:

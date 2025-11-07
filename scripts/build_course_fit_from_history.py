@@ -20,17 +20,16 @@
 #
 from __future__ import annotations
 
-from pathlib import Path
 import argparse
 import json
 import re
-from typing import Tuple
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge
-from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 TOUR = "pga"
 
@@ -70,9 +69,7 @@ def load_event_meta(override_event_id: str | None = None) -> dict:
     processed = Path("data") / "processed" / TOUR
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
-        raise FileNotFoundError(
-            "No event meta found. Run parse_field_updates.py first."
-        )
+        raise FileNotFoundError("No event meta found. Run parse_field_updates.py first.")
     if override_event_id:
         for p in reversed(metas):
             meta = json.loads(p.read_text(encoding="utf-8"))
@@ -85,14 +82,7 @@ def load_event_meta(override_event_id: str | None = None) -> dict:
 def find_hist_parquet(event_name: str) -> Path:
     root = Path(__file__).resolve().parent.parent
     safe = normalize_name(event_name)
-    return (
-        root
-        / "data"
-        / "raw"
-        / "historical"
-        / TOUR
-        / f"tournament_{safe}_rounds_combined.parquet"
-    )
+    return root / "data" / "raw" / "historical" / TOUR / f"tournament_{safe}_rounds_combined.parquet"
 
 
 def _choose_id_col(df: pd.DataFrame) -> str | None:
@@ -109,9 +99,7 @@ def wide_rounds_to_long(df: pd.DataFrame) -> pd.DataFrame:
     """
     id_col = _choose_id_col(df)
     if id_col is None:
-        raise ValueError(
-            "No player id column found in historical rounds (expected dg_id/player_id)."
-        )
+        raise ValueError("No player id column found in historical rounds (expected dg_id/player_id).")
 
     # Patterns to detect columns
     pat_sg = re.compile(r"^round_(\d+)\.(sg_total|sg)$", re.IGNORECASE)
@@ -145,9 +133,7 @@ def wide_rounds_to_long(df: pd.DataFrame) -> pd.DataFrame:
             ]
         )
 
-    rounds = sorted(
-        set(list(sg_cols.keys()) + list(da_cols.keys()) + list(dd_cols.keys()))
-    )
+    rounds = sorted(set(list(sg_cols.keys()) + list(da_cols.keys()) + list(dd_cols.keys())))
     records = []
     for _, row in df.iterrows():
         pid = row[id_col]
@@ -161,20 +147,14 @@ def wide_rounds_to_long(df: pd.DataFrame) -> pd.DataFrame:
                 "year": year,
                 "round": int(r),
                 "sg_total": float(sg_val),
-                "driving_acc": (
-                    float(row.get(da_cols.get(r), np.nan)) if r in da_cols else np.nan
-                ),
-                "driving_dist": (
-                    float(row.get(dd_cols.get(r), np.nan)) if r in dd_cols else np.nan
-                ),
+                "driving_acc": (float(row.get(da_cols.get(r), np.nan)) if r in da_cols else np.nan),
+                "driving_dist": (float(row.get(dd_cols.get(r), np.nan)) if r in dd_cols else np.nan),
             }
             records.append(rec)
     return pd.DataFrame.from_records(records)
 
 
-def map_skill_columns(
-    skills: pd.DataFrame, prefer_four=True
-) -> tuple[pd.DataFrame, str, list]:
+def map_skill_columns(skills: pd.DataFrame, prefer_four=True) -> tuple[pd.DataFrame, str, list]:
     """
     Map skill_ratings columns to canonical category columns (4-cat or 2-cat).
     Returns: (df_small, id_col, cats_used)
@@ -209,9 +189,7 @@ def map_skill_columns(
     t2g = find_first(skills, ALIASES_SKILL["sg_t2g"])
     putt = find_first(skills, ALIASES_SKILL["sg_putt"])
     if not (t2g and putt):
-        raise ValueError(
-            "Could not find skill columns for either 4-cat (OTT/APP/ARG/PUTT) or 2-cat (T2G+PUTT)."
-        )
+        raise ValueError("Could not find skill columns for either 4-cat (OTT/APP/ARG/PUTT) or 2-cat (T2G+PUTT).")
     keep = [id_col, t2g, putt]
     if "player_name" in skills.columns:
         keep.append("player_name")
@@ -219,9 +197,7 @@ def map_skill_columns(
     return df_small, id_col, CATS_2
 
 
-def fit_course_weights(
-    df_long: pd.DataFrame, skills_small: pd.DataFrame, id_col: str, cats: list
-) -> tuple[pd.Series | None, dict]:
+def fit_course_weights(df_long: pd.DataFrame, skills_small: pd.DataFrame, id_col: str, cats: list) -> tuple[pd.Series | None, dict]:
     """
     Join historical long df (sg_total per round) to player skills, then fit Ridge regression:
       sg_total ~ [cats] + driving_acc + driving_dist (driving standardized using venue mean/std).
@@ -238,26 +214,10 @@ def fit_course_weights(
         return None, driving_norm
 
     # Driving standardization stats (venue field)
-    da_mu = (
-        float(df_long["driving_acc"].mean())
-        if "driving_acc" in df_long.columns
-        else None
-    )
-    da_sd = (
-        float(df_long["driving_acc"].std())
-        if "driving_acc" in df_long.columns
-        else None
-    )
-    dd_mu = (
-        float(df_long["driving_dist"].mean())
-        if "driving_dist" in df_long.columns
-        else None
-    )
-    dd_sd = (
-        float(df_long["driving_dist"].std())
-        if "driving_dist" in df_long.columns
-        else None
-    )
+    da_mu = float(df_long["driving_acc"].mean()) if "driving_acc" in df_long.columns else None
+    da_sd = float(df_long["driving_acc"].std()) if "driving_acc" in df_long.columns else None
+    dd_mu = float(df_long["driving_dist"].mean()) if "driving_dist" in df_long.columns else None
+    dd_sd = float(df_long["driving_dist"].std()) if "driving_dist" in df_long.columns else None
     driving_norm = {
         "da_field_mean": da_mu,
         "da_field_std": da_sd,
@@ -323,7 +283,7 @@ def fit_course_weights(
 
 def compute_player_driving_inputs_for_scoring(
     df_long: pd.DataFrame,
-) -> Tuple[pd.DataFrame, str]:
+) -> tuple[pd.DataFrame, str]:
     """
     Compute per-player driving means for venue (historical df_long) to use at scoring time.
     Returns (drv_df: [key, da_venue_mean, dd_venue_mean, da_overall_mean, dd_overall_mean], join_key_name).
@@ -342,16 +302,8 @@ def compute_player_driving_inputs_for_scoring(
         dfl[key] = df_long.get("player_id", "").astype(str)
 
     venue = dfl.groupby(key, as_index=False).agg(
-        da_venue_mean=(
-            ("driving_acc", "mean")
-            if "driving_acc" in dfl.columns
-            else ("round", "size")
-        ),
-        dd_venue_mean=(
-            ("driving_dist", "mean")
-            if "driving_dist" in dfl.columns
-            else ("round", "size")
-        ),
+        da_venue_mean=(("driving_acc", "mean") if "driving_acc" in dfl.columns else ("round", "size")),
+        dd_venue_mean=(("driving_dist", "mean") if "driving_dist" in dfl.columns else ("round", "size")),
     )
     if "driving_acc" not in dfl.columns:
         venue["da_venue_mean"] = pd.NA
@@ -359,16 +311,8 @@ def compute_player_driving_inputs_for_scoring(
         venue["dd_venue_mean"] = pd.NA
 
     overall = dfl.groupby(key, as_index=False).agg(
-        da_overall_mean=(
-            ("driving_acc", "mean")
-            if "driving_acc" in dfl.columns
-            else ("round", "size")
-        ),
-        dd_overall_mean=(
-            ("driving_dist", "mean")
-            if "driving_dist" in dfl.columns
-            else ("round", "size")
-        ),
+        da_overall_mean=(("driving_acc", "mean") if "driving_acc" in dfl.columns else ("round", "size")),
+        dd_overall_mean=(("driving_dist", "mean") if "driving_dist" in dfl.columns else ("round", "size")),
     )
     if "driving_acc" not in dfl.columns:
         overall["da_overall_mean"] = pd.NA
@@ -403,31 +347,24 @@ def main():
     try:
         if not hist_path.exists():
             raise FileNotFoundError(
-                f"Historical rounds combined parquet not found:\n  {hist_path}\n"
-                "Run scripts/fetch_historical_rounds.py (ensure name matching)."
+                f"Historical rounds combined parquet not found:\n  {hist_path}\n" "Run scripts/fetch_historical_rounds.py (ensure name matching)."
             )
         df_hist = pd.read_parquet(hist_path)
         df_long = wide_rounds_to_long(df_hist)
 
         # If no sg_total rows, skip gracefully
         if df_long.empty:
-            print(
-                "[warn] No long rows created from historical rounds parquet. Skipping course-fit."
-            )
+            print("[warn] No long rows created from historical rounds parquet. Skipping course-fit.")
         else:
             # Load skills for current event players
             sr_path = processed / f"event_{event_id}_skill_ratings.parquet"
             if not sr_path.exists():
-                raise FileNotFoundError(
-                    "Missing skill_ratings parquet. Run fetch_player_data.py first."
-                )
+                raise FileNotFoundError("Missing skill_ratings parquet. Run fetch_player_data.py first.")
             skills = pd.read_parquet(sr_path)
             skills_small, id_col, cats = map_skill_columns(skills, prefer_four=True)
 
             # Fit weights (may return None)
-            weights, driving_norm = fit_course_weights(
-                df_long, skills_small, id_col=id_col, cats=cats
-            )
+            weights, driving_norm = fit_course_weights(df_long, skills_small, id_col=id_col, cats=cats)
 
             # Prepare scoring table and compute per-player driving inputs
             drv_inputs, drv_key = compute_player_driving_inputs_for_scoring(df_long)
@@ -444,18 +381,12 @@ def main():
             da_field_mean = driving_norm.get("da_field_mean")
             dd_field_mean = driving_norm.get("dd_field_mean")
 
-            if (
-                "da_venue_mean" in score_df.columns
-                and score_df["da_venue_mean"].notna().any()
-            ):
+            if "da_venue_mean" in score_df.columns and score_df["da_venue_mean"].notna().any():
                 da_fallback = float(score_df["da_venue_mean"].mean(skipna=True))
             else:
                 da_fallback = da_field_mean if da_field_mean is not None else 0.0
 
-            if (
-                "dd_venue_mean" in score_df.columns
-                and score_df["dd_venue_mean"].notna().any()
-            ):
+            if "dd_venue_mean" in score_df.columns and score_df["dd_venue_mean"].notna().any():
                 dd_fallback = float(score_df["dd_venue_mean"].mean(skipna=True))
             else:
                 dd_fallback = dd_field_mean if dd_field_mean is not None else 0.0
@@ -469,12 +400,8 @@ def main():
                     return float(v)
                 return da_fallback if which == "da" else dd_fallback
 
-            score_df["da_input"] = score_df.apply(
-                lambda r: choose_mean(r, "da"), axis=1
-            )
-            score_df["dd_input"] = score_df.apply(
-                lambda r: choose_mean(r, "dd"), axis=1
-            )
+            score_df["da_input"] = score_df.apply(lambda r: choose_mean(r, "da"), axis=1)
+            score_df["dd_input"] = score_df.apply(lambda r: choose_mean(r, "dd"), axis=1)
 
             # Standardize with venue stats used in model
             def z(val, mu, sd):
@@ -482,16 +409,8 @@ def main():
                     return 0.0
                 return float((val - mu) / sd)
 
-            score_df["da_z"] = score_df["da_input"].apply(
-                lambda x: z(
-                    x, driving_norm["da_field_mean"], driving_norm["da_field_std"]
-                )
-            )
-            score_df["dd_z"] = score_df["dd_input"].apply(
-                lambda x: z(
-                    x, driving_norm["dd_field_mean"], driving_norm["dd_field_std"]
-                )
-            )
+            score_df["da_z"] = score_df["da_input"].apply(lambda x: z(x, driving_norm["da_field_mean"], driving_norm["da_field_std"]))
+            score_df["dd_z"] = score_df["dd_input"].apply(lambda x: z(x, driving_norm["dd_field_mean"], driving_norm["dd_field_std"]))
 
             # Convert weights to a readable dict and compute course_fit_score
             # weights may be None if no history usable
@@ -513,15 +432,9 @@ def main():
             score_df["course_fit_score"] = 0.0
             for c in cats_used:
                 if c in score_df.columns:
-                    score_df["course_fit_score"] += (
-                        score_df[c].astype(float) * weight_dict[c]
-                    )
-            score_df["course_fit_score"] += (
-                score_df["da_z"].astype(float) * weight_dict["da_z"]
-            )
-            score_df["course_fit_score"] += (
-                score_df["dd_z"].astype(float) * weight_dict["dd_z"]
-            )
+                    score_df["course_fit_score"] += score_df[c].astype(float) * weight_dict[c]
+            score_df["course_fit_score"] += score_df["da_z"].astype(float) * weight_dict["da_z"]
+            score_df["course_fit_score"] += score_df["dd_z"].astype(float) * weight_dict["dd_z"]
 
             # Save outputs
             weights_payload = {
@@ -529,9 +442,7 @@ def main():
                 "cats_used": cats_used,
                 "driving_norm": driving_norm,
             }
-            (processed / f"event_{event_id}_course_fit_weights.json").write_text(
-                json.dumps(weights_payload, indent=2), encoding="utf-8"
-            )
+            (processed / f"event_{event_id}_course_fit_weights.json").write_text(json.dumps(weights_payload, indent=2), encoding="utf-8")
 
             # Restore original id column name for downstream
             out_df = score_df.rename(columns={"player_id": id_col})
@@ -545,12 +456,8 @@ def main():
             ] + cats_used
             if "player_name" in out_df.columns:
                 keep_cols.insert(1, "player_name")
-            out_df = out_df[
-                [c for c in keep_cols if c in out_df.columns]
-            ].drop_duplicates(subset=[id_col])
-            out_df.to_parquet(
-                processed / f"event_{event_id}_course_fit_diy.parquet", index=False
-            )
+            out_df = out_df[[c for c in keep_cols if c in out_df.columns]].drop_duplicates(subset=[id_col])
+            out_df.to_parquet(processed / f"event_{event_id}_course_fit_diy.parquet", index=False)
 
             print(
                 "Saved weights:",
@@ -565,9 +472,7 @@ def main():
         # Robust fallback: write empty/default weights payload to avoid crashes upstream
         print("[warn] DIY course-fit unavailable or failed:", ex)
         empty_payload = {"weights": {}, "cats_used": [], "driving_norm": driving_norm}
-        (processed / f"event_{event_id}_course_fit_weights.json").write_text(
-            json.dumps(empty_payload, indent=2), encoding="utf-8"
-        )
+        (processed / f"event_{event_id}_course_fit_weights.json").write_text(json.dumps(empty_payload, indent=2), encoding="utf-8")
         # still write an empty diy parquet with minimal columns for downstream merges
         stub = pd.DataFrame(
             columns=[
@@ -581,9 +486,7 @@ def main():
                 "dd_z",
             ]
         )
-        stub.to_parquet(
-            processed / f"event_{event_id}_course_fit_diy.parquet", index=False
-        )
+        stub.to_parquet(processed / f"event_{event_id}_course_fit_diy.parquet", index=False)
         print("[warn] Wrote empty weights and stub DIY parquet.")
 
 

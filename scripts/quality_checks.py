@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # scripts/quality_checks.py
 from __future__ import annotations
+
 import pandas as pd
 
 
@@ -23,9 +24,7 @@ def check_weather(df_neutral: pd.DataFrame) -> list[str]:
     issues = []
     needed = {"round", "wind_mph", "gust_mph", "precip_pct"}
     if not needed.issubset(df_neutral.columns):
-        issues.append(
-            f"Neutral weather missing cols: {needed - set(df_neutral.columns)}"
-        )
+        issues.append(f"Neutral weather missing cols: {needed - set(df_neutral.columns)}")
         return issues
     if (df_neutral["wind_mph"] > 70).any():
         issues.append("Implausibly high wind_mph (>70)")

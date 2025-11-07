@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # scripts/fetch_historical_rounds_single.py
 from __future__ import annotations
-import os
-import json
+
 import argparse
+import json
+import os
 from pathlib import Path
+
 import requests
 import yaml
 from dotenv import load_dotenv
@@ -18,9 +20,7 @@ def load_yaml(p: Path) -> dict:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Fetch historical rounds for pinned event (single year)."
-    )
+    ap = argparse.ArgumentParser(description="Fetch historical rounds for pinned event (single year).")
     ap.add_argument("--year", required=True, type=int)
     args = ap.parse_args()
 

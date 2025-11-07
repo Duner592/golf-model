@@ -1,12 +1,26 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: 24.8.0
+    rev: 25.9.0
     hooks:
       - id: black
-        language_version: python3
+        # No args here; Black will read pyproject.toml
+        exclude: |
+          (?x)^(
+            data/|
+            web/downloads/|
+            snapshot/|
+            .*\.ipynb_checkpoints/
+          )
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9
+    rev: v0.14.4
     hooks:
       - id: ruff
-        args: ["--fix", "--exit-non-zero-on-fix"]
+        args: ["--fix"]
+        exclude: |
+          (?x)^(
+            data/|
+            web/downloads/|
+            snapshot/|
+            .*\.ipynb_checkpoints/
+          )

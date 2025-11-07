@@ -19,12 +19,13 @@
 #
 from __future__ import annotations
 
-from pathlib import Path
 import argparse
 import json
-import yaml
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
+import yaml
 
 # -----------------------
 # Globals / Defaults
@@ -76,17 +77,13 @@ def load_features_table(event_id: str) -> pd.DataFrame:
     elif p_full.exists():
         df = pd.read_parquet(p_full)
     else:
-        raise FileNotFoundError(
-            "Missing features parquet; run merge_player_data_into_features.py and course-feature merges first."
-        )
+        raise FileNotFoundError("Missing features parquet; run merge_player_data_into_features.py and course-feature merges first.")
 
     # IDs / Names
     if "dg_id" not in df.columns and "player_id" in df.columns:
         df = df.rename(columns={"player_id": "dg_id"})
     if "dg_id" not in df.columns:
-        raise ValueError(
-            "Features must contain 'dg_id' (or 'player_id' to be renamed)."
-        )
+        raise ValueError("Features must contain 'dg_id' (or 'player_id' to be renamed).")
     if "player_name" not in df.columns:
         df["player_name"] = df["dg_id"].astype(str)
     return df
@@ -124,16 +121,8 @@ def get_sigma_vector(df: pd.DataFrame, sigma_default: float) -> np.ndarray:
 
 
 def get_waves(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
-    r1 = (
-        df["r1_wave"].fillna("NA").to_numpy()
-        if "r1_wave" in df.columns
-        else np.array(["NA"] * len(df))
-    )
-    r2 = (
-        df["r2_wave"].fillna("NA").to_numpy()
-        if "r2_wave" in df.columns
-        else np.array(["NA"] * len(df))
-    )
+    r1 = df["r1_wave"].fillna("NA").to_numpy() if "r1_wave" in df.columns else np.array(["NA"] * len(df))
+    r2 = df["r2_wave"].fillna("NA").to_numpy() if "r2_wave" in df.columns else np.array(["NA"] * len(df))
     return r1, r2
 
 
@@ -259,9 +248,7 @@ def simulate(
 # -----------------------
 def main():
     ap = argparse.ArgumentParser(description="Course-aware tournament simulator")
-    ap.add_argument(
-        "--event_id", type=str, default=None, help="Pinned/event to simulate"
-    )
+    ap.add_argument("--event_id", type=str, default=None, help="Pinned/event to simulate")
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parent.parent
@@ -313,26 +300,14 @@ def main():
             start_strokes = df["starting_strokes"].astype(float).fillna(0.0).to_numpy()
         else:
             # Optional: overlay CSV if you generated one for TOUR Championship
-            overlay = (
-                Path("data/processed") / TOUR / f"event_{event_id}_starting_strokes.csv"
-            )
+            overlay = Path("data/processed") / TOUR / f"event_{event_id}_starting_strokes.csv"
             if overlay.exists():
                 ss = pd.read_csv(overlay)
-                key = (
-                    "dg_id"
-                    if "dg_id" in df.columns and "dg_id" in ss.columns
-                    else "player_name"
-                )
-                merged = df[[key]].merge(
-                    ss[[key, "starting_strokes"]], on=key, how="left"
-                )
-                start_strokes = (
-                    merged["starting_strokes"].fillna(0.0).astype(float).to_numpy()
-                )
+                key = "dg_id" if "dg_id" in df.columns and "dg_id" in ss.columns else "player_name"
+                merged = df[[key]].merge(ss[[key, "starting_strokes"]], on=key, how="left")
+                start_strokes = merged["starting_strokes"].fillna(0.0).astype(float).to_numpy()
             else:
-                print(
-                    "[warn] use_starting_strokes enabled, but 'starting_strokes' column not found. Defaulting to 0s."
-                )
+                print("[warn] use_starting_strokes enabled, but 'starting_strokes' column not found. Defaulting to 0s.")
 
     # Cut rules
     cut_top = None if no_cut else int(CUT_TOP)

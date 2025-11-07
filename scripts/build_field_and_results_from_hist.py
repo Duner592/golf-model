@@ -15,11 +15,12 @@
 #   - data/processed/{tour}/event_{event_id}_results.csv
 
 from __future__ import annotations
-import re
-import json
+
 import argparse
+import json
+import re
 from pathlib import Path
-from typing import Any, List, Optional, Tuple
+from typing import Any
 
 import pandas as pd
 
@@ -43,7 +44,7 @@ def load_event_id_from_meta(processed_dir: Path) -> str:
     return str(meta["event_id"])
 
 
-def pick_hist_json(root: Path, tour: str, event_id: str, year: Optional[str]) -> Path:
+def pick_hist_json(root: Path, tour: str, event_id: str, year: str | None) -> Path:
     hist_dir = root / "data" / "raw" / "historical" / tour
     if year:
         p = hist_dir / f"event_{event_id}_{year}_rounds.json"
@@ -53,25 +54,21 @@ def pick_hist_json(root: Path, tour: str, event_id: str, year: Optional[str]) ->
     # fallback: pick latest file for this event_id
     candidates = sorted(hist_dir.glob(f"event_{event_id}_*_rounds.json"))
     if not candidates:
-        raise FileNotFoundError(
-            f"No historical JSON for event {event_id} in {hist_dir}"
-        )
+        raise FileNotFoundError(f"No historical JSON for event {event_id} in {hist_dir}")
     return candidates[-1]
 
 
-def extract_rows(data: Any) -> List[dict]:
+def extract_rows(data: Any) -> list[dict]:
     if isinstance(data, list):
         return data
     if isinstance(data, dict):
         for v in data.values():
             if isinstance(v, list):
                 return v
-    raise ValueError(
-        "Unrecognized historical JSON structure: expected list or dict containing a list."
-    )
+    raise ValueError("Unrecognized historical JSON structure: expected list or dict containing a list.")
 
 
-def compute_winner(df: pd.DataFrame) -> Tuple[str, str]:
+def compute_winner(df: pd.DataFrame) -> tuple[str, str]:
     # fin_text winner
     if "fin_text" in df.columns:
         mask = df["fin_text"].astype(str).str.upper().isin(["1", "W", "WIN"])
@@ -81,11 +78,7 @@ def compute_winner(df: pd.DataFrame) -> Tuple[str, str]:
     # lowest total across round_N.score
     score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
     if score_cols:
-        df["__total"] = (
-            df[score_cols]
-            .apply(pd.to_numeric, errors="coerce")
-            .sum(axis=1, min_count=1)
-        )
+        df["__total"] = df[score_cols].apply(pd.to_numeric, errors="coerce").sum(axis=1, min_count=1)
         tmp = df.dropna(subset=["__total"])
         if not tmp.empty:
             idx = tmp["__total"].idxmin()
@@ -100,11 +93,7 @@ def build_field(df: pd.DataFrame) -> pd.DataFrame:
     out = df[["player_name"]].drop_duplicates().copy()
     # attach a player_id if present
     if "dg_id" in df.columns:
-        ids = (
-            df[["player_name", "dg_id"]]
-            .drop_duplicates()
-            .rename(columns={"dg_id": "player_id"})
-        )
+        ids = df[["player_name", "dg_id"]].drop_duplicates().rename(columns={"dg_id": "player_id"})
         out = out.merge(ids, on="player_name", how="left")
     elif "player_id" in df.columns:
         ids = df[["player_name", "player_id"]].drop_duplicates()
@@ -113,13 +102,9 @@ def build_field(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Build field/results from historical rounds JSON."
-    )
+    ap = argparse.ArgumentParser(description="Build field/results from historical rounds JSON.")
     ap.add_argument("--tour", default=TOUR_DEFAULT)
-    ap.add_argument(
-        "--year", default=None, help="YYYY (required to select the correct rounds file)"
-    )
+    ap.add_argument("--year", default=None, help="YYYY (required to select the correct rounds file)")
     ap.add_argument(
         "--event_id",
         default=None,
@@ -132,9 +117,7 @@ def main():
     processed.mkdir(parents=True, exist_ok=True)
 
     # Resolve event_id robustly
-    event_id = (
-        str(args.event_id) if args.event_id else load_event_id_from_meta(processed)
-    )
+    event_id = str(args.event_id) if args.event_id else load_event_id_from_meta(processed)
 
     # Find historical JSON
     hist_path = pick_hist_json(root, args.tour, event_id, args.year)
@@ -155,16 +138,12 @@ def main():
     # Winner
     winner_name, method = compute_winner(df)
     results_df = field_df[["player_name"]].copy()
-    results_df["winner_flag"] = (
-        results_df["player_name"].astype(str) == winner_name
-    ).astype(int)
+    results_df["winner_flag"] = (results_df["player_name"].astype(str) == winner_name).astype(int)
     results_out = processed / f"event_{event_id}_results.csv"
     results_df.to_csv(results_out, index=False, encoding="utf-8")
     print(f"Saved results: {results_out}  Winner: {winner_name}  (method: {method})")
 
-    print(
-        "\nNext: python scripts/run_weekly_all.py --skip-html; then python scripts/evaluate_preds.py"
-    )
+    print("\nNext: python scripts/run_weekly_all.py --skip-html; then python scripts/evaluate_preds.py")
 
 
 if __name__ == "__main__":

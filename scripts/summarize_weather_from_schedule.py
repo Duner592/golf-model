@@ -13,6 +13,7 @@
 import argparse
 import json
 from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -38,9 +39,7 @@ def load_meta(processed_dir: Path, event_id: str | None) -> dict:
     if not metas:
         metas = sorted(processed_dir.glob("event_*_meta.json"))
     if not metas:
-        raise FileNotFoundError(
-            "No meta found; run fetch_weather_from_schedule.py first."
-        )
+        raise FileNotFoundError("No meta found; run fetch_weather_from_schedule.py first.")
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
@@ -56,9 +55,7 @@ def load_hourly(processed_dir: Path, event_id: str) -> pd.DataFrame:
             "wind_mph": raw["hourly"]["wind_speed_10m"],  # mph
             "gust_mph": raw["hourly"]["wind_gusts_10m"],  # mph
             "temp_c": raw["hourly"]["temperature_2m"],
-            "precip_pct": raw["hourly"].get(
-                "precipitation_probability", [0] * len(raw["hourly"]["time"])
-            ),
+            "precip_pct": raw["hourly"].get("precipitation_probability", [0] * len(raw["hourly"]["time"])),
         }
     )
 
@@ -87,12 +84,8 @@ def summarize_day(df_day: pd.DataFrame) -> dict:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Summarize weather into round/day and wave splits (mph/%)."
-    )
-    ap.add_argument(
-        "--event_id", type=str, default=None, help="Pinned event id to summarize"
-    )
+    ap = argparse.ArgumentParser(description="Summarize weather into round/day and wave splits (mph/%).")
+    ap.add_argument("--event_id", type=str, default=None, help="Pinned event id to summarize")
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parent.parent

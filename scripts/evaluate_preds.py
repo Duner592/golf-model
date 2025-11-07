@@ -10,13 +10,15 @@
 #   data/preds/{tour}/event_{event_id}_eval_summary.json
 
 from __future__ import annotations
-from pathlib import Path
+
 import argparse
 import json
 import re
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from sklearn.metrics import log_loss, brier_score_loss
+from sklearn.metrics import brier_score_loss, log_loss
 
 TOUR = "pga"
 
@@ -46,9 +48,7 @@ def load_preds_for_event(preds_dir: Path, event_id: str) -> pd.DataFrame:
         p = preds_dir / f"event_{event_id}_preds_{stem}.parquet"
         if p.exists():
             return pd.read_parquet(p)
-    raise FileNotFoundError(
-        f"No predictions found for event_id={event_id} in {preds_dir}"
-    )
+    raise FileNotFoundError(f"No predictions found for event_id={event_id} in {preds_dir}")
 
 
 def load_results_for_event(processed_dir: Path, event_id: str) -> pd.DataFrame:
@@ -82,9 +82,7 @@ def evaluate(y_true: pd.Series, p: pd.Series) -> dict:
         # Incomplete results (all zeros) or no winner flagged: report log_loss with labels=[0,1]
         out["log_loss"] = float(log_loss(y, ps, labels=[0, 1]))
         out["brier"] = float(brier_score_loss(y, ps))
-        out["note"] = (
-            "winner_flag has a single class; used labels=[0,1] (event likely not completed)"
-        )
+        out["note"] = "winner_flag has a single class; used labels=[0,1] (event likely not completed)"
     else:
         out["log_loss"] = float(log_loss(y, ps))
         out["brier"] = float(brier_score_loss(y, ps))
@@ -117,9 +115,7 @@ def main():
 
     merged = preds.merge(results[[key, "winner_flag"]], on=key, how="inner")
     if merged.empty or "p_win" not in merged.columns:
-        raise ValueError(
-            f"No overlap or missing p_win for event_id={event_id} (key={key})"
-        )
+        raise ValueError(f"No overlap or missing p_win for event_id={event_id} (key={key})")
 
     metrics = evaluate(merged["winner_flag"], merged["p_win"])
 

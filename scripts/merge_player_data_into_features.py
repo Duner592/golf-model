@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # scripts/merge_player_data_into_features.py
 from __future__ import annotations
-from pathlib import Path
+
 import argparse
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -31,9 +33,7 @@ def main():
 
     feat_path = features / f"event_{event_id}_features_weather.parquet"
     if not feat_path.exists():
-        raise FileNotFoundError(
-            f"Missing weather features: {feat_path}. Run build_features_from_weather.py first."
-        )
+        raise FileNotFoundError(f"Missing weather features: {feat_path}. Run build_features_from_weather.py first.")
     feats = pd.read_parquet(feat_path)
 
     # Decide ID column
@@ -71,17 +71,11 @@ def main():
     rankings_p = prefix_df(rankings, "dr_")
     skills_p = prefix_df(skills, "sr_")
 
-    out = (
-        feats.merge(rankings_p, on=id_col, how="left")
-        if not rankings_p.empty
-        else feats.copy()
-    )
+    out = feats.merge(rankings_p, on=id_col, how="left") if not rankings_p.empty else feats.copy()
     out = out.merge(skills_p, on=id_col, how="left") if not skills_p.empty else out
 
     out.to_parquet(features / f"event_{event_id}_features_full.parquet", index=False)
-    print(
-        "Saved merged features:", features / f"event_{event_id}_features_full.parquet"
-    )
+    print("Saved merged features:", features / f"event_{event_id}_features_full.parquet")
 
 
 if __name__ == "__main__":

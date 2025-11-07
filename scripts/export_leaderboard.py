@@ -16,16 +16,17 @@
 
 from __future__ import annotations
 
-# stdlib/third-party
-from pathlib import Path
-import json
 import argparse
-import pandas as pd
+import json
 import re
 from datetime import datetime
 
+# stdlib/third-party
+from pathlib import Path
+
 # ensure src import works when running directly
 import _bootstrap  # noqa: F401
+import pandas as pd
 
 from src.utils_event import (
     resolve_event_id,
@@ -52,9 +53,7 @@ def load_latest_meta(tour: str, root: Path) -> dict:
     processed = root / "data" / "processed" / tour
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
-        raise FileNotFoundError(
-            "No event meta found. Run parse_field_updates.py first."
-        )
+        raise FileNotFoundError("No event meta found. Run parse_field_updates.py first.")
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
@@ -77,9 +76,7 @@ def pick_preds_file(tour: str, event_id: str, root: Path) -> Path:
         p = preds_dir / f"event_{event_id}_{stem}.parquet"
         if p.exists():
             return p
-    raise FileNotFoundError(
-        f"No predictions found for event_id={event_id} in {preds_dir}"
-    )
+    raise FileNotFoundError(f"No predictions found for event_id={event_id} in {preds_dir}")
 
 
 def load_features_snapshot(tour: str, event_id: str, root: Path) -> pd.DataFrame | None:
@@ -120,9 +117,7 @@ def _pick_best_join_key(df_left: pd.DataFrame, df_right: pd.DataFrame):
     return best[0], best[2], best[3]
 
 
-def build_display_table(
-    preds: pd.DataFrame, feats: pd.DataFrame | None
-) -> pd.DataFrame:
+def build_display_table(preds: pd.DataFrame, feats: pd.DataFrame | None) -> pd.DataFrame:
     df = preds.copy()
 
     # Ensure player_name
@@ -130,11 +125,7 @@ def build_display_table(
         if "name" in df.columns:
             df = df.rename(columns={"name": "player_name"})
         else:
-            id_guess = (
-                "dg_id"
-                if "dg_id" in df.columns
-                else ("player_id" if "player_id" in df.columns else None)
-            )
+            id_guess = "dg_id" if "dg_id" in df.columns else ("player_id" if "player_id" in df.columns else None)
             df["player_name"] = df.get(id_guess, df.index).astype(str)
 
     # Probabilities for display
@@ -149,28 +140,13 @@ def build_display_table(
             keep = [c for c in ENRICH_CANDIDATES if c in feats_aligned.columns]
             if keep:
                 feats_small = feats_aligned[[key] + keep].drop_duplicates(subset=[key])
-                merged = df_aligned.merge(
-                    feats_small, on=key, how="left", suffixes=("_preds", "_feat")
-                )
+                merged = df_aligned.merge(feats_small, on=key, how="left", suffixes=("_preds", "_feat"))
                 # keep preds player_name
-                if (
-                    "player_name_preds" in merged.columns
-                    or "player_name_feat" in merged.columns
-                ):
-                    merged["player_name"] = merged.get(
-                        "player_name_preds", merged.get("player_name", None)
-                    )
+                if "player_name_preds" in merged.columns or "player_name_feat" in merged.columns:
+                    merged["player_name"] = merged.get("player_name_preds", merged.get("player_name", None))
                     if merged["player_name"].isna().any():
-                        merged["player_name"] = merged["player_name"].fillna(
-                            merged.get("player_name_feat")
-                        )
-                    merged = merged.drop(
-                        columns=[
-                            c
-                            for c in ["player_name_preds", "player_name_feat"]
-                            if c in merged.columns
-                        ]
-                    )
+                        merged["player_name"] = merged["player_name"].fillna(merged.get("player_name_feat"))
+                    merged = merged.drop(columns=[c for c in ["player_name_preds", "player_name_feat"] if c in merged.columns])
                 df = merged
 
     # Rank by p_win
@@ -251,9 +227,7 @@ def save_outputs(
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Export leaderboard CSV/HTML with QoL features."
-    )
+    parser = argparse.ArgumentParser(description="Export leaderboard CSV/HTML with QoL features.")
     parser.add_argument("--tour", type=str, default=TOUR_DEFAULT)
     parser.add_argument("--topN", type=int, default=20)
     parser.add_argument("--html", action="store_true")
@@ -276,9 +250,7 @@ def main():
     feats = load_features_snapshot(args.tour, event_id, root)
     leaderboard = build_display_table(preds_raw, feats)
 
-    save_outputs(
-        leaderboard, preds_raw, preds_dir, event_id, event_name, args.topN, args.html
-    )
+    save_outputs(leaderboard, preds_raw, preds_dir, event_id, event_name, args.topN, args.html)
 
     print("\nTop rows:")
     print(leaderboard.head(max(10, args.topN or 10)).to_string(index=False))

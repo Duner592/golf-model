@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # scripts/merge_sigma_into_features.py
 from __future__ import annotations
-from pathlib import Path
+
 import argparse
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -14,16 +16,12 @@ BOUNDS = (1.8, 3.8)
 def resolve_event_id(processed: Path, override: str | None) -> str:
     if override:
         return str(override)
-    meta = json.loads(
-        sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8")
-    )
+    meta = json.loads(sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8"))
     return str(meta["event_id"])
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Merge computed sigma into features_full for the event."
-    )
+    ap = argparse.ArgumentParser(description="Merge computed sigma into features_full for the event.")
     ap.add_argument("--event_id", type=str, default=None)
     args = ap.parse_args()
 
@@ -36,18 +34,14 @@ def main():
 
     feats_path = features / f"event_{event_id}_features_full.parquet"
     if not feats_path.exists():
-        raise FileNotFoundError(
-            f"Missing features_full for event {event_id}: {feats_path}"
-        )
+        raise FileNotFoundError(f"Missing features_full for event {event_id}: {feats_path}")
     feats = pd.read_parquet(feats_path)
 
     sigma_path = processed / f"event_{event_id}_player_sigma.parquet"
     if sigma_path.exists():
         sigma = pd.read_parquet(sigma_path)
     else:
-        print(
-            f"[warn] No sigma file for event {event_id}: {sigma_path}. Will use default for all."
-        )
+        print(f"[warn] No sigma file for event {event_id}: {sigma_path}. Will use default for all.")
         sigma = pd.DataFrame()
 
     # Determine join key

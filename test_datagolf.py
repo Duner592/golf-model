@@ -1,5 +1,6 @@
-from datagolf_client import DataGolfClient
 import json
+
+from datagolf_client import DataGolfClient
 
 # Fill these with real documentation values:
 BASE_URL = "https://feeds.datagolf.com"

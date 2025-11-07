@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # scripts/check_features_course_columns.py
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -12,9 +13,7 @@ def main():
     processed = root / "data" / "processed" / TOUR
     features = root / "data" / "features" / TOUR
 
-    meta = json.loads(
-        sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8")
-    )
+    meta = json.loads(sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8"))
     event_id = str(meta["event_id"])
 
     # Prefer course snapshot, else full

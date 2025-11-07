@@ -46,9 +46,7 @@ def run(cmd: list[str], timeout: int | None = None) -> bool:
 def schedule_2025() -> list[dict]:
     p = RAW / f"schedule_{TOUR}_{YEAR}.json"
     if not p.exists():
-        print(
-            f"[error] Missing schedule snapshot: {p}. Run fetch_schedule_and_rounds_2025.py first."
-        )
+        print(f"[error] Missing schedule snapshot: {p}. Run fetch_schedule_and_rounds_2025.py first.")
         return []
     try:
         return json.loads(p.read_text(encoding="utf-8"))
@@ -146,9 +144,7 @@ def build_field_and_results(eid: str) -> bool:
 def weather_for_event(eid: str) -> bool:
     if not run(["python", "scripts/fetch_weather_from_schedule.py", "--event_id", eid]):
         return False
-    if not run(
-        ["python", "scripts/summarize_weather_from_schedule.py", "--event_id", eid]
-    ):
+    if not run(["python", "scripts/summarize_weather_from_schedule.py", "--event_id", eid]):
         return False
     return True
 
@@ -175,9 +171,7 @@ def evaluate(eid: str) -> bool:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Backtest 2025 completed events with exclusions."
-    )
+    ap = argparse.ArgumentParser(description="Backtest 2025 completed events with exclusions.")
     ap.add_argument(
         "--exclude",
         type=str,
@@ -212,9 +206,7 @@ def main():
             continue
         todo.append(e)
 
-    print(
-        f"[info] Backtesting {len(todo)} completed events from {YEAR} (excluded: {sorted(exclude)})"
-    )
+    print(f"[info] Backtesting {len(todo)} completed events from {YEAR} (excluded: {sorted(exclude)})")
 
     recap = []
     for i, e in enumerate(todo, 1):
@@ -254,9 +246,7 @@ def main():
                 print("[warn] could not read eval:", ex)
 
     out = PREDS / f"backtest_{YEAR}_recap.json"
-    out.write_text(
-        json.dumps({"year": YEAR, "events": recap}, indent=2), encoding="utf-8"
-    )
+    out.write_text(json.dumps({"year": YEAR, "events": recap}, indent=2), encoding="utf-8")
     print("Saved:", out)
 
 

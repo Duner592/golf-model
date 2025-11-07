@@ -16,17 +16,16 @@
 #   - data/raw/historical/{tour}/event_{event_id}_rounds_combined.parquet (if any)
 
 
-import os
-import json
 import argparse
+import json
+import os
 from datetime import datetime
 from pathlib import Path
-from typing import Optional, List
 
+import pandas as pd
 import requests
 import requests_cache
 import yaml
-import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -36,7 +35,7 @@ def load_yaml(p: Path) -> dict:
     return yaml.safe_load(p.read_text(encoding="utf-8"))
 
 
-def find_event_id(tour: str, root: Path) -> Optional[str]:
+def find_event_id(tour: str, root: Path) -> str | None:
     # 1) processed meta
     processed = root / "data" / "processed" / tour
     metas = sorted(processed.glob("event_*_meta.json"))
@@ -61,7 +60,7 @@ def find_event_id(tour: str, root: Path) -> Optional[str]:
     return None
 
 
-def load_round1_year(processed_dir: Path) -> Optional[int]:
+def load_round1_year(processed_dir: Path) -> int | None:
     wmetas = sorted(processed_dir.glob("event_*_weather_meta.json"))
     if wmetas:
         try:
@@ -74,9 +73,7 @@ def load_round1_year(processed_dir: Path) -> Optional[int]:
     return None
 
 
-def pick_years_to_fetch(
-    r1_year: Optional[int], years_back: int, min_year: Optional[int]
-) -> List[int]:
+def pick_years_to_fetch(r1_year: int | None, years_back: int, min_year: int | None) -> list[int]:
     today_year = datetime.utcnow().year
     max_year = (min(today_year, r1_year) - 1) if r1_year else (today_year - 1)
     years = [max_year - i for i in range(years_back)]
@@ -92,9 +89,7 @@ def save_json(obj, path: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Fetch historical rounds for the current event (previous years only)."
-    )
+    parser = argparse.ArgumentParser(description="Fetch historical rounds for the current event (previous years only).")
     parser.add_argument(
         "--event_id",
         type=str,
@@ -136,27 +131,19 @@ def main():
     # Discover event_id (no YAML default)
     event_id = args.event_id or find_event_id(tour, root)
     if not event_id:
-        raise ValueError(
-            "Could not determine event_id. Run parse_field_updates.py first, or pass --event_id."
-        )
+        raise ValueError("Could not determine event_id. Run parse_field_updates.py first, or pass --event_id.")
 
     processed_dir = root / "data" / "processed" / tour
     processed_dir.mkdir(parents=True, exist_ok=True)
 
     # Determine historical years (exclude current/unplayed)
     r1_year = load_round1_year(processed_dir)
-    years_to_fetch = pick_years_to_fetch(
-        r1_year=r1_year, years_back=years_back, min_year=args.min_year
-    )
+    years_to_fetch = pick_years_to_fetch(r1_year=r1_year, years_back=years_back, min_year=args.min_year)
     if not years_to_fetch:
-        print(
-            "No valid past years to fetch. Adjust years_back or ensure weather_meta exists for better bounds."
-        )
+        print("No valid past years to fetch. Adjust years_back or ensure weather_meta exists for better bounds.")
         return
 
-    print(
-        f"Using event_id={event_id} (tour={tour}); fetching past years: {years_to_fetch}"
-    )
+    print(f"Using event_id={event_id} (tour={tour}); fetching past years: {years_to_fetch}")
 
     requests_cache.install_cache("dg_cache", expire_after=900)
     session = requests.Session()
@@ -198,11 +185,7 @@ def main():
                 if isinstance(v, list):
                     vlist = v
                     break
-            df = (
-                pd.json_normalize(vlist)
-                if vlist is not None
-                else pd.json_normalize(data)
-            )
+            df = pd.json_normalize(vlist) if vlist is not None else pd.json_normalize(data)
         else:
             df = pd.DataFrame()
 
@@ -217,9 +200,7 @@ def main():
         combined_df.to_parquet(combined_out, index=False)
         print(f"Saved combined Parquet: {combined_out}")
     else:
-        print(
-            "No historical rounds saved (no available past years or empty responses)."
-        )
+        print("No historical rounds saved (no available past years or empty responses).")
 
 
 if __name__ == "__main__":

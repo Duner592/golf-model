@@ -38,15 +38,11 @@ def load_preds(preds_dir: Path, event_id: str) -> pd.DataFrame:
     for p in candidates:
         if p.exists():
             return pd.read_parquet(p)
-    raise FileNotFoundError(
-        f"No preds parquet found for event_id={event_id} in {preds_dir}"
-    )
+    raise FileNotFoundError(f"No preds parquet found for event_id={event_id} in {preds_dir}")
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Quick plots for current event predictions."
-    )
+    ap = argparse.ArgumentParser(description="Quick plots for current event predictions.")
     ap.add_argument("--tour", default="pga", help="Tour key (default: pga)")
     ap.add_argument("--event_id", default=None, help="Force event_id")
     args = ap.parse_args()

@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 # scripts/backtest_runner.py
 from __future__ import annotations
-from pathlib import Path
-import json
-import yaml
-import pandas as pd
 
+import json
+from pathlib import Path
+
+import pandas as pd
+import yaml
 from eval_utils import eval_basic
 
 TOUR = "pga"
 
 
 def load_cfg() -> dict:
-    cfg = yaml.safe_load(
-        (Path("configs") / "experiments.yaml").read_text(encoding="utf-8")
-    )
+    cfg = yaml.safe_load((Path("configs") / "experiments.yaml").read_text(encoding="utf-8"))
     return cfg
 
 
@@ -31,7 +30,7 @@ def list_backtest_events(years: list[int], max_events_per_year: int) -> list[dic
     # group by year/event, cap per year
     df = pd.DataFrame(events).drop_duplicates().sort_values(["year", "event_id"])
     out = []
-    for yr, g in df.groupby("year"):
+    for _yr, g in df.groupby("year"):
         g_sorted = g.head(max_events_per_year) if max_events_per_year else g
         out.extend(g_sorted.to_dict(orient="records"))
     return out
@@ -56,11 +55,7 @@ def load_results(event_id: str) -> pd.DataFrame:
 
 
 def align(preds: pd.DataFrame, results: pd.DataFrame) -> pd.DataFrame:
-    key = (
-        "dg_id"
-        if "dg_id" in preds.columns and "dg_id" in results.columns
-        else "player_name"
-    )
+    key = "dg_id" if "dg_id" in preds.columns and "dg_id" in results.columns else "player_name"
     if key not in preds.columns or key not in results.columns:
         # fallback: try rename
         if key == "dg_id" and "player_id" in results.columns:
@@ -106,9 +101,7 @@ def main():
     Path("data/preds") / TOUR
     out_dir = Path("data/preds") / TOUR
     out_dir.mkdir(parents=True, exist_ok=True)
-    Path(out_dir / "backtest_summary.json").write_text(
-        json.dumps({"aggregate": agg, "by_event": by_event}, indent=2), encoding="utf-8"
-    )
+    Path(out_dir / "backtest_summary.json").write_text(json.dumps({"aggregate": agg, "by_event": by_event}, indent=2), encoding="utf-8")
     print("Saved:", out_dir / "backtest_summary.json")
 
 

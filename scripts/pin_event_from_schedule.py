@@ -5,10 +5,10 @@
 # - Fuzzy-matches the event name
 # - Writes data/processed/{tour}/event_{event_id}_meta.json with lat/lon and R1–R4 dates
 
+import argparse
+import json
 import os
 import re
-import json
-import argparse
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -45,9 +45,7 @@ def schedule_events_from_payload(payload):
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Pin a past/future event (by name + year) as the active meta."
-    )
+    ap = argparse.ArgumentParser(description="Pin a past/future event (by name + year) as the active meta.")
     ap.add_argument(
         "--name",
         required=True,
@@ -73,9 +71,7 @@ def main():
     # Fetch the schedule for the given year
     requests_cache.install_cache("dg_cache", expire_after=600)
     url = f"{base}/{sched_path.lstrip('/')}"
-    resp = requests.get(
-        url, params={keyp: api_key, "tour": tour, "year": str(args.year)}, timeout=30
-    )
+    resp = requests.get(url, params={keyp: api_key, "tour": tour, "year": str(args.year)}, timeout=30)
     try:
         resp.raise_for_status()
     except requests.HTTPError as e:
@@ -86,9 +82,7 @@ def main():
 
     events = schedule_events_from_payload(resp.json())
     if not events:
-        raise RuntimeError(
-            f"No schedule events returned for year={args.year} tour={tour}"
-        )
+        raise RuntimeError(f"No schedule events returned for year={args.year} tour={tour}")
 
     target_slug = slugify(args.name)
     matches = []
@@ -99,9 +93,7 @@ def main():
 
     if not matches:
         sample = [e.get("event_name") for e in events[:10]]
-        raise RuntimeError(
-            f'No match for "{args.name}" in {args.year}. Sample schedule names: {sample}'
-        )
+        raise RuntimeError(f'No match for "{args.name}" in {args.year}. Sample schedule names: {sample}')
 
     # If multiple matches, pick the first; you can refine selection if needed
     ev = matches[0]
@@ -123,7 +115,7 @@ def main():
     try:
         d0 = datetime.strptime(str(start), "%Y-%m-%d").date()
     except Exception:
-        raise ValueError(f"Unparseable start date in schedule record: {start}")
+        raise ValueError(f"Unparseable start date in schedule record: {start}") from None
 
     dates = {
         "r1_date": d0.isoformat(),

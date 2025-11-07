@@ -12,9 +12,11 @@
 # You can later replace the loader to point to your exact per-round SG endpoint output.
 
 from __future__ import annotations
-from pathlib import Path
+
 import argparse
 import json
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -60,9 +62,7 @@ def compute_sigma_df(rounds: pd.DataFrame, id_col: str) -> pd.DataFrame:
     pool = sig.loc[sig["eff_n"] >= MIN_ROUNDS, "sample_sigma"]
     s_pool = float(pool.median()) if not pool.empty else DEFAULT_SIGMA
     s_pool = float(np.clip(s_pool, *BOUNDS))
-    var_i = (sig["eff_n"] / (sig["eff_n"] + PRIOR_K)) * (sig["sample_sigma"] ** 2) + (
-        PRIOR_K / (sig["eff_n"] + PRIOR_K)
-    ) * (s_pool**2)
+    var_i = (sig["eff_n"] / (sig["eff_n"] + PRIOR_K)) * (sig["sample_sigma"] ** 2) + (PRIOR_K / (sig["eff_n"] + PRIOR_K)) * (s_pool**2)
     sigma = np.sqrt(var_i).clip(*BOUNDS)
     out = sig[[id_col]].copy()
     out["sigma"] = sigma
@@ -70,9 +70,7 @@ def compute_sigma_df(rounds: pd.DataFrame, id_col: str) -> pd.DataFrame:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Compute per-player sigma (volatility) for the pinned/current event."
-    )
+    ap = argparse.ArgumentParser(description="Compute per-player sigma (volatility) for the pinned/current event.")
     ap.add_argument("--event_id", type=str, default=None, help="Pinned event id")
     args = ap.parse_args()
 
@@ -83,9 +81,7 @@ def main():
     if args.event_id:
         event_id = str(args.event_id)
     else:
-        meta = json.loads(
-            sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8")
-        )
+        meta = json.loads(sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8"))
         event_id = str(meta["event_id"])
 
     # Load SG rounds (your pipeline should have created this; adjust name if needed)
@@ -93,11 +89,7 @@ def main():
     rounds_pq = processed / f"event_{event_id}_player_form.parquet"
     if rounds_pq.exists():
         rounds = pd.read_parquet(rounds_pq)
-        id_col = (
-            "player_id"
-            if "player_id" in rounds.columns
-            else ("dg_id" if "dg_id" in rounds.columns else None)
-        )
+        id_col = "player_id" if "player_id" in rounds.columns else ("dg_id" if "dg_id" in rounds.columns else None)
         if id_col is None:
             raise ValueError("player_form parquet missing id col")
         if "date" not in rounds.columns or "sg_total" not in rounds.columns:
@@ -122,11 +114,7 @@ def main():
                 break
         if field is None:
             raise FileNotFoundError("Field table not found for sigma fallback.")
-        id_col = (
-            "player_id"
-            if "player_id" in field.columns
-            else ("dg_id" if "dg_id" in field.columns else None)
-        )
+        id_col = "player_id" if "player_id" in field.columns else ("dg_id" if "dg_id" in field.columns else None)
         if id_col is None:
             raise ValueError("No id column in field table for sigma fallback.")
         sigma_df = field[[id_col]].drop_duplicates().copy()

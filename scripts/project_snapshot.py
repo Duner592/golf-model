@@ -9,12 +9,13 @@
 #   python scripts/project_snapshot.py
 
 from __future__ import annotations
-import re
+
 import json
-import sys
+import re
 import subprocess
+import sys
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 SNAP = ROOT / "snapshot"
@@ -36,9 +37,7 @@ EXCLUDE_TOP = {"data/raw"}  # exclude heavy raw by default
 
 
 def run(cmd: list[str]) -> str:
-    res = subprocess.run(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False
-    )
+    res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
     return res.stdout.strip()
 
 
@@ -92,9 +91,7 @@ def redact_configs():
 def write_env_info():
     info = []
     info.append(run([sys.executable, "-V"]))
-    info.append(
-        run([sys.executable, "-c", "import platform; print(platform.platform())"])
-    )
+    info.append(run([sys.executable, "-c", "import platform; print(platform.platform())"]))
     info.append("\n# pip freeze\n" + run([sys.executable, "-m", "pip", "freeze"]))
     (SNAP / "env_info.txt").write_text("\n".join(info), encoding="utf-8")
     print("Saved env_info.txt")
@@ -105,14 +102,14 @@ def latest_meta(tour: str = "pga") -> Path | None:
     return metas[-1] if metas else None
 
 
-def collect_artifacts() -> Dict[str, Any]:
+def collect_artifacts() -> dict[str, Any]:
     tours = ["pga"]
-    out: Dict[str, Any] = {}
+    out: dict[str, Any] = {}
     for tour in tours:
         tdir = ROOT / "data" / "processed" / tour
         pdir = ROOT / "data" / "preds" / tour
         fdir = ROOT / "data" / "features" / tour
-        rec: Dict[str, Any] = {}
+        rec: dict[str, Any] = {}
         if tdir.exists():
             m = latest_meta(tour)
             if m:
@@ -128,9 +125,7 @@ def collect_artifacts() -> Dict[str, Any]:
                         fdir / f"event_{eid}_features_weather.parquet",
                     )
                 )
-                rec["features_course"] = str(
-                    (fdir / f"event_{eid}_features_course.parquet")
-                )
+                rec["features_course"] = str(fdir / f"event_{eid}_features_course.parquet")
                 # preds
                 preds = {}
                 for stem in ["with_course", "common_shock", "baseline"]:
@@ -182,9 +177,7 @@ def main():
     redact_configs()
     write_artifacts()
     make_archive()
-    print(
-        "\nSnapshot complete. Share files under ./snapshot/ or the tarball for review."
-    )
+    print("\nSnapshot complete. Share files under ./snapshot/ or the tarball for review.")
 
 
 if __name__ == "__main__":

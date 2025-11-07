@@ -8,9 +8,11 @@
 # - Prints aggregate metrics, best/worst tables, outliers, and saves a sortable CSV.
 #
 from __future__ import annotations
-from pathlib import Path
+
 import argparse
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -50,9 +52,7 @@ def load_exclusions() -> set[str]:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Analyze backtest_2025_recap.json with optional exclusions."
-    )
+    ap = argparse.ArgumentParser(description="Analyze backtest_2025_recap.json with optional exclusions.")
     ap.add_argument(
         "--exclude",
         type=str,

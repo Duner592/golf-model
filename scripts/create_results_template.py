@@ -4,8 +4,9 @@
 # Build a results template for the current event (winner_flag=0).
 # Edit this file after the event finishes and set winner_flag=1 for the winner.
 
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -35,9 +36,7 @@ def main():
             field = pd.read_parquet(p) if p.suffix == ".parquet" else pd.read_csv(p)
             break
     if field is None:
-        raise FileNotFoundError(
-            "Field table not found. Run parse_field_updates.py first."
-        )
+        raise FileNotFoundError("Field table not found. Run parse_field_updates.py first.")
 
     # Build template with player_name (fallbacks)
     df = field.copy()
@@ -46,11 +45,7 @@ def main():
             df = df.rename(columns={"name": "player_name"})
         else:
             # as last resort, try an ID (not ideal)
-            id_col = (
-                "dg_id"
-                if "dg_id" in df.columns
-                else ("player_id" if "player_id" in df.columns else None)
-            )
+            id_col = "dg_id" if "dg_id" in df.columns else ("player_id" if "player_id" in df.columns else None)
             if id_col is None:
                 raise ValueError("Cannot find player_name or an id to derive names.")
             df["player_name"] = df[id_col].astype(str)
@@ -60,9 +55,7 @@ def main():
     out_path = processed / f"event_{event_id}_results.csv"
     out.to_csv(out_path, index=False, encoding="utf-8")
     print("Saved results template:", out_path)
-    print(
-        "Next: open the CSV after the event completes and set winner_flag=1 for the winner."
-    )
+    print("Next: open the CSV after the event completes and set winner_flag=1 for the winner.")
 
 
 if __name__ == "__main__":

@@ -2,8 +2,9 @@
 # scripts/parse_field_updates.py
 import json
 import re
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -114,21 +115,11 @@ def save_outputs(data: dict, df_field: pd.DataFrame, df_tt: pd.DataFrame, tour: 
         "last_updated": data.get("last_updated"),
         "saved_at_utc": ts,
         "n_players": int(len(df_field)),
-        "has_r1_teetimes": (
-            bool(df_tt["r1_teetime"].notna().any())
-            if "r1_teetime" in df_tt.columns
-            else False
-        ),
-        "has_r2_teetimes": (
-            bool(df_tt["r2_teetime"].notna().any())
-            if "r2_teetime" in df_tt.columns
-            else False
-        ),
+        "has_r1_teetimes": (bool(df_tt["r1_teetime"].notna().any()) if "r1_teetime" in df_tt.columns else False),
+        "has_r2_teetimes": (bool(df_tt["r2_teetime"].notna().any()) if "r2_teetime" in df_tt.columns else False),
     }
     meta_path = processed_dir / f"event_{event_id}_meta.json"
-    meta_path.write_text(
-        json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+    meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print(f"Saved base field: {base_field.with_suffix('.csv')}")
     print(f"Saved tee-times field: {base_tt.with_suffix('.csv')}")
@@ -149,11 +140,7 @@ def main():
         sample = df_tt[df_tt["r1_teetime"].notna()].head(10)
         if not sample.empty:
             print("Sample R1 tee times:")
-            cols = [
-                c
-                for c in ["player_id", "player_name", "r1_teetime", "r1_wave"]
-                if c in sample.columns
-            ]
+            cols = [c for c in ["player_id", "player_name", "r1_teetime", "r1_wave"] if c in sample.columns]
             print(sample[cols].to_string(index=False))
 
     save_outputs(data, df_field, df_tt, tour=TOUR)

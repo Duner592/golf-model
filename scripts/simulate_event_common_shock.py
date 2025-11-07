@@ -12,6 +12,7 @@
 
 import json
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -32,9 +33,7 @@ def load_meta() -> dict:
 
 def load_features(event_id: str) -> pd.DataFrame:
     root = Path(__file__).resolve().parent.parent
-    feats = pd.read_parquet(
-        root / "data" / "features" / TOUR / f"event_{event_id}_features_full.parquet"
-    )
+    feats = pd.read_parquet(root / "data" / "features" / TOUR / f"event_{event_id}_features_full.parquet")
     # IDs and names
     if "dg_id" not in feats.columns and "player_id" in feats.columns:
         feats = feats.rename(columns={"player_id": "dg_id"})
@@ -69,16 +68,8 @@ def load_features(event_id: str) -> pd.DataFrame:
     sigma = feats["sigma"].astype(float).fillna(2.8).clip(1.8, 3.8).to_numpy()
 
     # Waves for R1/R2 (optional)
-    r1_wave = (
-        feats["r1_wave"].fillna("NA").to_numpy()
-        if "r1_wave" in feats.columns
-        else np.array(["NA"] * len(feats))
-    )
-    r2_wave = (
-        feats["r2_wave"].fillna("NA").to_numpy()
-        if "r2_wave" in feats.columns
-        else np.array(["NA"] * len(feats))
-    )
+    r1_wave = feats["r1_wave"].fillna("NA").to_numpy() if "r1_wave" in feats.columns else np.array(["NA"] * len(feats))
+    r2_wave = feats["r2_wave"].fillna("NA").to_numpy() if "r2_wave" in feats.columns else np.array(["NA"] * len(feats))
 
     ids = feats["dg_id"].astype(str).to_numpy()
     names = feats["player_name"].astype(str).to_numpy()
@@ -159,9 +150,7 @@ def main():
 
     meta = load_meta()
     event_id = str(meta["event_id"])
-    feats, ids, names, mu_base, sigma, weather, r1_wave, r2_wave = load_features(
-        event_id
-    )
+    feats, ids, names, mu_base, sigma, weather, r1_wave, r2_wave = load_features(event_id)
 
     preds = simulate(
         ids,

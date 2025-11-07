@@ -13,15 +13,15 @@
 
 from __future__ import annotations
 
+import json
+import re
+
 # stdlib/third-party
 from pathlib import Path
-import json
-import pandas as pd
-import re
 
 # ensure src import works when running directly
 import _bootstrap  # noqa: F401
-
+import pandas as pd
 
 TOUR = "pga"
 N0 = 16.0  # prior pseudo-rounds for shrinkage
@@ -50,9 +50,7 @@ def wide_rounds_to_long_sg(df: pd.DataFrame) -> pd.DataFrame:
             id_col = cand
             break
     if id_col is None:
-        raise ValueError(
-            "No player id column found in historical rounds (player_id/dg_id)."
-        )
+        raise ValueError("No player id column found in historical rounds (player_id/dg_id).")
 
     pat_sg = re.compile(r"^round_(\d+)\.sg_total$")
     sg_cols = {}
@@ -70,9 +68,7 @@ def wide_rounds_to_long_sg(df: pd.DataFrame) -> pd.DataFrame:
         for r, col in sg_cols.items():
             val = row.get(col, None)
             if pd.notna(val):
-                recs.append(
-                    {"player_id": pid, "year": year, "round": r, "sg_total": float(val)}
-                )
+                recs.append({"player_id": pid, "year": year, "round": r, "sg_total": float(val)})
 
     long_df = pd.DataFrame.from_records(recs)
     if long_df.empty:
@@ -80,9 +76,7 @@ def wide_rounds_to_long_sg(df: pd.DataFrame) -> pd.DataFrame:
     return long_df
 
 
-def eb_shrink(
-    mean: pd.Series, n: pd.Series, mu0: float = 0.0, n0: float = N0
-) -> pd.Series:
+def eb_shrink(mean: pd.Series, n: pd.Series, mu0: float = 0.0, n0: float = N0) -> pd.Series:
     # Posterior mean of normal-normal with known variance (heuristic): (n*mean + n0*mu0)/(n+n0)
     return (n * mean + n0 * mu0) / (n + n0)
 
@@ -96,18 +90,9 @@ def main():
     event_name = meta.get("event_name") or "current_event"
     safe_name = normalize_name(event_name)
 
-    hist_path = (
-        root
-        / "data"
-        / "raw"
-        / "historical"
-        / TOUR
-        / f"tournament_{safe_name}_rounds_combined.parquet"
-    )
+    hist_path = root / "data" / "raw" / "historical" / TOUR / f"tournament_{safe_name}_rounds_combined.parquet"
     if not hist_path.exists():
-        raise FileNotFoundError(
-            f"Historical combined parquet not found: {hist_path}. Run fetch_historical_rounds.py first."
-        )
+        raise FileNotFoundError(f"Historical combined parquet not found: {hist_path}. Run fetch_historical_rounds.py first.")
 
     df_hist = pd.read_parquet(hist_path)
     long_sg = wide_rounds_to_long_sg(df_hist)
@@ -117,9 +102,7 @@ def main():
         rounds_course=("sg_total", "count"),
         sg_course_mean=("sg_total", "mean"),
     )
-    agg["sg_course_mean_shrunk"] = eb_shrink(
-        agg["sg_course_mean"], agg["rounds_course"], mu0=0.0, n0=N0
-    )
+    agg["sg_course_mean_shrunk"] = eb_shrink(agg["sg_course_mean"], agg["rounds_course"], mu0=0.0, n0=N0)
 
     out_path = processed / f"event_{event_id}_course_history_stats.parquet"
     agg.to_parquet(out_path, index=False)

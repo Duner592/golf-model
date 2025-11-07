@@ -23,9 +23,8 @@ from __future__ import annotations
 
 import argparse
 import subprocess
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 
@@ -36,9 +35,7 @@ def run(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Weekly pipeline runner for current/pinned event."
-    )
+    ap = argparse.ArgumentParser(description="Weekly pipeline runner for current/pinned event.")
     ap.add_argument(
         "--event_id",
         type=str,
@@ -50,23 +47,15 @@ def main():
         action="store_true",
         help="Pinned mode: skip live field-updates/parse; use existing meta/field",
     )
-    ap.add_argument(
-        "--skip-field", action="store_true", help="Skip field-updates/parse step"
-    )
-    ap.add_argument(
-        "--skip-weather", action="store_true", help="Skip weather fetch/summarize steps"
-    )
+    ap.add_argument("--skip-field", action="store_true", help="Skip field-updates/parse step")
+    ap.add_argument("--skip-weather", action="store_true", help="Skip weather fetch/summarize steps")
     ap.add_argument(
         "--skip-course",
         action="store_true",
         help="Skip DIY course-fit and course-history merges",
     )
-    ap.add_argument(
-        "--skip-html", action="store_true", help="Skip HTML leaderboard output"
-    )
-    ap.add_argument(
-        "--topN", type=int, default=20, help="Top-N leaderboard variant (default 20)"
-    )
+    ap.add_argument("--skip-html", action="store_true", help="Skip HTML leaderboard output")
+    ap.add_argument("--topN", type=int, default=20, help="Top-N leaderboard variant (default 20)")
     ap.add_argument(
         "--fast",
         action="store_true",
@@ -81,9 +70,7 @@ def main():
     try:
         # Field + meta
         if args.pinned or args.skip_field:
-            print(
-                "[info] Pinned/skip-field mode: skipping field-updates/parse; using existing meta/field."
-            )
+            print("[info] Pinned/skip-field mode: skipping field-updates/parse; using existing meta/field.")
         else:
             run([sys.executable, str(SCRIPT_DIR / "fetch_field_updates.py")])
             run([sys.executable, str(SCRIPT_DIR / "parse_field_updates.py")])
@@ -151,9 +138,7 @@ def main():
                     + (["--event_id", args.event_id] if args.event_id else [])
                 )
             except subprocess.CalledProcessError:
-                print(
-                    "[warn] DIY course-fit failed or history unavailable. Continuing."
-                )
+                print("[warn] DIY course-fit failed or history unavailable. Continuing.")
             try:
                 # Course history stats
                 run(
@@ -171,9 +156,7 @@ def main():
                     + (["--event_id", args.event_id] if args.event_id else [])
                 )
             except subprocess.CalledProcessError:
-                print(
-                    "[warn] Course history stats step failed or unavailable. Continuing."
-                )
+                print("[warn] Course history stats step failed or unavailable. Continuing.")
         else:
             print("[info] Skipping course-fit/history steps (--skip-course / --fast)")
 

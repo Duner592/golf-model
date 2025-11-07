@@ -10,8 +10,9 @@
 # Output:
 #   updates features_course.parquet (or features_full if snapshot absent)
 
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -22,16 +23,12 @@ def main():
     processed = root / "data" / "processed" / TOUR
     features = root / "data" / "features" / TOUR
 
-    meta = json.loads(
-        sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8")
-    )
+    meta = json.loads(sorted(processed.glob("event_*_meta.json"))[-1].read_text(encoding="utf-8"))
     event_id = str(meta["event_id"])
 
     stats_path = processed / f"event_{event_id}_course_history_stats.parquet"
     if not stats_path.exists():
-        raise FileNotFoundError(
-            "Missing course history stats; run build_course_history_from_hist.py first."
-        )
+        raise FileNotFoundError("Missing course history stats; run build_course_history_from_hist.py first.")
     stats = pd.read_parquet(stats_path)
 
     # Pick features file
@@ -39,9 +36,7 @@ def main():
     feat_full = features / f"event_{event_id}_features_full.parquet"
     target = feat_course if feat_course.exists() else feat_full
     if not target.exists():
-        raise FileNotFoundError(
-            "Missing features; run merge_player_data_into_features.py first (and optionally course merges)."
-        )
+        raise FileNotFoundError("Missing features; run merge_player_data_into_features.py first (and optionally course merges).")
 
     df = pd.read_parquet(target)
 
@@ -63,9 +58,7 @@ def main():
             if key:
                 break
     if key is None:
-        raise ValueError(
-            "Could not align id columns between features and course history stats."
-        )
+        raise ValueError("Could not align id columns between features and course history stats.")
 
     # Merge and fill sensible defaults
     keep = [key, "rounds_course", "sg_course_mean", "sg_course_mean_shrunk"]
@@ -77,11 +70,7 @@ def main():
     out.to_parquet(target, index=False)
     print(f"Updated features with course history: {target}")
     # Quick confirmation
-    cols = [
-        c
-        for c in ["rounds_course", "sg_course_mean", "sg_course_mean_shrunk"]
-        if c in out.columns
-    ]
+    cols = [c for c in ["rounds_course", "sg_course_mean", "sg_course_mean_shrunk"] if c in out.columns]
     print("Added columns present:", cols)
 
 

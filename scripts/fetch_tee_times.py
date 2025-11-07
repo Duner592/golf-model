@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-import os
 import json
+import os
 from pathlib import Path
+
 import requests
 import requests_cache
 import yaml
@@ -40,9 +41,7 @@ def main():
 
     tee_times_path = cfg["endpoints"].get("tee_times", {}).get("path", None)
     if not tee_times_path:
-        raise NotImplementedError(
-            "Add 'tee_times' endpoint path in configs/datagolf.yaml"
-        )
+        raise NotImplementedError("Add 'tee_times' endpoint path in configs/datagolf.yaml")
 
     requests_cache.install_cache("dg_cache", expire_after=900)
     session = requests.Session()
@@ -59,9 +58,7 @@ def main():
     out_dir = root / "data" / "raw" / tour
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / f"event_{event_id}_tee-times.json"
-    out_file.write_text(
-        json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+    out_file.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Saved tee times: {out_file}")
 
 

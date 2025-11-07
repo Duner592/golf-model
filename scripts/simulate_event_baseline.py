@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+import json
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-import json
 
 TOUR = "pga"
 
@@ -12,9 +13,7 @@ def load_meta() -> dict:
     processed = root / "data" / "processed" / TOUR
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
-        raise FileNotFoundError(
-            "No event meta found. Run parse_field_updates.py first."
-        )
+        raise FileNotFoundError("No event meta found. Run parse_field_updates.py first.")
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
@@ -23,9 +22,7 @@ def load_features_full(event_id: str) -> pd.DataFrame:
     feats_dir = root / "data" / "features" / TOUR
     p = feats_dir / f"event_{event_id}_features_full.parquet"
     if not p.exists():
-        raise FileNotFoundError(
-            f"Missing features_full: {p}. Run merge_player_data_into_features.py first."
-        )
+        raise FileNotFoundError(f"Missing features_full: {p}. Run merge_player_data_into_features.py first.")
     df = pd.read_parquet(p)
     # Ensure an ID
     if "dg_id" not in df.columns and "player_id" in df.columns:
@@ -65,9 +62,7 @@ def infer_skill_columns(df: pd.DataFrame) -> dict:
     return {"skill": skill_col, "vol": vol_col}
 
 
-def build_mu_sigma(
-    df: pd.DataFrame, cols: dict
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def build_mu_sigma(df: pd.DataFrame, cols: dict) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Returns:
       - mu_base: baseline strokes per round (lower is better)
@@ -107,9 +102,7 @@ def build_mu_sigma(
     return mu_base, sigma, weather_mat
 
 
-def simulate_event(
-    df: pd.DataFrame, n_sims: int = 20000, seed: int = 42, cut_top: int = 65
-) -> pd.DataFrame:
+def simulate_event(df: pd.DataFrame, n_sims: int = 20000, seed: int = 42, cut_top: int = 65) -> pd.DataFrame:
     """
     Simple Monte Carlo:
       score_ir ~ Normal(mu_base_i + weather_r, sigma_i)

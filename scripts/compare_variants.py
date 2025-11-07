@@ -10,14 +10,14 @@
 #   python scripts/compare_variants.py
 #   python scripts/compare_variants.py --event_id 457 --topK 15
 
-from pathlib import Path
 import argparse
-import pandas as pd
+from pathlib import Path
 
 # Ensure src is importable when running scripts directly
 import _bootstrap  # noqa: F401
-from src.utils_event import resolve_event_id
+import pandas as pd
 
+from src.utils_event import resolve_event_id
 
 TOUR_DEFAULT = "pga"
 
@@ -46,18 +46,14 @@ def align_variants(a: pd.DataFrame, b: pd.DataFrame) -> tuple[pd.DataFrame, str]
     b = b.copy()
     key = choose_join_key(a, b)
     if not key:
-        raise ValueError(
-            "Could not find a common join key (dg_id/player_id/player_name)."
-        )
+        raise ValueError("Could not find a common join key (dg_id/player_id/player_name).")
     a[key] = a[key].astype(str)
     b[key] = b[key].astype(str)
 
     cols_a = [c for c in [key, "player_name", "p_win"] if c in a.columns]
     a_small = a[cols_a].copy()
     if "player_name" not in a_small.columns and "player_name" in b.columns:
-        a_small = a_small.merge(
-            b[[key, "player_name"]].drop_duplicates(), on=key, how="left"
-        )
+        a_small = a_small.merge(b[[key, "player_name"]].drop_duplicates(), on=key, how="left")
 
     cols_b = [c for c in [key, "p_win"] if c in b.columns]
     b_small = b[cols_b].copy()
@@ -83,24 +79,16 @@ def compare_pair(a: pd.DataFrame | None, b: pd.DataFrame | None, label: str, top
 
     merged = merged.sort_values("p_win_a", ascending=False)
     merged["delta"] = merged["p_win_a"] - merged["p_win_b"]
-    show_cols = [
-        c
-        for c in [key, "player_name", "p_win_a", "p_win_b", "delta"]
-        if c in merged.columns
-    ]
+    show_cols = [c for c in [key, "player_name", "p_win_a", "p_win_b", "delta"] if c in merged.columns]
     print(f"Top-{topK} deltas (p_win_a - p_win_b):")
     print(merged[show_cols].head(topK).to_string(index=False))
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Compare prediction variants for the current event."
-    )
+    ap = argparse.ArgumentParser(description="Compare prediction variants for the current event.")
     ap.add_argument("--tour", default=TOUR_DEFAULT, help="Tour key (default: pga)")
     ap.add_argument("--event_id", type=str, default=None, help="Force event_id")
-    ap.add_argument(
-        "--topK", type=int, default=10, help="Rows to show in delta tables (default 10)"
-    )
+    ap.add_argument("--topK", type=int, default=10, help="Rows to show in delta tables (default 10)")
     args = ap.parse_args()
 
     preds_dir = Path("data/preds") / args.tour

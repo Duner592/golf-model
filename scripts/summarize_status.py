@@ -10,8 +10,9 @@
 # - Driving features are already included in DIY course fit (da_input, dd_input, da_z, dd_z).
 # - We no longer check (or warn) about a standalone driving_features parquet.
 
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -61,25 +62,15 @@ def main():
     tt_csv = processed / f"event_{event_id}_field_teetimes.csv"
 
     if exists(fld_parquet) or exists(fld_csv):
-        df_field = (
-            pd.read_parquet(fld_parquet)
-            if fld_parquet.exists()
-            else pd.read_csv(fld_csv)
-        )
-        print(
-            f"Field rows: {len(df_field)}, cols: {len(df_field.columns)}; sample cols: {head_cols(df_field)}"
-        )
+        df_field = pd.read_parquet(fld_parquet) if fld_parquet.exists() else pd.read_csv(fld_csv)
+        print(f"Field rows: {len(df_field)}, cols: {len(df_field.columns)}; sample cols: {head_cols(df_field)}")
     else:
         print("Field table missing.")
 
     if exists(tt_parquet) or exists(tt_csv):
-        df_tt = (
-            pd.read_parquet(tt_parquet) if tt_parquet.exists() else pd.read_csv(tt_csv)
-        )
+        df_tt = pd.read_parquet(tt_parquet) if tt_parquet.exists() else pd.read_csv(tt_csv)
         have_r1 = "r1_teetime" in df_tt.columns
-        print(
-            f"Tee-time table rows: {len(df_tt)}, cols: {len(df_tt.columns)}; R1 present: {have_r1}"
-        )
+        print(f"Tee-time table rows: {len(df_tt)}, cols: {len(df_tt.columns)}; R1 present: {have_r1}")
     else:
         print("Tee-time table missing (may be null until release).")
 
@@ -187,11 +178,7 @@ def main():
             print(f"{pf.name}: rows={len(dfp)}; cols: {head_cols(dfp)}")
             if "p_win" in dfp.columns:
                 print("Top 10 by p_win:")
-                print(
-                    dfp.sort_values("p_win", ascending=False)
-                    .head(10)
-                    .to_string(index=False)
-                )
+                print(dfp.sort_values("p_win", ascending=False).head(10).to_string(index=False))
     if not any_preds:
         print("No predictions found yet.")
 

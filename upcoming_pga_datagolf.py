@@ -1,10 +1,9 @@
 import json
+
 from datagolf_client import DataGolfClient
 
 BASE_URL = "https://feeds.datagolf.com"
-ENDPOINT_UPCOMING = (
-    "get-schedule"  # Replace with the actual path from the DataGolf docs
-)
+ENDPOINT_UPCOMING = "get-schedule"  # Replace with the actual path from the DataGolf docs
 
 dg = DataGolfClient(BASE_URL)
 upcoming = dg.get(ENDPOINT_UPCOMING, params={"tour": "pga"})

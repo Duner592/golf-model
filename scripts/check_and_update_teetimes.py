@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import os
 import json
+import os
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
 
 import requests
 import requests_cache
@@ -17,7 +17,7 @@ CFG_PATH = ROOT / "configs" / "datagolf.yaml"
 TOUR_DEFAULT = "pga"  # fallback if not in config
 
 
-def load_yaml(path: Path) -> Dict[str, Any]:
+def load_yaml(path: Path) -> dict[str, Any]:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
@@ -32,13 +32,11 @@ def any_r1_teetime_present(field: list[dict]) -> bool:
     return False
 
 
-def load_existing_meta(tour: str) -> Optional[Dict[str, Any]]:
+def load_existing_meta(tour: str) -> dict[str, Any] | None:
     # Prefer canonical meta folder; fall back to processed if needed
     meta_dir = ROOT / "data" / "meta" / tour
     processed_dir = ROOT / "data" / "processed" / tour
-    candidates = sorted(meta_dir.glob("event_*_meta.json")) or sorted(
-        processed_dir.glob("event_*_meta.json")
-    )
+    candidates = sorted(meta_dir.glob("event_*_meta.json")) or sorted(processed_dir.glob("event_*_meta.json"))
     if not candidates:
         return None
     return json.loads(candidates[-1].read_text(encoding="utf-8"))
@@ -80,9 +78,7 @@ def main():
     # Inspect if R1 tee times are present now
     field = data.get("field", [])
     r1_present = any_r1_teetime_present(field)
-    print(
-        f"Tee times present: {r1_present} (event_id={data.get('event_id')}, last_updated={data.get('last_updated')})"
-    )
+    print(f"Tee times present: {r1_present} (event_id={data.get('event_id')}, last_updated={data.get('last_updated')})")
 
     # Load existing meta to detect state change (optional but nice)
     meta_prev = load_existing_meta(tour)

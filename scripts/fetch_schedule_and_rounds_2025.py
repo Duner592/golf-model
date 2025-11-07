@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # scripts/fetch_schedule_and_rounds_2025.py
-import os
-import json
 import argparse
+import json
+import os
 from pathlib import Path
+
 import requests
 import requests_cache
 import yaml
@@ -18,9 +19,7 @@ def load_yaml(p: Path) -> dict:
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Fetch 2025 schedule and per-event round JSONs."
-    )
+    ap = argparse.ArgumentParser(description="Fetch 2025 schedule and per-event round JSONs.")
     ap.add_argument("--year", type=int, default=2025)
     args = ap.parse_args()
 
@@ -34,16 +33,12 @@ def main():
         raise RuntimeError("Missing API key")
     tour = cfg["defaults"]["tour"]
     sched_path = cfg["endpoints"]["schedule"]["path"]
-    hist_path = cfg["endpoints"]["historical_rounds"][
-        "path"
-    ]  # make sure this exists in your YAML
+    hist_path = cfg["endpoints"]["historical_rounds"]["path"]  # make sure this exists in your YAML
 
     requests_cache.install_cache("dg_cache", expire_after=900)
     # 1) schedule for 2025
     url = f"{base_url}/{sched_path.lstrip('/')}"
-    r = requests.get(
-        url, params={keyp: api_key, "tour": tour, "year": str(args.year)}, timeout=30
-    )
+    r = requests.get(url, params={keyp: api_key, "tour": tour, "year": str(args.year)}, timeout=30)
     r.raise_for_status()
     payload = r.json()
     events = []
@@ -90,9 +85,7 @@ def main():
             print(f"  -> error: {ex}")
 
     # Save a simple event list snapshot for convenience
-    (root / "data" / "raw" / f"schedule_{tour}_{args.year}.json").write_text(
-        json.dumps(events, indent=2), encoding="utf-8"
-    )
+    (root / "data" / "raw" / f"schedule_{tour}_{args.year}.json").write_text(json.dumps(events, indent=2), encoding="utf-8")
     print("Done.")
 
 

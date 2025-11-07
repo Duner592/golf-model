@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-import os
 import json
+import os
 from datetime import datetime
-import yaml
+
 import requests
 import requests_cache
+import yaml
 from dotenv import load_dotenv
 
 load_dotenv()
 
 
 def load_yaml(path: str) -> dict:
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 

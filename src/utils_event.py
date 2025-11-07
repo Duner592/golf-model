@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # src/utils_event.py
 from __future__ import annotations
-from pathlib import Path
-from typing import Optional, Tuple
+
 import json
+from pathlib import Path
+
 import pandas as pd
 
 TOUR_DEFAULT = "pga"
@@ -24,9 +25,7 @@ def load_latest_meta(tour: str = TOUR_DEFAULT) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
-def resolve_event_id(
-    cli_event_id: Optional[str] = None, tour: str = TOUR_DEFAULT
-) -> str:
+def resolve_event_id(cli_event_id: str | None = None, tour: str = TOUR_DEFAULT) -> str:
     """
     Resolve event_id with priority:
       1) cli_event_id if provided
@@ -73,7 +72,7 @@ def load_field_table(event_id: str, tour: str = TOUR_DEFAULT) -> pd.DataFrame:
     raise FileNotFoundError(f"No field table found for event_{event_id}")
 
 
-def weather_paths(event_id: str, tour: str = TOUR_DEFAULT) -> Tuple[Path, Path]:
+def weather_paths(event_id: str, tour: str = TOUR_DEFAULT) -> tuple[Path, Path]:
     processed = ROOT / "data" / "processed" / tour
     neu = processed / f"event_{event_id}_weather_round_neutral.parquet"
     wav = processed / f"event_{event_id}_weather_round_wave.parquet"
@@ -87,9 +86,7 @@ def load_weather_neutral(event_id: str, tour: str = TOUR_DEFAULT) -> pd.DataFram
     return pd.read_parquet(neu)
 
 
-def try_load_weather_wave(
-    event_id: str, tour: str = TOUR_DEFAULT
-) -> pd.DataFrame | None:
+def try_load_weather_wave(event_id: str, tour: str = TOUR_DEFAULT) -> pd.DataFrame | None:
     _, wav = weather_paths(event_id, tour)
     return pd.read_parquet(wav) if wav.exists() else None
 

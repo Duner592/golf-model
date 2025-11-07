@@ -15,18 +15,19 @@
 
 from __future__ import annotations
 
+import argparse
+
 # stdlib/third-party
 from pathlib import Path
-import argparse
-import pandas as pd
 
 # ensure src import works when running directly
 import _bootstrap  # noqa: F401
+import pandas as pd
 
 from src.utils_event import (
-    resolve_event_id,
     load_field_table,
     load_weather_neutral,
+    resolve_event_id,
     try_load_weather_wave,
 )
 
@@ -40,11 +41,7 @@ def build_neutral_from_wave(df_wave: pd.DataFrame) -> pd.DataFrame:
         if sub.empty:
             rows.append({"round": r, "delta_strokes": 0.0})
             continue
-        waves = (
-            sub.set_index("wave")["delta_strokes"].to_dict()
-            if "wave" in sub.columns
-            else {}
-        )
+        waves = sub.set_index("wave")["delta_strokes"].to_dict() if "wave" in sub.columns else {}
         if {"AM", "PM"}.issubset(set(waves)):
             mean_delta = float(pd.Series([waves["AM"], waves["PM"]]).mean())
         elif "ALL" in waves:
@@ -55,16 +52,11 @@ def build_neutral_from_wave(df_wave: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def attach_weather_features(
-    df_field: pd.DataFrame, df_neutral: pd.DataFrame, df_wave: pd.DataFrame | None
-) -> pd.DataFrame:
+def attach_weather_features(df_field: pd.DataFrame, df_neutral: pd.DataFrame, df_wave: pd.DataFrame | None) -> pd.DataFrame:
     feats = df_field.copy()
 
     # Neutral map
-    neutral_map = {
-        int(r): float(d)
-        for r, d in zip(df_neutral["round"], df_neutral["delta_strokes"])
-    }
+    neutral_map = {int(r): float(d) for r, d in zip(df_neutral["round"], df_neutral["delta_strokes"], strict=False)}
     for r in [1, 2, 3, 4]:
         feats[f"weather_r{r}_delta_neutral"] = neutral_map.get(r, 0.0)
 
@@ -73,30 +65,18 @@ def attach_weather_features(
         wave_map = {}
         for r in [1, 2, 3, 4]:
             sub = df_wave[df_wave["round"] == r]
-            wave_map[r] = (
-                {str(w): float(d) for w, d in zip(sub["wave"], sub["delta_strokes"])}
-                if not sub.empty
-                else {}
-            )
+            wave_map[r] = {str(w): float(d) for w, d in zip(sub["wave"], sub["delta_strokes"], strict=False)} if not sub.empty else {}
 
         for r in [1, 2]:
             wave_col = f"r{r}_wave" if f"r{r}_wave" in feats.columns else None
             if wave_col:
-                feats[f"weather_r{r}_delta_wave"] = (
-                    feats[wave_col]
-                    .map(wave_map.get(r, {}))
-                    .fillna(feats[f"weather_r{r}_delta_neutral"])
-                )
+                feats[f"weather_r{r}_delta_wave"] = feats[wave_col].map(wave_map.get(r, {})).fillna(feats[f"weather_r{r}_delta_neutral"])
             else:
                 feats[f"weather_r{r}_delta_wave"] = feats[f"weather_r{r}_delta_neutral"]
 
         for r in [3, 4]:
             all_delta = wave_map.get(r, {}).get("ALL", None)
-            feats[f"weather_r{r}_delta_wave"] = (
-                all_delta
-                if all_delta is not None
-                else feats[f"weather_r{r}_delta_neutral"]
-            )
+            feats[f"weather_r{r}_delta_wave"] = all_delta if all_delta is not None else feats[f"weather_r{r}_delta_neutral"]
     else:
         for r in [1, 2, 3, 4]:
             feats[f"weather_r{r}_delta_wave"] = feats[f"weather_r{r}_delta_neutral"]
@@ -105,9 +85,7 @@ def attach_weather_features(
 
 
 def main():
-    ap = argparse.ArgumentParser(
-        description="Build weather-based features for the current event."
-    )
+    ap = argparse.ArgumentParser(description="Build weather-based features for the current event.")
     ap.add_argument("--event_id", type=str, default=None, help="Override event_id")
     args = ap.parse_args()
 
@@ -123,30 +101,16 @@ def main():
     except FileNotFoundError:
         df_wave = try_load_weather_wave(eid, TOUR)
         if df_wave is None:
-            raise FileNotFoundError(
-                "Missing both neutral and wave weather summaries. Run summarize_weather_from_schedule.py first."
-            )
+            raise FileNotFoundError("Missing both neutral and wave weather summaries. Run summarize_weather_from_schedule.py first.") from None
         print("Neutral summary missing; building from wave...")
         df_neutral = build_neutral_from_wave(df_wave)
-        out_neu = (
-            Path(__file__).resolve().parent.parent
-            / "data"
-            / "processed"
-            / TOUR
-            / f"event_{eid}_weather_round_neutral.parquet"
-        )
+        out_neu = Path(__file__).resolve().parent.parent / "data" / "processed" / TOUR / f"event_{eid}_weather_round_neutral.parquet"
         df_neutral.to_parquet(out_neu, index=False)
         print("Built and saved neutral:", out_neu)
     df_wave = try_load_weather_wave(eid, TOUR)
 
     feats = attach_weather_features(df_field, df_neutral, df_wave)
-    out_path = (
-        Path(__file__).resolve().parent.parent
-        / "data"
-        / "features"
-        / TOUR
-        / f"event_{eid}_features_weather.parquet"
-    )
+    out_path = Path(__file__).resolve().parent.parent / "data" / "features" / TOUR / f"event_{eid}_features_weather.parquet"
     feats.to_parquet(out_path, index=False)
     print(f"Saved features: {out_path}  rows={len(feats)}  cols={len(feats.columns)}")
 

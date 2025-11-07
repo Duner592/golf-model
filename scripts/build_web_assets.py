@@ -14,10 +14,12 @@
 #   web/downloads/<stamped leaderboard CSV/HTML>
 #
 from __future__ import annotations
-from pathlib import Path
+
 import json
 import re
 from datetime import datetime
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
@@ -33,9 +35,7 @@ def latest_meta(processed_dir: Path) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
-def pick_latest_timestamped_leaderboard(
-    preds_dir: Path, event_id: str
-) -> tuple[Path, Path | None]:
+def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple[Path, Path | None]:
     stamped = sorted(preds_dir.glob(f"event_{event_id}_*_leaderboard.csv"))
     html = None
     if stamped:
@@ -166,28 +166,10 @@ def build_history_summary(stats_path: Path, out_json: Path) -> bool:
     df = pd.read_parquet(stats_path)
     payload = {
         "rows": int(len(df)),
-        "rounds_course_avg": (
-            float(df["rounds_course"].mean()) if "rounds_course" in df else None
-        ),
-        "sg_course_mean_shrunk_avg": (
-            float(df["sg_course_mean_shrunk"].mean())
-            if "sg_course_mean_shrunk" in df
-            else None
-        ),
-        "top_rounds": (
-            df.sort_values("rounds_course", ascending=False)
-            .head(10)
-            .to_dict(orient="records")
-            if "rounds_course" in df
-            else []
-        ),
-        "top_sg_course": (
-            df.sort_values("sg_course_mean_shrunk", ascending=False)
-            .head(10)
-            .to_dict(orient="records")
-            if "sg_course_mean_shrunk" in df
-            else []
-        ),
+        "rounds_course_avg": (float(df["rounds_course"].mean()) if "rounds_course" in df else None),
+        "sg_course_mean_shrunk_avg": (float(df["sg_course_mean_shrunk"].mean()) if "sg_course_mean_shrunk" in df else None),
+        "top_rounds": (df.sort_values("rounds_course", ascending=False).head(10).to_dict(orient="records") if "rounds_course" in df else []),
+        "top_sg_course": (df.sort_values("sg_course_mean_shrunk", ascending=False).head(10).to_dict(orient="records") if "sg_course_mean_shrunk" in df else []),
     }
     write_json(out_json, payload)
     return True
@@ -197,11 +179,7 @@ def build_history_summary(stats_path: Path, out_json: Path) -> bool:
 def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-        rows = (
-            data
-            if isinstance(data, list)
-            else next((v for v in data.values() if isinstance(v, list)), [])
-        )
+        rows = data if isinstance(data, list) else next((v for v in data.values() if isinstance(v, list)), [])
         if not rows:
             return None, None
         df = pd.json_normalize(rows)
@@ -209,18 +187,12 @@ def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
             mask = df["fin_text"].astype(str).str.upper().isin(["1", "W", "WIN"])
             if mask.any():
                 r = df.loc[mask].iloc[0]
-                score_cols = [
-                    c for c in df.columns if re.match(r"^round_\d+\.score$", c)
-                ]
+                score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
                 total = float(r[score_cols].sum()) if score_cols else None
                 return str(r.get("player_name", "")), total
         score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
         if score_cols:
-            df["__total"] = (
-                df[score_cols]
-                .apply(pd.to_numeric, errors="coerce")
-                .sum(axis=1, min_count=1)
-            )
+            df["__total"] = df[score_cols].apply(pd.to_numeric, errors="coerce").sum(axis=1, min_count=1)
             df2 = df.dropna(subset=["__total"])
             if not df2.empty:
                 r = df2.sort_values("__total", ascending=True).iloc[0]
@@ -270,25 +242,19 @@ def build_tournament_summary(
                     pass
     lat = meta_proc.get("lat")
     lon = meta_proc.get("lon")
-    course_location = (
-        f"{lat:.4f}, {lon:.4f}" if lat is not None and lon is not None else None
-    )
+    course_location = f"{lat:.4f}, {lon:.4f}" if lat is not None and lon is not None else None
     start_date_raw = meta_proc.get("r1_date")
     start_date = None
     if start_date_raw:
         try:
-            start_date = datetime.strptime(start_date_raw, "%Y-%m-%d").strftime(
-                "%d-%b-%Y"
-            )
+            start_date = datetime.strptime(start_date_raw, "%Y-%m-%d").strftime("%d-%b-%Y")
         except Exception:
             start_date = start_date_raw
     winners = []
     files = sorted(raw_hist_dir.glob(f"event_{event_id}_*_rounds.json"))
 
     def _year_from_name(p: Path) -> int:
-        m = re.search(
-            rf"event_{re.escape(str(event_id))}_(\d{{4}})_rounds\.json", p.name
-        )
+        m = re.search(rf"event_{re.escape(str(event_id))}_(\d{{4}})_rounds\.json", p.name)
         return int(m.group(1)) if m else -1
 
     files = sorted(files, key=_year_from_name, reverse=True)[:5]
@@ -343,9 +309,9 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
                 "start_hole",
             ]
 
-            def pick(row, cols):
+            def pick(row: dict, cols: list[str], frame_columns: pd.Index) -> str | None:
                 for c in cols:
-                    if c in df.columns and pd.notna(row.get(c)):
+                    if c in frame_columns and pd.notna(row.get(c)):
                         return row.get(c)
                 return None
 
@@ -385,11 +351,7 @@ def main():
     # load leaderboard CSV and create name_key for robust join
     df_lb = pd.read_csv(lb_csv)
     # find player name column (your CSV typically has 'player_name' already)
-    name_col = (
-        "player_name"
-        if "player_name" in df_lb.columns
-        else ("Player" if "Player" in df_lb.columns else None)
-    )
+    name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
     if not name_col:
         raise ValueError("Leaderboard CSV missing player name column")
     if name_col != "player_name":
@@ -408,9 +370,7 @@ def main():
     def tee_time_with_tee(time_val, start_val):
         base = _time_only(time_val)
         try:
-            ten = (str(start_val).strip() == "10") or (
-                int(str(start_val).strip() or "0") == 10
-            )
+            ten = (str(start_val).strip() == "10") or (int(str(start_val).strip() or "0") == 10)
         except Exception:
             ten = False
         return f"{base}*" if base and ten else base
@@ -421,10 +381,7 @@ def main():
         sh_col = f"r{r}_start_hole"
         if time_col in df_lb.columns:
             if sh_col in df_lb.columns:
-                df_lb[time_col] = [
-                    tee_time_with_tee(t, s)
-                    for t, s in zip(df_lb[time_col], df_lb[sh_col])
-                ]
+                df_lb[time_col] = [tee_time_with_tee(t, s) for t, s in zip(df_lb[time_col], df_lb[sh_col], strict=False)]
             else:
                 df_lb[time_col] = df_lb[time_col].apply(_time_only)
 
@@ -448,9 +405,7 @@ def main():
         try:
             sj = json.loads(summary_json.read_text(encoding="utf-8"))
             summary["metrics"] = sj.get("summary")
-            summary["generated_utc"] = normalize_utc_str(
-                sj.get("generated_utc"), generated_utc_formatted
-            )
+            summary["generated_utc"] = normalize_utc_str(sj.get("generated_utc"), generated_utc_formatted)
         except Exception:
             pass
     write_json(web_dir / "summary.json", summary)
@@ -502,26 +457,12 @@ def main():
         "resources": {
             "downloads_csv": f"downloads/{lb_csv.name}",
             "downloads_html": f"downloads/{lb_html.name}" if dl_html else None,
-            "weather_meta": (
-                "weather_meta.json"
-                if (web_dir / "weather_meta.json").exists()
-                else None
-            ),
+            "weather_meta": ("weather_meta.json" if (web_dir / "weather_meta.json").exists() else None),
             "weather_round_neutral": "weather_round_neutral.json" if wn_ok else None,
             "weather_round_wave": "weather_round_wave.json" if ww_ok else None,
-            "course_fit_weights": (
-                "course_fit_weights.json"
-                if (web_dir / "course_fit_weights.json").exists()
-                else None
-            ),
-            "course_history_summary": (
-                "course_history_summary.json"
-                if (web_dir / "course_history_summary.json").exists()
-                else None
-            ),
-            "tournament_summary": (
-                "tournament_summary.json" if ts_path.exists() else None
-            ),
+            "course_fit_weights": ("course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None),
+            "course_history_summary": ("course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None),
+            "tournament_summary": ("tournament_summary.json" if ts_path.exists() else None),
         },
     }
     write_json(web_dir / "meta.json", meta_out)

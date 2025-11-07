@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 from pathlib import Path
+
 import pandas as pd
 
 
@@ -30,17 +31,13 @@ def main():
     elif field_csv.exists():
         df_field = pd.read_csv(field_csv)
     else:
-        raise FileNotFoundError(
-            "Field table not found. Run parse_field_updates.py first."
-        )
+        raise FileNotFoundError("Field table not found. Run parse_field_updates.py first.")
 
     # If tee-times file not present, skip merge
     if not tee_times_raw.exists():
         print("No tee-times file yet. Skipping merge; keep neutral pipeline.")
         # Save a pass-through copy if you want:
-        (processed_dir / f"event_{event_id}_field_with_teetimes.csv").write_text(
-            df_field.to_csv(index=False), encoding="utf-8"
-        )
+        (processed_dir / f"event_{event_id}_field_with_teetimes.csv").write_text(df_field.to_csv(index=False), encoding="utf-8")
         return
 
     tee = json.loads(tee_times_raw.read_text(encoding="utf-8"))
@@ -61,16 +58,12 @@ def main():
         sub = tt_df[mask]
         if "player_id" in sub.columns and "wave" in sub.columns:
             waves = sub[["player_id", "wave"]].drop_duplicates()
-            df_field = df_field.merge(
-                waves, on="player_id", how="left", suffixes=("", f"_r{r}")
-            )
+            df_field = df_field.merge(waves, on="player_id", how="left", suffixes=("", f"_r{r}"))
             if f"wave_r{r}" not in df_field.columns:
                 df_field = df_field.rename(columns={"wave": f"wave_r{r}"})
         if "player_id" in sub.columns and "tee_time_local" in sub.columns:
             times = sub[["player_id", "tee_time_local"]].drop_duplicates()
-            df_field = df_field.merge(
-                times, on="player_id", how="left", suffixes=("", f"_r{r}")
-            )
+            df_field = df_field.merge(times, on="player_id", how="left", suffixes=("", f"_r{r}"))
             if f"tee_time_r{r}" not in df_field.columns:
                 df_field = df_field.rename(columns={"tee_time_local": f"tee_time_r{r}"})
 

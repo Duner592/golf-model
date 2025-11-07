@@ -5,30 +5,29 @@
 # Filters to players in the current event's field (processed).
 # Saves files under event_{event_id}_*.parquet / .json
 from __future__ import annotations
-import os
+
+import argparse
 import json
+import os
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 import pandas as pd
 import requests
 import requests_cache
 import yaml
 from dotenv import load_dotenv
-import argparse
 
 load_dotenv()
 TOUR = "pga"
 
 
-def load_yaml(path: Path) -> Dict[str, Any]:
+def load_yaml(path: Path) -> dict[str, Any]:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
 def latest_meta(processed_dir: Path) -> dict:
-    metas = sorted(
-        processed_dir.glob("event_*_meta.json"), key=lambda p: p.stat().st_mtime
-    )
+    metas = sorted(processed_dir.glob("event_*_meta.json"), key=lambda p: p.stat().st_mtime)
     if not metas:
         raise FileNotFoundError("No event meta found.")
     return json.loads(metas[-1].read_text(encoding="utf-8"))
@@ -72,11 +71,7 @@ def main():
     event_id = str(args.event_id) if args.event_id else str(meta["event_id"])
 
     field_df = load_field(processed, event_id)
-    id_col = (
-        "dg_id"
-        if "dg_id" in field_df.columns
-        else ("player_id" if "player_id" in field_df.columns else None)
-    )
+    id_col = "dg_id" if "dg_id" in field_df.columns else ("player_id" if "player_id" in field_df.columns else None)
     if id_col is None:
         raise ValueError("No dg_id/player_id in field table.")
     player_ids = sorted(set(field_df[id_col].dropna().astype(str)))
@@ -104,9 +99,7 @@ def main():
     else:
         for alt in ["dg_id", "player_id", "id"]:
             if alt in rankings_df.columns:
-                rankings_df = rankings_df[
-                    rankings_df[alt].astype(str).isin(player_ids)
-                ].rename(columns={alt: id_col})
+                rankings_df = rankings_df[rankings_df[alt].astype(str).isin(player_ids)].rename(columns={alt: id_col})
                 break
 
     # Skill ratings
@@ -126,18 +119,10 @@ def main():
     skills_df = skills_df[skills_df[id_col].astype(str).isin(player_ids)]
 
     # Save under the correct event_id
-    (processed / f"event_{event_id}_dg_rankings.json").write_text(
-        json.dumps(rankings_raw, indent=2), encoding="utf-8"
-    )
-    rankings_df.to_parquet(
-        processed / f"event_{event_id}_dg_rankings.parquet", index=False
-    )
-    (processed / f"event_{event_id}_skill_ratings.json").write_text(
-        json.dumps(skills_raw, indent=2), encoding="utf-8"
-    )
-    skills_df.to_parquet(
-        processed / f"event_{event_id}_skill_ratings.parquet", index=False
-    )
+    (processed / f"event_{event_id}_dg_rankings.json").write_text(json.dumps(rankings_raw, indent=2), encoding="utf-8")
+    rankings_df.to_parquet(processed / f"event_{event_id}_dg_rankings.parquet", index=False)
+    (processed / f"event_{event_id}_skill_ratings.json").write_text(json.dumps(skills_raw, indent=2), encoding="utf-8")
+    skills_df.to_parquet(processed / f"event_{event_id}_skill_ratings.parquet", index=False)
 
     print("Saved player data under:", processed)
     print(

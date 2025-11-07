@@ -2,14 +2,14 @@
 # scripts/verify_leaderboard.py
 from __future__ import annotations
 
+import json
+
 # stdlib/third-party
 from pathlib import Path
-import json
-import pandas as pd
 
 # ensure src import works when running directly
 import _bootstrap  # noqa: F401
-
+import pandas as pd
 
 TOUR = "pga"
 
@@ -25,9 +25,7 @@ def main():
     preds_dir = Path("data/preds") / TOUR
 
     # Pick the timestamped leaderboard, fallback to non-timestamp if needed
-    candidates = sorted(preds_dir.glob(f"event_{event_id}_*_leaderboard.csv")) or [
-        preds_dir / f"event_{event_id}_leaderboard.csv"
-    ]
+    candidates = sorted(preds_dir.glob(f"event_{event_id}_*_leaderboard.csv")) or [preds_dir / f"event_{event_id}_leaderboard.csv"]
 
     lf = candidates[-1]
     df = pd.read_csv(lf)

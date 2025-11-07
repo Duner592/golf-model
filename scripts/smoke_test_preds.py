@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-from pathlib import Path
 import json
 import sys
+from pathlib import Path
+
 import pandas as pd
 
 TOUR = "pga"
-meta = json.loads(
-    next(sorted((Path("data/processed") / TOUR).glob("event_*_meta.json"))).read_text()
-)
+meta = json.loads(next(sorted((Path("data/processed") / TOUR).glob("event_*_meta.json"))).read_text())
 eid = str(meta["event_id"])
 pp = Path(f"data/preds/{TOUR}/event_{eid}_preds_with_course.parquet")
 if not pp.exists():
