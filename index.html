@@ -70,8 +70,6 @@
             </div>
         </div>
 
-        <div class="card small muted" style="margin-bottom: 1rem;">* Teeing off from 10th tee</div>
-
         <div class="table-container">
             <div id="tooltip" class="tooltip"></div>
             <table id="tbl">
@@ -336,19 +334,20 @@
       try { t = await loadJSON("tournament_summary.json"); } catch {}
       if (!t) { el.textContent = "No summary."; return; }
 
-      const lines = [];
-      if (t.course) lines.push(`Course: ${t.course}`);
-      if (t.total_yardage != null) lines.push(`Total yardage: ${Number(t.total_yardage).toLocaleString()}`);
-      if (t.course_location) lines.push(`Location: ${t.course_location}`);
-      if (t.start_date) lines.push(`Start date: ${t.start_date}`);
-      if (t.field_size != null) lines.push(`Field size: ${t.field_size}`);
+    const lines = [];
+    if (t.event_name) lines.push(`Event: ${t.event_name}`);
+    if (t.course) lines.push(`Course: ${t.course}`);
+    if (t.total_yardage != null) lines.push(`Total yardage: ${Number(t.total_yardage).toLocaleString()}`);
+    if (t.course_location) lines.push(`Location: ${t.course_location}`);
+    if (t.start_date) lines.push(`Start date: ${t.start_date}`);
+    if (t.field_size != null) lines.push(`Field size: ${t.field_size}`);
 
-      if (Array.isArray(t.previous_winners) && t.previous_winners.length) {
+    if (Array.isArray(t.previous_winners) && t.previous_winners.length) {
         const top = t.previous_winners.slice(0, 5);
         const list = top.map(w => `• ${w.year}: ${w.winner}${w.score ? ` (${w.score})` : ""}`).join("<br/>");
         lines.push(`<div style="margin-top:0.25rem;"><strong>Previous winners</strong><br/>${list}</div>`);
-      }
-      el.innerHTML = lines.join("<br/>");
+    }
+    el.innerHTML = lines.join("<br/>");
     }
 
     // Main
