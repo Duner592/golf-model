@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [master]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history
+      - name: Deploy to gh-pages
+        run: |
+          git checkout gh-pages
+          git rm -rf .
+          git checkout master -- web/
+          mv web/* . || true
+          rmdir web || true
+          git add .
+          git commit -m "Auto-deploy $(date)" || echo "No changes"
+          git push origin gh-pages
