@@ -324,7 +324,9 @@
       if (res.course_fit_weights) ul.appendChild(link("Course-fit weights (DIY, JSON)", res.course_fit_weights));
       if (res.course_history_summary) ul.appendChild(link("Course-history summary (JSON)", res.course_history_summary));
       if (res.tournament_summary) ul.appendChild(link("Tournament summary (JSON)", res.tournament_summary));
-    }
+      // Add the schedule link
+      ul.appendChild(link("2025 Schedule", "schedule.html"));
+
 
     // Tournament summary
     async function renderTournament() {
