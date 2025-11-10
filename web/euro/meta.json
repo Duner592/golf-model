@@ -1,0 +1,19 @@
+{
+  "tour": "euro",
+  "event_id": "2025137",
+  "event_name": "DP World Tour Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2025-11-13",
+  "generated_utc": "10-Nov-2025 16:04:00",
+  "resources": {
+    "downloads_csv": "downloads/event_2025137_dp_world_tour_championship_2025-11-10_leaderboard.csv",
+    "downloads_html": "downloads/event_2025137_dp_world_tour_championship_2025-11-10_leaderboard.html",
+    "weather_meta": "weather_meta.json",
+    "weather_round_neutral": "weather_round_neutral.json",
+    "weather_round_wave": "weather_round_wave.json",
+    "course_fit_weights": "course_fit_weights.json",
+    "course_history_summary": null,
+    "tournament_summary": "tournament_summary.json"
+  }
+}

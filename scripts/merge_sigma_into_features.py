@@ -8,7 +8,6 @@ from pathlib import Path
 
 import pandas as pd
 
-TOUR = "pga"
 DEFAULT_SIGMA = 2.8
 BOUNDS = (1.8, 3.8)
 
@@ -23,7 +22,10 @@ def resolve_event_id(processed: Path, override: str | None) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Merge computed sigma into features_full for the event.")
     ap.add_argument("--event_id", type=str, default=None)
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
+
+    TOUR = args.tour
 
     root = Path(__file__).resolve().parent.parent
     processed = root / "data" / "processed" / TOUR

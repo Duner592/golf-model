@@ -31,7 +31,7 @@ from sklearn.linear_model import Ridge
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-TOUR = "pga"
+# TOUR = "pga"  # Removed, now from args
 
 CATS_4 = ["sg_ott", "sg_app", "sg_arg", "sg_putt"]
 CATS_2 = ["sg_t2g", "sg_putt"]
@@ -57,16 +57,17 @@ def normalize_name(s: str) -> str:
 def resolve_event_id_arg() -> str | None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--event_id", type=str, default=None)
+    ap.add_argument("--tour", type=str, default="pga")
     args, _ = ap.parse_known_args()
-    return args.event_id
+    return args.event_id, args.tour
 
 
-def load_event_meta(override_event_id: str | None = None) -> dict:
+def load_event_meta(override_event_id: str | None = None, tour: str = "pga") -> dict:
     """
     If override_event_id provided, use the latest meta matching that event_id if present;
     else fall back to the latest meta file.
     """
-    processed = Path("data") / "processed" / TOUR
+    processed = Path("data") / "processed" / tour
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
         raise FileNotFoundError("No event meta found. Run parse_field_updates.py first.")
@@ -79,10 +80,10 @@ def load_event_meta(override_event_id: str | None = None) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
-def find_hist_parquet(event_name: str) -> Path:
+def find_hist_parquet(event_name: str, tour: str) -> Path:
     root = Path(__file__).resolve().parent.parent
     safe = normalize_name(event_name)
-    return root / "data" / "raw" / "historical" / TOUR / f"tournament_{safe}_rounds_combined.parquet"
+    return root / "data" / "raw" / "historical" / tour / f"tournament_{safe}_rounds_combined.parquet"
 
 
 def _choose_id_col(df: pd.DataFrame) -> str | None:
@@ -326,8 +327,9 @@ def compute_player_driving_inputs_for_scoring(
 # ------------------------- main ------------------------- #
 def main():
     # Resolve event
-    eid_override = resolve_event_id_arg()
-    meta = load_event_meta(eid_override)
+    eid_override, tour_override = resolve_event_id_arg()
+    TOUR = tour_override
+    meta = load_event_meta(eid_override, TOUR)
     event_id = str(meta["event_id"])
     event_name = meta.get("event_name") or "current_event"
 
@@ -335,7 +337,7 @@ def main():
     processed.mkdir(parents=True, exist_ok=True)  # Ensure directory exists
 
     # Load historical combined parquet (venue history)
-    hist_path = find_hist_parquet(event_name)
+    hist_path = find_hist_parquet(event_name, TOUR)
     weights = None
     driving_norm = {
         "da_field_mean": None,

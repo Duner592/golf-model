@@ -10,13 +10,11 @@ from pathlib import Path
 
 import pandas as pd
 
-TOUR = "pga"
 
-
-def resolve_event_id(cli_event_id: str | None) -> str:
+def resolve_event_id(cli_event_id: str | None, tour: str) -> str:
     if cli_event_id:
         return str(cli_event_id)
-    processed = Path("data/processed") / TOUR
+    processed = Path("data/processed") / tour
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
         raise FileNotFoundError("No meta found. Run parse_field_updates.py first.")
@@ -26,9 +24,11 @@ def resolve_event_id(cli_event_id: str | None) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Merge DIY course fit into features (dtype-safe).")
     ap.add_argument("--event_id", type=str, default=None)
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
 
-    event_id = resolve_event_id(args.event_id)
+    TOUR = args.tour
+    event_id = resolve_event_id(args.event_id, TOUR)
     root = Path(__file__).resolve().parent.parent
     processed = root / "data" / "processed" / TOUR
     features = root / "data" / "features" / TOUR

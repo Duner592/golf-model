@@ -2,17 +2,17 @@
 # scripts/build_web_assets.py
 #
 # Build static web assets from the latest run:
-#   web/leaderboard.json
-#   web/summary.json
-#   web/meta.json
-#   web/weather_round_neutral.json
-#   web/weather_round_wave.json
-#   web/weather_meta.json
-#   web/course_fit_weights.json           (if available)
-#   web/course_history_summary.json       (if available)
-#   web/tournament_summary.json           (course, yardage, location, start date, field size, last 5 winners)
-#   web/field_teetimes.csv                (if available)
-#   web/downloads/<stamped leaderboard CSV/HTML>
+#   web/{tour}/leaderboard.json
+#   web/{tour}/summary.json
+#   web/{tour}/meta.json
+#   web/{tour}/weather_round_neutral.json
+#   web/{tour}/weather_round_wave.json
+#   web/{tour}/weather_meta.json
+#   web/{tour}/course_fit_weights.json           (if available)
+#   web/{tour}/course_history_summary.json       (if available)
+#   web/{tour}/tournament_summary.json           (course, yardage, location, start date, field size, last 5 winners)
+#   web/{tour}/field_teetimes.csv                (if available)
+#   web/{tour}/downloads/<stamped leaderboard CSV/HTML>
 #
 from __future__ import annotations
 
@@ -30,7 +30,6 @@ import pandas as pd
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-TOUR = "pga"
 MPH_PER_MPS = 2.237
 KMH_TO_MPH = 0.621371
 
@@ -290,15 +289,13 @@ def _pick_course_yardage(field: pd.DataFrame) -> int | None:
 
 
 def _detect_year_column(df: pd.DataFrame) -> pd.Series | None:
-    # explicit numeric columns first
     for c in ["year", "season", "event_year", "tournament_year"]:
         if c in df.columns:
             y = pd.to_numeric(df[c], errors="coerce")
             if y.notna().any():
                 return y.astype("Int64")
-
-    # parse from dates
-    for c in ["event_date", "tournament_date", "start_date", "date", "r1_date"]:
+    # parse from dates if available
+    for c in ["event_date", "tournament_date", "start_date", "date"]:
         if c in df.columns:
             try:
                 dt = pd.to_datetime(df[c], errors="coerce", utc=False)
@@ -306,17 +303,6 @@ def _detect_year_column(df: pd.DataFrame) -> pd.Series | None:
                     return dt.dt.year.astype("Int64")
             except Exception:
                 pass
-
-    # parse from textual columns like "Butterfield Bermuda Championship 2024"
-    text_cols = [c for c in ["tournament", "event_name", "event", "name"] if c in df.columns]
-    for c in text_cols:
-        ser = df[c].astype(str)
-        # extract last occurrence of a 4-digit year
-        y = ser.str.extract(r"((?:19|20)\d{2})", expand=False)
-        y = pd.to_numeric(y, errors="coerce")
-        if y.notna().any():
-            return y.astype("Int64")
-
     return None
 
 
@@ -407,7 +393,7 @@ def _collect_winners_from_files(raw_hist_dir: Path, event_id: str) -> list[dict]
         files.extend(raw_hist_dir.glob(pat))
 
     def _year_from_name(p: Path) -> int:
-        m = re.match(rf"event_{re.escape(str(event_id))}_(\d{{4}})_", p.name)
+        m = re.search(rf"event_{re.escape(str(event_id))}_(\d{{4}})_", p.name)
         return int(m.group(1)) if m else -1
 
     winners = []
@@ -607,7 +593,7 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
         except Exception:
             start_date = start_date_str
 
-    # winners priority: combined parquet -> per-year files -> winners.json -> upcoming -> catalog
+    # winners: prefer combined parquet; fallback to per-year files -> winners.json -> upcoming -> catalog
     winners = []
     if df_hist is not None and not df_hist.empty:
         winners = _winners_from_df(df_hist)
@@ -760,7 +746,10 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
 def main():
     ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
     ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
+
+    TOUR = args.tour
 
     root = Path(__file__).resolve().parent.parent
     processed_dir = root / "data" / "processed" / TOUR
@@ -800,7 +789,7 @@ def main():
     lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
     summary_json = pick_matching_summary(preds_dir, lb_csv)
 
-    web_dir = root / "web"
+    web_dir = root / "web" / TOUR
     dl_dir = web_dir / "downloads"
     dl_dir.mkdir(parents=True, exist_ok=True)
 

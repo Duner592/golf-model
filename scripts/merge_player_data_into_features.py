@@ -8,8 +8,6 @@ from pathlib import Path
 
 import pandas as pd
 
-TOUR = "pga"
-
 
 def latest_meta(processed: Path) -> dict:
     metas = sorted(processed.glob("event_*_meta.json"), key=lambda p: p.stat().st_mtime)
@@ -21,7 +19,10 @@ def latest_meta(processed: Path) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--event_id", type=str, default=None)
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
+
+    TOUR = args.tour
 
     root = Path(__file__).resolve().parent.parent
     processed = root / "data" / "processed" / TOUR

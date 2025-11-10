@@ -10,15 +10,14 @@ from pathlib import Path
 
 import pandas as pd
 
-TOUR = "pga"
 DEFAULT_SIGMA = 2.8
 BOUNDS = (1.8, 3.8)
 
 
-def resolve_event_id(cli_event_id: str | None) -> str:
+def resolve_event_id(cli_event_id: str | None, tour: str) -> str:
     if cli_event_id:
         return str(cli_event_id)
-    processed = Path("data/processed") / TOUR
+    processed = Path("data/processed") / tour
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
         raise FileNotFoundError("No meta found.")
@@ -28,10 +27,12 @@ def resolve_event_id(cli_event_id: str | None) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Compute per-player sigma (volatility) for the pinned/current event.")
     ap.add_argument("--event_id", type=str, default=None, help="Pinned event id")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
 
+    TOUR = args.tour
     processed = Path("data/processed") / TOUR
-    event_id = resolve_event_id(args.event_id)
+    event_id = resolve_event_id(args.event_id, TOUR)
 
     # Load field to get ids
     field = None

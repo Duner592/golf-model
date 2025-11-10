@@ -17,15 +17,14 @@ from pathlib import Path
 
 import pandas as pd
 
-TOUR = "pga"
 BASE_MPH = 8.0  # wind baseline
 SLOPE = 0.12  # strokes per mph above baseline
 
 
-def resolve_event_id(cli_event_id: str | None) -> str:
+def resolve_event_id(cli_event_id: str | None, tour: str) -> str:
     if cli_event_id:
         return str(cli_event_id)
-    processed = Path("data/processed") / TOUR
+    processed = Path("data/processed") / tour
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
         raise FileNotFoundError("No meta found; run fetch_weather_from_schedule.py first.")
@@ -110,12 +109,14 @@ def summarize_day(df_day: pd.DataFrame) -> dict:
 def main():
     ap = argparse.ArgumentParser(description="Summarize weather into round/day and wave splits (mph/%).")
     ap.add_argument("--event_id", type=str, default=None, help="Pinned event id to summarize")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
 
+    TOUR = args.tour
     root = Path(__file__).resolve().parent.parent
     processed_dir = root / "data" / "processed" / TOUR
 
-    eid = resolve_event_id(args.event_id)
+    eid = resolve_event_id(args.event_id, TOUR)
     df_hourly = load_hourly(processed_dir, eid)
 
     # Round dates: prefer weather_meta; if missing, derive from hourly

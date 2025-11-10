@@ -193,6 +193,7 @@ def main():
         default=None,
         help="Pinned event id; if set, use processed meta for lat/lon/dates",
     )
+    parser.add_argument("--tour", type=str, default=None, help="Tour to process (overrides config default)")
     args = parser.parse_args()
 
     script_dir = Path(__file__).resolve().parent
@@ -206,7 +207,7 @@ def main():
     api_key = os.getenv(env_var)
     if not api_key:
         raise RuntimeError(f"Missing API key in env var: {env_var}")
-    tour = cfg.get("defaults", {}).get("tour", "pga")
+    tour = args.tour if args.tour else cfg.get("defaults", {}).get("tour", "pga")
     sched_path = cfg["endpoints"]["schedule"]["path"]
 
     out_dir = root / "data" / "processed" / tour

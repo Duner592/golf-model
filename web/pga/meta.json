@@ -1,0 +1,19 @@
+{
+  "tour": "pga",
+  "event_id": "528",
+  "event_name": "Butterfield Bermuda Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2025-11-13",
+  "generated_utc": "10-Nov-2025 16:03:51",
+  "resources": {
+    "downloads_csv": "downloads/event_528_butterfield_bermuda_championship_2025-11-10_leaderboard.csv",
+    "downloads_html": "downloads/event_528_butterfield_bermuda_championship_2025-11-10_leaderboard.html",
+    "weather_meta": "weather_meta.json",
+    "weather_round_neutral": "weather_round_neutral.json",
+    "weather_round_wave": "weather_round_wave.json",
+    "course_fit_weights": "course_fit_weights.json",
+    "course_history_summary": "course_history_summary.json",
+    "tournament_summary": "tournament_summary.json"
+  }
+}

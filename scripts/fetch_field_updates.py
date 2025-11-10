@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import json
 import os
 from datetime import datetime
@@ -17,6 +18,10 @@ def load_yaml(path: str) -> dict:
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--tour", type=str, default=None, help="Tour to fetch (overrides config default)")
+    args = ap.parse_args()
+
     # Load config
     cfg_path = os.path.join(os.path.dirname(__file__), "..", "configs", "datagolf.yaml")
     cfg_path = os.path.abspath(cfg_path)
@@ -28,7 +33,7 @@ def main():
     if not api_key:
         raise RuntimeError(f"Missing API key in environment: {cfg['auth']['env_var']}")
 
-    tour = cfg["defaults"]["tour"]
+    tour = args.tour if args.tour else cfg["defaults"]["tour"]
     endpoint = cfg["endpoints"]["field_updates"]["path"]
 
     # Cache to avoid repeated calls during testing

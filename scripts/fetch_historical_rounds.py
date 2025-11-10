@@ -19,8 +19,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TOUR = "pga"
-
 
 def load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -32,7 +30,7 @@ def normalize_name(s: str) -> str:
     return s0
 
 
-def fetch_real_historical_rounds(event_name: str, event_id: str) -> tuple[pd.DataFrame, list]:
+def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> tuple[pd.DataFrame, list]:
     """
     Fetch real historical rounds from DataGolf API.
     Extracts winners (first in "scores" = winner) with under-par and total scores.
@@ -61,7 +59,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str) -> tuple[pd.Dat
     current_year = 2024
     for year in range(current_year - history_years_back, current_year + 1):  # Include current year
         url = f"{base_url}/{path}"
-        params = {"tour": TOUR, "event_id": event_id, "year": str(year), "file_format": file_format, "key": api_key}
+        params = {"tour": tour, "event_id": event_id, "year": str(year), "file_format": file_format, "key": api_key}
 
         try:
             response = requests.get(url, params=params, timeout=30)
@@ -145,7 +143,10 @@ def fetch_real_historical_rounds(event_name: str, event_id: str) -> tuple[pd.Dat
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--event_id", type=str, required=True)
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
+
+    TOUR = args.tour
 
     processed = Path("data/processed") / TOUR
     metas = sorted(processed.glob("event_*_meta.json"))
@@ -165,7 +166,7 @@ def main():
     winners_path = out_dir / f"tournament_{safe_name}_winners.json"
 
     try:
-        df, winners_list = fetch_real_historical_rounds(event_name, args.event_id)
+        df, winners_list = fetch_real_historical_rounds(event_name, args.event_id, TOUR)
         df.to_parquet(rounds_path, index=False)
         print(f"Saved real historical rounds to {rounds_path}")
         if winners_list:

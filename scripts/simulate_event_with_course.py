@@ -30,7 +30,7 @@ import yaml
 # -----------------------
 # Globals / Defaults
 # -----------------------
-TOUR = "pga"
+# TOUR = "pga"  # Removed, now from args
 
 # Defaults (tweak in code, or externalize to YAML if desired)
 N_SIMS = 30000
@@ -57,18 +57,18 @@ SOFTEN_COURSE_FOR = {"7", "9", "10", "12", "34"}
 # -----------------------
 # Utilities
 # -----------------------
-def resolve_event_id(cli_event_id: str | None) -> str:
+def resolve_event_id(cli_event_id: str | None, tour: str) -> str:
     if cli_event_id:
         return str(cli_event_id)
-    processed = Path("data/processed") / TOUR
+    processed = Path("data/processed") / tour
     metas = sorted(processed.glob("event_*_meta.json"))
     if not metas:
         raise FileNotFoundError("Missing meta; run parse_field_updates.py first.")
     return str(json.loads(metas[-1].read_text(encoding="utf-8"))["event_id"])
 
 
-def load_features_table(event_id: str) -> pd.DataFrame:
-    feats_dir = Path("data/features") / TOUR
+def load_features_table(event_id: str, tour: str) -> pd.DataFrame:
+    feats_dir = Path("data/features") / tour
     p_course = feats_dir / f"event_{event_id}_features_course.parquet"
     p_full = feats_dir / f"event_{event_id}_features_full.parquet"
 
@@ -249,16 +249,18 @@ def simulate(
 def main():
     ap = argparse.ArgumentParser(description="Course-aware tournament simulator")
     ap.add_argument("--event_id", type=str, default=None, help="Pinned/event to simulate")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
 
+    TOUR = args.tour
     root = Path(__file__).resolve().parent.parent
 
     # Load event rules
     rules_map = load_event_rules(root)
 
     # Resolve event_id and load features
-    event_id = resolve_event_id(args.event_id)
-    df = load_features_table(event_id)
+    event_id = resolve_event_id(args.event_id, TOUR)
+    df = load_features_table(event_id, TOUR)
 
     # Detect per-event rules
     rules = rules_map.get(str(event_id), {})

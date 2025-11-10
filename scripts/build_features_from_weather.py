@@ -31,8 +31,6 @@ from src.utils_event import (
     try_load_weather_wave,
 )
 
-TOUR = "pga"
-
 
 def build_neutral_from_wave(df_wave: pd.DataFrame) -> pd.DataFrame:
     rows = []
@@ -87,7 +85,10 @@ def attach_weather_features(df_field: pd.DataFrame, df_neutral: pd.DataFrame, df
 def main():
     ap = argparse.ArgumentParser(description="Build weather-based features for the current event.")
     ap.add_argument("--event_id", type=str, default=None, help="Override event_id")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
+
+    TOUR = args.tour
 
     eid = resolve_event_id(args.event_id, TOUR)
     print("Resolved event_id:", eid)

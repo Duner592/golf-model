@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # scripts/parse_field_updates.py
+import argparse
 import json
 import re
 from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
-
-TOUR = "pga"
 
 _time_pat = re.compile(r"^(\d{1,2}):(\d{2})")
 
@@ -127,6 +126,12 @@ def save_outputs(data: dict, df_field: pd.DataFrame, df_tt: pd.DataFrame, tour: 
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--tour", type=str, default="pga")
+    args = ap.parse_args()
+
+    TOUR = args.tour
+
     # Read the file produced by fetch_field_updates.py
     script_dir = Path(__file__).resolve().parent
     field_updates_json = script_dir / "field-updates.json"

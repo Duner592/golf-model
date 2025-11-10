@@ -1,0 +1,12 @@
+{
+  "event_id": "528",
+  "event_name": "Butterfield Bermuda Championship",
+  "source_csv": "data/preds/pga/event_528_butterfield_bermuda_championship_2025-11-10_leaderboard.csv",
+  "generated_utc": "10-Nov-2025 16:03:51",
+  "metrics": {
+    "field_size": 120,
+    "p_win_max": 0.050133333333333335,
+    "p_win_median": 0.007666666666666667,
+    "p_win_sum": 1.0
+  }
+}

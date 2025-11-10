@@ -19,7 +19,6 @@ import yaml
 from dotenv import load_dotenv
 
 load_dotenv()
-TOUR = "pga"
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -60,7 +59,10 @@ def normalize_payload(obj: Any) -> pd.DataFrame:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--event_id", type=str, default=None, help="Force event_id")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
     args = ap.parse_args()
+
+    TOUR = args.tour
 
     root = Path(__file__).resolve().parent.parent
     processed = root / "data" / "processed" / TOUR
