@@ -5,12 +5,13 @@
 #   web/leaderboard.json
 #   web/summary.json
 #   web/meta.json
-#   web/weather_round_neutral.json  (mph/%)
-#   web/weather_round_wave.json     (mph/%)
+#   web/weather_round_neutral.json
+#   web/weather_round_wave.json
 #   web/weather_meta.json
-#   web/course_fit_weights.json     (if available)
-#   web/course_history_summary.json (if available)
-#   web/tournament_summary.json     (course, yardage, location, start date, field size, last 5 winners)
+#   web/course_fit_weights.json           (if available)
+#   web/course_history_summary.json       (if available)
+#   web/tournament_summary.json           (course, yardage, location, start date, field size, last 5 winners)
+#   web/field_teetimes.csv                (if available)
 #   web/downloads/<stamped leaderboard CSV/HTML>
 #
 from __future__ import annotations
@@ -28,7 +29,6 @@ import pandas as pd
 
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-
 
 TOUR = "pga"
 MPH_PER_MPS = 2.237
@@ -205,7 +205,7 @@ def build_history_summary(stats_path: Path, out_json: Path) -> bool:
     return True
 
 
-# ---------- last 5 winners ----------
+# ---------- winners + yardage helpers (robust) ----------
 def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -214,15 +214,16 @@ def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
             return None, None
         df = pd.json_normalize(rows)
         if "fin_text" in df.columns:
-            mask = df["fin_text"].astype(str).str.upper().isin(["1", "W", "WIN"])
+            mask = df["fin_text"].astype(str).str.upper().str.replace("^T", "", regex=True).isin(["1", "W", "WIN"])
             if mask.any():
                 r = df.loc[mask].iloc[0]
                 score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
-                total = float(r[score_cols].sum()) if score_cols else None
+                total = float(pd.to_numeric(r[score_cols], errors="coerce").sum()) if score_cols else None
                 return str(r.get("player_name", "")), total
         score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
         if score_cols:
-            df["__total"] = df[score_cols].apply(pd.to_numeric, errors="coerce").sum(axis=1, min_count=1)
+            sc = df[score_cols].apply(pd.to_numeric, errors="coerce")
+            df["__total"] = sc.sum(axis=1, min_count=1)
             df2 = df.dropna(subset=["__total"])
             if not df2.empty:
                 r = df2.sort_values("__total", ascending=True).iloc[0]
@@ -232,76 +233,428 @@ def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
     return None, None
 
 
-# ---------- tournament summary ----------
-def build_tournament_summary(
-    processed_dir: Path,
-    raw_hist_dir: Path,
-    event_id: str,
-    meta_proc: dict,
-    out_json: Path,
-) -> None:
+def _clean_int_series_from_any(s: pd.Series) -> pd.Series:
+    if s.dtype.kind in ("i", "u", "f"):
+        return pd.to_numeric(s, errors="coerce")
+    s = s.astype(str).str.replace(r"[^0-9.]", "", regex=True)
+    return pd.to_numeric(s, errors="coerce")
+
+
+def _pick_course_yardage(field: pd.DataFrame) -> int | None:
+    include_regexes = [
+        r"(^|^.*\b)(course_)?(total_)?yardage($|\b.*$)",
+        r"(^|^.*\b)(course_)?(total_)?yards($|\b.*$)",
+        r"(^|^)yardage($|$)",
+        r"(^|^)yards($|$)",
+    ]
+    exclude_regexes = [
+        r"driv",
+        r"carry",
+        r"avg",
+        r"gain",
+        r"putt",
+        r"scram",
+        r"approach",
+        r"chip",
+        r"per_",
+        r"_per",
+        r"prox",
+    ]
+
+    def include_col(c: str) -> bool:
+        cl = c.lower()
+        if any(re.search(rx, cl) for rx in exclude_regexes):
+            return False
+        return any(re.search(rx, cl) for rx in include_regexes)
+
+    candidates = []
+    for c in field.columns:
+        if not include_col(c):
+            continue
+        s = _clean_int_series_from_any(field[c])
+        s = s[(s >= 5800) & (s <= 8200)]
+        if not s.dropna().empty:
+            candidates.append(int(round(s.median())))
+    if candidates:
+        ser = pd.Series(candidates)
+        m = ser.mode()
+        return int(m.iloc[0]) if not m.empty else int(round(ser.median()))
+
+    for c in ["total_yardage", "course_yardage", "yardage", "yards", "course_total_yards"]:
+        if c in field.columns:
+            s = _clean_int_series_from_any(field[c])
+            s = s[(s >= 5800) & (s <= 8200)]
+            if not s.dropna().empty:
+                return int(round(s.median()))
+    return None
+
+
+def _detect_year_column(df: pd.DataFrame) -> pd.Series | None:
+    # explicit numeric columns first
+    for c in ["year", "season", "event_year", "tournament_year"]:
+        if c in df.columns:
+            y = pd.to_numeric(df[c], errors="coerce")
+            if y.notna().any():
+                return y.astype("Int64")
+
+    # parse from dates
+    for c in ["event_date", "tournament_date", "start_date", "date", "r1_date"]:
+        if c in df.columns:
+            try:
+                dt = pd.to_datetime(df[c], errors="coerce", utc=False)
+                if dt.notna().any():
+                    return dt.dt.year.astype("Int64")
+            except Exception:
+                pass
+
+    # parse from textual columns like "Butterfield Bermuda Championship 2024"
+    text_cols = [c for c in ["tournament", "event_name", "event", "name"] if c in df.columns]
+    for c in text_cols:
+        ser = df[c].astype(str)
+        # extract last occurrence of a 4-digit year
+        y = ser.str.extract(r"((?:19|20)\d{2})", expand=False)
+        y = pd.to_numeric(y, errors="coerce")
+        if y.notna().any():
+            return y.astype("Int64")
+
+    return None
+
+
+def _is_winner_fin(fin_val) -> bool:
+    if pd.isna(fin_val):
+        return False
+    s = str(fin_val).strip().upper()
+    if s.startswith("T"):
+        s = s[1:]
+    return s in {"1", "W", "WIN"}
+
+
+def _compute_total_score(df: pd.DataFrame) -> pd.Series:
+    score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
+    if not score_cols:
+        return pd.Series([np.nan] * len(df), index=df.index)
+    tmp = df[score_cols].apply(pd.to_numeric, errors="coerce")
+    return tmp.sum(axis=1, min_count=1)
+
+
+def _winners_from_df(df: pd.DataFrame) -> list[dict]:
+    year = _detect_year_column(df)
+    if year is None:
+        return []
+    df = df.copy()
+    df["__year"] = year
+    df["__total"] = _compute_total_score(df)
+    if "fin_text" in df.columns:
+        df["__is_win"] = df["fin_text"].map(_is_winner_fin)
+    else:
+        df["__is_win"] = False
+
+    winners = []
+    for y, g in df.groupby("__year"):
+        if pd.isna(y):
+            continue
+        g2 = g
+        if g2["__is_win"].any():
+            row = g2[g2["__is_win"]].iloc[0]
+        else:
+            g2 = g2.dropna(subset=["__total"])
+            if g2.empty:
+                continue
+            row = g2.sort_values("__total", ascending=True).iloc[0]
+
+        name = None
+        for nc in ["player_name", "name", "Player", "player"]:
+            if nc in row and pd.notna(row[nc]):
+                name = str(row[nc])
+                break
+        total = float(row["__total"]) if pd.notna(row["__total"]) else None
+        if name:
+            winners.append({"year": int(y), "winner": name, "score": total})
+
+    winners = sorted(winners, key=lambda r: r["year"], reverse=True)
+    return winners
+
+
+def _slug_event(s: str | None) -> str:
+    # normalize + underscore; matches saved combined parquet
+    return _norm_name(s or "").replace(" ", "_")
+
+
+def _load_hist_combined(raw_hist_dir: Path, event_name: str) -> pd.DataFrame | None:
+    slug = _slug_event(event_name)
+    p = raw_hist_dir / f"tournament_{slug}_rounds_combined.parquet"
+    print(f"DEBUG: looking for combined hist parquet at: {p}")
+    if p.exists():
+        try:
+            df = pd.read_parquet(p)
+            print(f"DEBUG: loaded combined hist parquet rows={len(df)}")
+            return df
+        except Exception as e:
+            print(f"Warn: failed to read {p}: {e}")
+            return None
+    print("DEBUG: combined hist parquet not found")
+    return None
+
+
+def _collect_winners_from_files(raw_hist_dir: Path, event_id: str) -> list[dict]:
+    pats = [
+        f"event_{event_id}_*_rounds.json",
+        f"event_{event_id}_*_results.json",
+        f"event_{event_id}_*_leaderboard.json",
+    ]
+    files = []
+    for pat in pats:
+        files.extend(raw_hist_dir.glob(pat))
+
+    def _year_from_name(p: Path) -> int:
+        m = re.match(rf"event_{re.escape(str(event_id))}_(\d{{4}})_", p.name)
+        return int(m.group(1)) if m else -1
+
+    winners = []
+    for f in sorted(files, key=_year_from_name, reverse=True):
+        y = _year_from_name(f)
+        if y < 0:
+            continue
+        name, total = _winner_from_event_json(f)
+        if name:
+            winners.append({"year": y, "winner": name, "score": total})
+
+    # de-dup by year
+    out = {}
+    for w in winners:
+        out.setdefault(w["year"], w)
+    winners = sorted(out.values(), key=lambda r: r["year"], reverse=True)
+    return winners
+
+
+def _read_json(path: Path) -> dict | None:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _load_course_catalog(root: Path) -> dict:
+    for rel in ["data/static/course_catalog.json", "static/course_catalog.json"]:
+        p = root / rel
+        if p.exists():
+            data = _read_json(p)
+            if isinstance(data, dict):
+                return data
+    return {}
+
+
+def _lookup_course_catalog(course_name: str | None, catalog: dict) -> dict:
+    if not isinstance(catalog, dict) or not course_name:
+        return {}
+    key = _norm_name(course_name)
+    if key in catalog and isinstance(catalog[key], dict):
+        return catalog[key]
+    if course_name in catalog and isinstance(catalog[course_name], dict):
+        return catalog[course_name]
+    return {}
+
+
+def _pick_yardage_from_meta(meta_proc: dict) -> int | None:
+    for k in ["total_yardage", "course_yardage", "yardage", "yards"]:
+        v = meta_proc.get(k)
+        if v is None:
+            continue
+        try:
+            if isinstance(v, (int, float)):
+                n = int(round(float(v)))
+            else:
+                n = int(float(re.sub(r"[^0-9.]", "", str(v))))
+            if 5800 <= n <= 8200:
+                return n
+        except Exception:
+            continue
+    return None
+
+
+def _pick_yardage_from_hist(df_hist: pd.DataFrame) -> int | None:
+    yard_cols = [c for c in df_hist.columns if re.search(r"(yardage|yards)$", c.lower())]
+    vals = []
+    for c in yard_cols:
+        try:
+            s = _clean_int_series_from_any(pd.Series(df_hist[c]))
+            s = s[(s >= 5800) & (s <= 8200)]
+            if s.notna().any():
+                vals.append(int(round(s.median())))
+        except Exception:
+            pass
+    if vals:
+        ser = pd.Series(vals)
+        m = ser.mode()
+        return int(m.iloc[0]) if not m.empty else int(round(ser.median()))
+    return None
+
+
+# ---------- tournament summary (robust) ----------
+def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: str, meta_proc: dict, out_json: Path) -> None:
+    root = Path(__file__).resolve().parent.parent
+    upcoming_file = root / "upcoming-events.json"
+
+    course_name = None
+    location = None
+    start_date_str = None
+    upcoming_yardage = None
+    upcoming_winners = None
+
+    if upcoming_file.exists():
+        try:
+            upcoming_data = json.loads(upcoming_file.read_text(encoding="utf-8"))
+            for event in upcoming_data.get("schedule", []):
+                if str(event.get("event_id")) == str(event_id):
+                    course_name = event.get("course")
+                    location = event.get("location")
+                    start_date_str = event.get("start_date")
+                    upcoming_yardage = event.get("yardage")
+                    if isinstance(event.get("previous_winners"), list):
+                        upcoming_winners = event.get("previous_winners")
+                    break
+        except Exception as e:
+            print(f"Warn: Failed to load upcoming-events.json: {e}")
+
+    # field: try tee-times first, then field
     field = None
-    for name in [f"event_{event_id}_field.parquet", f"event_{event_id}_field.csv"]:
+    for name in [
+        f"event_{event_id}_field_teetimes.parquet",
+        f"event_{event_id}_field_teetimes.csv",
+        f"event_{event_id}_field.parquet",
+        f"event_{event_id}_field.csv",
+    ]:
         p = processed_dir / name
         if p.exists():
             field = pd.read_parquet(p) if p.suffix == ".parquet" else pd.read_csv(p)
             break
     field_size = int(len(field)) if field is not None else None
-    course_name = None
-    course_yardage = None
+
+    # yardage candidates
+    yardage = None
+
+    # 1) from field tables
     if field is not None:
-        for col in ["total_yardage", "course_yardage", "yardage"]:
-            if col in field.columns and field[col].notna().any():
-                course_yardage = _numeric_mode(field[col])
-                if course_yardage is not None:
-                    break
-        if course_yardage is None:
-            yard_cols = [c for c in field.columns if "yard" in c.lower()]
-            for yc in yard_cols:
-                if field[yc].notna().any():
-                    course_yardage = _numeric_mode(field[yc])
-                    if course_yardage is not None:
-                        break
+        yardage = _pick_course_yardage(field)
+        print(f"DEBUG: yardage from field tables: {yardage}")
+
+    # course name override if field has a reasonable value
     if field is not None:
         for col in ["course", "course_name", "venue", "course_title"]:
             if col in field.columns and field[col].notna().any():
                 try:
-                    course_name = str(field[col].mode().iloc[0])
-                    break
+                    val = str(field[col].mode().iloc[0]).strip()
+                    if val and val.lower() not in {"n/a", "na", "unknown"}:
+                        course_name = val
+                        break
                 except Exception:
                     pass
+
+    # 2) from meta_proc keys
+    if yardage is None:
+        yardage = _pick_yardage_from_meta(meta_proc)
+        print(f"DEBUG: yardage from meta_proc: {yardage}")
+
+    # 3) from upcoming-events.json
+    if yardage is None and upcoming_yardage is not None:
+        try:
+            if isinstance(upcoming_yardage, (int, float)):
+                n = int(round(float(upcoming_yardage)))
+            else:
+                n = int(float(re.sub(r"[^0-9.]", "", str(upcoming_yardage))))
+            if 5800 <= n <= 8200:
+                yardage = n
+        except Exception:
+            pass
+        print(f"DEBUG: yardage from upcoming-events.json: {yardage}")
+
+    # 4) from course catalog
+    catalog = _load_course_catalog(root)
+    catalog_entry = _lookup_course_catalog(course_name, catalog)
+    if yardage is None and isinstance(catalog_entry.get("yardage"), (int, float, str)):
+        try:
+            n = catalog_entry["yardage"]
+            if not isinstance(n, (int, float)):
+                n = float(re.sub(r"[^0-9.]", "", str(n)))
+            n = int(round(n))
+            if 5800 <= n <= 8200:
+                yardage = n
+        except Exception:
+            pass
+        print(f"DEBUG: yardage from course catalog: {yardage}")
+
+    # 5) from historical combined parquet, if such column exists
+    df_hist = _load_hist_combined(raw_hist_dir, meta_proc.get("event_name", ""))
+    if yardage is None and df_hist is not None and not df_hist.empty:
+        yd_hist = _pick_yardage_from_hist(df_hist)
+        if yd_hist is not None:
+            yardage = yd_hist
+        print(f"DEBUG: yardage from historical combined parquet: {yardage}")
+
     lat = meta_proc.get("lat")
     lon = meta_proc.get("lon")
-    course_location = f"{lat:.4f}, {lon:.4f}" if lat is not None and lon is not None else None
-    start_date_raw = meta_proc.get("r1_date")
-    start_date = None
-    if start_date_raw:
+    course_location = location
+    if not course_location and lat is not None and lon is not None:
         try:
-            start_date = datetime.strptime(start_date_raw, "%Y-%m-%d").strftime("%d-%b-%Y")
+            course_location = f"{float(lat):.4f}, {float(lon):.4f}"
         except Exception:
-            start_date = start_date_raw
+            pass
+
+    start_date = None
+    if start_date_str:
+        try:
+            start_date = datetime.strptime(start_date_str, "%Y-%m-%d").strftime("%d-%b-%Y")
+        except Exception:
+            start_date = start_date_str
+
+    # winners priority: combined parquet -> per-year files -> winners.json -> upcoming -> catalog
     winners = []
-    files = sorted(raw_hist_dir.glob(f"event_{event_id}_*_rounds.json"))
+    if df_hist is not None and not df_hist.empty:
+        winners = _winners_from_df(df_hist)
+        print(f"DEBUG: winners from combined parquet (first 5): {winners[:5]}")
+    if not winners:
+        winners = _collect_winners_from_files(raw_hist_dir, event_id)
+        print(f"DEBUG: winners from per-year files (first 5): {winners[:5]}")
 
-    def _year_from_name(p: Path) -> int:
-        m = re.search(rf"event_{re.escape(str(event_id))}_(\d{{4}})_rounds\.json", p.name)
-        return int(m.group(1)) if m else -1
+    # Load winners from winners.json if available
+    winners_json_path = raw_hist_dir / f"tournament_{_slug_event(meta_proc.get('event_name', ''))}_winners.json"
+    if winners_json_path.exists() and not winners:
+        try:
+            winners_data = json.loads(winners_json_path.read_text(encoding="utf-8"))
+            winners = [{"year": w["year"], "winner": w["winner"], "score": w["score"]} for w in winners_data]
+            winners = sorted(winners, key=lambda r: r["year"], reverse=True)
+            print(f"DEBUG: winners from winners.json (first 5): {winners[:5]}")
+        except Exception as e:
+            print(f"Warn: Failed to load winners from {winners_json_path}: {e}")
 
-    files = sorted(files, key=_year_from_name, reverse=True)[:5]
-    for f in files:
-        year = _year_from_name(f)
-        name, total = _winner_from_event_json(f)
-        if name:
-            winners.append({"year": year, "winner": name, "score": total})
+    # top-up from upcoming-events.json
+    if (len(winners) < 5) and isinstance(upcoming_winners, list):
+        seen_years = {w.get("year") for w in winners}
+        for w in upcoming_winners:
+            if isinstance(w, dict) and ("year" in w) and (w["year"] not in seen_years):
+                winners.append({"year": int(w["year"]), "winner": w.get("winner"), "score": w.get("score")})
+        winners = sorted(winners, key=lambda r: r["year"], reverse=True)
+
+    # top-up from course catalog
+    if (len(winners) < 5) and isinstance(catalog_entry.get("previous_winners"), list):
+        seen_years = {w.get("year") for w in winners}
+        for w in catalog_entry["previous_winners"]:
+            if isinstance(w, dict) and ("year" in w) and (w["year"] not in seen_years):
+                winners.append({"year": int(w["year"]), "winner": w.get("winner"), "score": w.get("score")})
+        winners = sorted(winners, key=lambda r: r["year"], reverse=True)
+
+    winners = winners[:5]  # last five
+
     payload = {
-        "course": course_name,
-        "total_yardage": course_yardage,
-        "course_location": course_location,
+        "event_name": meta_proc.get("event_name", "Unknown Event"),
+        "course": course_name or "Unknown Course",
+        "total_yardage": yardage,
+        "course_location": course_location or "Unknown Location",
         "start_date": start_date,
         "field_size": field_size,
         "previous_winners": winners,
     }
-    out_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    write_json(out_json, payload)
 
 
 # ---------- load start-holes from processed field (robust) ----------
@@ -358,7 +711,6 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
             return None
 
         r1, r2 = [], []
-        # Use dict-like access for row to be robust across CSV/Parquet
         for _, row in df.iterrows():
             r1.append(pick(row, cands_r1, frame_columns))
             r2.append(pick(row, cands_r2, frame_columns))
@@ -371,17 +723,7 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
             }
         )
 
-        # normalize names for merge with leaderboard
-        def _norm_name(s: str | None) -> str:
-            if not isinstance(s, str):
-                return ""
-            t = s.lower().strip()
-            t = re.sub(r"[^a-z0-9]+", " ", t)
-            t = re.sub(r"\s+", " ", t).strip()
-            return t
-
         out["name_key"] = out["player_name"].map(_norm_name)
-        # Keep unique per player
         return out.drop_duplicates(subset=["name_key"])
 
     return None
@@ -416,7 +758,6 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
 
 # ---------- main ----------
 def main():
-    # NEW: allow --event_id and fallback to the most recent stamped leaderboard
     ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
     ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets")
     args = ap.parse_args()
@@ -425,26 +766,21 @@ def main():
     processed_dir = root / "data" / "processed" / TOUR
     preds_dir = root / "data" / "preds" / TOUR
 
-    # Resolve event_id
     from src.utils_event import resolve_event_id as _resolve  # centralized resolver
 
     event_id = None
 
-    # 1) explicit CLI
     if args.event_id:
         event_id = str(args.event_id)
 
-    # 2) latest stamped leaderboard (most recent export)
     if not event_id:
         latest_lb, eid_from_lb = scan_latest_stamped_leaderboard(preds_dir)
         if eid_from_lb:
             event_id = str(eid_from_lb)
 
-    # 3) fallback to centralized resolver (this week)
     if not event_id:
         event_id = _resolve(None)
 
-    # Load meta for that event
     meta_proc = load_meta_for_event(processed_dir, event_id)
     event_name = meta_proc.get("event_name", f"event_{event_id}")
     lat = meta_proc.get("lat")
@@ -468,37 +804,10 @@ def main():
     dl_dir = web_dir / "downloads"
     dl_dir.mkdir(parents=True, exist_ok=True)
 
-    # Leaderboard JSON (apply HH:MM + '*' for 10th tee starts, then drop start_hole cols)
+    # Leaderboard JSON: merge start holes, format times with "*" for 10th tee
     df_lb = pd.read_csv(lb_csv)
 
-    def tee_time_with_tee(time_val, start_val):
-        base = _time_only(time_val)
-        try:
-            ten = (str(start_val).strip() == "10") or (int(str(start_val).strip() or "0") == 10)
-        except Exception:
-            ten = False
-        return f"{base}*" if base and ten else base
-
-    for r in [1, 2]:
-        time_col = f"r{r}_teetime"
-        # prefer round-specific start hole if present
-        start_col = f"r{r}_start_hole" if f"r{r}_start_hole" in df_lb.columns else "start_hole"
-        if time_col in df_lb.columns:
-            if start_col in df_lb.columns:
-                df_lb[time_col] = [tee_time_with_tee(t, s) for t, s in zip(df_lb[time_col], df_lb[start_col], strict=False)]
-            else:
-                df_lb[time_col] = df_lb[time_col].apply(_time_only)
-
-    # DROP start_hole columns to avoid NaN in JSON (browser-unsafe)
-    drop_cols = [c for c in ("r1_start_hole", "r2_start_hole", "start_hole") if c in df_lb.columns]
-    if drop_cols:
-        df_lb = df_lb.drop(columns=drop_cols)
-
-    # Optional: ensure any remaining NaN/Inf are removed before dict conversion
-    df_lb = df_lb.replace({np.nan: None, np.inf: None, -np.inf: None})
-
-    write_json(web_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
-    # find player name column (your CSV typically has 'player_name' already)
+    # find and normalize player name column
     name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
     if not name_col:
         raise ValueError("Leaderboard CSV missing player name column")
@@ -533,11 +842,11 @@ def main():
             else:
                 df_lb[time_col] = df_lb[time_col].apply(_time_only)
 
-    # remove helper key
-    if "name_key" in df_lb.columns:
-        df_lb = df_lb.drop(columns=["name_key"], errors="ignore")
+    # DROP helper/start_hole columns to avoid NaN in JSON
+    drop_cols = [c for c in ("name_key", "r1_start_hole", "r2_start_hole", "start_hole") if c in df_lb.columns]
+    if drop_cols:
+        df_lb = df_lb.drop(columns=drop_cols)
 
-    # write leaderboard.json with asterisks
     write_json(web_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
 
     # summary
@@ -595,10 +904,12 @@ def main():
     ts_path = web_dir / "tournament_summary.json"
     build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, ts_path)
 
-    # Copy field_teetimes.csv to web
+    # Copy field_teetimes.csv to web (guard if missing)
     import shutil
 
-    shutil.copy(processed_dir / f"event_{event_id}_field_teetimes.csv", web_dir / "field_teetimes.csv")
+    src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
+    if src_teetimes.exists():
+        shutil.copy(src_teetimes, web_dir / "field_teetimes.csv")
 
     meta_out = {
         "tour": TOUR,

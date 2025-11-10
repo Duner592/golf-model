@@ -111,6 +111,7 @@ def main():
 
     feats = attach_weather_features(df_field, df_neutral, df_wave)
     out_path = Path(__file__).resolve().parent.parent / "data" / "features" / TOUR / f"event_{eid}_features_weather.parquet"
+    out_path.parent.mkdir(parents=True, exist_ok=True)  # Create the directory if it doesn't exist
     feats.to_parquet(out_path, index=False)
     print(f"Saved features: {out_path}  rows={len(feats)}  cols={len(feats.columns)}")
 

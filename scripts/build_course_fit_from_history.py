@@ -332,7 +332,7 @@ def main():
     event_name = meta.get("event_name") or "current_event"
 
     processed = Path("data") / "processed" / TOUR
-    processed.mkdir(parents=True, exist_ok=True)
+    processed.mkdir(parents=True, exist_ok=True)  # Ensure directory exists
 
     # Load historical combined parquet (venue history)
     hist_path = find_hist_parquet(event_name)

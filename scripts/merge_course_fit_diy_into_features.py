@@ -78,7 +78,7 @@ def main():
     # Fill sensible defaults
     if "course_fit_score" in out.columns:
         out["course_fit_score"] = pd.to_numeric(out["course_fit_score"], errors="coerce")
-        out["course_fit_score"] = out["course_fit_score"].fillna(out["course_fit_score"].median())
+        out["course_fit_score"] = out["course_fit_score"].fillna(out["course_fit_score"].median()).fillna(0.0)  # Ensure no NaN
     for zcol in ["da_z", "dd_z"]:
         if zcol in out.columns:
             out[zcol] = pd.to_numeric(out[zcol], errors="coerce").fillna(0.0)

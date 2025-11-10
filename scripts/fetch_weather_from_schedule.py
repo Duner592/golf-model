@@ -215,9 +215,10 @@ def main():
     # If pinned (--event_id), bypass schedule, read meta, and fetch for that event id.
     if args.event_id:
         pinned_meta = load_meta_for_event(out_dir, args.event_id)
-        lat = pinned_meta.get("lat")
-        lon = pinned_meta.get("lon")
-        start = pinned_meta.get("r1_date")
+        # Accept either original keys or upcoming-events.json keys
+        lat = pinned_meta.get("lat") or pinned_meta.get("latitude")
+        lon = pinned_meta.get("lon") or pinned_meta.get("longitude")
+        start = pinned_meta.get("r1_date") or pinned_meta.get("start")
         if not (lat and lon and start):
             raise ValueError(f"Pinned meta for event_id={args.event_id} missing lat/lon/start")
         start_date, end_date, round_dates = to_round_dates(str(start))

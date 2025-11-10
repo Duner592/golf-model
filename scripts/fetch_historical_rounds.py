@@ -1,206 +1,180 @@
 #!/usr/bin/env python3
 # scripts/fetch_historical_rounds.py
-# Fetch previous years’ round-level data for the current event.
-# Event ID discovery order:
-#   1) data/processed/{tour}/event_*_meta.json (from parse_field_updates.py)
-#   2) scripts/field-updates.json (from fetch_field_updates.py)
-#   3) --event_id CLI arg (required if 1/2 missing)
 #
-# Years:
-#   - default years_back from YAML (defaults.history_years_back), fallback 5
-#   - excludes the current/unplayed year (max_year = min(today.year, r1_year) - 1)
-#   - r1_year from weather_meta if available; else use today.year - 1 logic
-#
-# Outputs:
-#   - data/raw/historical/{tour}/event_{event_id}_{year}_rounds.json
-#   - data/raw/historical/{tour}/event_{event_id}_rounds_combined.parquet (if any)
-
+# Fetch real historical rounds for an event using DataGolf API (via configs/datagolf.yaml).
+# Extracts winners (first player in ordered "scores" list) with under-par score and total score.
+# Saves rounds to Parquet and winners to JSON.
+# Skips invalid years.
+# Compatible with run_weekly_all.py.
 
 import argparse
 import json
 import os
-from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
 import requests
-import requests_cache
 import yaml
 from dotenv import load_dotenv
 
 load_dotenv()
 
-
-def load_yaml(p: Path) -> dict:
-    return yaml.safe_load(p.read_text(encoding="utf-8"))
+TOUR = "pga"
 
 
-def find_event_id(tour: str, root: Path) -> str | None:
-    # 1) processed meta
-    processed = root / "data" / "processed" / tour
-    metas = sorted(processed.glob("event_*_meta.json"))
-    if metas:
-        try:
-            meta = json.loads(metas[-1].read_text(encoding="utf-8"))
-            eid = meta.get("event_id")
-            if eid is not None:
-                return str(eid)
-        except Exception:
-            pass
-    # 2) scripts/field-updates.json
-    fu = root / "scripts" / "field-updates.json"
-    if fu.exists():
-        try:
-            data = json.loads(fu.read_text(encoding="utf-8"))
-            eid = data.get("event_id")
-            if eid is not None:
-                return str(eid)
-        except Exception:
-            pass
-    return None
+def load_yaml(path: Path) -> dict:
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def load_round1_year(processed_dir: Path) -> int | None:
-    wmetas = sorted(processed_dir.glob("event_*_weather_meta.json"))
-    if wmetas:
-        try:
-            wmeta = json.loads(wmetas[-1].read_text(encoding="utf-8"))
-            r1 = wmeta.get("r1_date")
-            if r1:
-                return datetime.strptime(r1, "%Y-%m-%d").year
-        except Exception:
-            pass
-    return None
+def normalize_name(s: str) -> str:
+    s0 = (s or "").lower()
+    s0 = s0.replace(" ", "_")
+    return s0
 
 
-def pick_years_to_fetch(r1_year: int | None, years_back: int, min_year: int | None) -> list[int]:
-    today_year = datetime.utcnow().year
-    max_year = (min(today_year, r1_year) - 1) if r1_year else (today_year - 1)
-    years = [max_year - i for i in range(years_back)]
-    if min_year is not None:
-        years = [y for y in years if y >= min_year]
-    years = [y for y in years if 1900 <= y <= today_year - 1]
-    return sorted(set(years), reverse=True)
+def fetch_real_historical_rounds(event_name: str, event_id: str) -> tuple[pd.DataFrame, list]:
+    """
+    Fetch real historical rounds from DataGolf API.
+    Extracts winners (first in "scores" = winner) with under-par and total scores.
+    Returns (df_rounds, winners_list).
+    """
+    # Load config
+    root = Path(__file__).resolve().parent.parent
+    cfg_path = root / "configs" / "datagolf.yaml"
+    if not cfg_path.exists():
+        raise FileNotFoundError(f"Config file not found: {cfg_path}")
+    cfg = load_yaml(cfg_path)
 
-
-def save_json(obj, path: Path):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
-
-
-def main():
-    parser = argparse.ArgumentParser(description="Fetch historical rounds for the current event (previous years only).")
-    parser.add_argument(
-        "--event_id",
-        type=str,
-        default=None,
-        help="Override event_id (if discovery fails).",
-    )
-    parser.add_argument(
-        "--years_back",
-        type=int,
-        default=None,
-        help="How many past years to fetch (default from YAML or 5).",
-    )
-    parser.add_argument(
-        "--min_year",
-        type=int,
-        default=None,
-        help="Minimum historical year to include (optional).",
-    )
-    args = parser.parse_args()
-
-    script_dir = Path(__file__).resolve().parent
-    root = script_dir.parent
-    cfg = load_yaml(root / "configs" / "datagolf.yaml")
-
-    base_url = cfg["base_url"].rstrip("/")
-    key_param = cfg["auth"]["key_param"]
-    env_var = cfg["auth"]["env_var"]
+    base_url = cfg.get("base_url", "https://feeds.datagolf.com")
+    endpoint = cfg.get("endpoints", {}).get("historical_rounds", {})
+    path = endpoint.get("path", "historical-raw-data/rounds")
+    env_var = cfg.get("auth", {}).get("env_var", "DATAGOLF_API_KEY")
     api_key = os.getenv(env_var)
     if not api_key:
         raise RuntimeError(f"Missing API key in env var: {env_var}")
 
-    tour = cfg["defaults"]["tour"]
-    file_fmt = cfg["defaults"].get("file_format", "json")
-    default_years_back = int(cfg["defaults"].get("history_years_back", 5))
-    years_back = args.years_back if args.years_back is not None else default_years_back
+    history_years_back = cfg.get("defaults", {}).get("history_years_back", 5)
+    file_format = cfg.get("defaults", {}).get("file_format", "json")
 
-    endpoint = cfg["endpoints"]["historical_rounds"]["path"]
+    records = []
+    winners_list = []
+    current_year = 2024
+    for year in range(current_year - history_years_back, current_year + 1):  # Include current year
+        url = f"{base_url}/{path}"
+        params = {"tour": TOUR, "event_id": event_id, "year": str(year), "file_format": file_format, "key": api_key}
 
-    # Discover event_id (no YAML default)
-    event_id = args.event_id or find_event_id(tour, root)
-    if not event_id:
-        raise ValueError("Could not determine event_id. Run parse_field_updates.py first, or pass --event_id.")
-
-    processed_dir = root / "data" / "processed" / tour
-    processed_dir.mkdir(parents=True, exist_ok=True)
-
-    # Determine historical years (exclude current/unplayed)
-    r1_year = load_round1_year(processed_dir)
-    years_to_fetch = pick_years_to_fetch(r1_year=r1_year, years_back=years_back, min_year=args.min_year)
-    if not years_to_fetch:
-        print("No valid past years to fetch. Adjust years_back or ensure weather_meta exists for better bounds.")
-        return
-
-    print(f"Using event_id={event_id} (tour={tour}); fetching past years: {years_to_fetch}")
-
-    requests_cache.install_cache("dg_cache", expire_after=900)
-    session = requests.Session()
-
-    url = f"{base_url}/{endpoint.lstrip('/')}"
-    out_dir = root / "data" / "raw" / "historical" / tour
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    combined = []
-    for year in years_to_fetch:
-        params = {
-            key_param: api_key,
-            "tour": tour,
-            "event_id": event_id,
-            "year": str(year),
-            "file_format": file_fmt,
-        }
         try:
-            resp = session.get(url, params=params, timeout=120)
-            if resp.status_code in (400, 404):
-                print(f"Skip year={year}: HTTP {resp.status_code} (no data).")
+            response = requests.get(url, params=params, timeout=30)
+            response.raise_for_status()
+
+            content_type = response.headers.get("content-type", "")
+            if "application/json" in content_type:
+                data = response.json()
+            else:
+                data = response.text
+
+            if isinstance(data, str) and ("not available" in data.lower() or "invalid" in data.lower()):
+                print(f"Skipping year {year}: Event not played or invalid.")
                 continue
-            resp.raise_for_status()
-            data = resp.json()
-        except requests.HTTPError as e:
-            print(f"Error for year={year}: {e}")
+
+            if not isinstance(data, dict):
+                print(f"Skipping year {year}: Unexpected response format.")
+                continue
+
+            scores = data.get("scores", [])
+            if not scores:
+                print(f"Skipping year {year}: No scores data.")
+                continue
+
+            # Extract yardage and par
+            yardage = data.get("course_yardage")
+            course_par = data.get("course_par")
+            if course_par is None:
+                course_par = 71  # Fallback par for Bermuda Championship (adjust if needed)
+
+            # Extract winner (first in scores)
+            winner_item = scores[0]
+            player_name = winner_item.get("player_name")
+            if player_name:
+                total_strokes = 0
+                for rnd in [1, 2, 3, 4]:
+                    round_data = winner_item.get(f"round_{rnd}")
+                    if round_data and "score" in round_data:
+                        total_strokes += round_data["score"]
+                under_par = total_strokes - (course_par * 4)
+                winners_list.append({"year": year, "winner": player_name, "score": under_par, "total_score": total_strokes})
+
+            # Process all players for rounds data
+            for item in scores:
+                pid = item.get("dg_id")
+                yr = data.get("year", year)
+                for rnd in [1, 2, 3, 4]:
+                    round_key = f"round_{rnd}"
+                    if round_key in item:
+                        round_data = item[round_key]
+                        sg = round_data.get("sg_total")
+                        da = round_data.get("driving_acc")
+                        dd = round_data.get("driving_dist")
+                        if sg is not None:
+                            records.append(
+                                {
+                                    "player_id": str(pid),
+                                    "year": yr,
+                                    "course_yardage": yardage,
+                                    f"round_{rnd}.sg_total": sg,
+                                    f"round_{rnd}.driving_acc": da,
+                                    f"round_{rnd}.driving_dist": dd,
+                                }
+                            )
+        except requests.exceptions.HTTPError as e:
+            print(f"Skipping year {year}: HTTP error - {e}")
+            continue
+        except Exception as e:
+            print(f"Skipping year {year}: Unexpected error - {e}")
             continue
 
-        out_path = out_dir / f"event_{event_id}_{year}_rounds.json"
-        save_json(data, out_path)
-        print(f"Saved: {out_path}")
+    if not records:
+        raise ValueError("No historical round data found for any valid years.")
 
-        # Normalize to DataFrame and collect
-        if isinstance(data, list):
-            df = pd.json_normalize(data)
-        elif isinstance(data, dict):
-            vlist = None
-            for v in data.values():
-                if isinstance(v, list):
-                    vlist = v
-                    break
-            df = pd.json_normalize(vlist) if vlist is not None else pd.json_normalize(data)
-        else:
-            df = pd.DataFrame()
+    df = pd.DataFrame(records)
+    agg_funcs = {col: (lambda x: x.dropna().iloc[0] if not x.dropna().empty else None) for col in df.columns if col not in ["player_id", "year"]}
+    df = df.groupby(["player_id", "year"], as_index=False).agg(agg_funcs)
+    return df, winners_list
 
-        if not df.empty:
-            df["event_id"] = event_id
-            df["year"] = int(year)
-            combined.append(df)
 
-    if combined:
-        combined_df = pd.concat(combined, ignore_index=True)
-        combined_out = out_dir / f"event_{event_id}_rounds_combined.parquet"
-        combined_df.to_parquet(combined_out, index=False)
-        print(f"Saved combined Parquet: {combined_out}")
-    else:
-        print("No historical rounds saved (no available past years or empty responses).")
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--event_id", type=str, required=True)
+    args = ap.parse_args()
+
+    processed = Path("data/processed") / TOUR
+    metas = sorted(processed.glob("event_*_meta.json"))
+    event_name = None
+    for p in reversed(metas):
+        meta = json.loads(p.read_text(encoding="utf-8"))
+        if str(meta.get("event_id")) == str(args.event_id):
+            event_name = meta.get("event_name")
+            break
+    if not event_name:
+        raise ValueError(f"Event {args.event_id} not found in meta files.")
+
+    safe_name = normalize_name(event_name)
+    out_dir = Path("data/raw/historical") / TOUR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rounds_path = out_dir / f"tournament_{safe_name}_rounds_combined.parquet"
+    winners_path = out_dir / f"tournament_{safe_name}_winners.json"
+
+    try:
+        df, winners_list = fetch_real_historical_rounds(event_name, args.event_id)
+        df.to_parquet(rounds_path, index=False)
+        print(f"Saved real historical rounds to {rounds_path}")
+        if winners_list:
+            with open(winners_path, "w") as f:
+                json.dump(winners_list, f, indent=2)
+            print(f"Saved winners to {winners_path}")
+    except Exception as e:
+        print(f"Failed to fetch/save historical data: {e}")
+        exit(1)
 
 
 if __name__ == "__main__":

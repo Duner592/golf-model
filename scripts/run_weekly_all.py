@@ -21,7 +21,7 @@ import argparse
 import json
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 TOUR = "pga"
@@ -48,54 +48,55 @@ def _parse_ts(iso: str | None) -> float:
 
 
 def resolve_event_id(cli_event_id: str | None) -> str:
-    """Priority: CLI arg → scripts/field-updates.json → latest processed meta by saved_at_utc (fallback: file mtime)."""
+    """Priority: CLI arg → upcoming-events.json (current week by today's date, or closest future event)."""
     if cli_event_id:
         return str(cli_event_id)
 
-    # Prefer current week from field-updates.json (if present)
-    fu = SCRIPT_DIR / "field-updates.json"
-    if fu.exists():
+    # Load upcoming events
+    upcoming_file = ROOT / "upcoming-events.json"
+    if not upcoming_file.exists():
+        raise FileNotFoundError(f"Upcoming events file not found: {upcoming_file}")
+
+    try:
+        with open(upcoming_file, encoding="utf-8") as f:
+            data = json.load(f)
+        events = data.get("schedule", [])  # Extract the schedule list
+    except (json.JSONDecodeError, FileNotFoundError, KeyError) as e:
+        raise ValueError(f"Failed to load or parse {upcoming_file}: {e}") from e
+
+    today = datetime.now().date()
+    start_of_week = today - timedelta(days=today.weekday())  # Monday
+    end_of_week = start_of_week + timedelta(days=6)  # Sunday
+
+    # First, try to find events in the current week
+    weekly_events = []
+    future_events = []  # Fallback: all events on or after today
+    for event in events:
+        if not isinstance(event, dict) or "event_id" not in event or "start_date" not in event:
+            continue
         try:
-            data = json.loads(fu.read_text(encoding="utf-8"))
-            eid = data.get("event_id")
-            if eid is not None:
-                return str(eid)
-        except Exception:
-            pass
+            event_date = datetime.fromisoformat(event["start_date"]).date()  # Parse "YYYY-MM-DD"
+            if start_of_week <= event_date <= end_of_week:
+                weekly_events.append(event)
+            elif event_date >= today:
+                future_events.append((event_date, event))
+        except (ValueError, KeyError):
+            continue
 
-    # Fallback to most-recent processed meta by timestamp (not lexicographic filename order)
-    metas = sorted(PROCESSED.glob("event_*_meta.json"))
-    if not metas:
-        raise FileNotFoundError("Cannot resolve event_id (no field-updates.json and no processed meta found).")
-
-    best_eid, best_ts = None, -1.0
-    for p in metas:
-        try:
-            meta = json.loads(p.read_text(encoding="utf-8"))
-            ts = _parse_ts(meta.get("saved_at_utc"))
-            if ts > best_ts:
-                best_ts = ts
-                best_eid = meta.get("event_id")
-        except Exception:
-            ts = p.stat().st_mtime
-            if ts > best_ts:
-                best_ts = ts
-                try:
-                    best_eid = json.loads(p.read_text(encoding="utf-8")).get("event_id")
-                except Exception:
-                    best_eid = None
-
-    if best_eid is None:
-        best_eid = json.loads(metas[-1].read_text(encoding="utf-8")).get("event_id")
-    if best_eid is None:
-        raise FileNotFoundError("Cannot resolve event_id from meta files.")
-    return str(best_eid)
+    # Use current week if available; otherwise, the closest future event
+    if weekly_events:
+        return str(weekly_events[0]["event_id"])  # Earliest in week (should be 528 for 2025-11-13)
+    elif future_events:
+        future_events.sort(key=lambda x: x[0])  # Sort by date
+        return str(future_events[0][1]["event_id"])  # Closest future event
+    else:
+        raise ValueError(f"No current or future events found in {upcoming_file} starting from {today}. Check the file or provide --event_id.")
 
 
 def main():
     ap = argparse.ArgumentParser(description="Weekly pipeline runner for current/pinned event.")
-    ap.add_argument("--event_id", type=str, default=None, help="Pinned event id; if omitted, use this week's event")
-    ap.add_argument("--pinned", action="store_true", help="Pinned mode: skip live field-updates/parse; use existing meta/field")
+    ap.add_argument("--event_id", type=str, default=None, help="Pinned event id; if omitted, use this week's event from upcoming-events.json")
+    ap.add_argument("--pinned", action="store_true", help="Pinned mode: skip field-updates/parse; use existing meta/field")
     ap.add_argument("--skip-field", action="store_true", help="Skip field-updates/parse step")
     ap.add_argument("--skip-weather", action="store_true", help="Skip weather fetch/summarize")
     ap.add_argument("--skip-course", action="store_true", help="Skip DIY course-fit and course-history merges")
@@ -119,6 +120,30 @@ def main():
             run([sys.executable, str(SCRIPT_DIR / "fetch_field_updates.py")])
             run([sys.executable, str(SCRIPT_DIR / "parse_field_updates.py")])
 
+            # Inline: Merge missing lat/lon/start from upcoming-events.json into meta
+            meta_file = PROCESSED / f"event_{event_id}_meta.json"
+            upcoming_file = ROOT / "upcoming-events.json"
+            if meta_file.exists() and upcoming_file.exists():
+                try:
+                    with open(meta_file, encoding="utf-8") as f:
+                        meta = json.load(f)
+                    with open(upcoming_file, encoding="utf-8") as f:
+                        data = json.load(f)
+                    for event in data.get("schedule", []):
+                        if str(event.get("event_id")) == event_id:
+                            if "latitude" not in meta or not meta.get("latitude"):
+                                meta["latitude"] = event.get("latitude")
+                            if "longitude" not in meta or not meta.get("longitude"):
+                                meta["longitude"] = event.get("longitude")
+                            if "start" not in meta or not meta.get("start"):
+                                meta["start"] = event.get("start_date")
+                            break
+                    with open(meta_file, "w", encoding="utf-8") as f:
+                        json.dump(meta, f, indent=2)
+                    print(f"[info] Updated meta for event_id={event_id} with latitude/longitude/start from upcoming-events.json")
+                except Exception as e:
+                    print(f"[warn] Failed to merge meta for event_id={event_id}: {e}")
+
         # Weather
         if args.skip_weather:
             print("[info] Skipping weather steps (--skip-weather)")
@@ -139,6 +164,12 @@ def main():
 
         # Course fit / history (optional)
         if not skip_course:
+            # Fetch historical rounds first (if available)
+            try:
+                run([sys.executable, str(SCRIPT_DIR / "fetch_historical_rounds.py"), "--event_id", event_id])
+            except subprocess.CalledProcessError:
+                print("[warn] Fetching historical rounds failed or script not found. Continuing with existing data.")
+
             try:
                 run([sys.executable, str(SCRIPT_DIR / "build_course_fit_from_history.py"), "--event_id", event_id])
                 run([sys.executable, str(SCRIPT_DIR / "merge_course_fit_diy_into_features.py"), "--event_id", event_id])
