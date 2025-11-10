@@ -1,6 +1,61 @@
 {
-  "current_season": 2025,
+  "current_season": 2026,
   "schedule": [
+    {
+      "course": "Royal Queensland GC",
+      "course_key": "royal queensland gc",
+      "event_id": "2025100",
+      "event_name": "BMW Australian PGA Championship",
+      "latitude": -27.439,
+      "location": "Brisbane, Australia",
+      "longitude": 153.092,
+      "start_date": "2024-11-21",
+      "tour": "euro"
+    },
+    {
+      "course": "Kingston Heath GC",
+      "course_key": "kingston heath gc",
+      "event_id": "2025101",
+      "event_name": "ISPS Handa Australian Open",
+      "latitude": -37.955,
+      "location": "Melbourne, Victoria, Australia",
+      "longitude": 145.086,
+      "start_date": "2024-11-28",
+      "tour": "euro"
+    },
+    {
+      "course": "Gary Player CC",
+      "course_key": "gary player cc",
+      "event_id": "2025102",
+      "event_name": "Nedbank Golf Challenge",
+      "latitude": -25.339,
+      "location": "Sun City, South Africa",
+      "longitude": 27.106,
+      "start_date": "2024-12-05",
+      "tour": "euro"
+    },
+    {
+      "course": "Leopard Creek CC",
+      "course_key": "leopard creek cc",
+      "event_id": "2025103",
+      "event_name": "Alfred Dunhill Championship",
+      "latitude": -25.442,
+      "location": "Malalane, South Africa",
+      "longitude": 31.535,
+      "start_date": "2024-12-12",
+      "tour": "euro"
+    },
+    {
+      "course": "Mont Choisy Le Golf",
+      "course_key": "mont choisy le golf",
+      "event_id": "2025104",
+      "event_name": "AfrAsia Bank Mauritius Open",
+      "latitude": -20.024,
+      "location": "Grand-Baie, Mauritius",
+      "longitude": 57.565,
+      "start_date": "2024-12-19",
+      "tour": "euro"
+    },
     {
       "course": "Plantation Course at Kapalua",
       "course_key": "656",
@@ -9,7 +64,8 @@
       "latitude": 21.001,
       "location": "Kapalua, HI",
       "longitude": -156.654,
-      "start_date": "2025-01-02"
+      "start_date": "2025-01-02",
+      "tour": "pga"
     },
     {
       "course": "Waialae Country Club",
@@ -19,7 +75,19 @@
       "latitude": 21.272,
       "location": "Honolulu, HI",
       "longitude": -157.775,
-      "start_date": "2025-01-09"
+      "start_date": "2025-01-09",
+      "tour": "pga"
+    },
+    {
+      "course": "The Ocean Club Golf Course at Atlantis",
+      "course_key": "097",
+      "event_id": 124,
+      "event_name": "The Bahamas Golf Classic at Atlantis Paradise Island",
+      "latitude": 25.081,
+      "location": "Nassau, The Bahamas",
+      "longitude": -77.299,
+      "start_date": "2025-01-12",
+      "tour": "kft"
     },
     {
       "course": "Pete Dye Stadium Course;La Quinta Country Club;Nicklaus Tournament Course",
@@ -29,7 +97,30 @@
       "latitude": 33.643,
       "location": "La Quinta, CA",
       "longitude": -116.267,
-      "start_date": "2025-01-16"
+      "start_date": "2025-01-16",
+      "tour": "pga"
+    },
+    {
+      "course": "Emirates GC",
+      "course_key": "emirates gc",
+      "event_id": "2025106",
+      "event_name": "Hero Dubai Desert Classic",
+      "latitude": 25.263,
+      "location": "Dubai, UAE",
+      "longitude": 55.297,
+      "start_date": "2025-01-16",
+      "tour": "euro"
+    },
+    {
+      "course": "The Abaco Club on Winding Bay",
+      "course_key": "800",
+      "event_id": 125,
+      "event_name": "The Bahamas Great Abaco Classic at The Abaco Club",
+      "latitude": 26.3,
+      "location": "Cherokee, Great Abaco, Bahamas",
+      "longitude": -77.021,
+      "start_date": "2025-01-19",
+      "tour": "kft"
     },
     {
       "course": "Torrey Pines Golf Course (South Course);Torrey Pines Golf Course (North Course)",
@@ -39,7 +130,19 @@
       "latitude": 32.905,
       "location": "San Diego, CA",
       "longitude": -117.245,
-      "start_date": "2025-01-22"
+      "start_date": "2025-01-22",
+      "tour": "pga"
+    },
+    {
+      "course": "Al Hamra GC",
+      "course_key": "al hamra gc",
+      "event_id": "2025107",
+      "event_name": "Ras Al Khaimah Championship",
+      "latitude": 25.69,
+      "location": "Ras Al Khaimah, UAE",
+      "longitude": 55.777,
+      "start_date": "2025-01-23",
+      "tour": "euro"
     },
     {
       "course": "Pebble Beach Golf Links;Spyglass Hill Golf Course",
@@ -49,7 +152,52 @@
       "latitude": 36.569,
       "location": "Pebble Beach, CA",
       "longitude": -121.951,
-      "start_date": "2025-01-30"
+      "start_date": "2025-01-30",
+      "tour": "pga"
+    },
+    {
+      "course": "Royal GC",
+      "course_key": "royal golf club",
+      "event_id": "2025108",
+      "event_name": "Bapco Energies Bahrain Championship",
+      "latitude": 26.092,
+      "location": "Al Mazrowiah, Bahrain",
+      "longitude": 50.566,
+      "start_date": "2025-01-30",
+      "tour": "euro"
+    },
+    {
+      "course": "Club de Golf de Panama",
+      "course_key": "659",
+      "event_id": 84,
+      "event_name": "The Panama Championship",
+      "latitude": 9.084,
+      "location": "Corredor Norte, Panama",
+      "longitude": -79.474,
+      "start_date": "2025-01-30",
+      "tour": "kft"
+    },
+    {
+      "course": "Doha GC",
+      "course_key": "doha gc",
+      "event_id": "2025142",
+      "event_name": "Commercial Bank Qatar Masters",
+      "latitude": 25.384,
+      "location": "Doha, Qatar",
+      "longitude": 51.507,
+      "start_date": "2025-02-06",
+      "tour": "euro"
+    },
+    {
+      "course": "Country Club de Bogota-Lagos;Country Club de Bogota-Pacos",
+      "course_key": "735;809",
+      "event_id": 104,
+      "event_name": "Astara Golf Championship presented by Mastercard",
+      "latitude": 4.71,
+      "location": "Bogota, Colombia",
+      "longitude": -74.042,
+      "start_date": "2025-02-06",
+      "tour": "kft"
     },
     {
       "course": "TPC Scottsdale (Stadium Course)",
@@ -59,7 +207,8 @@
       "latitude": 33.64,
       "location": "Scottsdale, AZ",
       "longitude": -111.91,
-      "start_date": "2025-02-06"
+      "start_date": "2025-02-06",
+      "tour": "pga"
     },
     {
       "course": "Torrey Pines Golf Course (South Course)",
@@ -69,7 +218,8 @@
       "latitude": 32.905,
       "location": "San Diego, CA",
       "longitude": -117.245,
-      "start_date": "2025-02-13"
+      "start_date": "2025-02-13",
+      "tour": "pga"
     },
     {
       "course": "VidantaWorld",
@@ -79,7 +229,30 @@
       "latitude": 20.7,
       "location": "Vallarta, Mexico",
       "longitude": -105.3,
-      "start_date": "2025-02-20"
+      "start_date": "2025-02-20",
+      "tour": "pga"
+    },
+    {
+      "course": "Muthaiga GC",
+      "course_key": "muthaiga gc",
+      "event_id": "2025109",
+      "event_name": "Magical Kenya Open",
+      "latitude": -1.259,
+      "location": "Nairobi, Kenya",
+      "longitude": 36.837,
+      "start_date": "2025-02-20",
+      "tour": "euro"
+    },
+    {
+      "course": "Jockey Club",
+      "course_key": "107",
+      "event_id": 170,
+      "event_name": "118 Visa Argentina Open presented by Macro",
+      "latitude": -34.486,
+      "location": "San Isidro, Buenos Aires, Argentina",
+      "longitude": -58.533,
+      "start_date": "2025-02-27",
+      "tour": "kft"
     },
     {
       "course": "PGA National Resort (The Champion Course)",
@@ -89,7 +262,41 @@
       "latitude": 26.829,
       "location": "Palm Beach Gardens, FL",
       "longitude": -80.141,
-      "start_date": "2025-02-27"
+      "start_date": "2025-02-27",
+      "tour": "pga"
+    },
+    {
+      "course": "Durban CC",
+      "course_key": "durban country club",
+      "event_id": "2025110",
+      "event_name": "Investec South African Open Championship",
+      "latitude": -29.828,
+      "location": "Durban, South Africa",
+      "longitude": 31.034,
+      "start_date": "2025-02-27",
+      "tour": "euro"
+    },
+    {
+      "course": "Houghton GC",
+      "course_key": "houghton gc",
+      "event_id": "2025111",
+      "event_name": "Joburg Open",
+      "latitude": -26.164,
+      "location": "Johannesburg, South Africa",
+      "longitude": 28.07,
+      "start_date": "2025-03-06",
+      "tour": "euro"
+    },
+    {
+      "course": "Prince of Wales Country Club",
+      "course_key": "776",
+      "event_id": 107,
+      "event_name": "Astara Chile Classic presented by Scotiabank",
+      "latitude": -33.434,
+      "location": "Santiago, Chile",
+      "longitude": -70.566,
+      "start_date": "2025-03-06",
+      "tour": "kft"
     },
     {
       "course": "Arnold Palmer's Bay Hill Club & Lodge",
@@ -99,7 +306,8 @@
       "latitude": 28.458,
       "location": "Bay Hill, FL",
       "longitude": -81.511,
-      "start_date": "2025-03-06"
+      "start_date": "2025-03-06",
+      "tour": "pga"
     },
     {
       "course": "Grand Reserve Golf Club",
@@ -109,7 +317,8 @@
       "latitude": 18.405,
       "location": "Rio Grande, Puerto Rico",
       "longitude": -65.799,
-      "start_date": "2025-03-06"
+      "start_date": "2025-03-06",
+      "tour": "pga"
     },
     {
       "course": "TPC Sawgrass (THE PLAYERS Stadium Course)",
@@ -119,7 +328,8 @@
       "latitude": 30.198,
       "location": "Ponte Vedra Beach, FL",
       "longitude": -81.394,
-      "start_date": "2025-03-13"
+      "start_date": "2025-03-13",
+      "tour": "pga"
     },
     {
       "course": "Innisbrook Resort (Copperhead Course)",
@@ -129,7 +339,19 @@
       "latitude": 28.11,
       "location": "Palm Harbor, FL",
       "longitude": -82.76,
-      "start_date": "2025-03-20"
+      "start_date": "2025-03-20",
+      "tour": "pga"
+    },
+    {
+      "course": "Laguna National Golf Resort Club",
+      "course_key": "laguna national g&cc classic course",
+      "event_id": "2025112",
+      "event_name": "Porsche Singapore Classic",
+      "latitude": 1.323,
+      "location": "Singapore",
+      "longitude": 103.963,
+      "start_date": "2025-03-20",
+      "tour": "euro"
     },
     {
       "course": "Memorial Park Golf Course",
@@ -139,7 +361,19 @@
       "latitude": 29.924,
       "location": "Houston, TX",
       "longitude": -95.261,
-      "start_date": "2025-03-27"
+      "start_date": "2025-03-27",
+      "tour": "pga"
+    },
+    {
+      "course": "DLF G&CC",
+      "course_key": "dlf g&cc player course",
+      "event_id": "2025113",
+      "event_name": "Hero Indian Open",
+      "latitude": 28.455,
+      "location": "Gurgaon, India",
+      "longitude": 77.106,
+      "start_date": "2025-03-27",
+      "tour": "euro"
     },
     {
       "course": "TPC San Antonio (Oaks Course)",
@@ -149,7 +383,19 @@
       "latitude": 29.665,
       "location": "San Antonio, TX",
       "longitude": -98.4,
-      "start_date": "2025-04-03"
+      "start_date": "2025-04-03",
+      "tour": "pga"
+    },
+    {
+      "course": "The Landings Golf & Athletic Club",
+      "course_key": "805",
+      "event_id": 128,
+      "event_name": "Club Car Championship at The Landings Golf & Athletic Club",
+      "latitude": 31.93,
+      "location": "Savannah, GA",
+      "longitude": -81.058,
+      "start_date": "2025-04-03",
+      "tour": "kft"
     },
     {
       "course": "Augusta National Golf Club",
@@ -159,17 +405,19 @@
       "latitude": 33.5,
       "location": "Augusta, GA",
       "longitude": -82.02,
-      "start_date": "2025-04-10"
+      "start_date": "2025-04-10",
+      "tour": "pga"
     },
     {
-      "course": "Harbour Town Golf Links",
-      "course_key": "012",
-      "event_id": 12,
-      "event_name": "RBC Heritage",
-      "latitude": 32.136,
-      "location": "Hilton Head Island, SC",
-      "longitude": -80.81,
-      "start_date": "2025-04-17"
+      "course": "Lakewood National Golf Club",
+      "course_key": "807",
+      "event_id": 129,
+      "event_name": "LECOM Suncoast Classic",
+      "latitude": 27.437,
+      "location": "Lakewood Ranch, FL",
+      "longitude": -82.361,
+      "start_date": "2025-04-16",
+      "tour": "kft"
     },
     {
       "course": "Puntacana Resort & Club (Corales Golf Course)",
@@ -179,7 +427,41 @@
       "latitude": 18.565,
       "location": "Punta Cana, La Altagracia, Dominican Republic",
       "longitude": -68.34,
-      "start_date": "2025-04-17"
+      "start_date": "2025-04-17",
+      "tour": "pga"
+    },
+    {
+      "course": "Enhance Anting GC",
+      "course_key": "enhance anting gc",
+      "event_id": "2025115",
+      "event_name": "Volvo China Open",
+      "latitude": 31.27,
+      "location": "Jiading District, China",
+      "longitude": 121.187,
+      "start_date": "2025-04-17",
+      "tour": "euro"
+    },
+    {
+      "course": "Harbour Town Golf Links",
+      "course_key": "012",
+      "event_id": 12,
+      "event_name": "RBC Heritage",
+      "latitude": 32.136,
+      "location": "Hilton Head Island, SC",
+      "longitude": -80.81,
+      "start_date": "2025-04-17",
+      "tour": "pga"
+    },
+    {
+      "course": "Texas Rangers Golf Club",
+      "course_key": "060",
+      "event_id": 137,
+      "event_name": "Veritex Bank Championship",
+      "latitude": 32.777,
+      "location": "Arlington, TX",
+      "longitude": -97.103,
+      "start_date": "2025-04-24",
+      "tour": "kft"
     },
     {
       "course": "TPC Louisiana",
@@ -189,7 +471,19 @@
       "latitude": 29.902,
       "location": "Avondale, LA",
       "longitude": -90.19,
-      "start_date": "2025-04-24"
+      "start_date": "2025-04-24",
+      "tour": "pga"
+    },
+    {
+      "course": "Blackstone Course, Mission Hills Resort Haikou",
+      "course_key": "blackstone course mission hills",
+      "event_id": "2025139",
+      "event_name": "Hainan Classic",
+      "latitude": 19.91,
+      "location": "Hainan Island, China",
+      "longitude": 110.322,
+      "start_date": "2025-04-24",
+      "tour": "euro"
     },
     {
       "course": "TPC Craig Ranch",
@@ -199,17 +493,30 @@
       "latitude": 33.14,
       "location": "McKinney, TX",
       "longitude": -96.72,
-      "start_date": "2025-05-01"
+      "start_date": "2025-05-01",
+      "tour": "pga"
     },
     {
-      "course": "The Philadelphia Cricket Club (Wissahickon Course)",
-      "course_key": "379",
-      "event_id": 480,
-      "event_name": "Truist Championship",
-      "latitude": 40.109,
-      "location": "Flourtown, PA",
-      "longitude": -75.224,
-      "start_date": "2025-05-08"
+      "course": "PGA Riviera Maya",
+      "course_key": "098",
+      "event_id": 171,
+      "event_name": "Tulum Championship at PGA Riviera Maya",
+      "latitude": 20.375,
+      "location": "Akumal, Quintana Roo, Mexico",
+      "longitude": -87.34,
+      "start_date": "2025-05-01",
+      "tour": "kft"
+    },
+    {
+      "course": "Regnum Carya",
+      "course_key": "regnum carya golf & spa resort",
+      "event_id": "2025140",
+      "event_name": "Turkish Airlines Open",
+      "latitude": 36.863,
+      "location": "Antalya, Turkey",
+      "longitude": 31.004,
+      "start_date": "2025-05-08",
+      "tour": "euro"
     },
     {
       "course": "Dunes Golf and Beach Club",
@@ -219,7 +526,30 @@
       "latitude": 33.758,
       "location": "Myrtle Beach, SC",
       "longitude": -78.796,
-      "start_date": "2025-05-08"
+      "start_date": "2025-05-08",
+      "tour": "pga"
+    },
+    {
+      "course": "The Philadelphia Cricket Club (Wissahickon Course)",
+      "course_key": "379",
+      "event_id": 480,
+      "event_name": "Truist Championship",
+      "latitude": 40.109,
+      "location": "Flourtown, PA",
+      "longitude": -75.224,
+      "start_date": "2025-05-08",
+      "tour": "pga"
+    },
+    {
+      "course": "Blue Hills Country Club",
+      "course_key": "810",
+      "event_id": 100,
+      "event_name": "AdventHealth Championship",
+      "latitude": 38.899,
+      "location": "Kansas City, MO",
+      "longitude": -94.602,
+      "start_date": "2025-05-15",
+      "tour": "kft"
     },
     {
       "course": "Quail Hollow Club",
@@ -229,7 +559,30 @@
       "latitude": 35.116,
       "location": "Charlotte, NC",
       "longitude": -80.842,
-      "start_date": "2025-05-15"
+      "start_date": "2025-05-15",
+      "tour": "pga"
+    },
+    {
+      "course": "Rinkven International GC",
+      "course_key": "rinkven international gc",
+      "event_id": "2025117",
+      "event_name": "Soudal Open",
+      "latitude": 51.281,
+      "location": "Schilde, Belgium",
+      "longitude": 4.576,
+      "start_date": "2025-05-22",
+      "tour": "euro"
+    },
+    {
+      "course": "Holston Hills Country Club",
+      "course_key": "063",
+      "event_id": 11,
+      "event_name": "Visit Knoxville Open",
+      "latitude": 35.995,
+      "location": "Knoxville, TN",
+      "longitude": -83.841,
+      "start_date": "2025-05-22",
+      "tour": "kft"
     },
     {
       "course": "Colonial Country Club",
@@ -239,7 +592,19 @@
       "latitude": 32.717,
       "location": "Fort Worth, TX",
       "longitude": -97.373,
-      "start_date": "2025-05-22"
+      "start_date": "2025-05-22",
+      "tour": "pga"
+    },
+    {
+      "course": "Gut Altentann GC",
+      "course_key": "gut altentann gc",
+      "event_id": "2025143",
+      "event_name": "Austrian Alpine Open presented by SalzburgerLand",
+      "latitude": 47.892,
+      "location": "Wallersee, Austria",
+      "longitude": 13.201,
+      "start_date": "2025-05-29",
+      "tour": "euro"
     },
     {
       "course": "Muirfield Village Golf Club",
@@ -249,7 +614,30 @@
       "latitude": 40.141,
       "location": "Dublin, OH",
       "longitude": -83.141,
-      "start_date": "2025-05-29"
+      "start_date": "2025-05-29",
+      "tour": "pga"
+    },
+    {
+      "course": "Raleigh Country Club",
+      "course_key": "087",
+      "event_id": 48,
+      "event_name": "UNC Health Championship presented by STITCH",
+      "latitude": 35.776,
+      "location": "Raleigh, NC",
+      "longitude": -78.593,
+      "start_date": "2025-05-29",
+      "tour": "kft"
+    },
+    {
+      "course": "Thornblade Club;Carolina Country Club",
+      "course_key": "678;680",
+      "event_id": 37,
+      "event_name": "BMW Charity Pro-Am presented by TD SYNNEX",
+      "latitude": 34.869,
+      "location": "Greer, SC",
+      "longitude": -82.265,
+      "start_date": "2025-06-05",
+      "tour": "kft"
     },
     {
       "course": "TPC Toronto at Osprey Valley (North Course)",
@@ -259,7 +647,19 @@
       "latitude": 43.849,
       "location": "Alton, ON",
       "longitude": -80.043,
-      "start_date": "2025-06-05"
+      "start_date": "2025-06-05",
+      "tour": "pga"
+    },
+    {
+      "course": "The International",
+      "course_key": "international",
+      "event_id": "2025118",
+      "event_name": "KLM Open",
+      "latitude": 52.328,
+      "location": "Badhoevedorp, Netherlands",
+      "longitude": 4.803,
+      "start_date": "2025-06-05",
+      "tour": "euro"
     },
     {
       "course": "Oakmont Country Club",
@@ -269,7 +669,19 @@
       "latitude": 40.526,
       "location": "Oakmont, PA",
       "longitude": -79.827,
-      "start_date": "2025-06-12"
+      "start_date": "2025-06-12",
+      "tour": "pga"
+    },
+    {
+      "course": "Crestview Country Club",
+      "course_key": "641",
+      "event_id": 23,
+      "event_name": "Blue Cross and Blue Shield of Kansas Wichita Open",
+      "latitude": 37.702,
+      "location": "Wichita, KS",
+      "longitude": -97.187,
+      "start_date": "2025-06-19",
+      "tour": "kft"
     },
     {
       "course": "TPC River Highlands",
@@ -279,7 +691,30 @@
       "latitude": 41.632,
       "location": "Hartford, CT",
       "longitude": -72.639,
-      "start_date": "2025-06-19"
+      "start_date": "2025-06-19",
+      "tour": "pga"
+    },
+    {
+      "course": "Panther Creek Country Club",
+      "course_key": "055",
+      "event_id": 122,
+      "event_name": "Memorial Health Championship presented by LRS",
+      "latitude": 39.729,
+      "location": "Springfield, IL",
+      "longitude": -89.712,
+      "start_date": "2025-06-26",
+      "tour": "kft"
+    },
+    {
+      "course": "Argentario GC",
+      "course_key": "argentario gc",
+      "event_id": "2025119",
+      "event_name": "Italian Open",
+      "latitude": 42.419,
+      "location": "Monte Argentario, Italy",
+      "longitude": 11.182,
+      "start_date": "2025-06-26",
+      "tour": "euro"
     },
     {
       "course": "Detroit Golf Club",
@@ -289,7 +724,8 @@
       "latitude": 42.426,
       "location": "Detroit, MI",
       "longitude": -83.126,
-      "start_date": "2025-06-26"
+      "start_date": "2025-06-26",
+      "tour": "pga"
     },
     {
       "course": "TPC Deere Run",
@@ -299,17 +735,19 @@
       "latitude": 41.478,
       "location": "Silvis, IL",
       "longitude": -90.392,
-      "start_date": "2025-07-03"
+      "start_date": "2025-07-03",
+      "tour": "pga"
     },
     {
-      "course": "Hurstbourne Country Club (Championship Course)",
-      "course_key": "934",
-      "event_id": 518,
-      "event_name": "ISCO Championship",
-      "latitude": 38.24,
-      "location": "Louisville, KY",
-      "longitude": -85.591,
-      "start_date": "2025-07-10"
+      "course": "Golfclub M\u00fcnchen Eichenried",
+      "course_key": "golfclub m\u00fcnchen eichenried",
+      "event_id": "2025120",
+      "event_name": "BMW International Open",
+      "latitude": 48.276,
+      "location": "Munich, Germany",
+      "longitude": 11.775,
+      "start_date": "2025-07-03",
+      "tour": "euro"
     },
     {
       "course": "The Renaissance Club",
@@ -319,17 +757,41 @@
       "latitude": 56.051,
       "location": "North Berwick, Scotland",
       "longitude": -2.809,
-      "start_date": "2025-07-10"
+      "start_date": "2025-07-10",
+      "tour": "pga"
     },
     {
-      "course": "Royal Portrush Golf Club",
-      "course_key": "885",
-      "event_id": 100,
-      "event_name": "The Open Championship",
-      "latitude": 55.2,
-      "location": "Portrush, United Kingdom",
-      "longitude": -6.636,
-      "start_date": "2025-07-17"
+      "course": "Hurstbourne Country Club (Championship Course)",
+      "course_key": "934",
+      "event_id": 518,
+      "event_name": "ISCO Championship",
+      "latitude": 38.24,
+      "location": "Louisville, KY",
+      "longitude": -85.591,
+      "start_date": "2025-07-10",
+      "tour": "pga"
+    },
+    {
+      "course": "TPC Colorado",
+      "course_key": "090",
+      "event_id": 130,
+      "event_name": "The Ascendant presented by Blue",
+      "latitude": 40.333,
+      "location": "Berthoud, CO",
+      "longitude": -105.104,
+      "start_date": "2025-07-10",
+      "tour": "kft"
+    },
+    {
+      "course": "Highland Springs Country Club",
+      "course_key": "022",
+      "event_id": 22,
+      "event_name": "Price Cutter Charity Championship presented by Hiland Dairy Foods",
+      "latitude": 37.113,
+      "location": "Springfield, MO",
+      "longitude": -93.218,
+      "start_date": "2025-07-17",
+      "tour": "kft"
     },
     {
       "course": "Tahoe Mountain Club (Old Greenwood)",
@@ -339,7 +801,30 @@
       "latitude": 39.345,
       "location": "Truckee, CA",
       "longitude": -120.143,
-      "start_date": "2025-07-17"
+      "start_date": "2025-07-17",
+      "tour": "pga"
+    },
+    {
+      "course": "Royal Portrush Golf Club",
+      "course_key": "885",
+      "event_id": 100,
+      "event_name": "The Open Championship",
+      "latitude": 55.2,
+      "location": "Portrush, United Kingdom",
+      "longitude": -6.636,
+      "start_date": "2025-07-17",
+      "tour": "pga"
+    },
+    {
+      "course": "The Glen Club",
+      "course_key": "082",
+      "event_id": 131,
+      "event_name": "NV5 Invitational",
+      "latitude": 42.09,
+      "location": "Glenview, IL",
+      "longitude": -87.828,
+      "start_date": "2025-07-24",
+      "tour": "kft"
     },
     {
       "course": "TPC Twin Cities",
@@ -349,7 +834,8 @@
       "latitude": 45.177,
       "location": "Blaine, MN",
       "longitude": -93.213,
-      "start_date": "2025-07-24"
+      "start_date": "2025-07-24",
+      "tour": "pga"
     },
     {
       "course": "Sedgefield Country Club",
@@ -359,7 +845,30 @@
       "latitude": 36.014,
       "location": "Greensboro, NC",
       "longitude": -79.887,
-      "start_date": "2025-07-31"
+      "start_date": "2025-07-31",
+      "tour": "pga"
+    },
+    {
+      "course": "Ogden Golf & Country Club",
+      "course_key": "099",
+      "event_id": 26,
+      "event_name": "Utah Championship presented by Zions Bank and InterMountain Health",
+      "latitude": 41.186,
+      "location": "Ogden, UT",
+      "longitude": -111.974,
+      "start_date": "2025-07-31",
+      "tour": "kft"
+    },
+    {
+      "course": "Trump International Golf Links",
+      "course_key": "trump international golf links",
+      "event_id": "2025125",
+      "event_name": "Nexo Championship",
+      "latitude": 57.277,
+      "location": "Aberdeen, United Kingdom",
+      "longitude": -2.021,
+      "start_date": "2025-08-07",
+      "tour": "euro"
     },
     {
       "course": "TPC Southwind",
@@ -369,7 +878,41 @@
       "latitude": 35.057,
       "location": "Memphis, TN",
       "longitude": -89.779,
-      "start_date": "2025-08-07"
+      "start_date": "2025-08-07",
+      "tour": "pga"
+    },
+    {
+      "course": "The Club at Indian Creek",
+      "course_key": "801",
+      "event_id": 123,
+      "event_name": "Pinnacle Bank Championship presented by Woodhouse",
+      "latitude": 41.295,
+      "location": "Elkhorn, NE",
+      "longitude": -96.23,
+      "start_date": "2025-08-07",
+      "tour": "kft"
+    },
+    {
+      "course": "Hillcrest Country Club",
+      "course_key": "027",
+      "event_id": 27,
+      "event_name": "Albertsons Boise Open presented by Chevron",
+      "latitude": 43.586,
+      "location": "Boise, ID",
+      "longitude": -116.24,
+      "start_date": "2025-08-14",
+      "tour": "kft"
+    },
+    {
+      "course": "Fures\u00f8 Golf Klub",
+      "course_key": "fures\u00f8 golf klub",
+      "event_id": "2025126",
+      "event_name": "Danish Golf Championship",
+      "latitude": 55.832,
+      "location": "Birker\u00f8d, Denmark",
+      "longitude": 12.412,
+      "start_date": "2025-08-14",
+      "tour": "euro"
     },
     {
       "course": "Caves Valley Golf Club",
@@ -379,7 +922,8 @@
       "latitude": 39.452,
       "location": "Owings Mills, MD",
       "longitude": -76.744,
-      "start_date": "2025-08-14"
+      "start_date": "2025-08-14",
+      "tour": "pga"
     },
     {
       "course": "East Lake Golf Club",
@@ -389,7 +933,41 @@
       "latitude": 33.743,
       "location": "Atlanta, GA",
       "longitude": -84.303,
-      "start_date": "2025-08-21"
+      "start_date": "2025-08-21",
+      "tour": "pga"
+    },
+    {
+      "course": "The Belfry",
+      "course_key": "brabazon course at the belfry",
+      "event_id": "2025127",
+      "event_name": "Betfred British Masters hosted by Sir Nick Faldo",
+      "latitude": 52.554,
+      "location": "Sutton Coldfield, England",
+      "longitude": -1.734,
+      "start_date": "2025-08-21",
+      "tour": "euro"
+    },
+    {
+      "course": "Crans-sur-Sierre GC",
+      "course_key": "crans-sur-sierre gc",
+      "event_id": "2025128",
+      "event_name": "Omega European Masters",
+      "latitude": 46.304,
+      "location": "Crans-Montana, Switzerland",
+      "longitude": 7.468,
+      "start_date": "2025-08-28",
+      "tour": "euro"
+    },
+    {
+      "course": "The K Club",
+      "course_key": "k club",
+      "event_id": "2025129",
+      "event_name": "Amgen Irish Open",
+      "latitude": 53.307,
+      "location": "Straffan, Ireland",
+      "longitude": -6.625,
+      "start_date": "2025-09-04",
+      "tour": "euro"
     },
     {
       "course": "Silverado Resort (North Course)",
@@ -399,7 +977,52 @@
       "latitude": 38.349,
       "location": "Napa County, CA",
       "longitude": -122.264,
-      "start_date": "2025-09-11"
+      "start_date": "2025-09-11",
+      "tour": "pga"
+    },
+    {
+      "course": "Wentworth Club",
+      "course_key": "wentworth golf club",
+      "event_id": "2025130",
+      "event_name": "BMW PGA Championship",
+      "latitude": 51.397,
+      "location": "Virgina Water, Surrey, England",
+      "longitude": -0.596,
+      "start_date": "2025-09-11",
+      "tour": "euro"
+    },
+    {
+      "course": "Vanderbilt Legends Club",
+      "course_key": "093",
+      "event_id": 120,
+      "event_name": "Simmons Bank Open for the Snedeker Foundation",
+      "latitude": 35.95,
+      "location": "Franklin, TN",
+      "longitude": -86.843,
+      "start_date": "2025-09-11",
+      "tour": "kft"
+    },
+    {
+      "course": "Ohio State University Golf Club - Scarlet Course",
+      "course_key": "676",
+      "event_id": 94,
+      "event_name": "Nationwide Children's Hospital Championship",
+      "latitude": 40.032,
+      "location": "Columbus, OH",
+      "longitude": -83.053,
+      "start_date": "2025-09-18",
+      "tour": "kft"
+    },
+    {
+      "course": "Golf de Saint-Nom-La-Bret\u00e8che",
+      "course_key": "golf de saint-nom-la-bret\u00e8che",
+      "event_id": "2025131",
+      "event_name": "FedEx Open de France",
+      "latitude": 48.852,
+      "location": "Saint-Nom-la-Bret\u00e8che, France",
+      "longitude": 2.037,
+      "start_date": "2025-09-18",
+      "tour": "euro"
     },
     {
       "course": "TBD",
@@ -409,7 +1032,19 @@
       "latitude": "",
       "location": "",
       "longitude": "",
-      "start_date": "2025-09-25"
+      "start_date": "2025-09-25",
+      "tour": "pga"
+    },
+    {
+      "course": "Old Course St. Andrews",
+      "course_key": "old course st andrews",
+      "event_id": "2025133",
+      "event_name": "Alfred Dunhill Links Championship",
+      "latitude": 56.343,
+      "location": "Fife, Scotland",
+      "longitude": -2.803,
+      "start_date": "2025-10-02",
+      "tour": "euro"
     },
     {
       "course": "The Country Club of Jackson",
@@ -419,7 +1054,19 @@
       "latitude": 32.397,
       "location": "Jackson, MS",
       "longitude": -90.098,
-      "start_date": "2025-10-02"
+      "start_date": "2025-10-02",
+      "tour": "pga"
+    },
+    {
+      "course": "The Patriot Golf Club",
+      "course_key": "096",
+      "event_id": 166,
+      "event_name": "Compliance Solutions Championship",
+      "latitude": 36.239,
+      "location": "Owasso, OK",
+      "longitude": -95.773,
+      "start_date": "2025-10-02",
+      "tour": "kft"
     },
     {
       "course": "Yokohama Country Club",
@@ -429,7 +1076,41 @@
       "latitude": 35.446,
       "location": "Yokohama, Kanagawa, Japan",
       "longitude": 139.549,
-      "start_date": "2025-10-09"
+      "start_date": "2025-10-09",
+      "tour": "pga"
+    },
+    {
+      "course": "French Lick Golf Resort - Pete Dye Course",
+      "course_key": "091",
+      "event_id": 45,
+      "event_name": "Korn Ferry Tour Championship presented by United Leasing & Finance",
+      "latitude": 38.572,
+      "location": "French Lick, IN",
+      "longitude": -86.64,
+      "start_date": "2025-10-09",
+      "tour": "kft"
+    },
+    {
+      "course": "Club de Campo Villa de Madrid",
+      "course_key": "club de campo villa de madrid",
+      "event_id": "2025134",
+      "event_name": "Open de Espa\u00f1a presented by Madrid",
+      "latitude": 40.452,
+      "location": "Madrid, Spain",
+      "longitude": -3.753,
+      "start_date": "2025-10-09",
+      "tour": "euro"
+    },
+    {
+      "course": "Delhi GC",
+      "course_key": "delhi gc",
+      "event_id": "2025141",
+      "event_name": "DP World India Championship",
+      "latitude": 28.6,
+      "location": "Delhi, India",
+      "longitude": 77.238,
+      "start_date": "2025-10-16",
+      "tour": "euro"
     },
     {
       "course": "Black Desert Resort",
@@ -439,7 +1120,19 @@
       "latitude": 37.168,
       "location": "Ivins, UT",
       "longitude": -113.653,
-      "start_date": "2025-10-23"
+      "start_date": "2025-10-23",
+      "tour": "pga"
+    },
+    {
+      "course": "Woo Jeong Hills CC",
+      "course_key": "woo jeong hills cc",
+      "event_id": "2025135",
+      "event_name": "Genesis Championship",
+      "latitude": 36.768,
+      "location": "Cheonan-si, South Korea",
+      "longitude": 127.22,
+      "start_date": "2025-10-23",
+      "tour": "euro"
     },
     {
       "course": "El Cardonal at Diamante",
@@ -449,7 +1142,30 @@
       "latitude": 22.901,
       "location": "Cabo San Lucas, Mexico",
       "longitude": -109.985,
-      "start_date": "2025-11-06"
+      "start_date": "2025-11-06",
+      "tour": "pga"
+    },
+    {
+      "course": "Yas Links",
+      "course_key": "yas links",
+      "event_id": "2025136",
+      "event_name": "Abu Dhabi HSBC Championship",
+      "latitude": 24.5,
+      "location": "Abu Dhabi, UAE",
+      "longitude": 54.6,
+      "start_date": "2025-11-06",
+      "tour": "euro"
+    },
+    {
+      "course": "Earth course",
+      "course_key": "jumeirah golf estates",
+      "event_id": "2025137",
+      "event_name": "DP World Tour Championship",
+      "latitude": 25.014,
+      "location": "Dubai, UAE",
+      "longitude": 55.184,
+      "start_date": "2025-11-13",
+      "tour": "euro"
     },
     {
       "course": "Port Royal Golf Course",
@@ -459,7 +1175,8 @@
       "latitude": 32.261,
       "location": "Southampton, Bermuda",
       "longitude": -64.874,
-      "start_date": "2025-11-13"
+      "start_date": "2025-11-13",
+      "tour": "pga"
     },
     {
       "course": "Sea Island Golf Club (Seaside Course);Sea Island Golf Club (Plantation Course)",
@@ -469,7 +1186,8 @@
       "latitude": 31.202,
       "location": "Sea Island, GA",
       "longitude": -81.332,
-      "start_date": "2025-11-20"
+      "start_date": "2025-11-20",
+      "tour": "pga"
     },
     {
       "course": "Albany GC",
@@ -479,8 +1197,130 @@
       "latitude": 25.004,
       "location": "Albany, The Bahamas",
       "longitude": -77.509,
-      "start_date": "2025-12-04"
+      "start_date": "2025-12-04",
+      "tour": "pga"
+    },
+    {
+      "course": "Riyadh Golf Club",
+      "course_key": "27",
+      "event_id": "52",
+      "event_name": "Riyadh",
+      "latitude": 24.959,
+      "location": "Riyadh, Saudi Arabia",
+      "longitude": 46.576,
+      "start_date": "2026-02-05",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "The Grange Golf Club",
+      "course_key": "12",
+      "event_id": "53",
+      "event_name": "Adelaide",
+      "latitude": -34.888,
+      "location": "Grange, Australia",
+      "longitude": 138.5,
+      "start_date": "2026-02-13",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "Hong Kong Golf Club",
+      "course_key": "20",
+      "event_id": "54",
+      "event_name": "Hong Kong",
+      "latitude": 22.496,
+      "location": "Sheung Shui, Hong Kong",
+      "longitude": 114.121,
+      "start_date": "2026-03-06",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "Sentosa Golf Club",
+      "course_key": "13",
+      "event_id": "55",
+      "event_name": "Singapore",
+      "latitude": 1.244,
+      "location": "Singapore",
+      "longitude": 103.829,
+      "start_date": "2026-03-13",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "The Club at Steyn City",
+      "course_key": "32",
+      "event_id": "56",
+      "event_name": "South Africa",
+      "latitude": -25.972,
+      "location": "Midrand, South Africa",
+      "longitude": 27.996,
+      "start_date": "2026-03-20",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "Club de Golf Chapultepec",
+      "course_key": "28",
+      "event_id": "57",
+      "event_name": "Mexico City",
+      "latitude": 19.43,
+      "location": "Mexico City, Mexico",
+      "longitude": -99.244,
+      "start_date": "2026-04-17",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "Trump National Golf Club Washington",
+      "course_key": "15",
+      "event_id": "58",
+      "event_name": "Virginia",
+      "latitude": 39.052,
+      "location": "Potomac Falls, VA",
+      "longitude": -77.347,
+      "start_date": "2026-05-08",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "Real Club Valderrama",
+      "course_key": "16",
+      "event_id": "59",
+      "event_name": "Andalucia",
+      "latitude": 36.283,
+      "location": "San Roque, C\u00e1diz, Spain",
+      "longitude": -5.327,
+      "start_date": "2026-06-05",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "Bayou Oaks at City Park",
+      "course_key": "33",
+      "event_id": "60",
+      "event_name": "Louisiana",
+      "latitude": 30.014,
+      "location": "New Orleans, LA",
+      "longitude": -90.091,
+      "start_date": "2026-06-26",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "JCB Golf and Country Club",
+      "course_key": "24",
+      "event_id": "61",
+      "event_name": "United Kingdom",
+      "latitude": 52.946,
+      "location": "Rocester, England",
+      "longitude": -1.858,
+      "start_date": "2026-07-24",
+      "tour": "alt (liv golf)"
+    },
+    {
+      "course": "The Club at Chatham Hills",
+      "course_key": "31",
+      "event_id": "62",
+      "event_name": "Indianapolis",
+      "latitude": 40.082,
+      "location": "Westfield, IN",
+      "longitude": -86.139,
+      "start_date": "2026-08-21",
+      "tour": "alt (liv golf)"
     }
   ],
-  "tour": "pga"
+  "tour": "pga, kft, euro, alt (liv golf)"
 }

@@ -9,7 +9,7 @@ ENDPOINT_SAMPLE = "get-schedule"
 
 def main():
     dg = DataGolfClient(BASE_URL)
-    result = dg.get(ENDPOINT_SAMPLE, params={"tour": "pga"})
+    result = dg.get(ENDPOINT_SAMPLE)
     print(json.dumps(result, indent=2))
 
 
