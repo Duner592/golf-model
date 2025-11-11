@@ -742,6 +742,36 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
     raise FileNotFoundError(f"No meta for event_id={event_id} (looked for meta and weather_meta).")
 
 
+# ---------- build schedule from upcoming-events.json ----------
+def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
+    upcoming_file = root / "upcoming-events.json"
+    if not upcoming_file.exists():
+        return
+    upcoming_data = json.loads(upcoming_file.read_text(encoding="utf-8"))
+    schedule = []
+    for event in upcoming_data.get("schedule", []):
+        if event.get("tour", "").lower() == tour.lower():
+            # Use correct keys: assuming "start_date" for date, "event_name" or "name" for event
+            date_str = event.get("start_date") or event.get("date")
+            event_name = event.get("event_name") or event.get("name") or event.get("event")
+            formatted_date = None
+            if date_str:
+                try:
+                    dt = datetime.strptime(date_str, "%Y-%m-%d")
+                    formatted_date = dt.strftime("%d-%m-%Y")
+                except Exception:
+                    formatted_date = date_str  # fallback to original if parsing fails
+            schedule.append(
+                {
+                    "date": formatted_date,
+                    "event": event_name,
+                    "course": event.get("course"),
+                    "location": event.get("location"),  # Include location from upcoming-events.json
+                }
+            )
+    write_json(out_json, schedule)
+
+
 # ---------- main ----------
 def main():
     ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
@@ -754,6 +784,10 @@ def main():
     root = Path(__file__).resolve().parent.parent
     processed_dir = root / "data" / "processed" / TOUR
     preds_dir = root / "data" / "preds" / TOUR
+
+    # Build schedule.json early, independent of event
+    web_dir = root / "web" / TOUR
+    build_schedule_json(root, TOUR, web_dir / "schedule.json")
 
     from src.utils_event import resolve_event_id as _resolve  # centralized resolver
 
@@ -917,6 +951,7 @@ def main():
             "course_fit_weights": ("course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None),
             "course_history_summary": ("course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None),
             "tournament_summary": ("tournament_summary.json" if ts_path.exists() else None),
+            "schedule": ("schedule.json" if (web_dir / "schedule.json").exists() else None),
         },
     }
     write_json(web_dir / "meta.json", meta_out)
@@ -933,6 +968,7 @@ def main():
         "course_history_summary.json",
         "tournament_summary.json",
         "field_teetimes.csv",
+        "schedule.json",
     ]:
         q = web_dir / p
         print("-", q if q.exists() else f"- (not generated) {q}")

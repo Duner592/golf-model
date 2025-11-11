@@ -18,18 +18,19 @@
         <th>Date</th>
         <th>Event</th>
         <th>Course</th>
+        <th>Location</th>
     </tr>
     </thead>
     <tbody></tbody>
 </table>
 <script>
-    fetch('schedule.json')
+    fetch('pga/schedule.json')  // Updated path to match the generated file location
         .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('#schedule-table tbody');
             data.forEach(event => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${event.date}</td><td>${event.event}</td><td>${event.course}</td>`;
+                row.innerHTML = `<td>${event.date || ''}</td><td>${event.event || ''}</td><td>${event.course || ''}</td><td>${event.location || ''}</td>`;
                 tbody.appendChild(row);
             });
         })
