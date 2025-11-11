@@ -18,6 +18,7 @@
         <th>Date</th>
         <th>Event</th>
         <th>Course</th>
+        <th>Location</th>
     </tr>
     </thead>
     <tbody></tbody>
@@ -29,7 +30,7 @@
             const tbody = document.querySelector('#schedule-table tbody');
             data.forEach(event => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${event.date}</td><td>${event.event}</td><td>${event.course}</td>`;
+                row.innerHTML = `<td>${event.date}</td><td>${event.event}</td><td>${event.course}</td><td>${event.location}</td>`;
                 tbody.appendChild(row);
             });
         })

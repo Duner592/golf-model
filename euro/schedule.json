@@ -1,152 +1,212 @@
 [
   {
-    "date": "2025-01-16",
+    "date": "21-11-2024",
+    "event": "BMW Australian PGA Championship",
+    "course": "Royal Queensland GC",
+    "location": "Brisbane, Australia"
+  },
+  {
+    "date": "28-11-2024",
+    "event": "ISPS Handa Australian Open",
+    "course": "Kingston Heath GC",
+    "location": "Melbourne, Victoria, Australia"
+  },
+  {
+    "date": "05-12-2024",
+    "event": "Nedbank Golf Challenge",
+    "course": "Gary Player CC",
+    "location": "Sun City, South Africa"
+  },
+  {
+    "date": "12-12-2024",
+    "event": "Alfred Dunhill Championship",
+    "course": "Leopard Creek CC",
+    "location": "Malalane, South Africa"
+  },
+  {
+    "date": "19-12-2024",
+    "event": "AfrAsia Bank Mauritius Open",
+    "course": "Mont Choisy Le Golf",
+    "location": "Grand-Baie, Mauritius"
+  },
+  {
+    "date": "16-01-2025",
     "event": "Hero Dubai Desert Classic",
-    "course": "Emirates GC"
+    "course": "Emirates GC",
+    "location": "Dubai, UAE"
   },
   {
-    "date": "2025-01-23",
+    "date": "23-01-2025",
     "event": "Ras Al Khaimah Championship",
-    "course": "Al Hamra GC"
+    "course": "Al Hamra GC",
+    "location": "Ras Al Khaimah, UAE"
   },
   {
-    "date": "2025-01-30",
+    "date": "30-01-2025",
     "event": "Bapco Energies Bahrain Championship",
-    "course": "Royal GC"
+    "course": "Royal GC",
+    "location": "Al Mazrowiah, Bahrain"
   },
   {
-    "date": "2025-02-06",
+    "date": "06-02-2025",
     "event": "Commercial Bank Qatar Masters",
-    "course": "Doha GC"
+    "course": "Doha GC",
+    "location": "Doha, Qatar"
   },
   {
-    "date": "2025-02-20",
+    "date": "20-02-2025",
     "event": "Magical Kenya Open",
-    "course": "Muthaiga GC"
+    "course": "Muthaiga GC",
+    "location": "Nairobi, Kenya"
   },
   {
-    "date": "2025-02-27",
+    "date": "27-02-2025",
     "event": "Investec South African Open Championship",
-    "course": "Durban CC"
+    "course": "Durban CC",
+    "location": "Durban, South Africa"
   },
   {
-    "date": "2025-03-06",
+    "date": "06-03-2025",
     "event": "Joburg Open",
-    "course": "Houghton GC"
+    "course": "Houghton GC",
+    "location": "Johannesburg, South Africa"
   },
   {
-    "date": "2025-03-20",
+    "date": "20-03-2025",
     "event": "Porsche Singapore Classic",
-    "course": "Laguna National Golf Resort Club"
+    "course": "Laguna National Golf Resort Club",
+    "location": "Singapore"
   },
   {
-    "date": "2025-03-27",
+    "date": "27-03-2025",
     "event": "Hero Indian Open",
-    "course": "DLF G&CC"
+    "course": "DLF G&CC",
+    "location": "Gurgaon, India"
   },
   {
-    "date": "2025-04-17",
+    "date": "17-04-2025",
     "event": "Volvo China Open",
-    "course": "Enhance Anting GC"
+    "course": "Enhance Anting GC",
+    "location": "Jiading District, China"
   },
   {
-    "date": "2025-04-24",
+    "date": "24-04-2025",
     "event": "Hainan Classic",
-    "course": "Blackstone Course, Mission Hills Resort Haikou"
+    "course": "Blackstone Course, Mission Hills Resort Haikou",
+    "location": "Hainan Island, China"
   },
   {
-    "date": "2025-05-08",
+    "date": "08-05-2025",
     "event": "Turkish Airlines Open",
-    "course": "Regnum Carya"
+    "course": "Regnum Carya",
+    "location": "Antalya, Turkey"
   },
   {
-    "date": "2025-05-22",
+    "date": "22-05-2025",
     "event": "Soudal Open",
-    "course": "Rinkven International GC"
+    "course": "Rinkven International GC",
+    "location": "Schilde, Belgium"
   },
   {
-    "date": "2025-05-29",
+    "date": "29-05-2025",
     "event": "Austrian Alpine Open presented by SalzburgerLand",
-    "course": "Gut Altentann GC"
+    "course": "Gut Altentann GC",
+    "location": "Wallersee, Austria"
   },
   {
-    "date": "2025-06-05",
+    "date": "05-06-2025",
     "event": "KLM Open",
-    "course": "The International"
+    "course": "The International",
+    "location": "Badhoevedorp, Netherlands"
   },
   {
-    "date": "2025-06-26",
+    "date": "26-06-2025",
     "event": "Italian Open",
-    "course": "Argentario GC"
+    "course": "Argentario GC",
+    "location": "Monte Argentario, Italy"
   },
   {
-    "date": "2025-07-03",
+    "date": "03-07-2025",
     "event": "BMW International Open",
-    "course": "Golfclub M\u00fcnchen Eichenried"
+    "course": "Golfclub M\u00fcnchen Eichenried",
+    "location": "Munich, Germany"
   },
   {
-    "date": "2025-08-07",
+    "date": "07-08-2025",
     "event": "Nexo Championship",
-    "course": "Trump International Golf Links"
+    "course": "Trump International Golf Links",
+    "location": "Aberdeen, United Kingdom"
   },
   {
-    "date": "2025-08-14",
+    "date": "14-08-2025",
     "event": "Danish Golf Championship",
-    "course": "Fures\u00f8 Golf Klub"
+    "course": "Fures\u00f8 Golf Klub",
+    "location": "Birker\u00f8d, Denmark"
   },
   {
-    "date": "2025-08-21",
+    "date": "21-08-2025",
     "event": "Betfred British Masters hosted by Sir Nick Faldo",
-    "course": "The Belfry"
+    "course": "The Belfry",
+    "location": "Sutton Coldfield, England"
   },
   {
-    "date": "2025-08-28",
+    "date": "28-08-2025",
     "event": "Omega European Masters",
-    "course": "Crans-sur-Sierre GC"
+    "course": "Crans-sur-Sierre GC",
+    "location": "Crans-Montana, Switzerland"
   },
   {
-    "date": "2025-09-04",
+    "date": "04-09-2025",
     "event": "Amgen Irish Open",
-    "course": "The K Club"
+    "course": "The K Club",
+    "location": "Straffan, Ireland"
   },
   {
-    "date": "2025-09-11",
+    "date": "11-09-2025",
     "event": "BMW PGA Championship",
-    "course": "Wentworth Club"
+    "course": "Wentworth Club",
+    "location": "Virgina Water, Surrey, England"
   },
   {
-    "date": "2025-09-18",
+    "date": "18-09-2025",
     "event": "FedEx Open de France",
-    "course": "Golf de Saint-Nom-La-Bret\u00e8che"
+    "course": "Golf de Saint-Nom-La-Bret\u00e8che",
+    "location": "Saint-Nom-la-Bret\u00e8che, France"
   },
   {
-    "date": "2025-10-02",
+    "date": "02-10-2025",
     "event": "Alfred Dunhill Links Championship",
-    "course": "Old Course St. Andrews"
+    "course": "Old Course St. Andrews",
+    "location": "Fife, Scotland"
   },
   {
-    "date": "2025-10-09",
+    "date": "09-10-2025",
     "event": "Open de Espa\u00f1a presented by Madrid",
-    "course": "Club de Campo Villa de Madrid"
+    "course": "Club de Campo Villa de Madrid",
+    "location": "Madrid, Spain"
   },
   {
-    "date": "2025-10-16",
+    "date": "16-10-2025",
     "event": "DP World India Championship",
-    "course": "Delhi GC"
+    "course": "Delhi GC",
+    "location": "Delhi, India"
   },
   {
-    "date": "2025-10-23",
+    "date": "23-10-2025",
     "event": "Genesis Championship",
-    "course": "Woo Jeong Hills CC"
+    "course": "Woo Jeong Hills CC",
+    "location": "Cheonan-si, South Korea"
   },
   {
-    "date": "2025-11-06",
+    "date": "06-11-2025",
     "event": "Abu Dhabi HSBC Championship",
-    "course": "Yas Links"
+    "course": "Yas Links",
+    "location": "Abu Dhabi, UAE"
   },
   {
-    "date": "2025-11-13",
+    "date": "13-11-2025",
     "event": "DP World Tour Championship",
-    "course": "Earth course"
+    "course": "Earth course",
+    "location": "Dubai, UAE"
   }
 ]
