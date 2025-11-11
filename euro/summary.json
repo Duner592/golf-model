@@ -1,0 +1,12 @@
+{
+  "event_id": "2025137",
+  "event_name": "DP World Tour Championship",
+  "source_csv": "data/preds/euro/event_2025137_dp_world_tour_championship_2025-11-11_leaderboard.csv",
+  "generated_utc": "11-Nov-2025 09:52:17",
+  "metrics": {
+    "field_size": 52,
+    "p_win_max": 0.13013333333333332,
+    "p_win_median": 0.00895,
+    "p_win_sum": 0.9999999999999999
+  }
+}
