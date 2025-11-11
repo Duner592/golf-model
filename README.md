@@ -2,6 +2,7 @@
 
 Purpose
 - Weekly tournament win-probability model (PGA/DPWT) using DataGolf + weather + course features.
+- Hosted @https://duner592.github.io/golf-model/
 
 Quick start
 - python scripts/run_weekly_all.py

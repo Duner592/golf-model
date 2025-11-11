@@ -16,8 +16,9 @@
     </style>
 </head>
 <body>
-<h1>Golf Model Predictions Hub</h1>
+<h1>Eds Golf Model Predictions Hub </h1>
 <p>Weekly summaries for PGA and DP World Tours.</p>
+<p>Prediction Models Generated Using Form/CourseHistory/Weather.</p>
 
 <div class="tour-section" id="pga-section">
     <h2>PGA Tour</h2>
@@ -41,16 +42,15 @@
             const startDate = tournament.start_date || 'TBD';
             const course = tournament.course || 'Unknown Course';
             const fieldSize = tournament.field_size || 'N/A';
-            const yardage = tournament.total_yardage || 'N/A';
             const winners = tournament.previous_winners || [];
-            const recentWinner = winners.length ? `${winners[0].winner} (${winners[0].score})` : 'N/A';
+            const previousWinner = winners.length ? `${winners[0].winner} (${winners[0].score})` : 'N/A';
 
             return `
                 <strong>Event:</strong> ${eventName}<br/>
-                <strong>Date:</strong> ${startDate}<br/>
-                <strong>Course:</strong> ${course} (${yardage} yards)<br/>
+                <strong>Start Date:</strong> ${startDate}<br/>
+                <strong>Course:</strong> ${course}<br/>
                 <strong>Field Size:</strong> ${fieldSize}<br/>
-                <strong>Recent Winner:</strong> ${recentWinner}
+                <strong>Previous Winner:</strong> ${previousWinner}
             `;
         } catch (e) {
             return 'Summary unavailable. Please build assets first.';
