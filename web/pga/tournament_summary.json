@@ -1,35 +1,35 @@
 {
-  "event_name": "Butterfield Bermuda Championship",
-  "course": "Port Royal Golf Course",
+  "event_name": "The RSM Classic",
+  "course": "Sea Island Golf Club (Seaside Course);Sea Island Golf Club (Plantation Course)",
   "total_yardage": null,
-  "course_location": "Southampton, Bermuda",
-  "start_date": "13-Nov-2025",
-  "field_size": 120,
+  "course_location": "Sea Island, GA",
+  "start_date": "20-Nov-2025",
+  "field_size": 152,
   "previous_winners": [
     {
       "year": 2024,
-      "winner": "Campos, Rafael",
-      "score": -19
+      "winner": "McNealy, Maverick",
+      "score": -18
     },
     {
       "year": 2022,
-      "winner": "Power, Seamus",
-      "score": -19
+      "winner": "Svensson, Adam",
+      "score": -21
     },
     {
       "year": 2021,
-      "winner": "Herbert, Lucas",
-      "score": -15
+      "winner": "Gooch, Talor",
+      "score": -24
     },
     {
       "year": 2020,
-      "winner": "Gay, Brian",
-      "score": -15
+      "winner": "Streb, Robert",
+      "score": -21
     },
     {
       "year": 2019,
-      "winner": "Todd, Brendon",
-      "score": -24
+      "winner": "Duncan, Tyler",
+      "score": -21
     }
   ]
 }

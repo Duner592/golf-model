@@ -44,3 +44,9 @@ endpoints:
     required: [ "tour", "event_id", "year" ]
     optional: [ "file_format" ]
     notes: "Raw round-level data for a specific event and year."
+
+  event_list:
+    path: "historical-raw-data/event-list"
+    required: [ "tour", "year" ]
+    optional: [ "file_format" ]
+    notes: "List of historical events for a tour and year."

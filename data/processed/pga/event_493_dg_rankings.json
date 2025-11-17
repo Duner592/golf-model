@@ -1,0 +1,5006 @@
+{
+  "last_updated": "2025-11-17 13:13:09 UTC",
+  "notes": "anyone ranked outside top 500 in OWGR appear as 501",
+  "rankings": [
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 1,
+      "dg_id": 18417,
+      "dg_skill_estimate": 3.21697862552691,
+      "owgr_rank": 1,
+      "player_name": "Scheffler, Scottie",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 2,
+      "dg_id": 12294,
+      "dg_skill_estimate": 2.12032471722071,
+      "owgr_rank": 4,
+      "player_name": "Fleetwood, Tommy",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "NIR",
+      "datagolf_rank": 3,
+      "dg_id": 10091,
+      "dg_skill_estimate": 1.97742316069441,
+      "owgr_rank": 2,
+      "player_name": "McIlroy, Rory",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 4,
+      "dg_id": 19195,
+      "dg_skill_estimate": 1.89304726008725,
+      "owgr_rank": 76,
+      "player_name": "Rahm, Jon",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 5,
+      "dg_id": 24968,
+      "dg_skill_estimate": 1.76503240579385,
+      "owgr_rank": 9,
+      "player_name": "Griffin, Ben",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 6,
+      "dg_id": 14578,
+      "dg_skill_estimate": 1.73472955613104,
+      "owgr_rank": 5,
+      "player_name": "Henley, Russell",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 7,
+      "dg_id": 19895,
+      "dg_skill_estimate": 1.68934403460322,
+      "owgr_rank": 3,
+      "player_name": "Schauffele, Xander",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 8,
+      "dg_id": 19841,
+      "dg_skill_estimate": 1.56860662707388,
+      "owgr_rank": 25,
+      "player_name": "DeChambeau, Bryson",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 9,
+      "dg_id": 17536,
+      "dg_skill_estimate": 1.51615165303379,
+      "owgr_rank": 6,
+      "player_name": "Spaun, J.J.",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 10,
+      "dg_id": 17646,
+      "dg_skill_estimate": 1.50693200099057,
+      "owgr_rank": 24,
+      "player_name": "Fitzpatrick, Matt",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 11,
+      "dg_id": 23323,
+      "dg_skill_estimate": 1.50162598062267,
+      "owgr_rank": 7,
+      "player_name": "MacIntyre, Robert",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 12,
+      "dg_id": 19483,
+      "dg_skill_estimate": 1.47340361996452,
+      "owgr_rank": 27,
+      "player_name": "Burns, Sam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "datagolf_rank": 13,
+      "dg_id": 18841,
+      "dg_skill_estimate": 1.45924043748824,
+      "owgr_rank": 12,
+      "player_name": "Hovland, Viktor",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 14,
+      "dg_id": 26651,
+      "dg_skill_estimate": 1.42866847672103,
+      "owgr_rank": 18,
+      "player_name": "Young, Cameron",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 15,
+      "dg_id": 23950,
+      "dg_skill_estimate": 1.39163803344661,
+      "owgr_rank": 15,
+      "player_name": "Aberg, Ludvig",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 16,
+      "dg_id": 15466,
+      "dg_skill_estimate": 1.35427575625259,
+      "owgr_rank": 22,
+      "player_name": "Cantlay, Patrick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 17,
+      "dg_id": 13872,
+      "dg_skill_estimate": 1.33830461221505,
+      "owgr_rank": 14,
+      "player_name": "Bradley, Keegan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 18,
+      "dg_id": 14577,
+      "dg_skill_estimate": 1.23295848442048,
+      "owgr_rank": 11,
+      "player_name": "English, Harris",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 19,
+      "dg_id": 14139,
+      "dg_skill_estimate": 1.18022653442683,
+      "owgr_rank": 8,
+      "player_name": "Thomas, Justin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 20,
+      "dg_id": 27194,
+      "dg_skill_estimate": 1.15075040687742,
+      "owgr_rank": 55,
+      "player_name": "Hall, Harry",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 21,
+      "dg_id": 18634,
+      "dg_skill_estimate": 1.13302121402197,
+      "owgr_rank": 21,
+      "player_name": "McNealy, Maverick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 22,
+      "dg_id": 10419,
+      "dg_skill_estimate": 1.09530540823108,
+      "owgr_rank": 17,
+      "player_name": "Noren, Alex",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CHI",
+      "datagolf_rank": 23,
+      "dg_id": 18079,
+      "dg_skill_estimate": 1.0940314315914,
+      "owgr_rank": 131,
+      "player_name": "Niemann, Joaquin",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 24,
+      "dg_id": 13562,
+      "dg_skill_estimate": 1.08710456063889,
+      "owgr_rank": 19,
+      "player_name": "Matsuyama, Hideki",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 25,
+      "dg_id": 18554,
+      "dg_skill_estimate": 1.07337762838152,
+      "owgr_rank": 23,
+      "player_name": "Rai, Aaron",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 26,
+      "dg_id": 22085,
+      "dg_skill_estimate": 1.07330893981681,
+      "owgr_rank": 13,
+      "player_name": "Morikawa, Collin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 27,
+      "dg_id": 12965,
+      "dg_skill_estimate": 1.03836994127651,
+      "owgr_rank": 81,
+      "player_name": "Fowler, Rickie",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 28,
+      "dg_id": 14636,
+      "dg_skill_estimate": 1.0193657779321,
+      "owgr_rank": 67,
+      "player_name": "Spieth, Jordan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "IRL",
+      "datagolf_rank": 29,
+      "dg_id": 13900,
+      "dg_skill_estimate": 0.999801123873447,
+      "owgr_rank": 26,
+      "player_name": "Lowry, Shane",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 30,
+      "dg_id": 27774,
+      "dg_skill_estimate": 0.997173760899608,
+      "owgr_rank": 28,
+      "player_name": "Gotterup, Chris",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 31,
+      "dg_id": 23838,
+      "dg_skill_estimate": 0.991730755893518,
+      "owgr_rank": 38,
+      "player_name": "Hojgaard, Rasmus",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 32,
+      "dg_id": 14796,
+      "dg_skill_estimate": 0.988857469222642,
+      "owgr_rank": 20,
+      "player_name": "Hatton, Tyrrell",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "AUT",
+      "datagolf_rank": 33,
+      "dg_id": 17511,
+      "dg_skill_estimate": 0.957444071322113,
+      "owgr_rank": 16,
+      "player_name": "Straka, Sepp",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 34,
+      "dg_id": 17780,
+      "dg_skill_estimate": 0.941332256828535,
+      "owgr_rank": 43,
+      "player_name": "Pendrith, Taylor",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 35,
+      "dg_id": 19870,
+      "dg_skill_estimate": 0.934035215621492,
+      "owgr_rank": 57,
+      "player_name": "McCarthy, Denny",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 36,
+      "dg_id": 14609,
+      "dg_skill_estimate": 0.929807743719266,
+      "owgr_rank": 66,
+      "player_name": "Kim, Si Woo",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 37,
+      "dg_id": 21891,
+      "dg_skill_estimate": 0.927140135639576,
+      "owgr_rank": 34,
+      "player_name": "Kitayama, Kurt",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 38,
+      "dg_id": 26096,
+      "dg_skill_estimate": 0.915554011433003,
+      "owgr_rank": 42,
+      "player_name": "Bhatia, Akshay",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 39,
+      "dg_id": 9771,
+      "dg_skill_estimate": 0.912818826814577,
+      "owgr_rank": 47,
+      "player_name": "Day, Jason",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 40,
+      "dg_id": 17576,
+      "dg_skill_estimate": 0.907332736925864,
+      "owgr_rank": 29,
+      "player_name": "Conners, Corey",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 41,
+      "dg_id": 8825,
+      "dg_skill_estimate": 0.898601362624465,
+      "owgr_rank": 31,
+      "player_name": "Harman, Brian",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 42,
+      "dg_id": 22465,
+      "dg_skill_estimate": 0.832634346096446,
+      "owgr_rank": 30,
+      "player_name": "Penge, Marco",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 43,
+      "dg_id": 24342,
+      "dg_skill_estimate": 0.794565777806785,
+      "owgr_rank": 68,
+      "player_name": "Higgo, Garrick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 44,
+      "dg_id": 23841,
+      "dg_skill_estimate": 0.789373978316355,
+      "owgr_rank": 78,
+      "player_name": "Neergaard-Petersen, Rasmus",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 45,
+      "dg_id": 13412,
+      "dg_skill_estimate": 0.785264629810495,
+      "owgr_rank": 102,
+      "player_name": "Olesen, Thorbjorn",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 46,
+      "dg_id": 28635,
+      "dg_skill_estimate": 0.774427423760704,
+      "owgr_rank": 52,
+      "player_name": "McCarty, Matt",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 47,
+      "dg_id": 23602,
+      "dg_skill_estimate": 0.749468759077241,
+      "owgr_rank": 69,
+      "player_name": "Hojgaard, Nicolai",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 48,
+      "dg_id": 21554,
+      "dg_skill_estimate": 0.749263295340772,
+      "owgr_rank": 54,
+      "player_name": "Poston, J.T.",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "datagolf_rank": 49,
+      "dg_id": 20770,
+      "dg_skill_estimate": 0.724388476257272,
+      "owgr_rank": 501,
+      "player_name": "Munoz, Sebastian",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 50,
+      "dg_id": 12423,
+      "dg_skill_estimate": 0.723336515680371,
+      "owgr_rank": 60,
+      "player_name": "Kirk, Chris",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 51,
+      "dg_id": 6093,
+      "dg_skill_estimate": 0.718779702978214,
+      "owgr_rank": 10,
+      "player_name": "Rose, Justin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 52,
+      "dg_id": 13126,
+      "dg_skill_estimate": 0.696284567049705,
+      "owgr_rank": 46,
+      "player_name": "Taylor, Nick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 53,
+      "dg_id": 18103,
+      "dg_skill_estimate": 0.693968200042822,
+      "owgr_rank": 83,
+      "player_name": "Bezuidenhout, Christiaan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "PHI",
+      "datagolf_rank": 54,
+      "dg_id": 23504,
+      "dg_skill_estimate": 0.681550356881268,
+      "owgr_rank": 72,
+      "player_name": "Hoey, Rico",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 55,
+      "dg_id": 23465,
+      "dg_skill_estimate": 0.68107665808978,
+      "owgr_rank": 32,
+      "player_name": "Greyserman, Max",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 56,
+      "dg_id": 26649,
+      "dg_skill_estimate": 0.665093783418008,
+      "owgr_rank": 74,
+      "player_name": "Thorbjornsen, Michael",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "NIR",
+      "datagolf_rank": 57,
+      "dg_id": 22322,
+      "dg_skill_estimate": 0.653816150676513,
+      "owgr_rank": 79,
+      "player_name": "McKibbin, Tom",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 58,
+      "dg_id": 17543,
+      "dg_skill_estimate": 0.647930777487669,
+      "owgr_rank": 35,
+      "player_name": "Kim, Michael",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 59,
+      "dg_id": 25908,
+      "dg_skill_estimate": 0.641387170872724,
+      "owgr_rank": 107,
+      "player_name": "Whaley, Vince",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 60,
+      "dg_id": 6169,
+      "dg_skill_estimate": 0.637057881297132,
+      "owgr_rank": 130,
+      "player_name": "Kuchar, Matt",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "MEX",
+      "datagolf_rank": 61,
+      "dg_id": 14735,
+      "dg_skill_estimate": 0.629944076938298,
+      "owgr_rank": 162,
+      "player_name": "Ortiz, Carlos",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 62,
+      "dg_id": 7399,
+      "dg_skill_estimate": 0.611627758501472,
+      "owgr_rank": 58,
+      "player_name": "Glover, Lucas",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 63,
+      "dg_id": 30445,
+      "dg_skill_estimate": 0.588005809909756,
+      "owgr_rank": 128,
+      "player_name": "Ayora, Angel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 64,
+      "dg_id": 28984,
+      "dg_skill_estimate": 0.586602542197899,
+      "owgr_rank": 173,
+      "player_name": "Puig, David",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 65,
+      "dg_id": 6430,
+      "dg_skill_estimate": 0.584842211441228,
+      "owgr_rank": 63,
+      "player_name": "Scott, Adam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "TPE",
+      "datagolf_rank": 66,
+      "dg_id": 17881,
+      "dg_skill_estimate": 0.567957149268168,
+      "owgr_rank": 85,
+      "player_name": "Yu, Kevin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "datagolf_rank": 67,
+      "dg_id": 21407,
+      "dg_skill_estimate": 0.567955375893736,
+      "owgr_rank": 56,
+      "player_name": "Reitan, Kristoffer",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 68,
+      "dg_id": 17606,
+      "dg_skill_estimate": 0.565404654872885,
+      "owgr_rank": 53,
+      "player_name": "Berger, Daniel",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "datagolf_rank": 69,
+      "dg_id": 22833,
+      "dg_skill_estimate": 0.549896882315641,
+      "owgr_rank": 59,
+      "player_name": "Echavarria, Nico",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 70,
+      "dg_id": 19396,
+      "dg_skill_estimate": 0.547485115151681,
+      "owgr_rank": 93,
+      "player_name": "Knapp, Jake",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 71,
+      "dg_id": 16841,
+      "dg_skill_estimate": 0.538808748759488,
+      "owgr_rank": 45,
+      "player_name": "Lee, Min Woo",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 72,
+      "dg_id": 32319,
+      "dg_skill_estimate": 0.534053746991256,
+      "owgr_rank": 177,
+      "player_name": "Koivun, Jackson",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 73,
+      "dg_id": 27364,
+      "dg_skill_estimate": 0.531560984589837,
+      "owgr_rank": 91,
+      "player_name": "Thompson, Davis",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "datagolf_rank": 74,
+      "dg_id": 12808,
+      "dg_skill_estimate": 0.522587685631664,
+      "owgr_rank": 100,
+      "player_name": "Grillo, Emiliano",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 75,
+      "dg_id": 11276,
+      "dg_skill_estimate": 0.522146838401716,
+      "owgr_rank": 41,
+      "player_name": "Horschel, Billy",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 76,
+      "dg_id": 24956,
+      "dg_skill_estimate": 0.487265941374232,
+      "owgr_rank": 116,
+      "player_name": "Blanchet, Chandler",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 77,
+      "dg_id": 14502,
+      "dg_skill_estimate": 0.477108551833523,
+      "owgr_rank": 65,
+      "player_name": "Cauley, Bud",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "FIN",
+      "datagolf_rank": 78,
+      "dg_id": 23816,
+      "dg_skill_estimate": 0.465962649418288,
+      "owgr_rank": 98,
+      "player_name": "Valimaki, Sami",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 79,
+      "dg_id": 14838,
+      "dg_skill_estimate": 0.462175781216983,
+      "owgr_rank": 44,
+      "player_name": "Reed, Patrick",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 80,
+      "dg_id": 29197,
+      "dg_skill_estimate": 0.455446803037127,
+      "owgr_rank": 39,
+      "player_name": "Brennan, Michael",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "datagolf_rank": 81,
+      "dg_id": 11889,
+      "dg_skill_estimate": 0.438062213760739,
+      "owgr_rank": 40,
+      "player_name": "Fox, Ryan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 82,
+      "dg_id": 20706,
+      "dg_skill_estimate": 0.427110516292764,
+      "owgr_rank": 70,
+      "player_name": "Wallace, Matt",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 83,
+      "dg_id": 28309,
+      "dg_skill_estimate": 0.424024136125081,
+      "owgr_rank": 99,
+      "player_name": "Coody, Pierceson",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 84,
+      "dg_id": 19729,
+      "dg_skill_estimate": 0.415638043053614,
+      "owgr_rank": 117,
+      "player_name": "Kanaya, Takumi",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 85,
+      "dg_id": 29433,
+      "dg_skill_estimate": 0.414147873100574,
+      "owgr_rank": 71,
+      "player_name": "Bridgeman, Jacob",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 86,
+      "dg_id": 20722,
+      "dg_skill_estimate": 0.405083348064611,
+      "owgr_rank": 86,
+      "player_name": "Schmid, Matti",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 87,
+      "dg_id": 23475,
+      "dg_skill_estimate": 0.395995076936658,
+      "owgr_rank": 33,
+      "player_name": "Novak, Andrew",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 88,
+      "dg_id": 18586,
+      "dg_skill_estimate": 0.395516018047908,
+      "owgr_rank": 88,
+      "player_name": "Smith, Jordan",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 89,
+      "dg_id": 23604,
+      "dg_skill_estimate": 0.391422082327508,
+      "owgr_rank": 36,
+      "player_name": "Clark, Wyndham",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 90,
+      "dg_id": 28159,
+      "dg_skill_estimate": 0.389824828129454,
+      "owgr_rank": 105,
+      "player_name": "Meissner, Mac",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 91,
+      "dg_id": 23505,
+      "dg_skill_estimate": 0.388205359911698,
+      "owgr_rank": 106,
+      "player_name": "McGreevy, Max",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 92,
+      "dg_id": 17538,
+      "dg_skill_estimate": 0.369914361187951,
+      "owgr_rank": 133,
+      "player_name": "Homa, Max",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 93,
+      "dg_id": 20730,
+      "dg_skill_estimate": 0.365763947613179,
+      "owgr_rank": 122,
+      "player_name": "Perez, Victor",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 94,
+      "dg_id": 18474,
+      "dg_skill_estimate": 0.364978609635629,
+      "owgr_rank": 120,
+      "player_name": "Smalley, Alex",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "MEX",
+      "datagolf_rank": 95,
+      "dg_id": 18238,
+      "dg_skill_estimate": 0.363981276094836,
+      "owgr_rank": 501,
+      "player_name": "Ancer, Abraham",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 96,
+      "dg_id": 26991,
+      "dg_skill_estimate": 0.362775346890579,
+      "owgr_rank": 152,
+      "player_name": "Schaper, Jayden",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 97,
+      "dg_id": 14013,
+      "dg_skill_estimate": 0.339855065054154,
+      "owgr_rank": 501,
+      "player_name": "Tringale, Cameron",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 98,
+      "dg_id": 29767,
+      "dg_skill_estimate": 0.31219259058239,
+      "owgr_rank": 49,
+      "player_name": "Gerard, Ryan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 99,
+      "dg_id": 13764,
+      "dg_skill_estimate": 0.293157637027118,
+      "owgr_rank": 94,
+      "player_name": "Parry, John",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 100,
+      "dg_id": 17365,
+      "dg_skill_estimate": 0.282409427937097,
+      "owgr_rank": 127,
+      "player_name": "Mitchell, Keith",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 101,
+      "dg_id": 21074,
+      "dg_skill_estimate": 0.28163074683372,
+      "owgr_rank": 103,
+      "player_name": "Nakajima, Keita",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 102,
+      "dg_id": 32457,
+      "dg_skill_estimate": 0.278235873412831,
+      "owgr_rank": 50,
+      "player_name": "Keefer, Johnny",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 103,
+      "dg_id": 12577,
+      "dg_skill_estimate": 0.277507811096745,
+      "owgr_rank": 118,
+      "player_name": "Woodland, Gary",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "FIN",
+      "datagolf_rank": 104,
+      "dg_id": 20085,
+      "dg_skill_estimate": 0.268632257925014,
+      "owgr_rank": 170,
+      "player_name": "Lindell, Oliver",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 105,
+      "dg_id": 21756,
+      "dg_skill_estimate": 0.268069489003335,
+      "owgr_rank": 110,
+      "player_name": "Cole, Eric",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "BEL",
+      "datagolf_rank": 106,
+      "dg_id": 22002,
+      "dg_skill_estimate": 0.265010588561185,
+      "owgr_rank": 154,
+      "player_name": "Dumont De Chassart, Adrien",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 107,
+      "dg_id": 25569,
+      "dg_skill_estimate": 0.259932922231252,
+      "owgr_rank": 48,
+      "player_name": "Stevens, Sam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 108,
+      "dg_id": 17488,
+      "dg_skill_estimate": 0.255155069716698,
+      "owgr_rank": 37,
+      "player_name": "Im, Sungjae",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 109,
+      "dg_id": 15856,
+      "dg_skill_estimate": 0.245194409547808,
+      "owgr_rank": 333,
+      "player_name": "Smith, Cameron",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 110,
+      "dg_id": 14459,
+      "dg_skill_estimate": 0.237846796440089,
+      "owgr_rank": 89,
+      "player_name": "An, Byeong Hun",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 111,
+      "dg_id": 24550,
+      "dg_skill_estimate": 0.214303829304226,
+      "owgr_rank": 150,
+      "player_name": "Ghim, Doug",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "BEL",
+      "datagolf_rank": 112,
+      "dg_id": 14181,
+      "dg_skill_estimate": 0.205603645126593,
+      "owgr_rank": 51,
+      "player_name": "Detry, Thomas",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 113,
+      "dg_id": 20766,
+      "dg_skill_estimate": 0.205035121217932,
+      "owgr_rank": 77,
+      "player_name": "Brown, Daniel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 114,
+      "dg_id": 15556,
+      "dg_skill_estimate": 0.193110156534166,
+      "owgr_rank": 87,
+      "player_name": "Hughes, Mackenzie",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "BEL",
+      "datagolf_rank": 115,
+      "dg_id": 13944,
+      "dg_skill_estimate": 0.192175414052227,
+      "owgr_rank": 501,
+      "player_name": "Pieters, Thomas",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 116,
+      "dg_id": 18580,
+      "dg_skill_estimate": 0.187180822396239,
+      "owgr_rank": 501,
+      "player_name": "Gooch, Talor",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "datagolf_rank": 117,
+      "dg_id": 21362,
+      "dg_skill_estimate": 0.182729941419582,
+      "owgr_rank": 161,
+      "player_name": "Hillier, Daniel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 118,
+      "dg_id": 32055,
+      "dg_skill_estimate": 0.181615637535539,
+      "owgr_rank": 92,
+      "player_name": "Shipley, Neal",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 119,
+      "dg_id": 7334,
+      "dg_skill_estimate": 0.181392989415791,
+      "owgr_rank": 501,
+      "player_name": "Watson, Bubba",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 120,
+      "dg_id": 5689,
+      "dg_skill_estimate": 0.177462811803171,
+      "owgr_rank": 467,
+      "player_name": "Garcia, Sergio",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "VEN",
+      "datagolf_rank": 121,
+      "dg_id": 13508,
+      "dg_skill_estimate": 0.172753591894032,
+      "owgr_rank": 82,
+      "player_name": "Vegas, Jhonattan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "datagolf_rank": 122,
+      "dg_id": 15651,
+      "dg_skill_estimate": 0.170977306932646,
+      "owgr_rank": 211,
+      "player_name": "Ventura, Kris",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "IRL",
+      "datagolf_rank": 123,
+      "dg_id": 10104,
+      "dg_skill_estimate": 0.167718715132398,
+      "owgr_rank": 171,
+      "player_name": "Power, Seamus",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 124,
+      "dg_id": 29770,
+      "dg_skill_estimate": 0.166201560523865,
+      "owgr_rank": 113,
+      "player_name": "Mouw, William",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 125,
+      "dg_id": 26657,
+      "dg_skill_estimate": 0.160486981123878,
+      "owgr_rank": 104,
+      "player_name": "Fisk, Steven",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 126,
+      "dg_id": 15470,
+      "dg_skill_estimate": 0.147464245241502,
+      "owgr_rank": 124,
+      "player_name": "Hossler, Beau",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 127,
+      "dg_id": 26653,
+      "dg_skill_estimate": 0.13629873223161,
+      "owgr_rank": 111,
+      "player_name": "Eckroat, Austin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 128,
+      "dg_id": 25094,
+      "dg_skill_estimate": 0.130014786414946,
+      "owgr_rank": 126,
+      "player_name": "Fishburn, Patrick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 129,
+      "dg_id": 16333,
+      "dg_skill_estimate": 0.128134698033195,
+      "owgr_rank": 115,
+      "player_name": "Hubbard, Mark",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 130,
+      "dg_id": 16394,
+      "dg_skill_estimate": 0.12455472724144,
+      "owgr_rank": 101,
+      "player_name": "Jaeger, Stephan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "datagolf_rank": 131,
+      "dg_id": 15310,
+      "dg_skill_estimate": 0.118713801642714,
+      "owgr_rank": 84,
+      "player_name": "Li, Haotong",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 132,
+      "dg_id": 16283,
+      "dg_skill_estimate": 0.103708428684659,
+      "owgr_rank": 119,
+      "player_name": "Rodgers, Patrick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 133,
+      "dg_id": 7672,
+      "dg_skill_estimate": 0.089803863915782,
+      "owgr_rank": 429,
+      "player_name": "Oosthuizen, Louis",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "datagolf_rank": 134,
+      "dg_id": 16757,
+      "dg_skill_estimate": 0.089206359424513,
+      "owgr_rank": 217,
+      "player_name": "Dou, Zecheng",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 135,
+      "dg_id": 27164,
+      "dg_skill_estimate": 0.0885104216807365,
+      "owgr_rank": 146,
+      "player_name": "Phillips, Chandler",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 136,
+      "dg_id": 14795,
+      "dg_skill_estimate": 0.0861125044451875,
+      "owgr_rank": 62,
+      "player_name": "Canter, Laurie",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 137,
+      "dg_id": 7398,
+      "dg_skill_estimate": 0.0837417498467282,
+      "owgr_rank": 484,
+      "player_name": "Schwartzel, Charl",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 138,
+      "dg_id": 7649,
+      "dg_skill_estimate": 0.0831486400422479,
+      "owgr_rank": 438,
+      "player_name": "Leishman, Marc",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 139,
+      "dg_id": 21995,
+      "dg_skill_estimate": 0.0769580388317919,
+      "owgr_rank": 194,
+      "player_name": "Springer, Hayden",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 140,
+      "dg_id": 18424,
+      "dg_skill_estimate": 0.0762843035078332,
+      "owgr_rank": 137,
+      "player_name": "Roy, Kevin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 141,
+      "dg_id": 6892,
+      "dg_skill_estimate": 0.0697799074578758,
+      "owgr_rank": 501,
+      "player_name": "Howell III, Charles",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 142,
+      "dg_id": 24766,
+      "dg_skill_estimate": 0.0675236210637559,
+      "owgr_rank": 96,
+      "player_name": "Kim, Tom",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 143,
+      "dg_id": 22736,
+      "dg_skill_estimate": 0.0569099225600447,
+      "owgr_rank": 254,
+      "player_name": "Rosenmueller, Thomas",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 144,
+      "dg_id": 12422,
+      "dg_skill_estimate": 0.0519973671357989,
+      "owgr_rank": 501,
+      "player_name": "Johnson, Dustin",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "NED",
+      "datagolf_rank": 145,
+      "dg_id": 10158,
+      "dg_skill_estimate": 0.0420741542370865,
+      "owgr_rank": 172,
+      "player_name": "Luiten, Joost",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 146,
+      "dg_id": 7108,
+      "dg_skill_estimate": 0.0399346385172888,
+      "owgr_rank": 501,
+      "player_name": "Casey, Paul",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 147,
+      "dg_id": 19840,
+      "dg_skill_estimate": 0.0389669400079158,
+      "owgr_rank": 169,
+      "player_name": "Ramey, Chad",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 148,
+      "dg_id": 15326,
+      "dg_skill_estimate": 0.0332845659187082,
+      "owgr_rank": 142,
+      "player_name": "Sullivan, Andy",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 149,
+      "dg_id": 11676,
+      "dg_skill_estimate": 0.0310392261288299,
+      "owgr_rank": 80,
+      "player_name": "Finau, Tony",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 150,
+      "dg_id": 14987,
+      "dg_skill_estimate": 0.029172527274579,
+      "owgr_rank": 216,
+      "player_name": "Laporta, Francesco",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 151,
+      "dg_id": 23014,
+      "dg_skill_estimate": 0.0275053203754528,
+      "owgr_rank": 97,
+      "player_name": "Theegala, Sahith",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 152,
+      "dg_id": 25442,
+      "dg_skill_estimate": 0.0072957566552434,
+      "owgr_rank": 179,
+      "player_name": "Montgomery, Taylor",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 153,
+      "dg_id": 25157,
+      "dg_skill_estimate": 0.0063512718347811,
+      "owgr_rank": 159,
+      "player_name": "Hodges, Lee",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 154,
+      "dg_id": 26913,
+      "dg_skill_estimate": 0.005157798577001,
+      "owgr_rank": 278,
+      "player_name": "Phillips, Trent",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 155,
+      "dg_id": 14424,
+      "dg_skill_estimate": 0.0007589755825414,
+      "owgr_rank": 371,
+      "player_name": "Burmester, Dean",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 156,
+      "dg_id": 16243,
+      "dg_skill_estimate": -9.73592629703287e-05,
+      "owgr_rank": 234,
+      "player_name": "Koepka, Brooks",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 157,
+      "dg_id": 14792,
+      "dg_skill_estimate": -0.0220755011255064,
+      "owgr_rank": 73,
+      "player_name": "Saddier, Adrien",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 158,
+      "dg_id": 11952,
+      "dg_skill_estimate": -0.0272542943157691,
+      "owgr_rank": 501,
+      "player_name": "Grace, Branden",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 159,
+      "dg_id": 23656,
+      "dg_skill_estimate": -0.0297873833721934,
+      "owgr_rank": 164,
+      "player_name": "Young, Carson",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 160,
+      "dg_id": 25611,
+      "dg_skill_estimate": -0.0359387294852522,
+      "owgr_rank": 157,
+      "player_name": "Olesen, Jacob Skov",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 161,
+      "dg_id": 27819,
+      "dg_skill_estimate": -0.0515379114421679,
+      "owgr_rank": 264,
+      "player_name": "Castillo, Ricky",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 162,
+      "dg_id": 15676,
+      "dg_skill_estimate": -0.0516878497905366,
+      "owgr_rank": 144,
+      "player_name": "Norgaard, Niklas",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 163,
+      "dg_id": 24343,
+      "dg_skill_estimate": -0.0564674537399467,
+      "owgr_rank": 143,
+      "player_name": "Lamprecht, Christo",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 164,
+      "dg_id": 6986,
+      "dg_skill_estimate": -0.0587154161065181,
+      "owgr_rank": 253,
+      "player_name": "Johnson, Zach",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 165,
+      "dg_id": 26850,
+      "dg_skill_estimate": -0.0587164220209778,
+      "owgr_rank": 134,
+      "player_name": "Svensson, Jesper",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 166,
+      "dg_id": 23482,
+      "dg_skill_estimate": -0.0596920853594397,
+      "owgr_rank": 254,
+      "player_name": "Sigg, Greyson",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 167,
+      "dg_id": 14704,
+      "dg_skill_estimate": -0.0641410772689572,
+      "owgr_rank": 176,
+      "player_name": "Putnam, Andrew",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 168,
+      "dg_id": 28268,
+      "dg_skill_estimate": -0.0762177806677726,
+      "owgr_rank": 167,
+      "player_name": "Kaneko, Kota",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 169,
+      "dg_id": 21944,
+      "dg_skill_estimate": -0.0884065180140284,
+      "owgr_rank": 147,
+      "player_name": "Moore, Taylor",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 170,
+      "dg_id": 18105,
+      "dg_skill_estimate": -0.100756487095564,
+      "owgr_rank": 61,
+      "player_name": "Lawrence, Thriston",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ZIM",
+      "datagolf_rank": 171,
+      "dg_id": 14559,
+      "dg_skill_estimate": -0.101043981409755,
+      "owgr_rank": 156,
+      "player_name": "Vincent, Scott",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 172,
+      "dg_id": 24200,
+      "dg_skill_estimate": -0.101827017760962,
+      "owgr_rank": 141,
+      "player_name": "Smylie, Elvis",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 173,
+      "dg_id": 32330,
+      "dg_skill_estimate": -0.102793026283882,
+      "owgr_rank": 158,
+      "player_name": "Clanton, Luke",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 174,
+      "dg_id": 17381,
+      "dg_skill_estimate": -0.1108144325566,
+      "owgr_rank": 220,
+      "player_name": "Silverman, Ben",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 175,
+      "dg_id": 29279,
+      "dg_skill_estimate": -0.1117856139019,
+      "owgr_rank": 178,
+      "player_name": "Suber, Jackson",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 176,
+      "dg_id": 11049,
+      "dg_skill_estimate": -0.116887177773966,
+      "owgr_rank": 468,
+      "player_name": "Simpson, Webb",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 177,
+      "dg_id": 24837,
+      "dg_skill_estimate": -0.117601398168849,
+      "owgr_rank": 259,
+      "player_name": "Goodwin, Noah",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 178,
+      "dg_id": 15330,
+      "dg_skill_estimate": -0.13088668872131,
+      "owgr_rank": 181,
+      "player_name": "Griffin, Lanto",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 179,
+      "dg_id": 15980,
+      "dg_skill_estimate": -0.131760685494592,
+      "owgr_rank": 136,
+      "player_name": "Lipsky, David",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "IND",
+      "datagolf_rank": 180,
+      "dg_id": 12669,
+      "dg_skill_estimate": -0.13300306101763,
+      "owgr_rank": 501,
+      "player_name": "Lahiri, Anirban",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 181,
+      "dg_id": 21880,
+      "dg_skill_estimate": -0.136779260097523,
+      "owgr_rank": 285,
+      "player_name": "Cone, Trevor",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 182,
+      "dg_id": 8820,
+      "dg_skill_estimate": -0.141431616123855,
+      "owgr_rank": 276,
+      "player_name": "Snedeker, Brandt",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 183,
+      "dg_id": 16715,
+      "dg_skill_estimate": -0.146031180261989,
+      "owgr_rank": 201,
+      "player_name": "Ryder, Sam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "MEX",
+      "datagolf_rank": 184,
+      "dg_id": 28016,
+      "dg_skill_estimate": -0.147529162345543,
+      "owgr_rank": 151,
+      "player_name": "Gonzalez, Emilio",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 185,
+      "dg_id": 21943,
+      "dg_skill_estimate": -0.150310714003153,
+      "owgr_rank": 188,
+      "player_name": "Lebioda, Hank",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 186,
+      "dg_id": 17639,
+      "dg_skill_estimate": -0.161583209596371,
+      "owgr_rank": 289,
+      "player_name": "Blair, Zac",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 187,
+      "dg_id": 22985,
+      "dg_skill_estimate": -0.192834622258622,
+      "owgr_rank": 129,
+      "player_name": "Smotherman, Austin",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 188,
+      "dg_id": 25362,
+      "dg_skill_estimate": -0.193587713470546,
+      "owgr_rank": 212,
+      "player_name": "Fitzpatrick, Alex",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 189,
+      "dg_id": 22608,
+      "dg_skill_estimate": -0.200673055528279,
+      "owgr_rank": 202,
+      "player_name": "Clements, Todd",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 190,
+      "dg_id": 31192,
+      "dg_skill_estimate": -0.206232693140216,
+      "owgr_rank": 296,
+      "player_name": "Steelman, Ross",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 191,
+      "dg_id": 28157,
+      "dg_skill_estimate": -0.215616502187803,
+      "owgr_rank": 313,
+      "player_name": "Vaillant, Tom",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 192,
+      "dg_id": 22087,
+      "dg_skill_estimate": -0.217204189344086,
+      "owgr_rank": 272,
+      "player_name": "Paul, Jeremy",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 193,
+      "dg_id": 6516,
+      "dg_skill_estimate": -0.21738193297118,
+      "owgr_rank": 501,
+      "player_name": "Bland, Richard",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 194,
+      "dg_id": 10943,
+      "dg_skill_estimate": -0.217939300398429,
+      "owgr_rank": 288,
+      "player_name": "Lashley, Nate",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 195,
+      "dg_id": 25002,
+      "dg_skill_estimate": -0.218471942116761,
+      "owgr_rank": 342,
+      "player_name": "Wu, Dylan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 196,
+      "dg_id": 14509,
+      "dg_skill_estimate": -0.219183667841675,
+      "owgr_rank": 199,
+      "player_name": "Dahmen, Joel",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "datagolf_rank": 197,
+      "dg_id": 26193,
+      "dg_skill_estimate": -0.220392766889273,
+      "owgr_rank": 262,
+      "player_name": "Ding, Wenyi",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 198,
+      "dg_id": 19477,
+      "dg_skill_estimate": -0.223429078322434,
+      "owgr_rank": 132,
+      "player_name": "Schenk, Adam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 199,
+      "dg_id": 29827,
+      "dg_skill_estimate": -0.226262150340763,
+      "owgr_rank": 501,
+      "player_name": "James, Ben",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 200,
+      "dg_id": 17813,
+      "dg_skill_estimate": -0.230469936585505,
+      "owgr_rank": 206,
+      "player_name": "Armitage, Marcus",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 201,
+      "dg_id": 16475,
+      "dg_skill_estimate": -0.233783760964231,
+      "owgr_rank": 168,
+      "player_name": "Forrest, Grant",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 202,
+      "dg_id": 21646,
+      "dg_skill_estimate": -0.241285364984141,
+      "owgr_rank": 163,
+      "player_name": "Ferguson, Ewen",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 203,
+      "dg_id": 15575,
+      "dg_skill_estimate": -0.24185340261993,
+      "owgr_rank": 90,
+      "player_name": "Hoge, Tom",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 204,
+      "dg_id": 30620,
+      "dg_skill_estimate": -0.242113679339144,
+      "owgr_rank": 209,
+      "player_name": "Chatfield, Davis",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 205,
+      "dg_id": 13965,
+      "dg_skill_estimate": -0.242663874649397,
+      "owgr_rank": 214,
+      "player_name": "Hadwin, Adam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 206,
+      "dg_id": 18770,
+      "dg_skill_estimate": -0.24891897058538,
+      "owgr_rank": 166,
+      "player_name": "Rozner, Antoine",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 207,
+      "dg_id": 27780,
+      "dg_skill_estimate": -0.250313806719301,
+      "owgr_rank": 175,
+      "player_name": "Crowe, Trace",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 208,
+      "dg_id": 26126,
+      "dg_skill_estimate": -0.252212987101293,
+      "owgr_rank": 270,
+      "player_name": "Meissner, Mitchell",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 209,
+      "dg_id": 15756,
+      "dg_skill_estimate": -0.253714515994983,
+      "owgr_rank": 112,
+      "player_name": "Higa, Kazuki",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 210,
+      "dg_id": 17064,
+      "dg_skill_estimate": -0.256543504731931,
+      "owgr_rank": 280,
+      "player_name": "Herbert, Lucas",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 211,
+      "dg_id": 27183,
+      "dg_skill_estimate": -0.258344174157386,
+      "owgr_rank": 195,
+      "player_name": "Salinda, Isaiah",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 212,
+      "dg_id": 14016,
+      "dg_skill_estimate": -0.260413495813018,
+      "owgr_rank": 153,
+      "player_name": "Campillo, Jorge",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 213,
+      "dg_id": 14780,
+      "dg_skill_estimate": -0.260718413610954,
+      "owgr_rank": 114,
+      "player_name": "Lagergren, Joakim",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 214,
+      "dg_id": 20727,
+      "dg_skill_estimate": -0.261800678679424,
+      "owgr_rank": 236,
+      "player_name": "Coussaud, Ugo",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 215,
+      "dg_id": 25131,
+      "dg_skill_estimate": -0.270936363825719,
+      "owgr_rank": 186,
+      "player_name": "Hill, Calum",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 216,
+      "dg_id": 16395,
+      "dg_skill_estimate": -0.281911726679436,
+      "owgr_rank": 252,
+      "player_name": "Kohles, Ben",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 217,
+      "dg_id": 5768,
+      "dg_skill_estimate": -0.284560103966433,
+      "owgr_rank": 210,
+      "player_name": "Hoffman, Charley",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 218,
+      "dg_id": 11117,
+      "dg_skill_estimate": -0.287071816839492,
+      "owgr_rank": 439,
+      "player_name": "Noh, S.Y.",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 219,
+      "dg_id": 14698,
+      "dg_skill_estimate": -0.288895611767039,
+      "owgr_rank": 328,
+      "player_name": "Bramlett, Joseph",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 220,
+      "dg_id": 26745,
+      "dg_skill_estimate": -0.290509988650713,
+      "owgr_rank": 148,
+      "player_name": "Chacarra, Eugenio",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 221,
+      "dg_id": 27900,
+      "dg_skill_estimate": -0.297861082979447,
+      "owgr_rank": 75,
+      "player_name": "Potgieter, Aldrich",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 222,
+      "dg_id": 25319,
+      "dg_skill_estimate": -0.303869477429056,
+      "owgr_rank": 257,
+      "player_name": "VanDerLaan, John",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 223,
+      "dg_id": 24490,
+      "dg_skill_estimate": -0.30543153397836,
+      "owgr_rank": 290,
+      "player_name": "Galletti, Nicolo",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 224,
+      "dg_id": 19844,
+      "dg_skill_estimate": -0.306857849261652,
+      "owgr_rank": 243,
+      "player_name": "Kaewkanjana, Sadom",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 225,
+      "dg_id": 19846,
+      "dg_skill_estimate": -0.309451029213582,
+      "owgr_rank": 204,
+      "player_name": "Bauchou, Zach",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 226,
+      "dg_id": 25475,
+      "dg_skill_estimate": -0.310799342558463,
+      "owgr_rank": 250,
+      "player_name": "Nyholm, Pontus",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 227,
+      "dg_id": 22760,
+      "dg_skill_estimate": -0.312628317213563,
+      "owgr_rank": 123,
+      "player_name": "Hisatsune, Ryo",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 228,
+      "dg_id": 10873,
+      "dg_skill_estimate": -0.324355152315483,
+      "owgr_rank": 249,
+      "player_name": "Skinns, David",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 229,
+      "dg_id": 21688,
+      "dg_skill_estimate": -0.332115178261967,
+      "owgr_rank": 160,
+      "player_name": "Kim, S.H.",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "datagolf_rank": 230,
+      "dg_id": 4871,
+      "dg_skill_estimate": -0.332121873266412,
+      "owgr_rank": 501,
+      "player_name": "Alker, Steven",
+      "primary_tour": "CHAMP"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 231,
+      "dg_id": 17550,
+      "dg_skill_estimate": -0.333173040635092,
+      "owgr_rank": 108,
+      "player_name": "Van Rooyen, Erik",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 232,
+      "dg_id": 20084,
+      "dg_skill_estimate": -0.334093058240521,
+      "owgr_rank": 273,
+      "player_name": "Lindberg, Mikael",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 233,
+      "dg_id": 24497,
+      "dg_skill_estimate": -0.338078601537093,
+      "owgr_rank": 227,
+      "player_name": "Robinson Thompson, Brandon",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 234,
+      "dg_id": 5665,
+      "dg_skill_estimate": -0.338459361200317,
+      "owgr_rank": 501,
+      "player_name": "Cink, Stewart",
+      "primary_tour": "CHAMP"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 235,
+      "dg_id": 23542,
+      "dg_skill_estimate": -0.347619981937481,
+      "owgr_rank": 292,
+      "player_name": "Champ, Cameron",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 236,
+      "dg_id": 25601,
+      "dg_skill_estimate": -0.347811386842822,
+      "owgr_rank": 182,
+      "player_name": "Jordan, Matthew",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 237,
+      "dg_id": 11460,
+      "dg_skill_estimate": -0.34850328302511,
+      "owgr_rank": 193,
+      "player_name": "Manassero, Matteo",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 238,
+      "dg_id": 12522,
+      "dg_skill_estimate": -0.352201225222979,
+      "owgr_rank": 246,
+      "player_name": "Schneider, Marcel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 239,
+      "dg_id": 18628,
+      "dg_skill_estimate": -0.358497486911477,
+      "owgr_rank": 64,
+      "player_name": "Campbell, Brian",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 240,
+      "dg_id": 21889,
+      "dg_skill_estimate": -0.363390355143032,
+      "owgr_rank": 200,
+      "player_name": "Kang, Jeffrey",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 241,
+      "dg_id": 17723,
+      "dg_skill_estimate": -0.366459801834395,
+      "owgr_rank": 149,
+      "player_name": "Lower, Justin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 242,
+      "dg_id": 29347,
+      "dg_skill_estimate": -0.383358178450935,
+      "owgr_rank": 411,
+      "player_name": "Dossey, Cooper",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 243,
+      "dg_id": 16162,
+      "dg_skill_estimate": -0.383831352676902,
+      "owgr_rank": 238,
+      "player_name": "Lee, Seung-taek",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 244,
+      "dg_id": 18635,
+      "dg_skill_estimate": -0.38737694120312,
+      "owgr_rank": 287,
+      "player_name": "Shelton, Robby",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 245,
+      "dg_id": 13470,
+      "dg_skill_estimate": -0.392896136719448,
+      "owgr_rank": 230,
+      "player_name": "Kizzire, Patton",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 246,
+      "dg_id": 19190,
+      "dg_skill_estimate": -0.392897393602794,
+      "owgr_rank": 330,
+      "player_name": "Hoshino, Rikuya",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 247,
+      "dg_id": 7033,
+      "dg_skill_estimate": -0.398370074152888,
+      "owgr_rank": 495,
+      "player_name": "Molinari, Edoardo",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 248,
+      "dg_id": 7049,
+      "dg_skill_estimate": -0.401047804359245,
+      "owgr_rank": 208,
+      "player_name": "Sterne, Richard",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 249,
+      "dg_id": 11357,
+      "dg_skill_estimate": -0.401874030670695,
+      "owgr_rank": 187,
+      "player_name": "Uihlein, Peter",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 250,
+      "dg_id": 12177,
+      "dg_skill_estimate": -0.408491980946193,
+      "owgr_rank": 275,
+      "player_name": "Pavan, Andrea",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 251,
+      "dg_id": 16341,
+      "dg_skill_estimate": -0.423120037293433,
+      "owgr_rank": 226,
+      "player_name": "Peterson, Paul",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 252,
+      "dg_id": 13997,
+      "dg_skill_estimate": -0.427630766832399,
+      "owgr_rank": 286,
+      "player_name": "Svensson, Adam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 253,
+      "dg_id": 11451,
+      "dg_skill_estimate": -0.428848007090107,
+      "owgr_rank": 282,
+      "player_name": "Garnett, Brice",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 254,
+      "dg_id": 18174,
+      "dg_skill_estimate": -0.435422497106562,
+      "owgr_rank": 138,
+      "player_name": "Ritchie, JC",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 255,
+      "dg_id": 19681,
+      "dg_skill_estimate": -0.438347392023676,
+      "owgr_rank": 271,
+      "player_name": "Semikawa, Taiga",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 256,
+      "dg_id": 9586,
+      "dg_skill_estimate": -0.440355575387456,
+      "owgr_rank": 300,
+      "player_name": "Laird, Martin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 257,
+      "dg_id": 20522,
+      "dg_skill_estimate": -0.449309135501502,
+      "owgr_rank": 219,
+      "player_name": "Veerman, Johannes",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 258,
+      "dg_id": 15004,
+      "dg_skill_estimate": -0.456036415899814,
+      "owgr_rank": 241,
+      "player_name": "Kim, Chan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "datagolf_rank": 259,
+      "dg_id": 29119,
+      "dg_skill_estimate": -0.45740449285189,
+      "owgr_rank": 303,
+      "player_name": "Zhou, Yanhan",
+      "primary_tour": "OWGR"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 260,
+      "dg_id": 15680,
+      "dg_skill_estimate": -0.45866456225312,
+      "owgr_rank": 274,
+      "player_name": "Winther, Jeff",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 261,
+      "dg_id": 23733,
+      "dg_skill_estimate": -0.471460344096035,
+      "owgr_rank": 248,
+      "player_name": "LaCroix, Frederic",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 262,
+      "dg_id": 16602,
+      "dg_skill_estimate": -0.471920701410311,
+      "owgr_rank": 501,
+      "player_name": "Varner III, Harold",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 263,
+      "dg_id": 24304,
+      "dg_skill_estimate": -0.472597537217852,
+      "owgr_rank": 140,
+      "player_name": "Vilips, Karl",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 264,
+      "dg_id": 17786,
+      "dg_skill_estimate": -0.473942628629701,
+      "owgr_rank": 125,
+      "player_name": "Davis, Cam",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 265,
+      "dg_id": 24481,
+      "dg_skill_estimate": -0.481202716347966,
+      "owgr_rank": 385,
+      "player_name": "Redman, Doc",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 266,
+      "dg_id": 15056,
+      "dg_skill_estimate": -0.481932729738204,
+      "owgr_rank": 315,
+      "player_name": "Horikawa, Mikumu",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 267,
+      "dg_id": 31343,
+      "dg_skill_estimate": -0.483463741072952,
+      "owgr_rank": 501,
+      "player_name": "Ford, David",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 268,
+      "dg_id": 22259,
+      "dg_skill_estimate": -0.487232873515178,
+      "owgr_rank": 239,
+      "player_name": "Del Rey, Alejandro",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 269,
+      "dg_id": 12337,
+      "dg_skill_estimate": -0.493092596458302,
+      "owgr_rank": 501,
+      "player_name": "Kokrak, Jason",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 270,
+      "dg_id": 19865,
+      "dg_skill_estimate": -0.493298595480029,
+      "owgr_rank": 421,
+      "player_name": "Hardy, Nick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 271,
+      "dg_id": 16652,
+      "dg_skill_estimate": -0.495146262631533,
+      "owgr_rank": 184,
+      "player_name": "Langasque, Romain",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 272,
+      "dg_id": 10201,
+      "dg_skill_estimate": -0.498063137252533,
+      "owgr_rank": 213,
+      "player_name": "Guerrier, Julien",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 273,
+      "dg_id": 17357,
+      "dg_skill_estimate": -0.50209115111832,
+      "owgr_rank": 221,
+      "player_name": "Migliozzi, Guido",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 274,
+      "dg_id": 24962,
+      "dg_skill_estimate": -0.510660119483673,
+      "owgr_rank": 317,
+      "player_name": "Docherty, Alistair",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 275,
+      "dg_id": 30463,
+      "dg_skill_estimate": -0.511819505163058,
+      "owgr_rank": 446,
+      "player_name": "Surratt, Caleb",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 276,
+      "dg_id": 29971,
+      "dg_skill_estimate": -0.512530991234729,
+      "owgr_rank": 233,
+      "player_name": "Bradbury, Dan",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 277,
+      "dg_id": 25771,
+      "dg_skill_estimate": -0.513014753703264,
+      "owgr_rank": 483,
+      "player_name": "Furr, Wilson",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 278,
+      "dg_id": 14775,
+      "dg_skill_estimate": -0.515390390106039,
+      "owgr_rank": 501,
+      "player_name": "Bjork, Alexander",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "PHI",
+      "datagolf_rank": 279,
+      "dg_id": 15274,
+      "dg_skill_estimate": -0.519283804860204,
+      "owgr_rank": 242,
+      "player_name": "Tabuena, Miguel",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 280,
+      "dg_id": 21076,
+      "dg_skill_estimate": -0.527481235627731,
+      "owgr_rank": 393,
+      "player_name": "Yoshida, Taiki",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 281,
+      "dg_id": 7655,
+      "dg_skill_estimate": -0.527664899188234,
+      "owgr_rank": 465,
+      "player_name": "Molinari, Francesco",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 282,
+      "dg_id": 22231,
+      "dg_skill_estimate": -0.529150506064032,
+      "owgr_rank": 190,
+      "player_name": "Von Dellingshausen, Nicolai",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 283,
+      "dg_id": 24185,
+      "dg_skill_estimate": -0.535924084614821,
+      "owgr_rank": 155,
+      "player_name": "Mansell, Richard",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 284,
+      "dg_id": 31188,
+      "dg_skill_estimate": -0.538980770984209,
+      "owgr_rank": 501,
+      "player_name": "Valdes, Brendan",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 285,
+      "dg_id": 18761,
+      "dg_skill_estimate": -0.544033870053272,
+      "owgr_rank": 355,
+      "player_name": "Mullinax, Trey",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 286,
+      "dg_id": 25036,
+      "dg_skill_estimate": -0.544814412151439,
+      "owgr_rank": 326,
+      "player_name": "Holt, Ian",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 287,
+      "dg_id": 11657,
+      "dg_skill_estimate": -0.545768714935149,
+      "owgr_rank": 263,
+      "player_name": "Norlander, Henrik",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 288,
+      "dg_id": 27996,
+      "dg_skill_estimate": -0.549181441827546,
+      "owgr_rank": 267,
+      "player_name": "Cummins, Quade",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 289,
+      "dg_id": 14007,
+      "dg_skill_estimate": -0.557159574424765,
+      "owgr_rank": 458,
+      "player_name": "Martin, Ben",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 290,
+      "dg_id": 29970,
+      "dg_skill_estimate": -0.559778659380884,
+      "owgr_rank": 398,
+      "player_name": "Menante, Dylan",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 291,
+      "dg_id": 32089,
+      "dg_skill_estimate": -0.560406154763168,
+      "owgr_rank": 501,
+      "player_name": "Stout, Preston",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 292,
+      "dg_id": 19948,
+      "dg_skill_estimate": -0.561603000482672,
+      "owgr_rank": 450,
+      "player_name": "Taylor, Ben",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 293,
+      "dg_id": 14140,
+      "dg_skill_estimate": -0.564822723392571,
+      "owgr_rank": 183,
+      "player_name": "Higgs, Harry",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 294,
+      "dg_id": 22050,
+      "dg_skill_estimate": -0.57193506628324,
+      "owgr_rank": 308,
+      "player_name": "Suh, Justin",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "datagolf_rank": 295,
+      "dg_id": 17032,
+      "dg_skill_estimate": -0.576178010196267,
+      "owgr_rank": 222,
+      "player_name": "Tosti, Alejandro",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 296,
+      "dg_id": 11396,
+      "dg_skill_estimate": -0.57881148764114,
+      "owgr_rank": 348,
+      "player_name": "Ramsay, Richie",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "datagolf_rank": 297,
+      "dg_id": 24369,
+      "dg_skill_estimate": -0.58497835880391,
+      "owgr_rank": 189,
+      "player_name": "Kobori, Kazuma",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 298,
+      "dg_id": 32473,
+      "dg_skill_estimate": -0.58567106914784,
+      "owgr_rank": 215,
+      "player_name": "Botha, Barend",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 299,
+      "dg_id": 31392,
+      "dg_skill_estimate": -0.587948770527212,
+      "owgr_rank": 436,
+      "player_name": "VanArragon, Caleb",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 300,
+      "dg_id": 28615,
+      "dg_skill_estimate": -0.591682046629319,
+      "owgr_rank": 266,
+      "player_name": "Bairstow, Sam",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 301,
+      "dg_id": 20844,
+      "dg_skill_estimate": -0.601898112771673,
+      "owgr_rank": 361,
+      "player_name": "Mazzoli, Stefano",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 302,
+      "dg_id": 28473,
+      "dg_skill_estimate": -0.607447306573966,
+      "owgr_rank": 501,
+      "player_name": "Ballester, Jose Luis",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 303,
+      "dg_id": 13485,
+      "dg_skill_estimate": -0.610091791267734,
+      "owgr_rank": 254,
+      "player_name": "Imahira, Shugo",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 304,
+      "dg_id": 28270,
+      "dg_skill_estimate": -0.617312272825568,
+      "owgr_rank": 139,
+      "player_name": "Dunlap, Nick",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 305,
+      "dg_id": 15120,
+      "dg_skill_estimate": -0.618445451603448,
+      "owgr_rank": 449,
+      "player_name": "Johnson, Michael",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SUI",
+      "datagolf_rank": 306,
+      "dg_id": 15592,
+      "dg_skill_estimate": -0.621338333205983,
+      "owgr_rank": 279,
+      "player_name": "Girrbach, Joel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 307,
+      "dg_id": 15229,
+      "dg_skill_estimate": -0.623040839450726,
+      "owgr_rank": 310,
+      "player_name": "Stone, Brandon",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 308,
+      "dg_id": 28471,
+      "dg_skill_estimate": -0.626257759778798,
+      "owgr_rank": 376,
+      "player_name": "Shore, Davis",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 309,
+      "dg_id": 20448,
+      "dg_skill_estimate": -0.628996893571803,
+      "owgr_rank": 260,
+      "player_name": "Katsuragawa, Yuto",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 310,
+      "dg_id": 7457,
+      "dg_skill_estimate": -0.629467422518718,
+      "owgr_rank": 283,
+      "player_name": "Cabrera Bello, Rafa",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 311,
+      "dg_id": 16896,
+      "dg_skill_estimate": -0.632395744106645,
+      "owgr_rank": 180,
+      "player_name": "Kruyswijk, Jacques",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 312,
+      "dg_id": 16433,
+      "dg_skill_estimate": -0.639687443271858,
+      "owgr_rank": 400,
+      "player_name": "NeSmith, Matt",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 313,
+      "dg_id": 19421,
+      "dg_skill_estimate": -0.640286935945455,
+      "owgr_rank": 501,
+      "player_name": "Du Plessis, Hennie",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 314,
+      "dg_id": 27811,
+      "dg_skill_estimate": -0.640731978713339,
+      "owgr_rank": 135,
+      "player_name": "Couvra, Martin",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 315,
+      "dg_id": 27258,
+      "dg_skill_estimate": -0.641749945877784,
+      "owgr_rank": 301,
+      "player_name": "Schmidt, Ben",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 316,
+      "dg_id": 6931,
+      "dg_skill_estimate": -0.645435654747263,
+      "owgr_rank": 501,
+      "player_name": "Byrd, Jonathan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 317,
+      "dg_id": 12424,
+      "dg_skill_estimate": -0.645877267399405,
+      "owgr_rank": 501,
+      "player_name": "Summerhays, Daniel",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 318,
+      "dg_id": 19738,
+      "dg_skill_estimate": -0.651324616467088,
+      "owgr_rank": 349,
+      "player_name": "Dougherty, Kevin",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 319,
+      "dg_id": 14666,
+      "dg_skill_estimate": -0.652561053484336,
+      "owgr_rank": 501,
+      "player_name": "Johnston, Andrew",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 320,
+      "dg_id": 12232,
+      "dg_skill_estimate": -0.655762853829571,
+      "owgr_rank": 277,
+      "player_name": "Ishikawa, Ryo",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 321,
+      "dg_id": 32152,
+      "dg_skill_estimate": -0.65682758752111,
+      "owgr_rank": 473,
+      "player_name": "Brown, Blades",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "POL",
+      "datagolf_rank": 322,
+      "dg_id": 14196,
+      "dg_skill_estimate": -0.656892354662154,
+      "owgr_rank": 501,
+      "player_name": "Meronk, Adrian",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 323,
+      "dg_id": 30621,
+      "dg_skill_estimate": -0.658827672130328,
+      "owgr_rank": 437,
+      "player_name": "Weiler, Joe",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 324,
+      "dg_id": 19872,
+      "dg_skill_estimate": -0.660569070766853,
+      "owgr_rank": 95,
+      "player_name": "Riley, Davis",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 325,
+      "dg_id": 27820,
+      "dg_skill_estimate": -0.660583294200599,
+      "owgr_rank": 338,
+      "player_name": "Pak, John",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 326,
+      "dg_id": 18187,
+      "dg_skill_estimate": -0.672441448191044,
+      "owgr_rank": 487,
+      "player_name": "Duncan, Tyler",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "datagolf_rank": 327,
+      "dg_id": 17747,
+      "dg_skill_estimate": -0.675478404056745,
+      "owgr_rank": 407,
+      "player_name": "Halvorsen, Andreas",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 328,
+      "dg_id": 18059,
+      "dg_skill_estimate": -0.681126402840575,
+      "owgr_rank": 231,
+      "player_name": "Suri, Julian",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 329,
+      "dg_id": 4818,
+      "dg_skill_estimate": -0.683260291947612,
+      "owgr_rank": 501,
+      "player_name": "Stricker, Steve",
+      "primary_tour": "CHAMP"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 330,
+      "dg_id": 7489,
+      "dg_skill_estimate": -0.687570087190798,
+      "owgr_rank": 501,
+      "player_name": "Moore, Ryan",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 331,
+      "dg_id": 23708,
+      "dg_skill_estimate": -0.689207337329219,
+      "owgr_rank": 406,
+      "player_name": "Scott, Sandy",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 332,
+      "dg_id": 5994,
+      "dg_skill_estimate": -0.691065724013833,
+      "owgr_rank": 501,
+      "player_name": "Stenson, Henrik",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 333,
+      "dg_id": 15596,
+      "dg_skill_estimate": -0.695740231014702,
+      "owgr_rank": 424,
+      "player_name": "Cockerill, Aaron",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 334,
+      "dg_id": 11019,
+      "dg_skill_estimate": -0.699598673637066,
+      "owgr_rank": 501,
+      "player_name": "Steele, Brendan",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 335,
+      "dg_id": 1547,
+      "dg_skill_estimate": -0.70064130369278,
+      "owgr_rank": 501,
+      "player_name": "Mickelson, Phil",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 336,
+      "dg_id": 12988,
+      "dg_skill_estimate": -0.701400976500805,
+      "owgr_rank": 192,
+      "player_name": "Elvira Mijares, Ignacio",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 337,
+      "dg_id": 22986,
+      "dg_skill_estimate": -0.704992892398702,
+      "owgr_rank": 404,
+      "player_name": "Tuten, Shad",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 338,
+      "dg_id": 22089,
+      "dg_skill_estimate": -0.705394120773812,
+      "owgr_rank": 205,
+      "player_name": "Syme, Connor",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 339,
+      "dg_id": 26953,
+      "dg_skill_estimate": -0.711004918091581,
+      "owgr_rank": 501,
+      "player_name": "Gilligan, Ian",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 340,
+      "dg_id": 25003,
+      "dg_skill_estimate": -0.712808424868766,
+      "owgr_rank": 197,
+      "player_name": "Walker, Danny",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "MEX",
+      "datagolf_rank": 341,
+      "dg_id": 26190,
+      "dg_skill_estimate": -0.715491428894258,
+      "owgr_rank": 294,
+      "player_name": "Ortiz, Alvaro",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 342,
+      "dg_id": 21072,
+      "dg_skill_estimate": -0.718635932502635,
+      "owgr_rank": 174,
+      "player_name": "Ok, Taehoon",
+      "primary_tour": "KOR"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 343,
+      "dg_id": 26660,
+      "dg_skill_estimate": -0.721931439305455,
+      "owgr_rank": 299,
+      "player_name": "Gordon, Will",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 344,
+      "dg_id": 11082,
+      "dg_skill_estimate": -0.722001436689621,
+      "owgr_rank": 501,
+      "player_name": "Burgoon, Bronson",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 345,
+      "dg_id": 28542,
+      "dg_skill_estimate": -0.723089551925544,
+      "owgr_rank": 322,
+      "player_name": "Hitt, Austin",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 346,
+      "dg_id": 12321,
+      "dg_skill_estimate": -0.727395950802858,
+      "owgr_rank": 346,
+      "player_name": "Aphibarnrat, Kiradech",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 347,
+      "dg_id": 15115,
+      "dg_skill_estimate": -0.729315761168648,
+      "owgr_rank": 362,
+      "player_name": "Senior, Jack",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 348,
+      "dg_id": 14904,
+      "dg_skill_estimate": -0.735352670286152,
+      "owgr_rank": 358,
+      "player_name": "Kinoshita, Ryosuke",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 349,
+      "dg_id": 18571,
+      "dg_skill_estimate": -0.736899678000919,
+      "owgr_rank": 337,
+      "player_name": "Macdonald, Stuart",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 350,
+      "dg_id": 14953,
+      "dg_skill_estimate": -0.74656757670977,
+      "owgr_rank": 268,
+      "player_name": "Wannasrichan, Rattanon",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "AUT",
+      "datagolf_rank": 351,
+      "dg_id": 9531,
+      "dg_skill_estimate": -0.750512296671341,
+      "owgr_rank": 345,
+      "player_name": "Wiesberger, Bernd",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 352,
+      "dg_id": 25739,
+      "dg_skill_estimate": -0.752667788682246,
+      "owgr_rank": 235,
+      "player_name": "Yonezawa, Ren",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 353,
+      "dg_id": 18869,
+      "dg_skill_estimate": -0.756697616875467,
+      "owgr_rank": 383,
+      "player_name": "Lamb, Rick",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 354,
+      "dg_id": 18933,
+      "dg_skill_estimate": -0.759894465017317,
+      "owgr_rank": 261,
+      "player_name": "Gandon, Jeremy",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 355,
+      "dg_id": 12413,
+      "dg_skill_estimate": -0.760467129359288,
+      "owgr_rank": 165,
+      "player_name": "Lee, Richard",
+      "primary_tour": "KOR"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 356,
+      "dg_id": 19232,
+      "dg_skill_estimate": -0.761146973386208,
+      "owgr_rank": 353,
+      "player_name": "Smyth, Travis",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 357,
+      "dg_id": 20954,
+      "dg_skill_estimate": -0.763145748090627,
+      "owgr_rank": 145,
+      "player_name": "Hirata, Kensei",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 358,
+      "dg_id": 18027,
+      "dg_skill_estimate": -0.767544313322686,
+      "owgr_rank": 501,
+      "player_name": "Kimsey, Nathan",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 359,
+      "dg_id": 20353,
+      "dg_skill_estimate": -0.779758148649741,
+      "owgr_rank": 501,
+      "player_name": "Whitney, Tom",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 360,
+      "dg_id": 19960,
+      "dg_skill_estimate": -0.780236433301232,
+      "owgr_rank": 185,
+      "player_name": "Pavon, Matthieu",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 361,
+      "dg_id": 22919,
+      "dg_skill_estimate": -0.780295968355149,
+      "owgr_rank": 460,
+      "player_name": "Cannon, Will",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 362,
+      "dg_id": 28239,
+      "dg_skill_estimate": -0.781326449481494,
+      "owgr_rank": 305,
+      "player_name": "Guillamoundeguy, Oihan",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 363,
+      "dg_id": 29318,
+      "dg_skill_estimate": -0.782049421075172,
+      "owgr_rank": 332,
+      "player_name": "McAllister, Logan",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 364,
+      "dg_id": 26947,
+      "dg_skill_estimate": -0.784523226411865,
+      "owgr_rank": 314,
+      "player_name": "Jarvis, Casey",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "datagolf_rank": 365,
+      "dg_id": 14373,
+      "dg_skill_estimate": -0.785098019834983,
+      "owgr_rank": 388,
+      "player_name": "Campbell, Ben",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 366,
+      "dg_id": 7024,
+      "dg_skill_estimate": -0.785316746816717,
+      "owgr_rank": 461,
+      "player_name": "Choi, Jinho",
+      "primary_tour": "KOR"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 367,
+      "dg_id": 8605,
+      "dg_skill_estimate": -0.787625717936577,
+      "owgr_rank": 501,
+      "player_name": "Jones, Matt",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 368,
+      "dg_id": 25797,
+      "dg_skill_estimate": -0.792416129020513,
+      "owgr_rank": 497,
+      "player_name": "Hosono, Yusaku",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 369,
+      "dg_id": 10418,
+      "dg_skill_estimate": -0.793365974219724,
+      "owgr_rank": 403,
+      "player_name": "Lemke, Niklas",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 370,
+      "dg_id": 18524,
+      "dg_skill_estimate": -0.794263640160237,
+      "owgr_rank": 245,
+      "player_name": "Catlin, John",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "NED",
+      "datagolf_rank": 371,
+      "dg_id": 13374,
+      "dg_skill_estimate": -0.799379096247367,
+      "owgr_rank": 251,
+      "player_name": "Van Driel, Darius",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 372,
+      "dg_id": 14371,
+      "dg_skill_estimate": -0.79987827897349,
+      "owgr_rank": 423,
+      "player_name": "Sato, Taihei",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 373,
+      "dg_id": 14018,
+      "dg_skill_estimate": -0.799886191106494,
+      "owgr_rank": 377,
+      "player_name": "Dantorp, Jens",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 374,
+      "dg_id": 23416,
+      "dg_skill_estimate": -0.804612600158588,
+      "owgr_rank": 291,
+      "player_name": "Ravetto, David",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 375,
+      "dg_id": 21236,
+      "dg_skill_estimate": -0.8092704733828,
+      "owgr_rank": 490,
+      "player_name": "Bryan, Wesley",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 376,
+      "dg_id": 29925,
+      "dg_skill_estimate": -0.80983203087932,
+      "owgr_rank": 265,
+      "player_name": "Yellamaraju, Sudarshan",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 377,
+      "dg_id": 27600,
+      "dg_skill_estimate": -0.824307094125914,
+      "owgr_rank": 323,
+      "player_name": "Kuest, Peter",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 378,
+      "dg_id": 12920,
+      "dg_skill_estimate": -0.827679455843422,
+      "owgr_rank": 325,
+      "player_name": "Willett, Danny",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "UAE",
+      "datagolf_rank": 379,
+      "dg_id": 14975,
+      "dg_skill_estimate": -0.827941835090823,
+      "owgr_rank": 351,
+      "player_name": "Otaegui, Adrian",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 380,
+      "dg_id": 7960,
+      "dg_skill_estimate": -0.828118055363421,
+      "owgr_rank": 350,
+      "player_name": "List, Luke",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 381,
+      "dg_id": 31214,
+      "dg_skill_estimate": -0.828859113455389,
+      "owgr_rank": 501,
+      "player_name": "Francoeur, Chris",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 382,
+      "dg_id": 31251,
+      "dg_skill_estimate": -0.832668482493564,
+      "owgr_rank": 422,
+      "player_name": "Winstead, Trey",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 383,
+      "dg_id": 13127,
+      "dg_skill_estimate": -0.838031697897874,
+      "owgr_rank": 501,
+      "player_name": "Tway, Kevin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 384,
+      "dg_id": 21231,
+      "dg_skill_estimate": -0.841797192192216,
+      "owgr_rank": 240,
+      "player_name": "Prateeptienchai, Suteepat",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 385,
+      "dg_id": 32333,
+      "dg_skill_estimate": -0.843406133313117,
+      "owgr_rank": 501,
+      "player_name": "Buchanan, Jackson",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 386,
+      "dg_id": 18517,
+      "dg_skill_estimate": -0.848505643234587,
+      "owgr_rank": 244,
+      "player_name": "Soderberg, Sebastian",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 387,
+      "dg_id": 26008,
+      "dg_skill_estimate": -0.852156188230825,
+      "owgr_rank": 284,
+      "player_name": "Elvira, Manuel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 388,
+      "dg_id": 31955,
+      "dg_skill_estimate": -0.852414041805449,
+      "owgr_rank": 501,
+      "player_name": "Van Paris, Jackson",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "NIR",
+      "datagolf_rank": 389,
+      "dg_id": 7548,
+      "dg_skill_estimate": -0.856179304331934,
+      "owgr_rank": 501,
+      "player_name": "McDowell, Graeme",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 390,
+      "dg_id": 18382,
+      "dg_skill_estimate": -0.858431059583739,
+      "owgr_rank": 365,
+      "player_name": "Ogiso, Takashi",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 391,
+      "dg_id": 14784,
+      "dg_skill_estimate": -0.860123224059489,
+      "owgr_rank": 198,
+      "player_name": "Law, David",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 392,
+      "dg_id": 8117,
+      "dg_skill_estimate": -0.862307996044709,
+      "owgr_rank": 501,
+      "player_name": "Kaymer, Martin",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 393,
+      "dg_id": 16160,
+      "dg_skill_estimate": -0.869699710966189,
+      "owgr_rank": 318,
+      "player_name": "Song, Younghan",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 394,
+      "dg_id": 28469,
+      "dg_skill_estimate": -0.872069995851119,
+      "owgr_rank": 109,
+      "player_name": "Highsmith, Joe",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 395,
+      "dg_id": 19899,
+      "dg_skill_estimate": -0.874568649646224,
+      "owgr_rank": 481,
+      "player_name": "Rottluff, Max",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "AUT",
+      "datagolf_rank": 396,
+      "dg_id": 21677,
+      "dg_skill_estimate": -0.875298653460564,
+      "owgr_rank": 225,
+      "player_name": "Steinlechner, Maximilian",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 397,
+      "dg_id": 15113,
+      "dg_skill_estimate": -0.87719343686359,
+      "owgr_rank": 501,
+      "player_name": "Pepperell, Eddie",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 398,
+      "dg_id": 19864,
+      "dg_skill_estimate": -0.878628740188229,
+      "owgr_rank": 501,
+      "player_name": "Hammer, Cole",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 399,
+      "dg_id": 7677,
+      "dg_skill_estimate": -0.882648685976202,
+      "owgr_rank": 121,
+      "player_name": "Norris, Shaun",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "datagolf_rank": 400,
+      "dg_id": 11763,
+      "dg_skill_estimate": -0.883545469889142,
+      "owgr_rank": 298,
+      "player_name": "Wu, Ashun",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 401,
+      "dg_id": 14926,
+      "dg_skill_estimate": -0.884460288305657,
+      "owgr_rank": 372,
+      "player_name": "Malnati, Peter",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 402,
+      "dg_id": 18514,
+      "dg_skill_estimate": -0.885452716400556,
+      "owgr_rank": 341,
+      "player_name": "Kinhult, Marcus",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 403,
+      "dg_id": 13367,
+      "dg_skill_estimate": -0.892018375350986,
+      "owgr_rank": 456,
+      "player_name": "Merritt, Troy",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 404,
+      "dg_id": 23502,
+      "dg_skill_estimate": -0.896306215894081,
+      "owgr_rank": 475,
+      "player_name": "Thornberry, Braden",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 405,
+      "dg_id": 19869,
+      "dg_skill_estimate": -0.896917891212801,
+      "owgr_rank": 501,
+      "player_name": "Maguire, Jack",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 406,
+      "dg_id": 19908,
+      "dg_skill_estimate": -0.89747559589895,
+      "owgr_rank": 304,
+      "player_name": "Young, Daniel",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "TPE",
+      "datagolf_rank": 407,
+      "dg_id": 19697,
+      "dg_skill_estimate": -0.898611691982463,
+      "owgr_rank": 311,
+      "player_name": "Wang, Wei-Hsuan",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 408,
+      "dg_id": 23231,
+      "dg_skill_estimate": -0.900011518963195,
+      "owgr_rank": 501,
+      "player_name": "Maichon, Phichaksn",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "datagolf_rank": 409,
+      "dg_id": 16591,
+      "dg_skill_estimate": -0.900657016395841,
+      "owgr_rank": 451,
+      "player_name": "Rozo, Marcelo",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 410,
+      "dg_id": 23638,
+      "dg_skill_estimate": -0.901786895608768,
+      "owgr_rank": 452,
+      "player_name": "Suwannarut, Sarit",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 411,
+      "dg_id": 13831,
+      "dg_skill_estimate": -0.908765901229608,
+      "owgr_rank": 311,
+      "player_name": "Knox, Russell",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 412,
+      "dg_id": 32550,
+      "dg_skill_estimate": -0.912308033753779,
+      "owgr_rank": 339,
+      "player_name": "Bryant, Davis",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 413,
+      "dg_id": 14951,
+      "dg_skill_estimate": -0.91356527436125,
+      "owgr_rank": 427,
+      "player_name": "Saksansin, Poom",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 414,
+      "dg_id": 12426,
+      "dg_skill_estimate": -0.913853018398823,
+      "owgr_rank": 223,
+      "player_name": "Waring, Paul",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 415,
+      "dg_id": 21412,
+      "dg_skill_estimate": -0.913895864993924,
+      "owgr_rank": 207,
+      "player_name": "Capan III, Frankie",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 416,
+      "dg_id": 16372,
+      "dg_skill_estimate": -0.91446634080013,
+      "owgr_rank": 501,
+      "player_name": "McDonald, Jack",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "CZE",
+      "datagolf_rank": 417,
+      "dg_id": 26710,
+      "dg_skill_estimate": -0.915248049918974,
+      "owgr_rank": 501,
+      "player_name": "Hruby, Petr",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 418,
+      "dg_id": 874,
+      "dg_skill_estimate": -0.916811783068031,
+      "owgr_rank": 501,
+      "player_name": "Els, Ernie",
+      "primary_tour": "CHAMP"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 419,
+      "dg_id": 13497,
+      "dg_skill_estimate": -0.923365576267527,
+      "owgr_rank": 343,
+      "player_name": "Lee, K.H.",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ZIM",
+      "datagolf_rank": 420,
+      "dg_id": 19538,
+      "dg_skill_estimate": -0.925837612484513,
+      "owgr_rank": 394,
+      "player_name": "Vincent, Kieran",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 421,
+      "dg_id": 21875,
+      "dg_skill_estimate": -0.926871331785322,
+      "owgr_rank": 402,
+      "player_name": "Widing, Tim",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 422,
+      "dg_id": 19866,
+      "dg_skill_estimate": -0.931504805049379,
+      "owgr_rank": 501,
+      "player_name": "Horsfield, Sam",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 423,
+      "dg_id": 25363,
+      "dg_skill_estimate": -0.938428554151919,
+      "owgr_rank": 501,
+      "player_name": "Buckley, Hayden",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 424,
+      "dg_id": 32593,
+      "dg_skill_estimate": -0.940981353430699,
+      "owgr_rank": 501,
+      "player_name": "Morrison, Tommy",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 425,
+      "dg_id": 8480,
+      "dg_skill_estimate": -0.942267832336989,
+      "owgr_rank": 414,
+      "player_name": "Streelman, Kevin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 426,
+      "dg_id": 32312,
+      "dg_skill_estimate": -0.943020847818656,
+      "owgr_rank": 386,
+      "player_name": "Sherwood, Cole",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 427,
+      "dg_id": 16897,
+      "dg_skill_estimate": -0.944896840777084,
+      "owgr_rank": 501,
+      "player_name": "Lombard, Zander",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 428,
+      "dg_id": 30767,
+      "dg_skill_estimate": -0.945138304220963,
+      "owgr_rank": 417,
+      "player_name": "Gabrelcik, Nick",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 429,
+      "dg_id": 26531,
+      "dg_skill_estimate": -0.946303537150272,
+      "owgr_rank": 501,
+      "player_name": "Walsh, Thomas",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 430,
+      "dg_id": 27598,
+      "dg_skill_estimate": -0.946866688858464,
+      "owgr_rank": 485,
+      "player_name": "Nicholas, James",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 431,
+      "dg_id": 12734,
+      "dg_skill_estimate": -0.947177320644905,
+      "owgr_rank": 302,
+      "player_name": "Scrivener, Jason",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "datagolf_rank": 432,
+      "dg_id": 9171,
+      "dg_skill_estimate": -0.948496284024948,
+      "owgr_rank": 409,
+      "player_name": "Villegas, Camilo",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 433,
+      "dg_id": 24354,
+      "dg_skill_estimate": -0.953522768854586,
+      "owgr_rank": 501,
+      "player_name": "Xiong, Norman",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 434,
+      "dg_id": 27762,
+      "dg_skill_estimate": -0.953589457263648,
+      "owgr_rank": 501,
+      "player_name": "Velo, Kevin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 435,
+      "dg_id": 27640,
+      "dg_skill_estimate": -0.953989691165727,
+      "owgr_rank": 462,
+      "player_name": "Song, Minhyuk",
+      "primary_tour": "KOR"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 436,
+      "dg_id": 31257,
+      "dg_skill_estimate": -0.955496441608,
+      "owgr_rank": 398,
+      "player_name": "Hitchner, Derek",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 437,
+      "dg_id": 26000,
+      "dg_skill_estimate": -0.955940931827075,
+      "owgr_rank": 501,
+      "player_name": "Snyman, Ian",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 438,
+      "dg_id": 33949,
+      "dg_skill_estimate": -0.956691882591592,
+      "owgr_rank": 454,
+      "player_name": "Bacha, Carson",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "ITA",
+      "datagolf_rank": 439,
+      "dg_id": 26506,
+      "dg_skill_estimate": -0.957376595249919,
+      "owgr_rank": 464,
+      "player_name": "De Leo, Gregorio",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 440,
+      "dg_id": 34445,
+      "dg_skill_estimate": -0.96415561705165,
+      "owgr_rank": 501,
+      "player_name": "Watts, Tyler",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 441,
+      "dg_id": 21921,
+      "dg_skill_estimate": -0.964187321453997,
+      "owgr_rank": 203,
+      "player_name": "Shogenji, Tatsunori",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 442,
+      "dg_id": 18239,
+      "dg_skill_estimate": -0.965311200926309,
+      "owgr_rank": 501,
+      "player_name": "Truslow, Austen",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 443,
+      "dg_id": 22777,
+      "dg_skill_estimate": -0.967300217261326,
+      "owgr_rank": 395,
+      "player_name": "Katsumata, Ryo",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 444,
+      "dg_id": 25538,
+      "dg_skill_estimate": -0.967973995437501,
+      "owgr_rank": 501,
+      "player_name": "Ishizaka, Tomohiro",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 445,
+      "dg_id": 29324,
+      "dg_skill_estimate": -0.969191709933249,
+      "owgr_rank": 330,
+      "player_name": "Lamb, Davis",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 446,
+      "dg_id": 7961,
+      "dg_skill_estimate": -0.969198213130723,
+      "owgr_rank": 501,
+      "player_name": "Reavie, Chez",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 447,
+      "dg_id": 29230,
+      "dg_skill_estimate": -0.978642277329838,
+      "owgr_rank": 501,
+      "player_name": "Piot, James",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 448,
+      "dg_id": 30429,
+      "dg_skill_estimate": -0.978652196510884,
+      "owgr_rank": 327,
+      "player_name": "Welch, Patrick",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 449,
+      "dg_id": 23610,
+      "dg_skill_estimate": -0.981307221304433,
+      "owgr_rank": 329,
+      "player_name": "Crocker, Sean",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 450,
+      "dg_id": 30033816,
+      "dg_skill_estimate": -0.983582428469406,
+      "owgr_rank": 501,
+      "player_name": "Summy, Jase",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 451,
+      "dg_id": 11397,
+      "dg_skill_estimate": -0.989652366690774,
+      "owgr_rank": 363,
+      "player_name": "Jamieson, Scott",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "datagolf_rank": 452,
+      "dg_id": 8571,
+      "dg_skill_estimate": -0.990561899254909,
+      "owgr_rank": 501,
+      "player_name": "Gomez, Fabian",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 453,
+      "dg_id": 14050,
+      "dg_skill_estimate": -0.991351035951228,
+      "owgr_rank": 501,
+      "player_name": "Sloan, Roger",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 454,
+      "dg_id": 8085,
+      "dg_skill_estimate": -0.995920917076703,
+      "owgr_rank": 397,
+      "player_name": "Teater, Josh",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "AUT",
+      "datagolf_rank": 455,
+      "dg_id": 13089,
+      "dg_skill_estimate": -0.997059340289774,
+      "owgr_rank": 493,
+      "player_name": "Nemecz, Lukas",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 456,
+      "dg_id": 34025,
+      "dg_skill_estimate": -1.001058571921,
+      "owgr_rank": 501,
+      "player_name": "Fang, Ethan",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 457,
+      "dg_id": 18809,
+      "dg_skill_estimate": -1.00486259743019,
+      "owgr_rank": 281,
+      "player_name": "Ikemura, Tomoyo",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 458,
+      "dg_id": 25919,
+      "dg_skill_estimate": -1.00914859453524,
+      "owgr_rank": 501,
+      "player_name": "Wolff, Matthew",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 459,
+      "dg_id": 16842,
+      "dg_skill_estimate": -1.01175028248927,
+      "owgr_rank": 501,
+      "player_name": "Luck, Curtis",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 1,
+      "country": "RSA",
+      "datagolf_rank": 460,
+      "dg_id": 27947,
+      "dg_skill_estimate": -1.02448065407613,
+      "owgr_rank": 501,
+      "player_name": "Maas, Christian",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 461,
+      "dg_id": 14209,
+      "dg_skill_estimate": -1.02451146257764,
+      "owgr_rank": 501,
+      "player_name": "Kozuma, Jinichiro",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 462,
+      "dg_id": 25588,
+      "dg_skill_estimate": -1.02765839198491,
+      "owgr_rank": 501,
+      "player_name": "Wilson, Andrew",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 463,
+      "dg_id": 17718,
+      "dg_skill_estimate": -1.02817821286306,
+      "owgr_rank": 479,
+      "player_name": "Sordet, Clement",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 464,
+      "dg_id": 26143,
+      "dg_skill_estimate": -1.03719662199159,
+      "owgr_rank": 295,
+      "player_name": "Creighton, Myles",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "datagolf_rank": 465,
+      "dg_id": 6950,
+      "dg_skill_estimate": -1.03813492219909,
+      "owgr_rank": 258,
+      "player_name": "Siem, Marcel",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "datagolf_rank": 466,
+      "dg_id": 14776,
+      "dg_skill_estimate": -1.04106157447438,
+      "owgr_rank": 447,
+      "player_name": "Cappelen, Sebastian",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "datagolf_rank": 467,
+      "dg_id": 20414,
+      "dg_skill_estimate": -1.04328884627752,
+      "owgr_rank": 501,
+      "player_name": "Langfors, Per",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 468,
+      "dg_id": 15366,
+      "dg_skill_estimate": -1.04536647347128,
+      "owgr_rank": 408,
+      "player_name": "Wang, Jeunghun",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 469,
+      "dg_id": 26521,
+      "dg_skill_estimate": -1.04654408899121,
+      "owgr_rank": 501,
+      "player_name": "Hoelzer, Brandon",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 470,
+      "dg_id": 13923,
+      "dg_skill_estimate": -1.04990016640362,
+      "owgr_rank": 433,
+      "player_name": "Lee, Sang-hee",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 471,
+      "dg_id": 27597,
+      "dg_skill_estimate": -1.05515838134292,
+      "owgr_rank": 501,
+      "player_name": "Ogletree, Andy",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 472,
+      "dg_id": 22844,
+      "dg_skill_estimate": -1.05677488817079,
+      "owgr_rank": 309,
+      "player_name": "Kawamoto, Riki",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 473,
+      "dg_id": 32445,
+      "dg_skill_estimate": -1.05728052830317,
+      "owgr_rank": 416,
+      "player_name": "James, Zach",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 474,
+      "dg_id": 28630,
+      "dg_skill_estimate": -1.06363051464511,
+      "owgr_rank": 501,
+      "player_name": "Hall, Ryan",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "datagolf_rank": 475,
+      "dg_id": 25089,
+      "dg_skill_estimate": -1.06381453099364,
+      "owgr_rank": 405,
+      "player_name": "Mory, Felix",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 476,
+      "dg_id": 10523,
+      "dg_skill_estimate": -1.0653207952799,
+      "owgr_rank": 501,
+      "player_name": "Nagano, Ryutaro",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "datagolf_rank": 477,
+      "dg_id": 15314,
+      "dg_skill_estimate": -1.06577197261034,
+      "owgr_rank": 347,
+      "player_name": "Kosaihira, Yuwa",
+      "primary_tour": "JPN"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 478,
+      "dg_id": 23540,
+      "dg_skill_estimate": -1.07308598277434,
+      "owgr_rank": 501,
+      "player_name": "Andersen, Mason",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "datagolf_rank": 479,
+      "dg_id": 5754,
+      "dg_skill_estimate": -1.07477941188937,
+      "owgr_rank": 340,
+      "player_name": "Fichardt, Darren",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 480,
+      "dg_id": 25038,
+      "dg_skill_estimate": -1.07734289949566,
+      "owgr_rank": 501,
+      "player_name": "Jelley, Brendon",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "datagolf_rank": 481,
+      "dg_id": 15499,
+      "dg_skill_estimate": -1.07860348884095,
+      "owgr_rank": 501,
+      "player_name": "Bateman, Wil",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "PAR",
+      "datagolf_rank": 482,
+      "dg_id": 9842,
+      "dg_skill_estimate": -1.08005773010536,
+      "owgr_rank": 375,
+      "player_name": "Zanotti, Fabrizio",
+      "primary_tour": "EURO"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 483,
+      "dg_id": 25628,
+      "dg_skill_estimate": -1.08011202079196,
+      "owgr_rank": 501,
+      "player_name": "Bae, Yongjun",
+      "primary_tour": "KOR"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 484,
+      "dg_id": 28586,
+      "dg_skill_estimate": -1.08032583824224,
+      "owgr_rank": 501,
+      "player_name": "Kinney, Tripp",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 485,
+      "dg_id": 4052,
+      "dg_skill_estimate": -1.08044564083844,
+      "owgr_rank": 501,
+      "player_name": "Westwood, Lee",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 486,
+      "dg_id": 34075,
+      "dg_skill_estimate": -1.08608254540857,
+      "owgr_rank": 501,
+      "player_name": "Herendeen, Max",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "THA",
+      "datagolf_rank": 487,
+      "dg_id": 14368,
+      "dg_skill_estimate": -1.08664219139598,
+      "owgr_rank": 488,
+      "player_name": "Janewattananond, Jazz",
+      "primary_tour": "ASA"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "datagolf_rank": 488,
+      "dg_id": 3596,
+      "dg_skill_estimate": -1.08722491054143,
+      "owgr_rank": 501,
+      "player_name": "Jimenez, Miguel Angel",
+      "primary_tour": "CHAMP"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 489,
+      "dg_id": 28587,
+      "dg_skill_estimate": -1.08775466218497,
+      "owgr_rank": 344,
+      "player_name": "Perkins, David",
+      "primary_tour": "PTA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 490,
+      "dg_id": 14967,
+      "dg_skill_estimate": -1.08874086004548,
+      "owgr_rank": 501,
+      "player_name": "Hadley, Chesson",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 491,
+      "dg_id": 21876,
+      "dg_skill_estimate": -1.09008961687218,
+      "owgr_rank": 501,
+      "player_name": "Blick, Cody",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 1,
+      "country": "USA",
+      "datagolf_rank": 492,
+      "dg_id": 30029615,
+      "dg_skill_estimate": -1.09058374871598,
+      "owgr_rank": 501,
+      "player_name": "Chirravuri, Mahanth",
+      "primary_tour": "AM"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "datagolf_rank": 493,
+      "dg_id": 5874,
+      "dg_skill_estimate": -1.09235126919472,
+      "owgr_rank": 501,
+      "player_name": "Percy, Cameron",
+      "primary_tour": "CHAMP"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "datagolf_rank": 494,
+      "dg_id": 13498,
+      "dg_skill_estimate": -1.09468681758334,
+      "owgr_rank": 196,
+      "player_name": "Lee, Junghwan",
+      "primary_tour": "KOR"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "datagolf_rank": 495,
+      "dg_id": 1435,
+      "dg_skill_estimate": -1.10332913483099,
+      "owgr_rank": 501,
+      "player_name": "Poulter, Ian",
+      "primary_tour": "LIV"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 496,
+      "dg_id": 31285,
+      "dg_skill_estimate": -1.1071487710858,
+      "owgr_rank": 435,
+      "player_name": "Lewis, Bryce",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "datagolf_rank": 497,
+      "dg_id": 11328,
+      "dg_skill_estimate": -1.10738313506568,
+      "owgr_rank": 501,
+      "player_name": "Kisner, Kevin",
+      "primary_tour": "PGA"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "datagolf_rank": 498,
+      "dg_id": 27147,
+      "dg_skill_estimate": -1.11240959322809,
+      "owgr_rank": 478,
+      "player_name": "Walker, Euan",
+      "primary_tour": "CHA"
+    },
+    {
+      "am": 0,
+      "country": "IND",
+      "datagolf_rank": 499,
+      "dg_id": 21234,
+      "dg_skill_estimate": -1.11273851013159,
+      "owgr_rank": 501,
+      "player_name": "Thomas, Rayhan",
+      "primary_tour": "KFT"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "datagolf_rank": 500,
+      "dg_id": 17266,
+      "dg_skill_estimate": -1.11275882522175,
+      "owgr_rank": 501,
+      "player_name": "Yuan, Carl",
+      "primary_tour": "KFT"
+    }
+  ]
+}
