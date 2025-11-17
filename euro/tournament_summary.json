@@ -5,5 +5,21 @@
   "course_location": "Dubai, UAE",
   "start_date": "13-Nov-2025",
   "field_size": 52,
-  "previous_winners": []
+  "previous_winners": [
+    {
+      "year": 2024,
+      "winner": "McIlroy, Rory",
+      "score": -11
+    },
+    {
+      "year": 2023,
+      "winner": "Hojgaard, Nicolai",
+      "score": -17
+    },
+    {
+      "year": 2022,
+      "winner": "Rahm, Jon",
+      "score": -16
+    }
+  ]
 }

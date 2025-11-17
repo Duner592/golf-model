@@ -114,16 +114,6 @@
     const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
     const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
 
-    // Helpers to detect 1st/10th tee starts from various possible fields in leaderboard.json
-    const is10 = (x) => x === 10 || x === "10" || (typeof x === "string" && /\b10\b/.test(x));
-    const is1  = (x) => x === 1  || x === "1"  || (typeof x === "string" && /\b1\b(?!\d)/.test(x));
-    const isBackSide = (x) =>
-      typeof x === "string" && /^b(ack)?$/i.test(x); // if your data uses "front"/"back"
-    const isFrontSide = (x) =>
-      typeof x === "string" && /^f(ront)?$/i.test(x);
-
-
-
     // JSON loader
     async function loadJSON(path){
       const r = await fetch(path, {cache: "no-store"});
@@ -265,8 +255,8 @@
 
       let wn = [];
       let ww = [];
-      try { wn = await loadJSON("weather_round_neutral.json"); } catch {}
-      try { ww = await loadJSON("weather_round_wave.json"); } catch {}
+      try { wn = await loadJSON("pga/weather_round_neutral.json"); } catch {}
+      try { ww = await loadJSON("pga/weather_round_wave.json"); } catch {}
 
       const byR = {};
       (ww || []).forEach(x => { (byR[x.round] = byR[x.round] || []).push(x); });
@@ -334,7 +324,7 @@
       const el = document.getElementById("tournament");
       if (!el) return;
       let t = null;
-      try { t = await loadJSON("tournament_summary.json"); } catch {}
+      try { t = await loadJSON("pga/tournament_summary.json"); } catch {}
       if (!t) { el.textContent = "No summary."; return; }
 
     const lines = [];
@@ -355,8 +345,8 @@
 
     // Main
     async function main(){
-      const meta = await loadJSON("meta.json");
-      const rows = await loadJSON("leaderboard.json");
+      const meta = await loadJSON("pga/meta.json");
+      const rows = await loadJSON("pga/leaderboard.json");
 
       // Extract year from meta.r1_date
       let year = '';
@@ -375,38 +365,15 @@
       if (meta.resources?.downloads_html){ dlHtml.href = meta.resources.downloads_html; dlHtml.style.display="inline"; }
 
       data = rows.map((r, idx) => {
-        // Detect explicit sides for each round (tri-state: true/false/undefined)
-        const r1_is10 = r.r1_from_10th === true ||
-                        is10(r.r1_start_hole) || is10(r.r1_start) || is10(r.r1_tee) ||
-                        isBackSide(r.r1_side);
-        const r1_is1  = r.r1_from_1st === true ||
-                        is1(r.r1_start_hole) || is1(r.r1_start) || is1(r.r1_tee) ||
-                        isFrontSide(r.r1_side);
-        let r1_from_10th = r1_is10 ? true : (r1_is1 ? false : undefined);
+        // Parse r1_teetime: Remove "*" if present and set flag
+        let r1_teetime_clean = r.r1_teetime || "";
+        let r1_from_10th = r1_teetime_clean.endsWith("*");
+        if (r1_from_10th) r1_teetime_clean = r1_teetime_clean.slice(0, -1);
 
-        const r2_is10 = r.r2_from_10th === true ||
-                        is10(r.r2_start_hole) || is10(r.r2_start) || is10(r.r2_tee) ||
-                        isBackSide(r.r2_side);
-        const r2_is1  = r.r2_from_1st === true ||
-                        is1(r.r2_start_hole) || is1(r.r2_start) || is1(r.r2_tee) ||
-                        isFrontSide(r.r2_side);
-        let r2_from_10th = r2_is10 ? true : (r2_is1 ? false : undefined);
-
-        // Enforce alternation between R1 and R2:
-        // - If one round's side is known, the other is the opposite.
-        // - If both are known but equal, flip R1 to be opposite of R2.
-        if (r1_from_10th === undefined && r2_from_10th !== undefined) {
-          r1_from_10th = !r2_from_10th;
-        } else if (r2_from_10th === undefined && r1_from_10th !== undefined) {
-          r2_from_10th = !r1_from_10th;
-        } else if (r1_from_10th !== undefined && r2_from_10th !== undefined && r1_from_10th === r2_from_10th) {
-          // Contradiction (both same). Prefer R2 and flip R1.
-          r1_from_10th = !r2_from_10th;
-        }
-
-        // Default to false if still unknown (no asterisk shown)
-        r1_from_10th = !!r1_from_10th;
-        r2_from_10th = !!r2_from_10th;
+        // Parse r2_teetime: Remove "*" if present and set flag
+        let r2_teetime_clean = r.r2_teetime || "";
+        let r2_from_10th = r2_teetime_clean.endsWith("*");
+        if (r2_from_10th) r2_teetime_clean = r2_teetime_clean.slice(0, -1);
 
         return {
           rank: r.rank ?? (idx+1),
@@ -415,9 +382,8 @@
           "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
           "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
           course_fit_score: r.course_fit_score ?? "",
-          r1_teetime: r.r1_teetime ?? "",
-          r2_teetime: r.r2_teetime ?? "",
-          // flags used by renderTable to append the asterisk
+          r1_teetime: r1_teetime_clean,
+          r2_teetime: r2_teetime_clean,
           r1_from_10th,
           r2_from_10th,
         };
