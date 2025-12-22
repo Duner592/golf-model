@@ -1,41 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>2025 PGA Schedule</title>
+    <meta charset="utf-8" />
+    <title>Upcoming Schedule - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
+        h1 { text-align: center; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        th { background: #f2f2f2; font-weight: bold; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
+        .link:hover { background: #0056b3; }
+        .loading { color: #666; font-style: italic; text-align: center; }
     </style>
 </head>
 <body>
-<h1>2025 PGA Schedule</h1>
-<table id="schedule-table">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Course</th>
-        <th>Location</th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+<h1>Upcoming Schedule</h1>
+<p>2026 Schedules for PGA and DP World Tours.</p>
+
+<div id="schedule-content" class="loading">Loading...</div>
+
+<a href="index.html" class="link">Back to Home</a>
+
 <script>
-    fetch('pga/schedule.json')  // Updated path to match the generated file location
-        .then(response => response.json())
-        .then(data => {
-            const tbody = document.querySelector('#schedule-table tbody');
-            data.forEach(event => {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${event.date || ''}</td><td>${event.event || ''}</td><td>${event.course || ''}</td><td>${event.location || ''}</td>`;
-                tbody.appendChild(row);
+    async function loadCombinedSchedule() {
+        try {
+            const pgaSchedule = await fetch('pga/schedule.json').then(r => r.json());
+            const euroSchedule = await fetch('euro/schedule.json').then(r => r.json());
+
+            // Combine and add tour labels
+            let allEvents = [];
+            pgaSchedule.forEach(event => {
+                allEvents.push({
+                    date: event.date,
+                    tour: 'PGA Tour',
+                    tournament: event.event,
+                    course: event.course,
+                    location: event.location
+                });
             });
-        })
-        .catch(error => console.error('Error loading schedule:', error));
+            euroSchedule.forEach(event => {
+                allEvents.push({
+                    date: event.date,
+                    tour: 'DP World Tour',
+                    tournament: event.event,
+                    course: event.course,
+                    location: event.location
+                });
+            });
+
+            // Sort by date (assuming dd-mm-yyyy format)
+            allEvents.sort((a, b) => {
+                const dateA = a.date.split('-').reverse().join('-'); // Convert to yyyy-mm-dd for sorting
+                const dateB = b.date.split('-').reverse().join('-');
+                return dateA.localeCompare(dateB);
+            });
+
+            // Build table HTML
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tour</th>
+                            <th>Tournament Name</th>
+                            <th>Course</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            allEvents.forEach(event => {
+                html += `
+                    <tr>
+                        <td>${event.date}</td>
+                        <td>${event.tour}</td>
+                        <td>${event.tournament}</td>
+                        <td>${event.course}</td>
+                        <td>${event.location}</td>
+                    </tr>
+                `;
+            });
+            html += '</tbody></table>';
+
+            return html;
+        } catch (e) {
+            return 'Schedule unavailable.';
+        }
+    }
+
+    async function init() {
+        document.getElementById('schedule-content').innerHTML = await loadCombinedSchedule();
+    }
+
+    init();
 </script>
-<br><a href="index.html">Back to Home</a>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>2026 DP World Tour Schedule</title>
+    <title>2026 PGA Schedule</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         table { width: 100%; border-collapse: collapse; }
@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-<h1>2026 DP World Tour Schedule</h1>
+<h1>2026 PGA Schedule</h1>
 <table id="schedule-table">
     <thead>
     <tr>
@@ -24,18 +24,18 @@
     <tbody></tbody>
 </table>
 <script>
-    fetch('euro/schedule.json')
+    fetch('pga/schedule.json')  // Updated path to match the generated file location
         .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('#schedule-table tbody');
             data.forEach(event => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${event.date}</td><td>${event.event}</td><td>${event.course}</td><td>${event.location}</td>`;
+                row.innerHTML = `<td>${event.date || ''}</td><td>${event.event || ''}</td><td>${event.course || ''}</td><td>${event.location || ''}</td>`;
                 tbody.appendChild(row);
             });
         })
         .catch(error => console.error('Error loading schedule:', error));
 </script>
-<br><a href="euro.html">Back to Euro Predictions</a>
+<br><a href="index.html">Back to Home</a>
 </body>
 </html>
