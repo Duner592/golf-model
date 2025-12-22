@@ -1,20 +1,21 @@
 {
   "tour": "pga",
-  "event_id": "493",
-  "event_name": "The RSM Classic",
+  "event_id": "0",
+  "event_name": "No Event",
   "lat": null,
   "lon": null,
-  "r1_date": "2025-11-20",
-  "generated_utc": "17-Nov-2025 14:02:25",
+  "r1_date": null,
+  "generated_utc": "22-Dec-2025 15:07:15",
   "resources": {
-    "downloads_csv": "downloads/event_493_the_rsm_classic_2025-11-17_leaderboard.csv",
-    "downloads_html": "downloads/event_493_the_rsm_classic_2025-11-17_leaderboard.html",
+    "downloads_csv": null,
+    "downloads_html": null,
     "weather_meta": "weather_meta.json",
-    "weather_round_neutral": "weather_round_neutral.json",
-    "weather_round_wave": "weather_round_wave.json",
+    "weather_round_neutral": null,
+    "weather_round_wave": null,
     "course_fit_weights": "course_fit_weights.json",
     "course_history_summary": null,
     "tournament_summary": "tournament_summary.json",
     "schedule": "schedule.json"
-  }
+  },
+  "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!"
 }
