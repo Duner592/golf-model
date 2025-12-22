@@ -21,7 +21,7 @@ import json
 import math
 import re
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta  # Ensure this line is present
 from pathlib import Path
 
 import numpy as np
@@ -1072,10 +1072,38 @@ def has_current_week_events(tour: str) -> bool:
     return False
 
 
+# ---------- new helper to clear old event assets in no-event mode ----------
+def clear_old_event_assets(web_dir: Path) -> None:
+    """
+    Delete old event-specific assets to ensure no lingering data in no-event mode.
+
+    Args:
+        web_dir (Path): Web directory (e.g., web/pga).
+    """
+    files_to_remove = [
+        "weather_round_neutral.json",
+        "weather_round_wave.json",
+        "weather_meta.json",
+        "course_fit_weights.json",
+        "course_history_summary.json",
+        "tournament_summary.json",
+        "field_teetimes.csv",
+    ]
+    for f in files_to_remove:
+        p = web_dir / f
+        if p.exists():
+            try:
+                p.unlink()
+                print(f"[info] Removed old asset: {p}")
+            except Exception as e:
+                print(f"[warn] Failed to remove {p}: {e}")
+
+
+# ---------- build schedule from upcoming-events.json ----------
 # ---------- build schedule from upcoming-events.json ----------
 def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
     """
-    Build schedule JSON from upcoming events.
+    Build schedule JSON from upcoming events (only future/upcoming).
 
     Args:
         root (Path): Project root.
@@ -1088,8 +1116,8 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
     upcoming_data = json.loads(upcoming_file.read_text(encoding="utf-8"))
     schedule = []
     for event in upcoming_data.get("schedule", []):
-        if event.get("tour", "").lower() == tour.lower():
-            # Use correct keys: assuming "start_date" for date, "event_name" or "name" for event
+        if event.get("tour", "").lower() == tour.lower() and event.get("status") != "completed":
+            # Only include upcoming events
             date_str = event.get("start_date") or event.get("date")
             event_name = event.get("event_name") or event.get("name") or event.get("event")
             formatted_date = None
@@ -1098,13 +1126,13 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
                     dt = datetime.strptime(date_str, "%Y-%m-%d")
                     formatted_date = dt.strftime("%d-%m-%Y")
                 except Exception:
-                    formatted_date = date_str  # fallback to original if parsing fails
+                    formatted_date = date_str  # fallback
             schedule.append(
                 {
                     "date": formatted_date,
                     "event": event_name,
                     "course": event.get("course"),
-                    "location": event.get("location"),  # Include location from upcoming-events.json
+                    "location": event.get("location"),
                 }
             )
     write_json(out_json, schedule)
@@ -1130,7 +1158,7 @@ def main():
     Notes:
         - Outputs to web/{tour}/ directory.
         - Skips optional files (e.g., weather) if not present.
-        - In no-event mode, generates schedule and adds a message in meta.json.
+        - In no-event mode, generates schedule and adds a message in meta.json, and clears old assets.
     """
     ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
     ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets")
@@ -1183,6 +1211,10 @@ def main():
             print(f"[warn] Meta not found for event_id={event_id}; treating as no-event mode")
             no_event = True
             meta_proc = {"event_name": "No Event", "lat": None, "lon": None}
+
+    # Clear old event assets if no_event
+    if no_event:
+        clear_old_event_assets(web_dir)
 
     event_name = meta_proc.get("event_name", f"event_{event_id}") if meta_proc else "No Event"
     lat = meta_proc.get("lat") if meta_proc else None
