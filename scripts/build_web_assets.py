@@ -21,7 +21,7 @@ import json
 import math
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -36,6 +36,18 @@ KMH_TO_MPH = 0.621371
 
 # ---------- basic I/O ----------
 def latest_meta(processed_dir: Path) -> dict:
+    """
+    Retrieve the latest processed meta file for any event.
+
+    Args:
+        processed_dir (Path): Directory containing processed event data.
+
+    Returns:
+        dict: Contents of the most recent event_*_meta.json file.
+
+    Raises:
+        FileNotFoundError: If no meta files are found.
+    """
     metas = sorted(processed_dir.glob("event_*_meta.json"))
     if not metas:
         raise FileNotFoundError(f"No meta in {processed_dir}")
@@ -43,6 +55,16 @@ def latest_meta(processed_dir: Path) -> dict:
 
 
 def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple[Path, Path | None]:
+    """
+    Select the latest timestamped leaderboard CSV and optional HTML for a given event.
+
+    Args:
+        preds_dir (Path): Directory containing prediction data.
+        event_id (str): Event identifier.
+
+    Returns:
+        tuple: (CSV path, HTML path or None).
+    """
     stamped = sorted(preds_dir.glob(f"event_{event_id}_*_leaderboard.csv"))
     html = None
     if stamped:
@@ -61,6 +83,16 @@ def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple
 
 
 def pick_matching_summary(preds_dir: Path, csv_path: Path) -> Path | None:
+    """
+    Find a matching summary JSON file based on the CSV path.
+
+    Args:
+        preds_dir (Path): Directory containing prediction data.
+        csv_path (Path): Path to the leaderboard CSV.
+
+    Returns:
+        Path or None: Path to the summary JSON if found.
+    """
     base = csv_path.name.replace("_leaderboard.csv", "")
     candidate = preds_dir / f"{base}_summary.json"
     if candidate.exists():
@@ -71,7 +103,13 @@ def pick_matching_summary(preds_dir: Path, csv_path: Path) -> Path | None:
 
 def _sanitize_jsonable(obj):
     """
-    Recursively replace NaN/Inf with None so JSON is standards-compliant.
+    Recursively replace NaN/Inf with None for JSON compliance.
+
+    Args:
+        obj: Any Python object.
+
+    Returns:
+        Sanitized object suitable for JSON serialization.
     """
     if isinstance(obj, dict):
         return {k: _sanitize_jsonable(v) for k, v in obj.items()}
@@ -91,6 +129,13 @@ def _sanitize_jsonable(obj):
 
 
 def write_json(path: Path, obj) -> None:
+    """
+    Write a sanitized JSON object to a file.
+
+    Args:
+        path (Path): Output file path.
+        obj: Object to serialize.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     safe_obj = _sanitize_jsonable(obj)
     path.write_text(json.dumps(safe_obj, indent=2, allow_nan=False), encoding="utf-8")
@@ -98,6 +143,16 @@ def write_json(path: Path, obj) -> None:
 
 # ---------- formatting helpers ----------
 def normalize_utc_str(s: str | None, fallback: str) -> str:
+    """
+    Normalize a UTC timestamp string to a readable format.
+
+    Args:
+        s (str or None): Input timestamp.
+        fallback (str): Fallback if parsing fails.
+
+    Returns:
+        str: Formatted timestamp.
+    """
     if not s:
         return fallback
     candidates = [
@@ -116,6 +171,15 @@ def normalize_utc_str(s: str | None, fallback: str) -> str:
 
 
 def _coerce_wind_fields(rec: dict) -> dict:
+    """
+    Coerce wind fields to standardized units (MPH).
+
+    Args:
+        rec (dict): Weather record.
+
+    Returns:
+        dict: Updated record with wind_mph and gust_mph.
+    """
     w = rec.get("wind_mph")
     g = rec.get("gust_mph")
     if w is None:
@@ -139,6 +203,15 @@ def _coerce_wind_fields(rec: dict) -> dict:
 
 
 def _time_only(val: str | None) -> str:
+    """
+    Extract time-only string from a value.
+
+    Args:
+        val (str or None): Input value.
+
+    Returns:
+        str: Time string or empty.
+    """
     if not val or not isinstance(val, str):
         return ""
     m = re.search(r"\b(\d{1,2}:\d{2})\b", val.strip())
@@ -146,6 +219,15 @@ def _time_only(val: str | None) -> str:
 
 
 def _norm_name(s: str | None) -> str:
+    """
+    Normalize a name for keying.
+
+    Args:
+        s (str or None): Input name.
+
+    Returns:
+        str: Normalized name.
+    """
     if not isinstance(s, str):
         return ""
     t = s.lower().strip()
@@ -155,6 +237,15 @@ def _norm_name(s: str | None) -> str:
 
 
 def _numeric_mode(series: pd.Series) -> int | None:
+    """
+    Compute the mode of a numeric series.
+
+    Args:
+        series (pd.Series): Input series.
+
+    Returns:
+        int or None: Mode value or None.
+    """
     try:
         s = pd.to_numeric(series, errors="coerce").dropna()
         if s.empty:
@@ -169,6 +260,16 @@ def _numeric_mode(series: pd.Series) -> int | None:
 
 # ---------- weather parquet -> json ----------
 def neutral_parquet_to_json(neutral_pq: Path, out_json: Path) -> bool:
+    """
+    Convert neutral weather parquet to JSON.
+
+    Args:
+        neutral_pq (Path): Input parquet file.
+        out_json (Path): Output JSON file.
+
+    Returns:
+        bool: True if successful.
+    """
     if not neutral_pq.exists():
         return False
     df = pd.read_parquet(neutral_pq)
@@ -179,6 +280,16 @@ def neutral_parquet_to_json(neutral_pq: Path, out_json: Path) -> bool:
 
 
 def wave_parquet_to_json(wave_pq: Path, out_json: Path) -> bool:
+    """
+    Convert wave weather parquet to JSON.
+
+    Args:
+        wave_pq (Path): Input parquet file.
+        out_json (Path): Output JSON file.
+
+    Returns:
+        bool: True if successful.
+    """
     if not wave_pq.exists():
         return False
     df = pd.read_parquet(wave_pq)
@@ -190,6 +301,16 @@ def wave_parquet_to_json(wave_pq: Path, out_json: Path) -> bool:
 
 # ---------- course history summary ----------
 def build_history_summary(stats_path: Path, out_json: Path) -> bool:
+    """
+    Build course history summary from stats parquet.
+
+    Args:
+        stats_path (Path): Input parquet file.
+        out_json (Path): Output JSON file.
+
+    Returns:
+        bool: True if successful.
+    """
     if not stats_path.exists():
         return False
     df = pd.read_parquet(stats_path)
@@ -206,6 +327,15 @@ def build_history_summary(stats_path: Path, out_json: Path) -> bool:
 
 # ---------- winners + yardage helpers (robust) ----------
 def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
+    """
+    Extract winner from an event JSON file.
+
+    Args:
+        path (Path): JSON file path.
+
+    Returns:
+        tuple: (winner name, score) or (None, None).
+    """
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         rows = data if isinstance(data, list) else next((v for v in data.values() if isinstance(v, list)), [])
@@ -233,6 +363,15 @@ def _winner_from_event_json(path: Path) -> tuple[str | None, float | None]:
 
 
 def _clean_int_series_from_any(s: pd.Series) -> pd.Series:
+    """
+    Clean and convert series to numeric.
+
+    Args:
+        s (pd.Series): Input series.
+
+    Returns:
+        pd.Series: Cleaned numeric series.
+    """
     if s.dtype.kind in ("i", "u", "f"):
         return pd.to_numeric(s, errors="coerce")
     s = s.astype(str).str.replace(r"[^0-9.]", "", regex=True)
@@ -240,6 +379,15 @@ def _clean_int_series_from_any(s: pd.Series) -> pd.Series:
 
 
 def _pick_course_yardage(field: pd.DataFrame) -> int | None:
+    """
+    Pick course yardage from field data.
+
+    Args:
+        field (pd.DataFrame): Field data.
+
+    Returns:
+        int or None: Yardage value.
+    """
     include_regexes = [
         r"(^|^.*\b)(course_)?(total_)?yardage($|\b.*$)",
         r"(^|^.*\b)(course_)?(total_)?yards($|\b.*$)",
@@ -289,6 +437,15 @@ def _pick_course_yardage(field: pd.DataFrame) -> int | None:
 
 
 def _detect_year_column(df: pd.DataFrame) -> pd.Series | None:
+    """
+    Detect year column in DataFrame.
+
+    Args:
+        df (pd.DataFrame): Input DataFrame.
+
+    Returns:
+        pd.Series or None: Year series.
+    """
     for c in ["year", "season", "event_year", "tournament_year"]:
         if c in df.columns:
             y = pd.to_numeric(df[c], errors="coerce")
@@ -307,6 +464,15 @@ def _detect_year_column(df: pd.DataFrame) -> pd.Series | None:
 
 
 def _is_winner_fin(fin_val) -> bool:
+    """
+    Check if fin_val indicates a winner.
+
+    Args:
+        fin_val: Fin value.
+
+    Returns:
+        bool: True if winner.
+    """
     if pd.isna(fin_val):
         return False
     s = str(fin_val).strip().upper()
@@ -316,6 +482,15 @@ def _is_winner_fin(fin_val) -> bool:
 
 
 def _compute_total_score(df: pd.DataFrame) -> pd.Series:
+    """
+    Compute total score from round scores.
+
+    Args:
+        df (pd.DataFrame): DataFrame with round scores.
+
+    Returns:
+        pd.Series: Total scores.
+    """
     score_cols = [c for c in df.columns if re.match(r"^round_\d+\.score$", c)]
     if not score_cols:
         return pd.Series([np.nan] * len(df), index=df.index)
@@ -324,6 +499,15 @@ def _compute_total_score(df: pd.DataFrame) -> pd.Series:
 
 
 def _winners_from_df(df: pd.DataFrame) -> list[dict]:
+    """
+    Extract winners from DataFrame.
+
+    Args:
+        df (pd.DataFrame): Historical data.
+
+    Returns:
+        list[dict]: List of winners.
+    """
     year = _detect_year_column(df)
     if year is None:
         return []
@@ -362,11 +546,30 @@ def _winners_from_df(df: pd.DataFrame) -> list[dict]:
 
 
 def _slug_event(s: str | None) -> str:
+    """
+    Slugify event name.
+
+    Args:
+        s (str or None): Event name.
+
+    Returns:
+        str: Slug.
+    """
     # normalize + underscore; matches saved combined parquet
     return _norm_name(s or "").replace(" ", "_")
 
 
 def _load_hist_combined(raw_hist_dir: Path, event_name: str) -> pd.DataFrame | None:
+    """
+    Load combined historical parquet.
+
+    Args:
+        raw_hist_dir (Path): Historical data directory.
+        event_name (str): Event name.
+
+    Returns:
+        pd.DataFrame or None: Loaded DataFrame.
+    """
     slug = _slug_event(event_name)
     p = raw_hist_dir / f"tournament_{slug}_rounds_combined.parquet"
     print(f"DEBUG: looking for combined hist parquet at: {p}")
@@ -383,6 +586,16 @@ def _load_hist_combined(raw_hist_dir: Path, event_name: str) -> pd.DataFrame | N
 
 
 def _collect_winners_from_files(raw_hist_dir: Path, event_id: str) -> list[dict]:
+    """
+    Collect winners from historical files.
+
+    Args:
+        raw_hist_dir (Path): Historical data directory.
+        event_id (str): Event ID.
+
+    Returns:
+        list[dict]: List of winners.
+    """
     pats = [
         f"event_{event_id}_*_rounds.json",
         f"event_{event_id}_*_results.json",
@@ -393,7 +606,7 @@ def _collect_winners_from_files(raw_hist_dir: Path, event_id: str) -> list[dict]
         files.extend(raw_hist_dir.glob(pat))
 
     def _year_from_name(p: Path) -> int:
-        m = re.search(rf"event_{re.escape(str(event_id))}_(\d{{4}})_", p.name)
+        m = re.match(rf"event_{re.escape(str(event_id))}_(\d{{4}})_", p.name)
         return int(m.group(1)) if m else -1
 
     winners = []
@@ -408,12 +621,21 @@ def _collect_winners_from_files(raw_hist_dir: Path, event_id: str) -> list[dict]
     # de-dup by year
     out = {}
     for w in winners:
-        out.setdefault(w["year"], w)
+        out.setdefault(w.get("year"), w)
     winners = sorted(out.values(), key=lambda r: r["year"], reverse=True)
     return winners
 
 
 def _read_json(path: Path) -> dict | None:
+    """
+    Read JSON file.
+
+    Args:
+        path (Path): File path.
+
+    Returns:
+        dict or None: JSON content.
+    """
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
@@ -421,6 +643,15 @@ def _read_json(path: Path) -> dict | None:
 
 
 def _load_course_catalog(root: Path) -> dict:
+    """
+    Load course catalog.
+
+    Args:
+        root (Path): Project root.
+
+    Returns:
+        dict: Catalog data.
+    """
     for rel in ["data/static/course_catalog.json", "static/course_catalog.json"]:
         p = root / rel
         if p.exists():
@@ -431,6 +662,16 @@ def _load_course_catalog(root: Path) -> dict:
 
 
 def _lookup_course_catalog(course_name: str | None, catalog: dict) -> dict:
+    """
+    Lookup course in catalog.
+
+    Args:
+        course_name (str or None): Course name.
+        catalog (dict): Catalog dict.
+
+    Returns:
+        dict: Course entry.
+    """
     if not isinstance(catalog, dict) or not course_name:
         return {}
     key = _norm_name(course_name)
@@ -442,6 +683,15 @@ def _lookup_course_catalog(course_name: str | None, catalog: dict) -> dict:
 
 
 def _pick_yardage_from_meta(meta_proc: dict) -> int | None:
+    """
+    Pick yardage from meta.
+
+    Args:
+        meta_proc (dict): Meta data.
+
+    Returns:
+        int or None: Yardage.
+    """
     for k in ["total_yardage", "course_yardage", "yardage", "yards"]:
         v = meta_proc.get(k)
         if v is None:
@@ -459,6 +709,15 @@ def _pick_yardage_from_meta(meta_proc: dict) -> int | None:
 
 
 def _pick_yardage_from_hist(df_hist: pd.DataFrame) -> int | None:
+    """
+    Pick yardage from historical data.
+
+    Args:
+        df_hist (pd.DataFrame): Historical DataFrame.
+
+    Returns:
+        int or None: Yardage.
+    """
     yard_cols = [c for c in df_hist.columns if re.search(r"(yardage|yards)$", c.lower())]
     vals = []
     for c in yard_cols:
@@ -478,6 +737,16 @@ def _pick_yardage_from_hist(df_hist: pd.DataFrame) -> int | None:
 
 # ---------- tournament summary (robust) ----------
 def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: str, meta_proc: dict, out_json: Path) -> None:
+    """
+    Build tournament summary JSON.
+
+    Args:
+        processed_dir (Path): Processed data directory.
+        raw_hist_dir (Path): Raw historical data directory.
+        event_id (str): Event ID.
+        meta_proc (dict): Processed meta.
+        out_json (Path): Output JSON path.
+    """
     root = Path(__file__).resolve().parent.parent
     upcoming_file = root / "upcoming-events.json"
 
@@ -646,9 +915,14 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
 # ---------- load start-holes from processed field (robust) ----------
 def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
     """
-    Return a small DataFrame with columns:
-      [player_name, r1_start_hole, r2_start_hole, name_key]
-    Built from the processed field/teetimes tables if available.
+    Load start holes DataFrame.
+
+    Args:
+        processed_dir (Path): Processed data directory.
+        event_id (str): Event ID.
+
+    Returns:
+        pd.DataFrame or None: Start holes data.
     """
     for name in [
         f"event_{event_id}_field_teetimes.parquet",
@@ -717,8 +991,13 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
 
 def scan_latest_stamped_leaderboard(preds_dir: Path) -> tuple[Path | None, str | None]:
     """
-    Return (latest_stamped_csv, event_id) by file mtime.
-    Looks for event_{eid}_{slug}_{date}_leaderboard.csv
+    Scan for latest stamped leaderboard.
+
+    Args:
+        preds_dir (Path): Predictions directory.
+
+    Returns:
+        tuple: (CSV path, event_id) or (None, None).
     """
     stamped = sorted(preds_dir.glob("event_*_*_leaderboard.csv"), key=lambda p: p.stat().st_mtime)
     if not stamped:
@@ -731,7 +1010,17 @@ def scan_latest_stamped_leaderboard(preds_dir: Path) -> tuple[Path | None, str |
 
 def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
     """
-    Prefer processed event_{event_id}_meta.json; fallback to weather_meta.
+    Load meta for event.
+
+    Args:
+        processed_dir (Path): Processed data directory.
+        event_id (str): Event ID.
+
+    Returns:
+        dict: Meta data.
+
+    Raises:
+        FileNotFoundError: If no meta found.
     """
     p = processed_dir / f"event_{event_id}_meta.json"
     if p.exists():
@@ -742,8 +1031,57 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
     raise FileNotFoundError(f"No meta for event_id={event_id} (looked for meta and weather_meta).")
 
 
+# ---------- new helper for current week events ----------
+def has_current_week_events(tour: str) -> bool:
+    """
+    Check if there are any events for the given tour in the current week.
+
+    Args:
+        tour (str): Tour name (e.g., 'pga').
+
+    Returns:
+        bool: True if events exist in the current week.
+    """
+    root = Path(__file__).resolve().parent.parent
+    upcoming_file = root / "upcoming-events.json"
+    if not upcoming_file.exists():
+        return False
+
+    try:
+        with open(upcoming_file, encoding="utf-8") as f:
+            data = json.load(f)
+        events = data.get("schedule", [])
+        if tour:
+            events = [e for e in events if e.get("tour") == tour]
+    except (json.JSONDecodeError, FileNotFoundError, KeyError):
+        return False
+
+    today = datetime.now().date()
+    start_of_week = today - timedelta(days=today.weekday())  # Monday
+    end_of_week = start_of_week + timedelta(days=6)  # Sunday
+
+    for event in events:
+        if not isinstance(event, dict) or "event_id" not in event or "start_date" not in event:
+            continue
+        try:
+            event_date = datetime.fromisoformat(event["start_date"]).date()
+            if start_of_week <= event_date <= end_of_week:
+                return True
+        except (ValueError, KeyError):
+            continue
+    return False
+
+
 # ---------- build schedule from upcoming-events.json ----------
 def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
+    """
+    Build schedule JSON from upcoming events.
+
+    Args:
+        root (Path): Project root.
+        tour (str): Tour name.
+        out_json (Path): Output JSON path.
+    """
     upcoming_file = root / "upcoming-events.json"
     if not upcoming_file.exists():
         return
@@ -774,6 +1112,26 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
 
 # ---------- main ----------
 def main():
+    """
+    Main entry point for building static web assets from processed data.
+
+    This function generates JSON, CSV, and other assets for the web directory based on the latest
+    event data. It handles leaderboard formatting, weather summaries, course info, and more.
+    During off-season (no events), it can use historical data or placeholders and adds a no-event message.
+
+    Command-line arguments:
+    --event_id <str>: Force a specific event ID (optional).
+    --tour <str>: Tour to process (default 'pga').
+
+    Raises:
+        FileNotFoundError: If required processed data files are missing.
+        ValueError: If leaderboard CSV lacks a player name column.
+
+    Notes:
+        - Outputs to web/{tour}/ directory.
+        - Skips optional files (e.g., weather) if not present.
+        - In no-event mode, generates schedule and adds a message in meta.json.
+    """
     ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
     ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets")
     ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
@@ -792,22 +1150,43 @@ def main():
     from src.utils_event import resolve_event_id as _resolve  # centralized resolver
 
     event_id = None
+    no_event = False
 
-    if args.event_id:
-        event_id = str(args.event_id)
+    # Check for current week events first
+    if not has_current_week_events(TOUR):
+        no_event = True
+        event_id = "0"  # Dummy ID
+        print(f"[info] No events in current week for tour={TOUR}; proceeding in no-event mode")
 
-    if not event_id:
-        latest_lb, eid_from_lb = scan_latest_stamped_leaderboard(preds_dir)
-        if eid_from_lb:
-            event_id = str(eid_from_lb)
+    if not no_event:
+        if args.event_id:
+            event_id = str(args.event_id)
 
-    if not event_id:
-        event_id = _resolve(None)
+        if not event_id:
+            latest_lb, eid_from_lb = scan_latest_stamped_leaderboard(preds_dir)
+            if eid_from_lb:
+                event_id = str(eid_from_lb)
 
-    meta_proc = load_meta_for_event(processed_dir, event_id)
-    event_name = meta_proc.get("event_name", f"event_{event_id}")
-    lat = meta_proc.get("lat")
-    lon = meta_proc.get("lon")
+        if not event_id:
+            try:
+                event_id = _resolve(None)
+            except ValueError:
+                no_event = True
+                event_id = "0"
+                print("[info] No events found; proceeding in no-event mode")
+
+    meta_proc = None
+    if not no_event:
+        try:
+            meta_proc = load_meta_for_event(processed_dir, event_id)
+        except FileNotFoundError:
+            print(f"[warn] Meta not found for event_id={event_id}; treating as no-event mode")
+            no_event = True
+            meta_proc = {"event_name": "No Event", "lat": None, "lon": None}
+
+    event_name = meta_proc.get("event_name", f"event_{event_id}") if meta_proc else "No Event"
+    lat = meta_proc.get("lat") if meta_proc else None
+    lon = meta_proc.get("lon") if meta_proc else None
 
     # Load r1_date from weather_meta.json if available
     weather_meta_path = processed_dir / f"event_{event_id}_weather_meta.json"
@@ -819,65 +1198,75 @@ def main():
         except Exception:
             pass
 
-    # Pick leaderboard CSV/HTML for this event
-    lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
-    summary_json = pick_matching_summary(preds_dir, lb_csv)
+    # Skip event-specific assets if no_event
+    if no_event:
+        lb_csv = None
+        lb_html = None
+        summary_json = None
+    else:
+        # Pick leaderboard CSV/HTML for this event
+        lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
+        summary_json = pick_matching_summary(preds_dir, lb_csv)
 
     web_dir = root / "web" / TOUR
     dl_dir = web_dir / "downloads"
     dl_dir.mkdir(parents=True, exist_ok=True)
 
     # Leaderboard JSON: merge start holes, format times with "*" for 10th tee
-    df_lb = pd.read_csv(lb_csv)
+    if not no_event and lb_csv:
+        df_lb = pd.read_csv(lb_csv)
 
-    # find and normalize player name column
-    name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
-    if not name_col:
-        raise ValueError("Leaderboard CSV missing player name column")
-    if name_col != "player_name":
-        df_lb = df_lb.rename(columns={name_col: "player_name"})
-    df_lb["name_key"] = df_lb["player_name"].map(_norm_name)
+        # find and normalize player name column
+        name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
+        if not name_col:
+            raise ValueError("Leaderboard CSV missing player name column")
+        if name_col != "player_name":
+            df_lb = df_lb.rename(columns={name_col: "player_name"})
+        df_lb["name_key"] = df_lb["player_name"].map(_norm_name)
 
-    # merge start-holes on normalized name
-    start_df = load_start_holes(processed_dir, event_id)
-    if start_df is not None:
-        df_lb = df_lb.merge(
-            start_df[["name_key", "r1_start_hole", "r2_start_hole"]],
-            on="name_key",
-            how="left",
-        )
+        # merge start-holes on normalized name
+        start_df = load_start_holes(processed_dir, event_id)
+        if start_df is not None:
+            df_lb = df_lb.merge(
+                start_df[["name_key", "r1_start_hole", "r2_start_hole"]],
+                on="name_key",
+                how="left",
+            )
 
-    def tee_time_with_tee(time_val, start_val):
-        base = _time_only(time_val)
-        try:
-            ten = (str(start_val).strip() == "10") or (int(str(start_val).strip() or "0") == 10)
-        except Exception:
-            ten = False
-        return f"{base}*" if base and ten else base
+        def tee_time_with_tee(time_val, start_val):
+            base = _time_only(time_val)
+            try:
+                ten = (str(start_val).strip() == "10") or (int(str(start_val).strip() or "0") == 10)
+            except Exception:
+                ten = False
+            return f"{base}*" if base and ten else base
 
-    # apply time-only + asterisk using merged start holes (if present)
-    for r in [1, 2]:
-        time_col = f"r{r}_teetime"
-        sh_col = f"r{r}_start_hole"
-        if time_col in df_lb.columns:
-            if sh_col in df_lb.columns:
-                df_lb[time_col] = [tee_time_with_tee(t, s) for t, s in zip(df_lb[time_col], df_lb[sh_col], strict=False)]
-            else:
-                df_lb[time_col] = df_lb[time_col].apply(_time_only)
+        # apply time-only + asterisk using merged start holes (if present)
+        for r in [1, 2]:
+            time_col = f"r{r}_teetime"
+            sh_col = f"r{r}_start_hole"
+            if time_col in df_lb.columns:
+                if sh_col in df_lb.columns:
+                    df_lb[time_col] = [tee_time_with_tee(t, s) for t, s in zip(df_lb[time_col], df_lb[sh_col], strict=False)]
+                else:
+                    df_lb[time_col] = df_lb[time_col].apply(_time_only)
 
-    # DROP helper/start_hole columns to avoid NaN in JSON
-    drop_cols = [c for c in ("name_key", "r1_start_hole", "r2_start_hole", "start_hole") if c in df_lb.columns]
-    if drop_cols:
-        df_lb = df_lb.drop(columns=drop_cols)
+        # DROP helper/start_hole columns to avoid NaN in JSON
+        drop_cols = [c for c in ("name_key", "r1_start_hole", "r2_start_hole", "start_hole") if c in df_lb.columns]
+        if drop_cols:
+            df_lb = df_lb.drop(columns=drop_cols)
 
-    write_json(web_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
+        write_json(web_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
+    else:
+        # Placeholder or skip
+        write_json(web_dir / "leaderboard.json", [])
 
     # summary
     generated_utc_formatted = datetime.utcnow().strftime("%d-%b-%Y %H:%M:%S")
     summary = {
         "event_id": event_id,
         "event_name": event_name,
-        "source_csv": str(lb_csv.relative_to(root)),
+        "source_csv": str(lb_csv.relative_to(root)) if lb_csv else None,
         "generated_utc": generated_utc_formatted,
         "metrics": None,
     }
@@ -891,48 +1280,55 @@ def main():
     write_json(web_dir / "summary.json", summary)
 
     # downloads
-    dl_csv = dl_dir / lb_csv.name
-    if not dl_csv.exists():
-        dl_csv.write_bytes(lb_csv.read_bytes())
+    dl_csv = None
+    if lb_csv and not no_event:
+        dl_csv = dl_dir / lb_csv.name
+        if not dl_csv.exists():
+            dl_csv.write_bytes(lb_csv.read_bytes())
     dl_html = None
-    if lb_html and lb_html.exists():
+    if lb_html and lb_html.exists() and not no_event:
         dl_html = dl_dir / lb_html.name
         if not dl_html.exists():
             dl_html.write_bytes(lb_html.read_bytes())
 
-    # weather
-    wn_ok = neutral_parquet_to_json(
-        processed_dir / f"event_{event_id}_weather_round_neutral.parquet",
-        web_dir / "weather_round_neutral.json",
-    )
-    ww_ok = wave_parquet_to_json(
-        processed_dir / f"event_{event_id}_weather_round_wave.parquet",
-        web_dir / "weather_round_wave.json",
-    )
+    # weather (skip if no_event or not available)
+    wn_ok = False
+    if not no_event:
+        wn_ok = neutral_parquet_to_json(
+            processed_dir / f"event_{event_id}_weather_round_neutral.parquet",
+            web_dir / "weather_round_neutral.json",
+        )
+    ww_ok = False
+    if not no_event:
+        ww_ok = wave_parquet_to_json(
+            processed_dir / f"event_{event_id}_weather_round_wave.parquet",
+            web_dir / "weather_round_wave.json",
+        )
     wm = processed_dir / f"event_{event_id}_weather_meta.json"
-    if wm.exists():
+    if wm.exists() and not no_event:
         (web_dir / "weather_meta.json").write_bytes(wm.read_bytes())
 
-    # course-fit + history
-    cf_weights = processed_dir / f"event_{event_id}_course_fit_weights.json"
-    if cf_weights.exists():
-        (web_dir / "course_fit_weights.json").write_bytes(cf_weights.read_bytes())
-    build_history_summary(
-        processed_dir / f"event_{event_id}_course_history_stats.parquet",
-        web_dir / "course_history_summary.json",
-    )
+    # course-fit + history (skip if no_event)
+    if not no_event:
+        cf_weights = processed_dir / f"event_{event_id}_course_fit_weights.json"
+        if cf_weights.exists():
+            (web_dir / "course_fit_weights.json").write_bytes(cf_weights.read_bytes())
+        build_history_summary(
+            processed_dir / f"event_{event_id}_course_history_stats.parquet",
+            web_dir / "course_history_summary.json",
+        )
 
-    # tournament summary
-    raw_hist_dir = root / "data" / "raw" / "historical" / TOUR
-    ts_path = web_dir / "tournament_summary.json"
-    build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, ts_path)
+        # tournament summary
+        raw_hist_dir = root / "data" / "raw" / "historical" / TOUR
+        ts_path = web_dir / "tournament_summary.json"
+        build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, ts_path)
 
-    # Copy field_teetimes.csv to web (guard if missing)
-    import shutil
+        # Copy field_teetimes.csv to web (guard if missing)
+        import shutil
 
-    src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
-    if src_teetimes.exists():
-        shutil.copy(src_teetimes, web_dir / "field_teetimes.csv")
+        src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
+        if src_teetimes.exists():
+            shutil.copy(src_teetimes, web_dir / "field_teetimes.csv")
 
     meta_out = {
         "tour": TOUR,
@@ -943,17 +1339,20 @@ def main():
         "r1_date": r1_date,
         "generated_utc": summary["generated_utc"],
         "resources": {
-            "downloads_csv": f"downloads/{lb_csv.name}",
+            "downloads_csv": f"downloads/{lb_csv.name}" if dl_csv else None,
             "downloads_html": f"downloads/{lb_html.name}" if dl_html else None,
             "weather_meta": ("weather_meta.json" if (web_dir / "weather_meta.json").exists() else None),
             "weather_round_neutral": "weather_round_neutral.json" if wn_ok else None,
             "weather_round_wave": "weather_round_wave.json" if ww_ok else None,
             "course_fit_weights": ("course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None),
             "course_history_summary": ("course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None),
-            "tournament_summary": ("tournament_summary.json" if ts_path.exists() else None),
+            "tournament_summary": ("tournament_summary.json" if (web_dir / "tournament_summary.json").exists() else None),
             "schedule": ("schedule.json" if (web_dir / "schedule.json").exists() else None),
         },
     }
+    if no_event:
+        meta_out["no_event_message"] = "No upcoming events during the holiday season. Stay tuned for 2026!"
+
     write_json(web_dir / "meta.json", meta_out)
 
     print("Wrote web assets under web/:")
