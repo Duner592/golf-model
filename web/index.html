@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
+        .tour-container { float: left; width: 70%; }
+        .sidebar { float: right; width: 25%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .clear { clear: both; }
         h1 { text-align: center; color: #333; }
         .tour-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
         .tour-section h2 { margin-top: 0; color: #007bff; }
         .summary { margin: 0.5rem 0; line-height: 1.5; }
-        .link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
         .link:hover { background: #0056b3; }
         .loading { color: #666; font-style: italic; }
+        @media (max-width: 768px) { .tour-container, .sidebar { float: none; width: 100%; } }
     </style>
 </head>
 <body>
@@ -20,19 +24,27 @@
 <p>Weekly summaries for PGA and DP World Tours.</p>
 <p>Prediction Models Generated Using Form/CourseHistory/Weather.</p>
 
-<a href="schedule.html" class="link">View Schedule</a>
+<div class="tour-container">
+    <div class="tour-section" id="pga-section">
+        <h2>PGA Tour</h2>
+        <div id="pga-summary" class="summary loading">Loading...</div>
+        <a href="pga.html" class="link">View PGA Predictions</a>
+    </div>
 
-<div class="tour-section" id="pga-section">
-    <h2>PGA Tour</h2>
-    <div id="pga-summary" class="summary loading">Loading...</div>
-    <a href="pga.html" class="link">View PGA Predictions</a>
+    <div class="tour-section" id="euro-section">
+        <h2>DP World Tour</h2>
+        <div id="euro-summary" class="summary loading">Loading...</div>
+        <a href="euro.html" class="link">View DP World Predictions</a>
+    </div>
 </div>
 
-<div class="tour-section" id="euro-section">
-    <h2>DP World Tour</h2>
-    <div id="euro-summary" class="summary loading">Loading...</div>
-    <a href="euro.html" class="link">View DP World Predictions</a>
+<div class="sidebar">
+    <a href="schedule.html" class="link">View Schedule</a>
+    <h2>Next Upcoming Events</h2>
+    <div id="upcoming-events" class="loading">Loading...</div>
 </div>
+
+<div class="clear"></div>
 
 <script>
     async function loadSummary(tour) {
@@ -59,7 +71,25 @@
         }
     }
 
+    async function loadUpcomingEvents() {
+        try {
+            const pgaSchedule = await fetch('pga/schedule.json').then(r => r.json()).catch(() => []);
+            const euroSchedule = await fetch('euro/schedule.json').then(r => r.json()).catch(() => []);
+
+            const pgaNext = pgaSchedule.length ? `${pgaSchedule[0].event} on ${pgaSchedule[0].date}` : 'N/A';
+            const euroNext = euroSchedule.length ? `${euroSchedule[0].event} on ${euroSchedule[0].date}` : 'N/A';
+
+            return `
+                <strong>PGA Tour:</strong> ${pgaNext}<br/>
+                <strong>DP World Tour:</strong> ${euroNext}
+            `;
+        } catch (e) {
+            return 'Upcoming events unavailable.';
+        }
+    }
+
     async function init() {
+        document.getElementById('upcoming-events').innerHTML = await loadUpcomingEvents();
         document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
         document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
     }
