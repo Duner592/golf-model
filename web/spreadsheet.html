@@ -15,7 +15,7 @@
         .link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
         .link:hover { background: #0056b3; }
         .loading { color: #666; font-style: italic; text-align: center; }
-        #filter-input { padding: 0.5rem; width: 100%; max-width: 300px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 4px; }
+        #filter-input { padding: 0.5rem; width: 100%; max-width: 300px; margin: 1rem 0; border: 1px solid #ddd; border-radius: 4px; }
         .column-filter { padding: 0.25rem; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 0.8rem; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -25,7 +25,6 @@
 <p>Eds Historical Betting Data from down the years, updated Weekly.</p>
 
 <div class="content">
-    <input type="text" id="filter-input" placeholder="Global search (all columns)...">
     <div id="spreadsheet-content" class="loading">Loading...</div>
     <a href="index.html" class="link">Back to Home</a>
 </div>
@@ -69,22 +68,67 @@
                 return newRow;
             });
 
-            tableData = data;
-            headers = Object.keys(data[0] || {});
-            console.log('Manipulated Data Sample:', data.slice(0, 2));
-
-            // Filter by year if specified in URL
+            // Filter by year if specified
             const urlParams = new URLSearchParams(window.location.search);
             const filterYear = urlParams.get('year');
+
             if (filterYear) {
                 data = data.filter(row => {
                     const dateValue = row['Date'] || '';
-                    const year = dateValue.includes('/') ? dateValue.split('/')[2] : dateValue.split('-')[0];  // Handle dd/mm/yyyy or yyyy-mm-dd
+                    const year = dateValue.includes('/') ? dateValue.split('/')[2] : dateValue.split('-')[0];
                     return year === filterYear;
                 });
             }
 
-            return buildTable(data);
+            tableData = data;
+            headers = Object.keys(data[0] || {});
+            console.log('Manipulated Data Sample:', data.slice(0, 2));
+
+            // Build highlights for wins with Profit/Loss > £100
+            const highlights = data.filter(row => {
+                const outcome = (row['Outcome'] || '').toLowerCase();
+                const profitLoss = parseFloat((row['Profit/Loss'] || '').replace('£', '').replace(',', ''));
+                return outcome === 'win' && profitLoss > 100;
+            });
+            let highlightsHtml = '<div style="text-align: left;"><h2>Highlights</h2>';
+            if (highlights.length > 0) {
+                highlightsHtml += '<ul>';
+                highlights.forEach(win => {
+                    highlightsHtml += `<li>${win['Tour/Majors'] || 'N/A'} - ${win['Tournament'] || 'N/A'} - ${win['Player'] || 'N/A'} - ${win['Type'] || 'N/A'} - ${win['Price'] || 'N/A'} - ${win['Place Terms'] || 'N/A'} - ${win['Profit/Loss'] || 'N/A'}</li>`;
+                });
+                highlightsHtml += '</ul></div>';
+            } else {
+                highlightsHtml += '<p>No qualifying wins to highlight.</p></div>';
+            }
+
+            // Calculate ROI for the year (only if filtered)
+            let totalReturn = 0;
+            let totalStake = 0;
+            data.forEach(row => {
+                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                if (!isNaN(returnVal)) totalReturn += returnVal;
+                if (!isNaN(stakeVal)) totalStake += stakeVal;
+            });
+            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
+            const roiHtml = filterYear ? `<p><strong>ROI for ${filterYear}: ${roi}%</strong></p>` : '';
+
+            // Calculate overall ROI if not filtered by year
+            let overallRoiHtml = '';
+            if (!filterYear) {
+                let overallTotalReturn = 0;
+                let overallTotalStake = 0;
+                parsed.data.forEach(row => {
+                    const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                    const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                    if (!isNaN(returnVal)) overallTotalReturn += returnVal;
+                    if (!isNaN(stakeVal)) overallTotalStake += stakeVal;
+                });
+                const overallRoi = overallTotalStake > 0 ? ((overallTotalReturn - overallTotalStake) / overallTotalStake * 100).toFixed(2) : 0;
+                overallRoiHtml = `<p><strong>Overall ROI: ${overallRoi}%</strong></p>`;
+            }
+
+            return highlightsHtml + roiHtml + overallRoiHtml + '<input type="text" id="filter-input" placeholder="Global search (all columns)...">' + buildTable(data);
         } catch (e) {
             console.error('Fetch Error:', e);
             return 'Spreadsheet data unavailable. Please ensure the CSV file is exported correctly.';
@@ -147,7 +191,7 @@
                 const filterValue = columnFilters[header];
                 if (filterValue) {
                     const cell = row.querySelectorAll('td')[index];
-                    if (cell.textContent.toLowerCase() !== filterValue) {  // Fixed: Exact match for dropdown
+                    if (cell.textContent.toLowerCase() !== filterValue) {
                         showRow = false;
                     }
                 }
@@ -156,7 +200,6 @@
             row.style.display = showRow ? '' : 'none';
         });
     }
-
 
     async function init() {
         document.getElementById('spreadsheet-content').innerHTML = await loadSpreadsheet();
