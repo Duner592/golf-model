@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Historical Betting Data - Golf Model Hub</title>
+    <title>Historical Betting Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
@@ -22,7 +22,6 @@
 </head>
 <body>
 <h1>Historical Betting Data</h1>
-<p>Eds Historical Betting Data from down the years, updated Weekly.</p>
 
 <div class="content">
     <div id="spreadsheet-content" class="loading">Loading...</div>
@@ -84,6 +83,33 @@
             headers = Object.keys(data[0] || {});
             console.log('Manipulated Data Sample:', data.slice(0, 2));
 
+            // Calculate ROI for the year (only if filtered)
+            let totalReturn = 0;
+            let totalStake = 0;
+            data.forEach(row => {
+                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                if (!isNaN(returnVal)) totalReturn += returnVal;
+                if (!isNaN(stakeVal)) totalStake += stakeVal;
+            });
+            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
+            const roiHtml = filterYear ? `<p style="text-align: left;"><strong>ROI for ${filterYear}: ${roi}%</strong></p>` : '';
+
+            // Calculate overall ROI if not filtered by year
+            let overallRoiHtml = '';
+            if (!filterYear) {
+                let overallTotalReturn = 0;
+                let overallTotalStake = 0;
+                parsed.data.forEach(row => {
+                    const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                    const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                    if (!isNaN(returnVal)) overallTotalReturn += returnVal;
+                    if (!isNaN(stakeVal)) overallTotalStake += stakeVal;
+                });
+                const overallRoi = overallTotalStake > 0 ? ((overallTotalReturn - overallTotalStake) / overallTotalStake * 100).toFixed(2) : 0;
+                overallRoiHtml = `<p style="text-align: left;"><strong>Overall ROI: ${overallRoi}%</strong></p>`;
+            }
+
             // Build highlights for wins with Profit/Loss > £100
             const highlights = data.filter(row => {
                 const outcome = (row['Outcome'] || '').toLowerCase();
@@ -101,34 +127,14 @@
                 highlightsHtml += '<p>No qualifying wins to highlight.</p></div>';
             }
 
-            // Calculate ROI for the year (only if filtered)
-            let totalReturn = 0;
-            let totalStake = 0;
-            data.forEach(row => {
-                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
-                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
-                if (!isNaN(returnVal)) totalReturn += returnVal;
-                if (!isNaN(stakeVal)) totalStake += stakeVal;
-            });
-            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
-            const roiHtml = filterYear ? `<p><strong>ROI for ${filterYear}: ${roi}%</strong></p>` : '';
-
-            // Calculate overall ROI if not filtered by year
-            let overallRoiHtml = '';
-            if (!filterYear) {
-                let overallTotalReturn = 0;
-                let overallTotalStake = 0;
-                parsed.data.forEach(row => {
-                    const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
-                    const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
-                    if (!isNaN(returnVal)) overallTotalReturn += returnVal;
-                    if (!isNaN(stakeVal)) overallTotalStake += stakeVal;
-                });
-                const overallRoi = overallTotalStake > 0 ? ((overallTotalReturn - overallTotalStake) / overallTotalStake * 100).toFixed(2) : 0;
-                overallRoiHtml = `<p><strong>Overall ROI: ${overallRoi}%</strong></p>`;
+            // Update title and heading if year is specified
+            if (filterYear) {
+                document.title = `Historical Betting Data - ${filterYear}`;
+                const h1 = document.querySelector('h1');
+                if (h1) h1.textContent = `Historical Betting Data - ${filterYear}`;
             }
 
-            return highlightsHtml + roiHtml + overallRoiHtml + '<input type="text" id="filter-input" placeholder="Global search (all columns)...">' + buildTable(data);
+            return roiHtml + overallRoiHtml + highlightsHtml + '<div style="text-align: left;"><input type="text" id="filter-input" placeholder="Global search (all columns)..."></div>' + buildTable(data);
         } catch (e) {
             console.error('Fetch Error:', e);
             return 'Spreadsheet data unavailable. Please ensure the CSV file is exported correctly.';
