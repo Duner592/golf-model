@@ -39,9 +39,17 @@
 </div>
 
 <div class="sidebar">
-    <a href="schedule.html" class="link">View Schedule</a>
+    <a href="schedule.html" class="link">View Tournament Schedule</a>
     <h2>Next Upcoming Events</h2>
     <div id="upcoming-events" class="loading">Loading...</div>
+    <h2>Betting History</h2>
+    <a href="spreadsheet.html" class="link">View Historical Betting Data</a>
+    <div>
+        <a href="spreadsheet.html?year=2026" class="link">2026 Betting</a><br>
+        <a href="spreadsheet.html?year=2025" class="link">2025 Betting</a><br>
+        <a href="spreadsheet.html?year=2024" class="link">2024 Betting</a><br>
+        <a href="spreadsheet.html?year=2023" class="link">2023 Betting</a>
+    </div>
 </div>
 
 <div class="clear"></div>
@@ -80,7 +88,7 @@
             const euroNext = euroSchedule.length ? `${euroSchedule[0].event} on ${euroSchedule[0].date}` : 'N/A';
 
             return `
-                <strong>PGA Tour:</strong> ${pgaNext}<br/>
+                <strong>PGA:</strong> ${pgaNext}<br/>
                 <strong>DP World Tour:</strong> ${euroNext}
             `;
         } catch (e) {

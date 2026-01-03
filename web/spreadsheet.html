@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Historical Betting Data - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
+        h1 { text-align: center; color: #333; }
+        .content { max-width: 1200px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        th { background: #f2f2f2; font-weight: bold; position: relative; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
+        .link:hover { background: #0056b3; }
+        .loading { color: #666; font-style: italic; text-align: center; }
+        #filter-input { padding: 0.5rem; width: 100%; max-width: 300px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 4px; }
+        .column-filter { padding: 0.25rem; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 0.8rem; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<h1>Historical Betting Data</h1>
+<p>Eds Historical Betting Data from down the years, updated Weekly.</p>
+
+<div class="content">
+    <input type="text" id="filter-input" placeholder="Global search (all columns)...">
+    <div id="spreadsheet-content" class="loading">Loading...</div>
+    <a href="index.html" class="link">Back to Home</a>
+</div>
+
+<script>
+    let tableData = [];  // Store data for filtering
+    let headers = [];    // Store column headers
+
+    async function loadSpreadsheet() {
+        try {
+            const response = await fetch('spreadsheet_data.csv');
+            const csvText = await response.text();
+
+            const parsed = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: 'greedy',
+                dynamicTyping: false,
+                delimiter: ',',
+                quoteChar: '"',
+                escapeChar: '"',
+                newline: '\n',
+                transformHeader: header => header.trim()
+            });
+
+            if (parsed.errors.length > 0) {
+                console.error('CSV Parsing Errors:', parsed.errors);
+                return 'Errors parsing CSV. Check console for details.';
+            }
+
+            let data = parsed.data;
+
+            // Manipulate data: Remove unwanted columns
+            const columnsToRemove = ['Course Details', 'Pre Tournament Notes', 'Post Tournament Notes'];
+            data = data.map(row => {
+                const newRow = {};
+                Object.keys(row).forEach(key => {
+                    if (!columnsToRemove.includes(key)) {
+                        newRow[key] = row[key];
+                    }
+                });
+                return newRow;
+            });
+
+            tableData = data;
+            headers = Object.keys(data[0] || {});
+            console.log('Manipulated Data Sample:', data.slice(0, 2));
+
+            // Filter by year if specified in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterYear = urlParams.get('year');
+            if (filterYear) {
+                data = data.filter(row => {
+                    const dateValue = row['Date'] || '';
+                    const year = dateValue.includes('/') ? dateValue.split('/')[2] : dateValue.split('-')[0];  // Handle dd/mm/yyyy or yyyy-mm-dd
+                    return year === filterYear;
+                });
+            }
+
+            return buildTable(data);
+        } catch (e) {
+            console.error('Fetch Error:', e);
+            return 'Spreadsheet data unavailable. Please ensure the CSV file is exported correctly.';
+        }
+    }
+
+    function buildTable(data) {
+        // Collect unique values for each column
+        const uniqueValues = {};
+        headers.forEach(header => {
+            uniqueValues[header] = new Set();
+        });
+        data.forEach(row => {
+            headers.forEach(header => {
+                uniqueValues[header].add(row[header] || '');
+            });
+        });
+
+        let html = '<table id="data-table"><thead><tr>';
+        headers.forEach(header => {
+            const options = ['<option value="">All</option>'];
+            Array.from(uniqueValues[header]).sort().forEach(value => {
+                options.push(`<option value="${value}">${value}</option>`);
+            });
+            html += `<th>${header}<br><select class="column-filter" data-column="${header}">${options.join('')}</select></th>`;
+        });
+        html += '</tr></thead><tbody>';
+        data.forEach((row, index) => {
+            html += `<tr data-index="${index}">`;
+            headers.forEach(header => {
+                html += `<td>${row[header] || ''}</td>`;
+            });
+            html += '</tr>';
+        });
+        html += '</tbody></table>';
+        return html;
+    }
+
+    function applyFilters() {
+        const globalQuery = document.getElementById('filter-input').value.toLowerCase();
+        const columnFilters = {};
+        document.querySelectorAll('.column-filter').forEach(select => {
+            const column = select.getAttribute('data-column');
+            columnFilters[column] = select.value.toLowerCase();
+        });
+
+        const rows = document.querySelectorAll('#data-table tbody tr');
+        rows.forEach(row => {
+            let showRow = true;
+
+            // Global search
+            if (globalQuery) {
+                const cells = row.querySelectorAll('td');
+                const matchesGlobal = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(globalQuery));
+                if (!matchesGlobal) showRow = false;
+            }
+
+            // Column-specific filters
+            headers.forEach((header, index) => {
+                const filterValue = columnFilters[header];
+                if (filterValue) {
+                    const cell = row.querySelectorAll('td')[index];
+                    if (cell.textContent.toLowerCase() !== filterValue) {  // Fixed: Exact match for dropdown
+                        showRow = false;
+                    }
+                }
+            });
+
+            row.style.display = showRow ? '' : 'none';
+        });
+    }
+
+
+    async function init() {
+        document.getElementById('spreadsheet-content').innerHTML = await loadSpreadsheet();
+
+        // Add event listeners for filters
+        document.getElementById('filter-input').addEventListener('input', applyFilters);
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('column-filter')) {
+                applyFilters();
+            }
+        });
+    }
+
+    init();
+</script>
+</body>
+</html>
