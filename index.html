@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
-        .tour-container { float: left; width: 70%; }
-        .sidebar { float: right; width: 25%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .tour-container { float: left; width: 60%; }
+        .sidebar { float: right; width: 18%; margin-left: 1%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
         .clear { clear: both; }
         h1 { text-align: center; color: #333; }
         .tour-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
@@ -18,6 +18,7 @@
         .loading { color: #666; font-style: italic; }
         @media (max-width: 768px) { .tour-container, .sidebar { float: none; width: 100%; } }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 <h1>Eds Golf Model Predictions Hub </h1>
@@ -39,10 +40,16 @@
 </div>
 
 <div class="sidebar">
-    <a href="schedule.html" class="link">View Tournament Schedule</a>
-    <h2>Next Upcoming Events</h2>
+    <h3>Next Upcoming Events</h3>
     <div id="upcoming-events" class="loading">Loading...</div>
-    <h2>Betting History</h2>
+    <br>
+    <a href="schedule.html" class="link">View Tournament Schedule</a>
+</div>
+
+<div class="sidebar">
+    <h3>Betting History</h3>
+    <div id="overall-roi" class="loading">Calculating...</div>
+    <br>
     <a href="spreadsheet.html" class="link">View Historical Betting Data</a>
     <div>
         <a href="spreadsheet.html?year=2026" class="link">2026 Betting</a><br>
@@ -84,20 +91,61 @@
             const pgaSchedule = await fetch('pga/schedule.json').then(r => r.json()).catch(() => []);
             const euroSchedule = await fetch('euro/schedule.json').then(r => r.json()).catch(() => []);
 
-            const pgaNext = pgaSchedule.length ? `${pgaSchedule[0].event} on ${pgaSchedule[0].date}` : 'N/A';
-            const euroNext = euroSchedule.length ? `${euroSchedule[0].event} on ${euroSchedule[0].date}` : 'N/A';
+            const pgaNext = pgaSchedule.length ? pgaSchedule[0] : null;
+            const euroNext = euroSchedule.length ? euroSchedule[0] : null;
 
-            return `
-                <strong>PGA:</strong> ${pgaNext}<br/>
-                <strong>DP World Tour:</strong> ${euroNext}
-            `;
+            let html = '<strong>PGA Tour:</strong><br>';
+            if (pgaNext) {
+                html += `${pgaNext.date} | ${pgaNext.event}<br><br>`;
+            } else {
+                html += 'N/A<br><br>';
+            }
+
+            html += '<strong>DP World Tour:</strong><br>';
+            if (euroNext) {
+                html += `${euroNext.date} | ${euroNext.event}`;
+            } else {
+                html += 'N/A';
+            }
+
+            return html;
         } catch (e) {
             return 'Upcoming events unavailable.';
         }
     }
 
+    async function loadOverallROI() {
+        try {
+            const response = await fetch('spreadsheet_data.csv');
+            const csvText = await response.text();
+            const parsed = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: 'greedy',
+                dynamicTyping: false,
+                delimiter: ',',
+                quoteChar: '"',
+                escapeChar: '"',
+                newline: '\n',
+                transformHeader: header => header.trim()
+            });
+            let totalReturn = 0;
+            let totalStake = 0;
+            parsed.data.forEach(row => {
+                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                if (!isNaN(returnVal)) totalReturn += returnVal;
+                if (!isNaN(stakeVal)) totalStake += stakeVal;
+            });
+            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
+            return `<strong>Overall ROI: ${roi}%</strong>`;
+        } catch (e) {
+            return 'ROI unavailable.';
+        }
+    }
+
     async function init() {
         document.getElementById('upcoming-events').innerHTML = await loadUpcomingEvents();
+        document.getElementById('overall-roi').innerHTML = await loadOverallROI();
         document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
         document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
     }
