@@ -5,63 +5,104 @@
     <title>Golf Model Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
-        .tour-container { float: left; width: 60%; }
-        .sidebar { float: right; width: 18%; margin-left: 1%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
-        .clear { clear: both; }
-        h1 { text-align: center; color: #333; }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
+        body.menu-open { padding-left: 250px; }
+        .main-content { display: flex; width: 100%; }
+        .tour-container { flex: 1; }
+        .sidebar { width: 250px; margin-left: 1rem; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        h1 { text-align: center; color: #333; width: 100%; }
         .tour-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
         .tour-section h2 { margin-top: 0; color: #007bff; }
         .summary { margin: 0.5rem 0; line-height: 1.5; }
         .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
         .link:hover { background: #0056b3; }
         .loading { color: #666; font-style: italic; }
-        @media (max-width: 768px) { .tour-container, .sidebar { float: none; width: 100%; } }
+
+        /* Hamburger Menu */
+        .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
+        .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
+        .hamburger:focus { outline: none; }
+        .menu { display: none; position: fixed; top: 50px; left: 0; width: 250px; height: calc(100% - 50px); background: #f9f9f9; border-right: 1px solid #ddd; padding: 1rem; overflow-y: auto; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
+        .menu.show { display: block; }
+        .menu h3 { margin-top: 0; color: #007bff; }
+        .menu ul { list-style: none; padding: 0; }
+        .menu li { margin: 0.5rem 0; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+        .overlay.show { display: block; }
+        @media (max-width: 768px) { .main-content { flex-direction: column; } .sidebar { width: 100%; margin-left: 0; margin-top: 1rem; } body.menu-open { padding-left: 0; } .menu { width: 80%; } }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <h1>Eds Golf Model Predictions Hub </h1>
-<p>Weekly summaries for PGA and DP World Tours.</p>
-<p>Prediction Models Generated Using Form/CourseHistory/Weather.</p>
+<div>Weekly prediction and betting summaries for Majors, PGA Tour and DP World Tour.</div>
+<br>
+<div id="overall-roi" class="loading">Calculating...</div>
 
-<div class="tour-container">
-    <div class="tour-section" id="pga-section">
-        <h2>PGA Tour</h2>
-        <div id="pga-summary" class="summary loading">Loading...</div>
-        <a href="pga.html" class="link">View PGA Predictions</a>
+
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+
+<div class="main-content">
+    <div class="tour-container">
+        <div class="tour-section" id="pga-section">
+            <h2>PGA Tour</h2>
+            <div id="pga-summary" class="summary loading">Loading...</div>
+            <a href="pga.html" class="link">View PGA Predictions</a>
+        </div>
+
+        <div class="tour-section" id="euro-section">
+            <h2>DP World Tour</h2>
+            <div id="euro-summary" class="summary loading">Loading...</div>
+            <a href="euro.html" class="link">View DP World Predictions</a>
+        </div>
     </div>
 
-    <div class="tour-section" id="euro-section">
-        <h2>DP World Tour</h2>
-        <div id="euro-summary" class="summary loading">Loading...</div>
-        <a href="euro.html" class="link">View DP World Predictions</a>
+    <div class="sidebar">
+        <h3>Next Upcoming Events 📅</h3>
+        <div id="upcoming-events" class="loading">Loading...</div>
     </div>
 </div>
 
-<div class="sidebar">
-    <h3>Next Upcoming Events</h3>
-    <div id="upcoming-events" class="loading">Loading...</div>
-    <br>
-    <a href="schedule.html" class="link">View Tournament Schedule</a>
-</div>
-
-<div class="sidebar">
+<div class="menu" id="menu">
+    <h3>Tournament Predictions</h3>
+    <ul>
+        <li><a href="pga.html" class="link">PGA Tour</a></li>
+        <li><a href="euro.html" class="link">DP World Tour</a></li>
+    </ul>
+    <h3>Tour Schedules</h3>
+    <ul>
+        <li><a href="pga_schedule.html" class="link">PGA Tour</a></li>
+        <li><a href="euro_schedule.html" class="link">DP World Tour</a></li>
+    </ul>
     <h3>Betting History</h3>
-    <div id="overall-roi" class="loading">Calculating...</div>
-    <br>
-    <a href="spreadsheet.html" class="link">View Historical Betting Data</a>
-    <div>
-        <a href="spreadsheet.html?year=2026" class="link">2026 Betting</a><br>
-        <a href="spreadsheet.html?year=2025" class="link">2025 Betting</a><br>
-        <a href="spreadsheet.html?year=2024" class="link">2024 Betting</a><br>
-        <a href="spreadsheet.html?year=2023" class="link">2023 Betting</a>
-    </div>
+    <ul>
+        <li><a href="spreadsheet.html" class="link">View Historical Betting Data</a></li>
+        <li><a href="spreadsheet.html?year=2023" class="link">2023</a></li>
+        <li><a href="spreadsheet.html?year=2024" class="link">2024</a></li>
+        <li><a href="spreadsheet.html?year=2025" class="link">2025</a></li>
+        <li><a href="spreadsheet.html?year=2026" class="link">2026</a></li>
+    </ul>
 </div>
-
-<div class="clear"></div>
 
 <script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        const overlay = document.getElementById('overlay');
+        const body = document.body;
+        const isShown = menu.classList.contains('show');
+        menu.classList.toggle('show');
+        overlay.classList.toggle('show');
+        body.classList.toggle('menu-open');
+
+        // Load ROI if menu is now shown and not already loaded
+        if (!isShown && document.getElementById('overall-roi').innerHTML === 'Calculating...') {
+            loadOverallROI().then(roi => document.getElementById('overall-roi').innerHTML = roi);
+        }
+    }
+
     async function loadSummary(tour) {
         try {
             const meta = await fetch(`${tour}/meta.json`).then(r => r.json());
@@ -91,28 +132,34 @@
             const pgaSchedule = await fetch('pga/schedule.json').then(r => r.json()).catch(() => []);
             const euroSchedule = await fetch('euro/schedule.json').then(r => r.json()).catch(() => []);
 
-            const pgaNext = pgaSchedule.length ? pgaSchedule[0] : null;
-            const euroNext = euroSchedule.length ? euroSchedule[0] : null;
+            const allEvents = [...pgaSchedule.map(e => ({ ...e, tour: 'PGA Tour' })), ...euroSchedule.map(e => ({ ...e, tour: 'DP World Tour' }))];
+            const now = new Date();
 
-            let html = '<strong>PGA Tour:</strong><br>';
-            if (pgaNext) {
-                html += `${pgaNext.date} | ${pgaNext.event}<br><br>`;
-            } else {
-                html += 'N/A<br><br>';
-            }
+            const upcoming = allEvents.filter(e => {
+                const eventDate = new Date(e.date.split('-').reverse().join('-'));
+                return eventDate >= now;
+            }).sort((a, b) => new Date(a.date.split('-').reverse().join('-')) - new Date(b.date.split('-').reverse().join('-'))).slice(0, 20);
 
-            html += '<strong>DP World Tour:</strong><br>';
-            if (euroNext) {
-                html += `${euroNext.date} | ${euroNext.event}`;
-            } else {
-                html += 'N/A';
-            }
-
+            let html = '';
+            let currentWeek = null;
+            upcoming.forEach(e => {
+                const eventDate = new Date(e.date.split('-').reverse().join('-'));
+                const week = Math.floor((eventDate - now) / (7 * 24 * 60 * 60 * 1000));
+                if (currentWeek !== null && week !== currentWeek) {
+                    html += '<br>';
+                }
+                html += `<strong>${e.tour}:</strong> ${e.date} | ${e.event}<br>`;
+                currentWeek = week;
+            });
+            if (!html) html = 'No upcoming events.';
             return html;
         } catch (e) {
             return 'Upcoming events unavailable.';
         }
     }
+
+
+
 
     async function loadOverallROI() {
         try {
@@ -145,7 +192,6 @@
 
     async function init() {
         document.getElementById('upcoming-events').innerHTML = await loadUpcomingEvents();
-        document.getElementById('overall-roi').innerHTML = await loadOverallROI();
         document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
         document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
     }
