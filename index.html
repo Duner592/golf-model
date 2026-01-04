@@ -90,7 +90,12 @@
         <li><a href="spreadsheet.html?year=2025" class="link">2025</a></li>
         <li><a href="spreadsheet.html?year=2026" class="link">2026</a></li>
     </ul>
+    <h3>Additional Data</h3>
+    <ul>
+        <li><a href="course_details.html" class="link">Course Details</a></li>
+    </ul>
 </div>
+
 
 <script>
     function toggleMenu() {
@@ -194,6 +199,11 @@
                 const type = bet['Type'] || 'N/A';
                 const stake = bet['Stake'] || 'N/A';
                 const date = bet['Date'] || 'N/A';
+
+                if (tournament === 'N/A' && player === 'N/A' && type === 'N/A' && stake === 'N/A' && date === 'N/A') {
+                    return;  // Skip this row
+                }
+
                 html += `<strong>${tournament}</strong> - ${player} (${type})<br>Stake: ${stake}<br>Date: ${date}<br><br>`;
             });
             return html;
