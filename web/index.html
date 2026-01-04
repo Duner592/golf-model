@@ -64,6 +64,11 @@
         <h3>Next Upcoming Events 📅</h3>
         <div id="upcoming-events" class="loading">Loading...</div>
     </div>
+
+    <div class="sidebar">
+        <h3>Pending Bets 💰</h3>
+        <div id="pending-bets" class="loading">Loading...</div>
+    </div>
 </div>
 
 <div class="menu" id="menu">
@@ -79,7 +84,7 @@
     </ul>
     <h3>Betting History</h3>
     <ul>
-        <li><a href="spreadsheet.html" class="link">View Historical Betting Data</a></li>
+        <li><a href="spreadsheet.html" class="link">Overall Betting Data</a></li>
         <li><a href="spreadsheet.html?year=2023" class="link">2023</a></li>
         <li><a href="spreadsheet.html?year=2024" class="link">2024</a></li>
         <li><a href="spreadsheet.html?year=2025" class="link">2025</a></li>
@@ -158,7 +163,45 @@
         }
     }
 
-
+    async function loadPendingBets() {
+        try {
+            const response = await fetch('spreadsheet_data.csv');
+            const csvText = await response.text();
+            const parsed = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: 'greedy',
+                dynamicTyping: false,
+                delimiter: ',',
+                quoteChar: '"',
+                escapeChar: '"',
+                newline: '\n',
+                transformHeader: header => header.trim()
+            });
+            console.log('Parsed data sample:', parsed.data.slice(0, 2));  // Temporary: Check column names
+            console.log('Headers:', Object.keys(parsed.data[0] || {}));    // Temporary: List headers
+            const pendingBets = parsed.data.filter(row => {
+                const outcome = (row['Outcome'] || '').toLowerCase().trim();
+                return outcome === '' || outcome === 'pending' || outcome === 'Pending';  // Added 'Pending'
+            });
+            console.log('Filtered pending bets:', pendingBets);  // Temporary: See filtered results
+            if (pendingBets.length === 0) {
+                return 'No pending bets.';
+            }
+            let html = '';
+            pendingBets.forEach(bet => {
+                const tournament = bet['Tournament'] || bet['Tour/Majors'] || 'N/A';
+                const player = bet['Player'] || 'N/A';
+                const type = bet['Type'] || 'N/A';
+                const stake = bet['Stake'] || 'N/A';
+                const date = bet['Date'] || 'N/A';
+                html += `<strong>${tournament}</strong> - ${player} (${type})<br>Stake: ${stake}<br>Date: ${date}<br><br>`;
+            });
+            return html;
+        } catch (e) {
+            console.error('Error in loadPendingBets:', e);
+            return 'Pending bets unavailable.';
+        }
+    }
 
 
     async function loadOverallROI() {
@@ -192,6 +235,7 @@
 
     async function init() {
         document.getElementById('upcoming-events').innerHTML = await loadUpcomingEvents();
+        document.getElementById('pending-bets').innerHTML = await loadPendingBets();
         document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
         document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
     }
