@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Course Details - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
+        h1 { text-align: center; color: #333; }
+        .filter-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .filter-section select, .filter-section button { margin: 0.5rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+        .filter-section button { background: #007bff; color: white; cursor: pointer; }
+        .filter-section button:hover { background: #0056b3; }
+        .results { margin: 2rem 0; }
+        .course-card { margin: 1rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .course-card h3 { margin-top: 0; color: #007bff; }
+        .loading { color: #666; font-style: italic; }
+        .error { color: #d9534f; font-weight: bold; }
+        .no-results { color: #666; font-style: italic; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<h1>Course Details</h1>
+<p>Filter by tournament and/or course name to view details from betting history data.</p>
+
+<div class="filter-section">
+    <label for="tournament-filter">Tournament:</label>
+    <select id="tournament-filter">
+        <option value="">All Tournaments</option>
+    </select>
+
+    <label for="course-filter">Course Name:</label>
+    <select id="course-filter">
+        <option value="">All Courses</option>
+    </select>
+
+    <button id="filter-btn">Apply Filter</button>
+</div>
+
+<div id="course-details" class="loading">Loading data...</div>
+
+<script>
+    let csvData = [];  // Store parsed CSV data globally for filtering
+
+    async function loadData() {
+        try {
+            const response = await fetch('spreadsheet_data.csv');
+            const csvText = await response.text();
+            const parsed = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: 'greedy',
+                dynamicTyping: false,
+                delimiter: ',',
+                quoteChar: '"',
+                escapeChar: '"',
+                newline: '\n',
+                transformHeader: header => header.trim()
+            });
+            csvData = parsed.data;
+
+            // Populate dropdowns with unique values
+            const tournaments = new Set();
+            const courses = new Set();  // Using "Course" field for course names
+            csvData.forEach(row => {
+                const tournament = row['Tournament'] || row['Tour/Majors'] || '';
+                const course = (row['Course'] || '').trim();
+                if (tournament) tournaments.add(tournament);
+                if (course && course.toLowerCase() !== 'n/a') courses.add(course);
+            });
+
+            const tournamentSelect = document.getElementById('tournament-filter');
+            Array.from(tournaments).sort().forEach(t => {
+                const option = document.createElement('option');
+                option.value = t;
+                option.textContent = t;
+                tournamentSelect.appendChild(option);
+            });
+
+            const courseSelect = document.getElementById('course-filter');
+            Array.from(courses).sort().forEach(c => {
+                const option = document.createElement('option');
+                option.value = c;
+                option.textContent = c;
+                courseSelect.appendChild(option);
+            });
+
+            // Initial display (show all)
+            displayResults(csvData);
+        } catch (e) {
+            console.error('Error loading data:', e);
+            document.getElementById('course-details').innerHTML = '<div class="error">Data unavailable. Check console for errors.</div>';
+        }
+    }
+
+    // UPDATED: Independent regex matching with flexible stops
+    function parseCourseDetails(text, courseName) {
+        const fields = {
+            'Course': 'N/A',
+            'Length': 'N/A',
+            'Par': 'N/A',
+            'Time difference': 'N/A',
+            'Course type': 'N/A',
+            'Course overview': 'N/A',
+            'Key attribute': 'N/A',
+            'Insight': 'N/A'
+        };
+
+        if (!text || typeof text !== 'string') return fields;
+
+        // Extract each field independently with flexible stops
+        // Use negative lookahead to avoid matching 'Course overview' as 'Course'
+        const courseMatch = text.match(/Course\s+(?!overview\s)(.*?)(?=\s*Length\s*:?\s*|$)/is);
+        fields['Course'] = courseMatch ? courseMatch[1].trim() : 'N/A';
+
+        const lengthMatch = text.match(/Length\s*:?\s*(.*?)(?=\s*Par\s*:?\s*|$)/is);
+        fields['Length'] = lengthMatch ? lengthMatch[1].trim() : 'N/A';
+
+        // Stop at Time difference, Course type, Course overview, or end
+        const parMatch = text.match(/Par\s*:?\s*(.*?)(?=\s*(Time difference|Course type|Course overview)\s*:?\s*|$)/is);
+        fields['Par'] = parMatch ? parMatch[1].trim() : 'N/A';
+
+        const timeMatch = text.match(/Time difference\s*:?\s*(.*?)(?=\s*Course type\s*:?\s*|$)/is);
+        fields['Time difference'] = timeMatch ? timeMatch[1].trim() : 'N/A';
+
+        const typeMatch = text.match(/Course type\s*:?\s*(.*?)(?=\s*Course overview\s*:?\s*|$)/is);
+        fields['Course type'] = typeMatch ? typeMatch[1].trim() : 'N/A';
+
+        const overviewMatch = text.match(/Course overview\s*:?\s*(.*?)(?=\s*Key attribute\s*:?\s*|$)/is);
+        fields['Course overview'] = overviewMatch ? overviewMatch[1].trim() : 'N/A';
+
+        // Stop at Insight or end
+        const attributeMatch = text.match(/Key attribute\s*:?\s*(.*?)(?=\s*Insight\s*:?\s*|$)/is);
+        fields['Key attribute'] = attributeMatch ? attributeMatch[1].trim() : 'N/A';
+
+        const insightMatch = text.match(/Insight\s*:?\s*(.*?)(?=$)/is);  // Stop at end
+        fields['Insight'] = insightMatch ? insightMatch[1].trim() : 'N/A';
+
+        // Fallback: If 'Course' not found, use the course name from CSV
+        if (fields['Course'] === 'N/A') {
+            fields['Course'] = courseName || 'N/A';
+        }
+
+        return fields;
+    }
+
+    function displayResults(filteredData) {
+        const resultsDiv = document.getElementById('course-details');
+
+        // Collect unique courses with their details (removes duplicates)
+        const uniqueCourses = new Map();  // Key: course name, Value: { detail, tournament }
+        filteredData.forEach(row => {
+            const courseName = (row['Course'] || '').trim();
+            const courseDetailRaw = (row['Course Details'] || '').trim();
+            const tournament = row['Tournament'] || row['Tour/Majors'] || '';
+
+            if (courseName && courseName.toLowerCase() !== 'n/a' && courseDetailRaw && !uniqueCourses.has(courseName)) {
+                uniqueCourses.set(courseName, { detail: courseDetailRaw, tournament: tournament });
+            }
+        });
+
+        if (uniqueCourses.size === 0) {
+            resultsDiv.innerHTML = '<div class="no-results">No matching course details found.</div>';
+            return;
+        }
+
+        let html = '<div class="results">';
+        uniqueCourses.forEach((data, courseName) => {
+            const parsed = parseCourseDetails(data.detail, courseName);
+            let courseHtml = `<div class="course-card"><h3>${courseName}</h3><p><strong>Tournament:</strong> ${data.tournament}</p>`;
+            if (parsed['Course'] !== 'N/A') courseHtml += `<p><strong>Course:</strong> ${parsed['Course']}</p>`;
+            if (parsed['Length'] !== 'N/A') courseHtml += `<p><strong>Length:</strong> ${parsed['Length']}</p>`;
+            if (parsed['Par'] !== 'N/A') courseHtml += `<p><strong>Par:</strong> ${parsed['Par']}</p>`;
+            if (parsed['Time difference'] !== 'N/A') courseHtml += `<p><strong>Time difference:</strong> ${parsed['Time difference']}</p>`;
+            if (parsed['Course type'] !== 'N/A') courseHtml += `<p><strong>Course type:</strong> ${parsed['Course type']}</p>`;
+            if (parsed['Course overview'] !== 'N/A') courseHtml += `<p><strong>Course overview:</strong> ${parsed['Course overview']}</p>`;
+            if (parsed['Key attribute'] !== 'N/A') courseHtml += `<p><strong>Key attribute:</strong> ${parsed['Key attribute']}</p>`;
+            if (parsed['Insight'] !== 'N/A') courseHtml += `<p><strong>Insight:</strong> ${parsed['Insight']}</p>`;
+            courseHtml += `</div>`;
+            html += courseHtml;
+        });
+        html += '</div>';
+        resultsDiv.innerHTML = html;
+    }
+
+    function applyFilter() {
+        const selectedTournament = document.getElementById('tournament-filter').value;
+        const selectedCourse = document.getElementById('course-filter').value;
+
+        const filtered = csvData.filter(row => {
+            const tournamentMatch = !selectedTournament || (row['Tournament'] || row['Tour/Majors'] || '') === selectedTournament;
+            const courseMatch = !selectedCourse || (row['Course'] || '').trim() === selectedCourse;
+            return tournamentMatch && courseMatch;
+        });
+
+        displayResults(filtered);
+    }
+
+    async function init() {
+        await loadData();
+        document.getElementById('filter-btn').addEventListener('click', applyFilter);
+    }
+
+    init();
+</script>
+
+</body>
+</html>
