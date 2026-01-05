@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Betting Analytics - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; }
+        body.menu-open { padding-left: 250px; }
+        h1 { text-align: center; color: #333; }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .chart-container {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .chart-container.full-width {
+            grid-column: 1 / -1;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 400px;
+        }
+
+        .loading { color: #666; font-style: italic; text-align: center; }
+
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                height: 60px;
+                top: 5px;
+                right: 5px;
+            }
+        }
+
+        /* Hamburger Menu */
+        .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
+        .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
+        .hamburger:focus { outline: none; }
+        .menu { display: none; position: fixed; top: 50px; left: 0; width: 250px; height: calc(100% - 50px); background: #f9f9f9; border-right: 1px solid #ddd; padding: 1rem; overflow-y: auto; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
+        .menu.show { display: block; }
+        .menu h3 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.5rem 0; border-bottom: 1px solid #eee; transition: background 0.3s; }
+        .menu h3:hover { background: #e9ecef; }
+        .menu .homepage-section { margin-top: 0; color: #007bff; padding: 0.5rem 0; border-bottom: 1px solid #eee; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        .menu .homepage-section:hover { background: #e9ecef; }
+        .menu .arrow { float: right; transition: transform 0.3s; }
+        .menu .menu-list { list-style: none; padding: 0; margin: 0; display: none; transition: all 0.3s ease; }
+        .menu .menu-list li { margin: 0.25rem 0; padding-left: 1rem; }
+        .menu .submenu-section { margin: 0.25rem 0; padding: 0.25rem 0; color: #007bff; cursor: pointer; font-size: 1rem; font-weight: bold; border-bottom: none; transition: background 0.3s; }
+        .menu .submenu-section:hover { background: #e9ecef; }
+        .menu .submenu-list { list-style: none; padding: 0; margin: 0; display: none; padding-left: 1rem; transition: all 0.3s ease; }
+        .menu .submenu-list li { margin: 0.1rem 0; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+        .overlay.show { display: block; }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
+        .link:hover { background: #0056b3; }
+
+        @media (max-width: 768px) {
+            body.menu-open { padding-left: 0; }
+            .menu { width: 80%; }
+            .logo {
+                height: 60px;
+                top: 5px;
+                right: 5px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .chart-container.full-width {
+                grid-column: 1 / -1;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+<div class="menu" id="menu">
+    <h3 class="homepage-section"><a href="index.html" class="link">Homepage</a></h3>
+
+    <h3 class="menu-section" onclick="toggleSection(this)">Tournament Predictions <span class="arrow">▶</span></h3>
+    <ul class="menu-list">
+        <li><a href="pga.html" class="link">PGA Tour</a></li>
+        <li><a href="euro.html" class="link">DP World Tour</a></li>
+    </ul>
+
+    <h3 class="menu-section" onclick="toggleSection(this)">Tour Schedules <span class="arrow">▶</span></h3>
+    <ul class="menu-list">
+        <li><a href="pga_schedule.html" class="link">PGA Tour</a></li>
+        <li><a href="euro_schedule.html" class="link">DP World Tour</a></li>
+    </ul>
+
+    <h3 class="menu-section" onclick="toggleSection(this)">Betting History <span class="arrow">▶</span></h3>
+    <ul class="menu-list">
+        <li><a href="betting_analytics.html" class="link">Betting Analytics</a></li>
+        <li><a href="spreadsheet.html" class="link">Overall Betting Data</a></li>
+        <li>
+            <h4 class="submenu-section" onclick="toggleSection(this)">Yearly Data <span class="arrow">▶</span></h4>
+            <ul class="submenu-list">
+                <li><a href="spreadsheet.html?year=2026" class="link">2026</a></li>
+                <li><a href="spreadsheet.html?year=2025" class="link">2025</a></li>
+                <li><a href="spreadsheet.html?year=2024" class="link">2024</a></li>
+                <li><a href="spreadsheet.html?year=2023" class="link">2023</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3 class="menu-section" onclick="toggleSection(this)">Additional Data <span class="arrow">▶</span></h3>
+    <ul class="menu-list">
+        <li><a href="course_details.html" class="link">Course Details</a></li>
+    </ul>
+</div>
+
+<h1>Betting Analytics</h1>
+<p style="text-align: center;">Visual insights into profit/loss data from betting history.</p>
+
+<!-- Charts Container for Grid Layout -->
+<div class="charts-grid">
+    <div class="chart-container">
+        <h2>Most Profitable Players</h2>
+        <canvas id="mostProfitablePlayersChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Least Profitable Players</h2>
+        <canvas id="leastProfitablePlayersChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Most Profitable Tournaments</h2>
+        <canvas id="mostProfitableTournamentsChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Least Profitable Tournaments</h2>
+        <canvas id="leastProfitableTournamentsChart"></canvas>
+    </div>
+
+    <div class="chart-container full-width">
+        <h2>Profit/Loss by Tour/Major</h2>
+        <canvas id="tourChart"></canvas>
+    </div>
+
+    <div class="chart-container full-width">
+        <h2>Profit/Loss by Bookmaker</h2>
+        <canvas id="bookmakerChart"></canvas>
+    </div>
+
+    <div class="chart-container full-width">
+        <h2>Profit/Loss by Type</h2>
+        <canvas id="typeChart"></canvas>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        const overlay = document.getElementById('overlay');
+        const body = document.body;
+        menu.classList.toggle('show');
+        overlay.classList.toggle('show');
+        body.classList.toggle('menu-open');
+    }
+
+    function toggleSection(header) {
+        const list = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        if (list.style.display === 'block') {
+            list.style.display = 'none';
+            arrow.textContent = '▶';
+        } else {
+            list.style.display = 'block';
+            arrow.textContent = '▼';
+        }
+    }
+
+    async function loadData() {
+        const response = await fetch('spreadsheet_data.csv');
+        const csvText = await response.text();
+        const parsed = Papa.parse(csvText, {
+            header: true,
+            skipEmptyLines: 'greedy',
+            dynamicTyping: false,
+            delimiter: ',',
+            quoteChar: '"',
+            escapeChar: '"',
+            newline: '\n',
+            transformHeader: header => header.trim()
+        });
+        return parsed.data;
+    }
+
+    function processData(data) {
+        const players = {};
+        const tournaments = {};
+        const tours = {};
+        const bookmakers = {};
+        const types = {};
+
+        data.forEach(row => {
+            const player = row['Player'] || 'Unknown';
+            const tournament = row['Tournament'] || 'Unknown';
+            const tour = row['Tour/Majors'] || 'Unknown';
+            const bookmaker = row['Bookmaker'] || 'Unknown';
+            const type = row['Type'] || 'Unknown';
+            const profitLoss = parseFloat((row['Profit/Loss'] || '').replace('£', '').replace(',', '')) || 0;
+
+            // Players
+            players[player] = (players[player] || 0) + profitLoss;
+
+            // Tournaments
+            tournaments[tournament] = (tournaments[tournament] || 0) + profitLoss;
+
+            // Tours
+            tours[tour] = (tours[tour] || 0) + profitLoss;
+
+            // Bookmakers
+            bookmakers[bookmaker] = (bookmakers[bookmaker] || 0) + profitLoss;
+
+            // Types
+            types[type] = (types[type] || 0) + profitLoss;
+        });
+
+        return { players, tournaments, tours, bookmakers, types };
+    }
+
+    function renderCharts({ players, tournaments, tours, bookmakers, types }) {
+        // Most Profitable Players (Top 10)
+        const mostProfitablePlayers = Object.entries(players).sort((a, b) => b[1] - a[1]).slice(0, 10);
+        new Chart(document.getElementById('mostProfitablePlayersChart'), {
+            type: 'bar',
+            data: {
+                labels: mostProfitablePlayers.map(p => p[0]),
+                datasets: [{
+                    label: 'Total Profit (£)',
+                    data: mostProfitablePlayers.map(p => p[1]),
+                    backgroundColor: '#28a745'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Total Profit (£)' } },
+                    x: { title: { display: true, text: 'Players' } }
+                }
+            }
+        });
+
+        // Least Profitable Players (Bottom 10)
+        const leastProfitablePlayers = Object.entries(players).sort((a, b) => a[1] - b[1]).slice(0, 10);
+        new Chart(document.getElementById('leastProfitablePlayersChart'), {
+            type: 'bar',
+            data: {
+                labels: leastProfitablePlayers.map(p => p[0]),
+                datasets: [{
+                    label: 'Total Profit (£)',
+                    data: leastProfitablePlayers.map(p => p[1]),
+                    backgroundColor: '#dc3545'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Total Profit (£)' } },
+                    x: { title: { display: true, text: 'Players' } }
+                }
+            }
+        });
+
+        // Most Profitable Tournaments (Top 10)
+        const mostProfitableTournaments = Object.entries(tournaments).sort((a, b) => b[1] - a[1]).slice(0, 10);
+        new Chart(document.getElementById('mostProfitableTournamentsChart'), {
+            type: 'bar',
+            data: {
+                labels: mostProfitableTournaments.map(t => t[0]),
+                datasets: [{
+                    label: 'Total Profit (£)',
+                    data: mostProfitableTournaments.map(t => t[1]),
+                    backgroundColor: '#28a745'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Total Profit (£)' } },
+                    x: { title: { display: true, text: 'Tournaments' } }
+                }
+            }
+        });
+
+        // Least Profitable Tournaments (Bottom 10)
+        const leastProfitableTournaments = Object.entries(tournaments).sort((a, b) => a[1] - b[1]).slice(0, 10);
+        new Chart(document.getElementById('leastProfitableTournamentsChart'), {
+            type: 'bar',
+            data: {
+                labels: leastProfitableTournaments.map(t => t[0]),
+                datasets: [{
+                    label: 'Total Profit (£)',
+                    data: leastProfitableTournaments.map(t => t[1]),
+                    backgroundColor: '#dc3545'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Total Profit (£)' } },
+                    x: { title: { display: true, text: 'Tournaments' } }
+                }
+            }
+        });
+
+        // Profit/Loss by Tour (Horizontal Bar Chart)
+        const tourData = Object.entries(tours);
+        new Chart(document.getElementById('tourChart'), {
+            type: 'bar',
+            data: {
+                labels: tourData.map(t => t[0]),
+                datasets: [{
+                    label: 'Profit/Loss (£)',
+                    data: tourData.map(t => t[1]),
+                    backgroundColor: tourData.map(t => t[1] >= 0 ? '#28a745' : '#dc3545')
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true, title: { display: true, text: 'Profit/Loss (£)' } },
+                    y: { title: { display: true, text: 'Tour/Major' } }
+                }
+            }
+        });
+
+        // Profit/Loss by Bookmaker (Horizontal Bar Chart)
+        const bookmakerData = Object.entries(bookmakers);
+        new Chart(document.getElementById('bookmakerChart'), {
+            type: 'bar',
+            data: {
+                labels: bookmakerData.map(b => b[0]),
+                datasets: [{
+                    label: 'Profit/Loss (£)',
+                    data: bookmakerData.map(b => b[1]),
+                    backgroundColor: bookmakerData.map(b => b[1] >= 0 ? '#28a745' : '#dc3545')
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true, title: { display: true, text: 'Profit/Loss (£)' } },
+                    y: { title: { display: true, text: 'Bookmaker' } }
+                }
+            }
+        });
+
+        // Profit/Loss by Type (Horizontal Bar Chart)
+        const typeData = Object.entries(types);
+        new Chart(document.getElementById('typeChart'), {
+            type: 'bar',
+            data: {
+                labels: typeData.map(t => t[0]),
+                datasets: [{
+                    label: 'Profit/Loss (£)',
+                    data: typeData.map(t => t[1]),
+                    backgroundColor: typeData.map(t => t[1] >= 0 ? '#28a745' : '#dc3545')
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true, title: { display: true, text: 'Profit/Loss (£)' } },
+                    y: { title: { display: true, text: 'Type' } }
+                }
+            }
+        });
+    }
+
+    async function init() {
+        try {
+            const data = await loadData();
+            const processed = processData(data);
+            renderCharts(processed);
+        } catch (e) {
+            document.body.innerHTML += '<p style="color: red; text-align: center;">Error loading analytics data.</p>';
+            console.error(e);
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>
