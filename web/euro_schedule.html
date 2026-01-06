@@ -13,29 +13,15 @@
         }
         body.menu-open { padding-left: 250px; }
 
-        /* Table wrapper for responsiveness */
-        .table-container {
-            overflow-x: auto; /* Allow horizontal scroll on small screens */
-            width: 100%;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px; /* Prevent table from getting too narrow on mobile */
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+    /* Table wrapper for responsiveness */
+        .table-container { overflow-x: auto; width: 100%; }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
-
-        /* Flexible column widths instead of fixed px */
-        th:nth-child(1), td:nth-child(1) { width: 15%; min-width: 65px; } /* Date */
-        th:nth-child(2), td:nth-child(2) { width: 35%; min-width: 150px; } /* Event */
-        th:nth-child(3), td:nth-child(3) { width: 25%; min-width: 120px; } /* Course */
-        th:nth-child(4), td:nth-child(4) { width: 25%; min-width: 120px; } /* Location */
+        th:nth-child(1), td:nth-child(1) { width: 15%; min-width: 65px; }
+        th:nth-child(2), td:nth-child(2) { width: 35%; min-width: 150px; }
+        th:nth-child(3), td:nth-child(3) { width: 25%; min-width: 120px; }
+        th:nth-child(4), td:nth-child(4) { width: 25%; min-width: 120px; }
 
         .logo {
             position: absolute;
@@ -47,21 +33,11 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-top: 70px; /* Add padding to account for logo height + buffer, matching index.html */
-            }
-            .logo {
-                height: 60px;
-                top: 5px;
-                right: 5px;
-            }
-            th, td {
-                padding: 6px; /* Slightly less padding for mobile */
-                font-size: 0.9rem; /* Smaller text if needed, but table might handle it */
-            }
+            body { padding-top: 70px; } /* match index.html */
+            .logo { height: 60px; top: 5px; right: 5px; }
         }
 
-        /* Hamburger Menu styles (exactly matching index.html) */
+        /* Hamburger Menu (identical to index.html) */
         .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
         .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
         .hamburger:focus { outline: none; }
@@ -81,31 +57,14 @@
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
         .overlay.show { display: block; }
 
-        .link {
-            display: inline-block;
-            margin: 0.25rem 0;
-            padding: 0.25rem 0.5rem;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
         .link:hover { background: #0056b3; }
 
         @media (max-width: 768px) {
             body.menu-open { padding-left: 0; }
-            .menu { width: 80%; }
-            .logo {
-                height: 60px;
-                top: 5px;
-                right: 5px;
-            }
-            .link {
-                min-height: 44px; /* Touch-friendly for mobile */
-                display: flex;
-                align-items: center;
-            }
+            .menu { width: 80%; } /* match index.html */
+            .logo { height: 60px; top: 5px; right: 5px; }
+            .link { min-height: 44px; display: flex; align-items: center; }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
