@@ -58,12 +58,35 @@
         .overlay.show { display: block; }
 
         @media (max-width: 768px) {
-            body.menu-open { padding-left: 0; }
-            .menu { width: 80%; }
+            body {
+                padding-top: 70px; /* Keep as-is for logo space */
+            }
+            body.menu-open {
+                padding-left: 0; /* Keep as-is */
+            }
             .logo {
-                height: 60px; /* Fixed to match your update */
+                height: 60px; /* Keep as-is */
                 top: 5px;
                 right: 5px;
+            }
+            .main-content {
+                flex-direction: column; /* Stack vertically: tour-container first, then sidebar */
+            }
+            .tour-container {
+                flex: none; /* Remove flex-grow to prevent stretching issues */
+                width: 100%;
+            }
+            .sidebar {
+                width: 100%; /* Full width on mobile instead of 250px */
+                margin: 1rem 0; /* Vertical spacing instead of left margin */
+                padding: 1rem; /* Increase padding for better readability */
+            }
+            .tour-section {
+                padding: 1.5rem; /* Slightly more padding for comfort */
+                margin: 1rem 0; /* Add margin for separation */
+            }
+            .menu {
+                width: 80%; /* Keep as-is */
             }
         }
     </style>
