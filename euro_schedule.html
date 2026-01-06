@@ -6,8 +6,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 100px 20px 20px 20px;
+            margin: 2rem; /* Match index.html for consistent spacing */
             transition: padding-left 0.3s;
+            display: flex;
+            flex-direction: column; /* Match index.html layout */
         }
         body.menu-open { padding-left: 250px; }
 
@@ -46,7 +48,7 @@
 
         @media (max-width: 768px) {
             body {
-                margin: 70px 10px 20px 10px; /* Reduce margins for more space */
+                padding-top: 70px; /* Add padding to account for logo height + buffer, matching index.html */
             }
             .logo {
                 height: 60px;
@@ -59,7 +61,7 @@
             }
         }
 
-        /* Hamburger Menu styles (unchanged) */
+        /* Hamburger Menu styles (unchanged, matching index.html exactly) */
         .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
         .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
         .hamburger:focus { outline: none; }
@@ -104,23 +106,34 @@
                 display: flex;
                 align-items: center;
             }
-            .hamburger {
-                padding: 1rem; /* Increase padding for larger button */
-                font-size: 1.25rem; /* Slightly bigger icon/text */
-                min-height: 48px; /* Minimum touch target height */
-                min-width: 48px; /* Optional: Minimum width for square feel */
-            }
-
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
-<img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+<div class="logo-wrapper">
+    <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+</div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <div class="menu-container">
     <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
 </div>
+
+<h1>2026 DP World Tour Schedule</h1>
+<div class="table-container">
+    <table id="schedule-table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Course</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
 <div class="menu" id="menu">
     <!-- Menu content unchanged -->
     <h3 class="homepage-section"><a href="index.html" class="link">Homepage</a></h3>
@@ -158,20 +171,6 @@
     </ul>
 </div>
 
-<h1>2026 DP World Tour Schedule</h1>
-<div class="table-container">
-    <table id="schedule-table">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Event</th>
-            <th>Course</th>
-            <th>Location</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
 <script>
     function toggleMenu() {
         const menu = document.getElementById('menu');
