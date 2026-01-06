@@ -28,17 +28,10 @@
 
         /* Table area */
         .table-container { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; border-collapse: collapse; table-layout: auto; }
+        table { width: 100%; border-collapse: collapse; table-layout: auto; } /* no min-width */
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
         th, td { word-break: break-word; }
-
-        /* Make the Date column wider */
-        th:nth-child(1), td:nth-child(1) {
-            width: 140px;
-            min-width: 140px;
-            white-space: nowrap;
-        }
 
         /* Hamburger Menu (copied from index.html) */
         .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
@@ -175,5 +168,6 @@
             tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: red;">Error loading schedule. Please try again later.</td></tr>';
         });
 </script>
+<br><a href="euro.html" class="link">Back to Euro Predictions</a>
 </body>
 </html>
