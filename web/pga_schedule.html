@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <title>2026 PGA Schedule</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 100px 20px 20px 20px; transition: padding-left 0.3s; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 100px 20px 20px 20px;
+            transition: padding-left 0.3s;
+        }
         body.menu-open { padding-left: 250px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+
+        /* Table wrapper for responsiveness */
+        .table-container {
+            overflow-x: auto; /* Allow horizontal scroll on small screens */
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px; /* Prevent table from getting too narrow on mobile */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
         th { background-color: #f2f2f2; }
-        th:nth-child(1), td:nth-child(1) { width: 65px; } /* Date - fitted to size */
-        th:nth-child(2), td:nth-child(2) { width: 250px; } /* Event - more space for names */
-        th:nth-child(3), td:nth-child(3) { width: 150px; } /* Course */
-        th:nth-child(4), td:nth-child(4) { width: 150px; } /* Location */
+
+        /* Flexible column widths instead of fixed px */
+        th:nth-child(1), td:nth-child(1) { width: 15%; min-width: 65px; } /* Date */
+        th:nth-child(2), td:nth-child(2) { width: 35%; min-width: 150px; } /* Event */
+        th:nth-child(3), td:nth-child(3) { width: 25%; min-width: 120px; } /* Course */
+        th:nth-child(4), td:nth-child(4) { width: 25%; min-width: 120px; } /* Location */
 
         .logo {
             position: absolute;
@@ -24,14 +45,21 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                margin: 70px 10px 20px 10px; /* Reduce margins for more space */
+            }
             .logo {
                 height: 60px;
                 top: 5px;
                 right: 5px;
             }
+            th, td {
+                padding: 6px; /* Slightly less padding for mobile */
+                font-size: 0.9rem; /* Smaller text if needed, but table might handle it */
+            }
         }
 
-        /* Hamburger Menu */
+        /* Hamburger Menu styles (unchanged) */
         .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
         .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
         .hamburger:focus { outline: none; }
@@ -50,7 +78,17 @@
         .menu .submenu-list li { margin: 0.1rem 0; }
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
         .overlay.show { display: block; }
-        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
+
+        .link {
+            display: inline-block;
+            margin: 0.25rem 0;
+            padding: 0.25rem 0.5rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
         .link:hover { background: #0056b3; }
 
         @media (max-width: 768px) {
@@ -60,6 +98,11 @@
                 height: 60px;
                 top: 5px;
                 right: 5px;
+            }
+            .link {
+                min-height: 44px; /* Touch-friendly for mobile */
+                display: flex;
+                align-items: center;
             }
         }
     </style>
@@ -72,6 +115,7 @@
     <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
 </div>
 <div class="menu" id="menu">
+    <!-- Menu content unchanged -->
     <h3 class="homepage-section"><a href="index.html" class="link">Homepage</a></h3>
 
     <h3 class="menu-section" onclick="toggleSection(this)">Tournament Predictions <span class="arrow">▶</span></h3>
@@ -108,17 +152,19 @@
 </div>
 
 <h1>2026 PGA Schedule</h1>
-<table id="schedule-table">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Course</th>
-        <th>Location</th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+<div class="table-container">
+    <table id="schedule-table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Course</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 <script>
     function toggleMenu() {
         const menu = document.getElementById('menu');
@@ -141,18 +187,34 @@
         }
     }
 
-    fetch('pga/schedule.json')  // Updated path to match the generated file location
-        .then(response => response.json())
+    // Improved script with loading state and error handling
+    const tbody = document.querySelector('#schedule-table tbody');
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Loading schedule...</td></tr>'; // Loading message
+
+    fetch('pga/schedule.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load schedule data');
+            }
+            return response.json();
+        })
         .then(data => {
-            const tbody = document.querySelector('#schedule-table tbody');
+            tbody.innerHTML = ''; // Clear loading message
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No events found.</td></tr>';
+                return;
+            }
             data.forEach(event => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${event.date || ''}</td><td>${event.event || ''}</td><td>${event.course || ''}</td><td>${event.location || ''}</td>`;
+                row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td>`;
                 tbody.appendChild(row);
             });
         })
-        .catch(error => console.error('Error loading schedule:', error));
+        .catch(error => {
+            console.error('Error loading schedule:', error);
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: red;">Error loading schedule. Please try again later.</td></tr>';
+        });
 </script>
-<br><a href="index.html">Back to Home</a>
+<br><a href="index.html" class="link">Back to Home</a>
 </body>
 </html>
