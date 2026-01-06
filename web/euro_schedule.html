@@ -61,7 +61,7 @@
             }
         }
 
-        /* Hamburger Menu styles (unchanged, matching index.html exactly) */
+        /* Hamburger Menu styles (exactly matching index.html) */
         .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
         .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
         .hamburger:focus { outline: none; }
@@ -106,12 +106,6 @@
                 display: flex;
                 align-items: center;
             }
-            .hamburger {
-                padding: 1rem; /* Increase from 0.5rem for a larger button */
-                font-size: 1.25rem; /* Slightly bigger for visibility */
-                min-height: 48px; /* Ensures 44px+ for accessibility */
-                min-width: 48px; /* Makes it square and easier to tap */
-            }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -121,10 +115,6 @@
     <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="menu-container">
-    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
-</div>
-
 <h1>2026 DP World Tour Schedule</h1>
 <div class="table-container">
     <table id="schedule-table">
@@ -140,8 +130,11 @@
     </table>
 </div>
 
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+
 <div class="menu" id="menu">
-    <!-- Menu content unchanged -->
     <h3 class="homepage-section"><a href="index.html" class="link">Homepage</a></h3>
 
     <h3 class="menu-section" onclick="toggleSection(this)">Tournament Predictions <span class="arrow">▶</span></h3>
