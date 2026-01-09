@@ -389,6 +389,13 @@
         });
     }
 
+    function toggleHighlightsSection(header) {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        content.classList.toggle('hidden');
+        arrow.textContent = content.classList.contains('hidden') ? '▶' : '▼';
+    }
+
     async function init() {
         document.getElementById('spreadsheet-content').innerHTML = await loadSpreadsheet();
 
