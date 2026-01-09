@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>ROI Data - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
+        .main-content { width: 100%; }
+        .roi-container { width: 100%; }
+        h1 { text-align: center; color: #333; width: 100%; }
+        .roi-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .roi-section h2 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.5rem 0; transition: background 0.3s; }
+        .roi-section h2:hover { background: #e9ecef; }
+        .roi-section .arrow { float: right; transition: transform 0.3s; }
+        .roi-content { display: block; transition: all 0.3s ease; }
+        .roi-content.hidden { display: none; }
+        .year-section { margin: 1rem 0; padding: 0.5rem; border: 1px solid #eee; border-radius: 4px; background: #fff; }
+        .year-section h3 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; }
+        .year-section h3:hover { background: #e9ecef; }
+        .year-section .arrow { float: right; transition: transform 0.3s; }
+        .year-content { display: block; transition: all 0.3s ease; }
+        .year-content.hidden { display: none; }
+        .period-section { margin: 0.5rem 0; padding: 0.25rem; border: 1px solid #f0f0f0; border-radius: 4px; background: #fafafa; }
+        .period-section h4 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; font-size: 1rem; }
+        .period-section h4:hover { background: #e9ecef; }
+        .period-section .arrow { float: right; transition: transform 0.3s; }
+        .period-content { display: block; transition: all 0.3s ease; }
+        .period-content.hidden { display: none; }
+        .month-section { margin: 0.5rem 0 0.5rem 1rem; padding: 0.25rem; border: 1px solid #f5f5f5; border-radius: 4px; background: #fdfdfd; }
+        .month-section h5 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; font-size: 0.9rem; }
+        .month-section h5:hover { background: #e9ecef; }
+        .month-section .arrow { float: right; transition: transform 0.3s; }
+        .month-content { display: block; transition: all 0.3s ease; }
+        .month-content.hidden { display: none; }
+        .loading { color: #666; font-style: italic; }
+        .roi-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .roi-table th, .roi-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        .roi-table th { background: #f0f0f0; cursor: pointer; }
+        .roi-table th:hover { background: #e0e0e0; }
+        .roi-table a { color: #007bff; text-decoration: none; }
+        .roi-table a:hover { text-decoration: underline; }
+        .search-bar { margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 100%; max-width: 300px; }
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .logo { height: 60px; top: 5px; right: 5px; }
+        }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
+        .link:hover { background: #0056b3; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<div class="logo-wrapper">
+    <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<h1>ROI Data - Golf Model Hub</h1>
+<div>Detailed ROI percentages for betting data.</div>
+
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+
+<div class="main-content">
+    <div class="roi-container">
+        <div class="roi-section">
+            <h2 onclick="toggleROISection(this)">Overall ROI <span class="arrow">▶</span></h2>
+            <div class="roi-content hidden">
+                <div id="overall-roi" class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="roi-section">
+            <h2 onclick="toggleROISection(this)">Detailed ROI <span class="arrow">▶</span></h2>
+            <div class="roi-content hidden">
+                <div id="detailed-roi" class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="roi-section">
+            <h2 onclick="toggleROISection(this)">Player ROI <span class="arrow">▶</span></h2>
+            <div class="roi-content hidden">
+                <input type="text" id="player-search" class="search-bar" placeholder="Search players...">
+                <div id="player-roi" class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="roi-section">
+            <h2 onclick="toggleROISection(this)">Tournament ROI <span class="arrow">▶</span></h2>
+            <div class="roi-content hidden">
+                <input type="text" id="tournament-search" class="search-bar" placeholder="Search tournaments...">
+                <div id="tournament-roi" class="loading">Loading...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu" id="menu"></div>
+
+<script>
+    function toggleROISection(header) {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        content.classList.toggle('hidden');
+        arrow.textContent = content.classList.contains('hidden') ? '▶' : '▼';
+    }
+
+    function toggleYearSection(header) {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        content.classList.toggle('hidden');
+        arrow.textContent = content.classList.contains('hidden') ? '▶' : '▼';
+    }
+
+    function togglePeriodSection(header) {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        content.classList.toggle('hidden');
+        arrow.textContent = content.classList.contains('hidden') ? '▶' : '▼';
+    }
+
+    function toggleMonthSection(header) {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        content.classList.toggle('hidden');
+        arrow.textContent = content.classList.contains('hidden') ? '▶' : '▼';
+    }
+
+    function filterTable(searchInput, tableId) {
+        const filter = searchInput.value.toLowerCase();
+        const table = document.getElementById(tableId);
+        if (!table) return;
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
+        const rows = tbody.querySelectorAll('tr');
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length > 0) {
+                const text = cells[0].textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            }
+        });
+    }
+
+    function sortTable(table, columnIndex) {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const header = table.querySelectorAll('th')[columnIndex];
+        const isAscending = header.getAttribute('data-sort') !== 'asc';
+
+        rows.sort((a, b) => {
+            const aText = a.querySelectorAll('td')[columnIndex].textContent.trim();
+            const bText = b.querySelectorAll('td')[columnIndex].textContent.trim();
+
+            // Try to parse as number
+            const aNum = parseFloat(aText.replace(/[^0-9.-]/g, ''));
+            const bNum = parseFloat(bText.replace(/[^0-9.-]/g, ''));
+
+            let comparison = 0;
+            if (!isNaN(aNum) && !isNaN(bNum)) {
+                comparison = aNum - bNum;
+            } else {
+                comparison = aText.localeCompare(bText, undefined, { numeric: true });
+            }
+
+            return isAscending ? comparison : -comparison;
+        });
+
+        // Clear existing sort indicators
+        table.querySelectorAll('th').forEach(th => {
+            th.textContent = th.textContent.replace(/[↑↓]/g, '');
+            th.removeAttribute('data-sort');
+        });
+
+        // Set sort indicator
+        header.textContent += isAscending ? ' ↑' : ' ↓';
+        header.setAttribute('data-sort', isAscending ? 'asc' : 'desc');
+
+        // Re-append sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+    }
+
+    function parseDate(dateStr) {
+        if (!dateStr) return null;
+        const parts = dateStr.split('/');
+        if (parts.length === 3) {
+            return new Date(`${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`);
+        }
+        return null;
+    }
+
+    function getISOWeek(date) {
+        const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        const dayNum = d.getUTCDay() || 7;
+        d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    function calculateROI(totalReturn, totalStake) {
+        return totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : '0.00';
+    }
+
+    async function loadROIData() {
+        try {
+            const response = await fetch('spreadsheet_data.csv');
+            const csvText = await response.text();
+            const parsed = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: 'greedy',
+                dynamicTyping: false,
+                delimiter: ',',
+                quoteChar: '"',
+                escapeChar: '"',
+                newline: '\n',
+                transformHeader: header => header.trim()
+            });
+
+            let overallReturn = 0, overallStake = 0;
+            const yearlyData = {};
+            const monthlyData = {};
+            const weeklyData = {};
+            const playerData = {};
+            const tournamentData = {};
+
+            parsed.data.forEach(row => {
+                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                const date = parseDate(row['Date'] || '');
+                const player = row['Player'] || 'Unknown';
+                const tournament = row['Tournament'] || 'Unknown';
+
+                if (!isNaN(returnVal)) overallReturn += returnVal;
+                if (!isNaN(stakeVal)) overallStake += stakeVal;
+
+                // Player
+                if (!playerData[player]) playerData[player] = { return: 0, stake: 0 };
+                if (!isNaN(returnVal)) playerData[player].return += returnVal;
+                if (!isNaN(stakeVal)) playerData[player].stake += stakeVal;
+
+                // Tournament
+                if (!tournamentData[tournament]) tournamentData[tournament] = { return: 0, stake: 0 };
+                if (!isNaN(returnVal)) tournamentData[tournament].return += returnVal;
+                if (!isNaN(stakeVal)) tournamentData[tournament].stake += stakeVal;
+
+                if (date) {
+                    const year = date.getFullYear();
+                    const month = date.getMonth() + 1; // 1-12
+                    const monthKey = `${year}-${month.toString().padStart(2, '0')}`;
+                    const week = getISOWeek(date);
+                    const weekKey = `${year}-W${week.toString().padStart(2, '0')}`;
+
+                    // Yearly
+                    if (!yearlyData[year]) yearlyData[year] = { return: 0, stake: 0 };
+                    if (!isNaN(returnVal)) yearlyData[year].return += returnVal;
+                    if (!isNaN(stakeVal)) yearlyData[year].stake += stakeVal;
+
+                    // Monthly
+                    if (!monthlyData[monthKey]) monthlyData[monthKey] = { return: 0, stake: 0 };
+                    if (!isNaN(returnVal)) monthlyData[monthKey].return += returnVal;
+                    if (!isNaN(stakeVal)) monthlyData[monthKey].stake += stakeVal;
+
+                    // Weekly
+                    if (!weeklyData[weekKey]) weeklyData[weekKey] = { return: 0, stake: 0 };
+                    if (!isNaN(returnVal)) weeklyData[weekKey].return += returnVal;
+                    if (!isNaN(stakeVal)) weeklyData[weekKey].stake += stakeVal;
+                }
+            });
+
+            // Overall ROI
+            const overallROI = calculateROI(overallReturn, overallStake);
+            document.getElementById('overall-roi').innerHTML = `<strong>Overall ROI: ${overallROI}%</strong> (Total Return: £${overallReturn.toFixed(2)}, Total Stake: £${overallStake.toFixed(2)})`;
+
+            // Detailed ROI - Grouped by Year with Yearly, Monthly, and Weekly sub-sections
+            let detailedHTML = '';
+            const years = Object.keys(yearlyData).sort((a, b) => b - a);
+            years.forEach(year => {
+                detailedHTML += `
+                    <div class="year-section">
+                        <h3 onclick="toggleYearSection(this)">${year} ROI Breakdown <span class="arrow">▶</span></h3>
+                        <div class="year-content hidden">
+                            <div class="period-section">
+                                <h4 onclick="togglePeriodSection(this)">Yearly ROI <span class="arrow">▶</span></h4>
+                                <div class="period-content hidden">
+                                    <table class="roi-table">
+                                        <thead><tr><th>Year</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
+                                        <tbody>`;
+                const yearly = yearlyData[year];
+                const yearlyROI = calculateROI(yearly.return, yearly.stake);
+                detailedHTML += `<tr><td>${year}</td><td>${yearlyROI}</td><td>${yearly.return.toFixed(2)}</td><td>${yearly.stake.toFixed(2)}</td></tr>`;
+                detailedHTML += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>`;
+
+                // Monthly for this year
+                const monthlyYears = {};
+                Object.keys(monthlyData).forEach(monthKey => {
+                    const [y, m] = monthKey.split('-');
+                    if (y == year) monthlyYears[m] = monthlyData[monthKey];
+                });
+                if (Object.keys(monthlyYears).length > 0) {
+                    detailedHTML += `
+                            <div class="period-section">
+                                <h4 onclick="togglePeriodSection(this)">Monthly ROI <span class="arrow">▶</span></h4>
+                                <div class="period-content hidden">
+                                    <table class="roi-table">
+                                        <thead><tr><th>Month</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
+                                        <tbody>`;
+                    Object.keys(monthlyYears).sort().forEach(month => {
+                        const data = monthlyYears[month];
+                        const roi = calculateROI(data.return, data.stake);
+                        const monthName = new Date(`${year}-${month}-01`).toLocaleString('default', { month: 'long' });
+                        detailedHTML += `<tr><td>${monthName}</td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+                    });
+                    detailedHTML += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>`;
+                }
+
+                // Weekly for this year
+                const weeklyYears = {};
+                Object.keys(weeklyData).forEach(weekKey => {
+                    const [y, w] = weekKey.split('-W');
+                    if (y == year) {
+                        const week = parseInt(w);
+                        const date = new Date(y, 0, 1 + (week - 1) * 7);
+                        const month = date.getMonth() + 1;
+                        const monthKey = month.toString().padStart(2, '0');
+                        if (!weeklyYears[monthKey]) weeklyYears[monthKey] = {};
+                        weeklyYears[monthKey][weekKey] = weeklyData[weekKey];
+                    }
+                });
+                if (Object.keys(weeklyYears).length > 0) {
+                    detailedHTML += `
+                            <div class="period-section">
+                                <h4 onclick="togglePeriodSection(this)">Weekly ROI <span class="arrow">▶</span></h4>
+                                <div class="period-content hidden">`;
+                    Object.keys(weeklyYears).sort().forEach(month => {
+                        const monthName = new Date(`${year}-${month}-01`).toLocaleString('default', { month: 'long' });
+                        detailedHTML += `
+                                    <div class="month-section">
+                                        <h5 onclick="toggleMonthSection(this)">${monthName} ${year} <span class="arrow">▶</span></h5>
+                                        <div class="month-content hidden">
+                                            <table class="roi-table">
+                                                <thead><tr><th>Week</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
+                                                <tbody>`;
+                        Object.keys(weeklyYears[month]).sort().forEach(week => {
+                            const data = weeklyYears[month][week];
+                            const roi = calculateROI(data.return, data.stake);
+                            detailedHTML += `<tr><td>${week}</td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+                        });
+                        detailedHTML += `
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>`;
+                    });
+                    detailedHTML += `
+                                </div>
+                            </div>`;
+                }
+
+                detailedHTML += `
+                        </div>
+                    </div>`;
+            });
+            document.getElementById('detailed-roi').innerHTML = detailedHTML;
+
+            // Player ROI
+            let playerHTML = '<table id="player-table" class="roi-table"><thead><tr><th>Player</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead><tbody>';
+            Object.keys(playerData).sort((a, b) => calculateROI(playerData[b].return, playerData[b].stake) - calculateROI(playerData[a].return, playerData[a].stake)).forEach(player => {
+                const data = playerData[player];
+                const roi = calculateROI(data.return, data.stake);
+                playerHTML += `<tr><td><a href="spreadsheet.html?player=${encodeURIComponent(player)}">${player}</a></td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+            });
+            playerHTML += '</tbody></table>';
+            document.getElementById('player-roi').innerHTML = playerHTML;
+
+            // Tournament ROI
+            let tournamentHTML = '<table id="tournament-table" class="roi-table"><thead><tr><th>Tournament</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead><tbody>';
+            Object.keys(tournamentData).sort((a, b) => calculateROI(tournamentData[b].return, tournamentData[b].stake) - calculateROI(tournamentData[a].return, tournamentData[a].stake)).forEach(tournament => {
+                const data = tournamentData[tournament];
+                const roi = calculateROI(data.return, data.stake);
+                tournamentHTML += `<tr><td><a href="spreadsheet.html?tournament=${encodeURIComponent(tournament)}">${tournament}</a></td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+            });
+            tournamentHTML += '</tbody></table>';
+            document.getElementById('tournament-roi').innerHTML = tournamentHTML;
+
+            // Add sorting to all roi-table
+            document.querySelectorAll('.roi-table').forEach(table => {
+                const headers = table.querySelectorAll('th');
+                headers.forEach((header, index) => {
+                    header.addEventListener('click', () => sortTable(table, index));
+                });
+            });
+
+            // Add search functionality
+            const playerSearch = document.getElementById('player-search');
+            const tournamentSearch = document.getElementById('tournament-search');
+            playerSearch.addEventListener('input', () => filterTable(playerSearch, 'player-table'));
+            tournamentSearch.addEventListener('input', () => filterTable(tournamentSearch, 'tournament-table'));
+
+        } catch (e) {
+            console.error('Error loading ROI data:', e);
+            document.getElementById('overall-roi').innerHTML = 'ROI data unavailable.';
+            document.getElementById('detailed-roi').innerHTML = 'Detailed ROI unavailable.';
+            document.getElementById('player-roi').innerHTML = 'Player ROI unavailable.';
+            document.getElementById('tournament-roi').innerHTML = 'Tournament ROI unavailable.';
+        }
+    }
+
+    loadROIData();
+
+    // Load menu HTML
+    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
+</script>
+</body>
+</html>

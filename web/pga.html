@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Golf Model — Leaderboard</title>
+    <title>Golf Model — PGA Leaderboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
-        body.menu-open { padding-left: 250px; }
         h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
         h2 { font-size: 1.2rem; margin: 0 0 0.5rem; color: #666; }
         .muted { color: #555; font-size: 0.95rem; }
@@ -65,25 +66,6 @@
             }
         }
 
-        /* Hamburger Menu */
-        .menu-container { position: fixed; top: 0; left: 0; z-index: 1001; }
-        .hamburger { display: block; cursor: pointer; padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
-        .hamburger:focus { outline: none; }
-        .menu { display: none; position: fixed; top: 50px; left: 0; width: 250px; height: calc(100% - 50px); background: #f9f9f9; border-right: 1px solid #ddd; padding: 1rem; overflow-y: auto; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
-        .menu.show { display: block; }
-        .menu h3 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.5rem 0; border-bottom: 1px solid #eee; transition: background 0.3s; }
-        .menu h3:hover { background: #e9ecef; }
-        .menu .homepage-section { margin-top: 0; color: #007bff; padding: 0.5rem 0; border-bottom: 1px solid #eee; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
-        .menu .homepage-section:hover { background: #e9ecef; }
-        .menu .arrow { float: right; transition: transform 0.3s; }
-        .menu .menu-list { list-style: none; padding: 0; margin: 0; display: none; transition: all 0.3s ease; }
-        .menu .menu-list li { margin: 0.25rem 0; padding-left: 1rem; }
-        .menu .submenu-section { margin: 0.25rem 0; padding: 0.25rem 0; color: #007bff; cursor: pointer; font-size: 1rem; font-weight: bold; border-bottom: none; transition: background 0.3s; }
-        .menu .submenu-section:hover { background: #e9ecef; }
-        .menu .submenu-list { list-style: none; padding: 0; margin: 0; display: none; padding-left: 1rem; transition: all 0.3s ease; }
-        .menu .submenu-list li { margin: 0.1rem 0; }
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
-        .overlay.show { display: block; }
         .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
         .link:hover { background: #0056b3; }
 
@@ -91,15 +73,6 @@
           .layout { grid-template-columns: 1fr; }
           input[type="search"] { width: 100%; }
           table { font-size: 0.9rem; }
-        }
-        @media (max-width: 768px) {
-            body.menu-open { padding-left: 0; }
-            .menu { width: 80%; }
-            .logo {
-                height: 60px;
-                top: 5px;
-                right: 5px;
-            }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -110,43 +83,9 @@
 <div class="menu-container">
     <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
 </div>
-<div class="menu" id="menu">
-    <h3 class="homepage-section"><a href="index.html" class="link">Homepage</a></h3>
+<div class="menu" id="menu"></div>
 
-    <h3 class="menu-section" onclick="toggleSection(this)">Tournament Predictions <span class="arrow">▶</span></h3>
-    <ul class="menu-list">
-        <li><a href="pga.html" class="link">PGA Tour</a></li>
-        <li><a href="euro.html" class="link">DP World Tour</a></li>
-    </ul>
-
-    <h3 class="menu-section" onclick="toggleSection(this)">Tour Schedules <span class="arrow">▶</span></h3>
-    <ul class="menu-list">
-        <li><a href="pga_schedule.html" class="link">PGA Tour</a></li>
-        <li><a href="euro_schedule.html" class="link">DP World Tour</a></li>
-    </ul>
-
-    <h3 class="menu-section" onclick="toggleSection(this)">Betting History <span class="arrow">▶</span></h3>
-    <ul class="menu-list">
-        <li><a href="betting_analytics.html" class="link">Betting Analytics</a></li>
-        <li><a href="spreadsheet.html" class="link">Overall Betting Data</a></li>
-        <li>
-            <h4 class="submenu-section" onclick="toggleSection(this)">Yearly Data <span class="arrow">▶</span></h4>
-            <ul class="submenu-list">
-                <li><a href="spreadsheet.html?year=2026" class="link">2026</a></li>
-                <li><a href="spreadsheet.html?year=2025" class="link">2025</a></li>
-                <li><a href="spreadsheet.html?year=2024" class="link">2024</a></li>
-                <li><a href="spreadsheet.html?year=2023" class="link">2023</a></li>
-            </ul>
-        </li>
-    </ul>
-
-    <h3 class="menu-section" onclick="toggleSection(this)">Additional Data <span class="arrow">▶</span></h3>
-    <ul class="menu-list">
-        <li><a href="course_details.html" class="link">Course Details</a></li>
-    </ul>
-</div>
-
-<h1>Eds Golf Model - Prediction Leaderboard</h1>
+<h1>Eds Golf Model - PGA Predictions Leaderboard</h1>
 <h2 id="subtitle"></h2>
 
 <div class="layout">
@@ -202,30 +141,17 @@
 </div>
 
 <script>
-    function toggleMenu() {
-        const menu = document.getElementById('menu');
-        const overlay = document.getElementById('overlay');
-        const body = document.body;
-        menu.classList.toggle('show');
-        overlay.classList.toggle('show');
-        body.classList.toggle('menu-open');
-    }
-
-    function toggleSection(header) {
-        const list = header.nextElementSibling;
-        const arrow = header.querySelector('.arrow');
-        if (list.style.display === 'block') {
-            list.style.display = 'none';
-            arrow.textContent = '▶';
-        } else {
-            list.style.display = 'block';
-            arrow.textContent = '▼';
-        }
-    }
-
     // Formatting helpers
     const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
     const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
+
+    // Helpers to detect 1st/10th tee starts from various possible fields in leaderboard.json
+    const is10 = (x) => x === 10 || x === "10" || (typeof x === "string" && /\b10\b/.test(x));
+    const is1  = (x) => x === 1  || x === "1"  || (typeof x === "string" && /\b1\b(?!\d)/.test(x));
+    const isBackSide = (x) =>
+      typeof x === "string" && /^b(ack)?$/i.test(x); // if your data uses "front"/"back"
+    const isFrontSide = (x) =>
+      typeof x === "string" && /^f(ront)?$/i.test(x);
 
     // JSON loader
     async function loadJSON(path){
@@ -477,15 +403,38 @@
       if (meta.resources?.downloads_html){ dlHtml.href = meta.resources.downloads_html; dlHtml.style.display="inline"; }
 
       data = rows.map((r, idx) => {
-        // Parse r1_teetime: Remove "*" if present and set flag
-        let r1_teetime_clean = r.r1_teetime || "";
-        let r1_from_10th = r1_teetime_clean.endsWith("*");
-        if (r1_from_10th) r1_teetime_clean = r1_teetime_clean.slice(0, -1);
+        // Detect explicit sides for each round (tri-state: true/false/undefined)
+        const r1_is10 = r.r1_from_10th === true ||
+                        is10(r.r1_start_hole) || is10(r.r1_start) || is10(r.r1_tee) ||
+                        isBackSide(r.r1_side);
+        const r1_is1  = r.r1_from_1st === true ||
+                        is1(r.r1_start_hole) || is1(r.r1_start) || is1(r.r1_tee) ||
+                        isFrontSide(r.r1_side);
+        let r1_from_10th = r1_is10 ? true : (r1_is1 ? false : undefined);
 
-        // Parse r2_teetime: Remove "*" if present and set flag
-        let r2_teetime_clean = r.r2_teetime || "";
-        let r2_from_10th = r2_teetime_clean.endsWith("*");
-        if (r2_from_10th) r2_teetime_clean = r2_teetime_clean.slice(0, -1);
+        const r2_is10 = r.r2_from_10th === true ||
+                        is10(r.r2_start_hole) || is10(r.r2_start) || is10(r.r2_tee) ||
+                        isBackSide(r.r2_side);
+        const r2_is1  = r.r2_from_1st === true ||
+                        is1(r.r2_start_hole) || is1(r.r2_start) || is1(r.r2_tee) ||
+                        isFrontSide(r.r2_side);
+        let r2_from_10th = r2_is10 ? true : (r2_is1 ? false : undefined);
+
+        // Enforce alternation between R1 and R2:
+        // - If one round's side is known, the other is the opposite.
+        // - If both are known but equal, flip R1 to be opposite of R2.
+        if (r1_from_10th === undefined && r2_from_10th !== undefined) {
+          r1_from_10th = !r2_from_10th;
+        } else if (r2_from_10th === undefined && r1_from_10th !== undefined) {
+          r2_from_10th = !r1_from_10th;
+        } else if (r1_from_10th !== undefined && r2_from_10th !== undefined && r1_from_10th === r2_from_10th) {
+          // Contradiction (both same). Prefer R2 and flip R1.
+          r1_from_10th = !r2_from_10th;
+        }
+
+        // Default to false if still unknown (no asterisk shown)
+        r1_from_10th = !!r1_from_10th;
+        r2_from_10th = !!r2_from_10th;
 
         return {
           rank: r.rank ?? (idx+1),
@@ -494,8 +443,9 @@
           "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
           "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
           course_fit_score: r.course_fit_score ?? "",
-          r1_teetime: r1_teetime_clean,
-          r2_teetime: r2_teetime_clean,
+          r1_teetime: r.r1_teetime ?? "",
+          r2_teetime: r.r2_teetime ?? "",
+          // flags used by renderTable to append the asterisk
           r1_from_10th,
           r2_from_10th,
         };
@@ -512,6 +462,9 @@
       document.body.innerHTML = `<pre style="color:#b00">${err}</pre>`;
       console.error(err);
     });
+
+    // Load menu HTML
+    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
 </script>
 </body>
 </html>
