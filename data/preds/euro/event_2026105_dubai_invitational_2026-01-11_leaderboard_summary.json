@@ -1,9 +1,8 @@
 {
   "event_id": "2026105",
   "event_name": "Dubai Invitational",
-  "source_csv": "data/preds/euro/event_2026105_dubai_invitational_2026-01-11_leaderboard.csv",
-  "generated_utc": "11-Jan-2026 22:07:48",
-  "metrics": {
+  "generated_utc": "2026-01-11T204158Z",
+  "summary": {
     "field_size": 60,
     "p_win_max": 0.5162333333333333,
     "p_win_median": 0.0,
