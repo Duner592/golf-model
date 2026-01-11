@@ -1144,6 +1144,8 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
 
 
 # ---------- archive event predictions ----------
+
+
 def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: str, r1_date: str | None, lb_csv: Path | None) -> None:
     """
     Archive the current event's prediction data into web/archive/{year}/.
@@ -1329,6 +1331,9 @@ def main():
         if name_col != "player_name":
             df_lb = df_lb.rename(columns={name_col: "player_name"})
         df_lb["name_key"] = df_lb["player_name"].map(_norm_name)
+
+        # Reformat player names: "Surname, Forename" -> "Forename Surname"
+        df_lb["player_name"] = df_lb["player_name"].apply(lambda name: " ".join(reversed(name.split(", "))) if ", " in name else name)
 
         # merge start-holes on normalized name
         start_df = load_start_holes(processed_dir, event_id)
