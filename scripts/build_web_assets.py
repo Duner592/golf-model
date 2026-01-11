@@ -13,15 +13,16 @@
 #   web/{tour}/tournament_summary.json           (course, yardage, location, start date, field size, last 5 winners)
 #   web/{tour}/field_teetimes.csv                (if available)
 #   web/{tour}/downloads/<stamped leaderboard CSV/HTML>
-#
+
 from __future__ import annotations
 
 import argparse
 import json
 import math
 import re
+import shutil
 import sys
-from datetime import datetime, timedelta  # Ensure this line is present
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -156,7 +157,7 @@ def normalize_utc_str(s: str | None, fallback: str) -> str:
     if not s:
         return fallback
     candidates = [
-        ("%Y-%m-%dT%H%M%SZ", s.replace(":", "").replace("-", "")),
+        ("%Y-%m-%dT%HM%SZ", s.replace(":", "").replace("-", "")),
         ("%Y-%m-%dT%H:%M:%SZ", s),
         ("%Y-%m-%d %H:%M:%S", s.replace("T", " ").replace("Z", "")),
         ("%Y-%m-%dT%H:%M:%S", s.replace("Z", "")),
@@ -1034,13 +1035,13 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
 # ---------- new helper for current week events ----------
 def has_current_week_events(tour: str) -> bool:
     """
-    Check if there are any events for the given tour in the current week.
+    Check if there are any events for the given tour in the current week (or next week if run on Sunday).
 
     Args:
         tour (str): Tour name (e.g., 'pga').
 
     Returns:
-        bool: True if events exist in the current week.
+        bool: True if events exist in the current week (or next week on Sunday).
     """
     root = Path(__file__).resolve().parent.parent
     upcoming_file = root / "upcoming-events.json"
@@ -1059,6 +1060,10 @@ def has_current_week_events(tour: str) -> bool:
     today = datetime.now().date()
     start_of_week = today - timedelta(days=today.weekday())  # Monday
     end_of_week = start_of_week + timedelta(days=6)  # Sunday
+
+    # If today is Sunday, extend to next Sunday (include next week)
+    if today.weekday() == 6:
+        end_of_week = start_of_week + timedelta(days=13)
 
     for event in events:
         if not isinstance(event, dict) or "event_id" not in event or "start_date" not in event:
@@ -1138,6 +1143,75 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
     write_json(out_json, schedule)
 
 
+# ---------- archive event predictions ----------
+def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: str, r1_date: str | None, lb_csv: Path | None) -> None:
+    """
+    Archive the current event's prediction data into web/archive/{year}/.
+    """
+    # Get year from r1_date or current year
+    year = None
+    if r1_date:
+        try:
+            year = r1_date.split("-")[0]
+        except Exception:
+            pass
+    if not year:
+        year = str(datetime.now().year)
+
+    archive_dir = root / "web" / "archive" / year
+    event_slug = _slug_event(event_name)
+    event_archive_dir = archive_dir / event_slug
+    event_archive_dir.mkdir(parents=True, exist_ok=True)
+
+    # Files to copy
+    files_to_copy = [
+        f"{tour}/leaderboard.json",
+        f"{tour}/meta.json",
+        f"{tour}/tournament_summary.json",
+        f"{tour}/summary.json",
+    ]
+    if lb_csv and lb_csv.exists():
+        # Copy CSV to archive
+        shutil.copy(lb_csv, event_archive_dir / "leaderboard.csv")
+        csv_available = True
+    else:
+        csv_available = False
+
+    for file_path in files_to_copy:
+        src = root / "web" / file_path
+        if src.exists():
+            shutil.copy(src, event_archive_dir / src.name)
+
+    # Update index.json (in root archive dir)
+    index_file = root / "web" / "archive" / "index.json"
+    index_data = []
+    if index_file.exists():
+        try:
+            index_data = json.loads(index_file.read_text(encoding="utf-8"))
+        except Exception:
+            index_data = []
+
+    # Add/update this event
+    event_entry = {
+        "event_id": event_id,
+        "event_name": event_name,
+        "tour": tour,
+        "slug": event_slug,
+        "year": year,
+        "csv_available": csv_available,
+        "archived_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
+    }
+    # Remove existing entry for this event
+    index_data = [e for e in index_data if e.get("event_id") != event_id or e.get("tour") != tour]
+    index_data.append(event_entry)
+
+    # Sort by date descending
+    index_data.sort(key=lambda x: x.get("archived_at", ""), reverse=True)
+
+    write_json(index_file, index_data)
+    print(f"Archived predictions for {event_name} ({year}) in {event_archive_dir}")
+
+
 # ---------- main ----------
 def main():
     """
@@ -1180,11 +1254,11 @@ def main():
     event_id = None
     no_event = False
 
-    # Check for current week events first
+    # Check for current week events first (or next week if Sunday)
     if not has_current_week_events(TOUR):
         no_event = True
         event_id = "0"  # Dummy ID
-        print(f"[info] No events in current week for tour={TOUR}; proceeding in no-event mode")
+        print(f"[info] No events in current week (or next week if Sunday) for tour={TOUR}; proceeding in no-event mode")
 
     if not no_event:
         if args.event_id:
@@ -1356,8 +1430,6 @@ def main():
         build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, ts_path)
 
         # Copy field_teetimes.csv to web (guard if missing)
-        import shutil
-
         src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
         if src_teetimes.exists():
             shutil.copy(src_teetimes, web_dir / "field_teetimes.csv")
@@ -1371,21 +1443,25 @@ def main():
         "r1_date": r1_date,
         "generated_utc": summary["generated_utc"],
         "resources": {
-            "downloads_csv": f"downloads/{lb_csv.name}" if dl_csv else None,
-            "downloads_html": f"downloads/{lb_html.name}" if dl_html else None,
-            "weather_meta": ("weather_meta.json" if (web_dir / "weather_meta.json").exists() else None),
-            "weather_round_neutral": "weather_round_neutral.json" if wn_ok else None,
-            "weather_round_wave": "weather_round_wave.json" if ww_ok else None,
-            "course_fit_weights": ("course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None),
-            "course_history_summary": ("course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None),
-            "tournament_summary": ("tournament_summary.json" if (web_dir / "tournament_summary.json").exists() else None),
-            "schedule": ("schedule.json" if (web_dir / "schedule.json").exists() else None),
+            "downloads_csv": f"{TOUR}/downloads/{lb_csv.name}" if dl_csv else None,
+            "downloads_html": f"{TOUR}/downloads/{lb_html.name}" if dl_html else None,
+            "weather_meta": f"{TOUR}/weather_meta.json" if wm.exists() and not no_event else None,
+            "weather_round_neutral": f"{TOUR}/weather_round_neutral.json" if wn_ok else None,
+            "weather_round_wave": f"{TOUR}/weather_round_wave.json" if ww_ok else None,
+            "course_fit_weights": f"{TOUR}/course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None,
+            "course_history_summary": f"{TOUR}/course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None,
+            "tournament_summary": f"{TOUR}/tournament_summary.json" if (web_dir / "tournament_summary.json").exists() else None,
+            "schedule": f"{TOUR}/schedule.json" if (web_dir / "schedule.json").exists() else None,
         },
     }
     if no_event:
         meta_out["no_event_message"] = "No upcoming events during the holiday season. Stay tuned for 2026!"
 
     write_json(web_dir / "meta.json", meta_out)
+
+    # Archive the predictions
+    if not no_event:
+        archive_event_predictions(root, TOUR, event_name, event_id, r1_date, lb_csv)
 
     print("Wrote web assets under web/:")
     for p in [

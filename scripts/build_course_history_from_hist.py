@@ -45,15 +45,23 @@ def find_hist_parquet(event_name: str, tour: str) -> Path:
 
 
 def build_course_history_stats(df_hist: pd.DataFrame) -> pd.DataFrame:
-    if df_hist.empty or "sg_total" not in df_hist.columns:
+    if df_hist.empty:
         return pd.DataFrame()
 
-    # Aggregate per player: mean sg_total, count rounds, etc.
+    # Find all round-specific sg_total columns
+    sg_cols = [col for col in df_hist.columns if col.endswith(".sg_total")]
+    if not sg_cols:
+        return pd.DataFrame()  # No SG data available
+
+    # Compute total SG per row (sum across rounds)
+    df_hist = df_hist.copy()
+    df_hist["total_sg"] = df_hist[sg_cols].sum(axis=1, skipna=True)
+
+    # Aggregate per player: mean total_sg, count rounds (using number of non-null SG entries)
     stats = df_hist.groupby("player_id", as_index=False).agg(
-        sg_course_mean_shrunk=("sg_total", "mean"),
-        rounds_course=("sg_total", "count"),
+        sg_course_mean_shrunk=("total_sg", "mean"),
+        rounds_course=("total_sg", lambda x: x.notna().sum()),  # Count non-null total_sg as rounds played
     )
-    # You can add more stats here, e.g., std, min/max sg
     return stats
 
 

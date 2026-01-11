@@ -58,7 +58,7 @@
     },
     {
       "country": "MRI",
-      "course": "Heritage La Reserve Golf Links",
+      "course": "La Reserve GC",
       "course_key": "la reserve gc",
       "event_id": "2026104",
       "event_name": "AfrAsia Bank Mauritius Open",
@@ -144,7 +144,7 @@
       "country": "UAE",
       "course": "Emirates GC",
       "course_key": "emirates gc",
-      "event_id": "TBD",
+      "event_id": "2026106",
       "event_name": "Hero Dubai Desert Classic",
       "latitude": 25.263,
       "location": "Dubai, UAE",
@@ -1331,6 +1331,20 @@
       "winner": "TBD"
     },
     {
+      "country": "USA",
+      "course": "The Cliffs at Walnut Cove",
+      "course_key": "942",
+      "event_id": "557",
+      "event_name": "Biltmore Championship Asheville",
+      "latitude": 35.463,
+      "location": "Arden, NC",
+      "longitude": -82.602,
+      "start_date": "2026-09-17",
+      "status": "upcoming",
+      "tour": "pga",
+      "winner": "TBD"
+    },
+    {
       "country": "ENG",
       "course": "Wentworth Club",
       "course_key": "wentworth golf club",
@@ -1387,6 +1401,20 @@
       "winner": "TBD"
     },
     {
+      "country": "USA",
+      "course": "Black Desert Resort",
+      "course_key": "930",
+      "event_id": "554",
+      "event_name": "Bank of Utah Championship",
+      "latitude": 37.168,
+      "location": "Ivins, UT",
+      "longitude": -113.653,
+      "start_date": "2026-10-01",
+      "status": "upcoming",
+      "tour": "pga",
+      "winner": "TBD"
+    },
+    {
       "country": "SCO",
       "course": "Old Course St. Andrews;Carnoustie;Kingsbarns Golf Links",
       "course_key": "old course st andrews;carnoustie;kingsbarns golf links",
@@ -1412,6 +1440,20 @@
       "start_date": "2026-10-01",
       "status": "upcoming",
       "tour": "kft",
+      "winner": "TBD"
+    },
+    {
+      "country": "JPN",
+      "course": "Yokohama Country Club (West Course)",
+      "course_key": "936",
+      "event_id": "527",
+      "event_name": "Baycurrent Classic",
+      "latitude": 35.446,
+      "location": "Yokohama, Kanagawa, Japan",
+      "longitude": 139.549,
+      "start_date": "2026-10-08",
+      "status": "upcoming",
+      "tour": "pga",
       "winner": "TBD"
     },
     {
@@ -1457,6 +1499,20 @@
       "winner": "TBD"
     },
     {
+      "country": "BER",
+      "course": "Port Royal Golf Course",
+      "course_key": "765",
+      "event_id": "528",
+      "event_name": "Butterfield Bermuda Championship",
+      "latitude": 32.261,
+      "location": "Southampton, Bermuda",
+      "longitude": -64.874,
+      "start_date": "2026-10-22",
+      "status": "upcoming",
+      "tour": "pga",
+      "winner": "TBD"
+    },
+    {
       "country": "KOR",
       "course": "TBC",
       "course_key": "tbc",
@@ -1468,6 +1524,34 @@
       "start_date": "2026-10-22",
       "status": "upcoming",
       "tour": "euro",
+      "winner": "TBD"
+    },
+    {
+      "country": "MEX",
+      "course": "Vidanta Vallarta",
+      "course_key": "978",
+      "event_id": "540",
+      "event_name": "VidantaWorld Mexico Open",
+      "latitude": 20.7,
+      "location": "Vallarta, Mexico",
+      "longitude": -105.3,
+      "start_date": "2026-10-29",
+      "status": "upcoming",
+      "tour": "pga",
+      "winner": "TBD"
+    },
+    {
+      "country": "MEX",
+      "course": "El Cardonal at Diamante",
+      "course_key": "919",
+      "event_id": "457",
+      "event_name": "World Wide Technology Championship",
+      "latitude": 22.901,
+      "location": "Cabo San Lucas, Mexico",
+      "longitude": -109.985,
+      "start_date": "2026-11-05",
+      "status": "upcoming",
+      "tour": "pga",
       "winner": "TBD"
     },
     {
@@ -1485,6 +1569,20 @@
       "winner": "TBD"
     },
     {
+      "country": "USA",
+      "course": "Omni Barton Creek Resort & Spa (Fazio Canyons Course)",
+      "course_key": "943",
+      "event_id": "558",
+      "event_name": "Good Good Championship",
+      "latitude": 30.271,
+      "location": "Austin, TX",
+      "longitude": -97.876,
+      "start_date": "2026-11-12",
+      "status": "upcoming",
+      "tour": "pga",
+      "winner": "TBD"
+    },
+    {
       "country": "UAE",
       "course": "Earth Course",
       "course_key": "jumeirah golf estates",
@@ -1496,6 +1594,34 @@
       "start_date": "2026-11-12",
       "status": "upcoming",
       "tour": "euro",
+      "winner": "TBD"
+    },
+    {
+      "country": "USA",
+      "course": "Sea Island Golf Club (Seaside Course);Sea Island Golf Club (Plantation Course)",
+      "course_key": "776;889",
+      "event_id": "493",
+      "event_name": "The RSM Classic",
+      "latitude": 31.202,
+      "location": "Sea Island, GA",
+      "longitude": -81.332,
+      "start_date": "2026-11-19",
+      "status": "upcoming",
+      "tour": "pga",
+      "winner": "TBD"
+    },
+    {
+      "country": "BAH",
+      "course": "Albany GC",
+      "course_key": "232",
+      "event_id": "478",
+      "event_name": "Hero World Challenge",
+      "latitude": 25.004,
+      "location": "Albany, The Bahamas",
+      "longitude": -77.509,
+      "start_date": "2026-12-03",
+      "status": "upcoming",
+      "tour": "pga",
       "winner": "TBD"
     }
   ],

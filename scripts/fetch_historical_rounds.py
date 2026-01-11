@@ -9,6 +9,7 @@
 # Added fallback: If no data found with given event_id, search by event_name using event-list API.
 
 import argparse
+import datetime
 import json
 import os
 from pathlib import Path
@@ -58,8 +59,8 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
 
     records = []
     winners_list = []
-    current_year = 2024
-    years = list(range(current_year - history_years_back, current_year + 1))  # Include current year
+    current_year = datetime.datetime.now().year
+    years = list(range(current_year - history_years_back, current_year))
 
     # First attempt: Try with given event_id
     for year in years:

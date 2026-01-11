@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Golf Model — Prediction Archive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
+        h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
+        h2 { font-size: 1.2rem; margin: 0 0 0.5rem; color: #666; }
+        .muted { color: #555; font-size: 0.95rem; }
+        .card { border: 1px solid #e2e2e2; border-radius: 8px; padding: 0.75rem 1rem; background: #fff; margin-bottom: 1rem; }
+        table { border-collapse: collapse; width: 100%; background: #fff; table-layout: fixed; }
+        th, td { padding: 0.4rem 0.3rem; border-bottom: 1px solid #eee; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        th { cursor: pointer; background: #fafafa; position: sticky; top: 0; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,.06); }
+        th:nth-child(1), td:nth-child(1) { width: 50px; } /* Rank */
+        th:nth-child(2), td:nth-child(2) { width: 150px; } /* Player */
+        th:nth-child(3), td:nth-child(3) { width: 80px; } /* Win % */
+        th:nth-child(4), td:nth-child(4) { width: 80px; } /* Top-10 % */
+        th:nth-child(5), td:nth-child(5) { width: 80px; } /* Make Cut % */
+        th:nth-child(6), td:nth-child(6) { width: 80px; } /* Course Fit */
+        .num { font-variant-numeric: tabular-nums; }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; cursor: pointer; }
+        .link:hover { background: #0056b3; }
+        @media (max-width: 900px) {
+            table { font-size: 0.9rem; }
+        }
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                height: 60px;
+                top: 5px;
+                right: 5px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+<div class="menu" id="menu"></div>
+
+<h1>Eds Golf Model - Prediction Archive</h1>
+<h2>Archived Predictions for PGA and Euro Tours</h2>
+
+<div class="card">
+    <p class="muted">This archive lists events with saved predictions. Click on an event name to view its leaderboard.</p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Tour</th>
+        <th>Event</th>
+        <th>Course</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Winner</th>
+        <th>Score</th>
+    </tr>
+    </thead>
+    <tbody id="archiveTableBody"></tbody>
+</table>
+
+<script>
+    // Formatting helpers
+    const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
+    const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
+
+    // JSON loader
+    async function loadJSON(path) {
+        const r = await fetch(path, { cache: "no-store" });
+        if (!r.ok) throw new Error(`${path}: ${r.status}`);
+        return r.json();
+    }
+
+    // Load archive index and populate table
+    async function loadArchive() {
+        const tbody = document.getElementById("archiveTableBody");
+        try {
+            let events = [];
+            // Try archive first
+            try {
+                events = await loadJSON("archive/2026/index.json");
+            } catch (e) {
+                console.warn("Archive not found, loading current events.");
+            }
+
+            // Fallback to current events if archive empty
+            if (!events.length) {
+                const tours = ["pga", "euro"];
+                for (const tour of tours) {
+                    try {
+                        const meta = await loadJSON(`${tour}/meta.json`);
+                        if (meta.event_name && meta.event_name !== "No Event") {
+                            events.push({
+                                tour: tour.toUpperCase(),
+                                event_name: meta.event_name,
+                                slug: "current",
+                                year: "current",
+                                archived_at: new Date().toISOString().split('T')[0]
+                            });
+                        }
+                    } catch (e) {
+                        console.warn(`Failed to load ${tour} meta: ${e.message}`);
+                    }
+                }
+            }
+
+            // Populate table
+            for (const event of events) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${event.tour}</td>
+                    <td><span class="link" onclick="loadEvent('${event.year}', '${event.slug}', '${event.event_name}', '${event.tour.toLowerCase()}')">${event.event_name}</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td class="num">${event.archived_at.split(' ')[0]}</td>
+                    <td>${event.year === "current" ? "Current" : "Archived"}</td>
+                    <td>—</td>
+                    <td class="num">—</td>
+                `;
+                tbody.appendChild(tr);
+            }
+
+            if (!events.length) {
+                tbody.innerHTML = "<tr><td colspan='8'>No events found.</td></tr>";
+            }
+        } catch (e) {
+            tbody.innerHTML = "<tr><td colspan='8'>Error loading events.</td></tr>";
+            console.error(`Failed to load events: ${e.message}`);
+        }
+    }
+
+    // Load event leaderboard and open in new webpage
+    async function loadEvent(year, slug, eventName, tour) {
+        try {
+            let data = [];
+            if (year === "current") {
+                data = await loadJSON(`${tour}/leaderboard.json`);
+            } else {
+                try {
+                    data = await loadJSON(`archive/${year}/${slug}/leaderboard.json`);
+                } catch (e) {
+                    // Fallback to CSV
+                    const csvResponse = await fetch(`archive/${year}/${slug}/leaderboard.csv`);
+                    if (!csvResponse.ok) throw new Error("Data not found");
+                    const csvText = await csvResponse.text();
+                    const results = Papa.parse(csvText, { header: true, dynamicTyping: true });
+                    if (results.errors.length) throw new Error("CSV parse error");
+                    data = results.data;
+                }
+            }
+
+            // Process data
+            const processedData = data.map((r, idx) => ({
+                rank: r.rank ?? (idx + 1),
+                player_name: r.player_name ?? r["Player"] ?? "",
+                "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
+                "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
+                "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
+                course_fit_score: r.course_fit_score ?? "",
+            }));
+
+            // Generate HTML for new page
+            let tableRows = processedData.map(r => `
+                <tr>
+                    <td class="num">${r.rank}</td>
+                    <td>${r.player_name}</td>
+                    <td class="num">${fmtPct(r["p_win_%"])}</td>
+                    <td class="num">${fmtPct(r["p_top10_%"])}</td>
+                    <td class="num">${fmtPct(r["p_mc_%"])}</td>
+                    <td class="num">${fmtNum(r.course_fit_score)}</td>
+                </tr>
+            `).join('');
+
+            const html = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="utf-8" />
+                    <title>${eventName} Predictions</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <style>
+                        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 20px; color: #111; }
+                        h1 { font-size: 1.5rem; margin: 0 0 1rem; }
+                        table { border-collapse: collapse; width: 100%; background: #fff; table-layout: fixed; }
+                        th, td { padding: 0.4rem 0.3rem; border-bottom: 1px solid #eee; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                        th { background: #fafafa; }
+                        th:nth-child(1), td:nth-child(1) { width: 50px; }
+                        th:nth-child(2), td:nth-child(2) { width: 150px; }
+                        th:nth-child(3), td:nth-child(3) { width: 80px; }
+                        th:nth-child(4), td:nth-child(4) { width: 80px; }
+                        th:nth-child(5), td:nth-child(5) { width: 80px; }
+                        th:nth-child(6), td:nth-child(6) { width: 80px; }
+                        .num { font-variant-numeric: tabular-nums; }
+                        @media (max-width: 900px) { table { font-size: 0.9rem; } }
+                    </style>
+                </head>
+                <body>
+                    <h1>${eventName} Predictions</h1>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Win %</th>
+                            <th>Top-10 %</th>
+                            <th>Make Cut %</th>
+                            <th>Course Fit</th>
+                        </tr>
+                        </thead>
+                        <tbody>${tableRows}</tbody>
+                    </table>
+                </body>
+                </html>
+            `;
+
+            // Open new window and write HTML
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(html);
+            newWindow.document.close();
+        } catch (e) {
+            alert(`Failed to load event: ${e.message}`);
+        }
+    }
+
+    // Load menu HTML
+    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
+
+    // Kick off
+    loadArchive().catch(err => {
+        document.body.innerHTML = `<pre style="color:#b00">${err}</pre>`;
+        console.error(err);
+    });
+</script>
+</body>
+</html>
