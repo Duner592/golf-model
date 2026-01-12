@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Pre/Event Notes - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
+        .main-content { max-width: 900px; margin: auto; }
+        .event-select { margin: 2rem 0 1.5rem 0; }
+        .notes-block { border: 1px solid #bbb; border-radius: 8px; background: #fafbfc; padding: 1.2rem; margin-bottom: 2rem; }
+        h1, h2 { text-align: center; color: #222; }
+        .notes-label { font-weight: 600; color: #007bff; margin-top: 1rem; }
+        .event-title { font-size: 1.2rem; margin-bottom: 0.4rem;}
+        .event-info { font-size: 1rem; color: #444; margin-bottom: 0.5rem; }
+        select { font-size: 1rem; padding: 0.3em 1em; }
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .logo { height: 60px; top: 5px; right: 5px; }
+            .main-content { padding: 0 2vw; }
+        }
+
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
+        .link:hover { background: #0056b3; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<div class="logo-wrapper">
+    <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<h1>Pre-Tournament & Post-Tournament Notes</h1>
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+<div class="main-content">
+    <div class="event-select">
+        <label for="year-select">
+            <strong>Select Year:</strong>
+            <select id="year-select"><option disabled selected>Select Year</option></select>
+        </label>
+        <label for="tournament-select" style="margin-left: 2rem;">
+            <strong>Select Tournament:</strong>
+            <select id="tournament-select" disabled><option disabled selected>Select Tournament</option></select>
+        </label>
+    </div>
+    <div id="event-notes"></div>
+</div>
+
+<div class="menu" id="menu"></div>
+
+<script>
+    // Utility: Group rows by unique event key (date+tournament+course)
+    function groupNoteRows(rows) {
+        const groups = {};
+        rows.forEach(row => {
+            const key = [row['Date'], row['Tournament'], row['Course']].join(' | ');
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(row);
+        });
+        return groups;
+    }
+
+    // Enhanced formatting for markdown-style bullets and checkboxes
+    function formatNotes(noteString) {
+        if (!noteString) return '';
+        const lines = noteString.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+        if (!lines.length) return '';
+        let html = '', listOpen = false;
+        lines.forEach(line => {
+            // - [x] or - [ ] → checkboxes
+            let m;
+            if ((m = line.match(/^- \[([ xX])\]\s*(.*)$/))) {
+                if (!listOpen) { html += '<ul>'; listOpen = true; }
+                html += `<li><input type="checkbox" disabled${m[1].toLowerCase() === 'x' ? " checked" : ""} style="margin-right:0.5em;">${m[2]}</li>`;
+            } else if (/^[-*]\s+/.test(line)) {
+                // Normal bullets
+                if (!listOpen) { html += '<ul>'; listOpen = true; }
+                html += `<li>${line.replace(/^[-*]\s+/, '')}</li>`;
+            } else {
+                // Not a bullet (paragraph)
+                if (listOpen) { html += '</ul>'; listOpen = false; }
+                html += `<div style="margin-bottom:0.5em;">${line}</div>`;
+            }
+        });
+        if (listOpen) html += '</ul>';
+        return html;
+    }
+
+    function renderNotes(rows) {
+        // Display only the first non-empty, non-N/A note per event
+        function firstContent(rows, field) {
+            return rows.find(r => {
+                let n = (r[field] || '').trim();
+                return n && n.toLowerCase() !== 'n/a';
+            });
+        }
+        let preNote = firstContent(rows, 'Pre Tournament Notes');
+        let postNote = firstContent(rows, 'Post Tournament Notes');
+        let pre = preNote ? formatNotes(preNote['Pre Tournament Notes']) : '<span style="color:#888;">No pre-tournament notes for this event.</span>';
+        let post = postNote ? formatNotes(postNote['Post Tournament Notes']) : '<span style="color:#888;">No post-tournament notes for this event.</span>';
+        const head = `<div class="event-title">${rows[0]['Tournament']} (${rows[0]['Date']})</div>
+                      <div class="event-info">${rows[0]['Course']}</div>`;
+        return `
+            ${head}
+            <div class="notes-block">
+              <div class="notes-label">Pre-Tournament Notes</div>
+              <div>${pre}</div>
+            </div>
+            <div class="notes-block">
+              <div class="notes-label">Post-Tournament Notes</div>
+              <div>${post}</div>
+            </div>
+        `;
+    }
+
+    // Helper to extract year from date string (supports DD-MM-YYYY or DD/MM/YYYY)
+    function extractYear(dateStr) {
+        if (!dateStr) return null;
+        let parts = dateStr.split('-');
+        if (parts.length === 3) return parts[2]; // DD-MM-YYYY
+        parts = dateStr.split('/');
+        if (parts.length === 3) return parts[2]; // DD/MM/YYYY
+        return null;
+    }
+
+    async function initNotes() {
+        try {
+            // Parse CSV
+            const resp = await fetch("spreadsheet_data.csv");
+            const csvtext = await resp.text();
+            const rows = Papa.parse(csvtext, {
+                header: true,
+                skipEmptyLines: "greedy",
+                dynamicTyping: false,
+                delimiter: ",",
+                quoteChar: '"',
+                escapeChar: '"'
+            }).data;
+
+            // Group by year and tournament
+            const eventsByYear = {};
+            rows.forEach(row => {
+                const year = extractYear(row['Date']);
+                const tournament = row['Tournament'];
+                if (!year || !tournament) return;
+                if (!eventsByYear[year]) eventsByYear[year] = {};
+                if (!eventsByYear[year][tournament]) eventsByYear[year][tournament] = [];
+                eventsByYear[year][tournament].push(row);
+            });
+
+            // Build year dropdown
+            const years = Object.keys(eventsByYear).sort().reverse(); // Latest first
+            const yearSelect = document.getElementById('year-select');
+            yearSelect.innerHTML = '<option disabled selected>Select Year</option>' + years.map(y => `<option value="${y}">${y}</option>`).join('');
+
+            // Year select change handler
+            yearSelect.addEventListener('change', function() {
+                const selectedYear = this.value;
+                // Filter tournaments that have at least one row with valid pre-notes
+                const tournaments = Object.keys(eventsByYear[selectedYear]).filter(t => {
+                    return eventsByYear[selectedYear][t].some(row => {
+                        const notes = (row['Pre Tournament Notes'] || '').trim();
+                        return notes && notes.toLowerCase() !== 'n/a';
+                    });
+                }).sort();
+                const tournamentSelect = document.getElementById('tournament-select');
+                tournamentSelect.innerHTML = '<option disabled selected>Select Tournament</option>' + tournaments.map(t => `<option value="${t}">${t}</option>`).join('');
+                tournamentSelect.disabled = false;
+                // Clear notes
+                document.getElementById('event-notes').innerHTML = '';
+            });
+
+            // Tournament select change handler
+            document.getElementById('tournament-select').addEventListener('change', function() {
+                const selectedYear = yearSelect.value;
+                const selectedTournament = this.value;
+                const eventRows = eventsByYear[selectedYear][selectedTournament];
+                // Sort by date descending and pick the latest event
+                const latestEventRows = eventRows.sort((a, b) => {
+                    const dateA = new Date(extractYear(a['Date']) + '-' + a['Date'].split(/[-\/]/)[1] + '-' + a['Date'].split(/[-\/]/)[0]);
+                    const dateB = new Date(extractYear(b['Date']) + '-' + b['Date'].split(/[-\/]/)[1] + '-' + b['Date'].split(/[-\/]/)[0]);
+                    return dateB - dateA;
+                });
+                // Group the latest event's rows
+                const groupedLatest = groupNoteRows(latestEventRows);
+                const latestKey = Object.keys(groupedLatest)[0];
+                document.getElementById('event-notes').innerHTML = renderNotes(groupedLatest[latestKey]);
+            });
+
+            // Auto-select latest year and its first filtered tournament
+            if (years.length > 0) {
+                yearSelect.value = years[0];
+                yearSelect.dispatchEvent(new Event('change'));
+                const tournamentSelect = document.getElementById('tournament-select');
+                const options = tournamentSelect.querySelectorAll('option:not([disabled])');
+                if (options.length > 0) {
+                    tournamentSelect.value = options[0].value;
+                    tournamentSelect.dispatchEvent(new Event('change'));
+                }
+            }
+        } catch (e) {
+            document.getElementById('event-notes').innerHTML = 'Error loading notes. Please check the CSV file.';
+            console.error('Error in initNotes:', e);
+        }
+    }
+
+    initNotes();
+
+    // Load menu HTML
+    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
+</script>
+</body>
+</html>
