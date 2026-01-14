@@ -48,6 +48,14 @@
                 margin: 1rem 0;
             }
         }
+
+        /* Added styling for the footer */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
@@ -90,6 +98,9 @@
 </div>
 
 <div class="menu" id="menu"></div>
+
+<!-- Added footer for last updated timestamp -->
+<div class="footer" id="last-updated">Last updated: Loading...</div>
 
 <script>
     async function loadSummary(tour) {
@@ -237,6 +248,10 @@
         document.getElementById('pending-bets').innerHTML = await loadPendingBets();
         document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
         document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
+
+        // Added: Set the last updated timestamp
+        const now = new Date();
+        document.getElementById('last-updated').innerHTML = `Last updated: ${now.toLocaleString()}`;
     }
 
     init();
