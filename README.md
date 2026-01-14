@@ -6,7 +6,7 @@ Purpose
 
 Quick start
 - python scripts/run_weekly_all.py --tour $TOUR
-- 
+- python scripts/build_web_assets.py --tour $TOUR
 
 Key scripts
 - scripts/run_weekly_all.py – end-to-end weekly pipeline
