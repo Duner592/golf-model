@@ -80,11 +80,13 @@
         if (!lines.length) return '';
         let html = '', listOpen = false;
         lines.forEach(line => {
-            // - [x] or - [ ] → checkboxes
+            // - [x] or - [ ] → checkboxes, now rendered as emojis instead of inputs
             let m;
             if ((m = line.match(/^- \[([ xX])\]\s*(.*)$/))) {
                 if (!listOpen) { html += '<ul>'; listOpen = true; }
-                html += `<li><input type="checkbox" disabled${m[1].toLowerCase() === 'x' ? " checked" : ""} style="margin-right:0.5em;">${m[2]}</li>`;
+                const isChecked = m[1].toLowerCase() === 'x';
+                const emoji = isChecked ? '✅' : '□';  // ✅ for checked, □ for unchecked
+                html += `<li style="list-style: none; margin-left: -1.5em;">${emoji} ${m[2]}</li>`;
             } else if (/^[-*]\s+/.test(line)) {
                 // Normal bullets
                 if (!listOpen) { html += '<ul>'; listOpen = true; }

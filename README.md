@@ -5,7 +5,8 @@ Purpose
 - Hosted @https://duner592.github.io/golf-model/
 
 Quick start
-- python scripts/run_weekly_all.py
+- python scripts/run_weekly_all.py --tour $TOUR
+- 
 
 Key scripts
 - scripts/run_weekly_all.py – end-to-end weekly pipeline

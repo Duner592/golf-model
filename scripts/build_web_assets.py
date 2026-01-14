@@ -77,7 +77,7 @@ def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple
     lb = preds_dir / f"event_{event_id}_leaderboard.csv"
     if not lb.exists():
         raise FileNotFoundError(f"No leaderboard CSV found under {preds_dir}")
-    html = preds_dir / f"event_{event_id}_leaderboard.html"
+    html = lb / f"event_{event_id}_leaderboard.html"
     if not html.exists():
         html = None
     return lb, html
@@ -245,7 +245,7 @@ def _numeric_mode(series: pd.Series) -> int | None:
         series (pd.Series): Input series.
 
     Returns:
-        int or None: Mode value or None.
+        int or None: Mode value.
     """
     try:
         s = pd.to_numeric(series, errors="coerce").dropna()
@@ -914,6 +914,7 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
 
 
 # ---------- load start-holes from processed field (robust) ----------
+# ---------- load start-holes from processed field (robust) ----------
 def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
     """
     Load start holes DataFrame.
@@ -958,8 +959,7 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
             "start_hole_r2",
             "r2_start",
             "r2_starttee",
-            "start_hole",
-        ]
+        ]  # Removed "start_hole" to avoid picking the same for R2
 
         frame_columns = set(df.columns)
 
@@ -975,6 +975,18 @@ def load_start_holes(processed_dir: Path, event_id: str) -> pd.DataFrame | None:
         for _, row in df.iterrows():
             r1.append(pick(row, cands_r1, frame_columns))
             r2.append(pick(row, cands_r2, frame_columns))
+
+        # Infer R2 start hole as opposite of R1 if R2 is missing
+        for i in range(len(r1)):
+            if r1[i] and not r2[i]:
+                try:
+                    start = int(r1[i])
+                    if start == 1:
+                        r2[i] = "10"
+                    elif start == 10:
+                        r2[i] = "1"
+                except Exception:
+                    pass
 
         out = pd.DataFrame(
             {

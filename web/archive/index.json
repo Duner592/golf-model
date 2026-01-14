@@ -1,20 +1,20 @@
 [
   {
-    "event_id": "6",
-    "event_name": "Sony Open in Hawaii",
-    "tour": "pga",
-    "slug": "sony_open_in_hawaii",
-    "year": "2026",
-    "csv_available": true,
-    "archived_at": "2026-01-12 20:21:38 UTC"
-  },
-  {
     "event_id": "2026105",
     "event_name": "Dubai Invitational",
     "tour": "euro",
     "slug": "dubai_invitational",
     "year": "2026",
     "csv_available": true,
-    "archived_at": "2026-01-12 20:21:16 UTC"
+    "archived_at": "2026-01-14 09:20:19 UTC"
+  },
+  {
+    "event_id": "6",
+    "event_name": "Sony Open in Hawaii",
+    "tour": "pga",
+    "slug": "sony_open_in_hawaii",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-01-14 09:15:28 UTC"
   }
 ]
