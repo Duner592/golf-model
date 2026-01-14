@@ -102,7 +102,14 @@
             const course = tournament.course || 'Unknown Course';
             const fieldSize = tournament.field_size || 'N/A';
             const winners = tournament.previous_winners || [];
-            const previousWinner = winners.length ? `${winners[0].winner} (${winners[0].score})` : 'N/A';
+            let winnerName = winners.length ? winners[0].winner : '';
+            if (winnerName.includes(',')) {
+                const parts = winnerName.split(', ');
+                if (parts.length === 2) {
+                    winnerName = `${parts[1]} ${parts[0]}`;
+                }
+            }
+            const previousWinner = winners.length ? `${winnerName} (${winners[0].score})` : 'N/A';
 
             return `
                 <strong>Event:</strong> ${eventName}<br/>
@@ -177,16 +184,17 @@
                 const tournament = bet['Tournament'] || 'N/A';
                 const player = bet['Player'] || 'N/A';
                 const type = bet['Type'] || 'N/A';
+                const price = bet['Price'] || 'N/A';
                 const stake = bet['Stake'] || 'N/A';
                 const date = bet['Date'] || 'N/A';
                 const placeTerms = bet['Place Terms'] || 'N/A';
                 const bookmaker = bet['Bookmaker'] || 'N/A';
 
-                if (tournament === 'N/A' && player === 'N/A' && type === 'N/A' && stake === 'N/A' && date === 'N/A' && placeTerms === 'N/A' && bookmaker === 'N/A') {
+                if (tournament === 'N/A' && player === 'N/A' && type === 'N/A' && price === 'N/A' && stake === 'N/A' && date === 'N/A' && placeTerms === 'N/A' && bookmaker === 'N/A') {
                     return;  // Skip this row
                 }
 
-                html += `<strong>${tournament}</strong> - ${player} (${type})<br>Stake: ${stake}<br>Date: ${date}<br>Place terms: ${placeTerms}<br>Bookmaker: ${bookmaker}<br><br>`;
+                html += `<strong>${tournament}</strong> - ${player} (${type})<br>Price: ${price}<br>Stake: ${stake}<br>Date: ${date}<br>Place terms: ${placeTerms}<br>Bookmaker: ${bookmaker}<br><br>`;
             });
             return html;
         } catch (e) {

@@ -375,7 +375,16 @@
 
     if (Array.isArray(t.previous_winners) && t.previous_winners.length) {
         const top = t.previous_winners.slice(0, 5);
-        const list = top.map(w => `• ${w.year}: ${w.winner}${w.score ? ` (${w.score})` : ""}`).join("<br/>");
+        const list = top.map(w => {
+            let winnerName = w.winner;
+            if (winnerName.includes(',')) {
+                const parts = winnerName.split(', ');
+                if (parts.length === 2) {
+                    winnerName = `${parts[1]} ${parts[0]}`;
+                }
+            }
+            return `• ${w.year}: ${winnerName}${w.score ? ` (${w.score})` : ""}`;
+        }).join("<br/>");
         lines.push(`<div style="margin-top:0.25rem;"><strong>Previous winners</strong><br/>${list}</div>`);
     }
     el.innerHTML = lines.join("<br/>");
