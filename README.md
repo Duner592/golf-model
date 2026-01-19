@@ -6,6 +6,7 @@ Purpose
 
 Quick start
 - python scripts/run_weekly_all.py --tour $TOUR
+- python scripts/update_archived_event.py --event_id $EVENT_ID
 - python scripts/build_web_assets.py --tour $TOUR
 
 Key scripts

@@ -143,13 +143,20 @@ def wide_rounds_to_long(df: pd.DataFrame) -> pd.DataFrame:
             sg_val = row.get(sg_cols.get(r), np.nan) if r in sg_cols else np.nan
             if pd.isna(sg_val):
                 continue
+            # Updated: Handle None values from raw data
+            da_val = row.get(da_cols.get(r), np.nan) if r in da_cols else np.nan
+            if da_val is None:
+                da_val = np.nan
+            dd_val = row.get(dd_cols.get(r), np.nan) if r in dd_cols else np.nan
+            if dd_val is None:
+                dd_val = np.nan
             rec = {
                 "player_id": str(pid),
                 "year": year,
                 "round": int(r),
                 "sg_total": float(sg_val),
-                "driving_acc": (float(row.get(da_cols.get(r), np.nan)) if r in da_cols else np.nan),
-                "driving_dist": (float(row.get(dd_cols.get(r), np.nan)) if r in dd_cols else np.nan),
+                "driving_acc": float(da_val),
+                "driving_dist": float(dd_val),
             }
             records.append(rec)
     return pd.DataFrame.from_records(records)
@@ -302,23 +309,30 @@ def compute_player_driving_inputs_for_scoring(
         # create key from available id
         dfl[key] = df_long.get("player_id", "").astype(str)
 
-    venue = dfl.groupby(key, as_index=False).agg(
-        da_venue_mean=(("driving_acc", "mean") if "driving_acc" in dfl.columns else ("round", "size")),
-        dd_venue_mean=(("driving_dist", "mean") if "driving_dist" in dfl.columns else ("round", "size")),
-    )
-    if "driving_acc" not in dfl.columns:
-        venue["da_venue_mean"] = pd.NA
-    if "driving_dist" not in dfl.columns:
-        venue["dd_venue_mean"] = pd.NA
+    # Updated: Use valid agg functions and default to np.nan for missing data
+    venue_agg = {}
+    if "driving_acc" in dfl.columns:
+        venue_agg["da_venue_mean"] = ("driving_acc", "mean")
+    else:
+        venue_agg["da_venue_mean"] = ("round", lambda x: np.nan)  # Default to np.nan
+    if "driving_dist" in dfl.columns:
+        venue_agg["dd_venue_mean"] = ("driving_dist", "mean")
+    else:
+        venue_agg["dd_venue_mean"] = ("round", lambda x: np.nan)  # Default to np.nan
 
-    overall = dfl.groupby(key, as_index=False).agg(
-        da_overall_mean=(("driving_acc", "mean") if "driving_acc" in dfl.columns else ("round", "size")),
-        dd_overall_mean=(("driving_dist", "mean") if "driving_dist" in dfl.columns else ("round", "size")),
-    )
-    if "driving_acc" not in dfl.columns:
-        overall["da_overall_mean"] = pd.NA
-    if "driving_dist" not in dfl.columns:
-        overall["dd_overall_mean"] = pd.NA
+    venue = dfl.groupby(key, as_index=False).agg(**venue_agg)
+
+    overall_agg = {}
+    if "driving_acc" in dfl.columns:
+        overall_agg["da_overall_mean"] = ("driving_acc", "mean")
+    else:
+        overall_agg["da_overall_mean"] = ("round", lambda x: np.nan)
+    if "driving_dist" in dfl.columns:
+        overall_agg["dd_overall_mean"] = ("driving_dist", "mean")
+    else:
+        overall_agg["dd_overall_mean"] = ("round", lambda x: np.nan)
+
+    overall = dfl.groupby(key, as_index=False).agg(**overall_agg)
 
     drv = venue.merge(overall, on=key, how="outer")
     return drv, key
@@ -380,18 +394,19 @@ def main():
             score_df = score_df.merge(drv_aligned, on="player_id", how="left")
 
             # Fallback driving means
-            da_field_mean = driving_norm.get("da_field_mean")
-            dd_field_mean = driving_norm.get("dd_field_mean")
-
-            if "da_venue_mean" in score_df.columns and score_df["da_venue_mean"].notna().any():
-                da_fallback = float(score_df["da_venue_mean"].mean(skipna=True))
-            else:
-                da_fallback = da_field_mean if da_field_mean is not None else 0.0
-
-            if "dd_venue_mean" in score_df.columns and score_df["dd_venue_mean"].notna().any():
-                dd_fallback = float(score_df["dd_venue_mean"].mean(skipna=True))
-            else:
-                dd_fallback = dd_field_mean if dd_field_mean is not None else 0.0
+            # Updated: Handle pd.NA/NaN in mean calculation
+            da_venue_mean_val = score_df["da_venue_mean"].mean(skipna=True) if "da_venue_mean" in score_df.columns else np.nan
+            da_fallback = (
+                float(da_venue_mean_val)
+                if pd.notna(da_venue_mean_val) and np.isfinite(da_venue_mean_val)
+                else (driving_norm.get("da_field_mean") if driving_norm.get("da_field_mean") is not None else 0.0)
+            )
+            dd_venue_mean_val = score_df["dd_venue_mean"].mean(skipna=True) if "dd_venue_mean" in score_df.columns else np.nan
+            dd_fallback = (
+                float(dd_venue_mean_val)
+                if pd.notna(dd_venue_mean_val) and np.isfinite(dd_venue_mean_val)
+                else (driving_norm.get("dd_field_mean") if driving_norm.get("dd_field_mean") is not None else 0.0)
+            )
 
             def choose_mean(row, which):
                 v = row.get(f"{which}_venue_mean", np.nan)

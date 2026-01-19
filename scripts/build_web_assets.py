@@ -27,6 +27,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import requests  # Added for API calls
 
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -756,6 +757,7 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
     start_date_str = None
     upcoming_yardage = None
     upcoming_winners = None
+    event_status = None
 
     if upcoming_file.exists():
         try:
@@ -768,9 +770,25 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
                     upcoming_yardage = event.get("yardage")
                     if isinstance(event.get("previous_winners"), list):
                         upcoming_winners = event.get("previous_winners")
+                    event_status = event.get("status")
                     break
         except Exception as e:
             print(f"Warn: Failed to load upcoming-events.json: {e}")
+
+    # If event is completed, try to fetch winner from DataGolf API
+    current_winner = None
+    if event_status == "completed" and start_date_str:
+        try:
+            year = start_date_str.split("-")[0]
+            response = requests.get(f"https://datagolf.ca/api/get-schedule?season={year}")
+            if response.status_code == 200:
+                schedule_data = response.json()
+                for sched_event in schedule_data.get("schedule", []):
+                    if str(sched_event.get("event_id")) == str(event_id):
+                        current_winner = sched_event.get("winner")
+                        break
+        except Exception as e:
+            print(f"Warn: Failed to fetch winner from API: {e}")
 
     # field: try tee-times first, then field
     field = None
@@ -903,11 +921,14 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
 
     payload = {
         "event_name": meta_proc.get("event_name", "Unknown Event"),
+        "event_id": event_id,
         "course": course_name or "Unknown Course",
         "total_yardage": yardage,
         "course_location": course_location or "Unknown Location",
         "start_date": start_date,
         "field_size": field_size,
+        "status": event_status or "unknown",
+        "winner": current_winner,
         "previous_winners": winners,
     }
     write_json(out_json, payload)
@@ -1156,8 +1177,6 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
 
 
 # ---------- archive event predictions ----------
-
-
 def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: str, r1_date: str | None, lb_csv: Path | None) -> None:
     """
     Archive the current event's prediction data into web/archive/{year}/.

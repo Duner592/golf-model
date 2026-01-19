@@ -72,10 +72,10 @@
     },
     {
       "country": "BAH",
-      "course": "The Ocean Club Golf Course at Atlantis",
-      "course_key": "097",
+      "course": "Ocean Club",
+      "course_key": "114",
       "event_id": "124",
-      "event_name": "The Bahamas Golf Classic at Atlantis Paradise Island",
+      "event_name": "The Bahamas Golf Classic",
       "latitude": 25.081,
       "location": "Nassau, The Bahamas",
       "longitude": -77.299,
@@ -87,16 +87,16 @@
     {
       "country": "USA",
       "course": "Waialae Country Club",
-      "course_key": "006",
+      "course_key": "6",
       "event_id": "6",
       "event_name": "Sony Open in Hawaii",
       "latitude": 21.272,
       "location": "Honolulu, HI",
       "longitude": -157.775,
       "start_date": "2026-01-15",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Gotterup, Chris (27774)"
     },
     {
       "country": "UAE",
@@ -108,9 +108,9 @@
       "location": "Dubai, UAE",
       "longitude": 55.334,
       "start_date": "2026-01-15",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Elvira Mijares, Ignacio (12988)"
     },
     {
       "country": "BAH",
@@ -172,8 +172,8 @@
       "country": "BRN",
       "course": "Royal GC",
       "course_key": "royal golf club",
-      "event_id": "TBD",
-      "event_name": "Bahrain Championship",
+      "event_id": "2026107",
+      "event_name": "Bapco Energies Bahrain Championship",
       "latitude": 26.092,
       "location": "Al Mazrowiah, Bahrain",
       "longitude": 50.566,
