@@ -15,12 +15,13 @@
         table { border-collapse: collapse; width: 100%; background: #fff; table-layout: fixed; }
         th, td { padding: 0.4rem 0.3rem; border-bottom: 1px solid #eee; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         th { cursor: pointer; background: #fafafa; position: sticky; top: 0; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,.06); }
-        th:nth-child(1), td:nth-child(1) { width: 50px; } /* Rank */
-        th:nth-child(2), td:nth-child(2) { width: 150px; } /* Player */
-        th:nth-child(3), td:nth-child(3) { width: 80px; } /* Win % */
-        th:nth-child(4), td:nth-child(4) { width: 80px; } /* Top-10 % */
-        th:nth-child(5), td:nth-child(5) { width: 80px; } /* Make Cut % */
-        th:nth-child(6), td:nth-child(6) { width: 80px; } /* Course Fit */
+        th:nth-child(1), td:nth-child(1) { width: 50px; } /* Tour */
+        th:nth-child(2), td:nth-child(2) { width: 200px; } /* Event */
+        th:nth-child(3), td:nth-child(3) { width: 150px; } /* Course */
+        th:nth-child(4), td:nth-child(4) { width: 120px; } /* Location */
+        th:nth-child(5), td:nth-child(5) { width: 100px; } /* Date */
+        th:nth-child(6), td:nth-child(6) { width: 80px; } /* Status */
+        th:nth-child(7), td:nth-child(7) { width: 150px; } /* Winner */
         .num { font-variant-numeric: tabular-nums; }
         .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; cursor: pointer; }
         .link:hover { background: #0056b3; }
@@ -71,7 +72,6 @@
         <th>Date</th>
         <th>Status</th>
         <th>Winner</th>
-        <th>Score</th>
     </tr>
     </thead>
     <tbody id="archiveTableBody"></tbody>
@@ -81,6 +81,19 @@
     // Formatting helpers
     const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
     const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
+
+    // Clean winner name: remove (number), reorder to first last
+    function cleanWinnerName(name) {
+        if (!name || name === "—") return name;
+        // Remove (number)
+        name = name.replace(/\s*\(\d+\)\s*$/, '');
+        // Split by comma and reverse
+        const parts = name.split(', ');
+        if (parts.length === 2) {
+            return `${parts[1]} ${parts[0]}`;
+        }
+        return name;
+    }
 
     // JSON loader
     async function loadJSON(path) {
@@ -94,11 +107,11 @@
         const tbody = document.getElementById("archiveTableBody");
         try {
             let events = [];
-            // Try archive first
+            // Load global archive index
             try {
-                events = await loadJSON("archive/2026/index.json");
+                events = await loadJSON("archive/index.json");
             } catch (e) {
-                console.warn("Archive not found, loading current events.");
+                console.warn("Archive index not found, loading current events.");
             }
 
             // Fallback to current events if archive empty
@@ -122,27 +135,48 @@
                 }
             }
 
-            // Populate table
+            // Populate table with enhanced data
             for (const event of events) {
+                let course = "—", location = "—", status = event.year === "current" ? "Current" : "Archived", winner = "—";
+                try {
+                    let summaryPath;
+                    if (event.year === "current") {
+                        summaryPath = `${event.tour.toLowerCase()}/tournament_summary.json`;
+                    } else {
+                        summaryPath = `archive/${event.year}/${event.slug}/tournament_summary.json`;
+                    }
+                    const summary = await loadJSON(summaryPath);
+                    course = summary.course || "—";
+                    location = summary.course_location || "—";
+                    status = summary.status || status;
+                    winner = cleanWinnerName(summary.winner) || "—";
+                } catch (e) {
+                    console.warn(`Failed to load summary for ${event.event_name}: ${e.message}`);
+                }
+
+                // Skip upcoming events
+                if (status === "upcoming") {
+                    continue;
+                }
+
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
                     <td>${event.tour}</td>
                     <td><span class="link" onclick="loadEvent('${event.year}', '${event.slug}', '${event.event_name}', '${event.tour.toLowerCase()}')">${event.event_name}</span></td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td class="num">${event.archived_at.split(' ')[0]}</td>
-                    <td>${event.year === "current" ? "Current" : "Archived"}</td>
-                    <td>—</td>
-                    <td class="num">—</td>
+                    <td>${course}</td>
+                    <td>${location}</td>
+                    <td class="num">${event.archived_at ? event.archived_at.split(' ')[0] : '—'}</td>
+                    <td>${status}</td>
+                    <td>${winner}</td>
                 `;
                 tbody.appendChild(tr);
             }
 
             if (!events.length) {
-                tbody.innerHTML = "<tr><td colspan='8'>No events found.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='7'>No events found.</td></tr>";
             }
         } catch (e) {
-            tbody.innerHTML = "<tr><td colspan='8'>Error loading events.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='7'>Error loading events.</td></tr>";
             console.error(`Failed to load events: ${e.message}`);
         }
     }
