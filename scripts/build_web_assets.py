@@ -56,16 +56,10 @@ def latest_meta(processed_dir: Path) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
-def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple[Path, Path | None]:
+def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple[Path | None, Path | None]:
     """
     Select the latest timestamped leaderboard CSV and optional HTML for a given event.
-
-    Args:
-        preds_dir (Path): Directory containing prediction data.
-        event_id (str): Event identifier.
-
-    Returns:
-        tuple: (CSV path, HTML path or None).
+    Returns None, None if no files are found (instead of raising).
     """
     stamped = sorted(preds_dir.glob(f"event_{event_id}_*_leaderboard.csv"))
     html = None
@@ -76,12 +70,12 @@ def pick_latest_timestamped_leaderboard(preds_dir: Path, event_id: str) -> tuple
             html = candidate_html
         return lb, html
     lb = preds_dir / f"event_{event_id}_leaderboard.csv"
-    if not lb.exists():
-        raise FileNotFoundError(f"No leaderboard CSV found under {preds_dir}")
-    html = lb / f"event_{event_id}_leaderboard.html"
-    if not html.exists():
-        html = None
-    return lb, html
+    if lb.exists():
+        candidate_html = lb.with_suffix(".html")
+        if candidate_html.exists():
+            html = candidate_html
+        return lb, html
+    return None, None  # Return None instead of raising FileNotFoundError
 
 
 def pick_matching_summary(preds_dir: Path, csv_path: Path) -> Path | None:
@@ -1138,10 +1132,9 @@ def clear_old_event_assets(web_dir: Path) -> None:
 
 
 # ---------- build schedule from upcoming-events.json ----------
-# ---------- build schedule from upcoming-events.json ----------
 def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
     """
-    Build schedule JSON from upcoming events (only future/upcoming).
+    Build schedule JSON from upcoming events (only for the current year, including past/completed within that year).
 
     Args:
         root (Path): Project root.
@@ -1153,26 +1146,44 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
         return
     upcoming_data = json.loads(upcoming_file.read_text(encoding="utf-8"))
     schedule = []
+    current_year = 2026  # Hardcoded to 2026 as per user request
     for event in upcoming_data.get("schedule", []):
-        if event.get("tour", "").lower() == tour.lower() and event.get("status") != "completed":
-            # Only include upcoming events
+        if event.get("tour", "").lower() == tour.lower():
             date_str = event.get("start_date") or event.get("date")
-            event_name = event.get("event_name") or event.get("name") or event.get("event")
-            formatted_date = None
             if date_str:
                 try:
-                    dt = datetime.strptime(date_str, "%Y-%m-%d")
-                    formatted_date = dt.strftime("%d-%m-%Y")
-                except Exception:
-                    formatted_date = date_str  # fallback
-            schedule.append(
-                {
-                    "date": formatted_date,
-                    "event": event_name,
-                    "course": event.get("course"),
-                    "location": event.get("location"),
-                }
-            )
+                    event_year = datetime.strptime(date_str, "%Y-%m-%d").year
+                    if event_year == current_year:
+                        # Include only if in current year
+                        event_name = event.get("event_name") or event.get("name") or event.get("event")
+                        formatted_date = datetime.strptime(date_str, "%Y-%m-%d").strftime("%d-%m-%Y")
+                        winner = event.get("winner", "N/A")
+                        # Clean up winner name: remove (ID) and reorder to First Last
+                        winner = event.get("winner", "N/A")
+                        # Clean up winner name: remove (ID) and reorder to First Last
+                        if winner != "N/A":
+                            try:
+                                parts = winner.split(", ")
+                                if len(parts) == 2:
+                                    last, first_id = parts
+                                    first = first_id.split(" (")[0]  # Remove (ID)
+                                    winner = f"{first} {last}"
+                            except Exception:  # Specify Exception instead of bare except
+                                pass  # Keep original if parsing fails
+                        schedule.append(
+                            {
+                                "date": formatted_date,
+                                "event": event_name,
+                                "course": event.get("course"),
+                                "location": event.get("location"),
+                                "winner": winner,
+                            }
+                        )
+                except ValueError:
+                    # Skip if date parsing fails
+                    continue
+    # Sort schedule by date ascending (chronological order: earliest first)
+    schedule.sort(key=lambda x: datetime.strptime(x["date"], "%d-%m-%Y"))
     write_json(out_json, schedule)
 
 
@@ -1338,14 +1349,21 @@ def main():
             pass
 
     # Skip event-specific assets if no_event
-    if no_event:
+    if not no_event:
+        # Pick leaderboard CSV/HTML for this event
+        lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
+        if lb_csv is None:
+            # No leaderboard data found; fall back to no-event mode
+            no_event = True
+            event_id = "0"
+            print(f"[info] No leaderboard data found for event_id={event_id}; falling back to no-event mode")
+            summary_json = None
+        else:
+            summary_json = pick_matching_summary(preds_dir, lb_csv)
+    else:
         lb_csv = None
         lb_html = None
         summary_json = None
-    else:
-        # Pick leaderboard CSV/HTML for this event
-        lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
-        summary_json = pick_matching_summary(preds_dir, lb_csv)
 
     web_dir = root / "web" / TOUR
     dl_dir = web_dir / "downloads"

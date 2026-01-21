@@ -3,6 +3,7 @@
 Purpose
 - Weekly tournament win-probability model (PGA/DPWT) using DataGolf + weather + course features.
 - Hosted @https://duner592.github.io/golf-model/
+- Bet tracking, ROI data utilising speadsheet_data.csv
 
 Quick start
 - python scripts/run_weekly_all.py --tour $TOUR
@@ -18,6 +19,9 @@ Data layout
 - data/processed/ – normalized inputs (field, weather summaries, meta)
 - data/features/ – features tables (weather/full/course)
 - data/preds/ – predictions + leaderboard + summary
+
+Archiving
+- web/archive - Generated predictions archive
 
 Config
 - configs/datagolf.yaml (redacted) – endpoints and defaults

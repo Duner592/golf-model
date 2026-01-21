@@ -1,101 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Upcoming Schedule - Golf Model Hub</title>
+    <meta charset="UTF-8">
+    <title>2026 Golf Tour Schedules</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
     <style>
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; }
-        h1 { text-align: center; color: #333; }
-        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
-        th { background: #f2f2f2; font-weight: bold; }
-        tr:nth-child(even) { background: #f9f9f9; }
-        .link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
+        html { -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 2rem;
+            color: #111;
+            transition: padding-left 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Logo (same as index) */
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+
+        /* Tour filter dropdown (always visible) */
+        #tour-filter { margin: 0.5rem 0; }
+        #tour-filter select { padding: 0.5rem; font-size: 1rem; }
+
+        /* Table area */
+        .table-container { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+        table { border-collapse: collapse; width: auto; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; white-space: nowrap; }
+        th { background-color: #f2f2f2; }
+
+        /* Date group border */
+        .date-group { border-top: 2px solid #000; }
+
+        /* Rolex Series highlight (Euro) */
+        .rolex-series { background-color: yellow; }
+
+        /* Majors highlight (PGA) */
+        .majors { background-color: lightgreen; }
+
+        /* Signature Events highlight (PGA) */
+        .signature-events { background-color: lightblue; }
+
+        /* FedEx Playoffs highlight (PGA) */
+        .fedex-playoffs { background-color: #d8bfd8; }  /* Light purple */
+
+        /* Key for events */
+        .event-key { margin: 1rem 0; font-size: 0.9rem; font-style: italic; color: #555; }
+        .event-key p { margin: 0.25rem 0; }
+
+        /* Link button (same as index) */
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
         .link:hover { background: #0056b3; }
-        .loading { color: #666; font-style: italic; text-align: center; }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .logo { height: 60px; top: 5px; right: 5px; }
+
+            /* Column min-widths + wrap for Event and Course so they're not tiny, but can wrap */
+            th:nth-child(1), td:nth-child(1) { min-width: 100px; }   /* Date */
+            th:nth-child(2), td:nth-child(2) { min-width: 120px; }   /* Tour */
+            th:nth-child(3), td:nth-child(3) {                       /* Event */
+                min-width: 210px;
+                white-space: normal;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+                line-height: 1.3;
+            }
+            th:nth-child(4), td:nth-child(4) {                       /* Course */
+                min-width: 170px;
+                white-space: normal;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+                line-height: 1.3;
+            }
+            th:nth-child(5), td:nth-child(5) { min-width: 220px; }   /* Location */
+            th:nth-child(6), td:nth-child(6) { min-width: 150px; }   /* Winner */
+        }
     </style>
 </head>
 <body>
-<h1>Upcoming Schedule</h1>
-<p>2026 Schedules for PGA and DP World Tours.</p>
+<div class="logo-wrapper">
+    <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-<div id="schedule-content" class="loading">Loading...</div>
+<!-- Same placement as index.html -->
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
 
-<a href="index.html" class="link">Back to Home</a>
+<h1>2026 Golf Tour Schedules</h1>
+
+<!-- Tour filter dropdown (always visible) -->
+<div id="tour-filter">
+    <label for="tour-select">Filter by Tour:</label>
+    <select id="tour-select">
+        <option value="all">All Tours</option>
+        <option value="DP World Tour">DP World Tour</option>
+        <option value="PGA Tour">PGA Tour</option>
+    </select>
+</div>
+
+<!-- Key for events -->
+<div class="event-key">
+    <p><span style="background-color: yellow; padding: 2px 4px;">Rolex Series events</span></p>
+    <p><span style="background-color: lightgreen; padding: 2px 4px;">Majors</span></p>
+    <p><span style="background-color: lightblue; padding: 2px 4px;">Signature events</span></p>
+    <p><span style="background-color: #d8bfd8; padding: 2px 4px;">FedEx Playoff events</span></p>
+</div>
+
+<div class="table-container">
+    <table id="schedule-table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Tour</th>
+            <th>Event</th>
+            <th>Course</th>
+            <th>Location</th>
+            <th>Winner</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="menu" id="menu"></div>
 
 <script>
-    async function loadCombinedSchedule() {
-        try {
-            const pgaSchedule = await fetch('pga/schedule.json').then(r => r.json());
-            const euroSchedule = await fetch('euro/schedule.json').then(r => r.json());
+    // Data variables
+    let allData = [];
+    let currentFilter = 'all';
 
-            // Combine and add tour labels
-            let allEvents = [];
-            pgaSchedule.forEach(event => {
-                allEvents.push({
-                    date: event.date,
-                    tour: 'PGA Tour',
-                    tournament: event.event,
-                    course: event.course,
-                    location: event.location
-                });
-            });
-            euroSchedule.forEach(event => {
-                allEvents.push({
-                    date: event.date,
-                    tour: 'DP World Tour',
-                    tournament: event.event,
-                    course: event.course,
-                    location: event.location
-                });
-            });
+    // Tour select change event
+    const tourSelect = document.getElementById('tour-select');
+    tourSelect.addEventListener('change', () => {
+        currentFilter = tourSelect.value;
+        renderTable();
+    });
 
-            // Sort by date (assuming dd-mm-yyyy format)
-            allEvents.sort((a, b) => {
-                const dateA = a.date.split('-').reverse().join('-'); // Convert to yyyy-mm-dd for sorting
-                const dateB = b.date.split('-').reverse().join('-');
-                return dateA.localeCompare(dateB);
-            });
+    // Data load
+    const tbody = document.querySelector('#schedule-table tbody');
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Loading schedule...</td></tr>';
 
-            // Build table HTML
-            let html = `
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Tour</th>
-                            <th>Tournament Name</th>
-                            <th>Course</th>
-                            <th>Location</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            allEvents.forEach(event => {
-                html += `
-                    <tr>
-                        <td>${event.date}</td>
-                        <td>${event.tour}</td>
-                        <td>${event.tournament}</td>
-                        <td>${event.course}</td>
-                        <td>${event.location}</td>
-                    </tr>
-                `;
-            });
-            html += '</tbody></table>';
+    // Fetch both schedules and combine
+    Promise.all([
+        fetch('euro/schedule.json').then(response => response.ok ? response.json() : []).catch(() => []),
+        fetch('pga/schedule.json').then(response => response.ok ? response.json() : []).catch(() => [])
+    ]).then(([euro, pga]) => {
+        euro.forEach(event => { event.tour = 'DP World Tour'; allData.push(event); });
+        pga.forEach(event => { event.tour = 'PGA Tour'; allData.push(event); });
+        // Sort all data by date
+        allData.sort((a, b) => new Date(a.date.split('-').reverse().join('-')) - new Date(b.date.split('-').reverse().join('-')));
+        renderTable();
+    }).catch(() => {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">Error loading schedule data. Please try again later.</td></tr>';
+    });
 
-            return html;
-        } catch (e) {
-            return 'Schedule unavailable.';
+    // Render table function
+    function renderTable() {
+        let data = allData;
+        if (currentFilter !== 'all') {
+            data = allData.filter(event => event.tour === currentFilter);
         }
+
+        tbody.innerHTML = '';
+        if (!data || !data.length) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No events found.</td></tr>';
+            return;
+        }
+
+        const rolexEvents = [
+            'Hero Dubai Desert Classic',
+            'BMW PGA Championship',
+            'Abu Dhabi Championship',
+            'DP World Tour Championship'
+        ];
+        const majorEvents = [
+            'Masters Tournament',
+            'PGA Championship',
+            'U.S. Open',
+            'The Open Championship'
+        ];
+        const signatureEvents = [
+            'AT&T Pebble Beach Pro-Am',
+            'The Genesis Invitational',
+            'Arnold Palmer Invitational presented by Mastercard',
+            'RBC Heritage',
+            'Miami Championship',
+            'Truist Championship',
+            'the Memorial Tournament presented by Workday',
+            'Travelers Championship'
+        ];
+        const fedexEvents = [
+            'FedEx St. Jude Championship',
+            'BMW Championship',
+            'TOUR Championship'
+        ];
+
+        let prevDate = null;
+        data.forEach(event => {
+            const row = document.createElement('tr');
+            if (event.date !== prevDate) {
+                row.classList.add('date-group');
+            }
+            prevDate = event.date;
+
+            if (event.tour === 'DP World Tour') {
+                const isRolex = rolexEvents.includes(event.event);
+                if (isRolex) row.classList.add('rolex-series');
+            } else if (event.tour === 'PGA Tour') {
+                const isMajor = majorEvents.includes(event.event);
+                const isSignature = signatureEvents.includes(event.event);
+                const isFedex = fedexEvents.includes(event.event);
+                if (isMajor) row.classList.add('majors');
+                if (isSignature) row.classList.add('signature-events');
+                if (isFedex) row.classList.add('fedex-playoffs');
+            }
+            row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.tour}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td><td>${event.winner || 'N/A'}</td>`;
+            tbody.appendChild(row);
+        });
     }
 
-    async function init() {
-        document.getElementById('schedule-content').innerHTML = await loadCombinedSchedule();
-    }
-
-    init();
+    // Load menu HTML
+    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
 </script>
 </body>
 </html>
