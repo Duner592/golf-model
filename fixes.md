@@ -10,5 +10,4 @@ Improvements
 - Homepage - improve visually
 - Predictions - improve layout for weather sidebar.
 - New page? - Add a tools & useful links page/section
-- 
 
