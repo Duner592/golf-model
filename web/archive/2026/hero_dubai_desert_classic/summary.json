@@ -1,12 +1,12 @@
 {
   "event_id": "2026106",
   "event_name": "Hero Dubai Desert Classic",
-  "source_csv": "data/preds/euro/event_2026106_hero_dubai_desert_classic_2026-01-19_leaderboard.csv",
-  "generated_utc": "19-Jan-2026 22:59:51",
+  "source_csv": "data/preds/euro/event_2026106_hero_dubai_desert_classic_2026-01-21_leaderboard.csv",
+  "generated_utc": "21-Jan-2026 10:44:26",
   "metrics": {
     "field_size": 126,
-    "p_win_max": 0.6956666666666667,
-    "p_win_median": 0.0,
-    "p_win_sum": 1.0
+    "p_win_max": 0.6878666666666666,
+    "p_win_median": 3.3333333333333335e-05,
+    "p_win_sum": 0.9999999999999999
   }
 }
