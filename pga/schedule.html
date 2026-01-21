@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>2026 PGA Tour Schedule</title>
+    <title>2026 Golf Tour Schedules</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
     <script src="menu.js"></script>
@@ -27,19 +27,26 @@
             z-index: 1002;
         }
 
+        /* Tour filter */
+        .tour-filter { margin: 1rem 0; }
+        .tour-filter select { padding: 0.5rem; font-size: 1rem; }
+
         /* Table area */
         .table-container { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
         table { border-collapse: collapse; width: auto; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; white-space: nowrap; }
         th { background-color: #f2f2f2; }
 
-        /* Majors highlight */
+        /* Rolex Series highlight (Euro) */
+        .rolex-series { background-color: yellow; }
+
+        /* Majors highlight (PGA) */
         .majors { background-color: lightgreen; }
 
-        /* Signature Events highlight */
+        /* Signature Events highlight (PGA) */
         .signature-events { background-color: lightblue; }
 
-        /* FedEx Playoffs highlight */
+        /* FedEx Playoffs highlight (PGA) */
         .fedex-playoffs { background-color: #d8bfd8; }  /* Light purple */
 
         /* Key for events */
@@ -85,10 +92,19 @@
     <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
 </div>
 
-<h1>2026 PGA Tour Schedule</h1>
+<h1>2026 Golf Tour Schedules</h1>
+
+<!-- Tour filter -->
+<div class="tour-filter">
+    <label for="tour-select">Select Tour:</label>
+    <select id="tour-select">
+        <option value="euro">DP World Tour</option>
+        <option value="pga">PGA Tour</option>
+    </select>
+</div>
 
 <!-- Key for events -->
-<div class="event-key">Note: Rows highlighted in green are Majors. Rows highlighted in blue are Signature events. Rows highlighted in purple are FedEx Playoff events.</div>
+<div class="event-key">Note: Rows highlighted in yellow are Rolex Series events.</div>
 
 <div class="table-container">
     <table id="schedule-table">
@@ -108,57 +124,95 @@
 <div class="menu" id="menu"></div>
 
 <script>
+    // Data variables
+    let euroData = [];
+    let pgaData = [];
+    let currentTour = 'euro';
+
+    // Tour select
+    const tourSelect = document.getElementById('tour-select');
+    tourSelect.addEventListener('change', () => {
+        currentTour = tourSelect.value;
+        renderTable();
+    });
+
     // Data load
     const tbody = document.querySelector('#schedule-table tbody');
     tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading schedule...</td></tr>';
 
-    fetch('pga/schedule.json')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load schedule data');
-            return response.json();
-        })
-        .then(data => {
-            tbody.innerHTML = '';
-            if (!data || !data.length) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No events found.</td></tr>';
-                return;
-            }
-            const signatureEvents = [
-                'AT&T Pebble Beach Pro-Am',
-                'The Genesis Invitational',
-                'Arnold Palmer Invitational presented by Mastercard',
-                'RBC Heritage',
-                'Miami Championship',
-                'Truist Championship',
-                'the Memorial Tournament presented by Workday',
-                'Travelers Championship'
-            ];
-            const majorEvents = [
-                'Masters Tournament',
-                'PGA Championship',
-                'U.S. Open',
-                'The Open Championship'
-            ];
-            const fedexEvents = [
-                'FedEx St. Jude Championship',
-                'BMW Championship',
-                'TOUR Championship'
-            ];
-            data.forEach(event => {
-                const row = document.createElement('tr');
-                const isSignature = signatureEvents.includes(event.event);
+    // Fetch both schedules
+    Promise.all([
+        fetch('euro/schedule.json').then(response => response.ok ? response.json() : []).catch(() => []),
+        fetch('pga/schedule.json').then(response => response.ok ? response.json() : []).catch(() => [])
+    ]).then(([euro, pga]) => {
+        euroData = euro;
+        pgaData = pga;
+        renderTable();
+    }).catch(() => {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: red;">Error loading schedule data. Please try again later.</td></tr>';
+    });
+
+    // Render table function
+    function renderTable() {
+        const data = currentTour === 'euro' ? euroData : pgaData;
+        const keyDiv = document.querySelector('.event-key');
+        if (currentTour === 'euro') {
+            keyDiv.textContent = 'Note: Rows highlighted in yellow are Rolex Series events.';
+        } else {
+            keyDiv.textContent = 'Note: Rows highlighted in green are Majors. Rows highlighted in blue are Signature events. Rows highlighted in purple are FedEx Playoff events.';
+        }
+
+        tbody.innerHTML = '';
+        if (!data || !data.length) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No events found.</td></tr>';
+            return;
+        }
+
+        const rolexEvents = [
+            'Hero Dubai Desert Classic',
+            'BMW PGA Championship',
+            'Abu Dhabi Championship',
+            'DP World Tour Championship'
+        ];
+        const majorEvents = [
+            'Masters Tournament',
+            'PGA Championship',
+            'U.S. Open',
+            'The Open Championship'
+        ];
+        const signatureEvents = [
+            'AT&T Pebble Beach Pro-Am',
+            'The Genesis Invitational',
+            'Arnold Palmer Invitational presented by Mastercard',
+            'RBC Heritage',
+            'Miami Championship',
+            'Truist Championship',
+            'the Memorial Tournament presented by Workday',
+            'Travelers Championship'
+        ];
+        const fedexEvents = [
+            'FedEx St. Jude Championship',
+            'BMW Championship',
+            'TOUR Championship'
+        ];
+
+        data.forEach(event => {
+            const row = document.createElement('tr');
+            if (currentTour === 'euro') {
+                const isRolex = rolexEvents.includes(event.event);
+                if (isRolex) row.classList.add('rolex-series');
+            } else {
                 const isMajor = majorEvents.includes(event.event);
+                const isSignature = signatureEvents.includes(event.event);
                 const isFedex = fedexEvents.includes(event.event);
-                if (isSignature) row.classList.add('signature-events');
                 if (isMajor) row.classList.add('majors');
+                if (isSignature) row.classList.add('signature-events');
                 if (isFedex) row.classList.add('fedex-playoffs');
-                row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td><td>${event.winner || 'N/A'}</td>`;
-                tbody.appendChild(row);
-            });
-        })
-        .catch(() => {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: red;">Error loading schedule. Please try again later.</td></tr>';
+            }
+            row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td><td>${event.winner || 'N/A'}</td>`;
+            tbody.appendChild(row);
         });
+    }
 
     // Load menu HTML
     fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);

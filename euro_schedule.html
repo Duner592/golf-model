@@ -33,6 +33,12 @@
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; white-space: nowrap; }
         th { background-color: #f2f2f2; }
 
+        /* Rolex Series highlight */
+        .rolex-series { background-color: yellow; }
+
+        /* Key for Rolex Series */
+        .rolex-key { margin: 1rem 0; font-size: 0.9rem; font-style: italic; color: #555; }
+
         /* Link button (same as index) */
         .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
         .link:hover { background: #0056b3; }
@@ -58,6 +64,7 @@
                 line-height: 1.3;
             }
             th:nth-child(4), td:nth-child(4) { min-width: 220px; }   /* Location */
+            th:nth-child(5), td:nth-child(5) { min-width: 150px; }   /* Winner */
         }
     </style>
 </head>
@@ -73,6 +80,10 @@
 </div>
 
 <h1>2026 DP World Tour Schedule</h1>
+
+<!-- Key for Rolex Series -->
+<div class="rolex-key">Note: Rows highlighted in yellow are Rolex Series events.</div>
+
 <div class="table-container">
     <table id="schedule-table">
         <thead>
@@ -81,6 +92,7 @@
             <th>Event</th>
             <th>Course</th>
             <th>Location</th>
+            <th>Winner</th>
         </tr>
         </thead>
         <tbody></tbody>
@@ -92,7 +104,7 @@
 <script>
     // Data load
     const tbody = document.querySelector('#schedule-table tbody');
-    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Loading schedule...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading schedule...</td></tr>';
 
     fetch('euro/schedule.json')
         .then(response => {
@@ -102,17 +114,25 @@
         .then(data => {
             tbody.innerHTML = '';
             if (!data || !data.length) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No events found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No events found.</td></tr>';
                 return;
             }
+            const rolexEvents = [
+                'Hero Dubai Desert Classic',
+                'BMW PGA Championship',
+                'Abu Dhabi Championship',
+                'DP World Tour Championship'
+            ];
             data.forEach(event => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td>`;
+                const isRolex = rolexEvents.includes(event.event);
+                if (isRolex) row.classList.add('rolex-series');
+                row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td><td>${event.winner || 'N/A'}</td>`;
                 tbody.appendChild(row);
             });
         })
         .catch(() => {
-            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: red;">Error loading schedule. Please try again later.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: red;">Error loading schedule. Please try again later.</td></tr>';
         });
 
     // Load menu HTML
