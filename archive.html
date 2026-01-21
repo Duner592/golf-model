@@ -181,97 +181,10 @@
         }
     }
 
-    // Load event leaderboard and open in new webpage
-    async function loadEvent(year, slug, eventName, tour) {
-        try {
-            let data = [];
-            if (year === "current") {
-                data = await loadJSON(`${tour}/leaderboard.json`);
-            } else {
-                try {
-                    data = await loadJSON(`archive/${year}/${slug}/leaderboard.json`);
-                } catch (e) {
-                    // Fallback to CSV
-                    const csvResponse = await fetch(`archive/${year}/${slug}/leaderboard.csv`);
-                    if (!csvResponse.ok) throw new Error("Data not found");
-                    const csvText = await csvResponse.text();
-                    const results = Papa.parse(csvText, { header: true, dynamicTyping: true });
-                    if (results.errors.length) throw new Error("CSV parse error");
-                    data = results.data;
-                }
-            }
-
-            // Process data
-            const processedData = data.map((r, idx) => ({
-                rank: r.rank ?? (idx + 1),
-                player_name: r.player_name ?? r["Player"] ?? "",
-                "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
-                "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
-                "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
-                course_fit_score: r.course_fit_score ?? "",
-            }));
-
-            // Generate HTML for new page
-            let tableRows = processedData.map(r => `
-                <tr>
-                    <td class="num">${r.rank}</td>
-                    <td>${r.player_name}</td>
-                    <td class="num">${fmtPct(r["p_win_%"])}</td>
-                    <td class="num">${fmtPct(r["p_top10_%"])}</td>
-                    <td class="num">${fmtPct(r["p_mc_%"])}</td>
-                    <td class="num">${fmtNum(r.course_fit_score)}</td>
-                </tr>
-            `).join('');
-
-            const html = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="utf-8" />
-                    <title>${eventName} Predictions</title>
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <style>
-                        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 20px; color: #111; }
-                        h1 { font-size: 1.5rem; margin: 0 0 1rem; }
-                        table { border-collapse: collapse; width: 100%; background: #fff; table-layout: fixed; }
-                        th, td { padding: 0.4rem 0.3rem; border-bottom: 1px solid #eee; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-                        th { background: #fafafa; }
-                        th:nth-child(1), td:nth-child(1) { width: 50px; }
-                        th:nth-child(2), td:nth-child(2) { width: 150px; }
-                        th:nth-child(3), td:nth-child(3) { width: 80px; }
-                        th:nth-child(4), td:nth-child(4) { width: 80px; }
-                        th:nth-child(5), td:nth-child(5) { width: 80px; }
-                        th:nth-child(6), td:nth-child(6) { width: 80px; }
-                        .num { font-variant-numeric: tabular-nums; }
-                        @media (max-width: 900px) { table { font-size: 0.9rem; } }
-                    </style>
-                </head>
-                <body>
-                    <h1>${eventName} Predictions</h1>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Player</th>
-                            <th>Win %</th>
-                            <th>Top-10 %</th>
-                            <th>Make Cut %</th>
-                            <th>Course Fit</th>
-                        </tr>
-                        </thead>
-                        <tbody>${tableRows}</tbody>
-                    </table>
-                </body>
-                </html>
-            `;
-
-            // Open new window and write HTML
-            const newWindow = window.open('', '_blank');
-            newWindow.document.write(html);
-            newWindow.document.close();
-        } catch (e) {
-            alert(`Failed to load event: ${e.message}`);
-        }
+    // Load event leaderboard and navigate to event_archive.html
+    function loadEvent(year, slug, eventName, tour) {
+        const params = new URLSearchParams({ year, slug, event: eventName, tour });
+        window.location.href = `event_archive.html?${params}`;
     }
 
     // Load menu HTML

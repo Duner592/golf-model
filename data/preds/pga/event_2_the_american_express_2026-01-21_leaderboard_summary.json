@@ -1,11 +1,11 @@
 {
   "event_id": "2",
   "event_name": "The American Express",
-  "generated_utc": "2026-01-19T190232Z",
+  "generated_utc": "2026-01-21T103426Z",
   "summary": {
     "field_size": 156,
-    "p_win_max": 0.265,
+    "p_win_max": 0.2596,
     "p_win_median": 0.0002,
-    "p_win_sum": 1.0
+    "p_win_sum": 0.9999999999999999
   }
 }
