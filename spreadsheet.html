@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
     <script src="menu.js"></script>
+    <!-- Added theme.css for shared styles -->
+    <link rel="stylesheet" href="theme.css">
     <style>
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; }
-        h1 { text-align: center; color: #333; }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
+        h1 { text-align: center; color: #2e8b57; }
 
         .charts-grid {
             display: grid;
@@ -138,6 +140,7 @@
         #filter-input { padding: 0.4rem 0.6rem; width: 260px; border: 1px solid #ddd; border-radius: 6px; }
         .column-filter { padding: 0.25rem; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 0.8rem; }
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -149,7 +152,7 @@
 </div>
 <div class="menu" id="menu"></div>
 
-<h1>Overall Betting Data 💸</h1>
+<h1>Eds Golf Model - Overall Betting Data 💸</h1>
 
 <div class="content">
     <div id="spreadsheet-content" class="loading">Loading...</div>
@@ -305,15 +308,15 @@
             if (filterYear) {
                 document.title = `Historical Betting Data - ${filterYear}`;
                 const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Historical Betting Data - ${filterYear}`;
+                if (h1) h1.textContent = `Eds Golf Model - Historical Betting Data - ${filterYear}`;
             } else if (player) {
                 document.title = `Bets for Player: ${player}`;
                 const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Bets for Player: ${player}`;
+                if (h1) h1.textContent = `Eds Golf Model - Bets for Player: ${player}`;
             } else if (tournament) {
                 document.title = `Bets for Tournament: ${tournament}`;
                 const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Bets for Tournament: ${tournament}`;
+                if (h1) h1.textContent = `Eds Golf Model - Bets for Tournament: ${tournament}`;
             }
 
             return roiHtml + overallRoiHtml + highlightsHtml + '<div style="text-align: left;"><input type="text" id="filter-input" placeholder="Global search (all columns)..."></div>' + buildTable(data);
