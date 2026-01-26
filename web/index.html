@@ -6,98 +6,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
     <script src="menu.js"></script>
+    <!-- Added Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Added theme.css for shared styles -->
+    <link rel="stylesheet" href="theme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
-        .main-content { display: flex; width: 100%; }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
+        h1 { text-align: center; color: #2e8b57; }
+
+        .main-content { display: flex; width: 100%; gap: 1rem; }
         .tour-container { flex: 1; }
-        .sidebar { width: 250px; margin-left: 1rem; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
-        h1 { text-align: center; color: #333; width: 100%; }
-        .tour-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
-        .tour-section h2 { margin-top: 0; color: #007bff; }
-        .summary { margin: 0.5rem 0; line-height: 1.5; }
-        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
-        .link:hover { background: #0056b3; }
+        .sidebar {
+            width: 280px;
+            margin-left: 1rem;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .intro-text {
+            text-align: center;
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .tour-section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .tour-section:hover { transform: translateY(-2px); }
+        .tour-section h2 {
+            margin-top: 0;
+            color: #007bff;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        .summary {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        .link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .link:hover {
+            background: linear-gradient(45deg, #0056b3, #003d82);
+            transform: translateY(-1px);
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         .loading { color: #666; font-style: italic; }
 
         .logo {
             position: absolute;
-            top: 8px;
-            right: 16px;
+            top: 10px;
+            right: 20px;
             height: 80px;
             width: auto;
             z-index: 1002;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .sidebar h3 {
+            color: #2e8b57;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            background: #f9f9f9;
+            border-radius: 8px;
         }
 
         @media (max-width: 768px) {
-            body { padding-top: 70px; }
-            .logo { height: 60px; top: 5px; right: 5px; }
-            .main-content {
-                flex-direction: column;
-            }
-            .tour-container {
-                flex: none;
-                width: 100%;
-            }
-            .sidebar {
-                width: 100%;
-                margin: 1rem 0;
-                padding: 1rem;
-            }
-            .tour-section {
-                padding: 1.5rem;
-                margin: 1rem 0;
-            }
-        }
-
-        /* Added styling for the footer */
-        .footer {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #666;
+            body { padding: 1rem; }
+            .logo { height: 60px; top: 5px; right: 10px; }
+            .main-content { flex-direction: column; gap: 1rem; }
+            .tour-container { flex: none; width: 100%; }
+            .sidebar { width: 100%; margin: 0; }
+            .tour-section { padding: 1rem; margin: 1rem 0; }
+            h1 { font-size: 2rem; }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 <div class="logo-wrapper">
     <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<h1>Eds Golf Model Predictions Hub </h1>
-<div>Weekly prediction and betting summaries for Majors, PGA Tour and DP World Tour.</div>
-
 <div class="menu-container">
     <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
 </div>
+<div class="menu" id="menu"></div>
+
+<h1>Eds Golf Model Predictions Hub </h1>
+<div class="intro-text">Weekly prediction and betting summaries for Majors, PGA Tour and DP World Tour.</div>
 
 <div class="main-content">
     <div class="tour-container">
         <div class="tour-section" id="pga-section">
             <h2>PGA Tour</h2>
-            <div id="pga-summary" class="summary loading">Loading...</div>
+            <div id="pga-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <a href="pga.html" class="link">View PGA Predictions</a>
         </div>
 
         <div class="tour-section" id="euro-section">
             <h2>DP World Tour</h2>
-            <div id="euro-summary" class="summary loading">Loading...</div>
+            <div id="euro-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <a href="euro.html" class="link">View DP World Predictions</a>
         </div>
     </div>
 
     <div class="sidebar">
-        <h3>Upcoming Events 📅</h3>
-        <div id="upcoming-events" class="loading">Loading...</div>
+        <h3><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
+        <div id="upcoming-events"><div class="spinner"></div>Loading...</div>
     </div>
 
     <div class="sidebar">
-        <h3>Pending Bets 💰</h3>
-        <div id="pending-bets" class="loading">Loading...</div>
+        <h3><i class="fas fa-coins"></i> Pending Bets</h3>
+        <div id="pending-bets"><div class="spinner"></div>Loading...</div>
     </div>
 </div>
-
-<div class="menu" id="menu"></div>
 
 <!-- Added footer for last updated timestamp -->
 <div class="footer" id="last-updated">Last updated: Loading...</div>
@@ -123,11 +189,13 @@
             const previousWinner = winners.length ? `${winnerName} (${winners[0].score})` : 'N/A';
 
             return `
-                <strong>Event:</strong> ${eventName}<br/>
-                <strong>Start Date:</strong> ${startDate}<br/>
-                <strong>Course:</strong> ${course}<br/>
-                <strong>Field Size:</strong> ${fieldSize}<br/>
-                <strong>Previous Winner:</strong> ${previousWinner}
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div><strong>🏌️ Event:</strong> ${eventName}</div>
+                    <div><strong>📅 Start Date:</strong> ${startDate}</div>
+                    <div><strong>🏞️ Course:</strong> ${course}</div>
+                    <div><strong>👥 Field Size:</strong> ${fieldSize}</div>
+                    <div><strong>🏆 Previous Winner:</strong> ${previousWinner}</div>
+                </div>
             `;
         } catch (e) {
             return 'Summary unavailable. Please build assets first.';
@@ -148,7 +216,7 @@
                 return eventDate >= now && eventDate <= fourWeeksLater;
             }).sort((a, b) => new Date(a.date.split('-').reverse().join('-')) - new Date(b.date.split('-').reverse().join('-')));
 
-            let html = '';
+            let html = '<ul style="padding-left: 1rem; margin: 0;">';
             let currentWeek = null;
             upcoming.forEach(e => {
                 const eventDate = new Date(e.date.split('-').reverse().join('-'));
@@ -156,10 +224,11 @@
                 if (currentWeek !== null && week !== currentWeek) {
                     html += '<br>';
                 }
-                html += `<strong>${e.tour}:</strong> ${e.date} | ${e.event}<br>`;
+                html += `<li><strong>${e.tour}:</strong> ${e.date} | ${e.event}</li>`;
                 currentWeek = week;
             });
-            if (!html) html = 'No upcoming events in the next 4 weeks.';
+            html += '</ul>';
+            if (!upcoming.length) html = 'No upcoming events in the next 4 weeks.';
             return html;
         } catch (e) {
             return 'Upcoming events unavailable.';
@@ -180,17 +249,14 @@
                 newline: '\n',
                 transformHeader: header => header.trim()
             });
-            console.log('Parsed data sample:', parsed.data.slice(0, 2));  // Temporary: Check column names
-            console.log('Headers:', Object.keys(parsed.data[0] || {}));    // Temporary: List headers
             const pendingBets = parsed.data.filter(row => {
                 const outcome = (row['Outcome'] || '').toLowerCase().trim();
-                return outcome === '' || outcome === 'pending' || outcome === 'Pending';  // Added 'Pending'
+                return outcome === '' || outcome === 'pending';
             });
-            console.log('Filtered pending bets:', pendingBets);  // Temporary: See filtered results
             if (pendingBets.length === 0) {
                 return 'No pending bets.';
             }
-            let html = '';
+            let html = '<div style="display: flex; flex-direction: column; gap: 1rem;">';
             pendingBets.forEach(bet => {
                 const tournament = bet['Tournament'] || 'N/A';
                 const player = bet['Player'] || 'N/A';
@@ -205,41 +271,33 @@
                     return;  // Skip this row
                 }
 
-                html += `<strong>${tournament}</strong> - ${player} (${type})<br>Price: ${price}<br>Stake: ${stake}<br>Date: ${date}<br>Place terms: ${placeTerms}<br>Bookmaker: ${bookmaker}<br><br>`;
+                html += `
+                    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 0.75rem; background: #fafafa; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                        <div><strong>${tournament}</strong> - ${player} (${type})</div>
+                        <div>💰 Price: ${price} | Stake: ${stake}</div>
+                        <div>📅 Date: ${date} | Bookmaker: ${bookmaker}</div>
+                        <div>🏅 Place terms: ${placeTerms}</div>
+                    </div>
+                `;
             });
+            html += '</div>';
             return html;
         } catch (e) {
-            console.error('Error in loadPendingBets:', e);
             return 'Pending bets unavailable.';
         }
     }
 
-    async function loadOverallROI() {
+    async function getLastModifiedTimestamp() {
         try {
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                delimiter: ',',
-                quoteChar: '"',
-                escapeChar: '"',
-                newline: '\n',
-                transformHeader: header => header.trim()
-            });
-            let totalReturn = 0;
-            let totalStake = 0;
-            parsed.data.forEach(row => {
-                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
-                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
-                if (!isNaN(returnVal)) totalReturn += returnVal;
-                if (!isNaN(stakeVal)) totalStake += stakeVal;
-            });
-            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
-            return `<strong>Overall ROI: ${roi}%</strong>`;
+            const response = await fetch('spreadsheet_data.csv', { method: 'HEAD' });
+            const lastModified = response.headers.get('Last-Modified');
+            if (lastModified) {
+                const date = new Date(lastModified);
+                return date.toLocaleString();
+            }
+            return 'Unavailable';
         } catch (e) {
-            return 'ROI unavailable.';
+            return 'Unavailable';
         }
     }
 
@@ -249,9 +307,9 @@
         document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
         document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
 
-        // Added: Set the last updated timestamp
-        const now = new Date();
-        document.getElementById('last-updated').innerHTML = `Last updated: ${now.toLocaleString()}`;
+        // Set the last updated timestamp to the last modified time of spreadsheet_data.csv
+        const lastModified = await getLastModifiedTimestamp();
+        document.getElementById('last-updated').innerHTML = `Last updated: ${lastModified}`;
     }
 
     init();

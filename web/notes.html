@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Pre/Event Notes - Golf Model Hub</title>
+    <title>Eds Golf Model - Pre/Event Notes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
     <script src="menu.js"></script>
+    <!-- Added theme.css for shared styles -->
+    <link rel="stylesheet" href="theme.css">
     <style>
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
         .main-content { max-width: 900px; margin: auto; }
-        .event-select { margin: 2rem 0 1.5rem 0; }
+        .event-select { margin: 2rem 0 1.5rem 0; text-align: center; }
         .notes-block { border: 1px solid #bbb; border-radius: 8px; background: #fafbfc; padding: 1.2rem; margin-bottom: 2rem; }
-        h1, h2 { text-align: center; color: #222; }
+        h1, h2 { text-align: center; color: #2e8b57; }
         .notes-label { font-weight: 600; color: #007bff; margin-top: 1rem; }
         .event-title { font-size: 1.2rem; margin-bottom: 0.4rem;}
         .event-info { font-size: 1rem; color: #444; margin-bottom: 0.5rem; }
@@ -41,21 +43,24 @@
     <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<h1>Pre-Tournament & Post-Tournament Notes</h1>
 <div class="menu-container">
     <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
 </div>
+
+<h1>Eds Golf Model - Pre-Tournament & Post-Tournament Notes</h1>
+
+<div class="event-select">
+    <label for="year-select">
+        <strong>Select Year:</strong>
+        <select id="year-select"><option disabled selected>Select Year</option></select>
+    </label>
+    <label for="tournament-select" style="margin-left: 2rem;">
+        <strong>Select Tournament:</strong>
+        <select id="tournament-select" disabled><option disabled selected>Select Tournament</option></select>
+    </label>
+</div>
+
 <div class="main-content">
-    <div class="event-select">
-        <label for="year-select">
-            <strong>Select Year:</strong>
-            <select id="year-select"><option disabled selected>Select Year</option></select>
-        </label>
-        <label for="tournament-select" style="margin-left: 2rem;">
-            <strong>Select Tournament:</strong>
-            <select id="tournament-select" disabled><option disabled selected>Select Tournament</option></select>
-        </label>
-    </div>
     <div id="event-notes"></div>
 </div>
 
