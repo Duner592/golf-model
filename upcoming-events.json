@@ -117,28 +117,28 @@
       "course": "The Abaco Club on Winding Bay",
       "course_key": "800",
       "event_id": "125",
-      "event_name": "The Bahamas Great Abaco Classic at The Abaco Club",
+      "event_name": "The Bahamas Great Abaco Classic",
       "latitude": 26.3,
       "location": "Cherokee, Great Abaco, Bahamas",
       "longitude": -77.021,
       "start_date": "2026-01-18",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "kft",
-      "winner": "TBD"
+      "winner": "Holt, Ian (25036)"
     },
     {
       "country": "USA",
-      "course": "Pete Dye Stadium Course;La Quinta Country Club;Nicklaus Tournament Course",
-      "course_key": "704;202;233",
+      "course": "Pete Dye Stadium Course;Nicklaus Tournament Course;La Quinta Country Club",
+      "course_key": "704;233;202",
       "event_id": "2",
       "event_name": "The American Express",
       "latitude": 33.643,
       "location": "La Quinta, CA",
       "longitude": -116.267,
       "start_date": "2026-01-22",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Scheffler, Scottie (18417)"
     },
     {
       "country": "UAE",
@@ -150,9 +150,9 @@
       "location": "Dubai, UAE",
       "longitude": 55.297,
       "start_date": "2026-01-22",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Reed, Patrick (14838)"
     },
     {
       "country": "USA",
@@ -222,6 +222,20 @@
       "start_date": "2026-02-05",
       "status": "upcoming",
       "tour": "pga",
+      "winner": "TBD"
+    },
+    {
+      "country": "QAT",
+      "course": "Doha GC",
+      "course_key": "doha gc",
+      "event_id": "2026145",
+      "event_name": "Qatar Masters",
+      "latitude": 25.384,
+      "location": "Doha, Qatar",
+      "longitude": 51.507,
+      "start_date": "2026-02-05",
+      "status": "upcoming",
+      "tour": "euro",
       "winner": "TBD"
     },
     {
@@ -688,7 +702,7 @@
     },
     {
       "country": "USA",
-      "course": "Trump National Golf Club Washington",
+      "course": "Trump National Washington",
       "course_key": "15",
       "event_id": "715",
       "event_name": "Virginia",
@@ -1160,6 +1174,20 @@
       "start_date": "2026-08-06",
       "status": "upcoming",
       "tour": "pga",
+      "winner": "TBD"
+    },
+    {
+      "country": "USA",
+      "course": "Trump National Bedminster",
+      "course_key": "3",
+      "event_id": "703",
+      "event_name": "New York",
+      "latitude": 40.654,
+      "location": "Bedminster, NJ",
+      "longitude": -74.697,
+      "start_date": "2026-08-06",
+      "status": "upcoming",
+      "tour": "liv",
       "winner": "TBD"
     },
     {
