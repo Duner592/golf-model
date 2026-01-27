@@ -1,12 +1,12 @@
 {
   "event_id": "2026107",
   "event_name": "Bapco Energies Bahrain Championship",
-  "source_csv": "data/preds/euro/event_2026107_bapco_energies_bahrain_championship_2026-01-26_leaderboard.csv",
-  "generated_utc": "26-Jan-2026 08:26:33",
+  "source_csv": "data/preds/euro/event_2026107_bapco_energies_bahrain_championship_2026-01-27_leaderboard.csv",
+  "generated_utc": "27-Jan-2026 11:03:44",
   "metrics": {
     "field_size": 138,
-    "p_win_max": 0.2319,
-    "p_win_median": 0.0008500000000000001,
-    "p_win_sum": 1.0
+    "p_win_max": 0.21356666666666665,
+    "p_win_median": 0.0007333333333333333,
+    "p_win_sum": 1.0000000000000002
   }
 }
