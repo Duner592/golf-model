@@ -1,12 +1,12 @@
 {
   "event_id": "4",
   "event_name": "Farmers Insurance Open",
-  "source_csv": "data/preds/pga/event_4_farmers_insurance_open_2026-01-26_leaderboard.csv",
-  "generated_utc": "26-Jan-2026 08:26:25",
+  "source_csv": "data/preds/pga/event_4_farmers_insurance_open_2026-01-27_leaderboard.csv",
+  "generated_utc": "27-Jan-2026 11:03:38",
   "metrics": {
-    "field_size": 141,
-    "p_win_max": 0.21753333333333333,
-    "p_win_median": 0.00023333333333333333,
-    "p_win_sum": 0.9999999999999998
+    "field_size": 147,
+    "p_win_max": 0.20456666666666667,
+    "p_win_median": 0.0002,
+    "p_win_sum": 1.0
   }
 }
