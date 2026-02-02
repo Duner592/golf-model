@@ -1,10 +1,22 @@
 {
-  "weights": {},
-  "cats_used": [],
+  "weights": {
+    "sg_ott": 0.068973,
+    "sg_app": 0.10121,
+    "sg_arg": 0.203738,
+    "sg_putt": 0.022814,
+    "da_z": 0.406204,
+    "dd_z": 0.19706
+  },
+  "cats_used": [
+    "sg_ott",
+    "sg_app",
+    "sg_arg",
+    "sg_putt"
+  ],
   "driving_norm": {
-    "da_field_mean": null,
-    "da_field_std": null,
-    "dd_field_mean": null,
-    "dd_field_std": null
+    "da_field_mean": 0.5577288051561725,
+    "da_field_std": 0.14633071076471596,
+    "dd_field_mean": 304.3481903817551,
+    "dd_field_std": 11.041512485331744
   }
 }
