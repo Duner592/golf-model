@@ -157,20 +157,20 @@
     {
       "country": "USA",
       "course": "Torrey Pines Golf Course (South Course);Torrey Pines Golf Course (North Course)",
-      "course_key": "004;104",
+      "course_key": "4;104",
       "event_id": "4",
       "event_name": "Farmers Insurance Open",
       "latitude": 32.905,
       "location": "San Diego, CA",
       "longitude": -117.245,
       "start_date": "2026-01-29",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Rose, Justin (6093)"
     },
     {
       "country": "BRN",
-      "course": "Royal GC",
+      "course": "Royal Golf Club",
       "course_key": "royal golf club",
       "event_id": "2026107",
       "event_name": "Bapco Energies Bahrain Championship",
@@ -178,9 +178,9 @@
       "location": "Al Mazrowiah, Bahrain",
       "longitude": 50.566,
       "start_date": "2026-01-29",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Schott, Freddy (27588)"
     },
     {
       "country": "PAN",
@@ -192,9 +192,9 @@
       "location": "Corredor Norte, Panama",
       "longitude": -79.474,
       "start_date": "2026-01-29",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "kft",
-      "winner": "TBD"
+      "winner": "Holt, Ian (25036)"
     },
     {
       "country": "KSA",
@@ -296,10 +296,10 @@
     },
     {
       "country": "KEN",
-      "course": "TBC",
-      "course_key": "tbc",
-      "event_id": "TBD",
-      "event_name": "Magical Kenya Open",
+      "course": "Karen Country Club",
+      "course_key": "karen cc",
+      "event_id": "2026109",
+      "event_name": "Magical Kenya Open presented by absa",
       "latitude": 0.0,
       "location": "TBD",
       "longitude": 0.0,
