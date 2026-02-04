@@ -1,5 +1,14 @@
 [
   {
+    "event_id": "2026145",
+    "event_name": "Qatar Masters",
+    "tour": "euro",
+    "slug": "qatar_masters",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-02-04 20:41:59 UTC"
+  },
+  {
     "event_id": "3",
     "event_name": "WM Phoenix Open",
     "tour": "pga",
@@ -7,15 +16,6 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-04 15:50:17 UTC"
-  },
-  {
-    "event_id": "2026145",
-    "event_name": "Qatar Masters",
-    "tour": "euro",
-    "slug": "qatar_masters",
-    "year": "2026",
-    "csv_available": true,
-    "archived_at": "2026-02-04 15:50:11 UTC"
   },
   {
     "event_id": "2026107",
