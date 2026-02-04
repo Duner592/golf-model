@@ -154,9 +154,18 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                     # Filter events by tour, year, and name
                     matching_event = None
                     for event in event_list_data:
-                        if event.get("tour") == tour and event.get("calendar_year") == year and event.get("event_name", "").lower() == event_name.lower():
-                            matching_event = event
-                            break
+                        if event.get("tour") == tour and event.get("calendar_year") == year:
+                            hist_name = event.get("event_name", "").lower()
+                            if event_name.lower() == "qatar masters":
+                                # Special case: Substring match for "Qatar Masters" or "Commercial Bank Qatar Masters"
+                                if "qatar masters" in hist_name or "commercial bank qatar masters" in hist_name:
+                                    matching_event = event
+                                    break
+                            else:
+                                # Default: Exact match for other events
+                                if hist_name == event_name.lower():
+                                    matching_event = event
+                                    break
                     if not matching_event:
                         print(f"No matching event found for year {year} by name.")
                         continue

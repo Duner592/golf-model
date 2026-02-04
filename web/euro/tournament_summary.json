@@ -8,5 +8,31 @@
   "field_size": 144,
   "status": "upcoming",
   "winner": null,
-  "previous_winners": []
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Li, Haotong",
+      "score": -12
+    },
+    {
+      "year": 2024,
+      "winner": "Hoshino, Rikuya",
+      "score": -10
+    },
+    {
+      "year": 2023,
+      "winner": "Valimaki, Sami",
+      "score": -14
+    },
+    {
+      "year": 2022,
+      "winner": "Ferguson, Ewen",
+      "score": -3
+    },
+    {
+      "year": 2021,
+      "winner": "Rozner, Antoine",
+      "score": -8
+    }
+  ]
 }
