@@ -1,38 +1,38 @@
 [
   {
-    "wind_mph": 7.57,
-    "gust_mph": 13.9,
-    "temp_c": 17.9,
+    "wind_mph": 7.52,
+    "gust_mph": 13.86,
+    "temp_c": 17.5,
     "precip_pct": 0.0,
     "delta_strokes": 0.0,
     "weathercode": 0,
     "round": 1
   },
   {
-    "wind_mph": 4.01,
-    "gust_mph": 8.1,
-    "temp_c": 17.2,
-    "precip_pct": 1.0,
+    "wind_mph": 3.76,
+    "gust_mph": 7.39,
+    "temp_c": 16.9,
+    "precip_pct": 0.0,
     "delta_strokes": 0.0,
-    "weathercode": 0,
+    "weathercode": 3,
     "round": 2
   },
   {
-    "wind_mph": 4.4,
-    "gust_mph": 10.72,
-    "temp_c": 19.1,
-    "precip_pct": 0.0,
+    "wind_mph": 3.11,
+    "gust_mph": 8.31,
+    "temp_c": 18.5,
+    "precip_pct": 3.0,
     "delta_strokes": 0.0,
     "weathercode": 3,
     "round": 3
   },
   {
-    "wind_mph": 4.78,
-    "gust_mph": 9.5,
-    "temp_c": 21.3,
-    "precip_pct": 1.0,
+    "wind_mph": 4.0,
+    "gust_mph": 8.03,
+    "temp_c": 20.4,
+    "precip_pct": 4.0,
     "delta_strokes": 0.0,
-    "weathercode": 2,
+    "weathercode": 1,
     "round": 4
   }
 ]

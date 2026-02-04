@@ -1,9 +1,8 @@
 {
   "event_id": "3",
   "event_name": "WM Phoenix Open",
-  "source_csv": "data/preds/pga/event_3_wm_phoenix_open_2026-02-04_leaderboard.csv",
-  "generated_utc": "04-Feb-2026 15:50:17",
-  "metrics": {
+  "generated_utc": "2026-02-04T154924Z",
+  "summary": {
     "field_size": 123,
     "p_win_max": 0.6915,
     "p_win_median": 3.3333333333333335e-05,
