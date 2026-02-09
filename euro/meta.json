@@ -1,20 +1,21 @@
 {
   "tour": "euro",
-  "event_id": "2026145",
-  "event_name": "Qatar Masters",
+  "event_id": "0",
+  "event_name": "No Event",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-02-05",
-  "generated_utc": "04-Feb-2026 20:41:59",
+  "r1_date": null,
+  "generated_utc": "09-Feb-2026 16:50:50",
   "resources": {
-    "downloads_csv": "euro/downloads/event_2026145_qatar_masters_2026-02-04_leaderboard.csv",
-    "downloads_html": "euro/downloads/event_2026145_qatar_masters_2026-02-04_leaderboard.html",
-    "weather_meta": "euro/weather_meta.json",
-    "weather_round_neutral": "euro/weather_round_neutral.json",
-    "weather_round_wave": "euro/weather_round_wave.json",
-    "course_fit_weights": "euro/course_fit_weights.json",
-    "course_history_summary": "euro/course_history_summary.json",
-    "tournament_summary": "euro/tournament_summary.json",
+    "downloads_csv": null,
+    "downloads_html": null,
+    "weather_meta": null,
+    "weather_round_neutral": null,
+    "weather_round_wave": null,
+    "course_fit_weights": null,
+    "course_history_summary": null,
+    "tournament_summary": null,
     "schedule": "euro/schedule.json"
-  }
+  },
+  "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!"
 }
