@@ -2,11 +2,11 @@
   "event_id": "5",
   "event_name": "AT&T Pebble Beach Pro-Am",
   "source_csv": "data/preds/pga/event_5_at_t_pebble_beach_pro_am_2026-02-09_leaderboard.csv",
-  "generated_utc": "09-Feb-2026 16:50:43",
+  "generated_utc": "09-Feb-2026 20:10:02",
   "metrics": {
     "field_size": 80,
-    "p_win_max": 0.2133,
-    "p_win_median": 0.007333333333333333,
-    "p_win_sum": 0.9999999999999999
+    "p_win_max": 0.20366666666666666,
+    "p_win_median": 0.007966666666666667,
+    "p_win_sum": 1.0
   }
 }
