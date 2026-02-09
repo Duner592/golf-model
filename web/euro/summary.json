@@ -1,12 +1,7 @@
 {
-  "event_id": "2026145",
-  "event_name": "Qatar Masters",
-  "source_csv": "data/preds/euro/event_2026145_qatar_masters_2026-02-04_leaderboard.csv",
-  "generated_utc": "04-Feb-2026 20:41:59",
-  "metrics": {
-    "field_size": 144,
-    "p_win_max": 0.15003333333333332,
-    "p_win_median": 0.0009666666666666667,
-    "p_win_sum": 1.0
-  }
+  "event_id": "0",
+  "event_name": "No Event",
+  "source_csv": null,
+  "generated_utc": "09-Feb-2026 16:50:50",
+  "metrics": null
 }
