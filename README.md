@@ -20,8 +20,16 @@ Data layout
 - data/features/ – features tables (weather/full/course)
 - data/preds/ – predictions + leaderboard + summary
 
+
+Actual results
+- scripts/fetch_actual_results.py – pulls final finishes via DataGolf's `historical-raw-data/rounds` endpoint and populates `web/archive/<year>/<slug>/results.json`.
+  - Usage: `python scripts/fetch_actual_results.py [--year 2026]` (requires `DATAGOLF_API_KEY` in .env).
 Archiving
 - web/archive - Generated predictions archive
+
+Actual results
+- scripts/fetch_actual_results.py – pulls final finishes via DataGolf's `historical-raw-data/rounds` endpoint and populates `web/archive/<year>/<slug>/results.json`.
+  - Usage: `python scripts/fetch_actual_results.py [--year 2026]` (requires `DATAGOLF_API_KEY` in .env).
 
 Config
 - configs/datagolf.yaml (redacted) – endpoints and defaults

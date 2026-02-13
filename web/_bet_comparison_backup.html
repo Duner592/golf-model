@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bet Comparison Graph</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; }
+        h1 { text-align: center; color: #2e8b57; }
+        .loading { color: #666; font-style: italic; text-align: center; }
+        canvas { display: block; width: 100%; margin: 0 auto; }
+        .chart-wrapper { position: relative; width: min(95vw, 1300px); min-height: 480px; height: clamp(480px, 70vh, 720px); padding: 1.5rem 2rem; margin: 1.5rem auto 2rem; background: #f0f0f0; border: 1px solid #ccc; border-radius: 12px; }
+        .chart-wrapper.scatter { background: #f7f9fb; }
+        .summary { text-align: center; margin: 1rem 0; }
+        .controls { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin: 0.75rem 0; flex-wrap: wrap; }
+        .controls label { font-weight: 600; color: #333; }
+        .controls select { padding: 0.4rem 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; background: #fff; }
+        .chart-wrapper.scatter { background: #f7f9fb; }
+        .prediction-section { margin: 2.5rem auto; width: min(95vw, 1300px); }
+        .prediction-header { text-align: center; color: #2e8b57; margin-bottom: 0.5rem; }
+        .prediction-description { text-align: center; color: #555; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .chart-grid { display: grid; gap: 1.5rem; justify-content: center; }
+        .chart-wrapper.metric-chart { width: min(100%, 620px); min-height: 360px; height: clamp(360px, 58vh, 520px); padding: 1.25rem; }
+        @media (min-width: 1080px) {
+            .chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
+        .link:hover { background: #0056b3; }
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+        @media (max-width: 768px) {
+            .logo { height: 60px; top: 5px; right: 5px; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+</div>
+<div class="menu" id="menu"></div>
+
+<h1>Bet Comparison to Actual Tournament Results</h1>
+<div id="content" class="loading">Loading...</div>
+<a href="spreadsheet.html" class="link">Back to Spreadsheet</a>
+
+<script>
+    function parseDateString(dateStr) {
+        if (!dateStr) return null;
+        const parts = dateStr.split('/').map(part => parseInt(part, 10));
+        if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+        const [day, month, year] = parts;
+        const date = new Date(Date.UTC(year, month - 1, day));
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function getISOWeekInfo(date) {
+        const temp = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+        const dayNumber = temp.getUTCDay() || 7;
+        temp.setUTCDate(temp.getUTCDate() + 4 - dayNumber);
+        const yearStart = new Date(Date.UTC(temp.getUTCFullYear(), 0, 1));
+        const weekNo = Math.ceil((((temp - yearStart) / 86400000) + 1) / 7);
+        return { isoYear: temp.getUTCFullYear(), isoWeek: weekNo };
+    }
+
+    function parseProfitLoss(value) {
+        if (value == null) return 0;
+        const cleaned = String(value)
+            .replace(/[£,]/g, '')
+            .replace(/^\((.*)\)$/g, '-$1')
+            .trim();
+        const num = parseFloat(cleaned);
+        return Number.isFinite(num) ? num : 0;
+    }
+
+    function aggregateWeeklyPnl(rows) {
+        const weeklyMap = new Map();
+        rows.forEach(row => {
+            const date = parseDateString(row['Date']);
+            if (!date) return;
+            const pnl = parseProfitLoss(row['Profit/Loss']);
+            const { isoYear, isoWeek } = getISOWeekInfo(date);
+            const key = `${isoYear}-W${isoWeek}`;
+            if (!weeklyMap.has(key)) {
+                weeklyMap.set(key, { isoYear, isoWeek, total: 0 });
+            }
+            weeklyMap.get(key).total += pnl;
+        });
+
+        const sortedEntries = Array.from(weeklyMap.values()).sort((a, b) => {
+            if (a.isoYear !== b.isoYear) return a.isoYear - b.isoYear;
+            return a.isoWeek - b.isoWeek;
+        });
+
+        const years = [...new Set(sortedEntries.map(entry => entry.isoYear))].sort((a, b) => a - b);
+        const pointsByYear = {};
+        years.forEach(year => {
+            pointsByYear[year] = sortedEntries
+                .filter(entry => entry.isoYear === year)
+                .map(entry => ({ week: entry.isoWeek, total: Number(entry.total.toFixed(2)) }));
+        });
+
+        const defaultYear = years[years.length - 1] || null;
+        return { years, pointsByYear, defaultYear };
+    }
+
+    function normalizeName(name) {
+        if (!name) return null;
+        const cleaned = name.replace(/\s+/g, ' ').trim();
+        if (!cleaned) return null;
+        if (cleaned.includes(',')) {
+            const [last, first] = cleaned.split(',', 2).map(part => part.trim());
+            return (first ? `${first} ${last}` : last).toLowerCase();
+        }
+        return cleaned.toLowerCase();
+    }
+
+    async function fetchJson(path) {
+        const response = await fetch(path, { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`Failed to load ${path}: ${response.status}`);
+        }
+        return response.json();
+    }
+
+    async function fetchLeaderboard(basePath) {
+        try {
+                const jsonData = await fetchJson(`${basePath}/leaderboard.json`);
+                return jsonData.map(entry => ({
+                    player_name: entry.player_name,
+                    p_win: Number(entry['p_win_%'] ?? entry['p_win'] ?? entry['pWin'] ?? 0),
+                    p_top10: Number(entry['p_top10_%'] ?? entry['p_top10'] ?? entry['pTop10'] ?? 0)
+                }));
+        } catch (err) {
+            try {
+                const csvText = await fetch(`${basePath}/leaderboard.csv`, { cache: 'no-store' }).then(r => {
+                    if (!r.ok) throw new Error(`Failed to load leaderboard CSV: ${r.status}`);
+                    return r.text();
+                });
+                const parsed = Papa.parse(csvText, {
+                    header: true,
+                    skipEmptyLines: 'greedy'
+                });
+                return (parsed.data || []).map(row => ({
+                    player_name: row['player_name'] || row['Player'] || row['Name'],
+                    p_win: Number(row['p_win_%'] || row['P_WIN_%'] || row['p_win'] || row['P_WIN'] || 0),
+                    p_top10: Number(row['p_top10_%'] || row['P_TOP10_%'] || row['p_top10'] || row['P_TOP10'] || 0)
+                }));
+            } catch (csvErr) {
+                console.warn(err.message || err, csvErr);
+                return [];
+            }
+        }
+    }
+
+    async function loadPredictionAccuracyData() {
+        try {
+            const index = await fetchJson('archive/index.json');
+            const events = Array.isArray(index) ? index : [];
+            const results = [];
+
+            for (const event of events) {
+                const { year, slug, event_name: eventName, tour } = event;
+                const basePath = `archive/${year}/${slug}`;
+                try {
+                    const summary = await fetchJson(`${basePath}/tournament_summary.json`);
+                    if ((summary.status || '').toLowerCase() !== 'completed') {
+                        continue;
+                    }
+                } catch (summaryErr) {
+                    console.warn(`Skipping ${eventName}: ${summaryErr.message}`);
+                    continue;
+                }
+
+                let resultsData;
+                try {
+                    resultsData = await fetchJson(`${basePath}/results.json`);
+                } catch (resultsErr) {
+                    console.warn(`Missing results for ${eventName}: ${resultsErr.message}`);
+                    continue;
+                }
+
+                const players = Array.isArray(resultsData.players) ? resultsData.players : [];
+                const winner = players.find(p => typeof p.finish_pos === 'number' && p.finish_pos === 1);
+                const top10Players = players.filter(p => typeof p.finish_pos === 'number' && p.finish_pos <= 10);
+
+                if (!winner || !top10Players.length) {
+                    continue;
+                }
+
+                const leaderboard = await fetchLeaderboard(basePath);
+                if (!leaderboard.length) {
+                    continue;
+                }
+
+                const predictionMap = new Map();
+                leaderboard.forEach(entry => {
+                    const key = normalizeName(entry.player_name);
+                    if (!key) return;
+                    predictionMap.set(key, {
+                        pWin: Number(entry.p_win ?? entry['p_win'] ?? entry['p_win_%'] ?? 0),
+                        pTop10: Number(entry.p_top10 ?? entry['p_top10'] ?? entry['p_top10_%'] ?? 0)
+                    });
+                });
+
+                const winnerKey = normalizeName(winner.player);
+                const winnerPred = winnerKey ? predictionMap.get(winnerKey) : null;
+                const winProbability = winnerPred ? winnerPred.pWin : null;
+
+                const top10Probs = top10Players
+                    .map(player => {
+                        const key = normalizeName(player.player);
+                        const entry = key ? predictionMap.get(key) : null;
+                        return entry ? entry.pTop10 : null;
+                    })
+                    .filter(value => value != null);
+
+                const top10Average = top10Probs.length
+                    ? top10Probs.reduce((acc, val) => acc + Number(val || 0), 0) / top10Probs.length
+                    : null;
+
+                results.push({
+                    eventName,
+                    slug,
+                    year,
+                    tour,
+                    winner: winner.player,
+                    winProbability,
+                    top10Average,
+                    top10Probs,
+                });
+            }
+            return results;
+        } catch (e) {
+            console.error('Prediction accuracy load failed', e);
+            return [];
+        }
+    }
+
+    function createBarChart(canvas, labels, data, options) {
+        const dataset = data.map(value => (value == null ? NaN : Number(value)));
+        return new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: options.datasetLabel,
+                    data: dataset,
+                    backgroundColor: options.backgroundColor,
+                    borderColor: options.borderColor,
+                    borderWidth: 1.2,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: options.yLabel },
+                        ticks: {
+                            callback: value => `${value}%`
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 20
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: options.tooltipCallbacks
+                    }
+                }
+            }
+        });
+    }
+
+    async function renderPredictionAccuracy(containerEl) {
+        const section = document.createElement('section');
+        section.className = 'prediction-section';
+        section.innerHTML = `
+            <h3 class="prediction-header">Prediction Accuracy Snapshot</h3>
+            <p class="prediction-description">Comparing archived probabilities with completed tournament outcomes.</p>
+        `;
+        const status = document.createElement('p');
+        status.className = 'loading';
+        status.textContent = 'Loading prediction accuracy…';
+        section.appendChild(status);
+        containerEl.appendChild(section);
+
+        const accuracyData = await loadPredictionAccuracyData();
+        if (!accuracyData.length) {
+            status.textContent = 'Prediction accuracy data is not available yet.';
+            return;
+        }
+        status.remove();
+
+        const labels = accuracyData.map(item => `${item.eventName} (${item.year})`);
+        const winners = accuracyData.map(item => item.winner || 'Unknown');
+        const winProbabilities = accuracyData.map(item => item.winProbability != null ? Number(item.winProbability).toFixed(2) : null);
+        const top10Averages = accuracyData.map(item => item.top10Average != null ? Number(item.top10Average).toFixed(2) : null);
+
+        const grid = document.createElement('div');
+        grid.className = 'chart-grid';
+
+        const winWrapper = document.createElement('div');
+        winWrapper.className = 'chart-wrapper metric-chart';
+        const winCanvas = document.createElement('canvas');
+        winCanvas.id = 'predictionWinChart';
+        winWrapper.appendChild(winCanvas);
+        grid.appendChild(winWrapper);
+
+        const top10Wrapper = document.createElement('div');
+        top10Wrapper.className = 'chart-wrapper metric-chart';
+        const top10Canvas = document.createElement('canvas');
+        top10Canvas.id = 'predictionTop10Chart';
+        top10Wrapper.appendChild(top10Canvas);
+        grid.appendChild(top10Wrapper);
+
+        section.appendChild(grid);
+
+        createBarChart(winCanvas, labels, winProbabilities, {
+            datasetLabel: 'Predicted Win % for Event Winner',
+            backgroundColor: 'rgba(46, 139, 87, 0.6)',
+            borderColor: 'rgba(46, 139, 87, 1)',
+            yLabel: 'Predicted Win Probability (%)',
+            tooltipCallbacks: {
+                title: context => context[0]?.label || '',
+                label: context => {
+                    const idx = context.dataIndex;
+                    const value = context.parsed.y;
+                    if (Number.isNaN(value)) {
+                        return 'No prediction available';
+                    }
+                    return `${winners[idx]}: ${value.toFixed(2)}% predicted chance`;
+                }
+            }
+        });
+
+        createBarChart(top10Canvas, labels, top10Averages, {
+            datasetLabel: 'Average Predicted Top-10 % (Actual Top-10 Finishers)',
+            backgroundColor: 'rgba(0, 123, 255, 0.55)',
+            borderColor: 'rgba(0, 86, 179, 0.9)',
+            yLabel: 'Average Predicted Top-10 Probability (%)',
+            tooltipCallbacks: {
+                title: context => context[0]?.label || '',
+                label: context => {
+                    const value = context.parsed.y;
+                    if (Number.isNaN(value)) {
+                        return 'Insufficient prediction data';
+                    }
+                    return `Average top-10 probability: ${value.toFixed(2)}%`;
+                }
+            }
+        });
+    }
+
+    // Get URL params
+    const params = new URLSearchParams(window.location.search);
+    const selectedTournament = params.get('tournament');
+
+    // Load and process data from CSV only
+    async function loadComparison() {
+        try {
+            console.log('Starting loadComparison...');
+            // Load CSV
+            const response = await fetch('spreadsheet_data.csv');
+            const csvText = await response.text();
+            const parsed = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: 'greedy',
+                dynamicTyping: false,
+                transformHeader: header => header.trim()
+            });
+
+            if (parsed.errors?.length) {
+                console.error('CSV Parsing Errors:', parsed.errors);
+                return '<p>Error parsing the CSV file. Check console for details.</p>';
+            }
+
+            const completedBets = parsed.data.filter(bet => bet['Outcome'] && bet['Outcome'].toLowerCase().trim() !== 'pending');
+
+            console.log('Completed bets:', completedBets.length, 'Sample bet keys:', Object.keys(completedBets[0] || {}));
+
+            let filteredBets = completedBets.slice();
+
+            // Filter by tournament if specified
+            if (selectedTournament) {
+                filteredBets = filteredBets.filter(bet => (bet['Tournament'] || '').toLowerCase().trim() === selectedTournament.toLowerCase().trim());
+                document.title = `Bet Comparison - ${selectedTournament}`;
+                document.querySelector('h1').textContent = `Bet Comparison: ${selectedTournament}`;
+            }
+
+            if (!filteredBets.length) {
+                return '<p>No completed bets found for the selected tournament.</p>';
+            }
+
+            // Sort bets by date (assume Date is DD/MM/YYYY)
+            filteredBets.sort((a, b) => {
+                const dateA = new Date((a['Date'] || '').replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1')); // Convert to YYYY-MM-DD
+                const dateB = new Date((b['Date'] || '').replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1'));
+                return dateA - dateB;
+            });
+
+            const totalProfit = filteredBets.reduce((sum, bet) => sum + parseProfitLoss(bet['Profit/Loss']), 0);
+
+            console.log('Completed bets after filters:', filteredBets.length, 'Total P/L:', totalProfit);
+
+            // Generate summary
+            let html = `<div class="summary">Completed Bets: ${filteredBets.length} | Total Profit/Loss: £${totalProfit.toFixed(2)}</div>`;
+
+            const weeklySummary = aggregateWeeklyPnl(completedBets);
+            if (weeklySummary.years.length) {
+                const defaultYear = weeklySummary.defaultYear;
+                const yearOptions = weeklySummary.years
+                    .map(year => `<option value="${year}" ${year === defaultYear ? 'selected' : ''}>${year}</option>`)
+                    .join('');
+                html += '<section class="weekly-section">';
+                html += '<h3>Weekly Profit/Loss Scatter</h3>';
+                html += `<div class="controls"><label for="yearSelect">Select Year:</label><select id="yearSelect">${yearOptions}</select></div>`;
+                html += '<div class="chart-wrapper scatter"><canvas id="weeklyScatter"></canvas></div>';
+                html += '</section>';
+            }
+
+            return { html, weeklySummary };
+        } catch (e) {
+            console.error('Error in loadComparison:', e);
+            return '<p>Error loading data. Check console for details.</p>';
+        }
+    }
+
+    // Init
+    console.log('Initializing...');
+    loadComparison().then(result => {
+        console.log('loadComparison resolved');
+        if (!result) return;
+
+        if (typeof result === 'string') {
+            document.getElementById('content').innerHTML = result;
+            return;
+        }
+
+        const { html, weeklySummary } = result;
+        const contentEl = document.getElementById('content');
+        contentEl.innerHTML = html;
+        contentEl.style.position = 'relative';
+        contentEl.style.zIndex = '10';
+
+        if (weeklySummary && weeklySummary.years?.length) {
+            const yearSelect = document.getElementById('yearSelect');
+            const weeklyCanvas = document.getElementById('weeklyScatter');
+            if (yearSelect && weeklyCanvas) {
+                let scatterChart;
+                const renderScatter = year => {
+                    const points = weeklySummary.pointsByYear[year] || [];
+                    const dataPoints = points.map(point => ({ x: point.week, y: point.total }));
+                    const colors = points.map(point => point.total >= 0 ? '#2e8b57' : '#c0392b');
+
+                    if (scatterChart) {
+                        scatterChart.data.datasets[0].data = dataPoints;
+                        scatterChart.data.datasets[0].pointBackgroundColor = colors;
+                        scatterChart.data.datasets[0].pointBorderColor = colors;
+                        scatterChart.options.plugins.title.text = `Weekly Profit/Loss – ${year}`;
+                        scatterChart.update();
+                        return;
+                    }
+
+                    scatterChart = new Chart(weeklyCanvas, {
+                        type: 'scatter',
+                        data: {
+                            datasets: [{
+                                label: 'Weekly P/L (£)',
+                                data: dataPoints,
+                                pointRadius: 5,
+                                pointHoverRadius: 7,
+                                pointBackgroundColor: colors,
+                                pointBorderColor: colors
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    min: 1,
+                                    max: 53,
+                                    title: { display: true, text: 'Week of Year' },
+                                    ticks: {
+                                        stepSize: 4,
+                                        callback: value => `W${value}`
+                                    }
+                                },
+                                y: {
+                                    title: { display: true, text: 'Profit/Loss (£)' },
+                                    ticks: {
+                                        callback: value => `£${value}`
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                title: { display: true, text: `Weekly Profit/Loss – ${year}` },
+                                tooltip: {
+                                    callbacks: {
+                                        label: context => {
+                                            const week = context.parsed.x;
+                                            const value = context.parsed.y;
+                                            const sign = value >= 0 ? '+' : '';
+                                            return `Week ${week}: £${sign}${value.toFixed(2)}`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                };
+
+                const initialYear = yearSelect.value || weeklySummary.defaultYear || weeklySummary.years[0];
+                if (initialYear) {
+                    renderScatter(initialYear);
+                }
+
+                yearSelect.addEventListener('change', event => renderScatter(event.target.value));
+            }
+        }
+
+        renderPredictionAccuracy(contentEl).catch(error => {
+            console.error('Failed to render prediction accuracy:', error);
+            const fallback = document.createElement('p');
+            fallback.className = 'loading';
+            fallback.textContent = 'Prediction accuracy section unavailable.';
+            contentEl.appendChild(fallback);
+        });
+    }).catch(error => {
+        console.error('loadComparison failed', error);
+        const contentEl = document.getElementById('content');
+        contentEl.innerHTML = `<p style="color:#b00; text-align:center;">Failed to load data: ${error.message || error}</p>`;
+    });
+
+    // Load menu
+    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
+</script>
+
+</body>
+</html>
