@@ -30,6 +30,15 @@
         @media (max-width: 900px) {
             table { font-size: 0.9rem; }
         }
+        .prediction-section { margin: 2.5rem auto; width: min(95vw, 1300px); }
+        .prediction-header { text-align: center; color: #2e8b57; margin-bottom: 0.5rem; }
+        .prediction-description { text-align: center; color: #555; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .prediction-grid { display: grid; gap: 1.5rem; justify-content: center; }
+        .chart-wrapper { position: relative; width: min(100%, 620px); min-height: 360px; height: clamp(360px, 58vh, 520px); padding: 1.25rem; margin: 0 auto; background: #f7f9fb; border: 1px solid #ccc; border-radius: 12px; }
+        canvas { width: 100% !important; height: 100% !important; }
+        @media (min-width: 1080px) {
+            .prediction-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
         .logo {
             position: absolute;
             top: 8px;
@@ -48,6 +57,7 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
@@ -79,6 +89,16 @@
     <tbody id="archiveTableBody"></tbody>
 </table>
 
+<section id="predictionSnapshot" class="prediction-section" style="display:none;">
+    <h3 class="prediction-header">Prediction Accuracy Snapshot</h3>
+    <p class="prediction-description">Archived model probabilities vs actual tournament outcomes.</p>
+    <div class="prediction-grid">
+        <div class="chart-wrapper"><canvas id="archiveWinChart"></canvas></div>
+        <div class="chart-wrapper"><canvas id="archiveTop10Chart"></canvas></div>
+    </div>
+    <p class="muted" id="predictionSnapshotNote" style="text-align:center; display:none;">Includes events with archived results.</p>
+</section>
+
 <script>
     // Formatting helpers
     const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
@@ -104,7 +124,59 @@
         return r.json();
     }
 
-    // Load archive index and populate table
+    function normalizeName(name) {
+        if (!name) return null;
+        const cleaned = name.replace(/\s+/g, ' ').trim();
+        if (!cleaned) return null;
+        if (cleaned.includes(',')) {
+            const [last, first] = cleaned.split(',', 2).map(part => part.trim());
+            return (first ? `${first} ${last}` : last).toLowerCase();
+        }
+        return cleaned.toLowerCase();
+    }
+
+
+async function fetchJson(path) {
+        const response = await fetch(path, { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`Failed to load ${path}: ${response.status}`);
+        }
+        return response.json();
+    }
+
+
+async function fetchLeaderboard(basePath) {
+        try {
+                const jsonData = await fetchJson(`${basePath}/leaderboard.json`);
+                return jsonData.map(entry => ({
+                    player_name: entry.player_name,
+                    p_win: Number(entry['p_win_%'] ?? entry['p_win'] ?? entry['pWin'] ?? 0),
+                    p_top10: Number(entry['p_top10_%'] ?? entry['p_top10'] ?? entry['pTop10'] ?? 0)
+                }));
+        } catch (err) {
+            try {
+                const csvText = await fetch(`${basePath}/leaderboard.csv`, { cache: 'no-store' }).then(r => {
+                    if (!r.ok) throw new Error(`Failed to load leaderboard CSV: ${r.status}`);
+                    return r.text();
+                });
+                const parsed = Papa.parse(csvText, {
+                    header: true,
+                    skipEmptyLines: 'greedy'
+                });
+                return (parsed.data || []).map(row => ({
+                    player_name: row['player_name'] || row['Player'] || row['Name'],
+                    p_win: Number(row['p_win_%'] || row['P_WIN_%'] || row['p_win'] || row['P_WIN'] || 0),
+                    p_top10: Number(row['p_top10_%'] || row['P_TOP10_%'] || row['p_top10'] || row['P_TOP10'] || 0)
+                }));
+            } catch (csvErr) {
+                console.warn(err.message || err, csvErr);
+                return [];
+            }
+        }
+    }
+
+
+// Load archive index and populate table
     async function loadArchive() {
         const tbody = document.getElementById("archiveTableBody");
         try {
@@ -189,11 +261,188 @@
         window.location.href = `event_archive.html?${params}`;
     }
 
+    function createBarChart(canvas, labels, data, options) {
+        const dataset = data.map(value => (value == null ? NaN : Number(value)));
+        return new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: options.datasetLabel,
+                    data: dataset,
+                    backgroundColor: options.backgroundColor,
+                    borderColor: options.borderColor,
+                    borderWidth: 1.2,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: options.yLabel },
+                        ticks: {
+                            callback: value => `${value}%`
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 20
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: options.tooltipCallbacks
+                    }
+                }
+            }
+        });
+    }
+
+    async function renderPredictionSnapshot() {
+        const section = document.getElementById('predictionSnapshot');
+        const note = document.getElementById('predictionSnapshotNote');
+        try {
+            const index = await fetchJson('archive/index.json');
+            const events = Array.isArray(index) ? index : [];
+            const results = [];
+
+            for (const event of events) {
+                const { year, slug, event_name: eventName } = event;
+                const basePath = `archive/${year}/${slug}`;
+
+                let summary;
+                try {
+                    summary = await fetchJson(`${basePath}/tournament_summary.json`);
+                } catch (err) {
+                    console.warn(`Skipping ${eventName}: ${err.message}`);
+                    continue;
+                }
+
+                if ((summary.status || '').toLowerCase() !== 'completed') {
+                    continue;
+                }
+
+                let resultsData;
+                try {
+                    resultsData = await fetchJson(`${basePath}/results.json`);
+                } catch (err) {
+                    console.warn(`Missing results for ${eventName}: ${err.message}`);
+                    continue;
+                }
+
+                const players = Array.isArray(resultsData.players) ? resultsData.players : [];
+                const winner = players.find(p => typeof p.finish_pos === 'number' && p.finish_pos === 1);
+                const top10Players = players.filter(p => typeof p.finish_pos === 'number' && p.finish_pos <= 10);
+
+                if (!winner || !top10Players.length) {
+                    continue;
+                }
+
+                const leaderboard = await fetchLeaderboard(basePath);
+                if (!leaderboard.length) {
+                    continue;
+                }
+
+                const predictionMap = new Map();
+                leaderboard.forEach(entry => {
+                    const key = normalizeName(entry.player_name);
+                    if (!key) return;
+                    predictionMap.set(key, {
+                        pWin: Number(entry.p_win ?? entry['p_win'] ?? entry['p_win_%'] ?? 0),
+                        pTop10: Number(entry.p_top10 ?? entry['p_top10'] ?? entry['p_top10_%'] ?? 0)
+                    });
+                });
+
+                const winnerKey = normalizeName(winner.player);
+                const winnerPred = winnerKey ? predictionMap.get(winnerKey) : null;
+                const winProbability = winnerPred ? winnerPred.pWin : null;
+
+                const top10Probs = top10Players
+                    .map(player => {
+                        const key = normalizeName(player.player);
+                        const entry = key ? predictionMap.get(key) : null;
+                        return entry ? entry.pTop10 : null;
+                    })
+                    .filter(value => value != null);
+
+                const top10Average = top10Probs.length
+                    ? top10Probs.reduce((acc, val) => acc + Number(val || 0), 0) / top10Probs.length
+                    : null;
+
+                results.push({
+                    eventName,
+                    year,
+                    winner: winner.player,
+                    winProbability,
+                    top10Average,
+                });
+            }
+
+            if (!results.length) {
+                section.style.display = 'none';
+                return;
+            }
+
+            const labels = results.map(item => `${item.eventName} (${item.year})`);
+            const winners = results.map(item => item.winner || 'Unknown');
+            const winProbabilities = results.map(item => item.winProbability != null ? Number(item.winProbability).toFixed(2) : null);
+            const top10Averages = results.map(item => item.top10Average != null ? Number(item.top10Average).toFixed(2) : null);
+
+            section.style.display = '';
+            note.style.display = '';
+
+            createBarChart(document.getElementById('archiveWinChart'), labels, winProbabilities, {
+                datasetLabel: 'Predicted Win % for Event Winner',
+                backgroundColor: 'rgba(46, 139, 87, 0.6)',
+                borderColor: 'rgba(46, 139, 87, 1)',
+                yLabel: 'Predicted Win Probability (%)',
+                tooltipCallbacks: {
+                    title: context => context[0]?.label || '',
+                    label: context => {
+                        const idx = context.dataIndex;
+                        const value = context.parsed.y;
+                        if (Number.isNaN(value)) {
+                            return 'No prediction available';
+                        }
+                        return `${winners[idx]}: ${value.toFixed(2)}% predicted chance`;
+                    }
+                }
+            });
+
+            createBarChart(document.getElementById('archiveTop10Chart'), labels, top10Averages, {
+                datasetLabel: 'Average Predicted Top-10 % (Actual Top-10 Finishers)',
+                backgroundColor: 'rgba(0, 123, 255, 0.55)',
+                borderColor: 'rgba(0, 86, 179, 0.9)',
+                yLabel: 'Average Predicted Top-10 Probability (%)',
+                tooltipCallbacks: {
+                    title: context => context[0]?.label || '',
+                    label: context => {
+                        const value = context.parsed.y;
+                        if (Number.isNaN(value)) {
+                            return 'Insufficient prediction data';
+                        }
+                        return `Average top-10 probability: ${value.toFixed(2)}%`;
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Prediction snapshot failed:', error);
+            const section = document.getElementById('predictionSnapshot');
+            section.style.display = '';
+            section.innerHTML += '<p class="muted" style="text-align:center; color:#b00;">Prediction snapshot unavailable.</p>';
+        }
+    }
+
     // Load menu HTML
     fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
 
     // Kick off
-    loadArchive().catch(err => {
+    loadArchive().then(renderPredictionSnapshot).catch(err => {
         document.body.innerHTML = `<pre style="color:#b00">${err}</pre>`;
         console.error(err);
     });

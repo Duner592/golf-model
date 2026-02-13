@@ -1,0 +1,74 @@
+{
+  "2026_qatar_masters": {
+    "event_id": "2026145",
+    "event_name": "Qatar Masters",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "qatar_masters"
+  },
+  "2026_wm_phoenix_open": {
+    "event_id": "3",
+    "event_name": "WM Phoenix Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "wm_phoenix_open"
+  },
+  "2026_bapco_energies_bahrain_championship": {
+    "event_id": "2026107",
+    "event_name": "Bapco Energies Bahrain Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "bapco_energies_bahrain_championship"
+  },
+  "2026_farmers_insurance_open": {
+    "event_id": "4",
+    "event_name": "Farmers Insurance Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "farmers_insurance_open"
+  },
+  "2026_hero_dubai_desert_classic": {
+    "event_id": "2026106",
+    "event_name": "Hero Dubai Desert Classic",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "hero_dubai_desert_classic"
+  },
+  "2026_the_american_express": {
+    "event_id": "2",
+    "event_name": "The American Express",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "the_american_express"
+  },
+  "2026_dubai_invitational": {
+    "event_id": "2026105",
+    "event_name": "Dubai Invitational",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "dubai_invitational"
+  },
+  "2026_sony_open_in_hawaii": {
+    "event_id": "6",
+    "event_name": "Sony Open in Hawaii",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "sony_open_in_hawaii"
+  }
+}

@@ -12,7 +12,7 @@
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
         h1 { text-align: center; color: #333; }
 
-        .charts-grid {
+    .charts-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
@@ -20,7 +20,7 @@
             margin: 2rem auto;
         }
 
-        .chart-container {
+    .chart-container {
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -32,9 +32,12 @@
             grid-column: 1 / -1;
         }
 
-        canvas {
+    canvas {
             width: 100% !important;
             height: 600px !important; /* Increased height for larger, more readable charts */
+        }
+        #weeklyScatterChart {
+            height: clamp(360px, 60vh, 640px) !important;
         }
 
         .loading { color: #666; font-style: italic; text-align: center; }
@@ -155,6 +158,16 @@
     <div class="chart-container full-width">
         <h2>Profit/Loss by Type</h2>
         <canvas id="typeChart"></canvas>
+    </div>
+
+    <div class="chart-container full-width" id="weeklyScatterSection" style="display:none;">
+        <h2>Weekly Profit/Loss Scatter</h2>
+        <div class="controls" style="justify-content:flex-start;">
+            <label for="weeklyYearSelect">Select Year:</label>
+            <select id="weeklyYearSelect"></select>
+        </div>
+        <canvas id="weeklyScatterChart"></canvas>
+        <p class="muted" id="weeklyScatterNote" style="margin-top:0.5rem; display:none;">Showing weekly totals for completed bets in the selected year.</p>
     </div>
 </div>
 
@@ -367,11 +380,149 @@
         });
     }
 
+    function parseDateString(dateStr) {
+        if (!dateStr) return null;
+        const parts = dateStr.split('/').map(part => parseInt(part, 10));
+        if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+        const [day, month, year] = parts;
+        const date = new Date(Date.UTC(year, month - 1, day));
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function getISOWeekInfo(date) {
+        const temp = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+        const dayNumber = temp.getUTCDay() || 7;
+        temp.setUTCDate(temp.getUTCDate() + 4 - dayNumber);
+        const yearStart = new Date(Date.UTC(temp.getUTCFullYear(), 0, 1));
+        const weekNo = Math.ceil((((temp - yearStart) / 86400000) + 1) / 7);
+        return { isoYear: temp.getUTCFullYear(), isoWeek: weekNo };
+    }
+
+    function aggregateWeekly(data) {
+        const weeklyMap = new Map();
+        data.forEach(row => {
+            const date = parseDateString(row['Date']);
+            const outcome = (row['Outcome'] || '').trim().toLowerCase();
+            if (!date || outcome === 'pending' || !row['Profit/Loss']) return;
+            const pnl = parseFloat(String(row['Profit/Loss']).replace(/[£,]/g, '').replace(/^\((.*)\)$/g, '-$1')) || 0;
+            const { isoYear, isoWeek } = getISOWeekInfo(date);
+            const key = `${isoYear}-W${isoWeek}`;
+            if (!weeklyMap.has(key)) {
+                weeklyMap.set(key, { isoYear, isoWeek, total: 0 });
+            }
+            weeklyMap.get(key).total += pnl;
+        });
+
+        const sortedEntries = Array.from(weeklyMap.values()).sort((a, b) => {
+            if (a.isoYear !== b.isoYear) return a.isoYear - b.isoYear;
+            return a.isoWeek - b.isoWeek;
+        });
+
+        const years = [...new Set(sortedEntries.map(entry => entry.isoYear))].sort((a, b) => a - b);
+        const pointsByYear = {};
+        years.forEach(year => {
+            pointsByYear[year] = sortedEntries
+                .filter(entry => entry.isoYear === year)
+                .map(entry => ({ week: entry.isoWeek, total: Number(entry.total.toFixed(2)) }));
+        });
+
+        return { years, pointsByYear };
+    }
+
+    let weeklyScatterChart = null;
+
+    function renderWeeklyScatter(rawData) {
+        const section = document.getElementById('weeklyScatterSection');
+        const selectEl = document.getElementById('weeklyYearSelect');
+        const noteEl = document.getElementById('weeklyScatterNote');
+        const { years, pointsByYear } = aggregateWeekly(rawData);
+
+        if (!years.length) {
+            section.style.display = 'none';
+            return;
+        }
+
+        section.style.display = '';
+        noteEl.style.display = '';
+        selectEl.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
+        const canvas = document.getElementById('weeklyScatterChart');
+
+        const render = year => {
+            const points = pointsByYear[year] || [];
+            const dataPoints = points.map(point => ({ x: point.week, y: point.total }));
+            const colors = points.map(point => point.total >= 0 ? '#2e8b57' : '#c0392b');
+
+            if (weeklyScatterChart) {
+                weeklyScatterChart.data.datasets[0].data = dataPoints;
+                weeklyScatterChart.data.datasets[0].pointBackgroundColor = colors;
+                weeklyScatterChart.data.datasets[0].pointBorderColor = colors;
+                weeklyScatterChart.options.plugins.title.text = `Weekly Profit/Loss – ${year}`;
+                weeklyScatterChart.update();
+                return;
+            }
+
+            weeklyScatterChart = new Chart(canvas, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Weekly P/L (£)',
+                        data: dataPoints,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBackgroundColor: colors,
+                        pointBorderColor: colors
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            min: 1,
+                            max: 53,
+                            title: { display: true, text: 'Week of Year' },
+                            ticks: {
+                                stepSize: 4,
+                                callback: value => `W${value}`
+                            }
+                        },
+                        y: {
+                            title: { display: true, text: 'Profit/Loss (£)' },
+                            ticks: {
+                                callback: value => `£${value}`
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: `Weekly Profit/Loss – ${year}` },
+                        tooltip: {
+                            callbacks: {
+                                label: context => {
+                                    const week = context.parsed.x;
+                                    const value = context.parsed.y;
+                                    const sign = value >= 0 ? '+' : '';
+                                    return `Week ${week}: £${sign}${value.toFixed(2)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        render(years[years.length - 1]);
+        selectEl.value = years[years.length - 1];
+        selectEl.onchange = (event) => render(event.target.value);
+    }
+
     async function init() {
         try {
             const data = await loadData();
             const processed = processData(data);
             renderCharts(processed);
+            renderWeeklyScatter(data);
         } catch (e) {
             document.body.innerHTML += '<p style="color: red; text-align: center;">Error loading analytics data.</p>';
             console.error(e);
