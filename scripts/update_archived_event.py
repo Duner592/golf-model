@@ -16,6 +16,8 @@ import argparse
 import json
 from pathlib import Path
 
+import re
+
 import requests
 
 
@@ -80,6 +82,16 @@ def fetch_winner_from_api(event_id: str, year: str) -> str | None:
     return None
 
 
+def normalize_slug(name: str | None) -> str:
+    """Create a filesystem-friendly slug for the event name."""
+    if not isinstance(name, str):
+        return ""
+    txt = name.lower().strip()
+    txt = re.sub(r"[^a-z0-9]+", " ", txt)
+    txt = re.sub(r"\s+", " ", txt).strip()
+    return txt.replace(" ", "_")
+
+
 def update_tournament_summary(ts_path: Path, winner: str | None) -> None:
     """
     Update the tournament_summary.json file.
@@ -139,7 +151,7 @@ def main():
 
     # Extract year and slug
     year = start_date.split("-")[0]
-    slug = event_name.lower().replace(" ", "_")  # Simple slugify
+    slug = event_details.get("slug") or normalize_slug(event_name)
 
     # Build archive path
     archive_path = root / "web" / "archive" / year / slug / "tournament_summary.json"
