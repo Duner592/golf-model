@@ -1,9 +1,8 @@
 {
   "event_id": "7",
   "event_name": "The Genesis Invitational",
-  "source_csv": "data/preds/pga/event_7_the_genesis_invitational_2026-02-16_leaderboard.csv",
-  "generated_utc": "16-Feb-2026 14:13:14",
-  "metrics": {
+  "generated_utc": "2026-02-16T140550Z",
+  "summary": {
     "field_size": 72,
     "p_win_max": 0.4235333333333333,
     "p_win_median": 0.0018666666666666666,
