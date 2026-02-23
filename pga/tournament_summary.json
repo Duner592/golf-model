@@ -1,0 +1,38 @@
+{
+  "event_name": "Cognizant Classic",
+  "event_id": "10",
+  "course": "PGA National Resort (The Champion Course)",
+  "total_yardage": null,
+  "course_location": "Palm Beach Gardens, FL",
+  "start_date": "26-Feb-2026",
+  "field_size": 120,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Highsmith, Joe",
+      "score": -19
+    },
+    {
+      "year": 2024,
+      "winner": "Eckroat, Austin",
+      "score": -17
+    },
+    {
+      "year": 2023,
+      "winner": "Kirk, Chris",
+      "score": -18
+    },
+    {
+      "year": 2022,
+      "winner": "Straka, Sepp",
+      "score": -14
+    },
+    {
+      "year": 2021,
+      "winner": "Jones, Matt",
+      "score": -16
+    }
+  ]
+}

@@ -1,9 +1,8 @@
 {
   "event_id": "2026110",
   "event_name": "Investec South African Open Championship",
-  "source_csv": "data/preds/euro/event_2026110_investec_south_african_open_championship_2026-02-23_leaderboard.csv",
-  "generated_utc": "23-Feb-2026 09:20:46",
-  "metrics": {
+  "generated_utc": "2026-02-23T092038Z",
+  "summary": {
     "field_size": 140,
     "p_win_max": 0.22913333333333333,
     "p_win_median": 0.0003333333333333333,

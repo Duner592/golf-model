@@ -1,9 +1,8 @@
 {
   "event_id": "10",
   "event_name": "Cognizant Classic",
-  "source_csv": "data/preds/pga/event_10_cognizant_classic_2026-02-23_leaderboard.csv",
-  "generated_utc": "23-Feb-2026 09:19:59",
-  "metrics": {
+  "generated_utc": "2026-02-23T091945Z",
+  "summary": {
     "field_size": 120,
     "p_win_max": 0.16163333333333332,
     "p_win_median": 0.0009,
