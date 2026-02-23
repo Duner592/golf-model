@@ -1,12 +1,7 @@
 {
-  "event_id": "2026109",
-  "event_name": "Magical Kenya Open presented by absa",
-  "source_csv": "data/preds/euro/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.csv",
-  "generated_utc": "16-Feb-2026 14:13:22",
-  "metrics": {
-    "field_size": 144,
-    "p_win_max": 0.03903333333333334,
-    "p_win_median": 0.007466666666666667,
-    "p_win_sum": 1.0
-  }
+  "event_id": "0",
+  "event_name": "Investec South African Open Championship",
+  "source_csv": null,
+  "generated_utc": "23-Feb-2026 09:12:53",
+  "metrics": null
 }

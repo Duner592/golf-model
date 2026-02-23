@@ -1,20 +1,21 @@
 {
   "tour": "pga",
-  "event_id": "7",
-  "event_name": "The Genesis Invitational",
+  "event_id": "2026110",
+  "event_name": "No Event",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-02-19",
-  "generated_utc": "16-Feb-2026 14:13:14",
+  "r1_date": null,
+  "generated_utc": "23-Feb-2026 09:12:47",
   "resources": {
-    "downloads_csv": "pga/downloads/event_7_the_genesis_invitational_2026-02-16_leaderboard.csv",
-    "downloads_html": "pga/downloads/event_7_the_genesis_invitational_2026-02-16_leaderboard.html",
-    "weather_meta": "pga/weather_meta.json",
-    "weather_round_neutral": "pga/weather_round_neutral.json",
-    "weather_round_wave": "pga/weather_round_wave.json",
-    "course_fit_weights": "pga/course_fit_weights.json",
-    "course_history_summary": "pga/course_history_summary.json",
-    "tournament_summary": "pga/tournament_summary.json",
+    "downloads_csv": null,
+    "downloads_html": null,
+    "weather_meta": null,
+    "weather_round_neutral": null,
+    "weather_round_wave": null,
+    "course_fit_weights": null,
+    "course_history_summary": null,
+    "tournament_summary": null,
     "schedule": "pga/schedule.json"
-  }
+  },
+  "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!"
 }
