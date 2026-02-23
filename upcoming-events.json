@@ -15,20 +15,6 @@
       "winner": "Puig, David (28984)"
     },
     {
-      "country": "AUS",
-      "course": "Royal Melbourne GC",
-      "course_key": "royal melbourne gc",
-      "event_id": "2026101",
-      "event_name": "Crown Australian Open",
-      "latitude": -37.97,
-      "location": "Black Rock, Australia",
-      "longitude": 145.03,
-      "start_date": "2025-12-04",
-      "status": "completed",
-      "tour": "euro",
-      "winner": "Neergaard-Petersen, Rasmus (23841)"
-    },
-    {
       "country": "RSA",
       "course": "Gary Player CC",
       "course_key": "gary player cc",
@@ -41,6 +27,20 @@
       "status": "completed",
       "tour": "euro",
       "winner": "Reitan, Kristoffer (21407)"
+    },
+    {
+      "country": "AUS",
+      "course": "Royal Melbourne GC",
+      "course_key": "royal melbourne gc",
+      "event_id": "2026101",
+      "event_name": "Crown Australian Open",
+      "latitude": -37.97,
+      "location": "Black Rock, Australia",
+      "longitude": 145.03,
+      "start_date": "2025-12-04",
+      "status": "completed",
+      "tour": "euro",
+      "winner": "Neergaard-Petersen, Rasmus (23841)"
     },
     {
       "country": "RSA",
@@ -255,7 +255,7 @@
     {
       "country": "USA",
       "course": "Pebble Beach Golf Links;Spyglass Hill Golf Course",
-      "course_key": "005;205",
+      "course_key": "5;205",
       "event_id": "5",
       "event_name": "AT&T Pebble Beach Pro-Am",
       "latitude": 36.569,
@@ -269,8 +269,8 @@
     {
       "country": "AUS",
       "course": "The Grange Golf Club",
-      "course_key": "12",
-      "event_id": "712",
+      "course_key": "1",
+      "event_id": "55",
       "event_name": "Adelaide",
       "latitude": -34.888,
       "location": "Grange, Australia",
@@ -290,9 +290,9 @@
       "location": "Pacific Palisades, CA",
       "longitude": -118.5,
       "start_date": "2026-02-19",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Bridgeman, Jacob (29433)"
     },
     {
       "country": "KEN",
@@ -304,9 +304,9 @@
       "location": "Nairobi, Kenya",
       "longitude": 36.715,
       "start_date": "2026-02-19",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Jarvis, Casey (26947)"
     },
     {
       "country": "USA",
@@ -396,7 +396,7 @@
       "country": "RSA",
       "course": "Houghton GC",
       "course_key": "houghton gc",
-      "event_id": "TBD",
+      "event_id": "2026111",
       "event_name": "Joburg Open",
       "latitude": -26.164,
       "location": "Johannesburg, South Africa",
