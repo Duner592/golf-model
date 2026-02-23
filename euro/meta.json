@@ -1,20 +1,21 @@
 {
   "tour": "euro",
-  "event_id": "2026109",
-  "event_name": "Magical Kenya Open presented by absa",
+  "event_id": "0",
+  "event_name": "Investec South African Open Championship",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-02-19",
-  "generated_utc": "16-Feb-2026 14:13:22",
+  "r1_date": "2026-02-26",
+  "generated_utc": "23-Feb-2026 09:12:53",
   "resources": {
-    "downloads_csv": "euro/downloads/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.csv",
-    "downloads_html": "euro/downloads/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.html",
-    "weather_meta": "euro/weather_meta.json",
-    "weather_round_neutral": "euro/weather_round_neutral.json",
-    "weather_round_wave": "euro/weather_round_wave.json",
+    "downloads_csv": null,
+    "downloads_html": null,
+    "weather_meta": null,
+    "weather_round_neutral": null,
+    "weather_round_wave": null,
     "course_fit_weights": "euro/course_fit_weights.json",
     "course_history_summary": null,
     "tournament_summary": "euro/tournament_summary.json",
     "schedule": "euro/schedule.json"
-  }
+  },
+  "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!"
 }
