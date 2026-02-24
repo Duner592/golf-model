@@ -1,4 +1,22 @@
 {
+  "2026_magical_kenya_open_presented_by_absa": {
+    "event_id": "2026109",
+    "event_name": "Magical Kenya Open presented by absa",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "magical_kenya_open_presented_by_absa"
+  },
+  "2026_the_genesis_invitational": {
+    "event_id": "7",
+    "event_name": "The Genesis Invitational",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "the_genesis_invitational"
+  },
   "2026_at_t_pebble_beach_pro_am": {
     "event_id": "5",
     "event_name": "AT&T Pebble Beach Pro-Am",
