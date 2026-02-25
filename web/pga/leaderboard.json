@@ -1,1 +1,986 @@
-[]
+[
+  {
+    "rank": 1,
+    "player_name": "Ryan Gerard",
+    "p_win_%": 21.81,
+    "p_top10_%": 71.8,
+    "p_mc_%": 95.6,
+    "course_fit_score": 0.373161189639879
+  },
+  {
+    "rank": 2,
+    "player_name": "Shane Lowry",
+    "p_win_%": 20.29,
+    "p_top10_%": 70.3,
+    "p_mc_%": 95.4,
+    "course_fit_score": 0.4386051299204571
+  },
+  {
+    "rank": 3,
+    "player_name": "Adam Hadwin",
+    "p_win_%": 6.56,
+    "p_top10_%": 44.3,
+    "p_mc_%": 88.3,
+    "course_fit_score": 0.2354803642225289
+  },
+  {
+    "rank": 4,
+    "player_name": "Kevin Yu",
+    "p_win_%": 5.48,
+    "p_top10_%": 40.9,
+    "p_mc_%": 87.6,
+    "course_fit_score": 0.3927929306165801
+  },
+  {
+    "rank": 5,
+    "player_name": "Chris Kirk",
+    "p_win_%": 4.08,
+    "p_top10_%": 34.6,
+    "p_mc_%": 84.8,
+    "course_fit_score": 0.0803542308074211
+  },
+  {
+    "rank": 6,
+    "player_name": "Keith Mitchell",
+    "p_win_%": 3.61,
+    "p_top10_%": 32.4,
+    "p_mc_%": 83.6,
+    "course_fit_score": 0.3134588568637543
+  },
+  {
+    "rank": 7,
+    "player_name": "Daniel Berger",
+    "p_win_%": 3.19,
+    "p_top10_%": 30.5,
+    "p_mc_%": 83.1,
+    "course_fit_score": 0.2590237648978524
+  },
+  {
+    "rank": 8,
+    "player_name": "Andrew Putnam",
+    "p_win_%": 2.22,
+    "p_top10_%": 25.2,
+    "p_mc_%": 80.3,
+    "course_fit_score": 0.0622564858011862
+  },
+  {
+    "rank": 9,
+    "player_name": "Michael Thorbjornsen",
+    "p_win_%": 2.13,
+    "p_top10_%": 23.8,
+    "p_mc_%": 79.1,
+    "course_fit_score": -0.0165010213342098
+  },
+  {
+    "rank": 10,
+    "player_name": "Christiaan Bezuidenhout",
+    "p_win_%": 1.46,
+    "p_top10_%": 19.4,
+    "p_mc_%": 76.0,
+    "course_fit_score": 0.0989590994227898
+  },
+  {
+    "rank": 11,
+    "player_name": "Brooks Koepka",
+    "p_win_%": 1.45,
+    "p_top10_%": 19.8,
+    "p_mc_%": 75.9,
+    "course_fit_score": 0.2336714017857956
+  },
+  {
+    "rank": 12,
+    "player_name": "Nicolai Hojgaard",
+    "p_win_%": 1.25,
+    "p_top10_%": 17.4,
+    "p_mc_%": 73.9,
+    "course_fit_score": 0.0180086746236
+  },
+  {
+    "rank": 13,
+    "player_name": "Alex Smalley",
+    "p_win_%": 1.19,
+    "p_top10_%": 16.0,
+    "p_mc_%": 72.9,
+    "course_fit_score": 0.4481190683638898
+  },
+  {
+    "rank": 14,
+    "player_name": "Sam Ryder",
+    "p_win_%": 1.14,
+    "p_top10_%": 17.2,
+    "p_mc_%": 74.2,
+    "course_fit_score": 0.0589901687786348
+  },
+  {
+    "rank": 15,
+    "player_name": "Rico Hoey",
+    "p_win_%": 1.05,
+    "p_top10_%": 15.8,
+    "p_mc_%": 73.0,
+    "course_fit_score": 0.345874512760288
+  },
+  {
+    "rank": 16,
+    "player_name": "Aaron Wise",
+    "p_win_%": 0.92,
+    "p_top10_%": 14.9,
+    "p_mc_%": 71.9,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 17,
+    "player_name": "Luke Clanton",
+    "p_win_%": 0.9,
+    "p_top10_%": 14.5,
+    "p_mc_%": 71.2,
+    "course_fit_score": 0.0988686480484425
+  },
+  {
+    "rank": 18,
+    "player_name": "Jesper Svensson",
+    "p_win_%": 0.89,
+    "p_top10_%": 14.7,
+    "p_mc_%": 71.7,
+    "course_fit_score": -0.1048101843168934
+  },
+  {
+    "rank": 19,
+    "player_name": "Jimmy Stanger",
+    "p_win_%": 0.84,
+    "p_top10_%": 13.3,
+    "p_mc_%": 70.0,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 20,
+    "player_name": "Billy Horschel",
+    "p_win_%": 0.83,
+    "p_top10_%": 15.2,
+    "p_mc_%": 71.9,
+    "course_fit_score": 0.0752519679339908
+  },
+  {
+    "rank": 21,
+    "player_name": "Stephan Jaeger",
+    "p_win_%": 0.81,
+    "p_top10_%": 12.9,
+    "p_mc_%": 69.4,
+    "course_fit_score": 0.0527799298295002
+  },
+  {
+    "rank": 22,
+    "player_name": "Rasmus Hojgaard",
+    "p_win_%": 0.76,
+    "p_top10_%": 13.9,
+    "p_mc_%": 70.8,
+    "course_fit_score": 0.152305688809942
+  },
+  {
+    "rank": 23,
+    "player_name": "Doug Ghim",
+    "p_win_%": 0.76,
+    "p_top10_%": 12.3,
+    "p_mc_%": 68.4,
+    "course_fit_score": 0.2276891508579715
+  },
+  {
+    "rank": 24,
+    "player_name": "Chan Kim",
+    "p_win_%": 0.75,
+    "p_top10_%": 12.9,
+    "p_mc_%": 69.9,
+    "course_fit_score": 0.0566714555313964
+  },
+  {
+    "rank": 25,
+    "player_name": "Garrick Higgo",
+    "p_win_%": 0.72,
+    "p_top10_%": 12.7,
+    "p_mc_%": 69.3,
+    "course_fit_score": -0.198015401359466
+  },
+  {
+    "rank": 26,
+    "player_name": "Davis Thompson",
+    "p_win_%": 0.7,
+    "p_top10_%": 13.5,
+    "p_mc_%": 70.2,
+    "course_fit_score": 0.4716733823181087
+  },
+  {
+    "rank": 27,
+    "player_name": "Rasmus Neergaard-Petersen",
+    "p_win_%": 0.63,
+    "p_top10_%": 11.9,
+    "p_mc_%": 68.4,
+    "course_fit_score": 0.1764877832141901
+  },
+  {
+    "rank": 28,
+    "player_name": "Beau Hossler",
+    "p_win_%": 0.61,
+    "p_top10_%": 11.6,
+    "p_mc_%": 67.5,
+    "course_fit_score": -0.1003910418514291
+  },
+  {
+    "rank": 29,
+    "player_name": "Lee Hodges",
+    "p_win_%": 0.58,
+    "p_top10_%": 10.5,
+    "p_mc_%": 66.8,
+    "course_fit_score": 0.0652109552980541
+  },
+  {
+    "rank": 30,
+    "player_name": "Max McGreevy",
+    "p_win_%": 0.57,
+    "p_top10_%": 10.5,
+    "p_mc_%": 66.4,
+    "course_fit_score": 0.101898452861907
+  },
+  {
+    "rank": 31,
+    "player_name": "Austin Eckroat",
+    "p_win_%": 0.57,
+    "p_top10_%": 11.9,
+    "p_mc_%": 68.5,
+    "course_fit_score": 0.2917657852116928
+  },
+  {
+    "rank": 32,
+    "player_name": "Will Zalatoris",
+    "p_win_%": 0.5,
+    "p_top10_%": 10.3,
+    "p_mc_%": 65.4,
+    "course_fit_score": 0.1988515482141901
+  },
+  {
+    "rank": 33,
+    "player_name": "Vince Whaley",
+    "p_win_%": 0.46,
+    "p_top10_%": 9.0,
+    "p_mc_%": 64.0,
+    "course_fit_score": -0.1454488730776085
+  },
+  {
+    "rank": 34,
+    "player_name": "Kristoffer Reitan",
+    "p_win_%": 0.44,
+    "p_top10_%": 8.9,
+    "p_mc_%": 64.1,
+    "course_fit_score": 0.0478467102141901
+  },
+  {
+    "rank": 35,
+    "player_name": "Jordan Smith",
+    "p_win_%": 0.38,
+    "p_top10_%": 8.7,
+    "p_mc_%": 63.8,
+    "course_fit_score": 0.1328472462141901
+  },
+  {
+    "rank": 36,
+    "player_name": "John Parry",
+    "p_win_%": 0.38,
+    "p_top10_%": 9.1,
+    "p_mc_%": 64.2,
+    "course_fit_score": 0.1589979522141901
+  },
+  {
+    "rank": 37,
+    "player_name": "Kevin Roy",
+    "p_win_%": 0.36,
+    "p_top10_%": 8.5,
+    "p_mc_%": 62.9,
+    "course_fit_score": 0.2489382617946029
+  },
+  {
+    "rank": 38,
+    "player_name": "Haotong Li",
+    "p_win_%": 0.35,
+    "p_top10_%": 8.2,
+    "p_mc_%": 62.7,
+    "course_fit_score": 0.1357097312141901
+  },
+  {
+    "rank": 39,
+    "player_name": "Karl Vilips",
+    "p_win_%": 0.33,
+    "p_top10_%": 7.0,
+    "p_mc_%": 60.7,
+    "course_fit_score": 0.0895848251482824
+  },
+  {
+    "rank": 40,
+    "player_name": "Brice Garnett",
+    "p_win_%": 0.33,
+    "p_top10_%": 6.5,
+    "p_mc_%": 58.8,
+    "course_fit_score": 0.0409972119986939
+  },
+  {
+    "rank": 41,
+    "player_name": "Joel Dahmen",
+    "p_win_%": 0.3,
+    "p_top10_%": 6.2,
+    "p_mc_%": 58.4,
+    "course_fit_score": 0.2474593494652004
+  },
+  {
+    "rank": 42,
+    "player_name": "Isaiah Salinda",
+    "p_win_%": 0.29,
+    "p_top10_%": 7.3,
+    "p_mc_%": 60.9,
+    "course_fit_score": 0.28272583213856
+  },
+  {
+    "rank": 43,
+    "player_name": "Eric Cole",
+    "p_win_%": 0.28,
+    "p_top10_%": 7.1,
+    "p_mc_%": 59.9,
+    "course_fit_score": 0.1237269036861178
+  },
+  {
+    "rank": 44,
+    "player_name": "Ricky Castillo",
+    "p_win_%": 0.26,
+    "p_top10_%": 6.8,
+    "p_mc_%": 59.4,
+    "course_fit_score": 0.2729383639219603
+  },
+  {
+    "rank": 45,
+    "player_name": "Thorbjorn Olesen",
+    "p_win_%": 0.26,
+    "p_top10_%": 6.2,
+    "p_mc_%": 59.0,
+    "course_fit_score": 0.3816602531410409
+  },
+  {
+    "rank": 46,
+    "player_name": "Sami Valimaki",
+    "p_win_%": 0.24,
+    "p_top10_%": 6.4,
+    "p_mc_%": 59.2,
+    "course_fit_score": 0.2654934451447244
+  },
+  {
+    "rank": 47,
+    "player_name": "Max Homa",
+    "p_win_%": 0.23,
+    "p_top10_%": 6.1,
+    "p_mc_%": 58.4,
+    "course_fit_score": 0.0816997622141901
+  },
+  {
+    "rank": 48,
+    "player_name": "Matt Wallace",
+    "p_win_%": 0.23,
+    "p_top10_%": 6.2,
+    "p_mc_%": 58.5,
+    "course_fit_score": 0.067658158471543
+  },
+  {
+    "rank": 49,
+    "player_name": "Gary Woodland",
+    "p_win_%": 0.22,
+    "p_top10_%": 5.7,
+    "p_mc_%": 57.3,
+    "course_fit_score": 0.0575965807885117
+  },
+  {
+    "rank": 50,
+    "player_name": "Mackenzie Hughes",
+    "p_win_%": 0.22,
+    "p_top10_%": 6.1,
+    "p_mc_%": 57.8,
+    "course_fit_score": -0.1914990930104272
+  },
+  {
+    "rank": 51,
+    "player_name": "Matthieu Pavon",
+    "p_win_%": 0.2,
+    "p_top10_%": 5.8,
+    "p_mc_%": 57.8,
+    "course_fit_score": -0.0836655487419247
+  },
+  {
+    "rank": 52,
+    "player_name": "Emiliano Grillo",
+    "p_win_%": 0.19,
+    "p_top10_%": 4.8,
+    "p_mc_%": 54.6,
+    "course_fit_score": -0.0836380542940242
+  },
+  {
+    "rank": 53,
+    "player_name": "Takumi Kanaya",
+    "p_win_%": 0.19,
+    "p_top10_%": 5.1,
+    "p_mc_%": 55.8,
+    "course_fit_score": -0.0278388187858098
+  },
+  {
+    "rank": 54,
+    "player_name": "Michael Brennan",
+    "p_win_%": 0.17,
+    "p_top10_%": 3.9,
+    "p_mc_%": 52.5,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 55,
+    "player_name": "Dylan Wu",
+    "p_win_%": 0.16,
+    "p_top10_%": 4.7,
+    "p_mc_%": 54.8,
+    "course_fit_score": 0.0770619804887059
+  },
+  {
+    "rank": 56,
+    "player_name": "David Ford",
+    "p_win_%": 0.16,
+    "p_top10_%": 4.1,
+    "p_mc_%": 53.3,
+    "course_fit_score": 0.0316753162141901
+  },
+  {
+    "rank": 57,
+    "player_name": "Jeffrey Kang",
+    "p_win_%": 0.15,
+    "p_top10_%": 3.8,
+    "p_mc_%": 52.8,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 58,
+    "player_name": "Christo Lamprecht",
+    "p_win_%": 0.15,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.3,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 59,
+    "player_name": "Kensei Hirata",
+    "p_win_%": 0.15,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.3,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 60,
+    "player_name": "Sudarshan Yellamaraju",
+    "p_win_%": 0.14,
+    "p_top10_%": 4.0,
+    "p_mc_%": 53.1,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 61,
+    "player_name": "Neal Shipley",
+    "p_win_%": 0.14,
+    "p_top10_%": 4.1,
+    "p_mc_%": 52.6,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 62,
+    "player_name": "A.J. Ewart",
+    "p_win_%": 0.14,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.9,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 63,
+    "player_name": "Steven Fisk",
+    "p_win_%": 0.14,
+    "p_top10_%": 3.8,
+    "p_mc_%": 51.8,
+    "course_fit_score": 0.089307333016292
+  },
+  {
+    "rank": 64,
+    "player_name": "John VanDerLaan",
+    "p_win_%": 0.13,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.5,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 65,
+    "player_name": "Adam Svensson",
+    "p_win_%": 0.13,
+    "p_top10_%": 3.9,
+    "p_mc_%": 52.7,
+    "course_fit_score": 0.0398071539295615
+  },
+  {
+    "rank": 66,
+    "player_name": "David Lipsky",
+    "p_win_%": 0.13,
+    "p_top10_%": 5.0,
+    "p_mc_%": 55.9,
+    "course_fit_score": 0.1002023526775726
+  },
+  {
+    "rank": 67,
+    "player_name": "Kris Ventura",
+    "p_win_%": 0.13,
+    "p_top10_%": 4.2,
+    "p_mc_%": 53.1,
+    "course_fit_score": 0.0936083373929643
+  },
+  {
+    "rank": 68,
+    "player_name": "Nico Echavarria",
+    "p_win_%": 0.13,
+    "p_top10_%": 4.6,
+    "p_mc_%": 54.5,
+    "course_fit_score": -0.1273419119999453
+  },
+  {
+    "rank": 69,
+    "player_name": "Chandler Blanchet",
+    "p_win_%": 0.12,
+    "p_top10_%": 3.9,
+    "p_mc_%": 52.2,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 70,
+    "player_name": "Adrien Saddier",
+    "p_win_%": 0.12,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.8,
+    "course_fit_score": 0.0503463382141901
+  },
+  {
+    "rank": 71,
+    "player_name": "Zach Bauchou",
+    "p_win_%": 0.12,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.6,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 72,
+    "player_name": "Mark Hubbard",
+    "p_win_%": 0.12,
+    "p_top10_%": 3.2,
+    "p_mc_%": 49.5,
+    "course_fit_score": -0.1420592447715191
+  },
+  {
+    "rank": 73,
+    "player_name": "Dan Brown",
+    "p_win_%": 0.12,
+    "p_top10_%": 4.6,
+    "p_mc_%": 54.5,
+    "course_fit_score": 0.0549819602141901
+  },
+  {
+    "rank": 74,
+    "player_name": "Aaron Rai",
+    "p_win_%": 0.12,
+    "p_top10_%": 3.5,
+    "p_mc_%": 51.1,
+    "course_fit_score": 0.1769008180943615
+  },
+  {
+    "rank": 75,
+    "player_name": "Johnny Keefer",
+    "p_win_%": 0.11,
+    "p_top10_%": 4.1,
+    "p_mc_%": 52.8,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 76,
+    "player_name": "Pontus Nyholm",
+    "p_win_%": 0.11,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.8,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 77,
+    "player_name": "Jackson Suber",
+    "p_win_%": 0.11,
+    "p_top10_%": 3.8,
+    "p_mc_%": 52.5,
+    "course_fit_score": 0.108720220630244
+  },
+  {
+    "rank": 78,
+    "player_name": "Blades Brown",
+    "p_win_%": 0.11,
+    "p_top10_%": 4.0,
+    "p_mc_%": 52.7,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 79,
+    "player_name": "Keita Nakajima",
+    "p_win_%": 0.11,
+    "p_top10_%": 3.2,
+    "p_mc_%": 49.8,
+    "course_fit_score": 0.0238032002141901
+  },
+  {
+    "rank": 80,
+    "player_name": "Davis Chatfield",
+    "p_win_%": 0.1,
+    "p_top10_%": 3.9,
+    "p_mc_%": 52.3,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 81,
+    "player_name": "Matti Schmid",
+    "p_win_%": 0.09,
+    "p_top10_%": 3.4,
+    "p_mc_%": 49.9,
+    "course_fit_score": -0.0730720559079881
+  },
+  {
+    "rank": 82,
+    "player_name": "Carson Young",
+    "p_win_%": 0.08,
+    "p_top10_%": 2.7,
+    "p_mc_%": 47.1,
+    "course_fit_score": 0.2766185161904426
+  },
+  {
+    "rank": 83,
+    "player_name": "Mac Meissner",
+    "p_win_%": 0.08,
+    "p_top10_%": 3.0,
+    "p_mc_%": 48.8,
+    "course_fit_score": -0.1411381848021529
+  },
+  {
+    "rank": 84,
+    "player_name": "Seamus Power",
+    "p_win_%": 0.08,
+    "p_top10_%": 2.4,
+    "p_mc_%": 45.8,
+    "course_fit_score": 0.0577681218072144
+  },
+  {
+    "rank": 85,
+    "player_name": "Tom Kim",
+    "p_win_%": 0.06,
+    "p_top10_%": 3.2,
+    "p_mc_%": 50.2,
+    "course_fit_score": 0.5805021826581659
+  },
+  {
+    "rank": 86,
+    "player_name": "Matt Kuchar",
+    "p_win_%": 0.06,
+    "p_top10_%": 1.7,
+    "p_mc_%": 41.6,
+    "course_fit_score": -0.3471924592606525
+  },
+  {
+    "rank": 87,
+    "player_name": "Erik Van Rooyen",
+    "p_win_%": 0.06,
+    "p_top10_%": 2.8,
+    "p_mc_%": 47.6,
+    "course_fit_score": -0.0021035469872245
+  },
+  {
+    "rank": 88,
+    "player_name": "Joe Highsmith",
+    "p_win_%": 0.06,
+    "p_top10_%": 2.5,
+    "p_mc_%": 46.4,
+    "course_fit_score": -0.0249008363066805
+  },
+  {
+    "rank": 89,
+    "player_name": "Taylor Moore",
+    "p_win_%": 0.05,
+    "p_top10_%": 2.3,
+    "p_mc_%": 45.8,
+    "course_fit_score": 0.2232591033697484
+  },
+  {
+    "rank": 90,
+    "player_name": "Chad Ramey",
+    "p_win_%": 0.05,
+    "p_top10_%": 2.4,
+    "p_mc_%": 46.0,
+    "course_fit_score": -0.1309898066822596
+  },
+  {
+    "rank": 91,
+    "player_name": "Davis Riley",
+    "p_win_%": 0.05,
+    "p_top10_%": 2.2,
+    "p_mc_%": 45.4,
+    "course_fit_score": -0.1561410531787271
+  },
+  {
+    "rank": 92,
+    "player_name": "Cam Davis",
+    "p_win_%": 0.04,
+    "p_top10_%": 1.6,
+    "p_mc_%": 41.6,
+    "course_fit_score": -0.144408666895991
+  },
+  {
+    "rank": 93,
+    "player_name": "Charley Hoffman",
+    "p_win_%": 0.03,
+    "p_top10_%": 1.5,
+    "p_mc_%": 40.0,
+    "course_fit_score": -0.183045125357242
+  },
+  {
+    "rank": 94,
+    "player_name": "Kevin Streelman",
+    "p_win_%": 0.03,
+    "p_top10_%": 1.2,
+    "p_mc_%": 38.3,
+    "course_fit_score": 0.0281369860572215
+  },
+  {
+    "rank": 95,
+    "player_name": "Austin Smotherman",
+    "p_win_%": 0.02,
+    "p_top10_%": 1.1,
+    "p_mc_%": 37.0,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 96,
+    "player_name": "S.H. Kim",
+    "p_win_%": 0.02,
+    "p_top10_%": 1.4,
+    "p_mc_%": 40.0,
+    "course_fit_score": -0.1322418974007858
+  },
+  {
+    "rank": 97,
+    "player_name": "K.H. Lee",
+    "p_win_%": 0.02,
+    "p_top10_%": 1.2,
+    "p_mc_%": 37.5,
+    "course_fit_score": -0.1586631877786651
+  },
+  {
+    "rank": 98,
+    "player_name": "Nick Dunlap",
+    "p_win_%": 0.02,
+    "p_top10_%": 1.3,
+    "p_mc_%": 38.6,
+    "course_fit_score": -0.1064082910441857
+  },
+  {
+    "rank": 99,
+    "player_name": "Hank Lebioda",
+    "p_win_%": 0.02,
+    "p_top10_%": 1.1,
+    "p_mc_%": 36.3,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 100,
+    "player_name": "Patrick Fishburn",
+    "p_win_%": 0.02,
+    "p_top10_%": 0.7,
+    "p_mc_%": 31.6,
+    "course_fit_score": 0.185361756031935
+  },
+  {
+    "rank": 101,
+    "player_name": "Webb Simpson",
+    "p_win_%": 0.02,
+    "p_top10_%": 0.8,
+    "p_mc_%": 32.8,
+    "course_fit_score": 0.254396342946916
+  },
+  {
+    "rank": 102,
+    "player_name": "Adam Schenk",
+    "p_win_%": 0.02,
+    "p_top10_%": 0.9,
+    "p_mc_%": 36.1,
+    "course_fit_score": -0.1284405476062796
+  },
+  {
+    "rank": 103,
+    "player_name": "Marcelo Rozo",
+    "p_win_%": 0.02,
+    "p_top10_%": 0.8,
+    "p_mc_%": 33.8,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 104,
+    "player_name": "Justin Lower",
+    "p_win_%": 0.01,
+    "p_top10_%": 1.0,
+    "p_mc_%": 35.1,
+    "course_fit_score": -0.2118097916896431
+  },
+  {
+    "rank": 105,
+    "player_name": "Danny Willett",
+    "p_win_%": 0.01,
+    "p_top10_%": 0.7,
+    "p_mc_%": 33.4,
+    "course_fit_score": -0.343043422114901
+  },
+  {
+    "rank": 106,
+    "player_name": "Brandt Snedeker",
+    "p_win_%": 0.01,
+    "p_top10_%": 0.3,
+    "p_mc_%": 26.9,
+    "course_fit_score": -0.1112424911751917
+  },
+  {
+    "rank": 107,
+    "player_name": "Lanto Griffin",
+    "p_win_%": 0.01,
+    "p_top10_%": 1.5,
+    "p_mc_%": 39.8,
+    "course_fit_score": -0.0378661567858098
+  },
+  {
+    "rank": 108,
+    "player_name": "Danny Walker",
+    "p_win_%": 0.01,
+    "p_top10_%": 0.7,
+    "p_mc_%": 32.7,
+    "course_fit_score": -0.1340047597858098
+  },
+  {
+    "rank": 109,
+    "player_name": "Gordon Sargent",
+    "p_win_%": 0.01,
+    "p_top10_%": 0.4,
+    "p_mc_%": 27.0,
+    "course_fit_score": -0.2065729207858098
+  },
+  {
+    "rank": 110,
+    "player_name": "Adrien Dumont De Chassart",
+    "p_win_%": 0.01,
+    "p_top10_%": 0.3,
+    "p_mc_%": 26.8,
+    "course_fit_score": 0.2577221622433771
+  },
+  {
+    "rank": 111,
+    "player_name": "William Mouw",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.4,
+    "p_mc_%": 28.4,
+    "course_fit_score": -0.2033105632089547
+  },
+  {
+    "rank": 112,
+    "player_name": "Harry Higgs",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.1,
+    "p_mc_%": 19.0,
+    "course_fit_score": -0.1721572015253424
+  },
+  {
+    "rank": 113,
+    "player_name": "Justin Hicks",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.0,
+    "p_mc_%": 11.6,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 114,
+    "player_name": "Chandler Phillips",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.9,
+    "p_mc_%": 35.0,
+    "course_fit_score": -0.4954935484259874
+  },
+  {
+    "rank": 115,
+    "player_name": "Zecheng Dou",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.1,
+    "p_mc_%": 18.4,
+    "course_fit_score": 0.0558267078727933
+  },
+  {
+    "rank": 116,
+    "player_name": "Patton Kizzire",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.3,
+    "p_mc_%": 26.4,
+    "course_fit_score": -0.183012266675023
+  },
+  {
+    "rank": 117,
+    "player_name": "Frankie Capan III",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.0,
+    "p_mc_%": 8.4,
+    "course_fit_score": -0.4512504302672147
+  },
+  {
+    "rank": 118,
+    "player_name": "Rafael Campos",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.1,
+    "p_mc_%": 18.8,
+    "course_fit_score": -0.2120942812306072
+  },
+  {
+    "rank": 119,
+    "player_name": "Peter Malnati",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.2,
+    "p_mc_%": 22.3,
+    "course_fit_score": -0.3247487608159005
+  },
+  {
+    "rank": 120,
+    "player_name": "Brendon Todd",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.0,
+    "p_mc_%": 4.2,
+    "course_fit_score": -0.6502953319998727
+  },
+  {
+    "rank": 121,
+    "player_name": "Alejandro Tosti",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.0,
+    "p_mc_%": 7.6,
+    "course_fit_score": -0.3873046444903746
+  },
+  {
+    "rank": 122,
+    "player_name": "Paul Waring",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.1,
+    "p_mc_%": 21.3,
+    "course_fit_score": -0.1704560730386841
+  },
+  {
+    "rank": 123,
+    "player_name": "Camilo Villegas",
+    "p_win_%": 0.0,
+    "p_top10_%": 0.0,
+    "p_mc_%": 16.5,
+    "course_fit_score": -0.2771978461810496
+  }
+]

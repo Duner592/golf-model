@@ -1,5 +1,14 @@
 [
   {
+    "event_id": "10",
+    "event_name": "Cognizant Classic",
+    "tour": "pga",
+    "slug": "cognizant_classic",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-02-25 12:35:43 UTC"
+  },
+  {
     "event_id": "2026110",
     "event_name": "Investec South African Open Championship",
     "tour": "euro",
@@ -7,15 +16,6 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-24 12:30:39 UTC"
-  },
-  {
-    "event_id": "10",
-    "event_name": "Cognizant Classic",
-    "tour": "pga",
-    "slug": "cognizant_classic",
-    "year": "2026",
-    "csv_available": true,
-    "archived_at": "2026-02-23 09:19:59 UTC"
   },
   {
     "event_id": "2026109",

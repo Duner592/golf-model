@@ -1,7 +1,12 @@
 {
-  "event_id": "2026110",
-  "event_name": "No Event",
-  "source_csv": null,
-  "generated_utc": "24-Feb-2026 12:29:36",
-  "metrics": null
+  "event_id": "10",
+  "event_name": "Cognizant Classic",
+  "source_csv": "data/preds/pga/event_10_cognizant_classic_2026-02-25_leaderboard.csv",
+  "generated_utc": "25-Feb-2026 12:35:43",
+  "metrics": {
+    "field_size": 123,
+    "p_win_max": 0.2181,
+    "p_win_median": 0.0013666666666666666,
+    "p_win_sum": 1.0
+  }
 }
