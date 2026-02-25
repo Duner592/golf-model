@@ -1,0 +1,3827 @@
+{
+  "course_name": "PGA National Resort (The Champion Course)",
+  "current_round": 1,
+  "date_end": "2026-03-01",
+  "date_start": "2026-02-26",
+  "event_id": 10,
+  "event_name": "Cognizant Classic",
+  "field": [
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19846,
+      "dg_rank": 197,
+      "owgr_rank": 179,
+      "player_name": "Bauchou, Zach",
+      "player_num": 48001,
+      "pre_tourn_pageviews": 554,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 13:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "70"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17606,
+      "dg_rank": 81,
+      "owgr_rank": 62,
+      "player_name": "Berger, Daniel",
+      "player_num": 40026,
+      "pre_tourn_pageviews": 2461,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "45"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 18103,
+      "dg_rank": 47,
+      "owgr_rank": 89,
+      "player_name": "Bezuidenhout, Christiaan",
+      "player_num": 45522,
+      "pre_tourn_pageviews": 1734,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "96"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 24956,
+      "dg_rank": 147,
+      "owgr_rank": 137,
+      "player_name": "Blanchet, Chandler",
+      "player_num": 54788,
+      "pre_tourn_pageviews": 291,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 13:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29197,
+      "dg_rank": 102,
+      "owgr_rank": 42,
+      "player_name": "Brennan, Michael",
+      "player_num": 61522,
+      "pre_tourn_pageviews": 1446,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "123"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 32152,
+      "dg_rank": 248,
+      "owgr_rank": 335,
+      "player_name": "Brown, Blades",
+      "player_num": 66417,
+      "pre_tourn_pageviews": 1143,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 20766,
+      "dg_rank": 112,
+      "owgr_rank": 77,
+      "player_name": "Brown, Dan",
+      "player_num": 57259,
+      "pre_tourn_pageviews": 605,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "77"
+    },
+    {
+      "am": 0,
+      "country": "PUR",
+      "dg_id": 12909,
+      "dg_rank": null,
+      "owgr_rank": 428,
+      "player_name": "Campos, Rafael",
+      "player_num": 32070,
+      "pre_tourn_pageviews": 215,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T132"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21412,
+      "dg_rank": 482,
+      "owgr_rank": 262,
+      "player_name": "Capan III, Frankie",
+      "player_num": 49590,
+      "pre_tourn_pageviews": 516,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 27819,
+      "dg_rank": 108,
+      "owgr_rank": 161,
+      "player_name": "Castillo, Ricky",
+      "player_num": 59440,
+      "pre_tourn_pageviews": 947,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 13:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "102"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 30620,
+      "dg_rank": 259,
+      "owgr_rank": 235,
+      "player_name": "Chatfield, Davis",
+      "player_num": 59006,
+      "pre_tourn_pageviews": 183,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "152"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 32330,
+      "dg_rank": 237,
+      "owgr_rank": 211,
+      "player_name": "Clanton, Luke",
+      "player_num": 66743,
+      "pre_tourn_pageviews": 1642,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 13:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21756,
+      "dg_rank": 119,
+      "owgr_rank": 118,
+      "player_name": "Cole, Eric",
+      "player_num": 47591,
+      "pre_tourn_pageviews": 1177,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "85"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14509,
+      "dg_rank": 132,
+      "owgr_rank": 181,
+      "player_name": "Dahmen, Joel",
+      "player_num": 34076,
+      "pre_tourn_pageviews": 1086,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 06:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "56"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 17786,
+      "dg_rank": 432,
+      "owgr_rank": 162,
+      "player_name": "Davis, Cam",
+      "player_num": 45157,
+      "pre_tourn_pageviews": 631,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "149"
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "dg_id": 16757,
+      "dg_rank": 122,
+      "owgr_rank": 183,
+      "player_name": "Dou, Zecheng",
+      "player_num": 37338,
+      "pre_tourn_pageviews": 942,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "68"
+    },
+    {
+      "am": 0,
+      "country": "BEL",
+      "dg_id": 22002,
+      "dg_rank": 134,
+      "owgr_rank": 164,
+      "player_name": "Dumont De Chassart, Adrien",
+      "player_num": 50497,
+      "pre_tourn_pageviews": 682,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 13:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "105"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28270,
+      "dg_rank": 376,
+      "owgr_rank": 207,
+      "player_name": "Dunlap, Nick",
+      "player_num": 59866,
+      "pre_tourn_pageviews": 645,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "151"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "dg_id": 22833,
+      "dg_rank": 87,
+      "owgr_rank": 59,
+      "player_name": "Echavarria, Nico",
+      "player_num": 51349,
+      "pre_tourn_pageviews": 1618,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "46"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26653,
+      "dg_rank": 140,
+      "owgr_rank": 154,
+      "player_name": "Eckroat, Austin",
+      "player_num": 57362,
+      "pre_tourn_pageviews": 1333,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T140"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 21883,
+      "dg_rank": 305,
+      "owgr_rank": 364,
+      "player_name": "Ewart, A.J.",
+      "player_num": 50286,
+      "pre_tourn_pageviews": 446,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 13:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "99"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25094,
+      "dg_rank": 182,
+      "owgr_rank": 148,
+      "player_name": "Fishburn, Patrick",
+      "player_num": 54576,
+      "pre_tourn_pageviews": 332,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 13:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26657,
+      "dg_rank": 153,
+      "owgr_rank": 120,
+      "player_name": "Fisk, Steven",
+      "player_num": 57123,
+      "pre_tourn_pageviews": 402,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T137"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 31343,
+      "dg_rank": 210,
+      "owgr_rank": 317,
+      "player_name": "Ford, David",
+      "player_num": 65256,
+      "pre_tourn_pageviews": 1659,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "80"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 11451,
+      "dg_rank": 247,
+      "owgr_rank": 348,
+      "player_name": "Garnett, Brice",
+      "player_num": 29535,
+      "pre_tourn_pageviews": 275,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 06:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "116"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29767,
+      "dg_rank": 30,
+      "owgr_rank": 26,
+      "player_name": "Gerard, Ryan",
+      "player_num": 59018,
+      "pre_tourn_pageviews": 4677,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "7"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 24550,
+      "dg_rank": 124,
+      "owgr_rank": 168,
+      "player_name": "Ghim, Doug",
+      "player_num": 52375,
+      "pre_tourn_pageviews": 1012,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 06:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "130"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15330,
+      "dg_rank": 242,
+      "owgr_rank": 198,
+      "player_name": "Griffin, Lanto",
+      "player_num": 35310,
+      "pre_tourn_pageviews": 219,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 06:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "dg_id": 12808,
+      "dg_rank": 117,
+      "owgr_rank": 109,
+      "player_name": "Grillo, Emiliano",
+      "player_num": 31646,
+      "pre_tourn_pageviews": 693,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "115"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 13965,
+      "dg_rank": 192,
+      "owgr_rank": 209,
+      "player_name": "Hadwin, Adam",
+      "player_num": 33399,
+      "pre_tourn_pageviews": 1042,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 06:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 9166,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Hicks, Justin",
+      "player_num": 25444,
+      "pre_tourn_pageviews": 454,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 24342,
+      "dg_rank": 115,
+      "owgr_rank": 75,
+      "player_name": "Higgo, Garrick",
+      "player_num": 54421,
+      "pre_tourn_pageviews": 889,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T137"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14140,
+      "dg_rank": 366,
+      "owgr_rank": 227,
+      "player_name": "Higgs, Harry",
+      "player_num": 33597,
+      "pre_tourn_pageviews": 264,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28469,
+      "dg_rank": 443,
+      "owgr_rank": 129,
+      "player_name": "Highsmith, Joe",
+      "player_num": 60067,
+      "pre_tourn_pageviews": 1466,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "122"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 20954,
+      "dg_rank": 303,
+      "owgr_rank": 167,
+      "player_name": "Hirata, Kensei",
+      "player_num": 49120,
+      "pre_tourn_pageviews": 232,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 13:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "103"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25157,
+      "dg_rank": 128,
+      "owgr_rank": 133,
+      "player_name": "Hodges, Lee",
+      "player_num": 54628,
+      "pre_tourn_pageviews": 1119,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "62"
+    },
+    {
+      "am": 0,
+      "country": "PHI",
+      "dg_id": 23504,
+      "dg_rank": 99,
+      "owgr_rank": 74,
+      "player_name": "Hoey, Rico",
+      "player_num": 51696,
+      "pre_tourn_pageviews": 1379,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "91"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 5768,
+      "dg_rank": 332,
+      "owgr_rank": 327,
+      "player_name": "Hoffman, Charley",
+      "player_num": 12716,
+      "pre_tourn_pageviews": 257,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 23602,
+      "dg_rank": 44,
+      "owgr_rank": 55,
+      "player_name": "Hojgaard, Nicolai",
+      "player_num": 52453,
+      "pre_tourn_pageviews": 4216,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "41"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 23838,
+      "dg_rank": 38,
+      "owgr_rank": 48,
+      "player_name": "Hojgaard, Rasmus",
+      "player_num": 52686,
+      "pre_tourn_pageviews": 2519,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "75"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17538,
+      "dg_rank": 105,
+      "owgr_rank": 150,
+      "player_name": "Homa, Max",
+      "player_num": 39977,
+      "pre_tourn_pageviews": 1802,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "93"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 11276,
+      "dg_rank": 129,
+      "owgr_rank": 81,
+      "player_name": "Horschel, Billy",
+      "player_num": 29420,
+      "pre_tourn_pageviews": 1413,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "101"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15470,
+      "dg_rank": 161,
+      "owgr_rank": 153,
+      "player_name": "Hossler, Beau",
+      "player_num": 35461,
+      "pre_tourn_pageviews": 548,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 16333,
+      "dg_rank": 194,
+      "owgr_rank": 135,
+      "player_name": "Hubbard, Mark",
+      "player_num": 36801,
+      "pre_tourn_pageviews": 377,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "146"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 15556,
+      "dg_rank": 111,
+      "owgr_rank": 104,
+      "player_name": "Hughes, Mackenzie",
+      "player_num": 35506,
+      "pre_tourn_pageviews": 941,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "84"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "dg_id": 16394,
+      "dg_rank": 113,
+      "owgr_rank": 102,
+      "player_name": "Jaeger, Stephan",
+      "player_num": 36799,
+      "pre_tourn_pageviews": 1066,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "49"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 19729,
+      "dg_rank": 116,
+      "owgr_rank": 126,
+      "player_name": "Kanaya, Takumi",
+      "player_num": 47917,
+      "pre_tourn_pageviews": 509,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "111"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21889,
+      "dg_rank": 321,
+      "owgr_rank": 221,
+      "player_name": "Kang, Jeffrey",
+      "player_num": 47393,
+      "pre_tourn_pageviews": 167,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 13:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 32457,
+      "dg_rank": 77,
+      "owgr_rank": 61,
+      "player_name": "Keefer, Johnny",
+      "player_num": 63454,
+      "pre_tourn_pageviews": 2443,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "89"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15004,
+      "dg_rank": 203,
+      "owgr_rank": 260,
+      "player_name": "Kim, Chan",
+      "player_num": 34587,
+      "pre_tourn_pageviews": 351,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "dg_id": 21688,
+      "dg_rank": 139,
+      "owgr_rank": 149,
+      "player_name": "Kim, S.H.",
+      "player_num": 50188,
+      "pre_tourn_pageviews": 918,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "54"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "dg_id": 24766,
+      "dg_rank": 114,
+      "owgr_rank": 116,
+      "player_name": "Kim, Tom",
+      "player_num": 55182,
+      "pre_tourn_pageviews": 1736,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "74"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12423,
+      "dg_rank": 79,
+      "owgr_rank": 95,
+      "player_name": "Kirk, Chris",
+      "player_num": 30926,
+      "pre_tourn_pageviews": 1682,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "128"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 13470,
+      "dg_rank": 231,
+      "owgr_rank": 243,
+      "player_name": "Kizzire, Patton",
+      "player_num": 32757,
+      "pre_tourn_pageviews": 269,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "107"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 16243,
+      "dg_rank": 159,
+      "owgr_rank": 263,
+      "player_name": "Koepka, Brooks",
+      "player_num": 36689,
+      "pre_tourn_pageviews": 1904,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "148"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 6169,
+      "dg_rank": 86,
+      "owgr_rank": 143,
+      "player_name": "Kuchar, Matt",
+      "player_num": 23108,
+      "pre_tourn_pageviews": 508,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "T132"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 24343,
+      "dg_rank": 276,
+      "owgr_rank": 173,
+      "player_name": "Lamprecht, Christo",
+      "player_num": 54422,
+      "pre_tourn_pageviews": 371,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T135"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21943,
+      "dg_rank": 245,
+      "owgr_rank": 214,
+      "player_name": "Lebioda, Hank",
+      "player_num": 49766,
+      "pre_tourn_pageviews": 187,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T154"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "dg_id": 13497,
+      "dg_rank": 442,
+      "owgr_rank": 496,
+      "player_name": "Lee, K.H.",
+      "player_num": 32791,
+      "pre_tourn_pageviews": 373,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "dg_id": 15310,
+      "dg_rank": 76,
+      "owgr_rank": 72,
+      "player_name": "Li, Haotong",
+      "player_num": 35296,
+      "pre_tourn_pageviews": 2520,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "48"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15980,
+      "dg_rank": 151,
+      "owgr_rank": 146,
+      "player_name": "Lipsky, David",
+      "player_num": 36326,
+      "pre_tourn_pageviews": 795,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 06:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "87"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17723,
+      "dg_rank": 249,
+      "owgr_rank": 177,
+      "player_name": "Lower, Justin",
+      "player_num": 40162,
+      "pre_tourn_pageviews": 329,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "T113"
+    },
+    {
+      "am": 0,
+      "country": "IRL",
+      "dg_id": 13900,
+      "dg_rank": 21,
+      "owgr_rank": 31,
+      "player_name": "Lowry, Shane",
+      "player_num": 33204,
+      "pre_tourn_pageviews": 3873,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "32"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14926,
+      "dg_rank": 405,
+      "owgr_rank": null,
+      "player_name": "Malnati, Peter",
+      "player_num": 34466,
+      "pre_tourn_pageviews": 187,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 06:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23505,
+      "dg_rank": 62,
+      "owgr_rank": 69,
+      "player_name": "McGreevy, Max",
+      "player_num": 51950,
+      "pre_tourn_pageviews": 2789,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "61"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28159,
+      "dg_rank": 68,
+      "owgr_rank": 103,
+      "player_name": "Meissner, Mac",
+      "player_num": 59143,
+      "pre_tourn_pageviews": 1789,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "73"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17365,
+      "dg_rank": 70,
+      "owgr_rank": 124,
+      "player_name": "Mitchell, Keith",
+      "player_num": 39546,
+      "pre_tourn_pageviews": 2261,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "58"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21944,
+      "dg_rank": 178,
+      "owgr_rank": 189,
+      "player_name": "Moore, Taylor",
+      "player_num": 49947,
+      "pre_tourn_pageviews": 518,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "124"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29770,
+      "dg_rank": 200,
+      "owgr_rank": 138,
+      "player_name": "Mouw, William",
+      "player_num": 63121,
+      "pre_tourn_pageviews": 333,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "T156"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 21074,
+      "dg_rank": 191,
+      "owgr_rank": 111,
+      "player_name": "Nakajima, Keita",
+      "player_num": 49228,
+      "pre_tourn_pageviews": 331,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 13:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "143"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 23841,
+      "dg_rank": 60,
+      "owgr_rank": 58,
+      "player_name": "Neergaard-Petersen, Rasmus",
+      "player_num": 52689,
+      "pre_tourn_pageviews": 1651,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 13:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "118"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "dg_id": 25475,
+      "dg_rank": 420,
+      "owgr_rank": 287,
+      "player_name": "Nyholm, Pontus",
+      "player_num": 55851,
+      "pre_tourn_pageviews": 237,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 13412,
+      "dg_rank": 55,
+      "owgr_rank": 97,
+      "player_name": "Olesen, Thorbjorn",
+      "player_num": 33968,
+      "pre_tourn_pageviews": 1095,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 13764,
+      "dg_rank": 59,
+      "owgr_rank": 84,
+      "player_name": "Parry, John",
+      "player_num": 28723,
+      "pre_tourn_pageviews": 1356,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "65"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "dg_id": 19960,
+      "dg_rank": 255,
+      "owgr_rank": 273,
+      "player_name": "Pavon, Matthieu",
+      "player_num": 48153,
+      "pre_tourn_pageviews": 572,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 06:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "95"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 27164,
+      "dg_rank": 152,
+      "owgr_rank": 160,
+      "player_name": "Phillips, Chandler",
+      "player_num": 57900,
+      "pre_tourn_pageviews": 345,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "92"
+    },
+    {
+      "am": 0,
+      "country": "IRL",
+      "dg_id": 10104,
+      "dg_rank": 75,
+      "owgr_rank": 151,
+      "player_name": "Power, Seamus",
+      "player_num": 28252,
+      "pre_tourn_pageviews": 1136,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "63"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14704,
+      "dg_rank": 136,
+      "owgr_rank": 115,
+      "player_name": "Putnam, Andrew",
+      "player_num": 34256,
+      "pre_tourn_pageviews": 1205,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "33"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 18554,
+      "dg_rank": 64,
+      "owgr_rank": 32,
+      "player_name": "Rai, Aaron",
+      "player_num": 46414,
+      "pre_tourn_pageviews": 2070,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "97"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19840,
+      "dg_rank": 127,
+      "owgr_rank": 156,
+      "player_name": "Ramey, Chad",
+      "player_num": 47983,
+      "pre_tourn_pageviews": 393,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "90"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "dg_id": 21407,
+      "dg_rank": 72,
+      "owgr_rank": 46,
+      "player_name": "Reitan, Kristoffer",
+      "player_num": 49855,
+      "pre_tourn_pageviews": 1121,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "106"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19872,
+      "dg_rank": 274,
+      "owgr_rank": 98,
+      "player_name": "Riley, Davis",
+      "player_num": 47995,
+      "pre_tourn_pageviews": 799,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "59"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18424,
+      "dg_rank": 107,
+      "owgr_rank": 134,
+      "player_name": "Roy, Kevin",
+      "player_num": 39335,
+      "pre_tourn_pageviews": 858,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "53"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "dg_id": 16591,
+      "dg_rank": 397,
+      "owgr_rank": 471,
+      "player_name": "Rozo, Marcelo",
+      "player_num": 37076,
+      "pre_tourn_pageviews": 168,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "153"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 16715,
+      "dg_rank": 165,
+      "owgr_rank": 213,
+      "player_name": "Ryder, Sam",
+      "player_num": 37275,
+      "pre_tourn_pageviews": 1276,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 06:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "108"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "dg_id": 14792,
+      "dg_rank": 167,
+      "owgr_rank": 85,
+      "player_name": "Saddier, Adrien",
+      "player_num": 34371,
+      "pre_tourn_pageviews": 358,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "139"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 27183,
+      "dg_rank": 243,
+      "owgr_rank": 229,
+      "player_name": "Salinda, Isaiah",
+      "player_num": 56781,
+      "pre_tourn_pageviews": 551,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 13:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "T113"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 30814,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Sargent, Gordon",
+      "player_num": 64442,
+      "pre_tourn_pageviews": 586,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19477,
+      "dg_rank": 393,
+      "owgr_rank": 136,
+      "player_name": "Schenk, Adam",
+      "player_num": 47347,
+      "pre_tourn_pageviews": 340,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "79"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "dg_id": 20722,
+      "dg_rank": 195,
+      "owgr_rank": 101,
+      "player_name": "Schmid, Matti",
+      "player_num": 48867,
+      "pre_tourn_pageviews": 465,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "112"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 32055,
+      "dg_rank": 223,
+      "owgr_rank": 121,
+      "player_name": "Shipley, Neal",
+      "player_num": 63807,
+      "pre_tourn_pageviews": 777,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 13:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T154"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 11049,
+      "dg_rank": 189,
+      "owgr_rank": 474,
+      "player_name": "Simpson, Webb",
+      "player_num": 29221,
+      "pre_tourn_pageviews": 314,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "150"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18474,
+      "dg_rank": 78,
+      "owgr_rank": 119,
+      "player_name": "Smalley, Alex",
+      "player_num": 46340,
+      "pre_tourn_pageviews": 1667,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "60"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 18586,
+      "dg_rank": 74,
+      "owgr_rank": 90,
+      "player_name": "Smith, Jordan",
+      "player_num": 46464,
+      "pre_tourn_pageviews": 1159,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 13:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "64"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 22985,
+      "dg_rank": 185,
+      "owgr_rank": 127,
+      "player_name": "Smotherman, Austin",
+      "player_num": 50095,
+      "pre_tourn_pageviews": 784,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 13:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "67"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 8820,
+      "dg_rank": 209,
+      "owgr_rank": 289,
+      "player_name": "Snedeker, Brandt",
+      "player_num": 27649,
+      "pre_tourn_pageviews": 201,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 06:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23048,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Stanger, Jimmy",
+      "player_num": 51600,
+      "pre_tourn_pageviews": 273,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 13:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 8480,
+      "dg_rank": 431,
+      "owgr_rank": null,
+      "player_name": "Streelman, Kevin",
+      "player_num": 27214,
+      "pre_tourn_pageviews": 213,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29279,
+      "dg_rank": 229,
+      "owgr_rank": 186,
+      "player_name": "Suber, Jackson",
+      "player_num": 60019,
+      "pre_tourn_pageviews": 495,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T156"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 13997,
+      "dg_rank": 220,
+      "owgr_rank": 341,
+      "player_name": "Svensson, Adam",
+      "player_num": 40115,
+      "pre_tourn_pageviews": 432,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T125"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "dg_id": 26850,
+      "dg_rank": 173,
+      "owgr_rank": 165,
+      "player_name": "Svensson, Jesper",
+      "player_num": 57586,
+      "pre_tourn_pageviews": 898,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 13:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 08:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 27364,
+      "dg_rank": 80,
+      "owgr_rank": 114,
+      "player_name": "Thompson, Davis",
+      "player_num": 58168,
+      "pre_tourn_pageviews": 1617,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "121"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26649,
+      "dg_rank": 71,
+      "owgr_rank": 50,
+      "player_name": "Thorbjornsen, Michael",
+      "player_num": 57364,
+      "pre_tourn_pageviews": 3090,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "37"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12425,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Todd, Brendon",
+      "player_num": 30927,
+      "pre_tourn_pageviews": 316,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "dg_id": 17032,
+      "dg_rank": 428,
+      "owgr_rank": 285,
+      "player_name": "Tosti, Alejandro",
+      "player_num": 38991,
+      "pre_tourn_pageviews": 376,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "FIN",
+      "dg_id": 23816,
+      "dg_rank": 63,
+      "owgr_rank": 47,
+      "player_name": "Valimaki, Sami",
+      "player_num": 52666,
+      "pre_tourn_pageviews": 1755,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "83"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 17550,
+      "dg_rank": 266,
+      "owgr_rank": 140,
+      "player_name": "Van Rooyen, Erik",
+      "player_num": 40006,
+      "pre_tourn_pageviews": 857,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25319,
+      "dg_rank": 219,
+      "owgr_rank": 254,
+      "player_name": "VanDerLaan, John",
+      "player_num": 55573,
+      "pre_tourn_pageviews": 252,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 13:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "120"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "dg_id": 15651,
+      "dg_rank": 106,
+      "owgr_rank": 212,
+      "player_name": "Ventura, Kris",
+      "player_num": 35658,
+      "pre_tourn_pageviews": 605,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 08:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "104"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 24304,
+      "dg_rank": 214,
+      "owgr_rank": 142,
+      "player_name": "Vilips, Karl",
+      "player_num": 54304,
+      "pre_tourn_pageviews": 774,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 07:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 12:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "81"
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "dg_id": 9171,
+      "dg_rank": 371,
+      "owgr_rank": 445,
+      "player_name": "Villegas, Camilo",
+      "player_num": 27770,
+      "pre_tourn_pageviews": 286,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 06:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:47",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25003,
+      "dg_rank": 345,
+      "owgr_rank": 220,
+      "player_name": "Walker, Danny",
+      "player_num": 54607,
+      "pre_tourn_pageviews": 253,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "119"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 20706,
+      "dg_rank": 110,
+      "owgr_rank": 91,
+      "player_name": "Wallace, Matt",
+      "player_num": 48887,
+      "pre_tourn_pageviews": 661,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 11:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 12426,
+      "dg_rank": 411,
+      "owgr_rank": 268,
+      "player_name": "Waring, Paul",
+      "player_num": 31113,
+      "pre_tourn_pageviews": 182,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 08:09",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25908,
+      "dg_rank": 100,
+      "owgr_rank": 117,
+      "player_name": "Whaley, Vince",
+      "player_num": 51894,
+      "pre_tourn_pageviews": 503,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:21",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "T125"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 12920,
+      "dg_rank": null,
+      "owgr_rank": 375,
+      "player_name": "Willett, Danny",
+      "player_num": 32139,
+      "pre_tourn_pageviews": 318,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 11:35",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 22051,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Wise, Aaron",
+      "player_num": 49964,
+      "pre_tourn_pageviews": 370,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 12:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:21",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12577,
+      "dg_rank": 143,
+      "owgr_rank": 144,
+      "player_name": "Woodland, Gary",
+      "player_num": 31323,
+      "pre_tourn_pageviews": 731,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 11:47",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 06:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "145"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25002,
+      "dg_rank": 150,
+      "owgr_rank": 349,
+      "player_name": "Wu, Dylan",
+      "player_num": 54783,
+      "pre_tourn_pageviews": 485,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 07:09",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "109"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 29925,
+      "dg_rank": 235,
+      "owgr_rank": 226,
+      "player_name": "Yellamaraju, Sudarshan",
+      "player_num": 60386,
+      "pre_tourn_pageviews": 695,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 08:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 13:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "78"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23656,
+      "dg_rank": 205,
+      "owgr_rank": 158,
+      "player_name": "Young, Carson",
+      "player_num": 52513,
+      "pre_tourn_pageviews": 524,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-02-26 11:35",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-02-27 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "T132"
+    },
+    {
+      "am": 0,
+      "country": "TPE",
+      "dg_id": 17881,
+      "dg_rank": 118,
+      "owgr_rank": 105,
+      "player_name": "Yu, Kevin",
+      "player_num": 45242,
+      "pre_tourn_pageviews": 785,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 07:33",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 12:23",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "147"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19428,
+      "dg_rank": 83,
+      "owgr_rank": 252,
+      "player_name": "Zalatoris, Will",
+      "player_num": 47483,
+      "pre_tourn_pageviews": 2279,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-02-26 12:23",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "PGA National Resort (The Champion Course)",
+          "course_num": 928,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-02-27 07:33",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "98"
+    }
+  ],
+  "last_updated": "2026-02-25 12:30:56 UTC",
+  "multi_course": "no",
+  "tour": "pga",
+  "tz_offset": -18000
+}
