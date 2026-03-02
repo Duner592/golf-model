@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7759b24c-560f-4c2e-8ca9-f64cf2063502" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/leaderboard.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/leaderboard.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/meta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/tournament_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/cognizant_classic/tournament_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/joburg_open/leaderboard.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/joburg_open/leaderboard.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/joburg_open/meta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/joburg_open/summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/archive/2026/joburg_open/tournament_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/course_history_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/course_fit_weights.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/course_history_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026111_joburg_open_2026-03-02_leaderboard.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026111_joburg_open_2026-03-02_leaderboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/field_teetimes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/leaderboard.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/meta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/schedule.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/tournament_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/weather_meta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/weather_round_neutral.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/euro/weather_round_wave.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/course_fit_weights.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/course_history_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-02_leaderboard.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-02_leaderboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/field_teetimes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/leaderboard.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/meta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/schedule.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/tournament_summary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/weather_meta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/weather_round_neutral.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/pga/weather_round_wave.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EdsGolfModelLogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/EdsGolfModelLogo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_bet_comparison_backup.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/_bet_comparison_backup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/at_t_pebble_beach_pro_am/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/at_t_pebble_beach_pro_am/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/at_t_pebble_beach_pro_am/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/at_t_pebble_beach_pro_am/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/at_t_pebble_beach_pro_am/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/at_t_pebble_beach_pro_am/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/at_t_pebble_beach_pro_am/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/at_t_pebble_beach_pro_am/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/at_t_pebble_beach_pro_am/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/at_t_pebble_beach_pro_am/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/at_t_pebble_beach_pro_am/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/at_t_pebble_beach_pro_am/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/bapco_energies_bahrain_championship/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/bapco_energies_bahrain_championship/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/bapco_energies_bahrain_championship/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/bapco_energies_bahrain_championship/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/bapco_energies_bahrain_championship/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/bapco_energies_bahrain_championship/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/bapco_energies_bahrain_championship/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/bapco_energies_bahrain_championship/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/bapco_energies_bahrain_championship/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/bapco_energies_bahrain_championship/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/bapco_energies_bahrain_championship/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/bapco_energies_bahrain_championship/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/cognizant_classic/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/cognizant_classic/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/cognizant_classic/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/cognizant_classic/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/cognizant_classic/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/cognizant_classic/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/cognizant_classic/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/cognizant_classic/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/cognizant_classic/tournament_summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/dubai_invitational/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/dubai_invitational/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/dubai_invitational/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/dubai_invitational/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/dubai_invitational/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/dubai_invitational/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/dubai_invitational/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/dubai_invitational/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/dubai_invitational/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/dubai_invitational/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/dubai_invitational/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/dubai_invitational/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/farmers_insurance_open/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/farmers_insurance_open/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/farmers_insurance_open/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/farmers_insurance_open/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/farmers_insurance_open/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/farmers_insurance_open/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/farmers_insurance_open/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/farmers_insurance_open/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/farmers_insurance_open/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/farmers_insurance_open/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/farmers_insurance_open/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/farmers_insurance_open/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/hero_dubai_desert_classic/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/hero_dubai_desert_classic/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/hero_dubai_desert_classic/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/hero_dubai_desert_classic/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/hero_dubai_desert_classic/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/hero_dubai_desert_classic/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/hero_dubai_desert_classic/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/hero_dubai_desert_classic/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/hero_dubai_desert_classic/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/hero_dubai_desert_classic/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/hero_dubai_desert_classic/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/hero_dubai_desert_classic/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/investec_south_african_open_championship/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/investec_south_african_open_championship/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/investec_south_african_open_championship/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/investec_south_african_open_championship/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/investec_south_african_open_championship/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/investec_south_african_open_championship/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/investec_south_african_open_championship/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/investec_south_african_open_championship/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/investec_south_african_open_championship/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/investec_south_african_open_championship/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/magical_kenya_open_presented_by_absa/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/magical_kenya_open_presented_by_absa/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/magical_kenya_open_presented_by_absa/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/magical_kenya_open_presented_by_absa/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/magical_kenya_open_presented_by_absa/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/magical_kenya_open_presented_by_absa/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/magical_kenya_open_presented_by_absa/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/magical_kenya_open_presented_by_absa/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/magical_kenya_open_presented_by_absa/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/magical_kenya_open_presented_by_absa/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/magical_kenya_open_presented_by_absa/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/magical_kenya_open_presented_by_absa/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/qatar_masters/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/qatar_masters/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/qatar_masters/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/qatar_masters/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/qatar_masters/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/qatar_masters/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/qatar_masters/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/qatar_masters/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/qatar_masters/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/qatar_masters/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/qatar_masters/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/qatar_masters/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/sony_open_in_hawaii/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/sony_open_in_hawaii/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/sony_open_in_hawaii/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/sony_open_in_hawaii/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/sony_open_in_hawaii/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/sony_open_in_hawaii/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/sony_open_in_hawaii/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/sony_open_in_hawaii/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/sony_open_in_hawaii/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/sony_open_in_hawaii/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/sony_open_in_hawaii/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/sony_open_in_hawaii/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_american_express/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_american_express/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_american_express/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_american_express/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_american_express/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_american_express/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_american_express/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_american_express/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_american_express/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_american_express/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_american_express/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_american_express/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_genesis_invitational/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_genesis_invitational/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_genesis_invitational/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_genesis_invitational/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_genesis_invitational/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_genesis_invitational/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_genesis_invitational/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_genesis_invitational/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_genesis_invitational/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_genesis_invitational/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/the_genesis_invitational/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/the_genesis_invitational/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/wm_phoenix_open/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/wm_phoenix_open/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/wm_phoenix_open/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/wm_phoenix_open/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/wm_phoenix_open/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/wm_phoenix_open/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/wm_phoenix_open/results.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/wm_phoenix_open/results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/wm_phoenix_open/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/wm_phoenix_open/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/2026/wm_phoenix_open/tournament_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/wm_phoenix_open/tournament_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/results_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/results_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bet_comparison.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/bet_comparison.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/betting_analytics.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/betting_analytics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/course_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course_history_summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/course_fit_weights.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/course_history_summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026105_dubai_invitational_2026-01-11_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026105_dubai_invitational_2026-01-11_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026105_dubai_invitational_2026-01-11_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026105_dubai_invitational_2026-01-11_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026105_dubai_invitational_2026-01-12_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026105_dubai_invitational_2026-01-12_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026105_dubai_invitational_2026-01-12_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026105_dubai_invitational_2026-01-12_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026105_dubai_invitational_2026-01-14_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026105_dubai_invitational_2026-01-14_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026105_dubai_invitational_2026-01-14_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026105_dubai_invitational_2026-01-14_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-19_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-19_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-19_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-19_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-21_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-21_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-21_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026106_hero_dubai_desert_classic_2026-01-21_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-26_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-26_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-26_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-26_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-27_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-27_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-27_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026107_bapco_energies_bahrain_championship_2026-01-27_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026109_magical_kenya_open_presented_by_absa_2026-02-16_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-23_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-23_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-23_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-23_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-24_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-24_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-24_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026110_investec_south_african_open_championship_2026-02-24_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026145_qatar_masters_2026-02-02_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026145_qatar_masters_2026-02-02_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026145_qatar_masters_2026-02-02_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026145_qatar_masters_2026-02-02_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026145_qatar_masters_2026-02-03_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026145_qatar_masters_2026-02-03_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026145_qatar_masters_2026-02-03_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026145_qatar_masters_2026-02-03_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026145_qatar_masters_2026-02-04_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026145_qatar_masters_2026-02-04_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/downloads/event_2026145_qatar_masters_2026-02-04_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro/downloads/event_2026145_qatar_masters_2026-02-04_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/field_teetimes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/leaderboard.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/schedule.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/tournament_summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/weather_meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/weather_round_neutral.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro/weather_round_wave.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro_schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/euro_schedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/event_archive.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/event_archive.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/links.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/links.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/menu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/course_fit_weights.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/course_history_summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_10_cognizant_classic_2026-02-23_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_10_cognizant_classic_2026-02-23_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_10_cognizant_classic_2026-02-23_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_10_cognizant_classic_2026-02-23_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_10_cognizant_classic_2026-02-25_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_10_cognizant_classic_2026-02-25_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_10_cognizant_classic_2026-02-25_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_10_cognizant_classic_2026-02-25_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_2_the_american_express_2026-01-19_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_2_the_american_express_2026-01-19_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_2_the_american_express_2026-01-19_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_2_the_american_express_2026-01-19_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_2_the_american_express_2026-01-21_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_2_the_american_express_2026-01-21_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_2_the_american_express_2026-01-21_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_2_the_american_express_2026-01-21_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_3_wm_phoenix_open_2026-02-02_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_3_wm_phoenix_open_2026-02-02_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_3_wm_phoenix_open_2026-02-02_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_3_wm_phoenix_open_2026-02-02_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_3_wm_phoenix_open_2026-02-03_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_3_wm_phoenix_open_2026-02-03_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_3_wm_phoenix_open_2026-02-03_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_3_wm_phoenix_open_2026-02-03_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_3_wm_phoenix_open_2026-02-04_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_3_wm_phoenix_open_2026-02-04_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_3_wm_phoenix_open_2026-02-04_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_3_wm_phoenix_open_2026-02-04_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_493_the_rsm_classic_2025-11-17_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_493_the_rsm_classic_2025-11-17_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_493_the_rsm_classic_2025-11-17_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_493_the_rsm_classic_2025-11-17_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_4_farmers_insurance_open_2026-01-26_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_4_farmers_insurance_open_2026-01-26_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_4_farmers_insurance_open_2026-01-26_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_4_farmers_insurance_open_2026-01-26_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_4_farmers_insurance_open_2026-01-27_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_4_farmers_insurance_open_2026-01-27_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_4_farmers_insurance_open_2026-01-27_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_4_farmers_insurance_open_2026-01-27_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-09_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-09_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-09_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-09_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-11_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-11_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-11_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-11_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-13_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-13_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-13_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_5_at_t_pebble_beach_pro_am_2026-02-13_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_6_sony_open_in_hawaii_2026-01-11_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_6_sony_open_in_hawaii_2026-01-11_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_6_sony_open_in_hawaii_2026-01-11_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_6_sony_open_in_hawaii_2026-01-11_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_6_sony_open_in_hawaii_2026-01-12_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_6_sony_open_in_hawaii_2026-01-12_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_6_sony_open_in_hawaii_2026-01-12_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_6_sony_open_in_hawaii_2026-01-12_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_6_sony_open_in_hawaii_2026-01-14_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_6_sony_open_in_hawaii_2026-01-14_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_6_sony_open_in_hawaii_2026-01-14_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_6_sony_open_in_hawaii_2026-01-14_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_7_the_genesis_invitational_2026-02-16_leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_7_the_genesis_invitational_2026-02-16_leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/downloads/event_7_the_genesis_invitational_2026-02-16_leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/downloads/event_7_the_genesis_invitational_2026-02-16_leaderboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/field_teetimes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/leaderboard.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/schedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/schedule.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/tournament_summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/weather_meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/weather_round_neutral.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga/weather_round_wave.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pga_schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga_schedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roi.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/roi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/schedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spreadsheet.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/spreadsheet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spreadsheet_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/spreadsheet_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/theme.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3ACVGXNWy31M1Sq8awNVHSlo1yT" />
+  <component name="ProjectViewState">
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7759b24c-560f-4c2e-8ca9-f64cf2063502" name="Changes" comment="" />
+      <created>1772096452327</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772096452327</updated>
+    </task>
+    <servers />
+  </component>
+</project>
