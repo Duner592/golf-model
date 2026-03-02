@@ -1,5 +1,23 @@
 [
   {
+    "event_id": "2026111",
+    "event_name": "Joburg Open",
+    "tour": "euro",
+    "slug": "joburg_open",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-03-02 09:28:24 UTC"
+  },
+  {
+    "event_id": "9",
+    "event_name": "Arnold Palmer Invitational presented by Mastercard",
+    "tour": "pga",
+    "slug": "arnold_palmer_invitational_presented_by_mastercard",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-03-02 09:28:18 UTC"
+  },
+  {
     "event_id": "10",
     "event_name": "Cognizant Classic",
     "tour": "pga",

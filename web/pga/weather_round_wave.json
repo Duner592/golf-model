@@ -2,61 +2,61 @@
   {
     "round": 1,
     "wave": "AM",
-    "wind_mph": 4.3,
-    "gust_mph": 10.46,
-    "temp_c": 14.9,
-    "precip_pct": 1.0,
-    "delta_strokes": 0.0,
+    "wind_mph": 8.37,
+    "gust_mph": 20.46,
+    "temp_c": 21.3,
+    "precip_pct": 4.0,
+    "delta_strokes": 0.044,
     "weathercode": 0
   },
   {
     "round": 1,
     "wave": "PM",
-    "wind_mph": 6.0,
-    "gust_mph": 11.08,
-    "temp_c": 22.8,
-    "precip_pct": 6.0,
-    "delta_strokes": 0.0,
-    "weathercode": 3
+    "wind_mph": 10.83,
+    "gust_mph": 16.83,
+    "temp_c": 24.5,
+    "precip_pct": 25.0,
+    "delta_strokes": 0.34,
+    "weathercode": 0
   },
   {
     "round": 2,
     "wave": "AM",
-    "wind_mph": 2.84,
-    "gust_mph": 3.32,
-    "temp_c": 20.9,
-    "precip_pct": 14.0,
+    "wind_mph": 7.68,
+    "gust_mph": 18.62,
+    "temp_c": 21.4,
+    "precip_pct": 4.0,
     "delta_strokes": 0.0,
     "weathercode": 0
   },
   {
     "round": 2,
     "wave": "PM",
-    "wind_mph": 8.14,
-    "gust_mph": 11.76,
-    "temp_c": 26.6,
-    "precip_pct": 35.0,
-    "delta_strokes": 0.017,
-    "weathercode": 3
+    "wind_mph": 12.49,
+    "gust_mph": 16.35,
+    "temp_c": 26.5,
+    "precip_pct": 20.0,
+    "delta_strokes": 0.539,
+    "weathercode": 0
   },
   {
     "round": 3,
     "wave": "ALL",
-    "wind_mph": 5.89,
-    "gust_mph": 8.68,
-    "temp_c": 24.3,
-    "precip_pct": 39.0,
-    "delta_strokes": 0.0,
+    "wind_mph": 11.95,
+    "gust_mph": 19.91,
+    "temp_c": 24.0,
+    "precip_pct": 12.0,
+    "delta_strokes": 0.473,
     "weathercode": 3
   },
   {
     "round": 4,
     "wave": "ALL",
-    "wind_mph": 8.38,
-    "gust_mph": 10.28,
-    "temp_c": 23.5,
-    "precip_pct": 23.0,
-    "delta_strokes": 0.045,
-    "weathercode": 0
+    "wind_mph": 11.15,
+    "gust_mph": 19.6,
+    "temp_c": 23.6,
+    "precip_pct": 14.0,
+    "delta_strokes": 0.378,
+    "weathercode": 1
   }
 ]
