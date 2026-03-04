@@ -167,6 +167,7 @@
             <select id="weeklyYearSelect"></select>
         </div>
         <canvas id="weeklyScatterChart"></canvas>
+        <div id="weeklyScatterHover" class="small muted" style="margin-top:0.25rem;"></div>
         <p class="muted" id="weeklyScatterNote" style="margin-top:0.5rem; display:none;">Showing weekly totals for completed bets in the selected year.</p>
     </div>
 </div>
@@ -430,6 +431,7 @@
     }
 
     let weeklyScatterChart = null;
+    let weeklyScatterHoverBound = false;
 
     function renderWeeklyScatter(rawData) {
         const section = document.getElementById('weeklyScatterSection');
@@ -447,9 +449,17 @@
         selectEl.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
         const canvas = document.getElementById('weeklyScatterChart');
 
+        const hoverEl = document.getElementById('weeklyScatterHover');
+
         const render = year => {
+            hoverEl.textContent = '';
             const points = pointsByYear[year] || [];
-            const dataPoints = points.map(point => ({ x: point.week, y: point.total }));
+            const dataPoints = points.map(point => ({
+                x: point.week,
+                y: point.total,
+                week: point.week,
+                value: point.total
+            }));
             const colors = points.map(point => point.total >= 0 ? '#2e8b57' : '#c0392b');
 
             if (weeklyScatterChart) {
@@ -468,7 +478,8 @@
                         label: 'Weekly P/L (£)',
                         data: dataPoints,
                         pointRadius: 5,
-                        pointHoverRadius: 7,
+                        pointHoverRadius: 8,
+                        pointHitRadius: 14,
                         pointBackgroundColor: colors,
                         pointBorderColor: colors
                     }]
@@ -476,6 +487,21 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false,
+                        axis: 'xy'
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                        onHover: (_, elements) => {
+                            const canvasEl = weeklyScatterChart ? weeklyScatterChart.canvas : null;
+                            if (canvasEl) {
+                                canvasEl.style.cursor = elements.length ? 'pointer' : 'default';
+                            }
+                        }
+                    },
                     scales: {
                         x: {
                             type: 'linear',
@@ -498,18 +524,51 @@
                         legend: { display: false },
                         title: { display: true, text: `Weekly Profit/Loss – ${year}` },
                         tooltip: {
+                            enabled: true,
+                            intersect: false,
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            displayColors: false,
                             callbacks: {
+                                title: () => '',
                                 label: context => {
-                                    const week = context.parsed.x;
-                                    const value = context.parsed.y;
+                                    const raw = context.raw || {};
+                                    const week = raw.week ?? context.parsed.x;
+                                    const value = raw.value ?? context.parsed.y;
                                     const sign = value >= 0 ? '+' : '';
-                                    return `Week ${week}: £${sign}${value.toFixed(2)}`;
+                                    return `Week ${week}: £${sign}${Number(value).toFixed(2)}`;
                                 }
                             }
                         }
                     }
                 }
             });
+
+            if (!weeklyScatterHoverBound) {
+                const updateHoverLabel = event => {
+                    if (!weeklyScatterChart) return;
+                    const active = weeklyScatterChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+                    if (!active.length) {
+                        hoverEl.textContent = '';
+                        return;
+                    }
+                    const { datasetIndex, index } = active[0];
+                    const point = weeklyScatterChart.data.datasets[datasetIndex].data[index];
+                    if (!point) {
+                        hoverEl.textContent = '';
+                        return;
+                    }
+                    const sign = point.value >= 0 ? '+' : '';
+                    hoverEl.textContent = `Week ${point.week}: £${sign}${Number(point.value).toFixed(2)}`;
+                };
+
+                weeklyScatterChart.canvas.addEventListener('mousemove', updateHoverLabel);
+                weeklyScatterChart.canvas.addEventListener('mouseleave', () => {
+                    hoverEl.textContent = '';
+                });
+                weeklyScatterHoverBound = true;
+            }
         };
 
         render(years[years.length - 1]);

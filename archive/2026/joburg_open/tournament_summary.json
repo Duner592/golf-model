@@ -5,8 +5,29 @@
   "total_yardage": null,
   "course_location": "Johannesburg, South Africa",
   "start_date": "05-Mar-2026",
-  "field_size": 138,
+  "field_size": 156,
   "status": "upcoming",
   "winner": null,
-  "previous_winners": []
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Hill, Calum",
+      "score": -18
+    },
+    {
+      "year": 2023,
+      "winner": "Burmester, Dean",
+      "score": -22
+    },
+    {
+      "year": 2022,
+      "winner": "Bradbury, Dan",
+      "score": -21
+    },
+    {
+      "year": 2021,
+      "winner": "Lawrence, Thriston",
+      "score": -154
+    }
+  ]
 }
