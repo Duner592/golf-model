@@ -48,7 +48,60 @@ def normalize_field(data: dict) -> pd.DataFrame:
 
 def add_teetimes_and_waves(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
-    # Keep common columns if present
+
+    # Ensure tee-time columns exist (even if empty) so we can safely assign below
+    for r in (1, 2, 3, 4):
+        for suffix in ("teetime", "start_hole", "wave"):
+            col = f"r{r}_{suffix}"
+            if col not in out.columns:
+                # Use object dtype so we can mix None/str/int gracefully
+                out[col] = pd.Series([pd.NA] * len(out), dtype="object")
+
+    def format_teetime(val):
+        if not val or not isinstance(val, str):
+            return None
+        ts = val.strip()
+        try:
+            dt = datetime.fromisoformat(ts.replace("Z", ""))
+            return dt.strftime("%H:%M")
+        except Exception:
+            parts = ts.split()
+            for part in reversed(parts):
+                if ":" in part:
+                    return part
+        return ts
+
+    if "teetimes" in out.columns:
+        for idx, row in out.iterrows():
+            entries = row.get("teetimes")
+            if not isinstance(entries, list):
+                continue
+            for entry in entries:
+                if not isinstance(entry, dict):
+                    continue
+                round_val = entry.get("round_num") or entry.get("round")
+                try:
+                    rnd = int(round_val)
+                except (TypeError, ValueError):
+                    continue
+                if rnd not in (1, 2, 3, 4):
+                    continue
+                time_str = (
+                    entry.get("teetime")
+                    or entry.get("tee_time")
+                    or entry.get("teetime_local")
+                    or entry.get("teetime_utc")
+                )
+                time_str = format_teetime(time_str)
+                if time_str:
+                    out.at[idx, f"r{rnd}_teetime"] = time_str
+                start_hole = entry.get("start_hole")
+                if start_hole is not None:
+                    out.at[idx, f"r{rnd}_start_hole"] = start_hole
+                wave_val = entry.get("wave") or entry.get("early_late") or entry.get("wave_label")
+                if wave_val:
+                    out.at[idx, f"r{rnd}_wave"] = str(wave_val).upper()
+
     keep_cols = [
         c
         for c in [
@@ -64,19 +117,28 @@ def add_teetimes_and_waves(df: pd.DataFrame) -> pd.DataFrame:
             "r2_teetime",
             "r3_teetime",
             "r4_teetime",
+            "r1_start_hole",
+            "r2_start_hole",
+            "r3_start_hole",
+            "r4_start_hole",
+            "r1_wave",
+            "r2_wave",
+            "r3_wave",
+            "r4_wave",
         ]
         if c in out.columns
     ]
     out = out[keep_cols + ["event_id"]]
 
-    # Infer waves for R1/R2 from time strings (if present)
+    # Infer missing waves for R1/R2 from tee-time strings
     for r in (1, 2):
         col = f"r{r}_teetime"
         wave_col = f"r{r}_wave"
         if col in out.columns:
-            out[wave_col] = out[col].apply(infer_wave_from_time)
+            out[wave_col] = out[wave_col].fillna(out[col].apply(infer_wave_from_time))
         else:
-            out[wave_col] = None
+            out[wave_col] = out.get(wave_col)
+
     return out
 
 
