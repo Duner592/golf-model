@@ -99,6 +99,9 @@
                 <a id="dlHtml" href="#" download style="display:none;">HTML</a>
             </div>
             <div>
+                <label>Event:&nbsp;<select id="eventSelector"></select></label>
+            </div>
+            <div>
                 <label>Filter:&nbsp;<input type="search" id="filterBox" placeholder="Search player" /></label>
             </div>
         </div>
@@ -163,9 +166,6 @@
     }
 
     // Table rendering
-    let data = [];
-    let sortKey = "rank";
-    let sortAsc = true;
 
     function renderTable(rows) {
       const tbody = document.querySelector("#tbl tbody");
@@ -210,6 +210,7 @@
     }
 
     function attachSortHandlers(){
+      if (sortHandlersAttached) return;
       const tooltip = document.getElementById("tooltip");
 
       document.querySelectorAll("#tbl thead th").forEach(th => {
@@ -243,6 +244,7 @@
       });
 
       document.getElementById("filterBox").addEventListener("input", applyFilter);
+      sortHandlersAttached = true;
     }
 
     // Sidebar helpers
@@ -252,53 +254,45 @@
       const el = document.createElement("li"); el.appendChild(a); return el;
     }
 
-    async function renderSidebar(meta){
+    function formatNeutralWeather(r){
+      const wind = fmtNum(r.wind_mph, 1);
+      const gust = fmtNum(r.gust_mph, 1);
+      const rain = fmtNum(r.precip_pct, 0);
+      const temp = r.temp_c != null ? fmtNum(r.temp_c, 1) + "°C" : "—";
+      let rainEmoji = "🌧️";
+      if (r.weathercode !== null && r.weathercode >= 0 && r.weathercode <= 3 && rain === "0") {
+        rainEmoji = "☀️";
+      }
+      let extra = "";
+      if (r.weathercode !== null && r.weathercode >= 95 && r.weathercode <= 99) {
+        extra = " ⚡ Thunderstorm threat";
+      }
+      return `🌬️ Wind: ${wind} mph (💨 gust ${gust} mph) • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
+    }
+
+    function formatWaveWeather(part){
+      if (!part) return "—";
+      const wind = fmtNum(part.wind_mph, 1);
+      const rain = fmtNum(part.precip_pct, 0);
+      const temp = fmtNum(part.temp_c, 1) + "°C";
+      let rainEmoji = "🌧️";
+      if (part.weathercode !== null && part.weathercode >= 0 && part.weathercode <= 3 && rain === "0") {
+        rainEmoji = "☀️";
+      }
+      let extra = "";
+      if (part.weathercode !== null && part.weathercode >= 95 && part.weathercode <= 99) {
+        extra = " ⚡ Thunderstorm threat";
+      }
+      return `🌬️ Wind: ${wind} mph • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
+    }
+
+    function renderSidebar(eventData){
       // Weather list
       const wxList = document.getElementById("wxList");
       wxList.innerHTML = "";
 
-      // Helpers to format lines with emojis
-      const formatNeutral = (r) => {
-        const wind = fmtNum(r.wind_mph, 1);
-        const gust = fmtNum(r.gust_mph, 1);
-        const rain = fmtNum(r.precip_pct, 0);
-        const temp = r.temp_c != null ? fmtNum(r.temp_c, 1) + "°C" : "—";
-        let rainEmoji = "🌧️";
-        if (r.weathercode !== null && r.weathercode >= 0 && r.weathercode <= 3 && rain === "0") {
-          rainEmoji = "☀️";  // Sunny if clear code and no rain
-        }
-        let extra = "";
-        if (r.weathercode !== null && r.weathercode >= 95 && r.weathercode <= 99) {
-          extra = " ⚡ Thunderstorm threat";
-        }
-        return `🌬️ Wind: ${wind} mph (💨 gust ${gust} mph) • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
-      };
-      const formatWave = (am, pm) => {
-        const formatPart = (part) => {
-          if (!part) return "—";
-          const wind = fmtNum(part.wind_mph, 1);
-          const rain = fmtNum(part.precip_pct, 0);
-          const temp = fmtNum(part.temp_c, 1) + "°C";
-          let rainEmoji = "🌧️";
-          if (part.weathercode !== null && part.weathercode >= 0 && part.weathercode <= 3 && rain === "0") {
-            rainEmoji = "☀️";
-          }
-          let extra = "";
-          if (part.weathercode !== null && part.weathercode >= 95 && part.weathercode <= 99) {
-            extra = " ⚡ Thunderstorm threat";
-          }
-          return `🌬️ Wind: ${wind} mph • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
-        };
-        const amTxt = formatPart(am);
-        const pmTxt = formatPart(pm);
-        return `AM: ${amTxt} <br/> PM: ${pmTxt}`;
-      };
-
-      let wn = [];
-      let ww = [];
-      try { wn = await loadJSON("pga/weather_round_neutral.json"); } catch {}
-      try { ww = await loadJSON("pga/weather_round_wave.json"); } catch {}
-
+      const wn = Array.isArray(eventData.weatherNeutral) ? eventData.weatherNeutral : [];
+      const ww = Array.isArray(eventData.weatherWave) ? eventData.weatherWave : [];
       const byR = {};
       (ww || []).forEach(x => { (byR[x.round] = byR[x.round] || []).push(x); });
 
@@ -313,7 +307,7 @@
 
           if (n) {
             const li = document.createElement("li");
-            li.innerHTML = formatNeutral(n);
+            li.innerHTML = formatNeutralWeather(n);
             li.style.listStyle = "none";
             ul.appendChild(li);
           }
@@ -323,7 +317,7 @@
             const pm = byR[rn].find(x => x.wave === "PM");
             if (am || pm) {
               const li = document.createElement("li");
-              li.innerHTML = `<em>Wave (AM/PM):</em><br/>${formatWave(am, pm)}`;
+              li.innerHTML = `<em>Wave (AM/PM):</em><br/>AM: ${formatWaveWeather(am)} <br/> PM: ${formatWaveWeather(pm)}`;
               li.style.listStyle = "none";
               li.style.marginTop = "0.25rem";
               ul.appendChild(li);
@@ -343,12 +337,12 @@
       // Resources
       const ul = document.getElementById("resources");
       ul.innerHTML = "";
-      const res = meta.resources || {};
+      const res = eventData.resources || {};
       if (res.downloads_csv) ul.appendChild(link("Leaderboard CSV", res.downloads_csv));
       if (res.downloads_html) ul.appendChild(link("Leaderboard HTML", res.downloads_html));
       if (res.weather_meta) ul.appendChild(link("Weather meta (JSON)", res.weather_meta));
-      if (meta.lat != null && meta.lon != null) {
-        ul.appendChild(link("Open course in Maps", `https://www.google.com/maps?q=${meta.lat},${meta.lon}`));
+      if (eventData.lat != null && eventData.lon != null) {
+        ul.appendChild(link("Open course in Maps", `https://www.google.com/maps?q=${eventData.lat},${eventData.lon}`));
       }
       if (res.weather_round_neutral) ul.appendChild(link("Neutral weather (JSON)", res.weather_round_neutral));
       if (res.weather_round_wave) ul.appendChild(link("Wave-aware weather (JSON)", res.weather_round_wave));
@@ -360,11 +354,10 @@
     }
 
     // Tournament summary
-    async function renderTournament() {
+    function renderTournament(eventData) {
       const el = document.getElementById("tournament");
       if (!el) return;
-      let t = null;
-      try { t = await loadJSON("pga/tournament_summary.json"); } catch {}
+      const t = eventData.tournament;
       if (!t) { el.textContent = "No summary."; return; }
 
     const lines = [];
@@ -393,28 +386,137 @@
     }
 
     // Main
-    async function main(){
-      const meta = await loadJSON("pga/meta.json");
-      const rows = await loadJSON("pga/leaderboard.json");
+    let data = [];
+    let sortKey = "rank";
+    let sortAsc = true;
+    const eventStore = new Map();
+    let eventsList = [];
+    let tourMeta = null;
+    let currentEventId = null;
+    let sortHandlersAttached = false;
 
-      // Extract year from meta.r1_date
-      let year = '';
-      if (meta.r1_date) {
-        year = meta.r1_date.split('-')[0];
-        console.log("Year from meta.r1_date:", year);
+    async function safeLoadJSON(path){
+      if (!path) return null;
+      try { return await loadJSON(path); }
+      catch (err) {
+        console.warn("Failed to load", path, err);
+        return null;
       }
+    }
 
-      const subtitle = year ? `${year} - ${meta.event_name || ''}` : meta.event_name || '';
-      document.getElementById("subtitle").textContent = subtitle;
+    async function loadEventData(eventSummary){
+      const id = String(eventSummary.event_id ?? "0");
+      if (eventStore.has(id)) return eventStore.get(id);
+      const resources = eventSummary.resources || {};
+      const [
+        meta,
+        leaderboard,
+        summary,
+        weatherNeutral,
+        weatherWave,
+        tournament,
+        courseHistory,
+        courseFit,
+      ] = await Promise.all([
+        resources.meta ? safeLoadJSON(resources.meta) : null,
+        resources.leaderboard ? safeLoadJSON(resources.leaderboard) : [],
+        resources.summary ? safeLoadJSON(resources.summary) : null,
+        resources.weather_round_neutral ? safeLoadJSON(resources.weather_round_neutral) : [],
+        resources.weather_round_wave ? safeLoadJSON(resources.weather_round_wave) : [],
+        resources.tournament_summary ? safeLoadJSON(resources.tournament_summary) : null,
+        resources.course_history_summary ? safeLoadJSON(resources.course_history_summary) : null,
+        resources.course_fit_weights ? safeLoadJSON(resources.course_fit_weights) : null,
+      ]);
+      const fallbackId = String(tourMeta?.event_id ?? "0");
+      const effectiveMeta = meta || (fallbackId === id ? tourMeta : null);
+      const combinedResources = {
+        ...(resources || {}),
+        ...((effectiveMeta && effectiveMeta.resources) || {}),
+      };
+      const eventData = {
+        id,
+        name: eventSummary.event_name || effectiveMeta?.event_name || `Event ${id}`,
+        meta: effectiveMeta,
+        summary,
+        leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
+        weatherNeutral: Array.isArray(weatherNeutral) ? weatherNeutral : [],
+        weatherWave: Array.isArray(weatherWave) ? weatherWave : [],
+        tournament,
+        courseHistory,
+        courseFit,
+        resources: combinedResources,
+        downloadsCsv: combinedResources.downloads_csv || null,
+        downloadsHtml: combinedResources.downloads_html || null,
+        r1Date: eventSummary.r1_date || effectiveMeta?.r1_date || null,
+        lat: effectiveMeta?.lat ?? tourMeta?.lat ?? null,
+        lon: effectiveMeta?.lon ?? tourMeta?.lon ?? null,
+      };
+      eventStore.set(id, eventData);
+      return eventData;
+    }
 
-      // Downloads
+    function buildSubtitle(eventData){
+      const r1 = eventData.r1Date;
+      if (r1 && /^\d{4}-/.test(r1)) {
+        const year = r1.split("-")[0];
+        return `${year} - ${eventData.name}`;
+      }
+      return eventData.name;
+    }
+
+    function updateDownloads(eventData){
       const dlCsv  = document.getElementById("dlCsv");
       const dlHtml = document.getElementById("dlHtml");
-      dlCsv.href   = meta.resources?.downloads_csv ?? "#";
-      if (meta.resources?.downloads_html){ dlHtml.href = meta.resources.downloads_html; dlHtml.style.display="inline"; }
+      if (eventData.downloadsCsv){
+        dlCsv.href = eventData.downloadsCsv;
+        dlCsv.style.display = "inline";
+      } else {
+        dlCsv.href = "#";
+        dlCsv.style.display = "none";
+      }
+      if (eventData.downloadsHtml){
+        dlHtml.href = eventData.downloadsHtml;
+        dlHtml.style.display = "inline";
+      } else {
+        dlHtml.href = "#";
+        dlHtml.style.display = "none";
+      }
+    }
 
+    function populateEventSelector(initialId){
+      const selector = document.getElementById("eventSelector");
+      if (!selector) return;
+      selector.innerHTML = "";
+      if (!eventsList.length){
+        selector.innerHTML = "<option>No Event</option>";
+        selector.disabled = true;
+        selector.parentElement.style.display = "none";
+        return;
+      }
+      eventsList.forEach(ev => {
+        const option = document.createElement("option");
+        option.value = String(ev.event_id);
+        option.textContent = ev.event_name || `Event ${ev.event_id}`;
+        selector.appendChild(option);
+      });
+      selector.value = String(initialId ?? eventsList[0].event_id);
+      if (eventsList.length <= 1){
+        selector.disabled = true;
+        selector.parentElement.style.display = "none";
+      } else {
+        selector.disabled = false;
+        selector.parentElement.style.display = "block";
+        selector.addEventListener("change", (e) => switchEvent(e.target.value));
+      }
+    }
+
+    function updateEventUI(eventData){
+      const subtitleEl = document.getElementById("subtitle");
+      subtitleEl.textContent = buildSubtitle(eventData);
+      updateDownloads(eventData);
+
+      const rows = Array.isArray(eventData.leaderboard) ? eventData.leaderboard : [];
       data = rows.map((r, idx) => {
-        // Detect explicit sides for each round (tri-state: true/false/undefined)
         const r1_is10 = r.r1_from_10th === true ||
                         is10(r.r1_start_hole) || is10(r.r1_start) || is10(r.r1_tee) ||
                         isBackSide(r.r1_side);
@@ -431,24 +533,19 @@
                         isFrontSide(r.r2_side);
         let r2_from_10th = r2_is10 ? true : (r2_is1 ? false : undefined);
 
-        // Enforce alternation between R1 and R2:
-        // - If one round's side is known, the other is the opposite.
-        // - If both are known but equal, flip R1 to be opposite of R2.
         if (r1_from_10th === undefined && r2_from_10th !== undefined) {
           r1_from_10th = !r2_from_10th;
         } else if (r2_from_10th === undefined && r1_from_10th !== undefined) {
           r2_from_10th = !r1_from_10th;
         } else if (r1_from_10th !== undefined && r2_from_10th !== undefined && r1_from_10th === r2_from_10th) {
-          // Contradiction (both same). Prefer R2 and flip R1.
           r1_from_10th = !r2_from_10th;
         }
 
-        // Default to false if still unknown (no asterisk shown)
         r1_from_10th = !!r1_from_10th;
         r2_from_10th = !!r2_from_10th;
 
         return {
-          rank: r.rank ?? (idx+1),
+          rank: r.rank ?? (idx + 1),
           player_name: r.player_name ?? r["Player"] ?? "",
           "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
           "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
@@ -456,16 +553,58 @@
           course_fit_score: r.course_fit_score ?? "",
           r1_teetime: r.r1_teetime ?? "",
           r2_teetime: r.r2_teetime ?? "",
-          // flags used by renderTable to append the asterisk
           r1_from_10th,
           r2_from_10th,
         };
       });
 
+      applyFilter();
+      renderSidebar(eventData);
+      renderTournament(eventData);
+
+      const selector = document.getElementById("eventSelector");
+      if (selector) selector.value = eventData.id;
+    }
+
+    async function switchEvent(eventId){
+      if (!eventsList.length){
+        renderTable([]);
+        renderSidebar({weatherNeutral: [], weatherWave: [], resources: {}});
+        renderTournament({tournament: null});
+        return;
+      }
+      currentEventId = String(eventId ?? eventsList[0].event_id);
+      const summary = eventsList.find(ev => String(ev.event_id) === currentEventId) || eventsList[0];
+      const eventData = await loadEventData(summary);
+      updateEventUI(eventData);
+    }
+
+    async function main(){
+      tourMeta = await loadJSON("pga/meta.json");
+      eventsList = Array.isArray(tourMeta.active_events) && tourMeta.active_events.length
+        ? tourMeta.active_events.map(ev => ({ ...ev, event_id: String(ev.event_id ?? ev.id ?? ev) }))
+        : [{
+            event_id: String(tourMeta.event_id ?? "0"),
+            event_name: tourMeta.event_name ?? "No Event",
+            resources: {
+              meta: null,
+              leaderboard: tourMeta.resources?.leaderboard ?? "pga/leaderboard.json",
+              summary: tourMeta.resources?.summary ?? "pga/summary.json",
+              weather_round_neutral: tourMeta.resources?.weather_round_neutral ?? null,
+              weather_round_wave: tourMeta.resources?.weather_round_wave ?? null,
+              tournament_summary: tourMeta.resources?.tournament_summary ?? null,
+              course_history_summary: tourMeta.resources?.course_history_summary ?? null,
+              course_fit_weights: tourMeta.resources?.course_fit_weights ?? null,
+              downloads_csv: tourMeta.resources?.downloads_csv ?? null,
+              downloads_html: tourMeta.resources?.downloads_html ?? null,
+              schedule: tourMeta.resources?.schedule ?? "pga/schedule.json",
+            },
+            r1_date: tourMeta.r1_date ?? null,
+          }];
+      const initialId = eventsList.length ? String(eventsList[0].event_id) : null;
+      populateEventSelector(initialId);
       attachSortHandlers();
-      renderTable(sortRows(data, "rank", true));
-      await renderSidebar(meta);
-      await renderTournament();
+      await switchEvent(initialId);
     }
 
     // Kick off

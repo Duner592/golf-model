@@ -5,16 +5,50 @@
   "lat": null,
   "lon": null,
   "r1_date": "2026-03-05",
-  "generated_utc": "02-Mar-2026 09:28:24",
+  "generated_utc": "04-Mar-2026 15:30:02",
   "resources": {
-    "downloads_csv": "euro/downloads/event_2026111_joburg_open_2026-03-02_leaderboard.csv",
-    "downloads_html": "euro/downloads/event_2026111_joburg_open_2026-03-02_leaderboard.html",
+    "downloads_csv": null,
+    "downloads_html": null,
     "weather_meta": "euro/weather_meta.json",
     "weather_round_neutral": "euro/weather_round_neutral.json",
     "weather_round_wave": "euro/weather_round_wave.json",
     "course_fit_weights": "euro/course_fit_weights.json",
     "course_history_summary": "euro/course_history_summary.json",
     "tournament_summary": "euro/tournament_summary.json",
-    "schedule": "euro/schedule.json"
-  }
+    "field_teetimes": "euro/field_teetimes.csv",
+    "leaderboard": "euro/leaderboard.json",
+    "summary": "euro/summary.json",
+    "schedule": "euro/schedule.json",
+    "primary_event_dir": "euro/events/event_2026111"
+  },
+  "active_events": [
+    {
+      "event_id": "2026111",
+      "event_name": "Joburg Open",
+      "r1_date": "2026-03-05",
+      "start_date": "2026-03-05",
+      "generated_utc": "04-Mar-2026 15:30:02",
+      "has_predictions": false,
+      "resources": {
+        "leaderboard": "euro/events/event_2026111/leaderboard.json",
+        "summary": "euro/events/event_2026111/summary.json",
+        "meta": "euro/events/event_2026111/meta.json",
+        "downloads_csv": null,
+        "downloads_html": null,
+        "weather_meta": "euro/events/event_2026111/weather_meta.json",
+        "weather_round_neutral": "euro/events/event_2026111/weather_round_neutral.json",
+        "weather_round_wave": "euro/events/event_2026111/weather_round_wave.json",
+        "course_fit_weights": "euro/events/event_2026111/course_fit_weights.json",
+        "course_history_summary": "euro/events/event_2026111/course_history_summary.json",
+        "tournament_summary": "euro/events/event_2026111/tournament_summary.json",
+        "field_teetimes": "euro/events/event_2026111/field_teetimes.csv",
+        "schedule": "euro/schedule.json"
+      },
+      "source_csv": null,
+      "event_dir": "euro/events/event_2026111",
+      "lat": null,
+      "lon": null
+    }
+  ],
+  "primary_event_dir": "euro/events/event_2026111"
 }

@@ -5,16 +5,77 @@
   "lat": null,
   "lon": null,
   "r1_date": "2026-03-05",
-  "generated_utc": "02-Mar-2026 09:28:18",
+  "generated_utc": "04-Mar-2026 14:59:27",
   "resources": {
-    "downloads_csv": "pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-02_leaderboard.csv",
-    "downloads_html": "pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-02_leaderboard.html",
+    "downloads_csv": "pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-04_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-04_leaderboard.html",
     "weather_meta": "pga/weather_meta.json",
     "weather_round_neutral": "pga/weather_round_neutral.json",
     "weather_round_wave": "pga/weather_round_wave.json",
     "course_fit_weights": "pga/course_fit_weights.json",
     "course_history_summary": "pga/course_history_summary.json",
     "tournament_summary": "pga/tournament_summary.json",
-    "schedule": "pga/schedule.json"
-  }
+    "field_teetimes": "pga/field_teetimes.csv",
+    "leaderboard": "pga/leaderboard.json",
+    "summary": "pga/summary.json",
+    "schedule": "pga/schedule.json",
+    "primary_event_dir": "pga/events/event_9"
+  },
+  "active_events": [
+    {
+      "event_id": "9",
+      "event_name": "Arnold Palmer Invitational presented by Mastercard",
+      "r1_date": "2026-03-05",
+      "start_date": "2026-03-05",
+      "generated_utc": "04-Mar-2026 14:59:27",
+      "has_predictions": true,
+      "resources": {
+        "leaderboard": "pga/events/event_9/leaderboard.json",
+        "summary": "pga/events/event_9/summary.json",
+        "meta": "pga/events/event_9/meta.json",
+        "downloads_csv": "pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-04_leaderboard.csv",
+        "downloads_html": "pga/downloads/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-04_leaderboard.html",
+        "weather_meta": "pga/events/event_9/weather_meta.json",
+        "weather_round_neutral": "pga/events/event_9/weather_round_neutral.json",
+        "weather_round_wave": "pga/events/event_9/weather_round_wave.json",
+        "course_fit_weights": "pga/events/event_9/course_fit_weights.json",
+        "course_history_summary": "pga/events/event_9/course_history_summary.json",
+        "tournament_summary": "pga/events/event_9/tournament_summary.json",
+        "field_teetimes": "pga/events/event_9/field_teetimes.csv",
+        "schedule": "pga/schedule.json"
+      },
+      "source_csv": "data/preds/pga/event_9_arnold_palmer_invitational_presented_by_mastercard_2026-03-04_leaderboard.csv",
+      "event_dir": "pga/events/event_9",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "event_id": "483",
+      "event_name": "Puerto Rico Open",
+      "r1_date": "2026-03-05",
+      "start_date": "2026-03-05",
+      "generated_utc": "04-Mar-2026 14:59:27",
+      "has_predictions": true,
+      "resources": {
+        "leaderboard": "pga/events/event_483/leaderboard.json",
+        "summary": "pga/events/event_483/summary.json",
+        "meta": "pga/events/event_483/meta.json",
+        "downloads_csv": "pga/downloads/event_483_puerto_rico_open_2026-03-04_leaderboard.csv",
+        "downloads_html": "pga/downloads/event_483_puerto_rico_open_2026-03-04_leaderboard.html",
+        "weather_meta": "pga/events/event_483/weather_meta.json",
+        "weather_round_neutral": "pga/events/event_483/weather_round_neutral.json",
+        "weather_round_wave": "pga/events/event_483/weather_round_wave.json",
+        "course_fit_weights": "pga/events/event_483/course_fit_weights.json",
+        "course_history_summary": "pga/events/event_483/course_history_summary.json",
+        "tournament_summary": "pga/events/event_483/tournament_summary.json",
+        "field_teetimes": "pga/events/event_483/field_teetimes.csv",
+        "schedule": "pga/schedule.json"
+      },
+      "source_csv": "data/preds/pga/event_483_puerto_rico_open_2026-03-04_leaderboard.csv",
+      "event_dir": "pga/events/event_483",
+      "lat": null,
+      "lon": null
+    }
+  ],
+  "primary_event_dir": "pga/events/event_9"
 }

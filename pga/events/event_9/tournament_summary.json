@@ -1,0 +1,38 @@
+{
+  "event_name": "Arnold Palmer Invitational presented by Mastercard",
+  "event_id": "9",
+  "course": "Arnold Palmer's Bay Hill Club & Lodge",
+  "total_yardage": null,
+  "course_location": "Bay Hill, FL",
+  "start_date": "05-Mar-2026",
+  "field_size": 72,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Henley, Russell",
+      "score": -7
+    },
+    {
+      "year": 2024,
+      "winner": "Scheffler, Scottie",
+      "score": -11
+    },
+    {
+      "year": 2023,
+      "winner": "Kitayama, Kurt",
+      "score": -5
+    },
+    {
+      "year": 2022,
+      "winner": "Scheffler, Scottie",
+      "score": -1
+    },
+    {
+      "year": 2021,
+      "winner": "DeChambeau, Bryson",
+      "score": -7
+    }
+  ]
+}
