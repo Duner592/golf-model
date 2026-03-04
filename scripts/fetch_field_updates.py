@@ -20,6 +20,7 @@ def load_yaml(path: str) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tour", type=str, default=None, help="Tour to fetch (overrides config default)")
+    ap.add_argument("--event_id", type=str, default=None, help="Specific event_id to request (optional)")
     args = ap.parse_args()
 
     # Load config
@@ -34,6 +35,7 @@ def main():
         raise RuntimeError(f"Missing API key in environment: {cfg['auth']['env_var']}")
 
     tour = args.tour if args.tour else cfg["defaults"]["tour"]
+    event_id = args.event_id
     endpoint = cfg["endpoints"]["field_updates"]["path"]
 
     # Cache to avoid repeated calls during testing
@@ -42,6 +44,8 @@ def main():
 
     url = f"{base_url}/{endpoint}"
     params = {key_param: api_key, "tour": tour}
+    if event_id:
+        params["event_id"] = event_id
 
     try:
         resp = session.get(url, params=params, timeout=20)
@@ -70,7 +74,8 @@ def main():
     ts = datetime.utcnow().strftime("%Y-%m-%dT%H%M%SZ")
     out_dir = os.path.join(os.path.dirname(__file__), "..", "data", "raw", tour)
     os.makedirs(out_dir, exist_ok=True)
-    dated_path = os.path.join(out_dir, f"{ts}_field-updates.json")
+    suffix = f"_event_{event_id}" if event_id else ""
+    dated_path = os.path.join(out_dir, f"{ts}{suffix}_field-updates.json")
     with open(dated_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"Saved: {os.path.abspath(dated_path)}")

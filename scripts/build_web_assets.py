@@ -31,6 +31,7 @@ import requests  # Added for API calls
 
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
+from src.utils_event import resolve_event_ids
 
 MPH_PER_MPS = 2.237
 KMH_TO_MPH = 0.621371
@@ -1129,6 +1130,38 @@ def clear_old_event_assets(web_dir: Path) -> None:
                 print(f"[info] Removed old asset: {p}")
             except Exception as e:
                 print(f"[warn] Failed to remove {p}: {e}")
+    events_dir = web_dir / "events"
+    if events_dir.exists():
+        try:
+            shutil.rmtree(events_dir)
+            print(f"[info] Cleared events directory: {events_dir}")
+        except Exception as e:
+            print(f"[warn] Failed to clear events directory {events_dir}: {e}")
+
+
+def publish_primary_assets(event_dir: Path, web_dir: Path) -> None:
+    """
+    Sync the primary event's assets to the legacy single-event locations for backwards compatibility.
+    """
+    files_to_publish = [
+        "leaderboard.json",
+        "summary.json",
+        "weather_round_neutral.json",
+        "weather_round_wave.json",
+        "weather_meta.json",
+        "course_fit_weights.json",
+        "course_history_summary.json",
+        "tournament_summary.json",
+        "field_teetimes.csv",
+    ]
+    for name in files_to_publish:
+        src = event_dir / name
+        dest = web_dir / name
+        if src.exists():
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy(src, dest)
+        elif dest.exists():
+            dest.unlink()
 
 
 # ---------- build schedule from upcoming-events.json ----------
@@ -1188,7 +1221,7 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
 
 
 # ---------- archive event predictions ----------
-def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: str, r1_date: str | None, lb_csv: Path | None) -> None:
+def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: str, r1_date: str | None, lb_csv: Path | None, source_dir: Path) -> None:
     """
     Archive the current event's prediction data into web/archive/{year}/.
     """
@@ -1209,10 +1242,10 @@ def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: 
 
     # Files to copy
     files_to_copy = [
-        f"{tour}/leaderboard.json",
-        f"{tour}/meta.json",
-        f"{tour}/tournament_summary.json",
-        f"{tour}/summary.json",
+        "leaderboard.json",
+        "meta.json",
+        "tournament_summary.json",
+        "summary.json",
     ]
     if lb_csv and lb_csv.exists():
         # Copy CSV to archive
@@ -1221,10 +1254,10 @@ def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: 
     else:
         csv_available = False
 
-    for file_path in files_to_copy:
-        src = root / "web" / file_path
+    for file_name in files_to_copy:
+        src = source_dir / file_name
         if src.exists():
-            shutil.copy(src, event_archive_dir / src.name)
+            shutil.copy(src, event_archive_dir / file_name)
 
     # Update index.json (in root archive dir)
     index_file = root / "web" / "archive" / "index.json"
@@ -1256,89 +1289,37 @@ def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: 
     print(f"Archived predictions for {event_name} ({year}) in {event_archive_dir}")
 
 
-# ---------- main ----------
-def main():
+def process_event(
+    event_id: str,
+    *,
+    root: Path,
+    tour: str,
+    processed_dir: Path,
+    preds_dir: Path,
+    web_dir: Path,
+    downloads_dir: Path,
+    raw_hist_dir: Path,
+    primary: bool,
+) -> dict | None:
     """
-    Main entry point for building static web assets from processed data.
-
-    This function generates JSON, CSV, and other assets for the web directory based on the latest
-    event data. It handles leaderboard formatting, weather summaries, course info, and more.
-    During off-season (no events), it can use historical data or placeholders and adds a no-event message.
-
-    Command-line arguments:
-    --event_id <str>: Force a specific event ID (optional).
-    --tour <str>: Tour to process (default 'pga').
-
-    Raises:
-        FileNotFoundError: If required processed data files are missing.
-        ValueError: If leaderboard CSV lacks a player name column.
-
-    Notes:
-        - Outputs to web/{tour}/ directory.
-        - Skips optional files (e.g., weather) if not present.
-        - In no-event mode, generates schedule and adds a message in meta.json, and clears old assets.
+    Build assets for a single event and return metadata summary for aggregation.
     """
-    ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
-    ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets")
-    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
-    args = ap.parse_args()
+    event_dir = web_dir / "events" / f"event_{event_id}"
+    if event_dir.exists():
+        shutil.rmtree(event_dir)
+    event_dir.mkdir(parents=True, exist_ok=True)
 
-    TOUR = args.tour
+    try:
+        meta_proc = load_meta_for_event(processed_dir, event_id)
+    except FileNotFoundError:
+        print(f"[warn] Skipping event_id={event_id}: meta not found in {processed_dir}")
+        return None
 
-    root = Path(__file__).resolve().parent.parent
-    processed_dir = root / "data" / "processed" / TOUR
-    preds_dir = root / "data" / "preds" / TOUR
+    event_name = meta_proc.get("event_name", f"event_{event_id}")
+    lat = meta_proc.get("lat")
+    lon = meta_proc.get("lon")
+    start_date = meta_proc.get("start") or meta_proc.get("start_date")
 
-    # Build schedule.json early, independent of event
-    web_dir = root / "web" / TOUR
-    build_schedule_json(root, TOUR, web_dir / "schedule.json")
-
-    from src.utils_event import resolve_event_id as _resolve  # centralized resolver
-
-    event_id = None
-    no_event = False
-
-    # Check for current week events first (or next week if Sunday)
-    if not has_current_week_events(TOUR):
-        no_event = True
-        event_id = "0"  # Dummy ID
-        print(f"[info] No events in current week (or next week if Sunday) for tour={TOUR}; proceeding in no-event mode")
-
-    if not no_event:
-        if args.event_id:
-            event_id = str(args.event_id)
-
-        if not event_id:
-            latest_lb, eid_from_lb = scan_latest_stamped_leaderboard(preds_dir)
-            if eid_from_lb:
-                event_id = str(eid_from_lb)
-
-        if not event_id:
-            try:
-                event_id = _resolve(None)
-            except ValueError:
-                no_event = True
-                event_id = "0"
-                print("[info] No events found; proceeding in no-event mode")
-
-    meta_proc = None
-    if not no_event:
-        try:
-            meta_proc = load_meta_for_event(processed_dir, event_id)
-        except FileNotFoundError:
-            print(f"[warn] Meta not found for event_id={event_id}; treating as no-event mode")
-            no_event = True
-            meta_proc = {"event_name": "No Event", "lat": None, "lon": None}
-
-    # Clear old event assets if no_event
-    if no_event:
-        clear_old_event_assets(web_dir)
-
-    event_name = meta_proc.get("event_name", f"event_{event_id}") if meta_proc else "No Event"
-    lat = meta_proc.get("lat") if meta_proc else None
-    lon = meta_proc.get("lon") if meta_proc else None
-
-    # Load r1_date from weather_meta.json if available
     weather_meta_path = processed_dir / f"event_{event_id}_weather_meta.json"
     r1_date = None
     if weather_meta_path.exists():
@@ -1348,43 +1329,22 @@ def main():
         except Exception:
             pass
 
-    # Skip event-specific assets if no_event
-    if not no_event:
-        # Pick leaderboard CSV/HTML for this event
-        lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
-        if lb_csv is None:
-            # No leaderboard data found; fall back to no-event mode
-            no_event = True
-            event_id = "0"
-            print(f"[info] No leaderboard data found for event_id={event_id}; falling back to no-event mode")
-            summary_json = None
-        else:
-            summary_json = pick_matching_summary(preds_dir, lb_csv)
-    else:
-        lb_csv = None
-        lb_html = None
-        summary_json = None
+    lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
+    summary_json = pick_matching_summary(preds_dir, lb_csv) if lb_csv else None
+    generated_utc = datetime.utcnow().strftime("%d-%b-%Y %H:%M:%S")
 
-    web_dir = root / "web" / TOUR
-    dl_dir = web_dir / "downloads"
-    dl_dir.mkdir(parents=True, exist_ok=True)
+    has_predictions = lb_csv is not None
 
-    # Leaderboard JSON: merge start holes, format times with "*" for 10th tee
-    if not no_event and lb_csv:
+    if has_predictions:
         df_lb = pd.read_csv(lb_csv)
-
-        # find and normalize player name column
         name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
         if not name_col:
-            raise ValueError("Leaderboard CSV missing player name column")
+            raise ValueError(f"Leaderboard CSV for event_id={event_id} missing player name column")
         if name_col != "player_name":
             df_lb = df_lb.rename(columns={name_col: "player_name"})
         df_lb["name_key"] = df_lb["player_name"].map(_norm_name)
-
-        # Reformat player names: "Surname, Forename" -> "Forename Surname"
         df_lb["player_name"] = df_lb["player_name"].apply(lambda name: " ".join(reversed(name.split(", "))) if ", " in name else name)
 
-        # merge start-holes on normalized name
         start_df = load_start_holes(processed_dir, event_id)
         if start_df is not None:
             df_lb = df_lb.merge(
@@ -1401,7 +1361,6 @@ def main():
                 ten = False
             return f"{base}*" if base and ten else base
 
-        # apply time-only + asterisk using merged start holes (if present)
         for r in [1, 2]:
             time_col = f"r{r}_teetime"
             sh_col = f"r{r}_start_hole"
@@ -1411,114 +1370,292 @@ def main():
                 else:
                     df_lb[time_col] = df_lb[time_col].apply(_time_only)
 
-        # DROP helper/start_hole columns to avoid NaN in JSON
         drop_cols = [c for c in ("name_key", "r1_start_hole", "r2_start_hole", "start_hole") if c in df_lb.columns]
         if drop_cols:
             df_lb = df_lb.drop(columns=drop_cols)
 
-        write_json(web_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
+        write_json(event_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
     else:
-        # Placeholder or skip
-        write_json(web_dir / "leaderboard.json", [])
+        write_json(event_dir / "leaderboard.json", [])
 
-    # summary
-    generated_utc_formatted = datetime.utcnow().strftime("%d-%b-%Y %H:%M:%S")
-    summary = {
+    summary_data = {
         "event_id": event_id,
         "event_name": event_name,
         "source_csv": str(lb_csv.relative_to(root)) if lb_csv else None,
-        "generated_utc": generated_utc_formatted,
+        "generated_utc": generated_utc,
         "metrics": None,
     }
     if summary_json and summary_json.exists():
         try:
             sj = json.loads(summary_json.read_text(encoding="utf-8"))
-            summary["metrics"] = sj.get("summary")
-            summary["generated_utc"] = normalize_utc_str(sj.get("generated_utc"), generated_utc_formatted)
+            summary_data["metrics"] = sj.get("summary")
+            summary_data["generated_utc"] = normalize_utc_str(sj.get("generated_utc"), generated_utc)
         except Exception:
             pass
-    write_json(web_dir / "summary.json", summary)
+    write_json(event_dir / "summary.json", summary_data)
 
-    # downloads
-    dl_csv = None
-    if lb_csv and not no_event:
-        dl_csv = dl_dir / lb_csv.name
-        if not dl_csv.exists():
-            dl_csv.write_bytes(lb_csv.read_bytes())
-    dl_html = None
-    if lb_html and lb_html.exists() and not no_event:
-        dl_html = dl_dir / lb_html.name
-        if not dl_html.exists():
-            dl_html.write_bytes(lb_html.read_bytes())
+    downloads_csv = None
+    if lb_csv:
+        dst = downloads_dir / lb_csv.name
+        if not dst.exists():
+            dst.write_bytes(lb_csv.read_bytes())
+        downloads_csv = dst
+    downloads_html = None
+    if lb_html and lb_html.exists():
+        dst = downloads_dir / lb_html.name
+        if not dst.exists():
+            dst.write_bytes(lb_html.read_bytes())
+        downloads_html = dst
 
-    # weather (skip if no_event or not available)
-    wn_ok = False
-    if not no_event:
-        wn_ok = neutral_parquet_to_json(
-            processed_dir / f"event_{event_id}_weather_round_neutral.parquet",
-            web_dir / "weather_round_neutral.json",
-        )
-    ww_ok = False
-    if not no_event:
-        ww_ok = wave_parquet_to_json(
-            processed_dir / f"event_{event_id}_weather_round_wave.parquet",
-            web_dir / "weather_round_wave.json",
-        )
-    wm = processed_dir / f"event_{event_id}_weather_meta.json"
-    if wm.exists() and not no_event:
-        (web_dir / "weather_meta.json").write_bytes(wm.read_bytes())
+    wn_ok = neutral_parquet_to_json(
+        processed_dir / f"event_{event_id}_weather_round_neutral.parquet",
+        event_dir / "weather_round_neutral.json",
+    )
+    ww_ok = wave_parquet_to_json(
+        processed_dir / f"event_{event_id}_weather_round_wave.parquet",
+        event_dir / "weather_round_wave.json",
+    )
+    if weather_meta_path.exists():
+        (event_dir / "weather_meta.json").write_bytes(weather_meta_path.read_bytes())
 
-    # course-fit + history (skip if no_event)
-    if not no_event:
-        cf_weights = processed_dir / f"event_{event_id}_course_fit_weights.json"
-        if cf_weights.exists():
-            (web_dir / "course_fit_weights.json").write_bytes(cf_weights.read_bytes())
-        build_history_summary(
-            processed_dir / f"event_{event_id}_course_history_stats.parquet",
-            web_dir / "course_history_summary.json",
-        )
+    cf_weights = processed_dir / f"event_{event_id}_course_fit_weights.json"
+    if cf_weights.exists():
+        (event_dir / "course_fit_weights.json").write_bytes(cf_weights.read_bytes())
+    build_history_summary(
+        processed_dir / f"event_{event_id}_course_history_stats.parquet",
+        event_dir / "course_history_summary.json",
+    )
 
-        # tournament summary
-        raw_hist_dir = root / "data" / "raw" / "historical" / TOUR
-        ts_path = web_dir / "tournament_summary.json"
-        build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, ts_path)
+    tournament_summary_path = event_dir / "tournament_summary.json"
+    build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, tournament_summary_path)
 
-        # Copy field_teetimes.csv to web (guard if missing)
-        src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
-        if src_teetimes.exists():
-            shutil.copy(src_teetimes, web_dir / "field_teetimes.csv")
+    src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
+    if src_teetimes.exists():
+        shutil.copy(src_teetimes, event_dir / "field_teetimes.csv")
 
-    meta_out = {
-        "tour": TOUR,
+    if primary:
+        publish_primary_assets(event_dir, web_dir)
+
+    archive_event_predictions(root, tour, event_name, event_id, r1_date, lb_csv, event_dir)
+
+    event_base = f"{tour}/events/event_{event_id}"
+    resources = {
+        "leaderboard": f"{event_base}/leaderboard.json",
+        "summary": f"{event_base}/summary.json",
+        "meta": f"{event_base}/meta.json",
+        "downloads_csv": f"{tour}/downloads/{downloads_csv.name}" if downloads_csv else None,
+        "downloads_html": f"{tour}/downloads/{downloads_html.name}" if downloads_html else None,
+        "weather_meta": f"{event_base}/weather_meta.json" if (event_dir / "weather_meta.json").exists() else None,
+        "weather_round_neutral": f"{event_base}/weather_round_neutral.json" if wn_ok else None,
+        "weather_round_wave": f"{event_base}/weather_round_wave.json" if ww_ok else None,
+        "course_fit_weights": f"{event_base}/course_fit_weights.json" if (event_dir / "course_fit_weights.json").exists() else None,
+        "course_history_summary": f"{event_base}/course_history_summary.json" if (event_dir / "course_history_summary.json").exists() else None,
+        "tournament_summary": f"{event_base}/tournament_summary.json" if tournament_summary_path.exists() else None,
+        "field_teetimes": f"{event_base}/field_teetimes.csv" if (event_dir / "field_teetimes.csv").exists() else None,
+        "schedule": f"{tour}/schedule.json" if (web_dir / "schedule.json").exists() else None,
+    }
+
+    event_meta = {
+        "tour": tour,
         "event_id": event_id,
         "event_name": event_name,
         "lat": lat,
         "lon": lon,
         "r1_date": r1_date,
-        "generated_utc": summary["generated_utc"],
-        "resources": {
-            "downloads_csv": f"{TOUR}/downloads/{lb_csv.name}" if dl_csv else None,
-            "downloads_html": f"{TOUR}/downloads/{lb_html.name}" if dl_html else None,
-            "weather_meta": f"{TOUR}/weather_meta.json" if wm.exists() and not no_event else None,
-            "weather_round_neutral": f"{TOUR}/weather_round_neutral.json" if wn_ok else None,
-            "weather_round_wave": f"{TOUR}/weather_round_wave.json" if ww_ok else None,
-            "course_fit_weights": f"{TOUR}/course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None,
-            "course_history_summary": f"{TOUR}/course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None,
-            "tournament_summary": f"{TOUR}/tournament_summary.json" if (web_dir / "tournament_summary.json").exists() else None,
-            "schedule": f"{TOUR}/schedule.json" if (web_dir / "schedule.json").exists() else None,
-        },
+        "start_date": start_date,
+        "generated_utc": summary_data["generated_utc"],
+        "source_csv": summary_data["source_csv"],
+        "has_predictions": has_predictions,
+        "resources": resources,
     }
-    if no_event:
-        meta_out["no_event_message"] = "No upcoming events during the holiday season. Stay tuned for 2026!"
+    write_json(event_dir / "meta.json", event_meta)
 
-    write_json(web_dir / "meta.json", meta_out)
+    return {
+        "event_id": event_id,
+        "event_name": event_name,
+        "r1_date": r1_date,
+        "start_date": start_date,
+        "generated_utc": summary_data["generated_utc"],
+        "has_predictions": has_predictions,
+        "resources": resources,
+        "source_csv": summary_data["source_csv"],
+        "event_dir": event_base,
+        "lat": lat,
+        "lon": lon,
+    }
 
-    # Archive the predictions
-    if not no_event:
-        archive_event_predictions(root, TOUR, event_name, event_id, r1_date, lb_csv)
+# ---------- main ----------
+def main():
+    """
+    Build static web assets for one or more current events.
+    """
+    ap = argparse.ArgumentParser(description="Build static web assets from the latest run.")
+    ap.add_argument("--event_id", type=str, default=None, help="Force a specific event id for web assets (comma separated for multiples)")
+    ap.add_argument("--tour", type=str, default="pga", help="Tour to process")
+    args = ap.parse_args()
+
+    TOUR = args.tour
+
+    root = Path(__file__).resolve().parent.parent
+    processed_dir = root / "data" / "processed" / TOUR
+    preds_dir = root / "data" / "preds" / TOUR
+    raw_hist_dir = root / "data" / "raw" / "historical" / TOUR
+
+    web_dir = root / "web" / TOUR
+    web_dir.mkdir(parents=True, exist_ok=True)
+    downloads_dir = web_dir / "downloads"
+    downloads_dir.mkdir(parents=True, exist_ok=True)
+    events_root = web_dir / "events"
+    events_root.mkdir(parents=True, exist_ok=True)
+
+    build_schedule_json(root, TOUR, web_dir / "schedule.json")
+
+    # Resolve events (preserve order, remove duplicates)
+    raw_event_ids = resolve_event_ids(args.event_id, TOUR)
+    seen_ids = set()
+    event_ids = []
+    for eid in raw_event_ids:
+        if eid not in seen_ids:
+            seen_ids.add(eid)
+            event_ids.append(eid)
+
+    if not args.event_id and not has_current_week_events(TOUR):
+        event_ids = []
+        print(f"[info] No events in current week (or next week if Sunday) for tour={TOUR}; generating placeholder assets.")
+
+    reports = []
+
+    if not event_ids:
+        clear_old_event_assets(web_dir)
+        events_root.mkdir(parents=True, exist_ok=True)
+
+        generated_utc = datetime.utcnow().strftime("%d-%b-%Y %H:%M:%S")
+        write_json(web_dir / "leaderboard.json", [])
+        write_json(
+            web_dir / "summary.json",
+            {
+                "event_id": "0",
+                "event_name": "No Event",
+                "source_csv": None,
+                "generated_utc": generated_utc,
+                "metrics": None,
+            },
+        )
+        resources_placeholder = {
+            "downloads_csv": None,
+            "downloads_html": None,
+            "weather_meta": None,
+            "weather_round_neutral": None,
+            "weather_round_wave": None,
+            "course_fit_weights": None,
+            "course_history_summary": None,
+            "tournament_summary": None,
+            "field_teetimes": None,
+            "leaderboard": f"{TOUR}/leaderboard.json",
+            "summary": f"{TOUR}/summary.json",
+            "schedule": f"{TOUR}/schedule.json" if (web_dir / "schedule.json").exists() else None,
+            "primary_event_dir": None,
+        }
+        meta_out = {
+            "tour": TOUR,
+            "event_id": "0",
+            "event_name": "No Event",
+            "lat": None,
+            "lon": None,
+            "r1_date": None,
+            "generated_utc": generated_utc,
+            "resources": resources_placeholder,
+            "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!",
+            "active_events": [],
+            "primary_event_dir": None,
+        }
+        write_json(web_dir / "meta.json", meta_out)
+        reports.append("No events processed; placeholder assets generated.")
+    else:
+        aggregated_events = []
+        for idx, eid in enumerate(event_ids):
+            summary = process_event(
+                eid,
+                root=root,
+                tour=TOUR,
+                processed_dir=processed_dir,
+                preds_dir=preds_dir,
+                web_dir=web_dir,
+                downloads_dir=downloads_dir,
+                raw_hist_dir=raw_hist_dir,
+                primary=(idx == 0),
+            )
+            if summary:
+                aggregated_events.append(summary)
+
+        if not aggregated_events:
+            generated_utc = datetime.utcnow().strftime("%d-%b-%Y %H:%M:%S")
+            write_json(web_dir / "leaderboard.json", [])
+            write_json(
+                web_dir / "summary.json",
+                {
+                    "event_id": "0",
+                    "event_name": "No Event",
+                    "source_csv": None,
+                    "generated_utc": generated_utc,
+                    "metrics": None,
+                },
+            )
+            meta_out = {
+                "tour": TOUR,
+                "event_id": "0",
+                "event_name": "No Event",
+                "lat": None,
+                "lon": None,
+                "r1_date": None,
+                "generated_utc": generated_utc,
+                "resources": {
+                    "leaderboard": f"{TOUR}/leaderboard.json",
+                    "summary": f"{TOUR}/summary.json",
+                    "schedule": f"{TOUR}/schedule.json" if (web_dir / "schedule.json").exists() else None,
+                    "primary_event_dir": None,
+                },
+                "no_event_message": "No event data available.",
+                "active_events": [],
+                "primary_event_dir": None,
+            }
+            write_json(web_dir / "meta.json", meta_out)
+            reports.append("Event data missing; reverted to placeholder assets.")
+        else:
+            primary = aggregated_events[0]
+            generated_utc = primary["generated_utc"]
+            resources_primary = {
+                "downloads_csv": primary["resources"].get("downloads_csv"),
+                "downloads_html": primary["resources"].get("downloads_html"),
+                "weather_meta": f"{TOUR}/weather_meta.json" if (web_dir / "weather_meta.json").exists() else None,
+                "weather_round_neutral": f"{TOUR}/weather_round_neutral.json" if (web_dir / "weather_round_neutral.json").exists() else None,
+                "weather_round_wave": f"{TOUR}/weather_round_wave.json" if (web_dir / "weather_round_wave.json").exists() else None,
+                "course_fit_weights": f"{TOUR}/course_fit_weights.json" if (web_dir / "course_fit_weights.json").exists() else None,
+                "course_history_summary": f"{TOUR}/course_history_summary.json" if (web_dir / "course_history_summary.json").exists() else None,
+                "tournament_summary": f"{TOUR}/tournament_summary.json" if (web_dir / "tournament_summary.json").exists() else None,
+                "field_teetimes": f"{TOUR}/field_teetimes.csv" if (web_dir / "field_teetimes.csv").exists() else None,
+                "leaderboard": f"{TOUR}/leaderboard.json" if (web_dir / "leaderboard.json").exists() else None,
+                "summary": f"{TOUR}/summary.json" if (web_dir / "summary.json").exists() else None,
+                "schedule": f"{TOUR}/schedule.json" if (web_dir / "schedule.json").exists() else None,
+                "primary_event_dir": primary["event_dir"],
+            }
+            meta_out = {
+                "tour": TOUR,
+                "event_id": primary["event_id"],
+                "event_name": primary["event_name"],
+                "lat": primary.get("lat"),
+                "lon": primary.get("lon"),
+                "r1_date": primary.get("r1_date"),
+                "generated_utc": generated_utc,
+                "resources": resources_primary,
+                "active_events": aggregated_events,
+                "primary_event_dir": primary["event_dir"],
+            }
+            write_json(web_dir / "meta.json", meta_out)
+            reports.append(f"Processed events: {', '.join(e['event_id'] for e in aggregated_events)}")
 
     print("Wrote web assets under web/:")
-    for p in [
+    for rel_path in [
         "leaderboard.json",
         "summary.json",
         "meta.json",
@@ -1531,8 +1668,11 @@ def main():
         "field_teetimes.csv",
         "schedule.json",
     ]:
-        q = web_dir / p
-        print("-", q if q.exists() else f"- (not generated) {q}")
+        out_path = web_dir / rel_path
+        print("-", out_path if out_path.exists() else f"- (not generated) {out_path}")
+
+    for message in reports:
+        print(f"[info] {message}")
 
 
 if __name__ == "__main__":

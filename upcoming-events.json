@@ -310,10 +310,10 @@
     },
     {
       "country": "USA",
-      "course": "PGA National Resort (The Champion Course)",
+      "course": "PGA National  - Champion Course",
       "course_key": "928",
       "event_id": "10",
-      "event_name": "Cognizant Classic",
+      "event_name": "Cognizant Classic in The Palm Beaches",
       "latitude": 26.829,
       "location": "Palm Beach Gardens, FL",
       "longitude": -80.141,
@@ -341,7 +341,7 @@
       "course": "Jockey Club",
       "course_key": "107",
       "event_id": "170",
-      "event_name": "119 Visa Argentina Open presented by Macro",
+      "event_name": "119 Visa Argentina Open",
       "latitude": -34.486,
       "location": "San Isidro, Buenos Aires, Argentina",
       "longitude": -58.533,
@@ -365,7 +365,7 @@
       "winner": "TBD"
     },
     {
-      "country": "USA",
+      "country": "PUR",
       "course": "Grand Reserve Golf Club",
       "course_key": "940",
       "event_id": "483",
@@ -379,7 +379,7 @@
       "winner": "TBD"
     },
     {
-      "country": "CHN",
+      "country": "HKG",
       "course": "Hong Kong Golf Club",
       "course_key": "20",
       "event_id": "719",

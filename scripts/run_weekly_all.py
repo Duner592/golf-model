@@ -22,76 +22,19 @@ import argparse
 import json
 import subprocess
 import sys
-from datetime import datetime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT_DIR = Path(__file__).resolve().parent
 
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.utils_event import resolve_event_ids  # noqa: E402
 
 def run(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     print(">>>", " ".join(cmd), flush=True)
     return subprocess.run(cmd, check=check)
-
-
-def _parse_ts(iso: str | None) -> float:
-    if not iso:
-        return 0.0
-    s = iso.replace("Z", "")
-    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H%M%S", "%Y-%m-%d %H:%M:%S"):
-        try:
-            return datetime.strptime(s, fmt).timestamp()
-        except Exception:
-            pass
-    return 0.0
-
-
-def resolve_event_id(cli_event_id: str | None, tour: str | None = None) -> str:
-    """Priority: CLI arg → upcoming-events.json (current week by today's date, or closest future event)."""
-    if cli_event_id:
-        return str(cli_event_id)
-
-    # Load upcoming events
-    upcoming_file = ROOT / "upcoming-events.json"
-    if not upcoming_file.exists():
-        raise FileNotFoundError(f"Upcoming events file not found: {upcoming_file}")
-
-    try:
-        with open(upcoming_file, encoding="utf-8") as f:
-            data = json.load(f)
-        events = data.get("schedule", [])  # Extract the schedule list
-        if tour:
-            events = [e for e in events if e.get("tour") == tour]
-    except (json.JSONDecodeError, FileNotFoundError, KeyError) as e:
-        raise ValueError(f"Failed to load or parse {upcoming_file}: {e}") from e
-
-    today = datetime.now().date()
-    start_of_week = today - timedelta(days=today.weekday())  # Monday
-    end_of_week = start_of_week + timedelta(days=6)  # Sunday
-
-    # First, try to find events in the current week
-    weekly_events = []
-    future_events = []  # Fallback: all events on or after today
-    for event in events:
-        if not isinstance(event, dict) or "event_id" not in event or "start_date" not in event:
-            continue
-        try:
-            event_date = datetime.fromisoformat(event["start_date"]).date()  # Parse "YYYY-MM-DD"
-            if start_of_week <= event_date <= end_of_week:
-                weekly_events.append(event)
-            elif event_date >= today:
-                future_events.append((event_date, event))
-        except (ValueError, KeyError):
-            continue
-
-    # Use current week if available; otherwise, the closest future event
-    if weekly_events:
-        return str(weekly_events[0]["event_id"])  # Earliest in week
-    elif future_events:
-        future_events.sort(key=lambda x: x[0])  # Sort by date
-        return str(future_events[0][1]["event_id"])  # Closest future event
-    else:
-        raise ValueError(f"No current or future events found in {upcoming_file} starting from {today} for tour={tour}. Check the file or provide --event_id.")
 
 
 def main():
@@ -113,103 +56,162 @@ def main():
     skip_course = args.skip_course or args.fast
     skip_html = args.skip_html or args.fast
 
+    upcoming_lookup: dict[str, dict] = {}
+    start_groups: dict[str, list[str]] = {}
+    upcoming_file = ROOT / "upcoming-events.json"
+    if upcoming_file.exists():
+        try:
+            with open(upcoming_file, encoding="utf-8") as f:
+                upcoming_data = json.load(f)
+            schedule = upcoming_data.get("schedule", [])
+            for event in schedule:
+                if not isinstance(event, dict):
+                    continue
+                eid = event.get("event_id")
+                if eid is None:
+                    continue
+                eid_str = str(eid)
+                upcoming_lookup[eid_str] = event
+                start = event.get("start_date")
+                if start:
+                    start_groups.setdefault(start, []).append(eid_str)
+        except Exception:
+            upcoming_lookup = {}
+            start_groups = {}
     try:
-        # Resolve a single event_id (prevents drifting to older meta like event_9)
-        event_id = resolve_event_id(args.event_id, TOUR)
-        print(f"[info] Using event_id={event_id} for tour={TOUR}")
-
         cmd_suffix = ["--tour", TOUR]
+        event_ids = resolve_event_ids(args.event_id, TOUR)
+        if not event_ids:
+            raise ValueError(f"No events resolved for tour={TOUR}. Please update upcoming-events.json or pass --event_id.")
 
-        # Field + meta
-        if args.pinned or args.skip_field:
-            print("[info] Pinned/skip-field: skipping field-updates/parse; using existing processed meta/field.")
-        else:
-            run([sys.executable, str(SCRIPT_DIR / "fetch_field_updates.py")] + cmd_suffix)
-            run([sys.executable, str(SCRIPT_DIR / "parse_field_updates.py")] + cmd_suffix)
+        print(f"[info] Events to process for tour={TOUR}: {', '.join(event_ids)}")
 
-            # Inline: Merge missing lat/lon/start from upcoming-events.json into meta
-            meta_file = PROCESSED / f"event_{event_id}_meta.json"
-            upcoming_file = ROOT / "upcoming-events.json"
-            if meta_file.exists() and upcoming_file.exists():
+        for event_id in event_ids:
+            print(f"[info] === Processing event_id={event_id} ===")
+            per_event_suffix = ["--event_id", event_id] + cmd_suffix
+
+            event_info = upcoming_lookup.get(event_id, {})
+            start_date = event_info.get("start_date")
+            same_start_ids = start_groups.get(start_date, []) if start_date else []
+            field_update_tour = TOUR
+            if TOUR.lower() == "pga" and same_start_ids:
                 try:
-                    with open(meta_file, encoding="utf-8") as f:
-                        meta = json.load(f)
-                    with open(upcoming_file, encoding="utf-8") as f:
-                        data = json.load(f)
-                    for event in data.get("schedule", []):
-                        if str(event.get("event_id")) == event_id and event.get("tour") == TOUR:
-                            if "latitude" not in meta or not meta.get("latitude"):
-                                meta["latitude"] = event.get("latitude")
-                            if "longitude" not in meta or not meta.get("longitude"):
-                                meta["longitude"] = event.get("longitude")
-                            if "start" not in meta or not meta.get("start"):
-                                meta["start"] = event.get("start_date")
-                            break
-                    with open(meta_file, "w", encoding="utf-8") as f:
-                        json.dump(meta, f, indent=2)
-                    print(f"[info] Updated meta for event_id={event_id} with latitude/longitude/start from upcoming-events.json")
-                except Exception as e:
-                    print(f"[warn] Failed to merge meta for event_id={event_id}: {e}")
+                    ordered_same_start = sorted(
+                        same_start_ids,
+                        key=lambda x: int(str(x)) if str(x).isdigit() else str(x),
+                    )
+                except Exception:
+                    ordered_same_start = sorted(same_start_ids)
+                if len(ordered_same_start) > 1:
+                    if event_id not in ordered_same_start:
+                        ordered_same_start.append(event_id)
+                    if event_id != ordered_same_start[0]:
+                        field_update_tour = "opp"
 
-        # Weather
-        if args.skip_weather:
-            print("[info] Skipping weather steps (--skip-weather)")
-        else:
-            run([sys.executable, str(SCRIPT_DIR / "fetch_weather_from_schedule.py"), "--event_id", event_id] + cmd_suffix)
-            run([sys.executable, str(SCRIPT_DIR / "summarize_weather_from_schedule.py"), "--event_id", event_id] + cmd_suffix)
+            # Field + meta
+            if args.pinned or args.skip_field:
+                print("[info] Pinned/skip-field: skipping field-updates/parse; using existing processed meta/field.")
+            else:
+                fetch_cmd = [
+                    sys.executable,
+                    str(SCRIPT_DIR / "fetch_field_updates.py"),
+                    "--event_id",
+                    event_id,
+                    "--tour",
+                    field_update_tour,
+                ]
+                run(fetch_cmd)
+                run([sys.executable, str(SCRIPT_DIR / "parse_field_updates.py")] + cmd_suffix)
 
-        # Weather features
-        run([sys.executable, str(SCRIPT_DIR / "build_features_from_weather.py"), "--event_id", event_id] + cmd_suffix)
+                # Inline: Merge missing lat/lon/start from upcoming-events.json into meta
+                meta_file = PROCESSED / f"event_{event_id}_meta.json"
+                if not meta_file.exists():
+                    raise FileNotFoundError(
+                        f"Processed meta not found after field parsing for event_id={event_id}: {meta_file}"
+                    )
+                upcoming_file = ROOT / "upcoming-events.json"
+                if meta_file.exists() and upcoming_file.exists():
+                    try:
+                        with open(meta_file, encoding="utf-8") as f:
+                            meta = json.load(f)
+                        with open(upcoming_file, encoding="utf-8") as f:
+                            data = json.load(f)
+                        for event in data.get("schedule", []):
+                            if str(event.get("event_id")) == event_id and event.get("tour") == TOUR:
+                                if "latitude" not in meta or not meta.get("latitude"):
+                                    meta["latitude"] = event.get("latitude")
+                                if "longitude" not in meta or not meta.get("longitude"):
+                                    meta["longitude"] = event.get("longitude")
+                                if "start" not in meta or not meta.get("start"):
+                                    meta["start"] = event.get("start_date")
+                                break
+                        with open(meta_file, "w", encoding="utf-8") as f:
+                            json.dump(meta, f, indent=2)
+                        print(f"[info] Updated meta for event_id={event_id} with latitude/longitude/start from upcoming-events.json")
+                    except Exception as e:
+                        print(f"[warn] Failed to merge meta for event_id={event_id}: {e}")
 
-        # Player data + merge
-        run([sys.executable, str(SCRIPT_DIR / "fetch_player_data.py"), "--event_id", event_id] + cmd_suffix)
-        run([sys.executable, str(SCRIPT_DIR / "merge_player_data_into_features.py"), "--event_id", event_id] + cmd_suffix)
+            # Weather
+            if args.skip_weather:
+                print("[info] Skipping weather steps (--skip-weather)")
+            else:
+                run([sys.executable, str(SCRIPT_DIR / "fetch_weather_from_schedule.py")] + per_event_suffix)
+                run([sys.executable, str(SCRIPT_DIR / "summarize_weather_from_schedule.py")] + per_event_suffix)
 
-        # Sigma + merge
-        run([sys.executable, str(SCRIPT_DIR / "compute_sigma_from_sg.py"), "--event_id", event_id] + cmd_suffix)
-        run([sys.executable, str(SCRIPT_DIR / "merge_sigma_into_features.py"), "--event_id", event_id] + cmd_suffix)
+            # Weather features
+            run([sys.executable, str(SCRIPT_DIR / "build_features_from_weather.py")] + per_event_suffix)
 
-        # Course fit / history (optional)
-        if not skip_course:
-            # Fetch historical rounds first (if available)
-            try:
-                run([sys.executable, str(SCRIPT_DIR / "fetch_historical_rounds.py"), "--event_id", event_id] + cmd_suffix)
-            except subprocess.CalledProcessError:
-                print("[warn] Fetching historical rounds failed or script not found. Continuing with existing data.")
+            # Player data + merge
+            run([sys.executable, str(SCRIPT_DIR / "fetch_player_data.py")] + per_event_suffix)
+            run([sys.executable, str(SCRIPT_DIR / "merge_player_data_into_features.py")] + per_event_suffix)
 
-            try:
-                run([sys.executable, str(SCRIPT_DIR / "build_course_fit_from_history.py"), "--event_id", event_id] + cmd_suffix)
-                run([sys.executable, str(SCRIPT_DIR / "merge_course_fit_diy_into_features.py"), "--event_id", event_id] + cmd_suffix)
-            except subprocess.CalledProcessError:
-                print("[warn] DIY course-fit step failed or history not available. Continuing.")
-            try:
-                run([sys.executable, str(SCRIPT_DIR / "build_course_history_from_hist.py"), "--event_id", event_id] + cmd_suffix)
-                run([sys.executable, str(SCRIPT_DIR / "merge_course_history_into_features.py"), "--event_id", event_id] + cmd_suffix)
-            except subprocess.CalledProcessError:
-                print("[warn] Course history stats step failed or unavailable. Continuing.")
-        else:
-            print("[info] Skipping course-fit/history steps (--skip-course / --fast)")
+            # Sigma + merge
+            run([sys.executable, str(SCRIPT_DIR / "compute_sigma_from_sg.py")] + per_event_suffix)
+            run([sys.executable, str(SCRIPT_DIR / "merge_sigma_into_features.py")] + per_event_suffix)
 
-        # Simulate
-        run([sys.executable, str(SCRIPT_DIR / "simulate_event_with_course.py"), "--event_id", event_id] + cmd_suffix)
+            # Course fit / history (optional)
+            if not skip_course:
+                # Fetch historical rounds first (if available)
+                try:
+                    run([sys.executable, str(SCRIPT_DIR / "fetch_historical_rounds.py")] + per_event_suffix)
+                except subprocess.CalledProcessError:
+                    print("[warn] Fetching historical rounds failed or script not found. Continuing with existing data.")
 
-        # Leaderboard + summary
-        lb_cmd = [
-            sys.executable,
-            str(SCRIPT_DIR / "export_leaderboard.py"),
-            "--topN",
-            str(args.topN),
-            "--event_id",
-            event_id,
-        ] + cmd_suffix
-        if not skip_html:
-            lb_cmd.append("--html")
-        run(lb_cmd)
+                try:
+                    run([sys.executable, str(SCRIPT_DIR / "build_course_fit_from_history.py")] + per_event_suffix)
+                    run([sys.executable, str(SCRIPT_DIR / "merge_course_fit_diy_into_features.py")] + per_event_suffix)
+                except subprocess.CalledProcessError:
+                    print("[warn] DIY course-fit step failed or history not available. Continuing.")
+                try:
+                    run([sys.executable, str(SCRIPT_DIR / "build_course_history_from_hist.py")] + per_event_suffix)
+                    run([sys.executable, str(SCRIPT_DIR / "merge_course_history_into_features.py")] + per_event_suffix)
+                except subprocess.CalledProcessError:
+                    print("[warn] Course history stats step failed or unavailable. Continuing.")
+            else:
+                print("[info] Skipping course-fit/history steps (--skip-course / --fast)")
 
-        # Status (always pass event_id so it doesn't drift to another meta)
-        run([sys.executable, str(SCRIPT_DIR / "summarize_status.py"), "--event_id", event_id] + cmd_suffix)
+            # Simulate
+            run([sys.executable, str(SCRIPT_DIR / "simulate_event_with_course.py")] + per_event_suffix)
 
-        print("[done] Weekly run completed successfully.", flush=True)
+            # Leaderboard + summary
+            lb_cmd = [
+                sys.executable,
+                str(SCRIPT_DIR / "export_leaderboard.py"),
+                "--topN",
+                str(args.topN),
+                "--event_id",
+                event_id,
+            ] + cmd_suffix
+            if not skip_html:
+                lb_cmd.append("--html")
+            run(lb_cmd)
+
+            # Status (always pass event_id so it doesn't drift to another meta)
+            run([sys.executable, str(SCRIPT_DIR / "summarize_status.py")] + per_event_suffix)
+
+            print(f"[info] Completed pipeline for event_id={event_id}", flush=True)
+
+        print(f"[done] Weekly run completed successfully for events: {', '.join(event_ids)}", flush=True)
     except subprocess.CalledProcessError as e:
         print(f"[error] Step failed with return code {e.returncode}: {e}", flush=True)
         sys.exit(e.returncode)

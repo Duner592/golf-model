@@ -1,0 +1,27 @@
+{
+  "tour": "euro",
+  "event_id": "2026111",
+  "event_name": "Joburg Open",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-03-05",
+  "start_date": "2026-03-05",
+  "generated_utc": "04-Mar-2026 15:30:02",
+  "source_csv": null,
+  "has_predictions": false,
+  "resources": {
+    "leaderboard": "euro/events/event_2026111/leaderboard.json",
+    "summary": "euro/events/event_2026111/summary.json",
+    "meta": "euro/events/event_2026111/meta.json",
+    "downloads_csv": null,
+    "downloads_html": null,
+    "weather_meta": "euro/events/event_2026111/weather_meta.json",
+    "weather_round_neutral": "euro/events/event_2026111/weather_round_neutral.json",
+    "weather_round_wave": "euro/events/event_2026111/weather_round_wave.json",
+    "course_fit_weights": "euro/events/event_2026111/course_fit_weights.json",
+    "course_history_summary": "euro/events/event_2026111/course_history_summary.json",
+    "tournament_summary": "euro/events/event_2026111/tournament_summary.json",
+    "field_teetimes": "euro/events/event_2026111/field_teetimes.csv",
+    "schedule": "euro/schedule.json"
+  }
+}

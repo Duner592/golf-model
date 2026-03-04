@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "483",
+  "event_name": "Puerto Rico Open",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-03-05",
+  "start_date": "2026-03-05",
+  "generated_utc": "04-Mar-2026 14:59:27",
+  "source_csv": "data/preds/pga/event_483_puerto_rico_open_2026-03-04_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_483/leaderboard.json",
+    "summary": "pga/events/event_483/summary.json",
+    "meta": "pga/events/event_483/meta.json",
+    "downloads_csv": "pga/downloads/event_483_puerto_rico_open_2026-03-04_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_483_puerto_rico_open_2026-03-04_leaderboard.html",
+    "weather_meta": "pga/events/event_483/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_483/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_483/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_483/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_483/course_history_summary.json",
+    "tournament_summary": "pga/events/event_483/tournament_summary.json",
+    "field_teetimes": "pga/events/event_483/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}

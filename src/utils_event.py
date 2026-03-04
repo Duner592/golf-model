@@ -5,7 +5,8 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime
+import re
+from datetime import datetime, timedelta
 from pathlib import Path
 
 TOUR_DEFAULT = "pga"
@@ -36,7 +37,14 @@ def load_latest_meta(tour: str = TOUR_DEFAULT) -> dict:
     return json.loads(metas[-1].read_text(encoding="utf-8"))
 
 
-def resolve_event_id(cli_event_id: str | None = None, tour: str = TOUR_DEFAULT) -> str:
+def _parse_cli_event_ids(cli_event_ids: str | None) -> list[str]:
+    if not cli_event_ids:
+        return []
+    parts = [p.strip() for p in re.split(r"[\s,]+", str(cli_event_ids)) if p.strip()]
+    return [str(p) for p in parts]
+
+
+def _resolve_single_event_id(cli_event_id: str | None = None, tour: str = TOUR_DEFAULT) -> str:
     """
     Priority:
       1) CLI --event_id
@@ -88,6 +96,75 @@ def resolve_event_id(cli_event_id: str | None = None, tour: str = TOUR_DEFAULT) 
     if best_eid is None:
         raise ValueError("Could not determine event_id from meta files.")
     return str(best_eid)
+
+
+def resolve_event_ids(cli_event_ids: str | None = None, tour: str = TOUR_DEFAULT) -> list[str]:
+    parsed = _parse_cli_event_ids(cli_event_ids)
+    if parsed:
+        seen = set()
+        ordered = []
+        for eid in parsed:
+            if eid in seen:
+                continue
+            seen.add(eid)
+            ordered.append(eid)
+        return ordered
+
+    upcoming_file = ROOT / "upcoming-events.json"
+    events_in_week: list[tuple[datetime, str]] = []
+    today = datetime.now().date()
+    start_of_week = today - timedelta(days=today.weekday())
+    end_of_week = start_of_week + timedelta(days=6)
+
+    if upcoming_file.exists():
+        try:
+            data = json.loads(upcoming_file.read_text(encoding="utf-8"))
+            schedule = data.get("schedule", [])
+            if tour:
+                schedule = [e for e in schedule if e.get("tour") == tour]
+            for event in schedule:
+                if not isinstance(event, dict):
+                    continue
+                eid = event.get("event_id")
+                start_date = event.get("start_date")
+                if eid is None or start_date is None:
+                    continue
+                try:
+                    event_date = datetime.fromisoformat(start_date).date()
+                except Exception:
+                    continue
+                if start_of_week <= event_date <= end_of_week:
+                    events_in_week.append((datetime.fromisoformat(start_date), str(eid)))
+        except Exception:
+            events_in_week = []
+
+    def _sort_key_pair(pair: tuple[datetime, str]) -> tuple[datetime, int | str]:
+        dt, eid = pair
+        try:
+            return dt, int(str(eid))
+        except Exception:
+            return dt, str(eid)
+
+    if events_in_week:
+        events_in_week.sort(key=_sort_key_pair)
+        ordered = [eid for _, eid in events_in_week]
+        seen = set()
+        unique = []
+        for eid in ordered:
+            if eid not in seen:
+                seen.add(eid)
+                unique.append(eid)
+        return unique
+
+    single = _resolve_single_event_id(None, tour)
+    return [single] if single is not None else []
+
+
+def resolve_event_id(cli_event_id: str | None = None, tour: str = TOUR_DEFAULT) -> str:
+    ids = resolve_event_ids(cli_event_id, tour)
+    if not ids:
+        raise ValueError("Could not determine event_id.")
+    return ids[0]
 
 
 def load_field_table(event_id: str, tour: str = TOUR_DEFAULT):

@@ -1,0 +1,12 @@
+{
+  "event_id": "483",
+  "event_name": "Puerto Rico Open",
+  "source_csv": "data/preds/pga/event_483_puerto_rico_open_2026-03-04_leaderboard.csv",
+  "generated_utc": "04-Mar-2026 14:59:27",
+  "metrics": {
+    "field_size": 72,
+    "p_win_max": 0.626,
+    "p_win_median": 0.0010166666666666666,
+    "p_win_sum": 1.0
+  }
+}
