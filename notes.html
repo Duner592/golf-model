@@ -14,7 +14,7 @@
         .event-select { margin: 2rem 0 1.5rem 0; text-align: center; }
         .notes-block { border: 1px solid #bbb; border-radius: 8px; background: #fafbfc; padding: 1.2rem; margin-bottom: 2rem; }
         h1, h2 { text-align: center; color: #2e8b57; }
-        .notes-label { font-weight: 600; color: #007bff; margin-top: 1rem; }
+        .notes-label { font-weight: 600; color: var(--gm-primary); margin-top: 1rem; }
         .event-title { font-size: 1.2rem; margin-bottom: 0.4rem;}
         .event-info { font-size: 1rem; color: #444; margin-bottom: 0.5rem; }
         select { font-size: 1rem; padding: 0.3em 1em; }
@@ -33,15 +33,15 @@
             .main-content { padding: 0 2vw; }
         }
 
-        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
-        .link:hover { background: #0056b3; }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary)); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem; box-shadow: 0 8px 18px -14px rgba(29,124,66,0.55); transition: background 0.2s ease, transform 0.2s ease; }
+        .link:hover { background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark)); transform: translateY(-1px); }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="assets/js/betting-data.js"></script>
 </head>
 <body>
 <div class="logo-wrapper">
-    <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+    <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <div class="menu-container">

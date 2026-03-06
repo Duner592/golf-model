@@ -1,36 +1,53 @@
-<h3 class="homepage-section"><a href="index.html" class="link">Homepage</a></h3>
+<div class="menu-header">
+    <div class="menu-title">Site Navigation</div>
+    <p class="menu-subtitle">Jump to predictions, schedules, and betting tools.</p>
+</div>
 
-<h3 class="menu-section" onclick="toggleSection(this)">Tournament Predictions <span class="arrow">▶</span></h3>
-<ul class="menu-list">
-    <li><a href="pga.html" class="link">PGA Tour</a></li>
-    <li><a href="euro.html" class="link">DP World Tour</a></li>
-    <li><a href="archive.html" class="link">Prediction Archives</a></li>
-</ul>
+<nav class="menu-nav">
+    <div>
+        <div class="homepage-section"><a href="index.html">Homepage</a></div>
+    </div>
 
-<h3 class="menu-section" onclick="toggleSection(this)">Tour Schedules <span class="arrow">▶</span></h3>
-<ul class="menu-list">
-    <li><a href="schedule.html" class="link">Tour Schedule</a></li>
-</ul>
-
-<h3 class="menu-section" onclick="toggleSection(this)">Betting History <span class="arrow">▶</span></h3>
-<ul class="menu-list">
-    <li><a href="betting_analytics.html" class="link">Analytics</a></li>
-    <li><a href="spreadsheet.html" class="link">Overall Data</a></li>
-    <li><a href="roi.html" class="link">ROI% Data</a></li>
-    <li>
-        <h4 class="submenu-section" onclick="toggleSection(this)">Yearly Data <span class="arrow">▶</span></h4>
-        <ul class="submenu-list">
-            <li><a href="spreadsheet.html?year=2026" class="link">2026</a></li>
-            <li><a href="spreadsheet.html?year=2025" class="link">2025</a></li>
-            <li><a href="spreadsheet.html?year=2024" class="link">2024</a></li>
-            <li><a href="spreadsheet.html?year=2023" class="link">2023</a></li>
+    <div>
+        <h3 class="menu-section" onclick="toggleSection(this)">Tournament Predictions <span class="arrow">▼</span></h3>
+        <ul class="menu-list" style="display: block;">
+            <li><a href="pga.html" class="menu-link">PGA Tour</a></li>
+            <li><a href="euro.html" class="menu-link">DP World Tour</a></li>
+            <li><a href="archive.html" class="menu-link">Prediction Archives</a></li>
         </ul>
-    </li>
-</ul>
+    </div>
 
-<h3 class="menu-section" onclick="toggleSection(this)">Additional Data <span class="arrow">▶</span></h3>
-<ul class="menu-list">
-    <li><a href="course_details.html" class="link">Course Details</a></li>
-    <li><a href="notes.html" class="link">Pre & Post Tournament Notes</a></li>
-    <li><a href="links.html" class="link">External Links & Tools</a></li>
-</ul>
+    <div>
+        <h3 class="menu-section" onclick="toggleSection(this)">Tour Schedules <span class="arrow">▶</span></h3>
+        <ul class="menu-list">
+            <li><a href="schedule.html" class="menu-link">Tour Schedule</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h3 class="menu-section" onclick="toggleSection(this)">Betting History <span class="arrow">▼</span></h3>
+        <ul class="menu-list" style="display: block;">
+            <li><a href="betting_analytics.html" class="menu-link">Analytics</a></li>
+            <li><a href="spreadsheet.html" class="menu-link">Overall Data</a></li>
+            <li><a href="roi.html" class="menu-link">ROI% Data</a></li>
+            <li>
+                <h4 class="submenu-section" onclick="toggleSection(this)">Yearly Data <span class="arrow">▶</span></h4>
+                <ul class="submenu-list">
+                    <li><a href="spreadsheet.html?year=2026" class="menu-link">2026</a></li>
+                    <li><a href="spreadsheet.html?year=2025" class="menu-link">2025</a></li>
+                    <li><a href="spreadsheet.html?year=2024" class="menu-link">2024</a></li>
+                    <li><a href="spreadsheet.html?year=2023" class="menu-link">2023</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <h3 class="menu-section" onclick="toggleSection(this)">Additional Data <span class="arrow">▶</span></h3>
+        <ul class="menu-list">
+            <li><a href="course_details.html" class="menu-link">Course Details</a></li>
+            <li><a href="notes.html" class="menu-link">Pre &amp; Post Tournament Notes</a></li>
+            <li><a href="links.html" class="menu-link">External Links &amp; Tools</a></li>
+        </ul>
+    </div>
+</nav>

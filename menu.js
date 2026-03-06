@@ -1,10 +1,20 @@
-   function toggleMenu() {
+   function toggleMenu(force) {
        const menu = document.getElementById('menu');
        const overlay = document.getElementById('overlay');
        const body = document.body;
-       menu.classList.toggle('show');
-       overlay.classList.toggle('show');
-       body.classList.toggle('menu-open');
+       if (!menu || !overlay) {
+           return;
+       }
+       const shouldOpen = force === undefined ? !menu.classList.contains('show') : force;
+       if (shouldOpen) {
+           menu.classList.add('show');
+           overlay.classList.add('show');
+           body.classList.add('menu-open');
+       } else {
+           menu.classList.remove('show');
+           overlay.classList.remove('show');
+           body.classList.remove('menu-open');
+       }
    }
 
    function toggleSection(header) {
@@ -18,3 +28,13 @@
            arrow.textContent = '▼';
        }
    }
+
+   document.addEventListener('click', event => {
+       const target = event.target;
+       if (target instanceof Element) {
+           const link = target.closest('.menu-link');
+           if (link) {
+               toggleMenu(false);
+           }
+       }
+   });
