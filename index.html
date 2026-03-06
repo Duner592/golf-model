@@ -11,6 +11,7 @@
     <!-- Added theme.css for shared styles -->
     <link rel="stylesheet" href="theme.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
         h1 { text-align: center; color: #2e8b57; }
@@ -237,19 +238,8 @@
 
     async function loadPendingBets() {
         try {
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                delimiter: ',',
-                quoteChar: '"',
-                escapeChar: '"',
-                newline: '\n',
-                transformHeader: header => header.trim()
-            });
-            const pendingBets = parsed.data.filter(row => {
+            const data = await BettingData.load();
+            const pendingBets = data.filter(row => {
                 const outcome = (row['Outcome'] || '').toLowerCase().trim();
                 return outcome === '' || outcome === 'pending';
             });
@@ -289,11 +279,12 @@
 
     async function getLastModifiedTimestamp() {
         try {
-            const response = await fetch('spreadsheet_data.csv', { method: 'HEAD' });
-            const lastModified = response.headers.get('Last-Modified');
-            if (lastModified) {
-                const date = new Date(lastModified);
-                return date.toLocaleString();
+            const meta = await BettingData.getMeta();
+            if (meta && meta.lastModified) {
+                return new Date(meta.lastModified).toLocaleString();
+            }
+            if (meta && meta.storedAt) {
+                return new Date(meta.storedAt).toLocaleString();
             }
             return 'Unavailable';
         } catch (e) {

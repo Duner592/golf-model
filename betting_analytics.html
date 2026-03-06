@@ -146,6 +146,7 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -247,19 +248,7 @@
 
 <script>
     async function loadData() {
-        const response = await fetch('spreadsheet_data.csv');
-        const csvText = await response.text();
-        const parsed = Papa.parse(csvText, {
-            header: true,
-            skipEmptyLines: 'greedy',
-            dynamicTyping: false,
-            delimiter: ',',
-            quoteChar: '"',
-            escapeChar: '"',
-            newline: '\n',
-            transformHeader: header => header.trim()
-        });
-        return parsed.data;
+        return BettingData.load();
     }
 
     function getYearFromDateString(dateStr) {

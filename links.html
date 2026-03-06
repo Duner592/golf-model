@@ -11,6 +11,7 @@
     <!-- Added theme.css for shared styles -->
     <link rel="stylesheet" href="theme.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
         h1 { text-align: center; color: #2e8b57; }
@@ -210,11 +211,12 @@
     // Reuse similar scripts from index.html for consistency, e.g., last updated timestamp
     async function getLastModifiedTimestamp() {
         try {
-            const response = await fetch('spreadsheet_data.csv', { method: 'HEAD' });
-            const lastModified = response.headers.get('Last-Modified');
-            if (lastModified) {
-                const date = new Date(lastModified);
-                return date.toLocaleString();
+            const meta = await BettingData.getMeta();
+            if (meta && meta.lastModified) {
+                return new Date(meta.lastModified).toLocaleString();
+            }
+            if (meta && meta.storedAt) {
+                return new Date(meta.storedAt).toLocaleString();
             }
             return 'Unavailable';
         } catch (e) {

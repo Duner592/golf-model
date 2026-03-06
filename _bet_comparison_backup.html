@@ -43,6 +43,7 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
@@ -379,22 +380,9 @@
     async function loadComparison() {
         try {
             console.log('Starting loadComparison...');
-            // Load CSV
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                transformHeader: header => header.trim()
-            });
+            const allBets = await BettingData.load();
 
-            if (parsed.errors?.length) {
-                console.error('CSV Parsing Errors:', parsed.errors);
-                return '<p>Error parsing the CSV file. Check console for details.</p>';
-            }
-
-            const completedBets = parsed.data.filter(bet => bet['Outcome'] && bet['Outcome'].toLowerCase().trim() !== 'pending');
+            const completedBets = allBets.filter(bet => bet['Outcome'] && bet['Outcome'].toLowerCase().trim() !== 'pending');
 
             console.log('Completed bets:', completedBets.length, 'Sample bet keys:', Object.keys(completedBets[0] || {}));
 

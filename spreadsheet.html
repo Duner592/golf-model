@@ -142,6 +142,7 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -165,26 +166,9 @@
 
     async function loadSpreadsheet() {
         try {
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
+            const allRows = await BettingData.load();
 
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                delimiter: ',',
-                quoteChar: '"',
-                escapeChar: '"',
-                newline: '\n',
-                transformHeader: header => header.trim()
-            });
-
-            if (parsed.errors.length > 0) {
-                console.error('CSV Parsing Errors:', parsed.errors);
-                return 'Errors parsing CSV. Check console for details.';
-            }
-
-            let data = parsed.data;
+            let data = allRows;
 
             // Manipulate data: Remove unwanted columns
             const columnsToRemove = ['Course Details', 'Pre Tournament Notes', 'Post Tournament Notes'];
@@ -261,7 +245,7 @@
             if (activeFilters.length === 0) {
                 let overallTotalReturn = 0;
                 let overallTotalStake = 0;
-                parsed.data.forEach(row => {
+                allRows.forEach(row => {
                     const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
                     const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
                     if (!isNaN(returnVal)) overallTotalReturn += returnVal;
