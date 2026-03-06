@@ -61,6 +61,7 @@
         .link:hover { background: #0056b3; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
 </head>
 <body>
 <div class="logo-wrapper">
@@ -216,19 +217,7 @@
 
     async function loadROIData() {
         try {
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                delimiter: ',',
-                quoteChar: '"',
-                escapeChar: '"',
-                newline: '\n',
-                transformHeader: header => header.trim()
-            });
-
+            const rows = await BettingData.load();
             let overallReturn = 0, overallStake = 0;
             const yearlyData = {};
             const monthlyData = {};
@@ -236,7 +225,7 @@
             const playerData = {};
             const tournamentData = {};
 
-            parsed.data.forEach(row => {
+            rows.forEach(row => {
                 const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
                 const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
                 const date = parseDate(row['Date'] || '');

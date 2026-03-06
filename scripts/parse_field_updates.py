@@ -12,8 +12,10 @@ _time_pat = re.compile(r"^(\d{1,2}):(\d{2})")
 
 
 def infer_wave_from_time(tstr: str | None) -> str | None:
-    if not tstr or not isinstance(tstr, str):
+    if tstr is None or (hasattr(pd, "isna") and pd.isna(tstr)):
         return None
+    if not isinstance(tstr, str):
+        tstr = str(tstr)
     m = _time_pat.match(tstr.strip())
     if not m:
         return None

@@ -47,6 +47,7 @@
         .link:hover { background: #0056b3; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
@@ -80,21 +81,10 @@
 
     async function loadOverallROI() {
         try {
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                delimiter: ',',
-                quoteChar: '"',
-                escapeChar: '"',
-                newline: '\n',
-                transformHeader: header => header.trim()
-            });
+            const data = await BettingData.load();
             let totalReturn = 0;
             let totalStake = 0;
-            parsed.data.forEach(row => {
+            data.forEach(row => {
                 const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
                 const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
                 if (!isNaN(returnVal)) totalReturn += returnVal;
@@ -109,19 +99,7 @@
 
     async function loadData() {
         try {
-            const response = await fetch('spreadsheet_data.csv');
-            const csvText = await response.text();
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                dynamicTyping: false,
-                delimiter: ',',
-                quoteChar: '"',
-                escapeChar: '"',
-                newline: '\n',
-                transformHeader: header => header.trim()
-            });
-            csvData = parsed.data;
+            csvData = await BettingData.load();
 
             // Populate dropdowns with unique values
             const tournaments = new Set();
