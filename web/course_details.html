@@ -16,8 +16,12 @@
         .filter-section button { background: #007bff; color: white; cursor: pointer; }
         .filter-section button:hover { background: #0056b3; }
         .results { margin: 2rem 0; }
-        .course-card { margin: 1rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
-        .course-card h3 { margin-top: 0; color: #007bff; }
+        .course-card { margin: 1.5rem 0; padding: 1.5rem; border: 1px solid #d9d9d9; border-radius: 12px; background: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06); }
+        .course-card h3 { margin: 0; font-size: 1.35rem; color: #235e3d; }
+        .course-card p { margin: 0.5rem 0 0; color: #3a3a3a; }
+        .course-card p strong { color: #2e8b57; }
+        .course-detail-block { margin-top: 1rem; padding: 0.85rem 1rem; border: 1px solid #ececec; border-radius: 10px; background: linear-gradient(180deg, rgba(242, 249, 245, 0.6), rgba(255, 255, 255, 0.9)); line-height: 1.55; font-size: 0.98rem; color: #232323; }
+        .course-detail-block.empty { background: #f9f9f9; color: #666; font-style: italic; }
         .loading { color: #666; font-style: italic; }
         .error { color: #d9534f; font-weight: bold; }
         .no-results { color: #666; font-style: italic; }
@@ -153,60 +157,14 @@
         }
     }
 
-    // UPDATED: Regex matching updated to match the example structure (Grass type after Course type, Weather forecast removed)
-    function parseCourseDetails(text, courseName) {
-        const fields = {
-            'Course': 'N/A',
-            'Length': 'N/A',
-            'Par': 'N/A',
-            'Time difference': 'N/A',
-            'Course type': 'N/A',
-            'Grass type': 'N/A',  // NEW/UPDATED: Extract after Course type
-            'Course overview': 'N/A',
-            'Type of player suited to the challenge': 'N/A',  // NEW: Added for completeness
-            'Key attribute': 'N/A',
-            'Insight': 'N/A'  // Kept as fallback
-        };
-
-        if (!text || typeof text !== 'string') return fields;
-
-        // Extract each field independently with flexible stops
-        const courseMatch = text.match(/Course\s+(?!overview\s)(.*?)(?=\s*Length\s*:?\s*|$)/is);
-        fields['Course'] = courseMatch ? courseMatch[1].trim() : 'N/A';
-
-        const lengthMatch = text.match(/Length\s*:?\s*(.*?)(?=\s*Par\s*:?\s*|$)/is);
-        fields['Length'] = lengthMatch ? lengthMatch[1].trim() : 'N/A';
-
-        const parMatch = text.match(/Par\s*:?\s*(.*?)(?=\s*Time difference\s*:?\s*|$)/is);
-        fields['Par'] = parMatch ? parMatch[1].trim() : 'N/A';
-
-        const timeMatch = text.match(/Time difference\s*:?\s*(.*?)(?=\s*Course type\s*:?\s*|$)/is);
-        fields['Time difference'] = timeMatch ? timeMatch[1].trim() : 'N/A';
-
-        const typeMatch = text.match(/Course type\s*:?\s*(.*?)(?=\s*Grass type\s*:?\s*|$)/is);  // UPDATED: Stop at Grass type
-        fields['Course type'] = typeMatch ? typeMatch[1].trim() : 'N/A';
-
-        const grassMatch = text.match(/Grass type\s*:?\s*(.*?)(?=\s*Course overview\s*:?\s*|$)/is);  // NEW: Extract Grass type after Course type
-        fields['Grass type'] = grassMatch ? grassMatch[1].trim() : 'N/A';
-
-        const overviewMatch = text.match(/Course overview\s*:?\s*(.*?)(?=\s*Type of player suited to the challenge\s*:?\s*|$)/is);  // UPDATED: Stop at Type of player
-        fields['Course overview'] = overviewMatch ? overviewMatch[1].trim() : 'N/A';
-
-        const playerMatch = text.match(/Type of player suited to the challenge\s*:?\s*(.*?)(?=\s*Key attribute\s*:?\s*|$)/is);  // NEW: Extract Type of player
-        fields['Type of player suited to the challenge'] = playerMatch ? playerMatch[1].trim() : 'N/A';
-
-        const attributeMatch = text.match(/Key attribute\s*:?\s*(.*?)(?=\s*Insight\s*:?\s*|$)/is);  // UPDATED: Stop at Insight if present
-        fields['Key attribute'] = attributeMatch ? attributeMatch[1].trim() : 'N/A';
-
-        const insightMatch = text.match(/Insight\s*:?\s*(.*?)(?=$)/is);  // Kept for fallback
-        fields['Insight'] = insightMatch ? insightMatch[1].trim() : 'N/A';
-
-        // Fallback: If 'Course' not found, use the course name from CSV
-        if (fields['Course'] === 'N/A') {
-            fields['Course'] = courseName || 'N/A';
-        }
-
-        return fields;
+    function escapeHtml(value) {
+        if (value == null) return '';
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
     function displayResults(filteredData) {
@@ -231,21 +189,20 @@
 
         let html = '<div class="results">';
         uniqueCourses.forEach((data, courseName) => {
-            const parsed = parseCourseDetails(data.detail, courseName);
-            let courseHtml = `<div class="course-card"><h3>${courseName}</h3><p><strong>Tournament:</strong> ${data.tournament}</p>`;
-            if (parsed['Course'] !== 'N/A') courseHtml += `<p><strong>Course:</strong> ${parsed['Course']}</p>`;
-            if (parsed['Length'] !== 'N/A') courseHtml += `<p><strong>Length:</strong> ${parsed['Length']}</p>`;
-            if (parsed['Par'] !== 'N/A') courseHtml += `<p><strong>Par:</strong> ${parsed['Par']}</p>`;
-            if (parsed['Time difference'] !== 'N/A') courseHtml += `<p><strong>Time difference:</strong> ${parsed['Time difference']}</p>`;
-            if (parsed['Course type'] !== 'N/A') courseHtml += `<p><strong>Course type:</strong> ${parsed['Course type']}</p>`;
-            // NEW: Show Grass type only if available
-            if (parsed['Grass type'] !== 'N/A') courseHtml += `<p><strong>Grass type:</strong> ${parsed['Grass type']}</p>`;
-            if (parsed['Course overview'] !== 'N/A') courseHtml += `<p><strong>Course overview:</strong> ${parsed['Course overview']}</p>`;
-            // NEW: Show Type of player only if available
-            if (parsed['Type of player suited to the challenge'] !== 'N/A') courseHtml += `<p><strong>Type of player suited to the challenge:</strong> ${parsed['Type of player suited to the challenge']}</p>`;
-            if (parsed['Key attribute'] !== 'N/A') courseHtml += `<p><strong>Key attribute:</strong> ${parsed['Key attribute']}</p>`;
-            if (parsed['Insight'] !== 'N/A') courseHtml += `<p><strong>Insight:</strong> ${parsed['Insight']}</p>`;
-            courseHtml += `</div>`;
+            const safeCourseName = escapeHtml(courseName || 'Course');
+            const safeTournament = data.tournament ? escapeHtml(data.tournament) : '';
+            const rawDetail = typeof data.detail === 'string' ? data.detail : '';
+            const hasDetail = rawDetail.trim().length > 0;
+            const detailHtml = hasDetail
+                ? escapeHtml(rawDetail).replace(/\r?\n/g, '<br>')
+                : 'Course details unavailable.';
+            const detailClass = hasDetail ? 'course-detail-block' : 'course-detail-block empty';
+
+            let courseHtml = `<div class="course-card"><h3>${safeCourseName}</h3>`;
+            if (safeTournament) {
+                courseHtml += `<p><strong>Tournament:</strong> ${safeTournament}</p>`;
+            }
+            courseHtml += `<div class="${detailClass}">${detailHtml}</div></div>`;
             html += courseHtml;
         });
         html += '</div>';
