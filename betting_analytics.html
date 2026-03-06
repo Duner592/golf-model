@@ -32,6 +32,33 @@
             grid-column: 1 / -1;
         }
 
+    .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+    .chart-header h2 {
+            margin: 0;
+        }
+    .year-select {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    .year-select select {
+            padding: 0.3rem 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: #fff;
+        }
+
     canvas {
             width: 100% !important;
             height: 600px !important; /* Increased height for larger, more readable charts */
@@ -102,7 +129,8 @@
         .full-list-content h3 { margin-top: 0; color: #333; }
         .full-list-search { width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; }
         .full-list-content ul { list-style: none; padding: 0; }
-        .full-list-content li { padding: 0.5rem 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+        .full-list-content li { padding: 0.5rem 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+        .full-list-content li:hover { background: #f6fbf7; transform: translateX(2px); }
         .full-list-close {
             position: absolute;
             top: 1rem;
@@ -134,29 +162,64 @@
 <!-- Charts Container for Grid Layout -->
 <div class="charts-grid">
     <div class="chart-container">
-        <h2>Most Profitable Players</h2>
+        <div class="chart-header">
+            <h2>Most Profitable Players</h2>
+            <label class="year-select">Year:
+                <select id="playersYearSelect" class="year-select-dropdown">
+                    <option value="overall">Overall</option>
+                </select>
+            </label>
+        </div>
         <canvas id="mostProfitablePlayersChart"></canvas>
         <button class="full-list-btn" onclick="showFullList('mostProfitablePlayers', 'Most Profitable Players')">View Full List</button>
     </div>
 
     <div class="chart-container">
-        <h2>Most Profitable Tournaments</h2>
+        <div class="chart-header">
+            <h2>Most Profitable Tournaments</h2>
+            <label class="year-select">Year:
+                <select id="tournamentsYearSelect" class="year-select-dropdown">
+                    <option value="overall">Overall</option>
+                </select>
+            </label>
+        </div>
         <canvas id="mostProfitableTournamentsChart"></canvas>
         <button class="full-list-btn" onclick="showFullList('mostProfitableTournaments', 'Most Profitable Tournaments')">View Full List</button>
     </div>
 
     <div class="chart-container full-width">
-        <h2>Profit/Loss by Tour/Major</h2>
+        <div class="chart-header">
+            <h2>Profit/Loss by Tour/Major</h2>
+            <label class="year-select">Year:
+                <select id="tourYearSelect" class="year-select-dropdown">
+                    <option value="overall">Overall</option>
+                </select>
+            </label>
+        </div>
         <canvas id="tourChart"></canvas>
     </div>
 
     <div class="chart-container full-width">
-        <h2>Profit/Loss by Bookmaker</h2>
+        <div class="chart-header">
+            <h2>Profit/Loss by Bookmaker</h2>
+            <label class="year-select">Year:
+                <select id="bookmakerYearSelect" class="year-select-dropdown">
+                    <option value="overall">Overall</option>
+                </select>
+            </label>
+        </div>
         <canvas id="bookmakerChart"></canvas>
     </div>
 
     <div class="chart-container full-width">
-        <h2>Profit/Loss by Type</h2>
+        <div class="chart-header">
+            <h2>Profit/Loss by Type</h2>
+            <label class="year-select">Year:
+                <select id="typeYearSelect" class="year-select-dropdown">
+                    <option value="overall">Overall</option>
+                </select>
+            </label>
+        </div>
         <canvas id="typeChart"></canvas>
     </div>
 
@@ -199,12 +262,37 @@
         return parsed.data;
     }
 
+    function getYearFromDateString(dateStr) {
+        if (!dateStr) return null;
+        const parsed = parseDateString(dateStr);
+        if (parsed) return String(parsed.getUTCFullYear());
+        if (typeof dateStr === 'string') {
+            const trimmed = dateStr.trim();
+            if (!trimmed) return null;
+            const slashParts = trimmed.split('/');
+            if (slashParts.length === 3 && slashParts[2].length === 4) return slashParts[2];
+            const dashParts = trimmed.split('-');
+            if (dashParts.length >= 1 && dashParts[0].length === 4) return dashParts[0];
+            const match = trimmed.match(/\b(20\d{2}|19\d{2})\b/);
+            if (match) return match[0];
+        }
+        return null;
+    }
+
     function processData(data) {
-        const players = {};
-        const tournaments = {};
-        const tours = {};
-        const bookmakers = {};
-        const types = {};
+        const overall = {
+            players: {},
+            tournaments: {},
+            tours: {},
+            bookmakers: {},
+            types: {}
+        };
+        const playersByYear = {};
+        const tournamentsByYear = {};
+        const toursByYear = {};
+        const bookmakersByYear = {};
+        const typesByYear = {};
+        const yearsSet = new Set();
 
         data.forEach(row => {
             const player = row['Player'] || 'Unknown';
@@ -214,38 +302,65 @@
             const type = row['Type'] || 'Unknown';
             const profitLoss = parseFloat((row['Profit/Loss'] || '').replace('£', '').replace(',', '')) || 0;
 
-            // Players
-            players[player] = (players[player] || 0) + profitLoss;
+            overall.players[player] = (overall.players[player] || 0) + profitLoss;
+            overall.tournaments[tournament] = (overall.tournaments[tournament] || 0) + profitLoss;
+            overall.tours[tour] = (overall.tours[tour] || 0) + profitLoss;
+            overall.bookmakers[bookmaker] = (overall.bookmakers[bookmaker] || 0) + profitLoss;
+            overall.types[type] = (overall.types[type] || 0) + profitLoss;
 
-            // Tournaments
-            tournaments[tournament] = (tournaments[tournament] || 0) + profitLoss;
-
-            // Tours
-            tours[tour] = (tours[tour] || 0) + profitLoss;
-
-            // Bookmakers
-            bookmakers[bookmaker] = (bookmakers[bookmaker] || 0) + profitLoss;
-
-            // Types
-            types[type] = (types[type] || 0) + profitLoss;
+            const year = getYearFromDateString(row['Date']);
+            if (year) {
+                yearsSet.add(year);
+                if (!playersByYear[year]) playersByYear[year] = {};
+                if (!tournamentsByYear[year]) tournamentsByYear[year] = {};
+                if (!toursByYear[year]) toursByYear[year] = {};
+                if (!bookmakersByYear[year]) bookmakersByYear[year] = {};
+                if (!typesByYear[year]) typesByYear[year] = {};
+                playersByYear[year][player] = (playersByYear[year][player] || 0) + profitLoss;
+                tournamentsByYear[year][tournament] = (tournamentsByYear[year][tournament] || 0) + profitLoss;
+                toursByYear[year][tour] = (toursByYear[year][tour] || 0) + profitLoss;
+                bookmakersByYear[year][bookmaker] = (bookmakersByYear[year][bookmaker] || 0) + profitLoss;
+                typesByYear[year][type] = (typesByYear[year][type] || 0) + profitLoss;
+            }
         });
 
-        return { players, tournaments, tours, bookmakers, types };
+        const years = Array.from(yearsSet).sort((a, b) => Number(a) - Number(b));
+        return { overall, playersByYear, tournamentsByYear, toursByYear, bookmakersByYear, typesByYear, years };
     }
 
-    let fullData = {};
+    let aggregatedData = null;
     let allItems = [];
+    let currentListType = null;
+    let currentPlayersYear = 'overall';
+    let currentTournamentsYear = 'overall';
+    let currentTourYear = 'overall';
+    let currentBookmakerYear = 'overall';
+    let currentTypeYear = 'overall';
+    let playersYearSelect = null;
+    let tournamentsYearSelect = null;
+    let tourYearSelect = null;
+    let bookmakerYearSelect = null;
+    let typeYearSelect = null;
 
     function showFullList(type, title) {
         const modal = document.getElementById('fullListModal');
         const titleEl = document.getElementById('fullListTitle');
         const listEl = document.getElementById('fullListItems');
 
-        titleEl.textContent = title;
+        currentListType = type;
+        const year = type === 'mostProfitablePlayers' ? currentPlayersYear : currentTournamentsYear;
+        const friendlyYear = year === 'overall' ? 'Overall' : year;
+        titleEl.textContent = `${title} – ${friendlyYear}`;
         listEl.innerHTML = '';
 
-        if (type === 'mostProfitablePlayers') allItems = Object.entries(fullData.players).sort((a, b) => b[1] - a[1]);
-        else if (type === 'mostProfitableTournaments') allItems = Object.entries(fullData.tournaments).sort((a, b) => b[1] - a[1]);
+        const searchInput = document.querySelector('.full-list-search');
+        if (searchInput) searchInput.value = '';
+
+        const dataset = type === 'mostProfitablePlayers'
+            ? getDataset('players', year)
+            : getDataset('tournaments', year);
+
+        allItems = Object.entries(dataset || {}).sort((a, b) => b[1] - a[1]);
 
         filterList('');
 
@@ -255,12 +370,32 @@
     function filterList(query) {
         const listEl = document.getElementById('fullListItems');
         listEl.innerHTML = '';
+        const year = currentListType === 'mostProfitablePlayers' ? currentPlayersYear : currentTournamentsYear;
 
-        const filtered = allItems.filter(([name]) => name.toLowerCase().includes(query.toLowerCase()));
+        const filtered = allItems.filter(([name]) => name.toLowerCase().includes((query || '').toLowerCase()));
+
+        if (!filtered.length) {
+            const li = document.createElement('li');
+            li.textContent = 'No results found for this selection.';
+            li.style.justifyContent = 'center';
+            li.style.color = '#777';
+            li.style.fontStyle = 'italic';
+            li.style.cursor = 'default';
+            li.style.pointerEvents = 'none';
+            listEl.appendChild(li);
+            return;
+        }
 
         filtered.forEach(([name, value]) => {
             const li = document.createElement('li');
             li.innerHTML = `<span>${name}</span><span>£${value.toFixed(2)}</span>`;
+            li.addEventListener('click', () => {
+                const filters = currentListType === 'mostProfitablePlayers'
+                    ? { player: name }
+                    : { tournament: name };
+                if (year !== 'overall') filters.year = year;
+                goToSpreadsheet(filters);
+            });
             listEl.appendChild(li);
         });
     }
@@ -269,65 +404,192 @@
         document.getElementById('fullListModal').classList.remove('show');
     }
 
-    function renderCharts({ players, tournaments, tours, bookmakers, types }) {
-        fullData = { players, tournaments };
+    function goToSpreadsheet(filters = {}) {
+        const params = new URLSearchParams();
+        if (filters.player) params.set('player', filters.player);
+        if (filters.tournament) params.set('tournament', filters.tournament);
+        if (filters.tour) params.set('tour', filters.tour);
+        if (filters.bookmaker) params.set('bookmaker', filters.bookmaker);
+        if (filters.betType) params.set('betType', filters.betType);
+        if (filters.year) params.set('year', filters.year);
+        const query = params.toString();
+        window.location.href = `spreadsheet.html${query ? `?${query}` : ''}`;
+    }
 
-        // Most Profitable Players (Top 10)
-        const mostProfitablePlayers = Object.entries(players).sort((a, b) => b[1] - a[1]).slice(0, 10);
-        new Chart(document.getElementById('mostProfitablePlayersChart'), {
+    let mostProfitablePlayersChart = null;
+    let mostProfitableTournamentsChart = null;
+    let tourChartInstance = null;
+    let bookmakerChartInstance = null;
+    let typeChartInstance = null;
+
+    function getDataset(type, year) {
+        if (!aggregatedData) return {};
+        if (type === 'players') {
+            if (year === 'overall') return aggregatedData.overall.players;
+            return aggregatedData.playersByYear[year] || {};
+        }
+        if (type === 'tournaments') {
+            if (year === 'overall') return aggregatedData.overall.tournaments;
+            return aggregatedData.tournamentsByYear[year] || {};
+        }
+        if (type === 'tours') {
+            if (year === 'overall') return aggregatedData.overall.tours;
+            return aggregatedData.toursByYear[year] || {};
+        }
+        if (type === 'bookmakers') {
+            if (year === 'overall') return aggregatedData.overall.bookmakers;
+            return aggregatedData.bookmakersByYear[year] || {};
+        }
+        if (type === 'types') {
+            if (year === 'overall') return aggregatedData.overall.types;
+            return aggregatedData.typesByYear[year] || {};
+        }
+        return {};
+    }
+
+    function populateYearSelect(selectEl, years) {
+        if (!selectEl) return;
+        const options = ['<option value="overall">Overall</option>'];
+        years.forEach(year => options.push(`<option value="${year}">${year}</option>`));
+        selectEl.innerHTML = options.join('');
+    }
+
+    function renderPlayersChart() {
+        const canvas = document.getElementById('mostProfitablePlayersChart');
+        if (!canvas) return;
+
+        const dataset = getDataset('players', currentPlayersYear);
+        const entries = Object.entries(dataset || {}).sort((a, b) => b[1] - a[1]);
+        const topEntries = entries.slice(0, 10);
+        const hasData = topEntries.length > 0;
+        const labels = hasData ? topEntries.map(entry => entry[0]) : ['No data'];
+        const values = hasData ? topEntries.map(entry => entry[1]) : [0];
+
+        if (mostProfitablePlayersChart) {
+            mostProfitablePlayersChart.destroy();
+        }
+
+        mostProfitablePlayersChart = new Chart(canvas, {
             type: 'bar',
             data: {
-                labels: mostProfitablePlayers.map(p => p[0]),
+                labels,
                 datasets: [{
                     label: 'Total Profit (£)',
-                    data: mostProfitablePlayers.map(p => p[1]),
+                    data: values,
                     backgroundColor: '#28a745'
                 }]
             },
             options: {
                 responsive: true,
+                onHover: (event, elements) => {
+                    const canvasEl = event?.native?.target;
+                    if (canvasEl) canvasEl.style.cursor = elements.length && hasData ? 'pointer' : 'default';
+                },
+                onClick: (event, elements, chart) => {
+                    if (!elements.length || !hasData) return;
+                    const { index } = elements[0];
+                    const label = chart.data.labels[index];
+                    if (!label) return;
+                    const filters = { player: label };
+                    if (currentPlayersYear !== 'overall') filters.year = currentPlayersYear;
+                    goToSpreadsheet(filters);
+                },
                 scales: {
                     y: { beginAtZero: true, title: { display: true, text: 'Total Profit (£)' } },
                     x: { title: { display: true, text: 'Players' } }
                 }
             }
         });
+    }
 
-        // Most Profitable Tournaments (Top 10)
-        const mostProfitableTournaments = Object.entries(tournaments).sort((a, b) => b[1] - a[1]).slice(0, 10);
-        new Chart(document.getElementById('mostProfitableTournamentsChart'), {
+    function renderTournamentsChart() {
+        const canvas = document.getElementById('mostProfitableTournamentsChart');
+        if (!canvas) return;
+
+        const dataset = getDataset('tournaments', currentTournamentsYear);
+        const entries = Object.entries(dataset || {}).sort((a, b) => b[1] - a[1]);
+        const topEntries = entries.slice(0, 10);
+        const hasData = topEntries.length > 0;
+        const labels = hasData ? topEntries.map(entry => entry[0]) : ['No data'];
+        const values = hasData ? topEntries.map(entry => entry[1]) : [0];
+
+        if (mostProfitableTournamentsChart) {
+            mostProfitableTournamentsChart.destroy();
+        }
+
+        mostProfitableTournamentsChart = new Chart(canvas, {
             type: 'bar',
             data: {
-                labels: mostProfitableTournaments.map(t => t[0]),
+                labels,
                 datasets: [{
                     label: 'Total Profit (£)',
-                    data: mostProfitableTournaments.map(t => t[1]),
+                    data: values,
                     backgroundColor: '#28a745'
                 }]
             },
             options: {
                 responsive: true,
+                onHover: (event, elements) => {
+                    const canvasEl = event?.native?.target;
+                    if (canvasEl) canvasEl.style.cursor = elements.length && hasData ? 'pointer' : 'default';
+                },
+                onClick: (event, elements, chart) => {
+                    if (!elements.length || !hasData) return;
+                    const { index } = elements[0];
+                    const label = chart.data.labels[index];
+                    if (!label) return;
+                    const filters = { tournament: label };
+                    if (currentTournamentsYear !== 'overall') filters.year = currentTournamentsYear;
+                    goToSpreadsheet(filters);
+                },
                 scales: {
                     y: { beginAtZero: true, title: { display: true, text: 'Total Profit (£)' } },
                     x: { title: { display: true, text: 'Tournaments' } }
                 }
             }
         });
+    }
 
-        // Profit/Loss by Tour (Horizontal Bar Chart)
-        const tourData = Object.entries(tours);
-        new Chart(document.getElementById('tourChart'), {
+    function renderTourChart() {
+        const canvas = document.getElementById('tourChart');
+        if (!canvas) return;
+
+        const dataset = getDataset('tours', currentTourYear);
+        const tourData = Object.entries(dataset || {}).sort((a, b) => b[1] - a[1]);
+        const hasData = tourData.length > 0;
+        const labels = hasData ? tourData.map(t => t[0]) : ['No data'];
+        const values = hasData ? tourData.map(t => t[1]) : [0];
+        const colors = hasData ? tourData.map(t => t[1] >= 0 ? '#28a745' : '#dc3545') : ['#d3d3d3'];
+
+        if (tourChartInstance) {
+            tourChartInstance.destroy();
+        }
+
+        tourChartInstance = new Chart(canvas, {
             type: 'bar',
             data: {
-                labels: tourData.map(t => t[0]),
+                labels,
                 datasets: [{
                     label: 'Profit/Loss (£)',
-                    data: tourData.map(t => t[1]),
-                    backgroundColor: tourData.map(t => t[1] >= 0 ? '#28a745' : '#dc3545')
+                    data: values,
+                    backgroundColor: colors
                 }]
             },
             options: {
                 responsive: true,
+                onHover: (event, elements) => {
+                    const canvasEl = event?.native?.target;
+                    if (canvasEl) canvasEl.style.cursor = elements.length && hasData ? 'pointer' : 'default';
+                },
+                onClick: (event, elements, chart) => {
+                    if (!elements.length || !hasData) return;
+                    const { index } = elements[0];
+                    const label = chart.data.labels[index];
+                    if (!label) return;
+                    const filters = { tour: label };
+                    if (currentTourYear !== 'overall') filters.year = currentTourYear;
+                    goToSpreadsheet(filters);
+                },
                 indexAxis: 'y',
                 scales: {
                     x: { beginAtZero: true, title: { display: true, text: 'Profit/Loss (£)' } },
@@ -335,21 +597,48 @@
                 }
             }
         });
+    }
 
-        // Profit/Loss by Bookmaker (Horizontal Bar Chart)
-        const bookmakerData = Object.entries(bookmakers);
-        new Chart(document.getElementById('bookmakerChart'), {
+    function renderBookmakerChart() {
+        const canvas = document.getElementById('bookmakerChart');
+        if (!canvas) return;
+
+        const dataset = getDataset('bookmakers', currentBookmakerYear);
+        const bookmakerData = Object.entries(dataset || {}).sort((a, b) => b[1] - a[1]);
+        const hasData = bookmakerData.length > 0;
+        const labels = hasData ? bookmakerData.map(b => b[0]) : ['No data'];
+        const values = hasData ? bookmakerData.map(b => b[1]) : [0];
+        const colors = hasData ? bookmakerData.map(b => b[1] >= 0 ? '#28a745' : '#dc3545') : ['#d3d3d3'];
+
+        if (bookmakerChartInstance) {
+            bookmakerChartInstance.destroy();
+        }
+
+        bookmakerChartInstance = new Chart(canvas, {
             type: 'bar',
             data: {
-                labels: bookmakerData.map(b => b[0]),
+                labels,
                 datasets: [{
                     label: 'Profit/Loss (£)',
-                    data: bookmakerData.map(b => b[1]),
-                    backgroundColor: bookmakerData.map(b => b[1] >= 0 ? '#28a745' : '#dc3545')
+                    data: values,
+                    backgroundColor: colors
                 }]
             },
             options: {
                 responsive: true,
+                onHover: (event, elements) => {
+                    const canvasEl = event?.native?.target;
+                    if (canvasEl) canvasEl.style.cursor = elements.length && hasData ? 'pointer' : 'default';
+                },
+                onClick: (event, elements, chart) => {
+                    if (!elements.length || !hasData) return;
+                    const { index } = elements[0];
+                    const label = chart.data.labels[index];
+                    if (!label) return;
+                    const filters = { bookmaker: label };
+                    if (currentBookmakerYear !== 'overall') filters.year = currentBookmakerYear;
+                    goToSpreadsheet(filters);
+                },
                 indexAxis: 'y',
                 scales: {
                     x: { beginAtZero: true, title: { display: true, text: 'Profit/Loss (£)' } },
@@ -357,21 +646,48 @@
                 }
             }
         });
+    }
 
-        // Profit/Loss by Type (Horizontal Bar Chart)
-        const typeData = Object.entries(types);
-        new Chart(document.getElementById('typeChart'), {
+    function renderTypeChart() {
+        const canvas = document.getElementById('typeChart');
+        if (!canvas) return;
+
+        const dataset = getDataset('types', currentTypeYear);
+        const typeData = Object.entries(dataset || {}).sort((a, b) => b[1] - a[1]);
+        const hasData = typeData.length > 0;
+        const labels = hasData ? typeData.map(t => t[0]) : ['No data'];
+        const values = hasData ? typeData.map(t => t[1]) : [0];
+        const colors = hasData ? typeData.map(t => t[1] >= 0 ? '#28a745' : '#dc3545') : ['#d3d3d3'];
+
+        if (typeChartInstance) {
+            typeChartInstance.destroy();
+        }
+
+        typeChartInstance = new Chart(canvas, {
             type: 'bar',
             data: {
-                labels: typeData.map(t => t[0]),
+                labels,
                 datasets: [{
                     label: 'Profit/Loss (£)',
-                    data: typeData.map(t => t[1]),
-                    backgroundColor: typeData.map(t => t[1] >= 0 ? '#28a745' : '#dc3545')
+                    data: values,
+                    backgroundColor: colors
                 }]
             },
             options: {
                 responsive: true,
+                onHover: (event, elements) => {
+                    const canvasEl = event?.native?.target;
+                    if (canvasEl) canvasEl.style.cursor = elements.length && hasData ? 'pointer' : 'default';
+                },
+                onClick: (event, elements, chart) => {
+                    if (!elements.length || !hasData) return;
+                    const { index } = elements[0];
+                    const label = chart.data.labels[index];
+                    if (!label) return;
+                    const filters = { betType: label };
+                    if (currentTypeYear !== 'overall') filters.year = currentTypeYear;
+                    goToSpreadsheet(filters);
+                },
                 indexAxis: 'y',
                 scales: {
                     x: { beginAtZero: true, title: { display: true, text: 'Profit/Loss (£)' } },
@@ -379,6 +695,76 @@
                 }
             }
         });
+    }
+
+    function renderCharts(aggregated) {
+        aggregatedData = aggregated;
+        const { years } = aggregated;
+        const sortedYears = [...years].sort((a, b) => Number(b) - Number(a));
+
+        if (!playersYearSelect) playersYearSelect = document.getElementById('playersYearSelect');
+        if (!tournamentsYearSelect) tournamentsYearSelect = document.getElementById('tournamentsYearSelect');
+        if (!tourYearSelect) tourYearSelect = document.getElementById('tourYearSelect');
+        if (!bookmakerYearSelect) bookmakerYearSelect = document.getElementById('bookmakerYearSelect');
+        if (!typeYearSelect) typeYearSelect = document.getElementById('typeYearSelect');
+
+        populateYearSelect(playersYearSelect, sortedYears);
+        populateYearSelect(tournamentsYearSelect, sortedYears);
+        populateYearSelect(tourYearSelect, sortedYears);
+        populateYearSelect(bookmakerYearSelect, sortedYears);
+        populateYearSelect(typeYearSelect, sortedYears);
+
+        currentPlayersYear = 'overall';
+        currentTournamentsYear = 'overall';
+        currentTourYear = 'overall';
+        currentBookmakerYear = 'overall';
+        currentTypeYear = 'overall';
+        if (playersYearSelect) playersYearSelect.value = 'overall';
+        if (tournamentsYearSelect) tournamentsYearSelect.value = 'overall';
+        if (tourYearSelect) tourYearSelect.value = 'overall';
+        if (bookmakerYearSelect) bookmakerYearSelect.value = 'overall';
+        if (typeYearSelect) typeYearSelect.value = 'overall';
+
+        renderPlayersChart();
+        renderTournamentsChart();
+        renderTourChart();
+        renderBookmakerChart();
+        renderTypeChart();
+
+        if (playersYearSelect) {
+            playersYearSelect.addEventListener('change', event => {
+                currentPlayersYear = event.target.value;
+                renderPlayersChart();
+            });
+        }
+
+        if (tournamentsYearSelect) {
+            tournamentsYearSelect.addEventListener('change', event => {
+                currentTournamentsYear = event.target.value;
+                renderTournamentsChart();
+            });
+        }
+
+        if (tourYearSelect) {
+            tourYearSelect.addEventListener('change', event => {
+                currentTourYear = event.target.value;
+                renderTourChart();
+            });
+        }
+
+        if (bookmakerYearSelect) {
+            bookmakerYearSelect.addEventListener('change', event => {
+                currentBookmakerYear = event.target.value;
+                renderBookmakerChart();
+            });
+        }
+
+        if (typeYearSelect) {
+            typeYearSelect.addEventListener('change', event => {
+                currentTypeYear = event.target.value;
+                renderTypeChart();
+            });
+        }
     }
 
     function parseDateString(dateStr) {

@@ -203,6 +203,9 @@
             const filterYear = urlParams.get('year');
             const player = urlParams.get('player');
             const tournament = urlParams.get('tournament');
+            const tourFilter = urlParams.get('tour');
+            const bookmakerFilter = urlParams.get('bookmaker');
+            const betTypeFilter = urlParams.get('betType');
 
             if (filterYear) {
                 data = data.filter(row => {
@@ -212,12 +215,21 @@
                 });
             }
 
-            // Filter by player or tournament if specified
+            // Filter by player, tournament, tour, bookmaker, or bet type if specified
             if (player) {
                 data = data.filter(row => (row['Player'] || 'Unknown') === player);
             }
             if (tournament) {
                 data = data.filter(row => (row['Tournament'] || 'Unknown') === tournament);
+            }
+            if (tourFilter) {
+                data = data.filter(row => (row['Tour/Majors'] || 'Unknown') === tourFilter);
+            }
+            if (bookmakerFilter) {
+                data = data.filter(row => (row['Bookmaker'] || 'Unknown') === bookmakerFilter);
+            }
+            if (betTypeFilter) {
+                data = data.filter(row => (row['Type'] || 'Unknown') === betTypeFilter);
             }
 
             tableData = data;
@@ -234,11 +246,19 @@
                 if (!isNaN(stakeVal)) totalStake += stakeVal;
             });
             const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
-            const roiHtml = (filterYear || player || tournament) ? `<p style="text-align: left;"><strong>ROI for ${filterYear || player || tournament}: ${roi}%</strong></p>` : '';
+            const activeFilters = [];
+            if (filterYear) activeFilters.push(`Year ${filterYear}`);
+            if (player) activeFilters.push(`Player ${player}`);
+            if (tournament) activeFilters.push(`Tournament ${tournament}`);
+            if (tourFilter) activeFilters.push(`Tour ${tourFilter}`);
+            if (bookmakerFilter) activeFilters.push(`Bookmaker ${bookmakerFilter}`);
+            if (betTypeFilter) activeFilters.push(`Type ${betTypeFilter}`);
+            const roiLabel = activeFilters.join(' · ');
+            const roiHtml = activeFilters.length ? `<p style="text-align: left;"><strong>ROI for ${roiLabel}: ${roi}%</strong></p>` : '';
 
             // Calculate overall ROI if not filtered by year, player, or tournament
             let overallRoiHtml = '';
-            if (!filterYear && !player && !tournament) {
+            if (activeFilters.length === 0) {
                 let overallTotalReturn = 0;
                 let overallTotalStake = 0;
                 parsed.data.forEach(row => {
@@ -304,19 +324,12 @@
                     </div>`;
             }
 
-            // Update title and heading if year, player, or tournament is specified
-            if (filterYear) {
-                document.title = `Historical Betting Data - ${filterYear}`;
+            // Update title and heading if filters are specified
+            if (activeFilters.length > 0) {
+                const suffix = activeFilters.join(' / ');
+                document.title = `Historical Betting Data - ${suffix}`;
                 const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Eds Golf Model - Historical Betting Data - ${filterYear}`;
-            } else if (player) {
-                document.title = `Bets for Player: ${player}`;
-                const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Eds Golf Model - Bets for Player: ${player}`;
-            } else if (tournament) {
-                document.title = `Bets for Tournament: ${tournament}`;
-                const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Eds Golf Model - Bets for Tournament: ${tournament}`;
+                if (h1) h1.textContent = `Eds Golf Model - Historical Betting Data - ${suffix}`;
             }
 
             return roiHtml + overallRoiHtml + highlightsHtml + '<div style="text-align: left;"><input type="text" id="filter-input" placeholder="Global search (all columns)..."></div>' + buildTable(data);
