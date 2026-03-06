@@ -14,25 +14,25 @@
         .roi-container { width: 100%; }
         h1 { text-align: center; color: #2e8b57; width: 100%; }
         .roi-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
-        .roi-section h2 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.5rem 0; transition: background 0.3s; }
+        .roi-section h2 { margin-top: 0; color: var(--gm-primary); cursor: pointer; padding: 0.5rem 0; transition: background 0.3s; }
         .roi-section h2:hover { background: #e9ecef; }
         .roi-section .arrow { float: right; transition: transform 0.3s; }
         .roi-content { display: block; transition: all 0.3s ease; }
         .roi-content.hidden { display: none; }
         .year-section { margin: 1rem 0; padding: 0.5rem; border: 1px solid #eee; border-radius: 4px; background: #fff; }
-        .year-section h3 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; }
+        .year-section h3 { margin-top: 0; color: var(--gm-primary); cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; }
         .year-section h3:hover { background: #e9ecef; }
         .year-section .arrow { float: right; transition: transform 0.3s; }
         .year-content { display: block; transition: all 0.3s ease; }
         .year-content.hidden { display: none; }
         .period-section { margin: 0.5rem 0; padding: 0.25rem; border: 1px solid #f0f0f0; border-radius: 4px; background: #fafafa; }
-        .period-section h4 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; font-size: 1rem; }
+        .period-section h4 { margin-top: 0; color: var(--gm-primary); cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; font-size: 1rem; }
         .period-section h4:hover { background: #e9ecef; }
         .period-section .arrow { float: right; transition: transform 0.3s; }
         .period-content { display: block; transition: all 0.3s ease; }
         .period-content.hidden { display: none; }
         .month-section { margin: 0.5rem 0 0.5rem 1rem; padding: 0.25rem; border: 1px solid #f5f5f5; border-radius: 4px; background: #fdfdfd; }
-        .month-section h5 { margin-top: 0; color: #007bff; cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; font-size: 0.9rem; }
+        .month-section h5 { margin-top: 0; color: var(--gm-primary); cursor: pointer; padding: 0.25rem 0; transition: background 0.3s; font-size: 0.9rem; }
         .month-section h5:hover { background: #e9ecef; }
         .month-section .arrow { float: right; transition: transform 0.3s; }
         .month-content { display: block; transition: all 0.3s ease; }
@@ -42,7 +42,7 @@
         .roi-table th, .roi-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
         .roi-table th { background: #f0f0f0; cursor: pointer; }
         .roi-table th:hover { background: #e0e0e0; }
-        .roi-table a { color: #007bff; text-decoration: none; }
+        .roi-table a { color: var(--gm-primary); text-decoration: none; }
         .roi-table a:hover { text-decoration: underline; }
         .search-bar { margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 100%; max-width: 300px; }
         .logo {
@@ -57,15 +57,15 @@
             body { padding-top: 70px; }
             .logo { height: 60px; top: 5px; right: 5px; }
         }
-        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; }
-        .link:hover { background: #0056b3; }
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary)); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem; box-shadow: 0 8px 18px -14px rgba(29,124,66,0.55); transition: background 0.2s ease, transform 0.2s ease; }
+        .link:hover { background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark)); transform: translateY(-1px); }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="assets/js/betting-data.js"></script>
 </head>
 <body>
 <div class="logo-wrapper">
-    <img src="EdsGolfModelLogo.png" alt="Eds Golf Model Logo" class="logo">
+    <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <h1>Eds Golf Model - ROI Data</h1>

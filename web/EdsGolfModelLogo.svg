@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="70" viewBox="0 0 240 70">
+  <defs>
+    <linearGradient id="gmPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3acb6d"/>
+      <stop offset="100%" stop-color="#1b7b40"/>
+    </linearGradient>
+    <linearGradient id="gmSurface" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#eef9f1" stop-opacity="0.75"/>
+    </linearGradient>
+    <pattern id="ballDimples" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.25" fill="#c7e3d0"/>
+    </pattern>
+  </defs>
+
+  <rect x="5" y="7" width="230" height="56" rx="18" fill="#f6fcf7"/>
+
+  <g transform="translate(20 10)">
+    <circle cx="25" cy="25" r="23" fill="url(#gmPrimary)"/>
+    <circle cx="25" cy="24" r="17" fill="url(#gmSurface)"/>
+    <circle cx="25" cy="24" r="15" fill="url(#ballDimples)" opacity="0.55"/>
+    <circle cx="25" cy="24" r="15" fill="none" stroke="#b6d8c1" stroke-width="1.6"/>
+    <path d="M12 42 C17 38 33 38 38 42 L38 45 C33 47 17 47 12 45 Z" fill="#1b7b40" opacity="0.8"/>
+    <path d="M25 32 L25 45" stroke="#1b7b40" stroke-width="3" stroke-linecap="round"/>
+    <path d="M25 18 L39 24 L25 29 Z" fill="#ffffff" stroke="#1b7b40" stroke-width="1.6" stroke-linejoin="round"/>
+  </g>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-weight="700">
+    <text x="78" y="33" font-size="26" letter-spacing="0.05em" fill="#134d2f">ED'S GOLF</text>
+    <text x="78" y="53" font-size="20" letter-spacing="0.22em" fill="#1b7b40">MODEL</text>
+  </g>
+
+  <line x1="70" y1="22" x2="70" y2="52" stroke="#1b7b40" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+</svg>
