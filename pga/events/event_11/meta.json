@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "11",
+  "event_name": "THE PLAYERS Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-03-12",
+  "start_date": "2026-03-12",
+  "generated_utc": "09-Mar-2026 08:01:41",
+  "source_csv": "data/preds/pga/event_11_the_players_championship_2026-03-09_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_11/leaderboard.json",
+    "summary": "pga/events/event_11/summary.json",
+    "meta": "pga/events/event_11/meta.json",
+    "downloads_csv": "pga/downloads/event_11_the_players_championship_2026-03-09_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_11_the_players_championship_2026-03-09_leaderboard.html",
+    "weather_meta": "pga/events/event_11/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_11/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_11/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_11/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_11/course_history_summary.json",
+    "tournament_summary": "pga/events/event_11/tournament_summary.json",
+    "field_teetimes": "pga/events/event_11/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}
