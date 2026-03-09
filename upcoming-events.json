@@ -360,9 +360,9 @@
       "location": "Bay Hill, FL",
       "longitude": -81.511,
       "start_date": "2026-03-05",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Bhatia, Akshay (26096)"
     },
     {
       "country": "PUR",
@@ -374,9 +374,9 @@
       "location": "Rio Grande, Puerto Rico",
       "longitude": -65.799,
       "start_date": "2026-03-05",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Castillo, Ricky (27819)"
     },
     {
       "country": "HKG",
@@ -388,9 +388,9 @@
       "location": "Sheung Shui, Hong Kong",
       "longitude": 114.121,
       "start_date": "2026-03-05",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "liv",
-      "winner": "TBD"
+      "winner": "Rahm, Jon (19195)"
     },
     {
       "country": "RSA",
@@ -402,9 +402,9 @@
       "location": "Johannesburg, South Africa",
       "longitude": 28.07,
       "start_date": "2026-03-05",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Bradbury, Dan (29971)"
     },
     {
       "country": "CHI",
@@ -416,9 +416,9 @@
       "location": "Santiago, Chile",
       "longitude": -70.566,
       "start_date": "2026-03-05",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "kft",
-      "winner": "TBD"
+      "winner": "Redman, Doc (24481)"
     },
     {
       "country": "USA",
@@ -478,8 +478,8 @@
     },
     {
       "country": "CHN",
-      "course": "Blackstone Course",
-      "course_key": "blackstone course mission hills",
+      "course": "Blackstone Course Mission Hills;Vintage Course Mission Hills",
+      "course_key": "blackstone course mission hills;vintage course mission hills",
       "event_id": "2026112",
       "event_name": "Hainan Classic presented by MAEXTRO",
       "latitude": 19.91,
@@ -506,13 +506,13 @@
     },
     {
       "country": "IND",
-      "course": "TBC",
-      "course_key": "tbc",
-      "event_id": "TBD",
+      "course": "DLF G&CC",
+      "course_key": "dlf g&cc player course",
+      "event_id": "2026113",
       "event_name": "Hero Indian Open",
-      "latitude": 0.0,
-      "location": "TBD",
-      "longitude": 0.0,
+      "latitude": 28.455,
+      "location": "Gurgaon, India",
+      "longitude": 77.106,
       "start_date": "2026-03-26",
       "status": "upcoming",
       "tour": "euro",
