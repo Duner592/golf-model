@@ -215,6 +215,10 @@
         return totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : '0.00';
     }
 
+    function calculateProfitLoss(totalReturn, totalStake) {
+        return (totalReturn - totalStake).toFixed(2);
+    }
+
     async function loadROIData() {
         try {
             const rows = await BettingData.load();
@@ -271,7 +275,8 @@
 
             // Overall ROI
             const overallROI = calculateROI(overallReturn, overallStake);
-            document.getElementById('overall-roi').innerHTML = `<strong>Overall ROI: ${overallROI}%</strong> (Total Return: £${overallReturn.toFixed(2)}, Total Stake: £${overallStake.toFixed(2)})`;
+            const overallProfitLoss = calculateProfitLoss(overallReturn, overallStake);
+            document.getElementById('overall-roi').innerHTML = `<strong>Overall ROI: ${overallROI}%</strong> (Total Return: £${overallReturn.toFixed(2)}, Total Stake: £${overallStake.toFixed(2)}, P/L: £${overallProfitLoss})`;
 
             // Detailed ROI - Grouped by Year with Yearly, Monthly, and Weekly sub-sections
             let detailedHTML = '';
@@ -285,11 +290,12 @@
                                 <h4 onclick="togglePeriodSection(this)">Yearly ROI <span class="arrow">▶</span></h4>
                                 <div class="period-content hidden">
                                     <table class="roi-table">
-                                        <thead><tr><th>Year</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
+                                        <thead><tr><th>Year</th><th>ROI (%)</th><th>P/L (£)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
                                         <tbody>`;
                 const yearly = yearlyData[year];
                 const yearlyROI = calculateROI(yearly.return, yearly.stake);
-                detailedHTML += `<tr><td>${year}</td><td>${yearlyROI}</td><td>${yearly.return.toFixed(2)}</td><td>${yearly.stake.toFixed(2)}</td></tr>`;
+                const yearlyProfitLoss = calculateProfitLoss(yearly.return, yearly.stake);
+                detailedHTML += `<tr><td>${year}</td><td>${yearlyROI}</td><td>£${yearlyProfitLoss}</td><td>${yearly.return.toFixed(2)}</td><td>${yearly.stake.toFixed(2)}</td></tr>`;
                 detailedHTML += `
                                         </tbody>
                                     </table>
@@ -308,13 +314,14 @@
                                 <h4 onclick="togglePeriodSection(this)">Monthly ROI <span class="arrow">▶</span></h4>
                                 <div class="period-content hidden">
                                     <table class="roi-table">
-                                        <thead><tr><th>Month</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
+                                        <thead><tr><th>Month</th><th>ROI (%)</th><th>P/L (£)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
                                         <tbody>`;
                     Object.keys(monthlyYears).sort().forEach(month => {
                         const data = monthlyYears[month];
                         const roi = calculateROI(data.return, data.stake);
                         const monthName = new Date(`${year}-${month}-01`).toLocaleString('default', { month: 'long' });
-                        detailedHTML += `<tr><td>${monthName}</td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+                        const profitLoss = calculateProfitLoss(data.return, data.stake);
+                        detailedHTML += `<tr><td>${monthName}</td><td>${roi}</td><td>£${profitLoss}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
                     });
                     detailedHTML += `
                                         </tbody>
@@ -348,12 +355,13 @@
                                         <h5 onclick="toggleMonthSection(this)">${monthName} ${year} <span class="arrow">▶</span></h5>
                                         <div class="month-content hidden">
                                             <table class="roi-table">
-                                                <thead><tr><th>Week</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
+                                                <thead><tr><th>Week</th><th>ROI (%)</th><th>P/L (£)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead>
                                                 <tbody>`;
                         Object.keys(weeklyYears[month]).sort().forEach(week => {
                             const data = weeklyYears[month][week];
                             const roi = calculateROI(data.return, data.stake);
-                            detailedHTML += `<tr><td>${week}</td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+                            const profitLoss = calculateProfitLoss(data.return, data.stake);
+                            detailedHTML += `<tr><td>${week}</td><td>${roi}</td><td>£${profitLoss}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
                         });
                         detailedHTML += `
                                                 </tbody>
@@ -373,21 +381,23 @@
             document.getElementById('detailed-roi').innerHTML = detailedHTML;
 
             // Player ROI
-            let playerHTML = '<table id="player-table" class="roi-table"><thead><tr><th>Player</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead><tbody>';
+            let playerHTML = '<table id="player-table" class="roi-table"><thead><tr><th>Player</th><th>ROI (%)</th><th>P/L (£)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead><tbody>';
             Object.keys(playerData).sort((a, b) => calculateROI(playerData[b].return, playerData[b].stake) - calculateROI(playerData[a].return, playerData[a].stake)).forEach(player => {
                 const data = playerData[player];
                 const roi = calculateROI(data.return, data.stake);
-                playerHTML += `<tr><td><a href="spreadsheet.html?player=${encodeURIComponent(player)}">${player}</a></td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+                const profitLoss = calculateProfitLoss(data.return, data.stake);
+                playerHTML += `<tr><td><a href="spreadsheet.html?player=${encodeURIComponent(player)}">${player}</a></td><td>${roi}</td><td>£${profitLoss}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
             });
             playerHTML += '</tbody></table>';
             document.getElementById('player-roi').innerHTML = playerHTML;
 
             // Tournament ROI
-            let tournamentHTML = '<table id="tournament-table" class="roi-table"><thead><tr><th>Tournament</th><th>ROI (%)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead><tbody>';
+            let tournamentHTML = '<table id="tournament-table" class="roi-table"><thead><tr><th>Tournament</th><th>ROI (%)</th><th>P/L (£)</th><th>Total Return (£)</th><th>Total Stake (£)</th></tr></thead><tbody>';
             Object.keys(tournamentData).sort((a, b) => calculateROI(tournamentData[b].return, tournamentData[b].stake) - calculateROI(tournamentData[a].return, tournamentData[a].stake)).forEach(tournament => {
                 const data = tournamentData[tournament];
                 const roi = calculateROI(data.return, data.stake);
-                tournamentHTML += `<tr><td><a href="spreadsheet.html?tournament=${encodeURIComponent(tournament)}">${tournament}</a></td><td>${roi}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
+                const profitLoss = calculateProfitLoss(data.return, data.stake);
+                tournamentHTML += `<tr><td><a href="spreadsheet.html?tournament=${encodeURIComponent(tournament)}">${tournament}</a></td><td>${roi}</td><td>£${profitLoss}</td><td>${data.return.toFixed(2)}</td><td>${data.stake.toFixed(2)}</td></tr>`;
             });
             tournamentHTML += '</tbody></table>';
             document.getElementById('tournament-roi').innerHTML = tournamentHTML;

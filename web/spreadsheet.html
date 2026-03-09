@@ -270,6 +270,7 @@
                             <table class="highlights-table">
                                 <thead>
                                     <tr>
+                                        <th>Month-Year</th>
                                         <th>Tour/Majors</th>
                                         <th>Tournament</th>
                                         <th>Player</th>
@@ -283,6 +284,7 @@
                                 <tbody>`;
                 highlights.forEach(win => {
                     highlightsHtml += `<tr>
+                        <td>${formatMonthYear(win['Date'])}</td>
                         <td>${win['Tour/Majors'] || 'N/A'}</td>
                         <td>${win['Tournament'] || 'N/A'}</td>
                         <td>${win['Player'] || 'N/A'}</td>
@@ -387,6 +389,48 @@
 
             row.style.display = showRow ? '' : 'none';
         });
+    }
+
+    function formatMonthYear(dateString) {
+        if (!dateString) return 'N/A';
+        const trimmed = String(dateString).trim();
+        if (!trimmed) return 'N/A';
+
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let month;
+        let year;
+
+        const slashMatch = trimmed.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+        const dashMatch = trimmed.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+        if (slashMatch) {
+            month = slashMatch[2];
+            year = slashMatch[3];
+        } else if (dashMatch) {
+            year = dashMatch[1];
+            month = dashMatch[2];
+        } else {
+            const yearOnlyMatch = trimmed.match(/^(\d{4})$/);
+            if (yearOnlyMatch) {
+                year = yearOnlyMatch[1];
+                month = '1';
+            } else {
+                return trimmed;
+            }
+        }
+
+        if (year.length === 2) {
+            year = `20${year}`;
+        }
+
+        const monthIndex = parseInt(month, 10) - 1;
+        if (Number.isNaN(monthIndex) || monthIndex < 0 || monthIndex > 11) {
+            return trimmed;
+        }
+
+        const monthName = monthNames[monthIndex];
+        if (!monthName) return trimmed;
+
+        return `${monthName} ${year}`;
     }
 
     function toggleHighlightsSection(header) {
