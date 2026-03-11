@@ -20,6 +20,9 @@ Data layout
 - data/features/ – features tables (weather/full/course)
 - data/preds/ – predictions + leaderboard + summary
 
+Testing
+- cd web/ && python -m http.server 8000 - Test webpage from local
+
 
 Actual results
 - scripts/fetch_actual_results.py – pulls final finishes via DataGolf's `historical-raw-data/rounds` endpoint and populates `web/archive/<year>/<slug>/results.json`.

@@ -1,12 +1,12 @@
 {
   "event_id": "11",
   "event_name": "THE PLAYERS Championship",
-  "source_csv": "data/preds/pga/event_11_the_players_championship_2026-03-09_leaderboard.csv",
-  "generated_utc": "09-Mar-2026 08:01:41",
+  "source_csv": "data/preds/pga/event_11_the_players_championship_2026-03-10_leaderboard.csv",
+  "generated_utc": "10-Mar-2026 10:56:23",
   "metrics": {
     "field_size": 123,
-    "p_win_max": 0.4624666666666667,
-    "p_win_median": 0.0003333333333333333,
+    "p_win_max": 0.39,
+    "p_win_median": 0.00036666666666666667,
     "p_win_sum": 1.0
   }
 }

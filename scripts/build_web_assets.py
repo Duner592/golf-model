@@ -1179,42 +1179,55 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
         return
     upcoming_data = json.loads(upcoming_file.read_text(encoding="utf-8"))
     schedule = []
-    current_year = 2026  # Hardcoded to 2026 as per user request
+    season_value = upcoming_data.get("season")
+    try:
+        current_year = int(season_value)
+    except (TypeError, ValueError):
+        current_year = 2026  # Fallback to original hardcoded value
+
+    include_prev_year = tour.lower() == "euro"
+    prev_year_cutoff = datetime(current_year - 1, 11, 1) if include_prev_year else None
     for event in upcoming_data.get("schedule", []):
         if event.get("tour", "").lower() == tour.lower():
             date_str = event.get("start_date") or event.get("date")
             if date_str:
                 try:
-                    event_year = datetime.strptime(date_str, "%Y-%m-%d").year
-                    if event_year == current_year:
-                        # Include only if in current year
-                        event_name = event.get("event_name") or event.get("name") or event.get("event")
-                        formatted_date = datetime.strptime(date_str, "%Y-%m-%d").strftime("%d-%m-%Y")
-                        winner = event.get("winner", "N/A")
-                        # Clean up winner name: remove (ID) and reorder to First Last
-                        winner = event.get("winner", "N/A")
-                        # Clean up winner name: remove (ID) and reorder to First Last
-                        if winner != "N/A":
-                            try:
-                                parts = winner.split(", ")
-                                if len(parts) == 2:
-                                    last, first_id = parts
-                                    first = first_id.split(" (")[0]  # Remove (ID)
-                                    winner = f"{first} {last}"
-                            except Exception:  # Specify Exception instead of bare except
-                                pass  # Keep original if parsing fails
-                        schedule.append(
-                            {
-                                "date": formatted_date,
-                                "event": event_name,
-                                "course": event.get("course"),
-                                "location": event.get("location"),
-                                "winner": winner,
-                            }
-                        )
+                    event_dt = datetime.strptime(date_str, "%Y-%m-%d")
                 except ValueError:
-                    # Skip if date parsing fails
                     continue
+
+                event_year = event_dt.year
+                in_current_year = event_year == current_year
+                in_prev_year_window = (
+                    include_prev_year
+                    and prev_year_cutoff is not None
+                    and event_dt >= prev_year_cutoff
+                    and event_year == current_year - 1
+                )
+                if not (in_current_year or in_prev_year_window):
+                    continue
+
+                event_name = event.get("event_name") or event.get("name") or event.get("event")
+                formatted_date = event_dt.strftime("%d-%m-%Y")
+                winner = event.get("winner", "N/A")
+                if winner != "N/A":
+                    try:
+                        parts = winner.split(", ")
+                        if len(parts) == 2:
+                            last, first_id = parts
+                            first = first_id.split(" (")[0]
+                            winner = f"{first} {last}"
+                    except Exception:
+                        pass
+                schedule.append(
+                    {
+                        "date": formatted_date,
+                        "event": event_name,
+                        "course": event.get("course"),
+                        "location": event.get("location"),
+                        "winner": winner,
+                    }
+                )
     # Sort schedule by date ascending (chronological order: earliest first)
     schedule.sort(key=lambda x: datetime.strptime(x["date"], "%d-%m-%Y"))
     write_json(out_json, schedule)
