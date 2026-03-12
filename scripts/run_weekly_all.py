@@ -121,6 +121,32 @@ def main():
                     field_update_tour,
                 ]
                 run(fetch_cmd)
+
+                # Inspect fetched field data before parsing to avoid hard failures
+                field_updates_path = SCRIPT_DIR / "field-updates.json"
+                skip_event = False
+                if field_updates_path.exists():
+                    try:
+                        with open(field_updates_path, encoding="utf-8") as f:
+                            fetched_payload = json.load(f)
+                        if isinstance(fetched_payload, dict):
+                            error_msg = fetched_payload.get("error")
+                            field_entries = fetched_payload.get("field")
+                            if error_msg:
+                                print(f"[warn] Skipping event_id={event_id}: field updates API returned error: {error_msg}")
+                                skip_event = True
+                            elif not field_entries:
+                                print(f"[warn] Skipping event_id={event_id}: field updates payload contains no field entries.")
+                                skip_event = True
+                    except Exception as exc:
+                        print(f"[warn] Unable to inspect field-updates.json for event_id={event_id}: {exc}")
+                else:
+                    print(f"[warn] Expected field-updates.json not found after fetch for event_id={event_id}; skipping event.")
+                    skip_event = True
+
+                if skip_event:
+                    continue
+
                 run([sys.executable, str(SCRIPT_DIR / "parse_field_updates.py")] + cmd_suffix)
 
                 # Inline: Merge missing lat/lon/start from upcoming-events.json into meta
