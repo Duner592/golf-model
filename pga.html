@@ -71,10 +71,41 @@
         .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary)); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem; box-shadow: 0 8px 18px -14px rgba(29,124,66,0.55); transition: background 0.2s ease, transform 0.2s ease; }
         .link:hover { background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark)); transform: translateY(-1px); }
 
+        .weather-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-top: 0.5rem; }
+        .weather-card { border: 1px solid #dbe7dc; border-radius: 12px; padding: 0.8rem 0.9rem; background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(236,246,239,0.9)); box-shadow: 0 18px 32px -25px rgba(29,124,66,0.45); display: flex; flex-direction: column; gap: 0.65rem; }
+        .weather-card__header { display: flex; flex-direction: column; gap: 0.35rem; }
+        .weather-card__title { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: #1d7c42; }
+        .weather-card__summary { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .weather-pill { display: inline-flex; align-items: center; gap: 0.3rem; border-radius: 999px; padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: 600; background: rgba(58, 84, 70, 0.12); color: #2f3d36; }
+        .weather-pill__icon { font-size: 1rem; line-height: 1; }
+        .weather-card__body { display: flex; flex-direction: column; gap: 0.65rem; }
+        .weather-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .weather-group__title { font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: #557960; font-weight: 700; }
+        .weather-stats { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.45rem 0.6rem; border: 1px solid rgba(125, 152, 129, 0.18); border-radius: 8px; background: rgba(255,255,255,0.7); }
+        .weather-stat { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; font-size: 0.88rem; }
+        .weather-stat__icon { font-size: 1rem; }
+        .weather-stat__label { flex: 1; color: #3f4a45; font-weight: 500; }
+        .weather-stat__value { font-variant-numeric: tabular-nums; font-weight: 600; color: #243c2f; }
+        .weather-wave-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.55rem; }
+        .weather-wave { border: 1px solid rgba(125, 152, 129, 0.18); border-radius: 8px; padding: 0.6rem 0.65rem; background: rgba(247, 252, 247, 0.9); display: flex; flex-direction: column; gap: 0.35rem; }
+        .weather-wave__label { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #1f6d3d; }
+        .weather-notes { margin: 0; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.83rem; color: #2f4036; }
+        .weather-notes li { list-style: disc; }
+        .weather-muted { color: #6a776f; font-size: 0.82rem; }
+        .weather-alert-banner { display: flex; gap: 0.45rem; align-items: flex-start; border-radius: 8px; padding: 0.55rem 0.65rem; background: rgba(239, 84, 62, 0.12); border: 1px solid rgba(239, 84, 62, 0.32); color: #933026; font-size: 0.84rem; font-weight: 600; }
+        .weather-alert-banner__icon { font-size: 1.1rem; line-height: 1; }
+        .weather-pill.weather-severity--calm { background: rgba(29,124,66,0.08); color: #1d7c42; }
+        .weather-pill.weather-severity--warn { background: rgba(255, 196, 38, 0.18); color: #8a6100; }
+        .weather-pill.weather-severity--alert { background: rgba(239, 84, 62, 0.16); color: #9b2e24; }
+        .weather-stat.weather-severity--calm .weather-stat__value { color: #1d7c42; }
+        .weather-stat.weather-severity--warn .weather-stat__value { color: #8a6100; }
+        .weather-stat.weather-severity--alert .weather-stat__value { color: #9b2e24; }
+
         @media (max-width: 900px) {
           .layout { grid-template-columns: 1fr; }
           input[type="search"] { width: 100%; }
           table { font-size: 0.9rem; }
+          .weather-grid { grid-template-columns: 1fr; }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -89,6 +120,7 @@
 
 <h1>Eds Golf Model - PGA Predictions Leaderboard</h1>
 <h2 id="subtitle"></h2>
+<p id="generatedAt" class="muted" style="margin:0 0 0.75rem; display:none;"></p>
 
 <div class="layout">
     <!-- Main column -->
@@ -149,6 +181,46 @@
     // Formatting helpers
     const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
     const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
+    const LOCAL_TZ = (() => {
+      try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; }
+      catch { return ""; }
+    })();
+    const MONTH_LOOKUP = {
+      jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06",
+      jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12",
+    };
+
+    function normalizeTimestamp(raw){
+      if (!raw || typeof raw !== "string") return null;
+      const trimmed = raw.trim();
+      if (!trimmed) return null;
+      if (/T/.test(trimmed) && /(?:Z|[+-]\d{2}:?\d{2})$/.test(trimmed)) return trimmed;
+      if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d+)? ?UTC$/i.test(trimmed)) {
+        return trimmed.replace(/\s*UTC$/i, "Z").replace(" ", "T");
+      }
+      if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(trimmed)) {
+        return `${trimmed.replace(" ", "T")}Z`;
+      }
+      const m = trimmed.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4}) (\d{2}):(\d{2})(?::(\d{2}))?/);
+      if (m) {
+        const [, day, mon, year, hh, mm, ss] = m;
+        const month = MONTH_LOOKUP[mon.toLowerCase()] || null;
+        if (month) {
+          const safeDay = day.padStart(2, "0");
+          return `${year}-${month}-${safeDay}T${hh}:${mm}:${ss ?? "00"}Z`;
+        }
+      }
+      return trimmed;
+    }
+
+    function formatGeneratedTimestamp(raw){
+      if (!raw) return "";
+      const normalized = normalizeTimestamp(raw);
+      const date = normalized ? new Date(normalized) : new Date(raw);
+      if (!(date instanceof Date) || Number.isNaN(date.valueOf())) return raw;
+      const formatted = date.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+      return LOCAL_TZ ? `${formatted} (${LOCAL_TZ})` : formatted;
+    }
 
     // Helpers to detect 1st/10th tee starts from various possible fields in leaderboard.json
     const is10 = (x) => x === 10 || x === "10" || (typeof x === "string" && /\b10\b/.test(x));
@@ -254,87 +326,319 @@
       const el = document.createElement("li"); el.appendChild(a); return el;
     }
 
-    function formatNeutralWeather(r){
-      const wind = fmtNum(r.wind_mph, 1);
-      const gust = fmtNum(r.gust_mph, 1);
-      const rain = fmtNum(r.precip_pct, 0);
-      const temp = r.temp_c != null ? fmtNum(r.temp_c, 1) + "°C" : "—";
-      let rainEmoji = "🌧️";
-      if (r.weathercode !== null && r.weathercode >= 0 && r.weathercode <= 3 && rain === "0") {
-        rainEmoji = "☀️";
-      }
-      let extra = "";
-      if (r.weathercode !== null && r.weathercode >= 95 && r.weathercode <= 99) {
-        extra = " ⚡ Thunderstorm threat";
-      }
-      return `🌬️ Wind: ${wind} mph (💨 gust ${gust} mph) • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
-    }
+    const weatherSeverityClass = (value, warnThreshold, alertThreshold, opts = {}) => {
+      if (value == null) return "";
+      const abs = opts.absolute ? Math.abs(Number(value)) : Number(value);
+      if (!Number.isFinite(abs)) return "";
+      if (abs >= alertThreshold) return "weather-severity--alert";
+      if (abs >= warnThreshold) return "weather-severity--warn";
+      return "weather-severity--calm";
+    };
 
-    function formatWaveWeather(part){
-      if (!part) return "—";
-      const wind = fmtNum(part.wind_mph, 1);
-      const rain = fmtNum(part.precip_pct, 0);
-      const temp = fmtNum(part.temp_c, 1) + "°C";
-      let rainEmoji = "🌧️";
-      if (part.weathercode !== null && part.weathercode >= 0 && part.weathercode <= 3 && rain === "0") {
-        rainEmoji = "☀️";
+    const formatTempC = (temp) => temp != null ? `${fmtNum(temp, 1)}°C` : "—";
+    const formatRainPct = (val) => val != null ? `${fmtNum(val, 0)}%` : "—";
+    const formatDeltaStrokes = (delta) => {
+      if (delta == null) return "—";
+      const n = Number(delta);
+      if (!Number.isFinite(n)) return "—";
+      const sign = n > 0 ? "+" : n < 0 ? "−" : "±";
+      return `${sign}${fmtNum(Math.abs(n), 2)} strokes`;
+    };
+    const hasStormRisk = (entry) => entry && entry.weathercode != null && entry.weathercode >= 95 && entry.weathercode <= 99;
+
+    const buildWeatherPill = (icon, text, severity) => {
+      const pill = document.createElement("span");
+      pill.className = `weather-pill${severity ? ` ${severity}` : ""}`;
+      const iconEl = document.createElement("span");
+      iconEl.className = "weather-pill__icon";
+      iconEl.textContent = icon;
+      const textEl = document.createElement("span");
+      textEl.textContent = text;
+      pill.append(iconEl, textEl);
+      return pill;
+    };
+
+    const buildWeatherStat = (icon, label, value, severity) => {
+      const row = document.createElement("div");
+      row.className = `weather-stat${severity ? ` ${severity}` : ""}`;
+      const iconEl = document.createElement("span");
+      iconEl.className = "weather-stat__icon";
+      iconEl.textContent = icon;
+      const labelEl = document.createElement("span");
+      labelEl.className = "weather-stat__label";
+      labelEl.textContent = label;
+      const valueEl = document.createElement("span");
+      valueEl.className = "weather-stat__value";
+      valueEl.textContent = value;
+      row.append(iconEl, labelEl, valueEl);
+      return row;
+    };
+
+    const gatherWeatherSources = (neutral, waves) => {
+      const sources = [];
+      if (neutral) sources.push(neutral);
+      if (waves?.AM) sources.push(waves.AM);
+      if (waves?.PM) sources.push(waves.PM);
+      return sources;
+    };
+
+    const collectConditionHighlights = (roundNumber, neutral, waves) => {
+      const notes = [];
+      const sources = gatherWeatherSources(neutral, waves);
+      if (!sources.length) return notes;
+
+      const numericMax = (field, transform = (x) => x) => {
+        const vals = sources
+          .map((s) => Number(s?.[field]))
+          .filter((v) => Number.isFinite(v))
+          .map(transform);
+        if (!vals.length) return null;
+        return Math.max(...vals);
+      };
+
+      const maxGust = numericMax("gust_mph");
+      if (maxGust != null) {
+        if (maxGust >= 28) {
+          notes.push(`Gusts topping ${fmtNum(maxGust, 1)} mph could trigger stoppages and demand lower ball flights.`);
+        } else if (maxGust >= 22) {
+          notes.push(`Blustery periods up to ${fmtNum(maxGust, 1)} mph will amplify shot-shaping challenges.`);
+        }
       }
-      let extra = "";
-      if (part.weathercode !== null && part.weathercode >= 95 && part.weathercode <= 99) {
-        extra = " ⚡ Thunderstorm threat";
+
+      const maxWind = numericMax("wind_mph");
+      if (maxWind != null && maxWind >= 18 && (!maxGust || maxGust < 22)) {
+        notes.push(`Sustained winds near ${fmtNum(maxWind, 1)} mph may force players to throttle back off the tee.`);
       }
-      return `🌬️ Wind: ${wind} mph • ${rainEmoji} Rain: ${rain}% • 🌡️ Temp: ${temp}${extra}`;
-    }
+
+      const maxRain = numericMax("precip_pct");
+      if (maxRain != null) {
+        if (maxRain >= 60) {
+          notes.push(`Heavy rain chances (~${fmtNum(maxRain, 0)}%) could soften the course and slow play.`);
+        } else if (maxRain >= 35) {
+          notes.push(`Showers are in play (~${fmtNum(maxRain, 0)}%); expect moisture-driven adjustments around the greens.`);
+        }
+      }
+
+      const stormy = sources.some(hasStormRisk);
+      if (stormy) {
+        notes.unshift("Strong electrical storm risk — lightning delays or evacuations are firmly on the table.");
+      }
+
+      const maxPenalty = numericMax("delta_strokes", (v) => Math.abs(v));
+      if (maxPenalty != null && maxPenalty >= 0.45) {
+        notes.push(`Model expects scoring to swing by roughly ±${fmtNum(maxPenalty, 2)} strokes under the worst weather windows.`);
+      }
+
+      if (waves?.AM && waves?.PM) {
+        const deltaAM = Number(waves.AM.delta_strokes);
+        const deltaPM = Number(waves.PM.delta_strokes);
+        if (Number.isFinite(deltaAM) && Number.isFinite(deltaPM)) {
+          const diff = deltaAM - deltaPM;
+          if (Math.abs(diff) >= 0.25) {
+            const advantaged = diff < 0 ? "AM" : "PM";
+            notes.push(`${advantaged} wave carries the friendlier setup by about ${fmtNum(Math.abs(diff), 2)} strokes.`);
+          }
+        }
+      }
+
+      return notes;
+    };
+
+    const mergeWaveData = (am, pm) => {
+      if (am && pm) {
+        const acc = {};
+        ["wind_mph", "gust_mph", "temp_c", "precip_pct", "delta_strokes"].forEach(key => {
+          const vals = [am[key], pm[key]].map(Number).filter(v => Number.isFinite(v));
+          if (vals.length) acc[key] = vals.reduce((a, b) => a + b, 0) / vals.length;
+        });
+        acc.weathercode = hasStormRisk(am) || hasStormRisk(pm) ? 95 : (am.weathercode ?? pm.weathercode ?? null);
+        return acc;
+      }
+      return am || pm || null;
+    };
+
+    const buildAlertBanner = (message) => {
+      const banner = document.createElement("div");
+      banner.className = "weather-alert-banner";
+      const icon = document.createElement("span");
+      icon.className = "weather-alert-banner__icon";
+      icon.textContent = "⚠️";
+      const text = document.createElement("span");
+      text.textContent = message;
+      banner.append(icon, text);
+      return banner;
+    };
+
+    const buildWaveBlock = (label, data) => {
+      const wrap = document.createElement("div");
+      wrap.className = "weather-wave";
+      const heading = document.createElement("div");
+      heading.className = "weather-wave__label";
+      heading.textContent = label;
+      wrap.appendChild(heading);
+
+      if (!data) {
+        const empty = document.createElement("div");
+        empty.className = "weather-muted";
+        empty.textContent = "No data";
+        wrap.appendChild(empty);
+        return wrap;
+      }
+
+      const stats = document.createElement("div");
+      stats.className = "weather-stats";
+      stats.appendChild(buildWeatherStat("🌬️", "Wind", `${fmtNum(data.wind_mph, 1)} mph`, weatherSeverityClass(data.wind_mph, 12, 18)));
+      stats.appendChild(buildWeatherStat("💨", "Gust", `${fmtNum(data.gust_mph, 1)} mph`, weatherSeverityClass(data.gust_mph, 20, 28)));
+      stats.appendChild(buildWeatherStat("🌧️", "Rain", formatRainPct(data.precip_pct), weatherSeverityClass(data.precip_pct, 35, 60)));
+      stats.appendChild(buildWeatherStat("🌡️", "Temp", formatTempC(data.temp_c), ""));
+      stats.appendChild(buildWeatherStat("⛳", "Δ Strokes", formatDeltaStrokes(data.delta_strokes), weatherSeverityClass(data.delta_strokes, 0.2, 0.5, { absolute: true })));
+      wrap.appendChild(stats);
+
+      if (hasStormRisk(data)) {
+        wrap.appendChild(buildAlertBanner("Thunderstorm risk for this wave"));
+      }
+
+      return wrap;
+    };
+
+    const buildWeatherCard = (roundNumber, neutral, waves) => {
+      const card = document.createElement("article");
+      card.className = "weather-card";
+
+      const header = document.createElement("div");
+      header.className = "weather-card__header";
+
+      const title = document.createElement("div");
+      title.className = "weather-card__title";
+      title.textContent = `Round ${roundNumber}`;
+      header.appendChild(title);
+
+      const summary = document.createElement("div");
+      summary.className = "weather-card__summary";
+      const base = neutral || mergeWaveData(waves.AM, waves.PM);
+
+      if (base) {
+        summary.appendChild(buildWeatherPill("🌬️", `${fmtNum(base.wind_mph, 1)} mph wind`, weatherSeverityClass(base.wind_mph, 12, 18)));
+        summary.appendChild(buildWeatherPill("💨", `${fmtNum(base.gust_mph, 1)} mph gusts`, weatherSeverityClass(base.gust_mph, 20, 28)));
+        summary.appendChild(buildWeatherPill("🌧️", formatRainPct(base.precip_pct), weatherSeverityClass(base.precip_pct, 35, 60)));
+        summary.appendChild(buildWeatherPill("🌡️", formatTempC(base.temp_c), ""));
+      } else {
+        const placeholder = document.createElement("span");
+        placeholder.className = "weather-muted";
+        placeholder.textContent = "No weather forecast";
+        summary.appendChild(placeholder);
+      }
+
+      header.appendChild(summary);
+      card.appendChild(header);
+
+      const stormy = hasStormRisk(neutral) || hasStormRisk(waves.AM) || hasStormRisk(waves.PM);
+      if (stormy) {
+        card.appendChild(buildAlertBanner("Thunderstorm threat flagged in forecast"));
+      }
+
+      const highlights = collectConditionHighlights(roundNumber, neutral, waves);
+      if (highlights.length) {
+        const noteList = document.createElement("ul");
+        noteList.className = "weather-notes";
+        highlights.forEach((text) => {
+          const li = document.createElement("li");
+          li.textContent = text;
+          noteList.appendChild(li);
+        });
+        card.appendChild(noteList);
+      }
+
+      const body = document.createElement("div");
+      body.className = "weather-card__body";
+
+      if (neutral) {
+        const neutralGroup = document.createElement("div");
+        neutralGroup.className = "weather-group";
+        const groupTitle = document.createElement("div");
+        groupTitle.className = "weather-group__title";
+        groupTitle.textContent = "Neutral Forecast";
+        neutralGroup.appendChild(groupTitle);
+
+        const stats = document.createElement("div");
+        stats.className = "weather-stats";
+        stats.appendChild(buildWeatherStat("🌬️", "Wind", `${fmtNum(neutral.wind_mph, 1)} mph`, weatherSeverityClass(neutral.wind_mph, 12, 18)));
+        stats.appendChild(buildWeatherStat("💨", "Gust", `${fmtNum(neutral.gust_mph, 1)} mph`, weatherSeverityClass(neutral.gust_mph, 20, 28)));
+        stats.appendChild(buildWeatherStat("🌧️", "Rain", formatRainPct(neutral.precip_pct), weatherSeverityClass(neutral.precip_pct, 35, 60)));
+        stats.appendChild(buildWeatherStat("🌡️", "Temp", formatTempC(neutral.temp_c), ""));
+        stats.appendChild(buildWeatherStat("⛳", "Δ Strokes", formatDeltaStrokes(neutral.delta_strokes), weatherSeverityClass(neutral.delta_strokes, 0.2, 0.5, { absolute: true })));
+        neutralGroup.appendChild(stats);
+
+        body.appendChild(neutralGroup);
+      }
+
+      if (waves.AM || waves.PM) {
+        const waveGroup = document.createElement("div");
+        waveGroup.className = "weather-group";
+        const groupTitle = document.createElement("div");
+        groupTitle.className = "weather-group__title";
+        groupTitle.textContent = "Wave Splits";
+        waveGroup.appendChild(groupTitle);
+
+        const waveGrid = document.createElement("div");
+        waveGrid.className = "weather-wave-grid";
+        waveGrid.appendChild(buildWaveBlock("AM", waves.AM));
+        waveGrid.appendChild(buildWaveBlock("PM", waves.PM));
+        waveGroup.appendChild(waveGrid);
+
+        body.appendChild(waveGroup);
+      }
+
+      if (!neutral && !waves.AM && !waves.PM) {
+        const empty = document.createElement("div");
+        empty.className = "weather-muted";
+        empty.textContent = "No weather data for this round.";
+        body.appendChild(empty);
+      }
+
+      card.appendChild(body);
+      return card;
+    };
 
     function renderSidebar(eventData){
-      // Weather list
       const wxList = document.getElementById("wxList");
       wxList.innerHTML = "";
+      wxList.classList.remove("weather-grid");
 
       const wn = Array.isArray(eventData.weatherNeutral) ? eventData.weatherNeutral : [];
       const ww = Array.isArray(eventData.weatherWave) ? eventData.weatherWave : [];
-      const byR = {};
-      (ww || []).forEach(x => { (byR[x.round] = byR[x.round] || []).push(x); });
+      const byRound = {};
+      ww.forEach(entry => {
+        if (!entry) return;
+        const round = Number(entry.round);
+        if (!Number.isFinite(round)) return;
+        const waveKey = typeof entry.wave === "string" ? entry.wave.trim().toUpperCase() : "";
+        if (!waveKey) return;
+        if (!byRound[round]) byRound[round] = {};
+        byRound[round][waveKey] = entry;
+      });
 
-      [1, 2, 3, 4].forEach(rn => {
-        const n = wn.find(x => x.round === rn);
-        if (n || byR[rn]) {
-          const roundDiv = document.createElement("div");
-          roundDiv.innerHTML = `<strong>Round ${rn}</strong>`;
-          const ul = document.createElement("ul");
-          ul.style.margin = "0.25rem 0 0.5rem 1rem";
-          ul.style.padding = "0";
+      let hasAny = false;
+      wxList.classList.add("weather-grid");
 
-          if (n) {
-            const li = document.createElement("li");
-            li.innerHTML = formatNeutralWeather(n);
-            li.style.listStyle = "none";
-            ul.appendChild(li);
-          }
-
-          if (rn <= 2 && byR[rn]) {
-            const am = byR[rn].find(x => x.wave === "AM");
-            const pm = byR[rn].find(x => x.wave === "PM");
-            if (am || pm) {
-              const li = document.createElement("li");
-              li.innerHTML = `<em>Wave (AM/PM):</em><br/>AM: ${formatWaveWeather(am)} <br/> PM: ${formatWaveWeather(pm)}`;
-              li.style.listStyle = "none";
-              li.style.marginTop = "0.25rem";
-              ul.appendChild(li);
-            }
-          }
-
-          roundDiv.appendChild(ul);
-          wxList.appendChild(roundDiv);
+      [1, 2, 3, 4].forEach(roundNumber => {
+        const neutral = wn.find(x => x.round === roundNumber) || null;
+        const wavesForRound = byRound[roundNumber] || {};
+        const waves = {
+          AM: wavesForRound.AM || null,
+          PM: wavesForRound.PM || null,
+        };
+        if (neutral || waves.AM || waves.PM) {
+          wxList.appendChild(buildWeatherCard(roundNumber, neutral, waves));
+          hasAny = true;
         }
       });
 
-      // If no weather data at all, show a placeholder
-      if (!wn.length && !Object.keys(byR).length) {
-        wxList.innerHTML = "<div class='small muted'>No weather data available.</div>";
+      if (!hasAny) {
+        wxList.classList.remove("weather-grid");
+        wxList.innerHTML = "<div class='weather-muted'>No weather data available.</div>";
       }
 
-      // Resources
       const ul = document.getElementById("resources");
       ul.innerHTML = "";
       const res = eventData.resources || {};
@@ -349,7 +653,6 @@
       if (res.course_fit_weights) ul.appendChild(link("Course-fit weights (DIY, JSON)", res.course_fit_weights));
       if (res.course_history_summary) ul.appendChild(link("Course-history summary (JSON)", res.course_history_summary));
       if (res.tournament_summary) ul.appendChild(link("Tournament summary (JSON)", res.tournament_summary));
-      // Add the schedule link
       ul.appendChild(link("2026 Schedule", "pga_schedule.html"));
     }
 
@@ -433,6 +736,15 @@
         ...(resources || {}),
         ...((effectiveMeta && effectiveMeta.resources) || {}),
       };
+      const generatedCandidates = [
+        effectiveMeta?.saved_at_utc,
+        effectiveMeta?.last_updated,
+        effectiveMeta?.generated_utc,
+        summary?.generated_utc,
+        eventSummary?.generated_utc,
+        tourMeta?.generated_utc,
+      ].filter(Boolean);
+      const generatedRaw = generatedCandidates.length ? generatedCandidates[0] : null;
       const eventData = {
         id,
         name: eventSummary.event_name || effectiveMeta?.event_name || `Event ${id}`,
@@ -450,6 +762,7 @@
         r1Date: eventSummary.r1_date || effectiveMeta?.r1_date || null,
         lat: effectiveMeta?.lat ?? tourMeta?.lat ?? null,
         lon: effectiveMeta?.lon ?? tourMeta?.lon ?? null,
+        generatedRaw,
       };
       eventStore.set(id, eventData);
       return eventData;
@@ -513,6 +826,17 @@
     function updateEventUI(eventData){
       const subtitleEl = document.getElementById("subtitle");
       subtitleEl.textContent = buildSubtitle(eventData);
+      const generatedEl = document.getElementById("generatedAt");
+      if (generatedEl) {
+        const formatted = eventData.generatedRaw ? formatGeneratedTimestamp(eventData.generatedRaw) : "";
+        if (formatted) {
+          generatedEl.textContent = `Predictions updated ${formatted}`;
+          generatedEl.style.display = "block";
+        } else {
+          generatedEl.textContent = "";
+          generatedEl.style.display = "none";
+        }
+      }
       updateDownloads(eventData);
 
       const rows = Array.isArray(eventData.leaderboard) ? eventData.leaderboard : [];
@@ -571,6 +895,11 @@
         renderTable([]);
         renderSidebar({weatherNeutral: [], weatherWave: [], resources: {}});
         renderTournament({tournament: null});
+        const generatedEl = document.getElementById("generatedAt");
+        if (generatedEl) {
+          generatedEl.textContent = "";
+          generatedEl.style.display = "none";
+        }
         return;
       }
       currentEventId = String(eventId ?? eventsList[0].event_id);
