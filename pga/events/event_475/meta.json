@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "475",
+  "event_name": "Valspar Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-03-19",
+  "start_date": "2026-03-19",
+  "generated_utc": "16-Mar-2026 08:52:21",
+  "source_csv": "data/preds/pga/event_475_valspar_championship_2026-03-16_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_475/leaderboard.json",
+    "summary": "pga/events/event_475/summary.json",
+    "meta": "pga/events/event_475/meta.json",
+    "downloads_csv": "pga/downloads/event_475_valspar_championship_2026-03-16_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_475_valspar_championship_2026-03-16_leaderboard.html",
+    "weather_meta": "pga/events/event_475/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_475/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_475/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_475/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_475/course_history_summary.json",
+    "tournament_summary": "pga/events/event_475/tournament_summary.json",
+    "field_teetimes": "pga/events/event_475/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}

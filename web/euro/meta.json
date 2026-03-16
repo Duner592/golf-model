@@ -1,27 +1,54 @@
 {
   "tour": "euro",
-  "event_id": "0",
-  "event_name": "No Event",
+  "event_id": "2026112",
+  "event_name": "Hainan Classic presented by MAEXTRO",
   "lat": null,
   "lon": null,
-  "r1_date": null,
-  "generated_utc": "12-Mar-2026 10:57:25",
+  "r1_date": "2026-03-19",
+  "generated_utc": "16-Mar-2026 08:52:29",
   "resources": {
-    "downloads_csv": null,
-    "downloads_html": null,
-    "weather_meta": null,
-    "weather_round_neutral": null,
-    "weather_round_wave": null,
-    "course_fit_weights": null,
+    "downloads_csv": "euro/downloads/event_2026112_hainan_classic_presented_by_maextro_2026-03-16_leaderboard.csv",
+    "downloads_html": "euro/downloads/event_2026112_hainan_classic_presented_by_maextro_2026-03-16_leaderboard.html",
+    "weather_meta": "euro/weather_meta.json",
+    "weather_round_neutral": "euro/weather_round_neutral.json",
+    "weather_round_wave": "euro/weather_round_wave.json",
+    "course_fit_weights": "euro/course_fit_weights.json",
     "course_history_summary": null,
-    "tournament_summary": null,
-    "field_teetimes": null,
+    "tournament_summary": "euro/tournament_summary.json",
+    "field_teetimes": "euro/field_teetimes.csv",
     "leaderboard": "euro/leaderboard.json",
     "summary": "euro/summary.json",
     "schedule": "euro/schedule.json",
-    "primary_event_dir": null
+    "primary_event_dir": "euro/events/event_2026112"
   },
-  "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!",
-  "active_events": [],
-  "primary_event_dir": null
+  "active_events": [
+    {
+      "event_id": "2026112",
+      "event_name": "Hainan Classic presented by MAEXTRO",
+      "r1_date": "2026-03-19",
+      "start_date": "2026-03-19",
+      "generated_utc": "16-Mar-2026 08:52:29",
+      "has_predictions": true,
+      "resources": {
+        "leaderboard": "euro/events/event_2026112/leaderboard.json",
+        "summary": "euro/events/event_2026112/summary.json",
+        "meta": "euro/events/event_2026112/meta.json",
+        "downloads_csv": "euro/downloads/event_2026112_hainan_classic_presented_by_maextro_2026-03-16_leaderboard.csv",
+        "downloads_html": "euro/downloads/event_2026112_hainan_classic_presented_by_maextro_2026-03-16_leaderboard.html",
+        "weather_meta": "euro/events/event_2026112/weather_meta.json",
+        "weather_round_neutral": "euro/events/event_2026112/weather_round_neutral.json",
+        "weather_round_wave": "euro/events/event_2026112/weather_round_wave.json",
+        "course_fit_weights": "euro/events/event_2026112/course_fit_weights.json",
+        "course_history_summary": null,
+        "tournament_summary": "euro/events/event_2026112/tournament_summary.json",
+        "field_teetimes": "euro/events/event_2026112/field_teetimes.csv",
+        "schedule": "euro/schedule.json"
+      },
+      "source_csv": "data/preds/euro/event_2026112_hainan_classic_presented_by_maextro_2026-03-16_leaderboard.csv",
+      "event_dir": "euro/events/event_2026112",
+      "lat": null,
+      "lon": null
+    }
+  ],
+  "primary_event_dir": "euro/events/event_2026112"
 }
