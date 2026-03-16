@@ -1,14 +1,14 @@
 {
   "tour": "pga",
-  "event_id": "11",
-  "event_name": "THE PLAYERS Championship",
+  "event_id": "475",
+  "event_name": "Valspar Championship",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-03-12",
-  "generated_utc": "11-Mar-2026 22:35:53",
+  "r1_date": "2026-03-19",
+  "generated_utc": "16-Mar-2026 08:52:21",
   "resources": {
-    "downloads_csv": "pga/downloads/event_11_the_players_championship_2026-03-11_leaderboard.csv",
-    "downloads_html": "pga/downloads/event_11_the_players_championship_2026-03-11_leaderboard.html",
+    "downloads_csv": "pga/downloads/event_475_valspar_championship_2026-03-16_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_475_valspar_championship_2026-03-16_leaderboard.html",
     "weather_meta": "pga/weather_meta.json",
     "weather_round_neutral": "pga/weather_round_neutral.json",
     "weather_round_wave": "pga/weather_round_wave.json",
@@ -19,36 +19,36 @@
     "leaderboard": "pga/leaderboard.json",
     "summary": "pga/summary.json",
     "schedule": "pga/schedule.json",
-    "primary_event_dir": "pga/events/event_11"
+    "primary_event_dir": "pga/events/event_475"
   },
   "active_events": [
     {
-      "event_id": "11",
-      "event_name": "THE PLAYERS Championship",
-      "r1_date": "2026-03-12",
-      "start_date": "2026-03-12",
-      "generated_utc": "11-Mar-2026 22:35:53",
+      "event_id": "475",
+      "event_name": "Valspar Championship",
+      "r1_date": "2026-03-19",
+      "start_date": "2026-03-19",
+      "generated_utc": "16-Mar-2026 08:52:21",
       "has_predictions": true,
       "resources": {
-        "leaderboard": "pga/events/event_11/leaderboard.json",
-        "summary": "pga/events/event_11/summary.json",
-        "meta": "pga/events/event_11/meta.json",
-        "downloads_csv": "pga/downloads/event_11_the_players_championship_2026-03-11_leaderboard.csv",
-        "downloads_html": "pga/downloads/event_11_the_players_championship_2026-03-11_leaderboard.html",
-        "weather_meta": "pga/events/event_11/weather_meta.json",
-        "weather_round_neutral": "pga/events/event_11/weather_round_neutral.json",
-        "weather_round_wave": "pga/events/event_11/weather_round_wave.json",
-        "course_fit_weights": "pga/events/event_11/course_fit_weights.json",
-        "course_history_summary": "pga/events/event_11/course_history_summary.json",
-        "tournament_summary": "pga/events/event_11/tournament_summary.json",
-        "field_teetimes": "pga/events/event_11/field_teetimes.csv",
+        "leaderboard": "pga/events/event_475/leaderboard.json",
+        "summary": "pga/events/event_475/summary.json",
+        "meta": "pga/events/event_475/meta.json",
+        "downloads_csv": "pga/downloads/event_475_valspar_championship_2026-03-16_leaderboard.csv",
+        "downloads_html": "pga/downloads/event_475_valspar_championship_2026-03-16_leaderboard.html",
+        "weather_meta": "pga/events/event_475/weather_meta.json",
+        "weather_round_neutral": "pga/events/event_475/weather_round_neutral.json",
+        "weather_round_wave": "pga/events/event_475/weather_round_wave.json",
+        "course_fit_weights": "pga/events/event_475/course_fit_weights.json",
+        "course_history_summary": "pga/events/event_475/course_history_summary.json",
+        "tournament_summary": "pga/events/event_475/tournament_summary.json",
+        "field_teetimes": "pga/events/event_475/field_teetimes.csv",
         "schedule": "pga/schedule.json"
       },
-      "source_csv": "data/preds/pga/event_11_the_players_championship_2026-03-11_leaderboard.csv",
-      "event_dir": "pga/events/event_11",
+      "source_csv": "data/preds/pga/event_475_valspar_championship_2026-03-16_leaderboard.csv",
+      "event_dir": "pga/events/event_475",
       "lat": null,
       "lon": null
     }
   ],
-  "primary_event_dir": "pga/events/event_11"
+  "primary_event_dir": "pga/events/event_475"
 }

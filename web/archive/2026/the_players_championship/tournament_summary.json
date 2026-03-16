@@ -6,33 +6,7 @@
   "course_location": "Ponte Vedra Beach, FL",
   "start_date": "12-Mar-2026",
   "field_size": 123,
-  "status": "upcoming",
-  "winner": null,
-  "previous_winners": [
-    {
-      "year": 2025,
-      "winner": "McIlroy, Rory",
-      "score": -8
-    },
-    {
-      "year": 2024,
-      "winner": "Scheffler, Scottie",
-      "score": -16
-    },
-    {
-      "year": 2023,
-      "winner": "Scheffler, Scottie",
-      "score": -13
-    },
-    {
-      "year": 2022,
-      "winner": "Smith, Cameron",
-      "score": -9
-    },
-    {
-      "year": 2021,
-      "winner": "Thomas, Justin",
-      "score": -10
-    }
-  ]
+  "status": "completed",
+  "winner": "Young, Cameron (26651)",
+  "previous_winners": []
 }

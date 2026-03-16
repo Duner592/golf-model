@@ -1,12 +1,30 @@
 [
   {
+    "event_id": "2026112",
+    "event_name": "Hainan Classic presented by MAEXTRO",
+    "tour": "euro",
+    "slug": "hainan_classic_presented_by_maextro",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-03-16 08:52:29 UTC"
+  },
+  {
+    "event_id": "475",
+    "event_name": "Valspar Championship",
+    "tour": "pga",
+    "slug": "valspar_championship",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-03-16 08:52:22 UTC"
+  },
+  {
     "event_id": "11",
     "event_name": "THE PLAYERS Championship",
     "tour": "pga",
     "slug": "the_players_championship",
     "year": "2026",
-    "csv_available": true,
-    "archived_at": "2026-03-11 22:35:53 UTC"
+    "csv_available": false,
+    "archived_at": "2026-03-13 09:31:02 UTC"
   },
   {
     "event_id": "2026111",
