@@ -28,8 +28,13 @@ git rm -rf . || true  # Ignore errors if empty
 # Copy from master
 echo "Copying web assets..."
 git checkout master -- web/
-mv web/* . 2>/dev/null || true  # Move contents to root
-rmdir web 2>/dev/null || true
+if command -v rsync >/dev/null 2>&1; then
+    rsync -a web/ ./  # Copy contents while preserving structure
+else
+    echo "rsync not found; falling back to cp -R"
+    cp -R web/. ./    # macOS-compatible recursive copy
+fi
+rm -rf web
 
 # Commit and push
 echo "Committing and pushing..."
