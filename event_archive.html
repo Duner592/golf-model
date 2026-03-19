@@ -88,6 +88,39 @@
         return r.json();
     }
 
+    async function loadLeaderboard({ year, slug, tour }) {
+        const basePath = year === "current" ? tour : `archive/${year}/${slug}`;
+        const jsonPath = `${basePath}/leaderboard.json`;
+        try {
+            const jsonData = await loadJSON(jsonPath);
+            if (Array.isArray(jsonData) && jsonData.length) {
+                return jsonData;
+            }
+            console.warn(`Leaderboard JSON at ${jsonPath} is empty, attempting CSV fallback.`);
+        } catch (err) {
+            console.warn(`Failed to load ${jsonPath}: ${err.message}`);
+        }
+
+        const csvPath = `${basePath}/leaderboard.csv`;
+        try {
+            const csvResponse = await fetch(csvPath, { cache: "no-store" });
+            if (!csvResponse.ok) throw new Error(`${csvPath}: ${csvResponse.status}`);
+            const csvText = await csvResponse.text();
+            const results = Papa.parse(csvText, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: 'greedy'
+            });
+            if (results.errors && results.errors.length) {
+                throw new Error(results.errors.map(e => e.message).join(', '));
+            }
+            return Array.isArray(results.data) ? results.data : [];
+        } catch (csvErr) {
+            console.error(`Failed to load leaderboard CSV at ${csvPath}: ${csvErr.message}`);
+            throw csvErr;
+        }
+    }
+
     // Get URL parameters
     const params = new URLSearchParams(window.location.search);
     const year = params.get('year');
@@ -148,22 +181,8 @@
                 console.warn('Summary not found, winner not available');
             }
 
-            // Load leaderboard data
-            if (year === "current") {
-                data = await loadJSON(`${tour}/leaderboard.json`);
-            } else {
-                try {
-                    data = await loadJSON(`archive/${year}/${slug}/leaderboard.json`);
-                } catch (e) {
-                    // Fallback to CSV
-                    const csvResponse = await fetch(`archive/${year}/${slug}/leaderboard.csv`);
-                    if (!csvResponse.ok) throw new Error("Data not found");
-                    const csvText = await csvResponse.text();
-                    const results = Papa.parse(csvText, { header: true, dynamicTyping: true });
-                    if (results.errors.length) throw new Error("CSV parse error");
-                    data = results.data;
-                }
-            }
+            // Load leaderboard data with fallback to CSV when JSON missing or empty
+            data = await loadLeaderboard({ year, slug, tour });
 
             // Process data
             data = data.map((r, idx) => ({

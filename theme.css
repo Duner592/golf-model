@@ -18,6 +18,10 @@ body {
     min-height: 100vh; /* Full height */
 }
 
+body.has-fixed-menu {
+    padding-top: 6.25rem;
+}
+
 .main-content {
     display: flex;
     width: 100%;
@@ -31,11 +35,33 @@ body {
 .sidebar {
     width: 280px; /* Slightly wider for better content fit */
     margin-left: 1rem;
-    padding: 1rem;
+    padding: 0;
     border: none; /* Remove border */
+}
+
+.sidebar-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sidebar-section {
+    padding: 1rem;
     border-radius: 12px;
-    background: linear-gradient(165deg, #ffffff 0%, #f2fbf6 55%, #e8f3eb 100%); /* Card-like gradient */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    background: linear-gradient(165deg, #ffffff 0%, #f2fbf6 55%, #e8f3eb 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-section h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+    color: #2e8b57;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 h1 {
@@ -131,14 +157,6 @@ h1 {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1)); /* Shadow on logo */
 }
 
-.sidebar h3 {
-    color: #2e8b57;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.5rem;
-}
-
 .footer {
     text-align: center;
     margin-top: auto; /* Push to bottom */
@@ -152,6 +170,9 @@ h1 {
 @media (max-width: 768px) {
     body {
         padding: 1rem;
+    }
+    body.has-fixed-menu {
+        padding-top: 5.5rem;
     }
     .logo {
         height: 60px;
@@ -169,6 +190,10 @@ h1 {
     .sidebar {
         width: 100%;
         margin: 0;
+        padding: 0;
+    }
+    .sidebar-section {
+        padding: 1rem;
     }
     .tour-section {
         padding: 1rem;
