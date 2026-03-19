@@ -1,12 +1,12 @@
 {
   "event_id": "475",
   "event_name": "Valspar Championship",
-  "source_csv": "data/preds/pga/event_475_valspar_championship_2026-03-16_leaderboard.csv",
-  "generated_utc": "16-Mar-2026 08:52:21",
+  "source_csv": "data/preds/pga/event_475_valspar_championship_2026-03-18_leaderboard.csv",
+  "generated_utc": "18-Mar-2026 17:04:04",
   "metrics": {
-    "field_size": 131,
-    "p_win_max": 0.221,
-    "p_win_median": 0.0002666666666666667,
-    "p_win_sum": 1.0
+    "field_size": 135,
+    "p_win_max": 0.2437,
+    "p_win_median": 0.0002,
+    "p_win_sum": 0.9999999999999999
   }
 }
