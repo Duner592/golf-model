@@ -23,6 +23,7 @@
         .num { font-variant-numeric: tabular-nums; }
         .charts { display: flex; flex-wrap: wrap; gap: 1rem; }
         .chart-container { flex: 1 1 300px; max-width: 400px; }
+        .charts-message { margin: 0.4rem 0 0.5rem; color: #555; font-size: 0.95rem; }
         canvas { max-width: 100%; height: 300px; }
         .logo {
             position: absolute;
@@ -36,15 +37,15 @@
             .logo { height: 60px; top: 5px; right: 5px; }
             .charts { flex-direction: column; }
         }
+        .muted { color: #555; font-size: 0.95rem; }
+        .hidden { display: none !important; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="menu-container">
-    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
-</div>
+<div class="menu-container"></div>
 <div class="menu" id="menu"></div>
 
 <p><a href="archive.html">← Back to Archive</a></p>
@@ -64,7 +65,7 @@
 </table>
 
 <h2>Predictions vs. Actual Results</h2>
-<div class="charts">
+<div class="charts" id="resultsCharts">
     <div class="chart-container">
         <canvas id="winChart"></canvas>
     </div>
@@ -75,11 +76,90 @@
         <canvas id="mcChart"></canvas>
     </div>
 </div>
+<p class="charts-message muted" id="resultsMessage" style="display:none;">Actual results are not yet available for this event.</p>
+
 
 <script>
     // Formatting helpers
-    const fmtPct = (x) => x != null ? Number(x).toFixed(2) : "";
-    const fmtNum = (x, d=2) => x != null ? Number(x).toFixed(d) : "";
+    const fmtPct = (x) => (x != null ? Number(x).toFixed(2) : "");
+    const fmtNum = (x, d = 2) => (x != null ? Number(x).toFixed(d) : "");
+
+    const parseNumeric = (value) => {
+        if (value === null || value === undefined) return null;
+        if (typeof value === "number") {
+            return Number.isFinite(value) ? value : null;
+        }
+        const trimmed = String(value).trim();
+        if (!trimmed) return null;
+        const cleaned = trimmed.replace(/,/g, "");
+        const num = Number(cleaned);
+        return Number.isFinite(num) ? num : null;
+    };
+
+    const DNF_CODES = new Set(["MC", "WD", "DQ", "CUT", "RET", "DNS", "DNF"]);
+
+    const removeTrailingId = (name) => name.replace(/\s*\(\d+\)\s*$/, "");
+
+    function normalizeName(name) {
+        if (!name) return null;
+        let cleaned = String(name).replace(/\s+/g, " ").trim();
+        if (!cleaned) return null;
+        cleaned = removeTrailingId(cleaned);
+        if (cleaned.normalize) {
+            cleaned = cleaned.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+        if (cleaned.includes(',')) {
+            const [last, first] = cleaned.split(',', 2).map((part) => part.trim());
+            cleaned = first ? `${first} ${last}` : last;
+        }
+        return cleaned.toLowerCase();
+    }
+
+    function parseFinishFromText(text) {
+        if (!text) return null;
+        const upper = text.trim().toUpperCase();
+        if (!upper) return null;
+        if (DNF_CODES.has(upper)) return null;
+        const digits = upper.replace(/^T/, "").replace(/[^0-9]/g, "");
+        if (!digits) return null;
+        const num = Number(digits);
+        return Number.isFinite(num) ? num : null;
+    }
+
+    function formatFinishLabel(finishPos, finishText) {
+        if (finishPos === 1) {
+            return "1 (Winner)";
+        }
+        if (finishText) {
+            const trimmed = finishText.trim();
+            if (!trimmed) return null;
+            const upper = trimmed.toUpperCase();
+            if (upper === "1") return "1 (Winner)";
+            return upper;
+        }
+        if (finishPos != null) {
+            return `${finishPos}`;
+        }
+        return null;
+    }
+
+    function evaluateMadeCut({ finishText, finishPos, madeCut }) {
+        if (typeof madeCut === "boolean") return madeCut;
+        if (finishPos != null && finishPos > 0) return true;
+        if (!finishText) return null;
+        const upper = finishText.trim().toUpperCase();
+        if (!upper) return null;
+        if (DNF_CODES.has(upper)) return false;
+        return null;
+    }
+
+    function evaluateTop10(finishPos, madeCut, finishText) {
+        if (finishPos != null) return finishPos <= 10;
+        if (madeCut === false) return false;
+        const inferred = parseFinishFromText(finishText);
+        if (inferred != null) return inferred <= 10;
+        return null;
+    }
 
     // JSON loader
     async function loadJSON(path) {
@@ -109,10 +189,10 @@
             const results = Papa.parse(csvText, {
                 header: true,
                 dynamicTyping: true,
-                skipEmptyLines: 'greedy'
+                skipEmptyLines: "greedy"
             });
             if (results.errors && results.errors.length) {
-                throw new Error(results.errors.map(e => e.message).join(', '));
+                throw new Error(results.errors.map((e) => e.message).join(", "));
             }
             return Array.isArray(results.data) ? results.data : [];
         } catch (csvErr) {
@@ -121,23 +201,50 @@
         }
     }
 
+    async function loadResults({ year, slug, tour }) {
+        const basePath = year === "current" ? tour : `archive/${year}/${slug}`;
+        const resultsPath = `${basePath}/results.json`;
+        try {
+            const payload = await loadJSON(resultsPath);
+            if (payload && Array.isArray(payload.players)) {
+                return payload.players;
+            }
+        } catch (err) {
+            console.info(`Results not available at ${resultsPath}: ${err.message}`);
+        }
+        return [];
+    }
+
+    function buildResultsIndex(results) {
+        const map = new Map();
+        for (const entry of results) {
+            const norm = normalizeName(entry.player);
+            if (norm && !map.has(norm)) {
+                map.set(norm, entry);
+            }
+        }
+        return map;
+    }
+
     // Get URL parameters
     const params = new URLSearchParams(window.location.search);
-    const year = params.get('year');
-    const slug = params.get('slug');
-    const eventName = params.get('event');
-    const tour = params.get('tour');
+    const year = params.get("year");
+    const slug = params.get("slug");
+    const eventName = params.get("event");
+    const tour = params.get("tour");
 
     let data = [];
     let sortDirection = Array(6).fill(true); // true = asc
     let winner = null;
+    let winnerNormalized = null;
+    let hasActualResults = false;
+    const chartInstances = { win: null, top10: null, mc: null };
 
     // Sort table by column
     function sortTable(col) {
         data.sort((a, b) => {
             let aVal = Object.values(a)[col];
             let bVal = Object.values(b)[col];
-            // Convert to number if possible
             if (!isNaN(aVal)) aVal = Number(aVal);
             if (!isNaN(bVal)) bVal = Number(bVal);
             if (aVal < bVal) return sortDirection[col] ? -1 : 1;
@@ -151,138 +258,384 @@
     // Render the table
     function renderTable() {
         const tbody = document.getElementById("eventTableBody");
-        tbody.innerHTML = data.map(r => `
+        tbody.innerHTML = data.map((r) => {
+            const finishLabel = r.actual_finish_label;
+            const titleAttr = finishLabel ? ` title="Actual finish: ${finishLabel}"` : "";
+            return `
             <tr>
                 <td class="num">${r.rank}</td>
-                <td>${r.player_name}</td>
+                <td${titleAttr}>${r.player_name}</td>
                 <td class="num">${fmtPct(r["p_win_%"])}</td>
                 <td class="num">${fmtPct(r["p_top10_%"])}</td>
                 <td class="num">${fmtPct(r["p_mc_%"])}</td>
                 <td class="num">${fmtNum(r.course_fit_score)}</td>
             </tr>
-        `).join('');
+            `;
+        }).join("");
+    }
+
+    function destroyChart(key) {
+        if (chartInstances[key]) {
+            chartInstances[key].destroy();
+            chartInstances[key] = null;
+        }
     }
 
     // Load event data and create charts
     async function loadEventData() {
         try {
-            document.getElementById('eventTitle').textContent = `${eventName} Predictions`;
+            document.getElementById("eventTitle").textContent = `${eventName} Predictions`;
 
-            // Load summary for winner
+            winner = null;
+            winnerNormalized = null;
+
             let summary = {};
             try {
-                if (year === "current") {
-                    summary = await loadJSON(`${tour}/tournament_summary.json`);
-                } else {
-                    summary = await loadJSON(`archive/${year}/${slug}/tournament_summary.json`);
+                const summaryPath = year === "current"
+                    ? `${tour}/tournament_summary.json`
+                    : `archive/${year}/${slug}/tournament_summary.json`;
+                summary = await loadJSON(summaryPath);
+                const rawWinner = summary.winner ? removeTrailingId(summary.winner) : null;
+                if (rawWinner) {
+                    winner = rawWinner;
+                    winnerNormalized = normalizeName(rawWinner);
                 }
-                winner = summary.winner;
             } catch (e) {
-                console.warn('Summary not found, winner not available');
+                console.warn("Summary not found, winner not available");
             }
 
-            // Load leaderboard data with fallback to CSV when JSON missing or empty
-            data = await loadLeaderboard({ year, slug, tour });
+            const leaderboardRows = await loadLeaderboard({ year, slug, tour });
+            const resultsRaw = await loadResults({ year, slug, tour });
+            const resultsIndex = buildResultsIndex(resultsRaw);
 
-            // Process data
-            data = data.map((r, idx) => ({
-                rank: r.rank ?? (idx + 1),
-                player_name: r.player_name ?? r["Player"] ?? "",
-                "p_win_%": r["p_win_%"] ?? r.p_win_ ?? "",
-                "p_top10_%": r["p_top10_%"] ?? r.p_top10_ ?? "",
-                "p_mc_%": r["p_mc_%"] ?? r.p_mc_ ?? "",
-                course_fit_score: r.course_fit_score ?? "",
-                actual_rank: r.actual_rank ?? null, // Add this field if available in your data
-            }));
+            if (resultsRaw.length) {
+                const actualWinner = resultsRaw.find((entry) => parseNumeric(entry.finish_pos) === 1);
+                if (actualWinner) {
+                    winner = actualWinner.player;
+                    winnerNormalized = normalizeName(actualWinner.player);
+                }
+            }
 
-            // Initial render
+            data = leaderboardRows.map((row, idx) => {
+                const playerName = row.player_name ?? row["Player"] ?? "";
+                const normalized = normalizeName(playerName);
+                const actual = normalized ? resultsIndex.get(normalized) : undefined;
+
+                let finishPos = parseNumeric(actual?.finish_pos);
+                if (finishPos == null) {
+                    finishPos = parseFinishFromText(actual?.finish_text);
+                }
+                const rawFinishText = actual?.finish_text ?? null;
+                const finishLabel = formatFinishLabel(finishPos, rawFinishText);
+                const madeCut = evaluateMadeCut({ finishText: rawFinishText, finishPos, madeCut: actual?.made_cut });
+                let top10 = evaluateTop10(finishPos, madeCut, rawFinishText);
+                const actualWin = finishPos != null ? finishPos === 1 : (winnerNormalized && normalized ? normalized === winnerNormalized : null);
+                if (actualWin === true && top10 == null) {
+                    top10 = true;
+                }
+
+                return {
+                    rank: row.rank ?? (idx + 1),
+                    player_name: playerName,
+                    "p_win_%": parseNumeric(row["p_win_%"] ?? row.p_win_ ?? row.p_win ?? row.pWin),
+                    "p_top10_%": parseNumeric(row["p_top10_%"] ?? row.p_top10_ ?? row.p_top10 ?? row.pTop10),
+                    "p_mc_%": parseNumeric(row["p_mc_%"] ?? row.p_mc_ ?? row.p_mc ?? row.pMc),
+                    course_fit_score: parseNumeric(row.course_fit_score),
+                    actual_rank: finishPos,
+                    actual_finish_label: finishLabel,
+                    actual_top10: top10,
+                    actual_win: actualWin,
+                    actual_made_cut: madeCut,
+                };
+            });
+
+            hasActualResults = data.some(
+                (item) =>
+                    item.actual_rank != null ||
+                    typeof item.actual_top10 === "boolean" ||
+                    typeof item.actual_made_cut === "boolean" ||
+                    typeof item.actual_win === "boolean"
+            );
+
             renderTable();
-
-            // Create charts
             createCharts();
         } catch (e) {
-            document.body.innerHTML = `<pre style="color:#b00">Error: ${e.message}</pre>`;
+            document.body.innerHTML = `<pre style="color:#b00">${e.message}</pre>`;
             console.error(e);
         }
     }
 
-    // Create scatter plots
     function createCharts() {
-        // Win Chart
-        const winData = data.map(d => ({
-            x: d["p_win_%"] || 0,
-            y: (d.player_name === winner) ? 1 : 0
-        }));
-        new Chart(document.getElementById('winChart'), {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Win Prediction vs Actual',
-                    data: winData,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                }]
-            },
-            options: {
-                scales: {
-                    x: { title: { display: true, text: 'Predicted Win %' } },
-                    y: { title: { display: true, text: 'Actual Win (0/1)' }, ticks: { stepSize: 1 } }
-                }
-            }
-        });
+        const messageEl = document.getElementById("resultsMessage");
+        const winCanvas = document.getElementById("winChart");
+        const top10Canvas = document.getElementById("top10Chart");
+        const mcCanvas = document.getElementById("mcChart");
+        const containers = {
+            win: winCanvas ? winCanvas.closest(".chart-container") : null,
+            top10: top10Canvas ? top10Canvas.closest(".chart-container") : null,
+            mc: mcCanvas ? mcCanvas.closest(".chart-container") : null,
+        };
 
-        // Top 10 Chart
-        const top10Data = data.filter(d => d.actual_rank != null).map(d => ({
-            x: d["p_top10_%"] || 0,
-            y: (d.actual_rank <= 10) ? 1 : 0
-        }));
-        new Chart(document.getElementById('top10Chart'), {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Top-10 Prediction vs Actual',
-                    data: top10Data,
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                }]
-            },
-            options: {
-                scales: {
-                    x: { title: { display: true, text: 'Predicted Top-10 %' } },
-                    y: { title: { display: true, text: 'Actual Top-10 (0/1)' }, ticks: { stepSize: 1 } }
-                }
+        if (!hasActualResults) {
+            Object.values(containers).forEach((container) => container && container.classList.add("hidden"));
+            if (messageEl) {
+                messageEl.style.display = "";
+                messageEl.textContent = "Actual results are not yet available for this event.";
             }
-        });
+            destroyChart("win");
+            destroyChart("top10");
+            destroyChart("mc");
+            return;
+        }
 
-        // Make Cut Chart
-        const mcData = data.filter(d => d.actual_rank != null).map(d => ({
-            x: d["p_mc_%"] || 0,
-            y: (d.actual_rank > 0) ? 1 : 0  // Assuming actual_rank > 0 means made cut
-        }));
-        new Chart(document.getElementById('mcChart'), {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Make Cut Prediction vs Actual',
-                    data: mcData,
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                }]
-            },
-            options: {
-                scales: {
-                    x: { title: { display: true, text: 'Predicted Make Cut %' } },
-                    y: { title: { display: true, text: 'Actual Make Cut (0/1)' }, ticks: { stepSize: 1 } }
+        Object.values(containers).forEach((container) => container && container.classList.remove("hidden"));
+        if (messageEl) {
+            messageEl.style.display = "none";
+        }
+
+        if (!winCanvas || !top10Canvas || !mcCanvas) {
+            console.warn("Chart canvas missing; skipping chart creation");
+            return;
+        }
+
+        const winPoints = data
+            .filter((d) => typeof d.actual_win === "boolean")
+            .map((d) => {
+                const predicted = parseNumeric(d["p_win_%"]);
+                const finish = d.actual_finish_label ?? (d.actual_rank != null ? `${d.actual_rank}` : d.actual_win ? "Winner" : "—");
+                return {
+                    x: predicted != null ? predicted : 0,
+                    y: d.actual_win ? 1 : 0,
+                    player: d.player_name,
+                    finish,
+                    actualWin: d.actual_win,
+                };
+            });
+
+        if (winPoints.length) {
+            const maxPredictedWin = Math.max(...winPoints.map((pt) => pt.x));
+            const winXMax = Number.isFinite(maxPredictedWin) ? Math.max(10, Math.ceil(maxPredictedWin / 5) * 5) : 10;
+            destroyChart("win");
+            chartInstances.win = new Chart(winCanvas, {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        label: "Win Prediction vs Actual",
+                        data: winPoints,
+                        backgroundColor: (ctx) => (ctx.raw?.actualWin ? "rgba(34, 197, 94, 0.85)" : "rgba(107, 114, 128, 0.45)"),
+                        borderColor: (ctx) => (ctx.raw?.actualWin ? "rgba(21, 128, 61, 0.9)" : "rgba(107, 114, 128, 0.65)"),
+                        pointRadius: (ctx) => (ctx.raw?.actualWin ? 6 : 4),
+                        pointHoverRadius: (ctx) => (ctx.raw?.actualWin ? 8 : 6),
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    parsing: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => {
+                                    const raw = ctx.raw || {};
+                                    const prob = Number.isFinite(ctx.parsed.x) ? ctx.parsed.x.toFixed(2) : "—";
+                                    const outcome = raw.actualWin ? "Winner" : "Not Winner";
+                                    const finish = raw.finish || "—";
+                                    return `${raw.player}: ${prob}% • ${outcome} (${finish})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: "Predicted Win %" },
+                            suggestedMin: 0,
+                            suggestedMax: winXMax
+                        },
+                        y: {
+                            title: { display: true, text: "Actual Win" },
+                            min: -0.1,
+                            max: 1.1,
+                            ticks: {
+                                stepSize: 1,
+                                callback: (value) => (value === 1 ? "Yes" : "No")
+                            }
+                        }
+                    }
                 }
+            });
+        } else if (containers.win) {
+            destroyChart("win");
+            containers.win.classList.add("hidden");
+        }
+
+        const top10Points = data
+            .filter((d) => typeof d.actual_top10 === "boolean")
+            .map((d) => {
+                const predicted = parseNumeric(d["p_top10_%"]);
+                const finish = d.actual_finish_label ?? (d.actual_rank != null ? `${d.actual_rank}` : d.actual_top10 ? "Top 10" : "—");
+                return {
+                    x: predicted != null ? predicted : 0,
+                    y: d.actual_top10 ? 1 : 0,
+                    player: d.player_name,
+                    finish,
+                    actualTop10: d.actual_top10,
+                };
+            });
+
+        if (top10Points.length) {
+            const maxPredictedTop10 = Math.max(...top10Points.map((pt) => pt.x));
+            const top10XMax = Number.isFinite(maxPredictedTop10) ? Math.max(20, Math.ceil(maxPredictedTop10 / 5) * 5) : 20;
+            destroyChart("top10");
+            chartInstances.top10 = new Chart(top10Canvas, {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        label: "Top-10 Prediction vs Actual",
+                        data: top10Points,
+                        backgroundColor: (ctx) => (ctx.raw?.actualTop10 ? "rgba(59, 130, 246, 0.8)" : "rgba(234, 88, 12, 0.75)"),
+                        borderColor: (ctx) => (ctx.raw?.actualTop10 ? "rgba(37, 99, 235, 0.95)" : "rgba(234, 88, 12, 0.9)"),
+                        pointRadius: (ctx) => (ctx.raw?.actualTop10 ? 6 : 4),
+                        pointHoverRadius: (ctx) => (ctx.raw?.actualTop10 ? 8 : 6),
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    parsing: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => {
+                                    const raw = ctx.raw || {};
+                                    const prob = Number.isFinite(ctx.parsed.x) ? ctx.parsed.x.toFixed(2) : "—";
+                                    const status = raw.actualTop10 ? "Top 10" : "Outside Top 10";
+                                    const finish = raw.finish || "—";
+                                    return `${raw.player}: ${prob}% • ${status} (${finish})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: "Predicted Top-10 %" },
+                            suggestedMin: 0,
+                            suggestedMax: top10XMax
+                        },
+                        y: {
+                            title: { display: true, text: "Actual Top-10" },
+                            min: -0.1,
+                            max: 1.1,
+                            ticks: {
+                                stepSize: 1,
+                                callback: (value) => (value === 1 ? "Yes" : "No")
+                            }
+                        }
+                    }
+                }
+            });
+        } else if (containers.top10) {
+            destroyChart("top10");
+            containers.top10.classList.add("hidden");
+        }
+
+        const mcPoints = data
+            .filter((d) => typeof d.actual_made_cut === "boolean")
+            .map((d) => {
+                const predicted = parseNumeric(d["p_mc_%"]);
+                const finish = d.actual_finish_label ?? (d.actual_made_cut ? (d.actual_rank != null ? `${d.actual_rank}` : "Made Cut") : "MC");
+                return {
+                    x: predicted != null ? predicted : 0,
+                    y: d.actual_made_cut ? 1 : 0,
+                    player: d.player_name,
+                    finish,
+                    madeCut: d.actual_made_cut,
+                };
+            });
+
+        if (mcPoints.length) {
+            const maxPredictedMC = Math.max(...mcPoints.map((pt) => pt.x));
+            const mcXMax = Number.isFinite(maxPredictedMC) ? Math.max(40, Math.ceil(maxPredictedMC / 5) * 5) : 40;
+            destroyChart("mc");
+            chartInstances.mc = new Chart(mcCanvas, {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        label: "Make Cut Prediction vs Actual",
+                        data: mcPoints,
+                        backgroundColor: (ctx) => (ctx.raw?.madeCut ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.75)"),
+                        borderColor: (ctx) => (ctx.raw?.madeCut ? "rgba(5, 150, 105, 0.9)" : "rgba(220, 38, 38, 0.9)"),
+                        pointRadius: (ctx) => (ctx.raw?.madeCut ? 6 : 4),
+                        pointHoverRadius: (ctx) => (ctx.raw?.madeCut ? 8 : 6),
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    parsing: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => {
+                                    const raw = ctx.raw || {};
+                                    const prob = Number.isFinite(ctx.parsed.x) ? ctx.parsed.x.toFixed(2) : "—";
+                                    const status = raw.madeCut ? "Made Cut" : "Missed Cut";
+                                    const finish = raw.finish || (raw.madeCut ? "—" : "MC");
+                                    return `${raw.player}: ${prob}% • ${status} (${finish})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: "Predicted Make Cut %" },
+                            suggestedMin: 0,
+                            suggestedMax: mcXMax
+                        },
+                        y: {
+                            title: { display: true, text: "Actual Make Cut" },
+                            min: -0.1,
+                            max: 1.1,
+                            ticks: {
+                                stepSize: 1,
+                                callback: (value) => (value === 1 ? "Made" : "Missed")
+                            }
+                        }
+                    }
+                }
+            });
+        } else if (containers.mc) {
+            destroyChart("mc");
+            containers.mc.classList.add("hidden");
+        }
+
+        if (messageEl) {
+            const missing = [];
+            if (!chartInstances.win) missing.push("Win");
+            if (!chartInstances.top10) missing.push("Top-10");
+            if (!chartInstances.mc) missing.push("Make Cut");
+            if (missing.length === 3) {
+                messageEl.style.display = "";
+                messageEl.textContent = "Actual results are not yet available for this event.";
+            } else if (missing.length > 0) {
+                messageEl.style.display = "";
+                messageEl.textContent = `Actual data unavailable for: ${missing.join(", ")}.`;
+            } else {
+                messageEl.style.display = "none";
             }
-        });
+        }
     }
 
     // Load menu HTML
-    fetch('menu.html').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
+    fetch("menu.html")
+        .then((response) => response.text())
+        .then((html) => (document.getElementById("menu").innerHTML = html));
 
     // Kick off
-    loadEventData().catch(err => {
+    loadEventData().catch((err) => {
         document.body.innerHTML = `<pre style="color:#b00">${err}</pre>`;
         console.error(err);
     });
 </script>
+
 </body>
 </html>

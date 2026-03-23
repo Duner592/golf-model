@@ -11,16 +11,107 @@
     <!-- Added theme.css for shared styles -->
     <link rel="stylesheet" href="theme.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/betting-data.js"></script>
+    <style>
+        .betting-overview {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: #f6f9f7;
+            border: 1px solid rgba(34, 139, 34, 0.18);
+            box-shadow: 0 12px 36px -26px rgba(17, 94, 45, 0.45);
+        }
+        .betting-overview h2 {
+            margin: 0;
+            color: var(--gm-primary);
+            font-size: 1.45rem;
+        }
+        .betting-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .betting-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #2f3d46;
+        }
+        .betting-filter select {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #b8c2b9;
+            font-size: 0.95rem;
+            background: #fff;
+            cursor: pointer;
+        }
+        .betting-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .betting-card {
+            background: #ffffff;
+            border: 1px solid rgba(34, 139, 34, 0.15);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            box-shadow: 0 6px 20px -18px rgba(34, 139, 34, 0.55);
+        }
+        .betting-card .label {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: #5b7062;
+        }
+        .betting-card .value {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #1f4532;
+            font-variant-numeric: tabular-nums;
+            transition: color 0.2s ease;
+        }
+        .betting-card .value.positive {
+            color: #1f4532;
+        }
+        .betting-card .value.negative {
+            color: #9b2736;
+        }
+        .betting-card .subtext {
+            font-size: 0.85rem;
+            color: #5b7062;
+        }
+        .betting-chart {
+            position: relative;
+            min-height: 320px;
+        }
+        .betting-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #4c5c52;
+        }
+        @media (max-width: 960px) {
+            .betting-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body class="has-fixed-menu home-page">
 <div class="logo-wrapper">
     <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="menu-container">
-    <button class="hamburger" type="button" aria-expanded="false" aria-controls="menu" aria-haspopup="true" onclick="toggleMenu()">☰ Menu</button>
-</div>
+<div class="menu-container"></div>
 <div class="menu" id="menu"></div>
 
 <h1>Eds Golf Model Predictions Hub </h1>
@@ -39,6 +130,43 @@
             <div id="euro-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <a href="euro.html" class="link">View DP World Predictions</a>
         </div>
+        <section class="betting-overview" aria-labelledby="betting-overview-title">
+            <div class="betting-header">
+                <h2 id="betting-overview-title">Betting Performance Snapshot</h2>
+                <label class="betting-filter" for="betting-period-select">
+                    View results for:
+                    <select id="betting-period-select" aria-label="Select betting results period">
+                        <option value="overall">Overall</option>
+                    </select>
+                </label>
+            </div>
+            <div class="betting-metrics" id="betting-metrics">
+                <div class="betting-card">
+                    <span class="label">ROI</span>
+                    <span class="value" id="betting-roi">—</span>
+                    <span class="subtext" id="betting-roi-subtext">Return on investment</span>
+                </div>
+                <div class="betting-card">
+                    <span class="label">Profit / Loss</span>
+                    <span class="value" id="betting-pl">—</span>
+                    <span class="subtext">Return minus total stake</span>
+                </div>
+                <div class="betting-card">
+                    <span class="label">Total Return</span>
+                    <span class="value" id="betting-return">—</span>
+                    <span class="subtext">Settled returns for the period</span>
+                </div>
+                <div class="betting-card">
+                    <span class="label">Total Stake</span>
+                    <span class="value" id="betting-stake">—</span>
+                    <span class="subtext">Total outlay for the period</span>
+                </div>
+            </div>
+            <div class="betting-chart">
+                <canvas id="betting-pl-chart" role="img" aria-label="Profit and loss by tour"></canvas>
+            </div>
+            <p class="betting-note" id="betting-note">Loading betting performance…</p>
+        </section>
     </div>
 
     <aside class="sidebar" role="complementary" aria-label="Sidebar">
@@ -59,6 +187,454 @@
 <div class="footer" id="last-updated">Last updated: Loading...</div>
 
 <script>
+    const BETTING_TOUR_OVERRIDES = {
+        'PGA Tour': '#1b7742',
+        'DP World Tour': '#0d5e96',
+        'Majors': '#b37a00',
+        'LPGA': '#7b2cbf',
+        'Other': '#5c6f68'
+    };
+    const BETTING_FALLBACK_COLORS = ['#17a589', '#8c564b', '#9467bd', '#ff7f0e', '#bcbd22', '#17becf'];
+    const BETTING_TOUR_ORDER = ['PGA Tour', 'DP World Tour', 'Majors', 'LPGA', 'Other'];
+
+    const bettingOverviewState = {
+        aggregated: null,
+        chart: null,
+        colorAssignments: new Map(),
+        nextColorIndex: 0
+    };
+
+    let bettingRowsCache = null;
+
+    const bettingEmptyStatePlugin = {
+        id: 'bettingEmptyState',
+        afterDraw(chart, args, pluginOptions) {
+            if (!pluginOptions || pluginOptions.enabled === false) return;
+            const dataset = chart.data.datasets[0];
+            const hasData = dataset && Array.isArray(dataset.data) && dataset.data.some(value => Math.abs(value) > 0.01);
+            if (hasData) return;
+            const { ctx, chartArea } = chart;
+            if (!chartArea) return;
+            ctx.save();
+            ctx.font = '14px "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+            ctx.fillStyle = '#6c757d';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(pluginOptions.message || 'No settled bets to chart yet', (chartArea.left + chartArea.right) / 2, (chartArea.top + chartArea.bottom) / 2);
+            ctx.restore();
+        }
+    };
+
+    function normalizeTourName(rawValue) {
+        const value = (rawValue || '').trim();
+        if (!value) return 'Other';
+        const lower = value.toLowerCase();
+        if (lower.includes('pga')) return 'PGA Tour';
+        if (lower.includes('dp')) return 'DP World Tour';
+        if (lower.includes('lpga')) return 'LPGA';
+        if (lower.includes('major')) return 'Majors';
+        if (lower === 'n/a' || lower === 'na') return 'Other';
+        return value;
+    }
+
+    function parseCurrency(value) {
+        if (value === null || value === undefined) return NaN;
+        const normalized = String(value).replace(/,/g, '').replace(/£/g, '').trim();
+        const cleaned = normalized.replace(/[^0-9+-.]/g, '');
+        if (cleaned === '' || cleaned === '-' || cleaned === '+') return NaN;
+        const parsed = parseFloat(cleaned);
+        return Number.isFinite(parsed) ? parsed : NaN;
+    }
+
+    function parseBettingDate(value) {
+        if (!value) return null;
+        const parts = value.split('/');
+        if (parts.length !== 3) return null;
+        const [day, month, year] = parts;
+        const iso = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        const date = new Date(iso);
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function createEmptyPeriod(key, label) {
+        return {
+            key,
+            label,
+            stake: 0,
+            return: 0,
+            profitLoss: 0,
+            roi: 0,
+            plByTour: {},
+            settled: 0,
+            pending: 0,
+            latestSettledDate: null
+        };
+    }
+
+    function ensurePeriod(periods, key, label) {
+        if (!periods[key]) {
+            periods[key] = createEmptyPeriod(key, label);
+        }
+        return periods[key];
+    }
+
+    function aggregateBettingData(rows) {
+        const periods = {};
+        const yearSet = new Set();
+
+        ensurePeriod(periods, 'overall', 'Overall');
+
+        rows.forEach(row => {
+            const stake = parseCurrency(row['Stake']);
+            const returnVal = parseCurrency(row['Return']);
+            const outcome = (row['Outcome'] || '').trim().toLowerCase();
+            const date = parseBettingDate(row['Date'] || '');
+            const tour = normalizeTourName(row['Tour/Majors']);
+
+            const isSettled = outcome !== '' && !outcome.includes('pending');
+            const periodKeys = [];
+            if (date) {
+                const year = String(date.getFullYear());
+                periodKeys.push(year);
+            }
+            periodKeys.push('overall');
+
+            periodKeys.forEach(key => {
+                const label = key === 'overall' ? 'Overall' : key;
+                const period = ensurePeriod(periods, key, label);
+                if (key !== 'overall' && isSettled) {
+                    yearSet.add(key);
+                }
+                if (!isSettled) {
+                    period.pending += 1;
+                    return;
+                }
+
+                const hasStake = Number.isFinite(stake);
+                const hasReturn = Number.isFinite(returnVal);
+                if (!hasStake && !hasReturn) {
+                    period.settled += 1;
+                    if (date && (!period.latestSettledDate || date > period.latestSettledDate)) {
+                        period.latestSettledDate = date;
+                    }
+                    return;
+                }
+
+                const safeStake = hasStake ? stake : 0;
+                const safeReturn = hasReturn ? returnVal : 0;
+                const profitLoss = safeReturn - safeStake;
+
+                period.settled += 1;
+                period.stake += safeStake;
+                period.return += safeReturn;
+                period.profitLoss += profitLoss;
+                if (!period.plByTour[tour]) {
+                    period.plByTour[tour] = 0;
+                }
+                period.plByTour[tour] += profitLoss;
+                if (date && (!period.latestSettledDate || date > period.latestSettledDate)) {
+                    period.latestSettledDate = date;
+                }
+            });
+        });
+
+        Object.values(periods).forEach(period => {
+            period.roi = period.stake > 0 ? (period.profitLoss / period.stake) * 100 : 0;
+        });
+
+        const yearOptions = Array.from(yearSet).sort((a, b) => b.localeCompare(a));
+
+        return { periods, yearOptions };
+    }
+
+    function populateBettingDropdown(selectEl, yearOptions) {
+        if (!selectEl) return;
+        const previousValue = selectEl.value || 'overall';
+        selectEl.innerHTML = '';
+
+        const overallOption = document.createElement('option');
+        overallOption.value = 'overall';
+        overallOption.textContent = 'Overall';
+        selectEl.appendChild(overallOption);
+
+        yearOptions.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            selectEl.appendChild(option);
+        });
+
+        if (previousValue === 'overall' || yearOptions.includes(previousValue)) {
+            selectEl.value = previousValue;
+        }
+    }
+
+    function applyBettingPeriod(periodKey, lastModifiedText) {
+        if (!bettingOverviewState.aggregated) return;
+        const selectEl = document.getElementById('betting-period-select');
+        let period = bettingOverviewState.aggregated.periods[periodKey];
+        if (!period) {
+            period = bettingOverviewState.aggregated.periods['overall'];
+            if (selectEl && selectEl.value !== 'overall') {
+                selectEl.value = 'overall';
+            }
+        }
+        updateBettingMetrics(period);
+        updateBettingChart(period);
+        updateBettingNote(period, lastModifiedText);
+    }
+
+    function updateBettingMetrics(period) {
+        const hasStake = period && period.stake > 0;
+        const roiDisplay = hasStake ? formatPercentage(period.roi) : '—';
+        updateMetricField('betting-roi', roiDisplay, hasStake ? period.roi : null);
+
+        const profitLoss = period ? period.profitLoss : 0;
+        updateMetricField('betting-pl', formatSignedCurrency(profitLoss), profitLoss);
+
+        const totalReturn = period ? period.return : 0;
+        const totalStake = period ? period.stake : 0;
+        updatePlainMetric('betting-return', formatCurrencyAbsolute(totalReturn));
+        updatePlainMetric('betting-stake', formatCurrencyAbsolute(totalStake));
+
+        const subtextEl = document.getElementById('betting-roi-subtext');
+        if (subtextEl) {
+            const settled = period ? period.settled : 0;
+            subtextEl.textContent = `Based on ${settled} settled bet${settled === 1 ? '' : 's'}`;
+        }
+    }
+
+    function updateMetricField(id, displayValue, numericValue) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = displayValue;
+        el.classList.remove('positive', 'negative');
+        if (typeof numericValue === 'number' && Number.isFinite(numericValue)) {
+            const normalized = Math.abs(numericValue) < 0.0001 ? 0 : numericValue;
+            if (normalized > 0) {
+                el.classList.add('positive');
+            } else if (normalized < 0) {
+                el.classList.add('negative');
+            }
+        }
+    }
+
+    function updatePlainMetric(id, displayValue) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = displayValue;
+        el.classList.remove('positive', 'negative');
+    }
+
+    function formatPercentage(value) {
+        if (!Number.isFinite(value)) return '—';
+        const normalized = Math.abs(value) < 0.005 ? 0 : value;
+        if (normalized === 0) return '0.0%';
+        const sign = normalized > 0 ? '+' : '';
+        return `${sign}${normalized.toFixed(1)}%`;
+    }
+
+    function formatSignedCurrency(value) {
+        if (!Number.isFinite(value)) return '£0.00';
+        const normalized = Math.abs(value) < 0.005 ? 0 : value;
+        if (normalized === 0) return '£0.00';
+        const abs = Math.abs(normalized).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return `${normalized > 0 ? '+£' : '-£'}${abs}`;
+    }
+
+    function formatCurrencyAbsolute(value) {
+        if (!Number.isFinite(value)) return '£0.00';
+        const normalized = Math.max(0, value);
+        return `£${normalized.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    function formatAxisCurrency(value) {
+        if (!Number.isFinite(value)) return '';
+        if (Math.abs(value) < 0.5) return '£0';
+        const abs = Math.abs(value).toLocaleString('en-GB', { maximumFractionDigits: 0 });
+        return `${value < 0 ? '-' : ''}£${abs}`;
+    }
+
+    function formatDisplayDate(date) {
+        if (!(date instanceof Date) || Number.isNaN(date.getTime())) return null;
+        return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function updateBettingNote(period, lastModifiedText) {
+        const noteEl = document.getElementById('betting-note');
+        if (!noteEl) return;
+        if (!period) {
+            noteEl.textContent = 'Betting data unavailable.';
+            return;
+        }
+        const parts = [];
+        const label = period.label === 'Overall' ? 'Overall snapshot' : `${period.label} snapshot`;
+        if (period.settled > 0) {
+            const latest = formatDisplayDate(period.latestSettledDate);
+            const latestText = latest ? ` (latest result ${latest})` : '';
+            parts.push(`${label} covers ${period.settled} settled bet${period.settled === 1 ? '' : 's'}${latestText}.`);
+        } else {
+            parts.push(`${label} has no settled bets yet.`);
+        }
+        if (period.pending > 0) {
+            parts.push(`${period.pending} pending bet${period.pending === 1 ? '' : 's'} excluded.`);
+        }
+        if (lastModifiedText && lastModifiedText !== 'Unavailable') {
+            parts.push(`Data last refreshed ${lastModifiedText}.`);
+        }
+        noteEl.textContent = parts.join(' ');
+    }
+
+    function getOrderedTours(plByTour) {
+        const tours = Object.keys(plByTour || {});
+        const ordered = [];
+        BETTING_TOUR_ORDER.forEach(tour => {
+            if (tours.includes(tour)) {
+                ordered.push(tour);
+            }
+        });
+        tours.sort((a, b) => a.localeCompare(b));
+        tours.forEach(tour => {
+            if (!ordered.includes(tour)) {
+                ordered.push(tour);
+            }
+        });
+        return ordered;
+    }
+
+    function getTourBaseColor(tour) {
+        if (BETTING_TOUR_OVERRIDES[tour]) {
+            return BETTING_TOUR_OVERRIDES[tour];
+        }
+        if (!bettingOverviewState.colorAssignments.has(tour)) {
+            const color = BETTING_FALLBACK_COLORS[bettingOverviewState.nextColorIndex % BETTING_FALLBACK_COLORS.length];
+            bettingOverviewState.colorAssignments.set(tour, color);
+            bettingOverviewState.nextColorIndex += 1;
+        }
+        return bettingOverviewState.colorAssignments.get(tour);
+    }
+
+    function getTourBarColor(tour, value) {
+        const base = getTourBaseColor(tour);
+        if (!Number.isFinite(value) || value >= 0) {
+            return base;
+        }
+        return mixHexColors(base, '#b22222', 0.45);
+    }
+
+    function hexToRgb(hex) {
+        const cleaned = hex.replace('#', '');
+        if (cleaned.length !== 6) return { r: 0, g: 0, b: 0 };
+        return {
+            r: parseInt(cleaned.slice(0, 2), 16),
+            g: parseInt(cleaned.slice(2, 4), 16),
+            b: parseInt(cleaned.slice(4, 6), 16)
+        };
+    }
+
+    function rgbToHex(r, g, b) {
+        return `#${[r, g, b].map(value => Math.max(0, Math.min(255, value)).toString(16).padStart(2, '0')).join('')}`;
+    }
+
+    function mixHexColors(hex1, hex2, ratio) {
+        const { r: r1, g: g1, b: b1 } = hexToRgb(hex1);
+        const { r: r2, g: g2, b: b2 } = hexToRgb(hex2);
+        const mixRatio = Math.min(Math.max(ratio, 0), 1);
+        const r = Math.round(r1 * (1 - mixRatio) + r2 * mixRatio);
+        const g = Math.round(g1 * (1 - mixRatio) + g2 * mixRatio);
+        const b = Math.round(b1 * (1 - mixRatio) + b2 * mixRatio);
+        return rgbToHex(r, g, b);
+    }
+
+    function updateBettingChart(period) {
+        const canvas = document.getElementById('betting-pl-chart');
+        if (!canvas) return;
+        const labels = getOrderedTours(period ? period.plByTour : {});
+        const values = labels.map(label => {
+            const val = period && period.plByTour ? period.plByTour[label] || 0 : 0;
+            return Number.isFinite(val) ? Math.round(val * 100) / 100 : 0;
+        });
+        const colors = labels.map((label, index) => getTourBarColor(label, values[index]));
+        const hasData = period && period.settled > 0 && values.some(value => Math.abs(value) > 0.01);
+
+        const data = {
+            labels,
+            datasets: [{
+                label: 'Profit / Loss (£)',
+                data: values,
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 1,
+                borderRadius: 10,
+                borderSkipped: false
+            }]
+        };
+
+        if (!bettingOverviewState.chart) {
+            bettingOverviewState.chart = new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data,
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    animation: { duration: 400 },
+                    interaction: { intersect: false, mode: 'index' },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#2f3d46' }
+                        },
+                        y: {
+                            grid: { color: 'rgba(47, 61, 70, 0.1)' },
+                            ticks: {
+                                color: '#2f3d46',
+                                callback: value => formatAxisCurrency(value)
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label(context) {
+                                    const raw = context.raw || 0;
+                                    return `${context.dataset.label}: ${formatSignedCurrency(raw)}`;
+                                }
+                            }
+                        },
+                        bettingEmptyState: {
+                            enabled: !hasData,
+                            message: 'No settled bets to chart yet'
+                        }
+                    }
+                },
+                plugins: [bettingEmptyStatePlugin]
+            });
+        } else {
+            const chart = bettingOverviewState.chart;
+            chart.data.labels = data.labels;
+            chart.data.datasets[0].data = data.datasets[0].data;
+            chart.data.datasets[0].backgroundColor = data.datasets[0].backgroundColor;
+            chart.data.datasets[0].borderColor = data.datasets[0].borderColor;
+            chart.options.plugins.bettingEmptyState.enabled = !hasData;
+            chart.update();
+        }
+    }
+
+    function initBettingOverview(rows, lastModifiedText) {
+        const selectEl = document.getElementById('betting-period-select');
+        const safeRows = Array.isArray(rows) ? rows : [];
+        bettingOverviewState.aggregated = aggregateBettingData(safeRows);
+        populateBettingDropdown(selectEl, bettingOverviewState.aggregated.yearOptions);
+        const initialValue = selectEl ? selectEl.value || 'overall' : 'overall';
+        applyBettingPeriod(initialValue, lastModifiedText);
+        if (selectEl) {
+            selectEl.addEventListener('change', event => {
+                applyBettingPeriod(event.target.value, lastModifiedText);
+            });
+        }
+    }
+
     async function loadSummary(tour) {
         try {
             const meta = await fetch(`${tour}/meta.json`).then(r => r.json());
@@ -125,10 +701,11 @@
         }
     }
 
-    async function loadPendingBets() {
+    async function loadPendingBets(preloadedRows) {
         try {
-            const data = await BettingData.load();
-            const pendingBets = data.filter(row => {
+            const rows = Array.isArray(preloadedRows) && preloadedRows.length ? preloadedRows : await BettingData.load();
+            bettingRowsCache = rows;
+            const pendingBets = rows.filter(row => {
                 const outcome = (row['Outcome'] || '').toLowerCase().trim();
                 return outcome === '' || outcome === 'pending';
             });
@@ -182,14 +759,30 @@
     }
 
     async function init() {
-        document.getElementById('upcoming-events').innerHTML = await loadUpcomingEvents();
-        document.getElementById('pending-bets').innerHTML = await loadPendingBets();
-        document.getElementById('pga-summary').innerHTML = await loadSummary('pga');
-        document.getElementById('euro-summary').innerHTML = await loadSummary('euro');
+        const [upcomingHtml, pgaSummary, euroSummary] = await Promise.all([
+            loadUpcomingEvents(),
+            loadSummary('pga'),
+            loadSummary('euro')
+        ]);
+        document.getElementById('upcoming-events').innerHTML = upcomingHtml;
+        document.getElementById('pga-summary').innerHTML = pgaSummary;
+        document.getElementById('euro-summary').innerHTML = euroSummary;
+
+        if (!Array.isArray(bettingRowsCache)) {
+            try {
+                bettingRowsCache = await BettingData.load();
+            } catch (e) {
+                console.error('Error loading betting data for homepage:', e);
+                bettingRowsCache = [];
+            }
+        }
+
+        document.getElementById('pending-bets').innerHTML = await loadPendingBets(bettingRowsCache);
 
         // Set the last updated timestamp to the last modified time of spreadsheet_data.csv
         const lastModified = await getLastModifiedTimestamp();
         document.getElementById('last-updated').innerHTML = `Last updated: ${lastModified}`;
+        initBettingOverview(bettingRowsCache, lastModified);
     }
 
     init();
