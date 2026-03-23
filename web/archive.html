@@ -33,12 +33,9 @@
         .prediction-section { margin: 2.5rem auto; width: min(95vw, 1300px); }
         .prediction-header { text-align: center; color: #2e8b57; margin-bottom: 0.5rem; }
         .prediction-description { text-align: center; color: #555; margin-bottom: 1.5rem; font-size: 0.95rem; }
-        .prediction-grid { display: grid; gap: 1.5rem; justify-content: center; }
-        .chart-wrapper { position: relative; width: min(100%, 620px); min-height: 360px; height: clamp(360px, 58vh, 520px); padding: 1.25rem; margin: 0 auto; background: #f7f9fb; border: 1px solid #ccc; border-radius: 12px; }
+        .prediction-grid { display: grid; gap: 1.5rem; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .chart-wrapper { position: relative; width: min(100%, 620px); min-height: clamp(320px, 50vh, 520px); height: clamp(340px, 55vh, 560px); padding: 1.25rem; margin: 0 auto; background: #f7f9fb; border: 1px solid #ccc; border-radius: 12px; box-shadow: 0 12px 36px -24px rgba(0,0,0,0.35); }
         canvas { width: 100% !important; height: 100% !important; }
-        @media (min-width: 1080px) {
-            .prediction-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
         .logo {
             position: absolute;
             top: 8px;
@@ -62,9 +59,7 @@
 <body>
 <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="menu-container">
-    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
-</div>
+<div class="menu-container"></div>
 <div class="menu" id="menu"></div>
 
 <h1>Eds Golf Model - Prediction Archive</h1>
@@ -94,9 +89,11 @@
     <p class="prediction-description">Archived model probabilities vs actual tournament outcomes.</p>
     <div class="prediction-grid">
         <div class="chart-wrapper"><canvas id="archiveWinChart"></canvas></div>
+        <div class="chart-wrapper"><canvas id="archiveWinnerRankChart"></canvas></div>
         <div class="chart-wrapper"><canvas id="archiveTop10Chart"></canvas></div>
     </div>
-    <p class="muted" id="predictionSnapshotNote" style="text-align:center; display:none;">Includes events with archived results.</p>
+    <p class="muted" id="predictionSnapshotSummary" style="text-align:center; display:none;"></p>
+    <p class="muted" id="predictionSnapshotNote" style="text-align:center; display:none;">Includes completed events with archived results. Hover bars for event details.</p>
 </section>
 
 <script>
@@ -124,6 +121,29 @@
         return r.json();
     }
 
+    const TOUR_PALETTES = {
+        pga: {
+            win: { bg: 'rgba(16, 185, 129, 0.75)', border: 'rgba(5, 150, 105, 0.95)' },
+            rank: { bg: 'rgba(34, 197, 94, 0.7)', border: 'rgba(21, 128, 61, 0.95)' },
+            top10: { bg: 'rgba(59, 130, 246, 0.7)', border: 'rgba(37, 99, 235, 0.95)' },
+        },
+        euro: {
+            win: { bg: 'rgba(129, 140, 248, 0.75)', border: 'rgba(99, 102, 241, 0.95)' },
+            rank: { bg: 'rgba(165, 94, 234, 0.7)', border: 'rgba(126, 34, 206, 0.95)' },
+            top10: { bg: 'rgba(96, 165, 250, 0.7)', border: 'rgba(59, 130, 246, 0.95)' },
+        },
+        default: {
+            win: { bg: 'rgba(148, 163, 184, 0.7)', border: 'rgba(100, 116, 139, 0.95)' },
+            rank: { bg: 'rgba(113, 128, 150, 0.7)', border: 'rgba(75, 85, 99, 0.95)' },
+            top10: { bg: 'rgba(96, 165, 250, 0.7)', border: 'rgba(59, 130, 246, 0.95)' },
+        },
+    };
+
+    function getTourPalette(tour) {
+        const key = typeof tour === "string" ? tour.toLowerCase() : "";
+        return TOUR_PALETTES[key] || TOUR_PALETTES.default;
+    }
+
     function normalizeName(name) {
         if (!name) return null;
         const cleaned = name.replace(/\s+/g, ' ').trim();
@@ -133,6 +153,43 @@
             return (first ? `${first} ${last}` : last).toLowerCase();
         }
         return cleaned.toLowerCase();
+    }
+
+    function stripPlayerId(name) {
+        if (typeof name !== "string") return name;
+        return name.replace(/\s*\(\d+\)\s*$/, '').trim();
+    }
+
+    function parseEventDate(value) {
+        if (!value) return null;
+        const parsed = new Date(value);
+        if (!Number.isNaN(parsed.getTime())) {
+            return parsed;
+        }
+        const normalized = value.replace(/-/g, ' ');
+        const retry = new Date(normalized);
+        return Number.isNaN(retry.getTime()) ? null : retry;
+    }
+
+    function getIsoWeek(date) {
+        if (!(date instanceof Date) || Number.isNaN(date.getTime())) return null;
+        const target = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        const dayNum = target.getUTCDay() || 7;
+        target.setUTCDate(target.getUTCDate() + 4 - dayNum);
+        const yearStart = new Date(Date.UTC(target.getUTCFullYear(), 0, 1));
+        const weekNo = Math.ceil((((target - yearStart) / 86400000) + 1) / 7);
+        return weekNo;
+    }
+
+    function toNumber(value, fallback = null) {
+        if (value === null || value === undefined) return fallback;
+        if (typeof value === "number") {
+            return Number.isFinite(value) ? value : fallback;
+        }
+        const trimmed = String(value).trim();
+        if (!trimmed) return fallback;
+        const numeric = Number(trimmed.replace(/,/g, ""));
+        return Number.isFinite(numeric) ? numeric : fallback;
     }
 
 
@@ -148,11 +205,18 @@ async function fetchJson(path) {
 async function fetchLeaderboard(basePath) {
         try {
                 const jsonData = await fetchJson(`${basePath}/leaderboard.json`);
-                return jsonData.map(entry => ({
-                    player_name: entry.player_name,
-                    p_win: Number(entry['p_win_%'] ?? entry['p_win'] ?? entry['pWin'] ?? 0),
-                    p_top10: Number(entry['p_top10_%'] ?? entry['p_top10'] ?? entry['pTop10'] ?? 0)
-                }));
+                return jsonData.map((entry, idx) => {
+                    const playerName = entry.player_name ?? entry.Player ?? entry.Name ?? "";
+                    const rankValue = toNumber(entry.rank ?? entry.Rank, idx + 1);
+                    const pWinValue = toNumber(entry.p_win ?? entry['p_win_%'] ?? entry['pWin'] ?? entry['P_WIN_%'] ?? entry['P_WIN']);
+                    const pTop10Value = toNumber(entry.p_top10 ?? entry['p_top10_%'] ?? entry['pTop10'] ?? entry['P_TOP10_%'] ?? entry['P_TOP10']);
+                    return {
+                        player_name: playerName,
+                        rank: rankValue,
+                        p_win: pWinValue,
+                        p_top10: pTop10Value,
+                    };
+                });
         } catch (err) {
             try {
                 const csvText = await fetch(`${basePath}/leaderboard.csv`, { cache: 'no-store' }).then(r => {
@@ -163,11 +227,18 @@ async function fetchLeaderboard(basePath) {
                     header: true,
                     skipEmptyLines: 'greedy'
                 });
-                return (parsed.data || []).map(row => ({
-                    player_name: row['player_name'] || row['Player'] || row['Name'],
-                    p_win: Number(row['p_win_%'] || row['P_WIN_%'] || row['p_win'] || row['P_WIN'] || 0),
-                    p_top10: Number(row['p_top10_%'] || row['P_TOP10_%'] || row['p_top10'] || row['P_TOP10'] || 0)
-                }));
+                return (parsed.data || []).map((row, idx) => {
+                    const playerName = row['player_name'] || row['Player'] || row['Name'] || "";
+                    const rankValue = toNumber(row['rank'] ?? row['Rank'], idx + 1);
+                    const pWinValue = toNumber(row['p_win_%'] ?? row['P_WIN_%'] ?? row['p_win'] ?? row['P_WIN']);
+                    const pTop10Value = toNumber(row['p_top10_%'] ?? row['P_TOP10_%'] ?? row['p_top10'] ?? row['P_TOP10']);
+                    return {
+                        player_name: playerName,
+                        rank: rankValue,
+                        p_win: pWinValue,
+                        p_top10: pTop10Value,
+                    };
+                });
             } catch (csvErr) {
                 console.warn(err.message || err, csvErr);
                 return [];
@@ -261,18 +332,36 @@ async function fetchLeaderboard(basePath) {
         window.location.href = `event_archive.html?${params}`;
     }
 
-    function createBarChart(canvas, labels, data, options) {
-        const dataset = data.map(value => (value == null ? NaN : Number(value)));
+    function createBarChart(canvas, labels, data, options = {}) {
+        if (!canvas) return null;
+        const dataset = data.map((value) => {
+            const numeric = toNumber(value, NaN);
+            return Number.isFinite(numeric) ? numeric : NaN;
+        });
+        const backgroundColor =
+            typeof options.backgroundColor === "function"
+                ? dataset.map((value, index) => options.backgroundColor({ value, index }))
+                : Array.isArray(options.backgroundColor)
+                    ? options.backgroundColor
+                    : options.backgroundColor ?? "rgba(46, 139, 87, 0.6)";
+        const borderColor =
+            typeof options.borderColor === "function"
+                ? dataset.map((value, index) => options.borderColor({ value, index }))
+                : Array.isArray(options.borderColor)
+                    ? options.borderColor
+                    : options.borderColor ?? "rgba(46, 139, 87, 1)";
+
         return new Chart(canvas, {
-            type: 'bar',
+            type: options.type || "bar",
             data: {
                 labels,
                 datasets: [{
                     label: options.datasetLabel,
                     data: dataset,
-                    backgroundColor: options.backgroundColor,
-                    borderColor: options.borderColor,
-                    borderWidth: 1.2,
+                    backgroundColor,
+                    borderColor,
+                    borderWidth: options.borderWidth ?? 1.2,
+                    ...options.datasetOverrides
                 }]
             },
             options: {
@@ -280,21 +369,26 @@ async function fetchLeaderboard(basePath) {
                 maintainAspectRatio: false,
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        title: { display: true, text: options.yLabel },
+                        beginAtZero: options.beginAtZero ?? true,
+                        reverse: options.reverse ?? false,
+                        suggestedMax: options.suggestedMax,
+                        suggestedMin: options.suggestedMin,
                         ticks: {
-                            callback: value => `${value}%`
-                        }
+                            callback: options.yTickFormatter || ((value) => `${value}%`),
+                            stepSize: options.yTickStepSize
+                        },
+                        title: options.yLabel ? { display: true, text: options.yLabel } : undefined
                     },
                     x: {
                         ticks: {
-                            maxRotation: 45,
-                            minRotation: 20
+                            maxRotation: options.xTickRotation ?? 45,
+                            minRotation: options.xTickRotation ?? 20,
+                            callback: options.xTickFormatter
                         }
                     }
                 },
                 plugins: {
-                    legend: { display: false },
+                    legend: { display: options.showLegend ?? false },
                     tooltip: {
                         callbacks: options.tooltipCallbacks
                     }
@@ -306,6 +400,25 @@ async function fetchLeaderboard(basePath) {
     async function renderPredictionSnapshot() {
         const section = document.getElementById('predictionSnapshot');
         const note = document.getElementById('predictionSnapshotNote');
+        const summaryEl = document.getElementById('predictionSnapshotSummary');
+        const pendingEvents = new Map();
+
+        const asNumericArray = (values) => values.filter((v) => v != null && !Number.isNaN(v));
+        const averageOf = (values) => {
+            const arr = asNumericArray(values);
+            if (!arr.length) return null;
+            return arr.reduce((sum, value) => sum + value, 0) / arr.length;
+        };
+        const medianOf = (values) => {
+            const arr = asNumericArray(values).slice().sort((a, b) => a - b);
+            if (!arr.length) return null;
+            const mid = Math.floor(arr.length / 2);
+            if (arr.length % 2 === 0) {
+                return (arr[mid - 1] + arr[mid]) / 2;
+            }
+            return arr[mid];
+        };
+
         try {
             const index = await fetchJson('archive/index.json');
             const events = Array.isArray(index) ? index : [];
@@ -314,6 +427,7 @@ async function fetchLeaderboard(basePath) {
             for (const event of events) {
                 const { year, slug, event_name: eventName } = event;
                 const basePath = `archive/${year}/${slug}`;
+                const eventLabel = `${eventName} (${year})`;
 
                 let summary;
                 try {
@@ -327,79 +441,162 @@ async function fetchLeaderboard(basePath) {
                     continue;
                 }
 
-                let resultsData;
+                const tourCode = (event.tour || summary.tour || '').toLowerCase();
+                const startDate = parseEventDate(summary.start_date);
+                const weekNumber = startDate ? getIsoWeek(startDate) : null;
+
+                let resultsData = null;
+                let players = [];
+                let resultsAvailable = true;
                 try {
                     resultsData = await fetchJson(`${basePath}/results.json`);
+                    players = Array.isArray(resultsData.players) ? resultsData.players : [];
                 } catch (err) {
                     console.warn(`Missing results for ${eventName}: ${err.message}`);
+                    resultsAvailable = false;
+                    pendingEvents.set(eventLabel, new Set(['results not yet archived']));
+                }
+
+                let winnerPlayer = Array.isArray(players)
+                    ? players.find(p => typeof p.finish_pos === 'number' && p.finish_pos === 1)
+                    : null;
+                const top10Players = Array.isArray(players)
+                    ? players.filter(p => typeof p.finish_pos === 'number' && p.finish_pos <= 10)
+                    : [];
+
+                if (!winnerPlayer && summary?.winner) {
+                    winnerPlayer = { player: stripPlayerId(summary.winner) };
+                }
+
+                if (!winnerPlayer) {
+                    pendingEvents.set(eventLabel, new Set(['winner not available']));
                     continue;
                 }
 
-                const players = Array.isArray(resultsData.players) ? resultsData.players : [];
-                const winner = players.find(p => typeof p.finish_pos === 'number' && p.finish_pos === 1);
-                const top10Players = players.filter(p => typeof p.finish_pos === 'number' && p.finish_pos <= 10);
-
-                if (!winner || !top10Players.length) {
-                    continue;
+                if (!resultsAvailable || !top10Players.length) {
+                    const reasons = pendingEvents.get(eventLabel) ?? new Set();
+                    reasons.add('top-10 finish data incomplete');
+                    pendingEvents.set(eventLabel, reasons);
                 }
 
                 const leaderboard = await fetchLeaderboard(basePath);
                 if (!leaderboard.length) {
+                    pendingEvents.set(eventLabel, new Set(['leaderboard missing']));
                     continue;
                 }
 
-                const predictionMap = new Map();
-                leaderboard.forEach(entry => {
-                    const key = normalizeName(entry.player_name);
-                    if (!key) return;
-                    predictionMap.set(key, {
-                        pWin: Number(entry.p_win ?? entry['p_win'] ?? entry['p_win_%'] ?? 0),
-                        pTop10: Number(entry.p_top10 ?? entry['p_top10'] ?? entry['p_top10_%'] ?? 0)
-                    });
+                const leaderboardEntries = leaderboard.map((entry, idx) => {
+                    const playerName = entry.player_name ?? "";
+                    const normalized = normalizeName(playerName);
+                    return {
+                        player_name: playerName,
+                        normalized,
+                        rank: entry.rank ?? (idx + 1),
+                        p_win: entry.p_win,
+                        p_top10: entry.p_top10
+                    };
                 });
 
-                const winnerKey = normalizeName(winner.player);
-                const winnerPred = winnerKey ? predictionMap.get(winnerKey) : null;
-                const winProbability = winnerPred ? winnerPred.pWin : null;
+                const winnerDisplayName = cleanWinnerName(stripPlayerId(winnerPlayer.player));
+                const winnerKey = normalizeName(winnerPlayer.player);
+                const winnerEntry = winnerKey ? leaderboardEntries.find(entry => entry.normalized === winnerKey) : null;
+                const winProbability = winnerEntry?.p_win ?? null;
+                const winnerRank = winnerEntry?.rank ?? null;
 
-                const top10Probs = top10Players
-                    .map(player => {
-                        const key = normalizeName(player.player);
-                        const entry = key ? predictionMap.get(key) : null;
-                        return entry ? entry.pTop10 : null;
-                    })
-                    .filter(value => value != null);
+                if (!winnerEntry) {
+                    const reasons = pendingEvents.get(eventLabel) ?? new Set();
+                    reasons.add('winner not found in predictions');
+                    pendingEvents.set(eventLabel, reasons);
+                }
 
-                const top10Average = top10Probs.length
-                    ? top10Probs.reduce((acc, val) => acc + Number(val || 0), 0) / top10Probs.length
+                const sortedByRank = leaderboardEntries
+                    .filter(entry => entry.rank != null)
+                    .sort((a, b) => a.rank - b.rank);
+                const predictedTop10 = new Set(
+                    sortedByRank
+                        .slice(0, 10)
+                        .map(entry => entry.normalized)
+                        .filter(Boolean)
+                );
+
+                let top10Hits = 0;
+                const top10Probabilities = [];
+                for (const player of top10Players) {
+                    const normalized = normalizeName(player.player);
+                    if (!normalized) continue;
+                    if (predictedTop10.has(normalized)) {
+                        top10Hits += 1;
+                    }
+                    const entry = leaderboardEntries.find(item => item.normalized === normalized);
+                    if (entry && typeof entry.p_top10 === "number") {
+                        top10Probabilities.push(entry.p_top10);
+                    }
+                }
+
+                const top10Average = top10Probabilities.length
+                    ? top10Probabilities.reduce((acc, val) => acc + val, 0) / top10Probabilities.length
+                    : null;
+                const top10HitRate = top10Players.length
+                    ? (top10Hits / top10Players.length) * 100
                     : null;
 
                 results.push({
                     eventName,
                     year,
-                    winner: winner.player,
+                    winner: winnerDisplayName || winnerPlayer.player || 'Unknown',
                     winProbability,
+                    winnerRank,
                     top10Average,
+                    top10HitRate,
+                    top10Hits,
+                    top10Count: top10Players.length,
+                    tour: tourCode,
+                    startDate,
+                    weekNumber,
                 });
             }
 
             if (!results.length) {
                 section.style.display = 'none';
+                if (summaryEl) summaryEl.style.display = 'none';
+                if (note) note.style.display = 'none';
                 return;
             }
 
-            const labels = results.map(item => `${item.eventName} (${item.year})`);
+            results.sort((a, b) => {
+                const yearA = Number(a.year) || 0;
+                const yearB = Number(b.year) || 0;
+                if (yearA !== yearB) return yearA - yearB;
+                const weekA = a.weekNumber != null ? a.weekNumber : 999;
+                const weekB = b.weekNumber != null ? b.weekNumber : 999;
+                if (weekA !== weekB) return weekA - weekB;
+                const timeA = a.startDate instanceof Date ? a.startDate.getTime() : Number.POSITIVE_INFINITY;
+                const timeB = b.startDate instanceof Date ? b.startDate.getTime() : Number.POSITIVE_INFINITY;
+                if (timeA !== timeB) return timeA - timeB;
+                return a.eventName.localeCompare(b.eventName);
+            });
+
+            const labels = results.map(item => `${item.weekNumber != null ? `W${item.weekNumber}` : 'W—'} – ${item.eventName} (${item.year})`);
             const winners = results.map(item => item.winner || 'Unknown');
-            const winProbabilities = results.map(item => item.winProbability != null ? Number(item.winProbability).toFixed(2) : null);
-            const top10Averages = results.map(item => item.top10Average != null ? Number(item.top10Average).toFixed(2) : null);
+            const winProbabilities = results.map(item => item.winProbability);
+            const winnerRanks = results.map(item => item.winnerRank);
+            const top10HitRates = results.map(item => item.top10HitRate);
 
             section.style.display = '';
-            note.style.display = '';
+            if (note) note.style.display = '';
+            if (summaryEl) summaryEl.style.display = '';
+
+            const winBackgroundColors = results.map(item => getTourPalette(item.tour).win.bg);
+            const winBorderColors = results.map(item => getTourPalette(item.tour).win.border);
+            const rankBackgroundColors = results.map(item => getTourPalette(item.tour).rank.bg);
+            const rankBorderColors = results.map(item => getTourPalette(item.tour).rank.border);
+            const top10BackgroundColors = results.map(item => getTourPalette(item.tour).top10.bg);
+            const top10BorderColors = results.map(item => getTourPalette(item.tour).top10.border);
 
             createBarChart(document.getElementById('archiveWinChart'), labels, winProbabilities, {
                 datasetLabel: 'Predicted Win % for Event Winner',
-                backgroundColor: 'rgba(46, 139, 87, 0.6)',
-                borderColor: 'rgba(46, 139, 87, 1)',
+                backgroundColor: winBackgroundColors,
+                borderColor: winBorderColors,
                 yLabel: 'Predicted Win Probability (%)',
                 tooltipCallbacks: {
                     title: context => context[0]?.label || '',
@@ -407,35 +604,97 @@ async function fetchLeaderboard(basePath) {
                         const idx = context.dataIndex;
                         const value = context.parsed.y;
                         if (Number.isNaN(value)) {
-                            return 'No prediction available';
+                            return `${winners[idx]}: no prediction recorded`;
                         }
-                        return `${winners[idx]}: ${value.toFixed(2)}% predicted chance`;
+                        const rank = winnerRanks[idx];
+                        const rankLabel = rank != null ? `Model rank #${Math.round(rank)}` : 'Model rank unavailable';
+                        return `${winners[idx]} • ${value.toFixed(2)}% (${rankLabel})`;
                     }
                 }
             });
 
-            createBarChart(document.getElementById('archiveTop10Chart'), labels, top10Averages, {
-                datasetLabel: 'Average Predicted Top-10 % (Actual Top-10 Finishers)',
-                backgroundColor: 'rgba(0, 123, 255, 0.55)',
-                borderColor: 'rgba(0, 86, 179, 0.9)',
-                yLabel: 'Average Predicted Top-10 Probability (%)',
+            createBarChart(document.getElementById('archiveWinnerRankChart'), labels, winnerRanks, {
+                datasetLabel: 'Model Rank of Event Winner',
+                backgroundColor: rankBackgroundColors,
+                borderColor: rankBorderColors,
+                yLabel: 'Model Rank (lower is better)',
+                beginAtZero: false,
+                reverse: true,
+                suggestedMin: 0.5,
+                yTickFormatter: (value) => `#${Math.round(value)}`,
+                yTickStepSize: 1,
                 tooltipCallbacks: {
                     title: context => context[0]?.label || '',
                     label: context => {
+                        const idx = context.dataIndex;
                         const value = context.parsed.y;
                         if (Number.isNaN(value)) {
-                            return 'Insufficient prediction data';
+                            return `${winners[idx]}: rank unavailable`;
                         }
-                        return `Average top-10 probability: ${value.toFixed(2)}%`;
+                        return `${winners[idx]} was ranked #${Math.round(value)} in the pre-event model`;
                     }
                 }
             });
-        } catch (error) {
-            console.error('Prediction snapshot failed:', error);
-            const section = document.getElementById('predictionSnapshot');
-            section.style.display = '';
-            section.innerHTML += '<p class="muted" style="text-align:center; color:#b00;">Prediction snapshot unavailable.</p>';
+
+            createBarChart(document.getElementById('archiveTop10Chart'), labels, top10HitRates, {
+                datasetLabel: 'Actual Top-10 Within Model Top-10',
+                backgroundColor: top10BackgroundColors,
+                borderColor: top10BorderColors,
+                yLabel: 'Coverage of Actual Top-10 (%)',
+                yTickFormatter: (value) => `${value}%`,
+                tooltipCallbacks: {
+                    title: context => context[0]?.label || '',
+                    label: context => {
+                        const idx = context.dataIndex;
+                        const value = context.parsed.y;
+                        if (Number.isNaN(value)) {
+                            return 'Top-10 coverage unavailable';
+                        }
+                        const hits = results[idx].top10Hits;
+                        const total = results[idx].top10Count;
+                        const avgPred = results[idx].top10Average;
+                        const baseLine = `${value.toFixed(1)}% coverage (${hits}/${total} players)`;
+                        if (avgPred != null) {
+                            return [baseLine, `Avg predicted top-10 prob: ${avgPred.toFixed(2)}%`];
+                        }
+                        return baseLine;
+                    }
+                }
+            });
+
+    const averageWinProbability = averageOf(winProbabilities);
+    const medianWinnerRank = medianOf(winnerRanks);
+    const averageTop10HitRate = averageOf(top10HitRates);
+
+    if (summaryEl) {
+        const winText = averageWinProbability != null ? `${averageWinProbability.toFixed(1)}%` : '—';
+        const rankText = medianWinnerRank != null ? `#${Math.round(medianWinnerRank)}` : '—';
+        const hitText = averageTop10HitRate != null ? `${averageTop10HitRate.toFixed(1)}%` : '—';
+        summaryEl.textContent = `Across ${results.length} completed events, the model gave winners an average pre-tournament win probability of ${winText}, the median winner ranked ${rankText}, and ${hitText} of actual top-10 finishers were inside the model's top-10 projections.`;
+    }
+
+    if (note) {
+        const baseNote = 'Ordered by ISO week number; colors indicate tour (PGA = green, Euro = purple). Hover bars for event details.';
+        const pendingList = Array.from(pendingEvents.entries()).map(([label, reasons]) => {
+            const reasonText = Array.from(reasons).join(', ');
+            return `${label}${reasonText ? ` (${reasonText})` : ''}`;
+        });
+        if (pendingList.length) {
+            note.textContent = `${baseNote} Pending actual data for: ${pendingList.join('; ')}.`;
+        } else {
+            note.textContent = baseNote;
         }
+    }
+
+    } catch (error) {
+        console.error('Prediction snapshot failed:', error);
+        section.style.display = '';
+        if (summaryEl) {
+            summaryEl.style.display = '';
+            summaryEl.textContent = 'Prediction snapshot unavailable.';
+        }
+        if (note) note.style.display = 'none';
+    }
     }
 
     // Load menu HTML

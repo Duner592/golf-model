@@ -458,9 +458,9 @@
       "location": "Palm Harbor, FL",
       "longitude": -82.76,
       "start_date": "2026-03-19",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Fitzpatrick, Matt (17646)"
     },
     {
       "country": "RSA",
@@ -472,9 +472,9 @@
       "location": "Midrand, South Africa",
       "longitude": 27.996,
       "start_date": "2026-03-19",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "liv",
-      "winner": "TBD"
+      "winner": "DeChambeau, Bryson (19841)"
     },
     {
       "country": "CHN",
@@ -486,9 +486,9 @@
       "location": "Hainan Island, China",
       "longitude": 110.322,
       "start_date": "2026-03-19",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Gumberg, Jordan (23892)"
     },
     {
       "country": "USA",
@@ -810,6 +810,20 @@
       "start_date": "2026-05-28",
       "status": "upcoming",
       "tour": "pga",
+      "winner": "TBD"
+    },
+    {
+      "country": "KOR",
+      "course": "Asiad Country Club",
+      "course_key": "35",
+      "event_id": "723",
+      "event_name": "Korea",
+      "latitude": 35.287,
+      "location": "Busan, South Korea",
+      "longitude": 129.24,
+      "start_date": "2026-05-28",
+      "status": "upcoming",
+      "tour": "liv",
       "winner": "TBD"
     },
     {

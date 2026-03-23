@@ -1,4 +1,58 @@
 {
+  "2026_the_players_championship": {
+    "event_id": "11",
+    "event_name": "THE PLAYERS Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "the_players_championship"
+  },
+  "2026_joburg_open": {
+    "event_id": "2026111",
+    "event_name": "Joburg Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "joburg_open"
+  },
+  "2026_arnold_palmer_invitational_presented_by_mastercard": {
+    "event_id": "9",
+    "event_name": "Arnold Palmer Invitational presented by Mastercard",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "arnold_palmer_invitational_presented_by_mastercard"
+  },
+  "2026_puerto_rico_open": {
+    "event_id": "483",
+    "event_name": "Puerto Rico Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "puerto_rico_open"
+  },
+  "2026_cognizant_classic": {
+    "event_id": "10",
+    "event_name": "Cognizant Classic",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "cognizant_classic"
+  },
+  "2026_investec_south_african_open_championship": {
+    "event_id": "2026110",
+    "event_name": "Investec South African Open Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "investec_south_african_open_championship"
+  },
   "2026_magical_kenya_open_presented_by_absa": {
     "event_id": "2026109",
     "event_name": "Magical Kenya Open presented by absa",

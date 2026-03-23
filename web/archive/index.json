@@ -1,12 +1,21 @@
 [
   {
-    "event_id": "475",
-    "event_name": "Valspar Championship",
-    "tour": "pga",
-    "slug": "valspar_championship",
+    "event_id": "2026113",
+    "event_name": "Hero Indian Open",
+    "tour": "euro",
+    "slug": "hero_indian_open",
     "year": "2026",
     "csv_available": true,
-    "archived_at": "2026-03-18 17:04:04 UTC"
+    "archived_at": "2026-03-23 10:53:21 UTC"
+  },
+  {
+    "event_id": "20",
+    "event_name": "Texas Children's Houston Open",
+    "tour": "pga",
+    "slug": "texas_children_s_houston_open",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-03-23 10:53:15 UTC"
   },
   {
     "event_id": "2026112",
@@ -15,7 +24,16 @@
     "slug": "hainan_classic_presented_by_maextro",
     "year": "2026",
     "csv_available": true,
-    "archived_at": "2026-03-18 16:34:17 UTC"
+    "archived_at": "2026-03-20 11:04:55 UTC"
+  },
+  {
+    "event_id": "475",
+    "event_name": "Valspar Championship",
+    "tour": "pga",
+    "slug": "valspar_championship",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-03-20 11:04:50 UTC"
   },
   {
     "event_id": "11",
