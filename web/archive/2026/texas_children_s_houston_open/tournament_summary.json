@@ -5,8 +5,29 @@
   "total_yardage": null,
   "course_location": "Houston, TX",
   "start_date": "26-Mar-2026",
-  "field_size": 131,
+  "field_size": 135,
   "status": "upcoming",
   "winner": null,
-  "previous_winners": []
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Lee, Min Woo",
+      "score": -24
+    },
+    {
+      "year": 2024,
+      "winner": "Jaeger, Stephan",
+      "score": -16
+    },
+    {
+      "year": 2022,
+      "winner": "Finau, Tony",
+      "score": -20
+    },
+    {
+      "year": 2021,
+      "winner": "Kokrak, Jason",
+      "score": -14
+    }
+  ]
 }

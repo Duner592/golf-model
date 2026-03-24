@@ -1,0 +1,1272 @@
+event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+475,Valspar Championship,pga,2026,1,Xander Schauffele,24.37,80.1,97.8,0.5108276865131055,4.0,T4,0.0,1.0
+475,Valspar Championship,pga,2026,2,Viktor Hovland,18.53,74.7,97.0,0.3186640227882997,,CUT,,
+475,Valspar Championship,pga,2026,3,Max Homa,7.09,53.8,93.0,0.2118339197109522,,CUT,,
+475,Valspar Championship,pga,2026,4,Justin Thomas,6.11,50.4,92.4,0.3051759589755619,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,5,Matt Fitzpatrick,5.78,50.2,92.3,0.5215592364566471,1.0,1,1.0,1.0
+475,Valspar Championship,pga,2026,6,Ryo Hisatsune,4.8,45.6,91.0,0.3561242620857082,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,7,Brooks Koepka,4.08,41.9,89.7,0.3205499932097156,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,8,Corey Conners,3.88,40.2,89.6,0.5550728470630493,14.0,T14,0.0,0.0
+475,Valspar Championship,pga,2026,9,Sahith Theegala,3.43,38.8,88.2,0.2627328747788547,,CUT,,
+475,Valspar Championship,pga,2026,10,Matt McCarty,3.02,36.4,87.8,0.3537331386298691,,CUT,,
+475,Valspar Championship,pga,2026,11,Jordan Spieth,2.55,33.0,86.9,0.2473849106952407,11.0,T11,0.0,0.0
+475,Valspar Championship,pga,2026,12,Jacob Bridgeman,2.12,30.8,85.2,0.042994134304031,14.0,T14,0.0,0.0
+475,Valspar Championship,pga,2026,13,Billy Horschel,1.86,28.9,84.3,-0.0454996505827307,68.0,T68,0.0,0.0
+475,Valspar Championship,pga,2026,14,Seamus Power,1.17,22.0,81.0,0.2473492552967887,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,15,Keegan Bradley,1.17,22.8,81.0,0.1716872190850262,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,16,Rasmus Neergaard-Petersen,1.05,20.4,79.6,0.4018917231128039,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,17,Mac Meissner,1.0,20.0,79.4,0.0151297039440572,,CUT,,
+475,Valspar Championship,pga,2026,18,Bud Cauley,0.98,19.2,79.3,-0.0245228350429043,74.0,74,0.0,0.0
+475,Valspar Championship,pga,2026,19,Ben Griffin,0.6,14.4,74.9,0.1961457492398943,,CUT,,
+475,Valspar Championship,pga,2026,20,Austin Smotherman,0.55,13.8,74.0,0.2817817005573437,,CUT,,
+475,Valspar Championship,pga,2026,21,Ricky Castillo,0.55,15.3,75.2,0.049245756542275,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,22,Taylor Moore,0.45,11.7,71.5,0.067567426420578,,CUT,,
+475,Valspar Championship,pga,2026,23,Lucas Glover,0.44,12.4,73.1,0.0806325949681883,,CUT,,
+475,Valspar Championship,pga,2026,24,Chandler Phillips,0.41,11.9,71.7,-0.0123121751033317,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,25,Steven Fisk,0.34,10.1,69.4,0.0393389718048677,,CUT,,
+475,Valspar Championship,pga,2026,26,Tom Kim,0.34,10.8,70.7,0.1428824645315614,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,27,Patrick Cantlay,0.26,8.8,67.5,0.1928685466469397,7.0,T7,0.0,1.0
+475,Valspar Championship,pga,2026,28,Matt Wallace,0.21,7.3,65.5,-0.0561251251842098,40.0,T40,0.0,0.0
+475,Valspar Championship,pga,2026,29,Eric Cole,0.19,7.7,66.1,0.0325837585684805,,CUT,,
+475,Valspar Championship,pga,2026,30,Jeremy Paul,0.17,6.8,64.1,0.0780449588046197,,CUT,,
+475,Valspar Championship,pga,2026,31,Denny McCarthy,0.15,5.8,62.1,-0.0483604008031238,26.0,T26,0.0,0.0
+475,Valspar Championship,pga,2026,32,Davis Riley,0.14,6.2,63.6,-0.1593785370953206,,CUT,,
+475,Valspar Championship,pga,2026,33,Mackenzie Hughes,0.13,5.2,60.4,-0.0883531819405468,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,34,Christiaan Bezuidenhout,0.12,5.2,61.2,0.1474642435799104,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,35,Wyndham Clark,0.12,5.8,62.0,0.2233601707229158,,CUT,,
+475,Valspar Championship,pga,2026,36,Taylor Pendrith,0.09,5.1,60.4,0.2671544327139498,,CUT,,
+475,Valspar Championship,pga,2026,37,Andrew Novak,0.09,4.3,57.7,-0.0005354476995698,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,38,Zac Blair,0.09,3.9,57.0,-0.0384767513281933,,CUT,,
+475,Valspar Championship,pga,2026,39,Nick Taylor,0.08,3.5,54.7,-0.0936827001634998,,CUT,,
+475,Valspar Championship,pga,2026,40,J.J. Spaun,0.08,4.3,57.9,0.3282613668528034,,CUT,,
+475,Valspar Championship,pga,2026,41,Patrick Rodgers,0.08,4.1,57.3,-0.000558209789776,40.0,T40,0.0,0.0
+475,Valspar Championship,pga,2026,42,Michael Kim,0.06,3.6,55.3,-0.2711622695266695,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,43,Nicolai Hojgaard,0.06,3.3,54.4,-0.3580342997359744,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,44,Stephan Jaeger,0.05,3.0,52.5,0.0464525413051074,7.0,T7,0.0,1.0
+475,Valspar Championship,pga,2026,45,John Parry,0.05,2.7,52.2,0.1039261866469397,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,46,Thorbjorn Olesen,0.05,3.3,53.9,0.0501797714587257,,CUT,,
+475,Valspar Championship,pga,2026,47,Kevin Streelman,0.04,2.0,48.1,-0.124910415850146,68.0,T68,0.0,0.0
+475,Valspar Championship,pga,2026,48,Marco Penge,0.04,2.9,52.1,0.1029898346469397,4.0,T4,0.0,1.0
+475,Valspar Championship,pga,2026,49,Jordan Smith,0.04,2.7,52.0,0.0938986096469397,3.0,3,0.0,1.0
+475,Valspar Championship,pga,2026,50,Matti Schmid,0.04,2.0,48.4,-0.0057198554745016,40.0,T40,0.0,0.0
+475,Valspar Championship,pga,2026,51,Kristoffer Reitan,0.04,3.0,52.8,0.0798018326469397,,CUT,,
+475,Valspar Championship,pga,2026,52,Kevin Roy,0.03,1.8,47.7,-0.1278206872207619,73.0,73,0.0,0.0
+475,Valspar Championship,pga,2026,53,Hank Lebioda,0.03,2.6,51.1,-0.000558209789776,14.0,T14,0.0,0.0
+475,Valspar Championship,pga,2026,54,Luke Clanton,0.03,3.4,55.1,0.2807219221273013,,CUT,,
+475,Valspar Championship,pga,2026,55,Kevin Yu,0.03,3.0,52.8,0.3708989542688728,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,56,Doug Ghim,0.03,2.1,48.7,0.1675795726837373,40.0,T40,0.0,0.0
+475,Valspar Championship,pga,2026,57,Adam Hadwin,0.03,3.3,54.7,0.0794657501427445,,CUT,,
+475,Valspar Championship,pga,2026,58,Matt Kuchar,0.03,1.9,48.2,-0.0512789680155381,,CUT,,
+475,Valspar Championship,pga,2026,59,Pierceson Coody,0.03,2.4,50.8,-0.1401789631762922,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,60,Dylan Wu,0.03,1.9,46.7,-0.0949486585212544,26.0,T26,0.0,0.0
+475,Valspar Championship,pga,2026,61,Webb Simpson,0.02,2.1,48.2,0.0272243966848047,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,62,Austin Eckroat,0.02,1.4,43.9,0.1634229982663184,,CUT,,
+475,Valspar Championship,pga,2026,63,Max McGreevy,0.02,2.2,49.5,0.0587322375199974,,CUT,,
+475,Valspar Championship,pga,2026,64,Brandt Snedeker,0.02,1.2,42.5,-0.1353032393608215,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,65,Pontus Nyholm,0.02,1.1,41.7,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,66,S.H. Kim,0.02,1.5,45.8,-0.275568529394763,7.0,T7,0.0,1.0
+475,Valspar Championship,pga,2026,67,Patton Kizzire,0.02,1.7,46.4,-0.2191932802766229,,CUT,,
+475,Valspar Championship,pga,2026,68,Rico Hoey,0.02,1.7,46.7,0.1236766583915403,26.0,T26,0.0,0.0
+475,Valspar Championship,pga,2026,69,Lee Hodges,0.02,1.3,43.8,0.3246195855844769,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,70,Joel Dahmen,0.02,1.3,43.9,0.1364232582355739,64.0,T64,0.0,0.0
+475,Valspar Championship,pga,2026,71,Zach Bauchou,0.02,1.1,41.4,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,72,Dan Brown,0.02,1.3,44.3,0.0490623646469397,,CUT,,
+475,Valspar Championship,pga,2026,73,Luke Guthrie,0.02,1.4,43.6,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,74,Jimmy Stanger,0.02,1.0,40.9,-0.000558209789776,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,75,Adam Svensson,0.02,1.5,44.3,0.0659670086937224,,CUT,,
+475,Valspar Championship,pga,2026,76,Johnny Keefer,0.02,1.0,42.0,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,77,Chandler Blanchet,0.01,1.0,41.0,-0.000558209789776,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,78,Davis Thompson,0.01,1.1,43.1,-0.108010886378546,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,79,Sam Ryder,0.01,1.8,46.9,-0.2156113244665868,64.0,T64,0.0,0.0
+475,Valspar Championship,pga,2026,80,Vince Whaley,0.01,1.6,44.4,-0.0661269527695427,68.0,T68,0.0,0.0
+475,Valspar Championship,pga,2026,81,Henrik Norlander,0.01,1.2,42.1,0.0655037483415043,68.0,T68,0.0,0.0
+475,Valspar Championship,pga,2026,82,Aaron Rai,0.01,1.1,41.7,-0.202997399613863,,CUT,,
+475,Valspar Championship,pga,2026,83,David Ford,0.01,1.4,43.2,0.0458189186469397,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,84,Michael Brennan,0.01,1.0,41.8,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,85,Marcelo Rozo,0.01,1.2,41.3,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,86,Alex Smalley,0.01,1.5,44.3,0.0568561808094122,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,87,Neal Shipley,0.01,1.1,40.5,0.2305874396464679,,CUT,,
+475,Valspar Championship,pga,2026,88,Kensei Hirata,0.01,1.0,41.9,-0.000558209789776,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,89,Garrick Higgo,0.01,1.0,40.5,-0.1855102369806258,,CUT,,
+475,Valspar Championship,pga,2026,90,Davis Chatfield,0.01,1.2,41.4,-0.000558209789776,40.0,T40,0.0,0.0
+475,Valspar Championship,pga,2026,91,Adam Schenk,0.01,0.3,32.4,-0.138971525368351,,CUT,,
+475,Valspar Championship,pga,2026,92,A.J. Ewart,0.01,1.1,41.2,-0.000558209789776,11.0,T11,0.0,0.0
+475,Valspar Championship,pga,2026,93,Jeffrey Kang,0.01,1.1,41.3,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,94,Mark Hubbard,0.01,0.4,32.3,-0.2523100619688446,,CUT,,
+475,Valspar Championship,pga,2026,95,Beau Hossler,0.01,0.7,37.6,-0.0466703668475275,,CUT,,
+475,Valspar Championship,pga,2026,96,Isaiah Salinda,0.01,0.4,32.3,-0.0446595003530602,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,97,Erik Van Rooyen,0.01,1.2,43.0,0.0764766367305857,,CUT,,
+475,Valspar Championship,pga,2026,98,Patrick Fishburn,0.0,0.4,32.0,-0.2406740526924457,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,99,Sungjae Im,0.0,0.4,32.8,-0.0016009852364835,4.0,T4,0.0,1.0
+475,Valspar Championship,pga,2026,100,Rasmus Hojgaard,0.0,0.4,30.0,0.2718405439245974,68.0,T68,0.0,0.0
+475,Valspar Championship,pga,2026,101,Emiliano Grillo,0.0,1.1,39.7,0.4113541584722268,7.0,T7,0.0,1.0
+475,Valspar Championship,pga,2026,102,Gary Woodland,0.0,1.0,39.8,-0.0419949463258225,14.0,T14,0.0,0.0
+475,Valspar Championship,pga,2026,103,Adrien Saddier,0.0,0.9,40.3,-0.0107764073530602,,CUT,,
+475,Valspar Championship,pga,2026,104,Jesper Svensson,0.0,0.8,37.2,0.3791018946408725,,CUT,,
+475,Valspar Championship,pga,2026,105,Paul Waring,0.0,0.1,22.4,-0.1149023783530602,,CUT,,
+475,Valspar Championship,pga,2026,106,John VanDerLaan,0.0,0.4,30.1,-0.000558209789776,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,107,Greg Koch,0.0,0.0,18.7,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,108,Takumi Kanaya,0.0,0.1,17.2,-0.3060396649395076,46.0,T46,0.0,0.0
+475,Valspar Championship,pga,2026,109,Joe Highsmith,0.0,0.1,20.3,-0.129119961373144,,CUT,,
+475,Valspar Championship,pga,2026,110,Charley Hoffman,0.0,0.0,13.3,-0.2157851037845937,,CUT,,
+475,Valspar Championship,pga,2026,111,Rafael Campos,0.0,0.0,15.3,-0.5490867237532874,,CUT,,
+475,Valspar Championship,pga,2026,112,Zecheng Dou,0.0,0.1,19.0,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,113,Cam Davis,0.0,0.0,13.8,-0.2326121414292111,,CUT,,
+475,Valspar Championship,pga,2026,114,Blades Brown,0.0,0.1,19.1,-0.000558209789776,40.0,T40,0.0,0.0
+475,Valspar Championship,pga,2026,115,Brian Campbell,0.0,0.0,5.3,-0.3818107712849968,,WD,,
+475,Valspar Championship,pga,2026,116,Tony Finau,0.0,0.1,22.0,-0.4056413562407975,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,117,Adrien Dumont De Chassart,0.0,0.0,16.0,-0.4772964924128654,26.0,T26,0.0,0.0
+475,Valspar Championship,pga,2026,118,Nick Dunlap,0.0,0.1,23.9,-0.1434543453530602,,CUT,,
+475,Valspar Championship,pga,2026,119,Brice Garnett,0.0,0.4,31.3,-0.0277238594653214,,CUT,,
+475,Valspar Championship,pga,2026,120,Peter Malnati,0.0,0.4,30.2,-0.3333842727542738,,CUT,,
+475,Valspar Championship,pga,2026,121,Justin Lower,0.0,0.0,15.7,-0.0325638039035325,55.0,T55,0.0,0.0
+475,Valspar Championship,pga,2026,122,David Lipsky,0.0,0.2,26.3,-0.0210993746560777,2.0,2,0.0,1.0
+475,Valspar Championship,pga,2026,123,Gordon Sargent,0.0,0.2,24.7,-0.1567996523530602,,CUT,,
+475,Valspar Championship,pga,2026,124,Matthieu Pavon,0.0,1.2,43.2,0.1551560059950832,11.0,T11,0.0,0.0
+475,Valspar Championship,pga,2026,125,Andrew Putnam,0.0,0.2,25.3,-0.2535288625364206,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,126,Chad Ramey,0.0,0.2,25.3,-0.1461248643181139,64.0,T64,0.0,0.0
+475,Valspar Championship,pga,2026,127,Paul Peterson,0.0,0.1,20.8,-0.1575335090179612,,CUT,,
+475,Valspar Championship,pga,2026,128,Jackson Suber,0.0,0.0,9.8,-0.305069175973762,,CUT,,
+475,Valspar Championship,pga,2026,129,David Skinns,0.0,0.0,7.4,-0.4635132820063271,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,130,Kris Ventura,0.0,0.1,22.1,-0.0049256900828644,,CUT,,
+475,Valspar Championship,pga,2026,131,Alejandro Tosti,0.0,0.0,3.0,-0.1556214404950094,30.0,T30,0.0,0.0
+475,Valspar Championship,pga,2026,132,Danny Walker,0.0,0.1,19.3,-0.2625455887271309,18.0,T18,0.0,0.0
+475,Valspar Championship,pga,2026,133,Karl Vilips,0.0,0.0,11.3,-0.4956438130034439,64.0,T64,0.0,0.0
+475,Valspar Championship,pga,2026,134,Tyler Wilkes,0.0,1.1,41.6,-0.000558209789776,,CUT,,
+475,Valspar Championship,pga,2026,135,Danny Willett,0.0,0.1,20.4,-0.2693285938585116,,CUT,,
+11,THE PLAYERS Championship,pga,2026,1,Scottie Scheffler,39.0,87.5,98.8,0.5260981841417094,22.0,T22,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,2,Bud Cauley,9.11,57.6,94.6,0.5304966912861941,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,3,Si Woo Kim,3.99,39.5,90.5,0.354973356034844,50.0,T50,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,4,Daniel Berger,3.86,39.5,90.4,0.2156846242929881,66.0,T66,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,5,Min Woo Lee,3.69,38.9,90.6,0.474288794263153,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,6,Akshay Bhatia,3.21,36.7,89.6,0.2936712521022214,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,7,Rory McIlroy,3.16,35.5,89.3,0.1698662211635295,46.0,T46,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,8,Shane Lowry,3.14,36.8,89.4,0.1397581834088549,,CUT,,
+11,THE PLAYERS Championship,pga,2026,9,Hideki Matsuyama,2.93,34.6,89.0,0.2729386287100722,27.0,T27,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,10,Tommy Fleetwood,2.71,33.1,88.5,0.3671381312380265,8.0,T8,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,11,Collin Morikawa,2.4,31.2,87.6,0.4463213665886727,,,,
+11,THE PLAYERS Championship,pga,2026,12,Jake Knapp,2.18,29.3,86.8,-0.1171385648751226,,CUT,,
+11,THE PLAYERS Championship,pga,2026,13,Matt McCarty,2.13,29.5,86.6,0.5464655831561975,,CUT,,
+11,THE PLAYERS Championship,pga,2026,14,Ludvig Aberg,2.0,28.3,86.1,0.5149377870620168,5.0,T5,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,15,Corey Conners,1.75,26.2,85.5,0.3188290592395613,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,16,Danny Walker,1.42,22.4,83.4,0.1008679600034756,62.0,T62,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,17,Aaron Rai,1.34,22.1,82.5,0.6778526894035607,,CUT,,
+11,THE PLAYERS Championship,pga,2026,18,Russell Henley,1.04,19.8,81.7,0.233592993639674,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,19,Matt Fitzpatrick,0.85,17.7,79.9,0.3920433163468912,2.0,2,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,20,Sepp Straka,0.69,14.9,77.9,0.2052006721497716,8.0,T8,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,21,Harris English,0.68,15.7,78.4,0.0894818860721362,,CUT,,
+11,THE PLAYERS Championship,pga,2026,22,Kurt Kitayama,0.67,15.7,78.7,0.2342716489878215,,CUT,,
+11,THE PLAYERS Championship,pga,2026,23,Ryan Gerard,0.6,13.5,76.8,0.3012074458157194,27.0,T27,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,24,Xander Schauffele,0.6,12.9,75.9,-0.0413647137204233,3.0,3,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,25,Viktor Hovland,0.5,12.8,75.8,0.5504275549948889,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,26,Justin Thomas,0.46,11.9,75.0,0.1783732680344319,8.0,T8,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,27,Christiaan Bezuidenhout,0.44,11.6,74.5,0.0164046655980669,,CUT,,
+11,THE PLAYERS Championship,pga,2026,28,Rico Hoey,0.42,11.4,74.0,0.7648121998472281,62.0,T62,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,29,Jacob Bridgeman,0.37,9.4,71.0,0.2772663503073608,5.0,T5,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,30,Robert MacIntyre,0.31,9.4,70.6,-0.0363322021729815,4.0,4,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,31,J.J. Spaun,0.28,7.9,68.6,0.3281179131962128,24.0,T24,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,32,Tom Hoge,0.27,9.4,71.2,0.1288660198897275,,CUT,,
+11,THE PLAYERS Championship,pga,2026,33,Keegan Bradley,0.23,7.7,69.1,0.1520317353946604,50.0,T50,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,34,Ryan Fox,0.21,8.0,69.1,-0.1832235770632669,,,,
+11,THE PLAYERS Championship,pga,2026,35,Ben Griffin,0.19,6.8,67.0,-0.1978261615735653,,CUT,,
+11,THE PLAYERS Championship,pga,2026,36,Alex Noren,0.19,7.2,68.0,-0.0415365569686931,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,37,Patrick Cantlay,0.19,6.1,65.8,0.1372649506349434,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,38,Jason Day,0.18,7.7,69.0,0.0055241238226398,59.0,T59,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,39,Brian Harman,0.18,6.7,65.9,0.3124327923794959,11.0,T11,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,40,Mac Meissner,0.18,6.7,66.9,0.0129318438920993,,CUT,,
+11,THE PLAYERS Championship,pga,2026,41,Cameron Young,0.16,5.9,65.5,-0.0049267575489466,1.0,1,1.0,1.0
+11,THE PLAYERS Championship,pga,2026,42,Austin Smotherman,0.15,5.5,63.5,0.0722015467796641,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,43,Wyndham Clark,0.13,5.3,63.3,0.0512165549133664,42.0,T42,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,44,Sungjae Im,0.13,5.6,64.9,0.2561106870631326,,CUT,,
+11,THE PLAYERS Championship,pga,2026,45,Denny McCarthy,0.12,6.0,65.5,0.0716088029739226,,CUT,,
+11,THE PLAYERS Championship,pga,2026,46,Joel Dahmen,0.11,4.3,61.3,0.220881312739926,,CUT,,
+11,THE PLAYERS Championship,pga,2026,47,Davis Thompson,0.1,5.5,64.6,0.2608669923211052,,CUT,,
+11,THE PLAYERS Championship,pga,2026,48,Pierceson Coody,0.09,4.0,60.5,0.1213267678788147,,CUT,,
+11,THE PLAYERS Championship,pga,2026,49,Justin Rose,0.08,3.4,58.3,0.2724991366584908,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,50,Lucas Glover,0.07,3.5,58.1,0.3013525820582705,,CUT,,
+11,THE PLAYERS Championship,pga,2026,51,Nick Taylor,0.07,3.0,56.4,0.0727942905854057,42.0,T42,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,52,Jordan Spieth,0.07,3.0,56.7,0.117495243184311,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,53,Taylor Pendrith,0.06,2.8,55.7,0.1396412838793756,46.0,T46,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,54,Joe Highsmith,0.06,3.3,57.9,0.0070813748600576,42.0,T42,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,55,Alex Smalley,0.05,3.0,57.0,0.0415057498444036,24.0,T24,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,56,Keith Mitchell,0.05,2.9,55.9,-0.0075103516880359,46.0,T46,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,57,Ricky Castillo,0.04,2.6,54.3,0.6520525989527004,70.0,T70,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,58,Kristoffer Reitan,0.04,1.8,50.4,0.0253679658788146,66.0,T66,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,59,Michael Thorbjornsen,0.04,2.6,54.4,0.0992243998788146,22.0,T22,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,60,Maverick McNealy,0.04,2.8,55.9,0.0876539783207495,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,61,Taylor Moore,0.04,2.2,52.2,0.0600828317239058,50.0,T50,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,62,Max Homa,0.04,2.3,53.5,-0.1571686065832246,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,63,Thorbjorn Olesen,0.03,2.2,52.1,0.0978771998788147,,CUT,,
+11,THE PLAYERS Championship,pga,2026,64,Sam Burns,0.03,2.7,55.3,0.0638791834982847,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,65,Marco Penge,0.03,1.8,50.9,0.0582918678788147,,CUT,,
+11,THE PLAYERS Championship,pga,2026,66,Haotong Li,0.03,1.5,48.6,0.0700507788788146,,CUT,,
+11,THE PLAYERS Championship,pga,2026,67,Sahith Theegala,0.03,1.5,48.8,0.0502783427304882,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,68,Jordan Smith,0.02,1.8,49.9,0.0833421328788146,,CUT,,
+11,THE PLAYERS Championship,pga,2026,69,Matti Schmid,0.02,1.5,47.6,0.0943083510627814,46.0,T46,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,70,Chris Gotterup,0.02,1.5,47.7,-0.2561299423562576,56.0,T56,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,71,Rickie Fowler,0.02,1.5,46.3,0.0448517260182767,42.0,T42,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,72,Adam Scott,0.02,2.1,53.1,-0.0280047284928718,56.0,T56,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,73,Stephan Jaeger,0.02,1.5,47.8,-0.1214264543387351,62.0,T62,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,74,J.T. Poston,0.02,1.5,48.2,-0.1050240875474203,50.0,T50,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,75,William Mouw,0.01,0.6,39.2,-0.0018903921211853,24.0,T24,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,76,Garrick Higgo,0.01,1.0,42.8,0.1011495813410458,,CUT,,
+11,THE PLAYERS Championship,pga,2026,77,Chris Kirk,0.01,1.6,48.0,0.1970574161397043,27.0,T27,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,78,Zach Bauchou,0.01,0.6,38.4,0.0722015467796641,50.0,T50,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,79,Seamus Power,0.01,0.5,35.4,0.0927718243985538,70.0,T70,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,80,Johnny Keefer,0.01,0.6,38.9,0.0722015467796641,,CUT,,
+11,THE PLAYERS Championship,pga,2026,81,A.J. Ewart,0.01,0.6,38.3,0.0722015467796641,,CUT,,
+11,THE PLAYERS Championship,pga,2026,82,Takumi Kanaya,0.01,0.6,40.2,-0.0225149301211853,73.0,73,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,83,Ryo Hisatsune,0.01,1.1,44.9,0.1782051226272047,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,84,Steven Fisk,0.01,0.6,39.0,0.0325389838788146,62.0,T62,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,85,Eric Cole,0.01,0.4,35.6,-0.101859033303845,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,86,Patton Kizzire,0.01,0.7,39.0,-0.2037815987846947,,CUT,,
+11,THE PLAYERS Championship,pga,2026,87,Sudarshan Yellamaraju,0.01,0.7,38.7,0.0722015467796641,5.0,T5,0.0,1.0
+11,THE PLAYERS Championship,pga,2026,88,Sam Stevens,0.01,0.4,34.0,0.3463218562381671,58.0,58,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,89,Vince Whaley,0.01,0.3,33.5,-0.1516264412258793,,CUT,,
+11,THE PLAYERS Championship,pga,2026,90,Max McGreevy,0.01,0.6,39.0,0.3521654886144131,50.0,T50,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,91,Mackenzie Hughes,0.01,0.7,40.4,-0.1892068736147309,,CUT,,
+11,THE PLAYERS Championship,pga,2026,92,Chad Ramey,0.01,0.3,30.8,0.0072583218208866,27.0,T27,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,93,Chandler Phillips,0.0,0.0,18.5,0.0684608909870357,,CUT,,
+11,THE PLAYERS Championship,pga,2026,94,Patrick Rodgers,0.0,0.4,33.9,-0.1031850942057275,11.0,T11,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,95,Aldrich Potgieter,0.0,0.2,29.4,-0.0967460018699286,,CUT,,
+11,THE PLAYERS Championship,pga,2026,96,Harry Hall,0.0,0.5,35.0,0.416871428381977,,CUT,,
+11,THE PLAYERS Championship,pga,2026,97,Michael Kim,0.0,0.4,31.6,-0.0641503885966285,,CUT,,
+11,THE PLAYERS Championship,pga,2026,98,Mark Hubbard,0.0,0.6,37.4,0.1525776002836208,,CUT,,
+11,THE PLAYERS Championship,pga,2026,99,Nico Echavarria,0.0,0.4,33.9,0.088272756665424,66.0,T66,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,100,Brian Campbell,0.0,0.0,14.8,-0.0543839564584276,,CUT,,
+11,THE PLAYERS Championship,pga,2026,101,Cam Davis,0.0,0.0,4.4,-0.5127447893595143,,CUT,,
+11,THE PLAYERS Championship,pga,2026,102,Michael Brennan,0.0,0.5,38.6,0.0722015467796641,69.0,69,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,103,Lee Hodges,0.0,0.0,22.0,0.2487134642614084,59.0,T59,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,104,Emiliano Grillo,0.0,0.1,21.2,-0.0286983515315079,,CUT,,
+11,THE PLAYERS Championship,pga,2026,105,Max Greyserman,0.0,0.0,10.9,-0.5126259590830184,,CUT,,
+11,THE PLAYERS Championship,pga,2026,106,Zecheng Dou,0.0,0.6,38.7,0.0722015467796641,,CUT,,
+11,THE PLAYERS Championship,pga,2026,107,Tony Finau,0.0,0.4,34.3,-0.0599924363999237,70.0,T70,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,108,S.H. Kim,0.0,0.0,19.0,-0.6323079637697054,,CUT,,
+11,THE PLAYERS Championship,pga,2026,109,Nicolai Hojgaard,0.0,0.7,38.6,0.1154767503312394,27.0,T27,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,110,Rasmus Hojgaard,0.0,0.0,11.9,-0.5714367054657414,,CUT,,
+11,THE PLAYERS Championship,pga,2026,111,Brooks Koepka,0.0,0.0,11.4,-0.312188247216651,13.0,T13,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,112,Andrew Putnam,0.0,0.2,27.3,-0.1029056720948646,32.0,T32,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,113,Matthieu Pavon,0.0,0.1,22.0,0.1471438700469929,,CUT,,
+11,THE PLAYERS Championship,pga,2026,114,Andrew Novak,0.0,0.0,17.9,-0.1371349291306567,,CUT,,
+11,THE PLAYERS Championship,pga,2026,115,Adam Schenk,0.0,0.1,22.1,-0.0354776055396348,,CUT,,
+11,THE PLAYERS Championship,pga,2026,116,Kevin Roy,0.0,0.1,25.0,-0.4902073036598109,59.0,T59,0.0,0.0
+11,THE PLAYERS Championship,pga,2026,117,Davis Riley,0.0,0.1,25.1,-0.3813776803962225,,CUT,,
+11,THE PLAYERS Championship,pga,2026,118,Erik Van Rooyen,0.0,0.4,33.8,-0.1779492054884442,,CUT,,
+11,THE PLAYERS Championship,pga,2026,119,Sami Valimaki,0.0,0.1,21.5,-0.0293590041112585,,CUT,,
+11,THE PLAYERS Championship,pga,2026,120,Jhonattan Vegas,0.0,0.0,17.3,-0.1489203257971628,,CUT,,
+11,THE PLAYERS Championship,pga,2026,121,Karl Vilips,0.0,0.0,7.1,-0.5543263198820579,,CUT,,
+11,THE PLAYERS Championship,pga,2026,122,Gary Woodland,0.0,0.0,15.0,-0.1517732442228578,,CUT,,
+11,THE PLAYERS Championship,pga,2026,123,Kevin Yu,0.0,0.1,22.3,0.0461010606674187,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,1,Scottie Scheffler,62.59,96.9,100.0,0.5575300799936777,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,2,Rory McIlroy,8.07,65.9,99.7,0.428596836246447,,WD,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,3,Russell Henley,3.94,51.6,99.4,0.2892939095700723,6.0,T6,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,4,Pierceson Coody,2.54,42.1,99.1,0.0612443295942555,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,5,Corey Conners,2.29,38.9,99.1,0.3154184321462911,33.0,T33,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,6,Matt Fitzpatrick,1.75,34.4,98.7,0.2148818240794076,41.0,T41,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,7,Michael Kim,1.73,35.5,98.8,0.0462426554816364,33.0,T33,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,8,Jordan Spieth,1.37,32.8,98.7,0.126265571655316,11.0,T11,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,9,Jacob Bridgeman,1.16,28.7,98.1,0.2054796731851286,18.0,T18,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,10,Robert MacIntyre,1.15,30.0,98.5,0.3121722084213428,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,11,Keegan Bradley,1.12,30.2,98.5,0.3160196550189021,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,12,Tommy Fleetwood,0.98,26.6,98.0,0.1904995910835601,49.0,49,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,13,Harris English,0.93,25.7,98.0,0.2989148707957723,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,14,Ryan Fox,0.81,24.3,97.9,-0.235601838452543,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,15,Hideki Matsuyama,0.77,23.3,97.9,0.2088653986021741,41.0,T41,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,16,Patrick Cantlay,0.76,23.4,97.7,0.3590247136209894,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,17,Shane Lowry,0.66,20.3,97.4,0.2858293510181232,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,18,Viktor Hovland,0.56,20.6,97.5,0.3733488050899436,13.0,T13,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,19,Collin Morikawa,0.55,20.2,97.3,0.5140123032373765,5.0,5,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,20,Justin Thomas,0.52,18.0,96.8,0.3630174199164329,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,21,Cameron Young,0.48,18.6,97.1,0.103652733061955,3.0,T3,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,22,Kurt Kitayama,0.47,18.1,97.0,0.3857075710975974,18.0,T18,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,23,Jason Day,0.45,18.0,97.2,0.1685545358676295,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,24,Xander Schauffele,0.43,16.9,97.0,0.1858897919339547,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,25,Daniel Berger,0.41,16.8,96.7,0.3367212879513349,2.0,2,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,26,Ben Griffin,0.39,15.9,96.6,0.1560222370122467,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,27,Si Woo Kim,0.34,15.4,96.5,0.2555042966529151,13.0,T13,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,28,Ludvig Aberg,0.31,15.1,96.5,0.3129303327399015,3.0,T3,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,29,Sungjae Im,0.31,13.5,96.1,0.1613655186090773,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,30,Ryan Gerard,0.19,10.1,94.8,0.2260324882934859,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,31,Chris Kirk,0.19,8.7,94.2,0.071431992784111,47.0,T47,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,32,Chris Gotterup,0.16,8.9,94.7,0.1802601182934859,18.0,T18,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,33,Adam Scott,0.13,8.0,93.6,0.2000808703771057,11.0,T11,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,34,Justin Rose,0.12,7.5,93.6,0.2645938045684099,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,35,Keith Mitchell,0.11,8.5,94.3,0.2759873183370777,33.0,T33,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,36,J.J. Spaun,0.11,7.7,93.3,0.2407405976917525,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,37,Max Greyserman,0.1,7.0,93.1,-0.2147570217012383,18.0,T18,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,38,Nick Taylor,0.09,7.2,93.4,0.1143888093204898,38.0,T38,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,39,Sahith Theegala,0.09,6.6,92.6,0.199180863855336,6.0,T6,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,40,Alex Noren,0.09,6.1,92.4,-0.0338859518153464,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,41,Harry Hall,0.09,5.6,91.8,0.1041174692934859,9.0,T9,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,42,Andrew Putnam,0.07,5.2,91.7,-0.1390878372655604,44.0,T44,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,43,Sam Burns,0.07,5.8,92.3,0.1321435362131578,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,44,Michael Thorbjornsen,0.06,5.1,91.7,0.1320259322934859,33.0,T33,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,45,Nico Echavarria,0.06,4.1,90.7,0.1077705912934859,44.0,T44,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,46,Rickie Fowler,0.06,5.7,92.3,0.2082708081066898,9.0,T9,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,47,Matt McCarty,0.05,4.9,91.1,0.1050219502934859,41.0,T41,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,48,Ryo Hisatsune,0.04,4.0,90.2,0.1204744152934859,33.0,T33,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,49,Denny McCarthy,0.04,3.7,90.0,-0.0390359604009359,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,50,Haotong Li,0.04,3.4,89.2,0.1007479152934859,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,51,Nicolai Hojgaard,0.03,3.0,88.4,0.1015193070186464,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,52,Maverick McNealy,0.03,2.1,85.7,0.003146239188554,13.0,T13,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,53,Patrick Rodgers,0.02,2.7,87.8,-0.1962962544340806,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,54,Taylor Moore,0.02,2.1,85.8,-0.0012232589863373,44.0,T44,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,55,Sam Stevens,0.02,2.9,88.0,0.1573866260374372,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,56,Bud Cauley,0.01,1.9,85.1,0.0662305852934859,18.0,T18,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,57,Sepp Straka,0.01,2.1,86.6,0.1098062804422885,13.0,T13,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,58,Taylor Pendrith,0.01,1.2,82.5,-0.1069697608342611,38.0,T38,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,59,Tom Hoge,0.01,1.4,83.5,0.037001138839114,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,60,Daniel Bennett,0.01,1.4,83.3,0.1440828866127022,47.0,T47,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,61,Andrew Novak,0.01,2.0,85.5,0.1860931986662449,38.0,T38,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,62,Min Woo Lee,0.0,1.3,83.1,0.1888031323132764,6.0,T6,0.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,63,Brian Harman,0.0,0.4,74.8,0.074403976143152,50.0,50,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,64,Lucas Glover,0.0,0.2,69.1,0.0223193100776383,24.0,T24,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,65,Brian Campbell,0.0,0.0,32.5,-0.9289066786457956,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,66,Akshay Bhatia,0.0,0.8,79.4,-0.0317597669830114,1.0,1,1.0,1.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,67,Billy Horschel,0.0,0.9,80.5,0.1150810325020791,13.0,T13,0.0,0.0
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,68,Joel Dahmen,0.0,0.2,67.0,-0.019615108465752,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,69,Aldrich Potgieter,0.0,0.1,61.7,-0.0222950545379254,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,70,J.T. Poston,0.0,0.5,75.0,0.0653273799659724,,CUT,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,71,Austin Smotherman,0.0,1.4,83.5,0.1440828866127022,,WD,,
+9,Arnold Palmer Invitational presented by Mastercard,pga,2026,72,Jhonattan Vegas,0.0,0.3,72.3,-0.043212634706514,18.0,T18,0.0,0.0
+483,Puerto Rico Open,pga,2026,1,Rasmus Neergaard-Petersen,52.71,94.6,99.5,0.5082110812677998,68.0,68,0.0,0.0
+483,Puerto Rico Open,pga,2026,2,Jimmy Stanger,8.28,63.6,95.4,-0.0111101294296916,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,3,Kieron Van Wyk,6.79,59.1,94.7,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,4,John VanDerLaan,6.44,58.5,94.4,-0.0111101294296916,21.0,T21,0.0,0.0
+483,Puerto Rico Open,pga,2026,5,Adrien Dumont De Chassart,3.08,42.2,90.3,0.2175761194524015,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,6,Seamus Power,2.63,40.3,89.5,0.0598540204772248,,CUT,,
+483,Puerto Rico Open,pga,2026,7,Chad Ramey,2.61,40.0,89.4,0.2855255298014406,,CUT,,
+483,Puerto Rico Open,pga,2026,8,Ben Kohles,2.34,38.1,88.5,0.1941159561252015,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,9,Hank Lebioda,1.9,33.8,87.0,-0.0111101294296916,61.0,T61,0.0,0.0
+483,Puerto Rico Open,pga,2026,10,Vince Whaley,1.9,33.1,86.5,-0.0547932383132608,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,11,Matti Schmid,1.57,30.8,85.4,0.1241727504023754,5.0,T5,0.0,1.0
+483,Puerto Rico Open,pga,2026,12,Hayden Springer,0.84,22.6,81.4,0.0008685619214655,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,13,Brice Garnett,0.66,20.9,80.5,0.4112041213200799,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,14,Rasmus Hojgaard,0.65,19.2,78.9,-0.1685932845266689,,CUT,,
+483,Puerto Rico Open,pga,2026,15,Takumi Kanaya,0.63,18.4,78.1,0.0721585920063327,,CUT,,
+483,Puerto Rico Open,pga,2026,16,Davis Riley,0.41,14.7,75.2,0.076191851997761,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,17,Noah Goodwin,0.38,13.5,74.5,0.1331132130730639,,CUT,,
+483,Puerto Rico Open,pga,2026,18,Henrik Norlander,0.37,12.5,73.3,0.0520027166038642,57.0,T57,0.0,0.0
+483,Puerto Rico Open,pga,2026,19,Jeremy Paul,0.35,11.9,72.4,-0.1662940101778135,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,20,Paul Peterson,0.33,12.9,73.4,0.2944737592948986,5.0,T5,0.0,1.0
+483,Puerto Rico Open,pga,2026,21,Fred Biondi,0.32,12.1,72.8,-0.0111101294296916,37.0,T37,0.0,0.0
+483,Puerto Rico Open,pga,2026,22,Carson Young,0.31,12.3,72.5,0.0035293149400877,66.0,T66,0.0,0.0
+483,Puerto Rico Open,pga,2026,23,Chan Kim,0.29,12.5,73.2,0.0278748442448663,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,24,Christiaan Bezuidenhout,0.26,9.9,69.7,0.1784369128071531,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,25,Erik Van Rooyen,0.25,10.5,70.4,-0.189288217612801,,CUT,,
+483,Puerto Rico Open,pga,2026,26,Mark Hubbard,0.24,10.7,70.8,-0.0293688335840841,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,27,Davis Thompson,0.19,9.4,68.8,0.0579325068071531,4.0,4,0.0,1.0
+483,Puerto Rico Open,pga,2026,28,Justin Lower,0.19,8.0,66.3,-0.1622329082114429,,CUT,,
+483,Puerto Rico Open,pga,2026,29,Fabian Gomez,0.18,9.5,69.4,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,30,Austin Cook,0.15,8.2,66.4,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,31,Kris Ventura,0.15,8.7,67.7,0.2072471698999281,,CUT,,
+483,Puerto Rico Open,pga,2026,32,Harry Higgs,0.13,5.3,60.6,-0.1986012277935691,,CUT,,
+483,Puerto Rico Open,pga,2026,33,Brandt Snedeker,0.13,7.2,65.4,0.3222988308386373,,CUT,,
+483,Puerto Rico Open,pga,2026,34,Scott Piercy,0.13,5.8,62.6,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,35,John Parry,0.12,7.3,64.9,0.0487870058071531,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,36,Tyler Duncan,0.1,5.6,61.6,0.3043782552934902,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,37,Sam Ryder,0.08,5.9,63.0,0.0887296636280499,,CUT,,
+483,Puerto Rico Open,pga,2026,38,Doug Ghim,0.08,5.0,61.0,0.0211328398071531,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,39,Ricky Castillo,0.07,4.7,60.0,-0.0150293754304385,1.0,1,1.0,1.0
+483,Puerto Rico Open,pga,2026,40,Adrien Saddier,0.07,3.8,56.8,0.0321827728071531,,CUT,,
+483,Puerto Rico Open,pga,2026,41,Matt Wallace,0.07,4.8,59.9,0.4459706153596822,,CUT,,
+483,Puerto Rico Open,pga,2026,42,Chase Sienkiewicz,0.06,3.5,55.3,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,43,Sudarshan Yellamaraju,0.06,3.5,55.5,-0.0111101294296916,37.0,T37,0.0,0.0
+483,Puerto Rico Open,pga,2026,44,Jeffrey Kang,0.06,3.3,55.3,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,45,Filip Jakubcik,0.05,3.4,55.2,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,46,Luke Long,0.05,3.7,55.0,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,47,Eric Cole,0.05,3.9,57.1,0.1289146248071531,,CUT,,
+483,Puerto Rico Open,pga,2026,48,Kihei Akina,0.05,3.3,55.6,-0.0111101294296916,16.0,T16,0.0,0.0
+483,Puerto Rico Open,pga,2026,49,Pontus Nyholm,0.05,3.4,55.2,-0.0111101294296916,16.0,T16,0.0,0.0
+483,Puerto Rico Open,pga,2026,50,Chandler Blanchet,0.05,3.3,55.3,-0.0111101294296916,2.0,2,0.0,1.0
+483,Puerto Rico Open,pga,2026,51,Kevin Streelman,0.04,2.8,53.2,-0.0443834253850521,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,52,Yanhan Zhou,0.04,3.3,55.3,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,53,Eugenio Chacarra,0.04,3.2,53.7,0.0124071138071531,21.0,T21,0.0,0.0
+483,Puerto Rico Open,pga,2026,54,Kensei Hirata,0.04,3.3,55.2,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,55,A.J. Ewart,0.04,3.5,55.1,-0.0111101294296916,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,56,Luke Clanton,0.04,1.9,48.1,-0.0478243281928468,5.0,T5,0.0,1.0
+483,Puerto Rico Open,pga,2026,57,Patrick Fishburn,0.04,4.3,57.8,-0.0766761936401163,,CUT,,
+483,Puerto Rico Open,pga,2026,58,David Ford,0.04,4.2,57.7,-0.0296520501928468,16.0,T16,0.0,0.0
+483,Puerto Rico Open,pga,2026,59,Miles Russell,0.04,3.6,55.2,-0.0111101294296916,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,60,Hunter Logan,0.04,3.5,55.5,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,61,Carson Bertagnole,0.04,3.3,55.3,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,62,Davis Chatfield,0.04,3.5,54.8,-0.0111101294296916,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,63,Ben Silverman,0.03,3.6,56.5,-0.0111101294296916,16.0,T16,0.0,0.0
+483,Puerto Rico Open,pga,2026,64,Jesper Svensson,0.03,3.6,55.8,-0.0256012331928468,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,65,Zach Bauchou,0.03,3.5,55.0,-0.0111101294296916,21.0,T21,0.0,0.0
+483,Puerto Rico Open,pga,2026,66,James Hahn,0.03,3.4,54.6,-0.0111101294296916,64.0,64,0.0,0.0
+483,Puerto Rico Open,pga,2026,67,Rafael Campos,0.03,3.2,54.1,-0.256135188731684,16.0,T16,0.0,0.0
+483,Puerto Rico Open,pga,2026,68,"Jr., John Daly",0.03,3.2,55.5,-0.0111101294296916,,,,
+483,Puerto Rico Open,pga,2026,69,Michael Brennan,0.03,3.3,55.3,-0.0111101294296916,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,70,Nick Hardy,0.03,2.3,50.6,-0.0927490876030378,,CUT,,
+483,Puerto Rico Open,pga,2026,71,Matthieu Pavon,0.03,1.7,46.9,0.0109929568071531,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,72,Chris Nido,0.02,2.6,51.4,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,73,Martin Laird,0.02,2.3,51.1,0.1793438122437348,57.0,T57,0.0,0.0
+483,Puerto Rico Open,pga,2026,74,Blades Brown,0.02,2.1,49.2,-0.0111101294296916,3.0,3,0.0,1.0
+483,Puerto Rico Open,pga,2026,75,Cameron Champ,0.02,2.5,51.2,-0.017491645738672,,CUT,,
+483,Puerto Rico Open,pga,2026,76,Ryan Brehm,0.02,1.4,45.7,-0.1987255345602223,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,77,Jonathan Byrd,0.02,1.7,46.4,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,78,Michael Kartrude,0.02,3.4,55.4,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,79,Adam Hadwin,0.02,2.6,52.6,0.0275021768071531,21.0,T21,0.0,0.0
+483,Puerto Rico Open,pga,2026,80,S.H. Kim,0.02,1.9,47.4,-0.2102685100973406,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,81,Christo Lamprecht,0.02,3.3,55.4,-0.0111101294296916,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,82,Taylor Montgomery,0.01,1.4,43.9,-0.0319069940934649,,CUT,,
+483,Puerto Rico Open,pga,2026,83,Zecheng Dou,0.01,2.6,53.0,-0.0111101294296916,57.0,T57,0.0,0.0
+483,Puerto Rico Open,pga,2026,84,Nicholas Lindheim,0.01,1.6,45.5,-0.0111101294296916,,WD,,
+483,Puerto Rico Open,pga,2026,85,Jackson Suber,0.01,1.5,45.4,-0.0071517031928468,,CUT,,
+483,Puerto Rico Open,pga,2026,86,Adam Svensson,0.01,1.5,45.4,0.1449737951599962,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,87,Neal Shipley,0.01,1.5,45.4,-0.0574413351928468,,CUT,,
+483,Puerto Rico Open,pga,2026,88,Danny Willett,0.01,0.6,36.3,-0.1455611370670236,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,89,Dylan Wu,0.01,2.5,51.0,0.108628481923571,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,90,Isaiah Salinda,0.01,1.5,44.8,-0.0857657531928468,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,91,Ted Potter Jr,0.01,1.3,43.4,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,92,Beau Hossler,0.01,0.6,35.2,-0.0455356667169478,37.0,T37,0.0,0.0
+483,Puerto Rico Open,pga,2026,93,Paul Waring,0.01,0.7,36.7,-0.0927941491928468,,CUT,,
+483,Puerto Rico Open,pga,2026,94,Ben Martin,0.01,0.3,29.8,-0.0380653130083859,,CUT,,
+483,Puerto Rico Open,pga,2026,95,Robert Streb,0.01,0.8,38.2,-0.0111101294296916,57.0,T57,0.0,0.0
+483,Puerto Rico Open,pga,2026,96,Gordon Sargent,0.01,0.4,31.2,-0.0665725291928468,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,97,Austin Eckroat,0.01,1.8,46.8,-0.2410753714722575,42.0,T42,0.0,0.0
+483,Puerto Rico Open,pga,2026,98,Peter Malnati,0.0,0.5,34.9,0.0511737538071531,26.0,T26,0.0,0.0
+483,Puerto Rico Open,pga,2026,99,Troy Merritt,0.0,1.0,39.3,0.4584191672175922,66.0,T66,0.0,0.0
+483,Puerto Rico Open,pga,2026,100,Adam Long,0.0,0.8,37.9,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,101,William McGirt,0.0,1.8,47.5,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,102,Jason Dufner,0.0,0.2,25.8,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,103,Charley Hoffman,0.0,0.5,33.6,-0.1087189251928468,,CUT,,
+483,Puerto Rico Open,pga,2026,104,Lanto Griffin,0.0,0.1,20.2,-0.095507963113192,,CUT,,
+483,Puerto Rico Open,pga,2026,105,Nick Dunlap,0.0,0.7,37.9,0.0554708068071531,,CUT,,
+483,Puerto Rico Open,pga,2026,106,Chesson Hadley,0.0,0.0,15.5,-0.2828076253192479,,CUT,,
+483,Puerto Rico Open,pga,2026,107,Zac Blair,0.0,0.2,24.2,-0.0278916730785788,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,108,Frankie Capan III,0.0,0.2,26.4,0.0318683228071531,50.0,T50,0.0,0.0
+483,Puerto Rico Open,pga,2026,109,Erik Barnes,0.0,0.0,1.4,-0.5187568040405273,21.0,T21,0.0,0.0
+483,Puerto Rico Open,pga,2026,110,David Lipsky,0.0,0.0,9.3,0.1602126149909729,37.0,T37,0.0,0.0
+483,Puerto Rico Open,pga,2026,111,Ryan Palmer,0.0,0.2,26.4,-0.3433936602560823,,CUT,,
+483,Puerto Rico Open,pga,2026,112,Luke List,0.0,0.7,37.0,-0.0756700661928468,,CUT,,
+483,Puerto Rico Open,pga,2026,113,Marcelo Rozo,0.0,0.4,33.2,-0.0111101294296916,65.0,65,0.0,0.0
+483,Puerto Rico Open,pga,2026,114,Evan Pena,0.0,0.0,15.2,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,115,Reinaldo Simoni,0.0,0.2,26.7,-0.0111101294296916,,CUT,,
+483,Puerto Rico Open,pga,2026,116,David Skinns,0.0,0.1,21.0,-0.2807982181270527,8.0,T8,0.0,1.0
+483,Puerto Rico Open,pga,2026,117,Danny Walker,0.0,0.2,28.0,-0.1066870023419598,61.0,T61,0.0,0.0
+483,Puerto Rico Open,pga,2026,118,Camilo Villegas,0.0,0.3,30.3,-0.2829493133529869,63.0,63,0.0,0.0
+483,Puerto Rico Open,pga,2026,119,Alejandro Tosti,0.0,0.0,14.5,-0.2318399632674874,,CUT,,
+483,Puerto Rico Open,pga,2026,120,Aaron Wise,0.0,0.1,23.4,-0.0111101294296916,,CUT,,
+10,Cognizant Classic,pga,2026,1,Ryan Gerard,21.81,71.8,95.6,0.373161189639879,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,2,Shane Lowry,20.29,70.3,95.4,0.4386051299204571,2.0,T2,0.0,1.0
+10,Cognizant Classic,pga,2026,3,Adam Hadwin,6.56,44.3,88.3,0.2354803642225289,,CUT,,
+10,Cognizant Classic,pga,2026,4,Kevin Yu,5.48,40.9,87.6,0.3927929306165801,,CUT,,
+10,Cognizant Classic,pga,2026,5,Chris Kirk,4.08,34.6,84.8,0.0803542308074211,,CUT,,
+10,Cognizant Classic,pga,2026,6,Keith Mitchell,3.61,32.4,83.6,0.3134588568637543,6.0,T6,0.0,1.0
+10,Cognizant Classic,pga,2026,7,Daniel Berger,3.19,30.5,83.1,0.2590237648978524,32.0,T32,0.0,0.0
+10,Cognizant Classic,pga,2026,8,Andrew Putnam,2.22,25.2,80.3,0.0622564858011862,,CUT,,
+10,Cognizant Classic,pga,2026,9,Michael Thorbjornsen,2.13,23.8,79.1,-0.0165010213342098,,CUT,,
+10,Cognizant Classic,pga,2026,10,Christiaan Bezuidenhout,1.46,19.4,76.0,0.0989590994227898,37.0,T37,0.0,0.0
+10,Cognizant Classic,pga,2026,11,Brooks Koepka,1.45,19.8,75.9,0.2336714017857956,9.0,T9,0.0,1.0
+10,Cognizant Classic,pga,2026,12,Nicolai Hojgaard,1.25,17.4,73.9,0.0180086746236,6.0,T6,0.0,1.0
+10,Cognizant Classic,pga,2026,13,Alex Smalley,1.19,16.0,72.9,0.4481190683638898,52.0,T52,0.0,0.0
+10,Cognizant Classic,pga,2026,14,Sam Ryder,1.14,17.2,74.2,0.0589901687786348,,CUT,,
+10,Cognizant Classic,pga,2026,15,Rico Hoey,1.05,15.8,73.0,0.345874512760288,,CUT,,
+10,Cognizant Classic,pga,2026,16,Aaron Wise,0.92,14.9,71.9,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,17,Luke Clanton,0.9,14.5,71.2,0.0988686480484425,,CUT,,
+10,Cognizant Classic,pga,2026,18,Jesper Svensson,0.89,14.7,71.7,-0.1048101843168934,,CUT,,
+10,Cognizant Classic,pga,2026,19,Jimmy Stanger,0.84,13.3,70.0,0.0558267078727933,32.0,T32,0.0,0.0
+10,Cognizant Classic,pga,2026,20,Billy Horschel,0.83,15.2,71.9,0.0752519679339908,62.0,62,0.0,0.0
+10,Cognizant Classic,pga,2026,21,Stephan Jaeger,0.81,12.9,69.4,0.0527799298295002,,CUT,,
+10,Cognizant Classic,pga,2026,22,Rasmus Hojgaard,0.76,13.9,70.8,0.152305688809942,9.0,T9,0.0,1.0
+10,Cognizant Classic,pga,2026,23,Doug Ghim,0.76,12.3,68.4,0.2276891508579715,,CUT,,
+10,Cognizant Classic,pga,2026,24,Chan Kim,0.75,12.9,69.9,0.0566714555313964,56.0,T56,0.0,0.0
+10,Cognizant Classic,pga,2026,25,Garrick Higgo,0.72,12.7,69.3,-0.198015401359466,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,26,Davis Thompson,0.7,13.5,70.2,0.4716733823181087,60.0,T60,0.0,0.0
+10,Cognizant Classic,pga,2026,27,Rasmus Neergaard-Petersen,0.63,11.9,68.4,0.1764877832141901,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,28,Beau Hossler,0.61,11.6,67.5,-0.1003910418514291,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,29,Lee Hodges,0.58,10.5,66.8,0.0652109552980541,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,30,Max McGreevy,0.57,10.5,66.4,0.101898452861907,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,31,Austin Eckroat,0.57,11.9,68.5,0.2917657852116928,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,32,Will Zalatoris,0.5,10.3,65.4,0.1988515482141901,,,,
+10,Cognizant Classic,pga,2026,33,Vince Whaley,0.46,9.0,64.0,-0.1454488730776085,,CUT,,
+10,Cognizant Classic,pga,2026,34,Kristoffer Reitan,0.44,8.9,64.1,0.0478467102141901,17.0,T17,0.0,0.0
+10,Cognizant Classic,pga,2026,35,Jordan Smith,0.38,8.7,63.8,0.1328472462141901,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,36,John Parry,0.38,9.1,64.2,0.1589979522141901,63.0,T63,0.0,0.0
+10,Cognizant Classic,pga,2026,37,Kevin Roy,0.36,8.5,62.9,0.2489382617946029,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,38,Haotong Li,0.35,8.2,62.7,0.1357097312141901,32.0,T32,0.0,0.0
+10,Cognizant Classic,pga,2026,39,Karl Vilips,0.33,7.0,60.7,0.0895848251482824,,CUT,,
+10,Cognizant Classic,pga,2026,40,Brice Garnett,0.33,6.5,58.8,0.0409972119986939,,CUT,,
+10,Cognizant Classic,pga,2026,41,Joel Dahmen,0.3,6.2,58.4,0.2474593494652004,9.0,T9,0.0,1.0
+10,Cognizant Classic,pga,2026,42,Isaiah Salinda,0.29,7.3,60.9,0.28272583213856,,CUT,,
+10,Cognizant Classic,pga,2026,43,Eric Cole,0.28,7.1,59.9,0.1237269036861178,37.0,T37,0.0,0.0
+10,Cognizant Classic,pga,2026,44,Ricky Castillo,0.26,6.8,59.4,0.2729383639219603,5.0,5,0.0,1.0
+10,Cognizant Classic,pga,2026,45,Thorbjorn Olesen,0.26,6.2,59.0,0.3816602531410409,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,46,Sami Valimaki,0.24,6.4,59.2,0.2654934451447244,,CUT,,
+10,Cognizant Classic,pga,2026,47,Max Homa,0.23,6.1,58.4,0.0816997622141901,13.0,T13,0.0,0.0
+10,Cognizant Classic,pga,2026,48,Matt Wallace,0.23,6.2,58.5,0.067658158471543,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,49,Gary Woodland,0.22,5.7,57.3,0.0575965807885117,,CUT,,
+10,Cognizant Classic,pga,2026,50,Mackenzie Hughes,0.22,6.1,57.8,-0.1914990930104272,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,51,Matthieu Pavon,0.2,5.8,57.8,-0.0836655487419247,17.0,T17,0.0,0.0
+10,Cognizant Classic,pga,2026,52,Emiliano Grillo,0.19,4.8,54.6,-0.0836380542940242,56.0,T56,0.0,0.0
+10,Cognizant Classic,pga,2026,53,Takumi Kanaya,0.19,5.1,55.8,-0.0278388187858098,17.0,T17,0.0,0.0
+10,Cognizant Classic,pga,2026,54,Michael Brennan,0.17,3.9,52.5,0.0558267078727933,52.0,T52,0.0,0.0
+10,Cognizant Classic,pga,2026,55,Dylan Wu,0.16,4.7,54.8,0.0770619804887059,66.0,66,0.0,0.0
+10,Cognizant Classic,pga,2026,56,David Ford,0.16,4.1,53.3,0.0316753162141901,32.0,T32,0.0,0.0
+10,Cognizant Classic,pga,2026,57,Jeffrey Kang,0.15,3.8,52.8,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,58,Christo Lamprecht,0.15,4.0,52.3,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,59,Kensei Hirata,0.15,4.0,52.3,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,60,Sudarshan Yellamaraju,0.14,4.0,53.1,0.0558267078727933,17.0,T17,0.0,0.0
+10,Cognizant Classic,pga,2026,61,Neal Shipley,0.14,4.1,52.6,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,62,A.J. Ewart,0.14,4.0,52.9,0.0558267078727933,13.0,T13,0.0,0.0
+10,Cognizant Classic,pga,2026,63,Steven Fisk,0.14,3.8,51.8,0.089307333016292,37.0,T37,0.0,0.0
+10,Cognizant Classic,pga,2026,64,John VanDerLaan,0.13,4.0,52.5,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,65,Adam Svensson,0.13,3.9,52.7,0.0398071539295615,,CUT,,
+10,Cognizant Classic,pga,2026,66,David Lipsky,0.13,5.0,55.9,0.1002023526775726,,CUT,,
+10,Cognizant Classic,pga,2026,67,Kris Ventura,0.13,4.2,53.1,0.0936083373929643,,CUT,,
+10,Cognizant Classic,pga,2026,68,Nico Echavarria,0.13,4.6,54.5,-0.1273419119999453,1.0,1,1.0,1.0
+10,Cognizant Classic,pga,2026,69,Chandler Blanchet,0.12,3.9,52.2,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,70,Adrien Saddier,0.12,4.0,52.8,0.0503463382141901,56.0,T56,0.0,0.0
+10,Cognizant Classic,pga,2026,71,Zach Bauchou,0.12,4.0,52.6,0.0558267078727933,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,72,Mark Hubbard,0.12,3.2,49.5,-0.1420592447715191,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,73,Dan Brown,0.12,4.6,54.5,0.0549819602141901,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,74,Aaron Rai,0.12,3.5,51.1,0.1769008180943615,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,75,Johnny Keefer,0.11,4.1,52.8,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,76,Pontus Nyholm,0.11,4.0,52.8,0.0558267078727933,13.0,T13,0.0,0.0
+10,Cognizant Classic,pga,2026,77,Jackson Suber,0.11,3.8,52.5,0.108720220630244,63.0,T63,0.0,0.0
+10,Cognizant Classic,pga,2026,78,Blades Brown,0.11,4.0,52.7,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,79,Keita Nakajima,0.11,3.2,49.8,0.0238032002141901,,WD,,
+10,Cognizant Classic,pga,2026,80,Davis Chatfield,0.1,3.9,52.3,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,81,Matti Schmid,0.09,3.4,49.9,-0.0730720559079881,9.0,T9,0.0,1.0
+10,Cognizant Classic,pga,2026,82,Carson Young,0.08,2.7,47.1,0.2766185161904426,52.0,T52,0.0,0.0
+10,Cognizant Classic,pga,2026,83,Mac Meissner,0.08,3.0,48.8,-0.1411381848021529,,CUT,,
+10,Cognizant Classic,pga,2026,84,Seamus Power,0.08,2.4,45.8,0.0577681218072144,52.0,T52,0.0,0.0
+10,Cognizant Classic,pga,2026,85,Tom Kim,0.06,3.2,50.2,0.5805021826581659,59.0,59,0.0,0.0
+10,Cognizant Classic,pga,2026,86,Matt Kuchar,0.06,1.7,41.6,-0.3471924592606525,,CUT,,
+10,Cognizant Classic,pga,2026,87,Erik Van Rooyen,0.06,2.8,47.6,-0.0021035469872245,,CUT,,
+10,Cognizant Classic,pga,2026,88,Joe Highsmith,0.06,2.5,46.4,-0.0249008363066805,67.0,67,0.0,0.0
+10,Cognizant Classic,pga,2026,89,Taylor Moore,0.05,2.3,45.8,0.2232591033697484,2.0,T2,0.0,1.0
+10,Cognizant Classic,pga,2026,90,Chad Ramey,0.05,2.4,46.0,-0.1309898066822596,17.0,T17,0.0,0.0
+10,Cognizant Classic,pga,2026,91,Davis Riley,0.05,2.2,45.4,-0.1561410531787271,,CUT,,
+10,Cognizant Classic,pga,2026,92,Cam Davis,0.04,1.6,41.6,-0.144408666895991,,CUT,,
+10,Cognizant Classic,pga,2026,93,Charley Hoffman,0.03,1.5,40.0,-0.183045125357242,,CUT,,
+10,Cognizant Classic,pga,2026,94,Kevin Streelman,0.03,1.2,38.3,0.0281369860572215,32.0,T32,0.0,0.0
+10,Cognizant Classic,pga,2026,95,Austin Smotherman,0.02,1.1,37.0,0.0558267078727933,2.0,T2,0.0,1.0
+10,Cognizant Classic,pga,2026,96,S.H. Kim,0.02,1.4,40.0,-0.1322418974007858,,CUT,,
+10,Cognizant Classic,pga,2026,97,K.H. Lee,0.02,1.2,37.5,-0.1586631877786651,,CUT,,
+10,Cognizant Classic,pga,2026,98,Nick Dunlap,0.02,1.3,38.6,-0.1064082910441857,,CUT,,
+10,Cognizant Classic,pga,2026,99,Hank Lebioda,0.02,1.1,36.3,0.0558267078727933,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,100,Patrick Fishburn,0.02,0.7,31.6,0.185361756031935,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,101,Webb Simpson,0.02,0.8,32.8,0.254396342946916,,CUT,,
+10,Cognizant Classic,pga,2026,102,Adam Schenk,0.02,0.9,36.1,-0.1284405476062796,60.0,T60,0.0,0.0
+10,Cognizant Classic,pga,2026,103,Marcelo Rozo,0.02,0.8,33.8,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,104,Justin Lower,0.01,1.0,35.1,-0.2118097916896431,,CUT,,
+10,Cognizant Classic,pga,2026,105,Danny Willett,0.01,0.7,33.4,-0.343043422114901,,CUT,,
+10,Cognizant Classic,pga,2026,106,Brandt Snedeker,0.01,0.3,26.9,-0.1112424911751917,,CUT,,
+10,Cognizant Classic,pga,2026,107,Lanto Griffin,0.01,1.5,39.8,-0.0378661567858098,,CUT,,
+10,Cognizant Classic,pga,2026,108,Danny Walker,0.01,0.7,32.7,-0.1340047597858098,40.0,T40,0.0,0.0
+10,Cognizant Classic,pga,2026,109,Gordon Sargent,0.01,0.4,27.0,-0.2065729207858098,,CUT,,
+10,Cognizant Classic,pga,2026,110,Adrien Dumont De Chassart,0.01,0.3,26.8,0.2577221622433771,23.0,T23,0.0,0.0
+10,Cognizant Classic,pga,2026,111,William Mouw,0.0,0.4,28.4,-0.2033105632089547,6.0,T6,0.0,1.0
+10,Cognizant Classic,pga,2026,112,Harry Higgs,0.0,0.1,19.0,-0.1721572015253424,,CUT,,
+10,Cognizant Classic,pga,2026,113,Justin Hicks,0.0,0.0,11.6,0.0558267078727933,,CUT,,
+10,Cognizant Classic,pga,2026,114,Chandler Phillips,0.0,0.9,35.0,-0.4954935484259874,63.0,T63,0.0,0.0
+10,Cognizant Classic,pga,2026,115,Zecheng Dou,0.0,0.1,18.4,0.0558267078727933,17.0,T17,0.0,0.0
+10,Cognizant Classic,pga,2026,116,Patton Kizzire,0.0,0.3,26.4,-0.183012266675023,13.0,T13,0.0,0.0
+10,Cognizant Classic,pga,2026,117,Frankie Capan III,0.0,0.0,8.4,-0.4512504302672147,,CUT,,
+10,Cognizant Classic,pga,2026,118,Rafael Campos,0.0,0.1,18.8,-0.2120942812306072,,CUT,,
+10,Cognizant Classic,pga,2026,119,Peter Malnati,0.0,0.2,22.3,-0.3247487608159005,,CUT,,
+10,Cognizant Classic,pga,2026,120,Brendon Todd,0.0,0.0,4.2,-0.6502953319998727,,CUT,,
+10,Cognizant Classic,pga,2026,121,Alejandro Tosti,0.0,0.0,7.6,-0.3873046444903746,,CUT,,
+10,Cognizant Classic,pga,2026,122,Paul Waring,0.0,0.1,21.3,-0.1704560730386841,,CUT,,
+10,Cognizant Classic,pga,2026,123,Camilo Villegas,0.0,0.0,16.5,-0.2771978461810496,,CUT,,
+7,The Genesis Invitational,pga,2026,1,Scottie Scheffler,42.35,90.5,99.9,0.6030219676249333,12.0,T12,0.0,0.0
+7,The Genesis Invitational,pga,2026,2,Patrick Cantlay,6.98,54.4,99.4,0.3822528363704911,37.0,T37,0.0,0.0
+7,The Genesis Invitational,pga,2026,3,Xander Schauffele,5.57,50.7,99.2,0.3251892056829945,7.0,T7,0.0,1.0
+7,The Genesis Invitational,pga,2026,4,Tommy Fleetwood,5.22,49.0,99.1,0.1876907908205341,7.0,T7,0.0,1.0
+7,The Genesis Invitational,pga,2026,5,Maverick McNealy,5.0,47.5,99.1,0.1735585425722651,,CUT,,
+7,The Genesis Invitational,pga,2026,6,Ludvig Aberg,4.02,43.1,98.8,0.3823352786341605,20.0,T20,0.0,0.0
+7,The Genesis Invitational,pga,2026,7,Harris English,3.94,42.7,98.8,0.1812544517908723,22.0,T22,0.0,0.0
+7,The Genesis Invitational,pga,2026,8,Collin Morikawa,3.04,37.9,98.5,0.2354859383525149,7.0,T7,0.0,1.0
+7,The Genesis Invitational,pga,2026,9,Viktor Hovland,2.86,35.3,98.4,0.4240114972426747,41.0,T41,0.0,0.0
+7,The Genesis Invitational,pga,2026,10,Cameron Young,2.74,37.2,98.3,0.5371500998693357,7.0,T7,0.0,1.0
+7,The Genesis Invitational,pga,2026,11,Akshay Bhatia,1.74,28.6,97.7,0.1478735266956307,16.0,T16,0.0,0.0
+7,The Genesis Invitational,pga,2026,12,Daniel Berger,1.66,26.8,97.5,0.1398571394305405,,CUT,,
+7,The Genesis Invitational,pga,2026,13,Rory McIlroy,1.6,27.1,97.5,0.5924207639605019,2.0,T2,0.0,1.0
+7,The Genesis Invitational,pga,2026,14,Jake Knapp,1.38,24.8,97.1,0.3067738116502557,6.0,6,0.0,1.0
+7,The Genesis Invitational,pga,2026,15,Hideki Matsuyama,1.33,25.3,97.5,0.1398284536424784,28.0,T28,0.0,0.0
+7,The Genesis Invitational,pga,2026,16,Max Homa,1.05,22.2,96.9,0.0665737305025311,37.0,T37,0.0,0.0
+7,The Genesis Invitational,pga,2026,17,Michael Kim,0.59,14.2,95.0,0.1119704911030161,,CUT,,
+7,The Genesis Invitational,pga,2026,18,Sam Burns,0.53,13.9,94.8,0.2404829550548901,,CUT,,
+7,The Genesis Invitational,pga,2026,19,Russell Henley,0.51,15.9,95.5,0.0583471353639769,,CUT,,
+7,The Genesis Invitational,pga,2026,20,Robert MacIntyre,0.47,13.2,94.9,0.2883393604845497,20.0,T20,0.0,0.0
+7,The Genesis Invitational,pga,2026,21,Chris Gotterup,0.47,12.7,94.8,0.2450510912673174,,CUT,,
+7,The Genesis Invitational,pga,2026,22,Jason Day,0.44,14.2,94.9,0.0118542537781746,,CUT,,
+7,The Genesis Invitational,pga,2026,23,Shane Lowry,0.44,12.5,94.5,0.2564047368267396,24.0,T24,0.0,0.0
+7,The Genesis Invitational,pga,2026,24,Tony Finau,0.42,12.8,94.6,0.0585675907653291,28.0,T28,0.0,0.0
+7,The Genesis Invitational,pga,2026,25,Rickie Fowler,0.39,11.6,94.3,0.1636324685597734,28.0,T28,0.0,0.0
+7,The Genesis Invitational,pga,2026,26,Andrew Novak,0.37,11.6,94.0,-0.1054348575133916,47.0,T47,0.0,0.0
+7,The Genesis Invitational,pga,2026,27,Nick Taylor,0.36,12.2,94.3,0.1194015884664936,28.0,T28,0.0,0.0
+7,The Genesis Invitational,pga,2026,28,Sahith Theegala,0.35,12.4,94.4,0.0601698883198828,22.0,T22,0.0,0.0
+7,The Genesis Invitational,pga,2026,29,Ryan Gerard,0.31,10.1,93.5,0.2235948632673174,28.0,T28,0.0,0.0
+7,The Genesis Invitational,pga,2026,30,Adam Scott,0.26,11.9,94.2,0.1560621861552287,4.0,4,0.0,1.0
+7,The Genesis Invitational,pga,2026,31,Sam Stevens,0.23,9.1,93.0,0.294455303042498,16.0,T16,0.0,0.0
+7,The Genesis Invitational,pga,2026,32,Denny McCarthy,0.22,8.6,92.8,-0.1387918908077657,47.0,T47,0.0,0.0
+7,The Genesis Invitational,pga,2026,33,Alex Noren,0.22,9.0,92.9,-0.0380123516423588,12.0,T12,0.0,0.0
+7,The Genesis Invitational,pga,2026,34,Pierceson Coody,0.21,8.6,92.2,0.1956486732673174,16.0,T16,0.0,0.0
+7,The Genesis Invitational,pga,2026,35,J.J. Spaun,0.21,7.4,91.5,0.122793882651195,,CUT,,
+7,The Genesis Invitational,pga,2026,36,Matt Fitzpatrick,0.19,8.8,92.6,0.1908593272995873,24.0,T24,0.0,0.0
+7,The Genesis Invitational,pga,2026,37,Ben Griffin,0.18,7.1,91.7,0.0927150529507237,41.0,T41,0.0,0.0
+7,The Genesis Invitational,pga,2026,38,Harry Hall,0.17,6.3,90.5,0.1477109192673174,,CUT,,
+7,The Genesis Invitational,pga,2026,39,Max Greyserman,0.17,7.6,91.8,0.2656835512868338,24.0,T24,0.0,0.0
+7,The Genesis Invitational,pga,2026,40,Si Woo Kim,0.17,6.3,90.8,0.3428002943125229,34.0,T34,0.0,0.0
+7,The Genesis Invitational,pga,2026,41,Patrick Rodgers,0.15,6.3,90.6,0.2380013612736456,34.0,T34,0.0,0.0
+7,The Genesis Invitational,pga,2026,42,J.T. Poston,0.14,6.4,90.8,0.071161555951491,,CUT,,
+7,The Genesis Invitational,pga,2026,43,Aaron Rai,0.13,6.3,90.9,0.1055473739208878,28.0,T28,0.0,0.0
+7,The Genesis Invitational,pga,2026,44,Corey Conners,0.12,4.8,89.3,0.1660120680654408,37.0,T37,0.0,0.0
+7,The Genesis Invitational,pga,2026,45,Jordan Spieth,0.11,5.9,90.6,0.1038299211522372,12.0,T12,0.0,0.0
+7,The Genesis Invitational,pga,2026,46,Rico Hoey,0.1,4.6,88.7,0.1443165512673174,,CUT,,
+7,The Genesis Invitational,pga,2026,47,Matt McCarty,0.09,6.2,90.7,0.1621782632673174,24.0,T24,0.0,0.0
+7,The Genesis Invitational,pga,2026,48,Jacob Bridgeman,0.08,5.0,89.2,0.1352571292673174,1.0,1,1.0,1.0
+7,The Genesis Invitational,pga,2026,49,Justin Rose,0.08,4.4,88.8,-0.1128285346766096,,CUT,,
+7,The Genesis Invitational,pga,2026,50,Wyndham Clark,0.08,4.4,88.5,0.1159711670453555,41.0,T41,0.0,0.0
+7,The Genesis Invitational,pga,2026,51,Sepp Straka,0.07,4.1,88.4,0.0395385638216162,50.0,T50,0.0,0.0
+7,The Genesis Invitational,pga,2026,52,Ryo Hisatsune,0.06,3.5,87.1,0.1038414612673174,45.0,T45,0.0,0.0
+7,The Genesis Invitational,pga,2026,53,Kurt Kitayama,0.05,3.4,86.9,0.0867692904161207,2.0,T2,0.0,1.0
+7,The Genesis Invitational,pga,2026,54,Garrick Higgo,0.05,3.7,87.8,0.1086378732673174,,CUT,,
+7,The Genesis Invitational,pga,2026,55,Tom Kim,0.05,2.5,84.2,0.0138992250521534,34.0,T34,0.0,0.0
+7,The Genesis Invitational,pga,2026,56,Keegan Bradley,0.04,3.3,86.6,0.1253032830085647,,CUT,,
+7,The Genesis Invitational,pga,2026,57,Marco Penge,0.04,3.4,86.6,0.1076985472673174,16.0,T16,0.0,0.0
+7,The Genesis Invitational,pga,2026,58,Sami Valimaki,0.04,2.4,84.3,0.0801044932673174,37.0,T37,0.0,0.0
+7,The Genesis Invitational,pga,2026,59,Bud Cauley,0.03,2.2,83.3,0.0580955352673174,,CUT,,
+7,The Genesis Invitational,pga,2026,60,Max McGreevy,0.02,2.1,83.3,-0.0131548211041098,,CUT,,
+7,The Genesis Invitational,pga,2026,61,Matti Schmid,0.02,1.4,79.5,0.0223181292673174,49.0,49,0.0,0.0
+7,The Genesis Invitational,pga,2026,62,Ryan Fox,0.02,2.3,83.7,0.0637962072673174,7.0,T7,0.0,1.0
+7,The Genesis Invitational,pga,2026,63,Brian Harman,0.01,1.3,79.7,-0.1129831559677309,50.0,T50,0.0,0.0
+7,The Genesis Invitational,pga,2026,64,Lucas Glover,0.01,1.2,79.0,0.0215408872027215,,CUT,,
+7,The Genesis Invitational,pga,2026,65,Nico Echavarria,0.01,2.1,83.3,0.0275424970548932,,CUT,,
+7,The Genesis Invitational,pga,2026,66,Aldrich Potgieter,0.01,0.8,75.8,-0.0083970567326826,5.0,5,0.0,1.0
+7,The Genesis Invitational,pga,2026,67,Taylor Pendrith,0.01,1.1,77.6,0.3892242065348117,45.0,T45,0.0,0.0
+7,The Genesis Invitational,pga,2026,68,Kevin Yu,0.01,0.9,76.5,-0.0577012478969116,,CUT,,
+7,The Genesis Invitational,pga,2026,69,Min Woo Lee,0.01,1.3,79.9,0.4227138254779359,12.0,T12,0.0,0.0
+7,The Genesis Invitational,pga,2026,70,Brian Campbell,0.0,0.3,67.0,-0.1030455427326825,,CUT,,
+7,The Genesis Invitational,pga,2026,71,Tom Hoge,0.0,0.6,74.5,-0.151360488284684,,CUT,,
+7,The Genesis Invitational,pga,2026,72,Jhonattan Vegas,0.0,0.4,70.0,0.2134555176213748,44.0,44,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,1,Scottie Scheffler,20.37,65.9,98.2,0.0,4.0,T4,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,2,Rory McIlroy,3.87,29.4,92.5,0.0,14.0,T14,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,3,Si Woo Kim,3.67,28.7,92.3,0.0,45.0,T45,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,4,Tommy Fleetwood,3.18,25.8,91.2,0.0,4.0,T4,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,5,Ben Griffin,2.72,24.4,90.7,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,6,Xander Schauffele,2.69,24.7,90.9,0.0,19.0,T19,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,7,Russell Henley,2.67,24.4,90.7,0.0,19.0,T19,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,8,Chris Gotterup,2.42,23.1,90.6,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,9,Robert MacIntyre,2.36,21.5,89.6,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,10,Cameron Young,2.14,21.8,89.8,0.0,55.0,T55,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,11,Matt Fitzpatrick,2.07,20.0,88.7,0.0,14.0,T14,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,12,J.J. Spaun,2.0,19.9,88.9,0.0,45.0,T45,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,13,Maverick McNealy,1.94,19.8,88.9,0.0,29.0,T29,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,14,Michael Thorbjornsen,1.93,19.4,88.7,0.0,78.0,T78,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,15,Hideki Matsuyama,1.9,20.2,89.4,0.0,8.0,T8,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,16,Ryan Gerard,1.89,18.8,88.6,0.0,45.0,T45,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,17,Harris English,1.87,19.2,88.3,0.0,24.0,T24,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,18,Viktor Hovland,1.84,19.6,88.7,0.0,58.0,T58,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,19,Jake Knapp,1.76,18.7,88.0,0.0,8.0,T8,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,20,Patrick Cantlay,1.73,18.5,88.5,0.0,14.0,T14,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,21,Justin Rose,1.61,17.0,87.7,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,22,Pierceson Coody,1.45,16.2,87.1,0.0,48.0,T48,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,23,Collin Morikawa,1.28,15.1,86.5,0.0,1.0,1,1.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,24,Ludvig Aberg,1.18,13.7,85.0,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,25,Rickie Fowler,1.18,15.4,86.3,0.0,19.0,T19,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,26,Sam Burns,1.16,15.0,86.4,0.0,6.0,T6,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,27,Kurt Kitayama,1.12,13.9,84.9,0.0,48.0,T48,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,28,Min Woo Lee,1.1,14.3,85.9,0.0,2.0,T2,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,29,Harry Hall,1.03,12.5,84.5,0.0,24.0,T24,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,30,Taylor Pendrith,1.0,13.0,84.7,0.0,34.0,T34,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,31,Matt McCarty,0.98,12.7,84.3,0.0,67.0,T67,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,32,Keegan Bradley,0.94,12.6,84.3,0.0,29.0,T29,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,33,Daniel Berger,0.92,11.7,84.1,0.0,75.0,T75,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,34,Shane Lowry,0.89,11.9,83.5,0.0,8.0,T8,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,35,J.T. Poston,0.88,12.7,84.1,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,36,Sam Stevens,0.87,12.0,84.1,0.0,55.0,T55,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,37,Sepp Straka,0.86,12.0,84.0,0.0,2.0,T2,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,38,Aaron Rai,0.84,11.3,82.7,0.0,73.0,T73,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,39,Jason Day,0.83,12.1,84.0,0.0,24.0,T24,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,40,Corey Conners,0.82,11.8,83.7,0.0,70.0,T70,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,41,Jacob Bridgeman,0.78,10.8,82.5,0.0,8.0,T8,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,42,Alex Noren,0.71,11.3,83.2,0.0,29.0,T29,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,43,Keith Mitchell,0.7,9.9,81.8,0.0,52.0,T52,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,44,Max McGreevy,0.69,10.5,82.6,0.0,29.0,T29,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,45,Nick Taylor,0.67,10.3,82.5,0.0,24.0,T24,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,46,Rico Hoey,0.61,9.5,81.4,0.0,67.0,T67,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,47,Sahith Theegala,0.56,9.4,81.2,0.0,60.0,T60,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,48,Garrick Higgo,0.55,8.6,80.7,0.0,60.0,T60,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,49,Akshay Bhatia,0.54,9.7,81.8,0.0,6.0,T6,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,50,Michael Kim,0.52,7.7,79.7,0.0,72.0,72,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,51,Patrick Rodgers,0.51,8.6,80.4,0.0,52.0,T52,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,52,Wyndham Clark,0.49,8.5,80.3,0.0,58.0,T58,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,53,Jordan Spieth,0.48,8.6,80.3,0.0,29.0,T29,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,54,Ryo Hisatsune,0.46,7.9,79.4,0.0,8.0,T8,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,55,Kevin Yu,0.45,7.8,79.0,0.0,70.0,T70,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,56,Marco Penge,0.42,7.2,78.6,0.0,64.0,T64,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,57,Max Greyserman,0.41,7.3,78.8,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,58,Denny McCarthy,0.41,7.9,79.7,0.0,55.0,T55,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,59,Stephan Jaeger,0.39,6.3,77.0,0.0,67.0,T67,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,60,Alex Smalley,0.38,7.2,78.9,0.0,19.0,T19,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,61,Andrew Novak,0.32,6.6,77.0,0.0,48.0,T48,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,62,Chris Kirk,0.31,5.5,74.9,0.0,52.0,T52,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,63,Lucas Glover,0.3,5.1,75.0,0.0,64.0,T64,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,64,Emiliano Grillo,0.28,5.3,75.1,0.0,64.0,T64,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,65,Sami Valimaki,0.26,6.2,76.5,0.0,34.0,T34,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,66,Ryan Fox,0.25,5.3,75.0,0.0,24.0,T24,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,67,Bud Cauley,0.23,4.9,74.5,0.0,37.0,T37,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,68,Mackenzie Hughes,0.22,4.8,73.7,0.0,34.0,T34,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,69,Nico Echavarria,0.21,4.4,73.1,0.0,8.0,T8,0.0,1.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,70,Brian Harman,0.16,4.5,73.5,0.0,19.0,T19,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,71,Steven Fisk,0.15,3.6,71.1,0.0,60.0,T60,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,72,Matti Schmid,0.14,3.5,70.4,0.0,73.0,T73,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,73,Tony Finau,0.13,3.3,69.7,0.0,18.0,18,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,74,Tom Hoge,0.07,2.3,65.8,0.0,14.0,T14,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,75,Aldrich Potgieter,0.06,2.0,65.0,0.0,60.0,T60,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,76,Billy Horschel,0.06,2.3,66.2,0.0,48.0,T48,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,77,Jhonattan Vegas,0.05,1.7,62.7,0.0,78.0,T78,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,78,Adam Schenk,0.05,1.1,58.0,0.0,77.0,77,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,79,Brian Campbell,0.01,0.9,55.8,0.0,78.0,T78,0.0,0.0
+5,AT&T Pebble Beach Pro-Am,pga,2026,80,Joe Highsmith,0.01,1.0,56.0,0.0,75.0,T75,0.0,0.0
+3,WM Phoenix Open,pga,2026,1,Scottie Scheffler,69.15,99.2,99.9,0.5619854968886075,3.0,T3,0.0,1.0
+3,WM Phoenix Open,pga,2026,2,Xander Schauffele,15.28,88.7,99.2,0.6516197660822765,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,3,Brooks Koepka,3.06,61.7,95.9,0.2766948002011375,,CUT,,
+3,WM Phoenix Open,pga,2026,4,Rasmus Hojgaard,2.97,60.0,95.5,0.5840937458579754,24.0,T24,0.0,0.0
+3,WM Phoenix Open,pga,2026,5,Jordan Spieth,1.2,43.3,92.3,0.0140643265073678,,CUT,,
+3,WM Phoenix Open,pga,2026,6,Si Woo Kim,1.1,41.8,92.2,0.3691239495386504,3.0,T3,0.0,1.0
+3,WM Phoenix Open,pga,2026,7,Sam Burns,1.08,41.0,91.4,0.121924994480865,,CUT,,
+3,WM Phoenix Open,pga,2026,8,Maverick McNealy,0.72,36.4,90.4,0.0100946341919104,13.0,T13,0.0,0.0
+3,WM Phoenix Open,pga,2026,9,Cameron Young,0.68,35.1,89.3,0.457492825183287,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,10,Hideki Matsuyama,0.67,35.1,89.6,0.1565394420416585,2.0,2,0.0,1.0
+3,WM Phoenix Open,pga,2026,11,Sahith Theegala,0.59,32.4,88.9,0.1037287569338955,18.0,T18,0.0,0.0
+3,WM Phoenix Open,pga,2026,12,Nick Taylor,0.51,29.5,87.8,0.1016639414090246,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,13,Matt Fitzpatrick,0.49,29.5,87.8,0.1677600896019525,9.0,9,0.0,1.0
+3,WM Phoenix Open,pga,2026,14,Ben Griffin,0.43,28.3,87.0,0.308616490139288,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,15,Kurt Kitayama,0.33,23.9,85.0,0.0774274266018894,24.0,T24,0.0,0.0
+3,WM Phoenix Open,pga,2026,16,Alex Smalley,0.2,20.2,83.1,0.1390934175319231,35.0,T35,0.0,0.0
+3,WM Phoenix Open,pga,2026,17,J.T. Poston,0.15,14.8,78.9,0.1520133956697834,35.0,T35,0.0,0.0
+3,WM Phoenix Open,pga,2026,18,Keith Mitchell,0.12,12.6,76.6,0.2822974545869534,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,19,Sam Stevens,0.12,12.8,76.8,0.1570099636570381,35.0,T35,0.0,0.0
+3,WM Phoenix Open,pga,2026,20,Andrew Novak,0.1,11.9,75.9,-0.121075657496427,,CUT,,
+3,WM Phoenix Open,pga,2026,21,Daniel Berger,0.1,13.8,77.9,0.1280118436437203,16.0,T16,0.0,0.0
+3,WM Phoenix Open,pga,2026,22,Jake Knapp,0.09,13.5,78.0,-0.3574036670212678,8.0,8,0.0,1.0
+3,WM Phoenix Open,pga,2026,23,Nicolai Hojgaard,0.08,12.1,76.1,-0.0838408664013637,3.0,T3,0.0,1.0
+3,WM Phoenix Open,pga,2026,24,Min Woo Lee,0.08,11.4,75.1,0.2243100088152003,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,25,Wyndham Clark,0.07,11.5,75.6,-0.1059096374103341,35.0,T35,0.0,0.0
+3,WM Phoenix Open,pga,2026,26,Garrick Higgo,0.06,9.4,72.7,0.0906358821162554,,CUT,,
+3,WM Phoenix Open,pga,2026,27,Christiaan Bezuidenhout,0.06,12.3,76.5,-0.3443442997540643,,CUT,,
+3,WM Phoenix Open,pga,2026,28,Harry Hall,0.04,6.7,68.4,-0.1911866506833968,,CUT,,
+3,WM Phoenix Open,pga,2026,29,Brian Harman,0.04,6.7,67.8,0.2147842158819649,,CUT,,
+3,WM Phoenix Open,pga,2026,30,Pierceson Coody,0.04,5.0,64.9,0.0755776177308811,10.0,T10,0.0,1.0
+3,WM Phoenix Open,pga,2026,31,Michael Kim,0.03,6.9,68.4,0.1009030904285869,18.0,T18,0.0,0.0
+3,WM Phoenix Open,pga,2026,32,Corey Conners,0.03,6.8,69.2,0.3639335101514555,,CUT,,
+3,WM Phoenix Open,pga,2026,33,S.H. Kim,0.02,6.4,67.6,-0.0195529369963613,54.0,T54,0.0,0.0
+3,WM Phoenix Open,pga,2026,34,Patrick Rodgers,0.02,2.4,55.8,0.2955193012840478,60.0,T60,0.0,0.0
+3,WM Phoenix Open,pga,2026,35,Davis Thompson,0.02,8.9,72.2,0.1829240705910338,64.0,T64,0.0,0.0
+3,WM Phoenix Open,pga,2026,36,Rickie Fowler,0.02,3.9,60.4,0.0859840787101426,18.0,T18,0.0,0.0
+3,WM Phoenix Open,pga,2026,37,Viktor Hovland,0.02,4.5,64.0,0.0990781215424406,10.0,T10,0.0,1.0
+3,WM Phoenix Open,pga,2026,38,Bud Cauley,0.02,3.7,59.8,-0.191974871521554,68.0,T68,0.0,0.0
+3,WM Phoenix Open,pga,2026,39,Chris Gotterup,0.01,2.6,55.5,-0.2596263635793377,1.0,1,1.0,1.0
+3,WM Phoenix Open,pga,2026,40,Thorbjorn Olesen,0.01,3.5,60.3,0.0661152437308811,,CUT,,
+3,WM Phoenix Open,pga,2026,41,Max Greyserman,0.01,3.4,59.4,-0.0806229129123969,,CUT,,
+3,WM Phoenix Open,pga,2026,42,John Parry,0.01,2.8,57.8,0.0589680997308811,35.0,T35,0.0,0.0
+3,WM Phoenix Open,pga,2026,43,Sepp Straka,0.01,2.3,54.4,0.0526766713258999,18.0,T18,0.0,0.0
+3,WM Phoenix Open,pga,2026,44,Tony Finau,0.01,4.4,62.3,-0.0252720104825935,,CUT,,
+3,WM Phoenix Open,pga,2026,45,Tom Kim,0.01,4.1,62.0,-0.1608367879347761,35.0,T35,0.0,0.0
+3,WM Phoenix Open,pga,2026,46,Harris English,0.01,3.9,60.9,0.0356087320027383,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,47,Jordan Smith,0.01,2.0,52.8,0.0309316277308811,16.0,T16,0.0,0.0
+3,WM Phoenix Open,pga,2026,48,Kristoffer Reitan,0.01,2.5,56.1,-0.0087511362691189,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,49,Haotong Li,0.01,3.2,59.0,0.0387789847308811,,CUT,,
+3,WM Phoenix Open,pga,2026,50,Collin Morikawa,0.01,2.9,58.0,0.1405411352108245,54.0,T54,0.0,0.0
+3,WM Phoenix Open,pga,2026,51,Rasmus Neergaard-Petersen,0.01,3.8,61.0,0.0651017337308811,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,52,Takumi Kanaya,0.01,1.4,50.0,0.0235223187308811,60.0,T60,0.0,0.0
+3,WM Phoenix Open,pga,2026,53,Ryo Hisatsune,0.01,1.1,46.8,0.2259255020620151,10.0,T10,0.0,1.0
+3,WM Phoenix Open,pga,2026,54,Chandler Blanchet,0.01,1.0,46.1,0.0371938583668097,,CUT,,
+3,WM Phoenix Open,pga,2026,55,Zach Bauchou,0.01,1.0,45.8,0.0371938583668097,48.0,T48,0.0,0.0
+3,WM Phoenix Open,pga,2026,56,Johnny Keefer,0.0,1.1,45.3,0.0371938583668097,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,57,Ryan Fox,0.0,1.2,46.1,-0.1129137687297991,24.0,T24,0.0,0.0
+3,WM Phoenix Open,pga,2026,58,Kensei Hirata,0.0,1.0,46.1,0.0371938583668097,54.0,T54,0.0,0.0
+3,WM Phoenix Open,pga,2026,59,Max Homa,0.0,3.2,59.1,0.1420986076251557,66.0,T66,0.0,0.0
+3,WM Phoenix Open,pga,2026,60,Karl Vilips,0.0,0.8,42.1,-0.0146147272691189,,CUT,,
+3,WM Phoenix Open,pga,2026,61,Kevin Roy,0.0,0.9,43.9,-0.0126681982691189,13.0,T13,0.0,0.0
+3,WM Phoenix Open,pga,2026,62,Christo Lamprecht,0.0,1.1,46.0,0.0371938583668097,48.0,T48,0.0,0.0
+3,WM Phoenix Open,pga,2026,63,S.T. Lee,0.0,1.0,46.0,0.0371938583668097,48.0,T48,0.0,0.0
+3,WM Phoenix Open,pga,2026,64,William Mouw,0.0,1.3,47.9,-0.0021480612691189,,CUT,,
+3,WM Phoenix Open,pga,2026,65,Neal Shipley,0.0,1.0,46.5,0.0371938583668097,68.0,T68,0.0,0.0
+3,WM Phoenix Open,pga,2026,66,J.J. Spaun,0.0,2.3,55.5,-0.1901738535685331,,,,
+3,WM Phoenix Open,pga,2026,67,Adrien Saddier,0.0,0.8,44.3,0.001507761730881,60.0,T60,0.0,0.0
+3,WM Phoenix Open,pga,2026,68,A.J. Ewart,0.0,1.1,45.7,0.0371938583668097,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,69,Michael Brennan,0.0,1.0,46.0,0.0371938583668097,48.0,T48,0.0,0.0
+3,WM Phoenix Open,pga,2026,70,Davis Chatfield,0.0,1.1,45.6,0.0371938583668097,,CUT,,
+3,WM Phoenix Open,pga,2026,71,Zecheng Dou,0.0,0.9,46.1,0.0371938583668097,13.0,T13,0.0,0.0
+3,WM Phoenix Open,pga,2026,72,Mac Meissner,0.0,1.4,48.5,0.2306804493951595,18.0,T18,0.0,0.0
+3,WM Phoenix Open,pga,2026,73,Pontus Nyholm,0.0,1.1,45.7,0.0371938583668097,,CUT,,
+3,WM Phoenix Open,pga,2026,74,Marco Penge,0.0,2.9,58.0,0.029311899730881,,CUT,,
+3,WM Phoenix Open,pga,2026,75,Matt McCarty,0.0,0.5,37.9,0.2913702002259992,,CUT,,
+3,WM Phoenix Open,pga,2026,76,Brian Campbell,0.0,0.1,26.7,-0.0737540552691189,54.0,T54,0.0,0.0
+3,WM Phoenix Open,pga,2026,77,Joel Dahmen,0.0,0.8,42.2,0.0903421985696275,,CUT,,
+3,WM Phoenix Open,pga,2026,78,Rafael Campos,0.0,0.0,12.6,-0.1925948595368352,,CUT,,
+3,WM Phoenix Open,pga,2026,79,Eric Cole,0.0,0.2,32.7,-0.073323338604408,,CUT,,
+3,WM Phoenix Open,pga,2026,80,Thomas Avant,0.0,1.0,45.9,0.0371938583668097,,CUT,,
+3,WM Phoenix Open,pga,2026,81,Dan Brown,0.0,1.4,49.6,-0.0084100092691189,,CUT,,
+3,WM Phoenix Open,pga,2026,82,Jacob Bridgeman,0.0,0.8,41.5,0.0590605198926752,18.0,T18,0.0,0.0
+3,WM Phoenix Open,pga,2026,83,Akshay Bhatia,0.0,1.2,47.8,0.1975970563301609,3.0,T3,0.0,1.0
+3,WM Phoenix Open,pga,2026,84,Emilio Gonzalez,0.0,1.1,45.5,0.0371938583668097,,WD,,
+3,WM Phoenix Open,pga,2026,85,Emiliano Grillo,0.0,0.9,44.4,0.1769953181463811,,CUT,,
+3,WM Phoenix Open,pga,2026,86,Joe Highsmith,0.0,0.0,17.8,0.0672015236605442,54.0,T54,0.0,0.0
+3,WM Phoenix Open,pga,2026,87,Brice Garnett,0.0,0.1,27.6,0.0719602430239025,,CUT,,
+3,WM Phoenix Open,pga,2026,88,Nico Echavarria,0.0,0.1,24.4,0.0244526213575741,,CUT,,
+3,WM Phoenix Open,pga,2026,89,Adrien Dumont De Chassart,0.0,0.6,38.4,0.3188395413447606,,CUT,,
+3,WM Phoenix Open,pga,2026,90,Cam Davis,0.0,0.0,15.0,-0.0144956084431295,73.0,73,0.0,0.0
+3,WM Phoenix Open,pga,2026,91,Austin Eckroat,0.0,0.2,27.2,0.0263769558106927,,CUT,,
+3,WM Phoenix Open,pga,2026,92,Stephan Jaeger,0.0,0.2,31.0,-0.4312314547397733,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,93,Mackenzie Hughes,0.0,1.1,46.6,-0.1996083861657408,28.0,T28,0.0,0.0
+3,WM Phoenix Open,pga,2026,94,Jeffrey Kang,0.0,0.0,14.9,0.0371938583668097,,CUT,,
+3,WM Phoenix Open,pga,2026,95,Mark Hubbard,0.0,0.2,30.3,-0.0780593489276007,,CUT,,
+3,WM Phoenix Open,pga,2026,96,Charley Hoffman,0.0,0.2,30.3,-0.1477220619604406,,CUT,,
+3,WM Phoenix Open,pga,2026,97,Tom Hoge,0.0,0.7,40.8,-0.2088580833190956,,CUT,,
+3,WM Phoenix Open,pga,2026,98,Billy Horschel,0.0,2.6,55.8,0.0755357261747559,,CUT,,
+3,WM Phoenix Open,pga,2026,99,Rico Hoey,0.0,0.4,34.9,0.6394654490618075,24.0,T24,0.0,0.0
+3,WM Phoenix Open,pga,2026,100,Hank Lebioda,0.0,0.0,18.7,0.0371938583668097,68.0,T68,0.0,0.0
+3,WM Phoenix Open,pga,2026,101,Chris Kirk,0.0,1.1,46.0,0.0179201163198508,,CUT,,
+3,WM Phoenix Open,pga,2026,102,Chandler Phillips,0.0,1.5,49.7,0.1969111064676602,66.0,T66,0.0,0.0
+3,WM Phoenix Open,pga,2026,103,Matthieu Pavon,0.0,0.2,30.6,0.0912360501348626,,CUT,,
+3,WM Phoenix Open,pga,2026,104,Keita Nakajima,0.0,1.0,45.0,-0.0295627582691189,71.0,71,0.0,0.0
+3,WM Phoenix Open,pga,2026,105,Patton Kizzire,0.0,0.3,35.1,0.0428272486361469,72.0,72,0.0,0.0
+3,WM Phoenix Open,pga,2026,106,Peter Malnati,0.0,0.0,13.7,-0.4864034074894298,,CUT,,
+3,WM Phoenix Open,pga,2026,107,Max McGreevy,0.0,0.6,39.9,-0.2392639643254354,48.0,T48,0.0,0.0
+3,WM Phoenix Open,pga,2026,108,Chad Ramey,0.0,0.1,21.6,-0.3674766178492918,48.0,T48,0.0,0.0
+3,WM Phoenix Open,pga,2026,109,Aldrich Potgieter,0.0,0.7,41.3,-0.0553365682691188,,CUT,,
+3,WM Phoenix Open,pga,2026,110,Austin Smotherman,0.0,0.0,18.7,0.0371938583668097,,CUT,,
+3,WM Phoenix Open,pga,2026,111,Adam Schenk,0.0,0.2,32.1,-0.0717482626634566,,CUT,,
+3,WM Phoenix Open,pga,2026,112,Davis Riley,0.0,0.0,15.2,-0.2417825009221501,,CUT,,
+3,WM Phoenix Open,pga,2026,113,Webb Simpson,0.0,0.9,44.7,0.0293073369760833,,CUT,,
+3,WM Phoenix Open,pga,2026,114,Matti Schmid,0.0,0.0,15.5,-0.3853422211753154,,CUT,,
+3,WM Phoenix Open,pga,2026,115,Michael Thorbjornsen,0.0,0.1,24.0,0.2037017680221335,3.0,T3,0.0,1.0
+3,WM Phoenix Open,pga,2026,116,Sami Valimaki,0.0,0.8,42.6,-0.1520285846392582,41.0,T41,0.0,0.0
+3,WM Phoenix Open,pga,2026,117,Alejandro Tosti,0.0,0.2,29.5,-0.0627093012691189,,CUT,,
+3,WM Phoenix Open,pga,2026,118,John VanDerLaan,0.0,0.9,45.8,0.0371938583668097,60.0,T60,0.0,0.0
+3,WM Phoenix Open,pga,2026,119,Erik Van Rooyen,0.0,0.3,32.0,0.059573565314489,,CUT,,
+3,WM Phoenix Open,pga,2026,120,Danny Walker,0.0,0.2,30.5,-0.0772755892691189,,CUT,,
+3,WM Phoenix Open,pga,2026,121,Vince Whaley,0.0,0.0,13.7,-0.4785456363483522,,CUT,,
+3,WM Phoenix Open,pga,2026,122,Gary Woodland,0.0,0.6,39.7,-0.0861246886354168,64.0,T64,0.0,0.0
+3,WM Phoenix Open,pga,2026,123,Sudarshan Yellamaraju,0.0,1.1,45.8,0.0371938583668097,54.0,T54,0.0,0.0
+4,Farmers Insurance Open,pga,2026,1,Xander Schauffele,20.46,73.6,95.9,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,2,Nicolai Hojgaard,15.36,66.8,94.4,0.0,22.0,T22,0.0,0.0
+4,Farmers Insurance Open,pga,2026,3,Adam Scott,9.28,56.0,91.9,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,4,Sam Stevens,6.36,47.2,89.4,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,5,Will Zalatoris,4.68,40.9,86.8,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,6,Jake Knapp,4.5,39.9,86.9,0.0,5.0,T5,0.0,1.0
+4,Farmers Insurance Open,pga,2026,7,Hideki Matsuyama,4.01,38.9,86.2,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,8,Ryan Gerard,3.8,37.2,86.0,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,9,Ludvig Aberg,3.66,35.9,85.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,10,Taylor Pendrith,3.42,34.4,84.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,11,Akshay Bhatia,2.32,29.3,82.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,12,Keegan Bradley,2.16,26.8,80.5,0.0,43.0,T43,0.0,0.0
+4,Farmers Insurance Open,pga,2026,13,Cameron Young,2.07,26.7,80.3,0.0,22.0,T22,0.0,0.0
+4,Farmers Insurance Open,pga,2026,14,Si Woo Kim,1.98,26.1,79.7,0.0,2.0,T2,0.0,1.0
+4,Farmers Insurance Open,pga,2026,15,Chris Gotterup,1.5,23.8,78.7,0.0,18.0,T18,0.0,0.0
+4,Farmers Insurance Open,pga,2026,16,Jason Day,1.2,20.2,76.2,0.0,38.0,T38,0.0,0.0
+4,Farmers Insurance Open,pga,2026,17,Max Homa,1.15,19.5,75.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,18,Ricky Castillo,1.08,18.3,74.1,0.0,43.0,T43,0.0,0.0
+4,Farmers Insurance Open,pga,2026,19,Sahith Theegala,0.93,16.4,72.7,0.0,7.0,T7,0.0,1.0
+4,Farmers Insurance Open,pga,2026,20,Aaron Rai,0.82,16.7,72.6,0.0,,,,
+4,Farmers Insurance Open,pga,2026,21,Justin Rose,0.78,14.8,71.4,0.0,1.0,1,1.0,1.0
+4,Farmers Insurance Open,pga,2026,22,Alex Noren,0.69,15.2,71.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,23,Maverick McNealy,0.54,12.4,68.5,0.0,10.0,10,0.0,1.0
+4,Farmers Insurance Open,pga,2026,24,Austin Smotherman,0.5,10.7,66.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,25,Aldrich Potgieter,0.45,10.7,65.5,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,26,Wyndham Clark,0.43,10.9,65.7,0.0,65.0,T65,0.0,0.0
+4,Farmers Insurance Open,pga,2026,27,Sami Valimaki,0.39,9.7,64.5,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,28,Doug Ghim,0.39,9.0,64.4,0.0,59.0,T59,0.0,0.0
+4,Farmers Insurance Open,pga,2026,29,Patrick Cantlay,0.34,9.0,63.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,30,Tony Finau,0.3,8.3,61.8,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,31,J.J. Spaun,0.29,8.5,62.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,32,Kris Ventura,0.29,7.0,59.9,0.0,22.0,T22,0.0,0.0
+4,Farmers Insurance Open,pga,2026,33,Luke Clanton,0.27,8.4,62.5,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,34,Harris English,0.19,5.9,57.3,0.0,22.0,T22,0.0,0.0
+4,Farmers Insurance Open,pga,2026,35,Matt McCarty,0.19,6.0,57.4,0.0,18.0,T18,0.0,0.0
+4,Farmers Insurance Open,pga,2026,36,Andrew Putnam,0.18,5.7,56.9,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,37,Christiaan Bezuidenhout,0.18,5.7,57.0,0.0,27.0,T27,0.0,0.0
+4,Farmers Insurance Open,pga,2026,38,Patrick Rodgers,0.17,6.1,57.3,0.0,27.0,T27,0.0,0.0
+4,Farmers Insurance Open,pga,2026,39,Sam Ryder,0.17,5.9,57.7,0.0,59.0,T59,0.0,0.0
+4,Farmers Insurance Open,pga,2026,40,Garrick Higgo,0.14,5.4,56.5,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,41,Kevin Yu,0.14,4.7,53.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,42,Beau Hossler,0.11,4.3,53.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,43,Luke List,0.11,3.7,51.0,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,44,Thorbjorn Olesen,0.11,3.7,50.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,45,Rasmus Hojgaard,0.11,4.5,53.8,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,46,Marco Penge,0.11,4.0,52.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,47,Stephan Jaeger,0.1,3.2,48.9,0.0,5.0,T5,0.0,1.0
+4,Farmers Insurance Open,pga,2026,48,Michael Thorbjornsen,0.09,4.2,51.8,0.0,18.0,T18,0.0,0.0
+4,Farmers Insurance Open,pga,2026,49,Max Greyserman,0.08,2.9,48.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,50,Billy Horschel,0.07,2.9,48.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,51,Lanto Griffin,0.06,4.0,52.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,52,Andrew Novak,0.06,2.2,44.5,0.0,7.0,T7,0.0,1.0
+4,Farmers Insurance Open,pga,2026,53,Kristoffer Reitan,0.06,2.6,46.3,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,54,Matthieu Pavon,0.04,2.7,47.0,0.0,38.0,T38,0.0,0.0
+4,Farmers Insurance Open,pga,2026,55,S.H. Kim,0.04,1.9,42.5,0.0,63.0,63,0.0,0.0
+4,Farmers Insurance Open,pga,2026,56,Mac Meissner,0.04,2.4,45.2,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,57,Haotong Li,0.04,2.4,44.7,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,58,Vince Whaley,0.04,1.1,36.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,59,Lee Hodges,0.04,2.1,44.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,60,Jordan Smith,0.03,2.5,45.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,61,John Parry,0.03,2.6,46.6,0.0,43.0,T43,0.0,0.0
+4,Farmers Insurance Open,pga,2026,62,Pierceson Coody,0.03,1.3,39.2,0.0,2.0,T2,0.0,1.0
+4,Farmers Insurance Open,pga,2026,63,Austin Eckroat,0.03,0.9,34.4,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,64,Christo Lamprecht,0.03,1.0,36.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,65,Chandler Blanchet,0.03,1.0,36.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,66,Jhonattan Vegas,0.03,1.6,40.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,67,Isaiah Salinda,0.03,1.2,36.0,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,68,Sudarshan Yellamaraju,0.03,1.1,35.8,0.0,56.0,T56,0.0,0.0
+4,Farmers Insurance Open,pga,2026,69,Mark Hubbard,0.02,1.5,39.5,0.0,69.0,69,0.0,0.0
+4,Farmers Insurance Open,pga,2026,70,John VanDerLaan,0.02,1.1,36.4,0.0,43.0,T43,0.0,0.0
+4,Farmers Insurance Open,pga,2026,71,Tom Kim,0.02,1.4,39.3,0.0,65.0,T65,0.0,0.0
+4,Farmers Insurance Open,pga,2026,72,Taylor Moore,0.02,1.9,43.1,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,73,Takumi Kanaya,0.02,2.5,45.9,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,74,Davis Thompson,0.02,1.3,37.9,0.0,43.0,T43,0.0,0.0
+4,Farmers Insurance Open,pga,2026,75,Kensei Hirata,0.02,1.1,36.0,0.0,74.0,74,0.0,0.0
+4,Farmers Insurance Open,pga,2026,76,Matt Kuchar,0.02,1.3,38.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,77,Pontus Nyholm,0.02,1.0,36.0,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,78,Rasmus Neergaard-Petersen,0.02,3.6,50.5,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,79,Alex Smalley,0.02,1.1,36.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,80,Michael Brennan,0.02,1.0,35.8,0.0,,DQ,,
+4,Farmers Insurance Open,pga,2026,81,Marcelo Rozo,0.02,0.9,36.2,0.0,65.0,T65,0.0,0.0
+4,Farmers Insurance Open,pga,2026,82,Neal Shipley,0.02,1.2,35.7,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,83,Gary Woodland,0.02,1.1,36.5,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,84,Adrien Saddier,0.02,1.1,35.9,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,85,David Ford,0.02,1.5,40.0,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,86,Johnny Keefer,0.02,1.0,36.1,0.0,43.0,T43,0.0,0.0
+4,Farmers Insurance Open,pga,2026,87,Gordon Sargent,0.02,1.1,36.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,88,Jeffrey Kang,0.01,1.1,35.8,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,89,Adam Schenk,0.01,0.9,34.9,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,90,Emilio Gonzalez,0.01,1.1,36.2,0.0,65.0,T65,0.0,0.0
+4,Farmers Insurance Open,pga,2026,91,Zach Bauchou,0.01,1.0,35.6,0.0,59.0,T59,0.0,0.0
+4,Farmers Insurance Open,pga,2026,92,S.T. Lee,0.01,1.0,35.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,93,Emiliano Grillo,0.01,1.0,36.5,0.0,38.0,T38,0.0,0.0
+4,Farmers Insurance Open,pga,2026,94,Mark Geddes,0.01,1.0,36.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,95,Hank Lebioda,0.01,1.2,38.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,96,Justin Hastings,0.01,1.0,36.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,97,Dan Brown,0.01,1.3,38.2,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,98,Davis Chatfield,0.01,1.1,35.9,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,99,Hunter Logan,0.01,0.9,36.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,100,Chad Ramey,0.01,0.3,26.0,0.0,22.0,T22,0.0,0.0
+4,Farmers Insurance Open,pga,2026,101,Keith Mitchell,0.01,0.7,31.2,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,102,Henrik Norlander,0.01,0.5,29.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,103,Danny Walker,0.01,1.0,35.5,0.0,38.0,T38,0.0,0.0
+4,Farmers Insurance Open,pga,2026,104,Matti Schmid,0.01,0.9,35.0,0.0,56.0,T56,0.0,0.0
+4,Farmers Insurance Open,pga,2026,105,Tom Hoge,0.01,0.3,26.3,0.0,70.0,T70,0.0,0.0
+4,Farmers Insurance Open,pga,2026,106,Mackenzie Hughes,0.01,0.8,34.8,0.0,59.0,T59,0.0,0.0
+4,Farmers Insurance Open,pga,2026,107,Denny McCarthy,0.01,0.2,22.4,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,108,Ryo Hisatsune,0.01,0.7,30.0,0.0,2.0,T2,0.0,1.0
+4,Farmers Insurance Open,pga,2026,109,Joe Highsmith,0.01,0.3,26.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,110,Aaron Wise,0.01,1.3,37.8,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,111,Patrick Fishburn,0.01,0.4,28.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,112,Keita Nakajima,0.01,0.5,28.1,0.0,64.0,64,0.0,0.0
+4,Farmers Insurance Open,pga,2026,113,A.J. Ewart,0.01,1.1,36.3,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,114,Marcus Byrd,0.0,0.1,20.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,115,Joel Dahmen,0.0,0.3,24.4,0.0,7.0,T7,0.0,1.0
+4,Farmers Insurance Open,pga,2026,116,Peter Malnati,0.0,1.0,36.8,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,117,Brooks Koepka,0.0,0.1,20.7,0.0,56.0,T56,0.0,0.0
+4,Farmers Insurance Open,pga,2026,118,Rico Hoey,0.0,0.3,26.4,0.0,70.0,T70,0.0,0.0
+4,Farmers Insurance Open,pga,2026,119,Jesper Svensson,0.0,1.0,36.8,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,120,Dylan Wu,0.0,0.9,34.7,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,121,Karl Vilips,0.0,0.7,31.1,0.0,38.0,T38,0.0,0.0
+4,Farmers Insurance Open,pga,2026,122,Brandt Snedeker,0.0,0.4,28.6,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,123,Kevin Roy,0.0,0.5,29.0,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,124,Jackson Suber,0.0,0.1,18.9,0.0,70.0,T70,0.0,0.0
+4,Farmers Insurance Open,pga,2026,125,Zecheng Dou,0.0,0.3,24.3,0.0,49.0,T49,0.0,0.0
+4,Farmers Insurance Open,pga,2026,126,Rafael Campos,0.0,0.1,14.8,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,127,Eric Cole,0.0,0.2,21.1,0.0,27.0,T27,0.0,0.0
+4,Farmers Insurance Open,pga,2026,128,Cam Davis,0.0,0.1,17.5,0.0,70.0,T70,0.0,0.0
+4,Farmers Insurance Open,pga,2026,129,Brice Garnett,0.0,0.0,13.0,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,130,Adrien Dumont De Chassart,0.0,0.2,22.7,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,131,Charley Hoffman,0.0,0.1,15.9,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,132,William Mouw,0.0,0.4,28.7,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,133,Max McGreevy,0.0,0.2,21.2,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,134,David Lipsky,0.0,0.1,19.1,0.0,18.0,T18,0.0,0.0
+4,Farmers Insurance Open,pga,2026,135,Justin Lower,0.0,0.1,20.9,0.0,30.0,T30,0.0,0.0
+4,Farmers Insurance Open,pga,2026,136,Steven Fisk,0.0,0.2,23.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,137,Jeremy Paul,0.0,0.1,18.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,138,Chandler Phillips,0.0,0.0,7.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,139,Seamus Power,0.0,0.0,14.2,0.0,11.0,T11,0.0,0.0
+4,Farmers Insurance Open,pga,2026,140,Davis Riley,0.0,0.0,14.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,141,Thomas Rosenmueller,0.0,0.0,7.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,142,Kevin Streelman,0.0,0.4,27.2,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,143,Adam Svensson,0.0,0.0,12.4,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,144,Alejandro Tosti,0.0,0.5,27.3,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,145,Matt Wallace,0.0,0.2,22.7,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,146,Erik Van Rooyen,0.0,0.3,25.1,0.0,,CUT,,
+4,Farmers Insurance Open,pga,2026,147,Camilo Villegas,0.0,0.0,8.0,0.0,,CUT,,
+2,The American Express,pga,2026,1,Scottie Scheffler,25.96,79.2,96.6,0.0,1.0,1,1.0,1.0
+2,The American Express,pga,2026,2,Ben Griffin,16.09,69.2,94.7,0.0,24.0,T24,0.0,0.0
+2,The American Express,pga,2026,3,Patrick Cantlay,9.29,56.0,91.6,0.0,13.0,T13,0.0,0.0
+2,The American Express,pga,2026,4,Si Woo Kim,7.85,53.3,91.1,0.0,6.0,T6,0.0,1.0
+2,The American Express,pga,2026,5,Min Woo Lee,3.76,36.5,84.9,0.0,38.0,T38,0.0,0.0
+2,The American Express,pga,2026,6,Davis Thompson,2.78,32.3,83.0,0.0,,CUT,,
+2,The American Express,pga,2026,7,Sam Burns,2.72,31.6,82.0,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,8,Jason Day,2.35,27.7,80.3,0.0,2.0,T2,0.0,1.0
+2,The American Express,pga,2026,9,Jimmy Stanger,2.3,28.7,80.7,0.0,,CUT,,
+2,The American Express,pga,2026,10,Will Zalatoris,2.23,28.9,80.7,0.0,18.0,T18,0.0,0.0
+2,The American Express,pga,2026,11,Keith Mitchell,1.86,26.0,79.5,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,12,Alex Smalley,1.68,24.4,78.9,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,13,J.T. Poston,1.6,23.9,78.1,0.0,38.0,T38,0.0,0.0
+2,The American Express,pga,2026,14,Sepp Straka,1.51,24.1,78.1,0.0,,CUT,,
+2,The American Express,pga,2026,15,Seamus Power,1.41,22.0,76.8,0.0,63.0,T63,0.0,0.0
+2,The American Express,pga,2026,16,Russell Henley,1.36,22.1,76.6,0.0,8.0,T8,0.0,1.0
+2,The American Express,pga,2026,17,Nick Dunlap,1.29,20.1,75.6,0.0,,WD,,
+2,The American Express,pga,2026,18,Daniel Berger,1.27,20.3,75.1,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,19,Christiaan Bezuidenhout,1.2,20.0,75.5,0.0,38.0,T38,0.0,0.0
+2,The American Express,pga,2026,20,Justin Rose,1.16,19.1,74.3,0.0,,CUT,,
+2,The American Express,pga,2026,21,Kevin Yu,0.79,15.5,71.6,0.0,,CUT,,
+2,The American Express,pga,2026,22,Max Homa,0.71,15.3,71.0,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,23,Max Greyserman,0.64,13.8,69.3,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,24,Brian Harman,0.58,12.0,67.4,0.0,,CUT,,
+2,The American Express,pga,2026,25,Denny McCarthy,0.56,12.9,68.5,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,26,Jacob Bridgeman,0.52,12.0,66.7,0.0,13.0,T13,0.0,0.0
+2,The American Express,pga,2026,27,Kevin Roy,0.44,10.1,64.3,0.0,,CUT,,
+2,The American Express,pga,2026,28,Harris English,0.4,10.5,65.0,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,29,Ricky Castillo,0.38,9.9,63.3,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,30,Harry Hall,0.35,9.4,63.7,0.0,24.0,T24,0.0,0.0
+2,The American Express,pga,2026,31,Chris Kirk,0.35,9.5,63.7,0.0,,CUT,,
+2,The American Express,pga,2026,32,Ryan Gerard,0.34,9.7,63.6,0.0,2.0,T2,0.0,1.0
+2,The American Express,pga,2026,33,Ryo Hisatsune,0.26,7.5,59.9,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,34,Ludvig Aberg,0.23,6.3,57.8,0.0,,WD,,
+2,The American Express,pga,2026,35,Frankie Capan III,0.2,6.6,58.7,0.0,,CUT,,
+2,The American Express,pga,2026,36,Alex Noren,0.19,7.5,60.1,0.0,,CUT,,
+2,The American Express,pga,2026,37,Gary Woodland,0.18,6.2,57.1,0.0,72.0,72,0.0,0.0
+2,The American Express,pga,2026,38,Nick Taylor,0.16,6.3,57.6,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,39,Doug Ghim,0.15,6.0,57.3,0.0,,CUT,,
+2,The American Express,pga,2026,40,Matt Fitzpatrick,0.15,5.3,55.7,0.0,63.0,T63,0.0,0.0
+2,The American Express,pga,2026,41,Tom Hoge,0.15,5.1,54.9,0.0,8.0,T8,0.0,1.0
+2,The American Express,pga,2026,42,Eric Cole,0.15,4.5,52.4,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,43,Matt Wallace,0.13,3.9,51.4,0.0,,CUT,,
+2,The American Express,pga,2026,44,Lee Hodges,0.13,4.5,52.9,0.0,,CUT,,
+2,The American Express,pga,2026,45,Tony Finau,0.12,5.5,54.9,0.0,,CUT,,
+2,The American Express,pga,2026,46,Lanto Griffin,0.11,4.8,53.7,0.0,,CUT,,
+2,The American Express,pga,2026,47,Chandler Phillips,0.11,3.8,50.4,0.0,63.0,T63,0.0,0.0
+2,The American Express,pga,2026,48,Beau Hossler,0.09,3.5,49.1,0.0,,CUT,,
+2,The American Express,pga,2026,49,Rasmus Hojgaard,0.08,3.4,48.8,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,50,Rico Hoey,0.08,3.3,48.6,0.0,,WD,,
+2,The American Express,pga,2026,51,Carson Young,0.07,3.0,47.3,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,52,Wyndham Clark,0.06,3.5,49.0,0.0,13.0,T13,0.0,0.0
+2,The American Express,pga,2026,53,Vince Whaley,0.06,2.9,46.6,0.0,,CUT,,
+2,The American Express,pga,2026,54,Matti Schmid,0.06,2.9,46.9,0.0,,CUT,,
+2,The American Express,pga,2026,55,Mackenzie Hughes,0.06,3.1,47.6,0.0,,CUT,,
+2,The American Express,pga,2026,56,Mark Hubbard,0.06,3.2,47.6,0.0,,CUT,,
+2,The American Express,pga,2026,57,Akshay Bhatia,0.06,3.0,47.2,0.0,,CUT,,
+2,The American Express,pga,2026,58,Tom Kim,0.06,2.8,45.8,0.0,38.0,T38,0.0,0.0
+2,The American Express,pga,2026,59,Billy Horschel,0.05,2.5,46.0,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,60,Adam Scott,0.05,2.7,45.9,0.0,24.0,T24,0.0,0.0
+2,The American Express,pga,2026,61,Matt Kuchar,0.05,2.7,46.6,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,62,Andrew Putnam,0.05,2.7,46.4,0.0,2.0,T2,0.0,1.0
+2,The American Express,pga,2026,63,Michael Thorbjornsen,0.05,2.5,44.9,0.0,,CUT,,
+2,The American Express,pga,2026,64,Takumi Kanaya,0.05,1.9,42.8,0.0,,CUT,,
+2,The American Express,pga,2026,65,Matt McCarty,0.04,2.3,44.0,0.0,2.0,T2,0.0,1.0
+2,The American Express,pga,2026,66,Sahith Theegala,0.04,2.3,43.8,0.0,8.0,T8,0.0,1.0
+2,The American Express,pga,2026,67,Patton Kizzire,0.04,1.7,39.7,0.0,,CUT,,
+2,The American Express,pga,2026,68,Matthieu Pavon,0.04,1.8,41.3,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,69,Cam Davis,0.04,2.3,44.6,0.0,,CUT,,
+2,The American Express,pga,2026,70,Stephan Jaeger,0.03,2.1,42.5,0.0,,CUT,,
+2,The American Express,pga,2026,71,Taylor Pendrith,0.03,1.4,38.1,0.0,,CUT,,
+2,The American Express,pga,2026,72,Chan Kim,0.03,2.0,42.4,0.0,,CUT,,
+2,The American Express,pga,2026,73,Sam Stevens,0.03,1.7,42.1,0.0,6.0,T6,0.0,1.0
+2,The American Express,pga,2026,74,Jordan Smith,0.02,1.4,38.8,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,75,Adrien Saddier,0.02,0.7,31.3,0.0,70.0,T70,0.0,0.0
+2,The American Express,pga,2026,76,Harry Higgs,0.02,1.5,39.4,0.0,,CUT,,
+2,The American Express,pga,2026,77,Patrick Rodgers,0.02,1.5,38.4,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,78,Emiliano Grillo,0.02,1.7,39.8,0.0,,CUT,,
+2,The American Express,pga,2026,79,Erik Van Rooyen,0.02,1.4,38.5,0.0,,CUT,,
+2,The American Express,pga,2026,80,Justin Lower,0.02,1.4,38.8,0.0,,CUT,,
+2,The American Express,pga,2026,81,John Parry,0.02,2.0,42.3,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,82,Neal Shipley,0.02,0.6,31.5,0.0,,CUT,,
+2,The American Express,pga,2026,83,Chandler Blanchet,0.02,0.7,31.0,0.0,,CUT,,
+2,The American Express,pga,2026,84,Michael Kim,0.02,1.1,36.6,0.0,,CUT,,
+2,The American Express,pga,2026,85,Bud Cauley,0.02,1.2,37.3,0.0,,CUT,,
+2,The American Express,pga,2026,86,Rickie Fowler,0.01,1.1,36.7,0.0,18.0,T18,0.0,0.0
+2,The American Express,pga,2026,87,Jhonattan Vegas,0.01,0.9,33.5,0.0,,CUT,,
+2,The American Express,pga,2026,88,Kris Ventura,0.01,1.2,37.8,0.0,,CUT,,
+2,The American Express,pga,2026,89,Taylor Moore,0.01,1.0,34.2,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,90,Jeffrey Kang,0.01,0.7,31.3,0.0,,CUT,,
+2,The American Express,pga,2026,91,Brian Campbell,0.01,0.5,29.7,0.0,,CUT,,
+2,The American Express,pga,2026,92,Zach Bauchou,0.01,0.7,31.5,0.0,13.0,T13,0.0,0.0
+2,The American Express,pga,2026,93,Austin Eckroat,0.01,0.8,31.9,0.0,,CUT,,
+2,The American Express,pga,2026,94,A.J. Ewart,0.01,0.6,30.8,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,95,David Ford,0.01,0.5,30.0,0.0,13.0,T13,0.0,0.0
+2,The American Express,pga,2026,96,Johnny Keefer,0.01,0.7,31.6,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,97,Jesper Svensson,0.01,0.9,33.5,0.0,,CUT,,
+2,The American Express,pga,2026,98,Mac Meissner,0.01,0.8,31.8,0.0,63.0,T63,0.0,0.0
+2,The American Express,pga,2026,99,Sudarshan Yellamaraju,0.01,0.7,31.3,0.0,,CUT,,
+2,The American Express,pga,2026,100,Emilio Gonzalez,0.01,0.8,31.7,0.0,,CUT,,
+2,The American Express,pga,2026,101,Dan Brown,0.01,1.1,35.0,0.0,,CUT,,
+2,The American Express,pga,2026,102,Zach Johnson,0.01,0.5,28.0,0.0,70.0,T70,0.0,0.0
+2,The American Express,pga,2026,103,Davis Chatfield,0.01,0.6,31.1,0.0,63.0,T63,0.0,0.0
+2,The American Express,pga,2026,104,Michael Brennan,0.01,0.6,31.4,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,105,Gordon Sargent,0.01,0.7,30.9,0.0,,CUT,,
+2,The American Express,pga,2026,106,Adrien Dumont De Chassart,0.01,0.5,28.3,0.0,69.0,69,0.0,0.0
+2,The American Express,pga,2026,107,S.T. Lee,0.01,0.7,31.3,0.0,,CUT,,
+2,The American Express,pga,2026,108,John VanDerLaan,0.01,0.6,31.3,0.0,,CUT,,
+2,The American Express,pga,2026,109,Marcelo Rozo,0.01,0.7,31.2,0.0,,CUT,,
+2,The American Express,pga,2026,110,Dylan Wu,0.01,0.4,27.7,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,111,Kensei Hirata,0.0,0.6,31.3,0.0,,CUT,,
+2,The American Express,pga,2026,112,Sam Ryder,0.0,0.5,29.7,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,113,Adam Svensson,0.0,0.3,22.6,0.0,,CUT,,
+2,The American Express,pga,2026,114,Haotong Li,0.0,1.1,36.3,0.0,8.0,T8,0.0,1.0
+2,The American Express,pga,2026,115,Nico Echavarria,0.0,0.2,22.4,0.0,,CUT,,
+2,The American Express,pga,2026,116,Robert MacIntyre,0.0,0.1,19.3,0.0,38.0,T38,0.0,0.0
+2,The American Express,pga,2026,117,Jason Dufner,0.0,0.4,26.3,0.0,,CUT,,
+2,The American Express,pga,2026,118,Zecheng Dou,0.0,0.4,27.2,0.0,73.0,73,0.0,0.0
+2,The American Express,pga,2026,119,Pierceson Coody,0.0,0.0,5.7,0.0,18.0,T18,0.0,0.0
+2,The American Express,pga,2026,120,Joel Dahmen,0.0,0.2,20.5,0.0,38.0,T38,0.0,0.0
+2,The American Express,pga,2026,121,Rafael Campos,0.0,0.0,1.0,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,122,Luke Clanton,0.0,0.4,27.5,0.0,,WD,,
+2,The American Express,pga,2026,123,Michael Block,0.0,0.2,18.7,0.0,,CUT,,
+2,The American Express,pga,2026,124,Blades Brown,0.0,0.1,17.2,0.0,18.0,T18,0.0,0.0
+2,The American Express,pga,2026,125,Peter Malnati,0.0,0.0,6.3,0.0,,CUT,,
+2,The American Express,pga,2026,126,Adam Long,0.0,0.0,13.0,0.0,,CUT,,
+2,The American Express,pga,2026,127,David Lipsky,0.0,0.1,17.3,0.0,44.0,T44,0.0,0.0
+2,The American Express,pga,2026,128,Andrew Landry,0.0,0.0,6.7,0.0,,CUT,,
+2,The American Express,pga,2026,129,Christo Lamprecht,0.0,0.7,31.3,0.0,,CUT,,
+2,The American Express,pga,2026,130,Kurt Kitayama,0.0,0.2,21.9,0.0,,CUT,,
+2,The American Express,pga,2026,131,Hank Lebioda,0.0,0.0,12.5,0.0,,CUT,,
+2,The American Express,pga,2026,132,S.H. Kim,0.0,0.2,21.7,0.0,18.0,T18,0.0,0.0
+2,The American Express,pga,2026,133,Brice Garnett,0.0,0.0,13.6,0.0,,CUT,,
+2,The American Express,pga,2026,134,Steven Fisk,0.0,0.0,10.9,0.0,,CUT,,
+2,The American Express,pga,2026,135,Joe Highsmith,0.0,0.6,29.8,0.0,,CUT,,
+2,The American Express,pga,2026,136,Patrick Fishburn,0.0,0.0,14.1,0.0,,CUT,,
+2,The American Express,pga,2026,137,Charley Hoffman,0.0,0.3,25.5,0.0,,CUT,,
+2,The American Express,pga,2026,138,Max McGreevy,0.0,0.3,24.7,0.0,27.0,T27,0.0,0.0
+2,The American Express,pga,2026,139,William Mouw,0.0,0.0,6.5,0.0,,CUT,,
+2,The American Express,pga,2026,140,Aldrich Potgieter,0.0,0.0,10.3,0.0,,CUT,,
+2,The American Express,pga,2026,141,Adam Schenk,0.0,0.0,10.2,0.0,,CUT,,
+2,The American Express,pga,2026,142,Isaiah Salinda,0.0,0.1,17.7,0.0,,CUT,,
+2,The American Express,pga,2026,143,Davis Riley,0.0,0.0,10.3,0.0,56.0,T56,0.0,0.0
+2,The American Express,pga,2026,144,Chad Ramey,0.0,0.0,14.0,0.0,63.0,T63,0.0,0.0
+2,The American Express,pga,2026,145,Andrew Novak,0.0,0.0,5.6,0.0,,CUT,,
+2,The American Express,pga,2026,146,Keita Nakajima,0.0,0.6,30.1,0.0,,CUT,,
+2,The American Express,pga,2026,147,Pontus Nyholm,0.0,0.6,31.8,0.0,,CUT,,
+2,The American Express,pga,2026,148,Austin Smotherman,0.0,0.0,6.9,0.0,8.0,T8,0.0,1.0
+2,The American Express,pga,2026,149,Alejandro Tosti,0.0,0.3,24.3,0.0,,CUT,,
+2,The American Express,pga,2026,150,Jackson Suber,0.0,0.1,13.0,0.0,,CUT,,
+2,The American Express,pga,2026,151,Brandt Snedeker,0.0,0.1,19.0,0.0,,CUT,,
+2,The American Express,pga,2026,152,Kevin Streelman,0.0,0.0,3.4,0.0,,CUT,,
+2,The American Express,pga,2026,153,Danny Walker,0.0,0.0,6.4,0.0,,CUT,,
+2,The American Express,pga,2026,154,Camilo Villegas,0.0,0.2,23.3,0.0,,CUT,,
+2,The American Express,pga,2026,155,Karl Vilips,0.0,0.2,21.3,0.0,18.0,T18,0.0,0.0
+2,The American Express,pga,2026,156,Sami Valimaki,0.0,0.0,11.1,0.0,,CUT,,
+6,Sony Open in Hawaii,pga,2026,1,Russell Henley,27.65,82.1,98.1,0.3880237128809033,19.0,T19,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,2,Collin Morikawa,21.08,77.2,97.7,0.3663181305492916,,CUT,,
+6,Sony Open in Hawaii,pga,2026,3,Nick Taylor,7.3,53.4,93.2,0.0139925133054674,13.0,T13,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,4,Hideki Matsuyama,6.69,51.2,92.9,0.2699751111003655,13.0,T13,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,5,Ben Griffin,4.37,43.2,90.7,0.1673294047448911,19.0,T19,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,6,Si Woo Kim,2.69,33.9,87.5,0.4490745312370051,11.0,T11,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,7,Harry Hall,2.05,29.0,85.2,-0.0573197650257433,6.0,T6,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,8,Maverick McNealy,2.04,27.6,84.5,0.2372470612282753,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,9,Haotong Li,2.04,29.0,85.5,-0.1465707552486997,55.0,T55,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,10,Keegan Bradley,2.0,29.2,85.3,0.2604467324596599,,CUT,,
+6,Sony Open in Hawaii,pga,2026,11,J.J. Spaun,1.85,29.2,85.6,0.1741610740005088,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,12,Chris Kirk,1.67,26.8,84.4,0.15291658797655,,CUT,,
+6,Sony Open in Hawaii,pga,2026,13,Nico Echavarria,1.5,25.7,83.6,0.1267928040240976,,CUT,,
+6,Sony Open in Hawaii,pga,2026,14,Corey Conners,1.41,23.6,82.9,0.4139219399088024,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,15,Mac Meissner,1.37,23.9,82.7,-0.0139982428990232,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,16,Daniel Berger,1.25,21.5,81.1,0.4022883962185689,6.0,T6,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,17,Matthieu Pavon,1.22,21.8,81.3,-0.2670690700062375,55.0,T55,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,18,Adam Scott,1.17,21.3,81.6,0.3368425766752185,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,19,Keith Mitchell,1.06,19.7,80.0,0.2475248701024977,66.0,T66,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,20,Eric Cole,0.94,17.9,78.6,0.0844351141696522,,CUT,,
+6,Sony Open in Hawaii,pga,2026,21,Robert MacIntyre,0.92,18.0,78.7,0.0733149916721858,4.0,T4,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,22,Ryan Gerard,0.69,15.7,77.5,0.103894439615095,2.0,2,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,23,Denny McCarthy,0.59,14.4,75.9,-0.0665733245306644,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,24,Nick Dunlap,0.54,13.2,74.9,-0.4109724455740905,61.0,T61,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,25,Taylor Pendrith,0.46,12.6,73.6,0.26051743001086,6.0,T6,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,26,Brian Harman,0.42,11.6,73.3,-0.0273791083494628,61.0,T61,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,27,Adam Svensson,0.38,10.7,71.4,-0.0109592432413014,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,28,Bud Cauley,0.36,11.1,72.0,0.2359686979219652,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,29,S.H. Kim,0.31,10.9,72.4,-0.1688203681438153,13.0,T13,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,30,Austin Eckroat,0.29,8.8,68.6,0.3649168121503859,,CUT,,
+6,Sony Open in Hawaii,pga,2026,31,Patrick Rodgers,0.26,7.1,65.6,0.1756457276455797,3.0,3,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,32,Billy Horschel,0.19,7.8,67.2,0.0847635089122833,74.0,74,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,33,Kurt Kitayama,0.16,7.0,65.1,0.1055700402692686,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,34,Brice Garnett,0.16,6.0,63.1,0.0755001676742257,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,35,Kristoffer Reitan,0.15,7.0,66.0,0.1416260649400493,,CUT,,
+6,Sony Open in Hawaii,pga,2026,36,Dylan Wu,0.15,5.2,61.8,0.0696496944487863,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,37,Sam Stevens,0.14,6.1,64.1,-0.0416644323190278,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,38,Emiliano Grillo,0.12,5.5,62.7,0.1380772726094197,,CUT,,
+6,Sony Open in Hawaii,pga,2026,39,Zac Blair,0.12,4.6,59.6,-0.1296198768754665,50.0,T50,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,40,Webb Simpson,0.12,4.3,58.9,0.0311718363112211,55.0,T55,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,41,Kensei Hirata,0.12,4.5,59.2,0.0754913717291416,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,42,Jordan Spieth,0.11,4.1,58.0,0.0722592643612447,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,43,Aaron Rai,0.1,5.3,62.3,0.4389199335335639,50.0,T50,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,44,Alex Smalley,0.1,4.5,59.5,0.1326032622833759,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,45,Keita Nakajima,0.1,3.1,55.2,0.1933888017356079,,CUT,,
+6,Sony Open in Hawaii,pga,2026,46,Matt McCarty,0.09,3.0,54.1,0.1917500907242089,55.0,T55,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,47,Erik Van Rooyen,0.08,3.5,55.8,0.2133172134996901,,CUT,,
+6,Sony Open in Hawaii,pga,2026,48,John Parry,0.08,3.9,57.8,0.1262074249400493,19.0,T19,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,49,Cam Davis,0.06,2.8,53.9,0.1486810901756579,,CUT,,
+6,Sony Open in Hawaii,pga,2026,50,Jordan Smith,0.05,3.4,55.9,0.0957564609400493,66.0,T66,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,51,Sahith Theegala,0.05,2.7,53.7,-0.1925177917170213,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,52,John VanDerLaan,0.04,1.8,47.4,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,53,Pierceson Coody,0.04,1.9,48.3,0.1030918451588214,13.0,T13,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,54,Rico Hoey,0.04,2.5,51.7,0.3294713227121008,50.0,T50,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,55,Mark Hubbard,0.04,2.8,53.8,-0.0530691176512778,66.0,T66,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,56,Anson Cabello,0.04,1.7,48.1,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,57,Sudarshan Yellamaraju,0.04,1.7,46.9,0.0754913717291416,13.0,T13,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,58,Seung-taek Lee,0.04,1.8,47.3,0.0754913717291416,,,,
+6,Sony Open in Hawaii,pga,2026,59,Ren Yonezawa,0.04,1.6,47.5,0.0754913717291416,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,60,Pontus Nyholm,0.04,1.7,47.2,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,61,Lee Hodges,0.04,2.7,52.6,0.2831938732462782,6.0,T6,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,62,Johnny Keefer,0.03,1.6,47.6,0.0754913717291416,61.0,T61,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,63,Jake Knapp,0.03,1.6,46.1,-0.0646856521848558,11.0,T11,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,64,Taisei Nagasaki,0.03,1.8,47.4,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,65,Daniel Brown,0.03,1.8,49.1,0.0663140959400493,,,,
+6,Sony Open in Hawaii,pga,2026,66,Gary Woodland,0.03,1.8,48.3,0.0999345015982049,,CUT,,
+6,Sony Open in Hawaii,pga,2026,67,A.J. Ewart,0.03,1.7,47.3,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,68,Emilio Gonzalez,0.03,1.6,47.4,0.0754913717291416,50.0,T50,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,69,Chad Ramey,0.03,1.1,43.2,-0.1780711118224369,71.0,T71,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,70,Brian Campbell,0.03,1.4,45.2,0.1434765062138415,,CUT,,
+6,Sony Open in Hawaii,pga,2026,71,Adrien Saddier,0.03,1.9,49.6,0.0448050159400493,,CUT,,
+6,Sony Open in Hawaii,pga,2026,72,Vince Whaley,0.03,1.8,49.1,-0.0332185127244747,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,73,Ryo Hisatsune,0.02,2.0,49.6,-0.0853834931341887,,CUT,,
+6,Sony Open in Hawaii,pga,2026,74,Patton Kizzire,0.02,1.8,48.2,-0.0594743369782848,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,75,Corey Kozuma,0.02,1.7,47.3,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,76,Neal Shipley,0.02,1.6,47.2,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,77,Seamus Power,0.02,2.3,50.7,0.144958228965431,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,78,Michael Brennan,0.02,1.7,47.5,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,79,Davis Chatfield,0.02,1.6,47.5,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,80,Kota Kaneko,0.02,1.6,47.7,0.0754913717291416,73.0,73,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,81,Jeffrey Kang,0.02,1.8,47.6,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,82,Marcelo Rozo,0.02,1.7,47.6,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,83,Zach Bauchou,0.02,1.7,47.8,0.0754913717291416,70.0,70,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,84,Chris Gotterup,0.02,2.0,49.5,0.3451174461467072,1.0,1,1.0,1.0
+6,Sony Open in Hawaii,pga,2026,85,Jacob Bridgeman,0.01,1.8,48.7,-0.1602447261839753,4.0,T4,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,86,Chandler Blanchet,0.01,1.6,47.4,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,87,Christo Lamprecht,0.01,1.8,47.3,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,88,Michael Kim,0.01,2.2,51.7,0.0629416748620657,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,89,Gordon Sargent,0.01,1.7,47.1,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,90,Hank Lebioda,0.01,1.1,42.1,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,91,Takumi Kanaya,0.01,1.6,47.7,0.0369765745009764,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,92,Alejandro Tosti,0.01,0.4,33.8,0.346427338869453,,CUT,,
+6,Sony Open in Hawaii,pga,2026,93,David Ford,0.01,1.0,43.0,-0.0216606550599506,50.0,T50,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,94,Steven Fisk,0.01,1.1,43.3,0.3008526977790291,,CUT,,
+6,Sony Open in Hawaii,pga,2026,95,Tom Kim,0.01,0.5,34.6,0.1584118415568943,61.0,T61,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,96,Matti Schmid,0.01,1.4,46.1,0.0997232427380619,,CUT,,
+6,Sony Open in Hawaii,pga,2026,97,Tom Hoge,0.01,0.9,39.7,-0.124831199409703,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,98,Zecheng Dou,0.01,0.3,28.7,0.0754913717291416,55.0,T55,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,99,Ricky Castillo,0.0,0.7,37.9,0.5243808989590714,31.0,T31,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,100,Luke Clanton,0.0,0.6,36.4,0.0754825757840574,,CUT,,
+6,Sony Open in Hawaii,pga,2026,101,Isaiah Salinda,0.0,0.3,30.2,-0.1310957896137098,,CUT,,
+6,Sony Open in Hawaii,pga,2026,102,Austin Smotherman,0.0,0.4,32.6,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,103,Doug Ghim,0.0,0.4,33.6,0.0703033340794926,55.0,T55,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,104,Tony Finau,0.0,1.1,43.6,-0.0138169820599506,,CUT,,
+6,Sony Open in Hawaii,pga,2026,105,Kevin Roy,0.0,0.7,39.4,0.0748330242978126,13.0,T13,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,106,Vijay Singh,0.0,0.1,20.0,0.0754913717291416,40.0,T40,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,107,Adam Schenk,0.0,0.4,32.4,-0.2437286085777346,,CUT,,
+6,Sony Open in Hawaii,pga,2026,108,William Mouw,0.0,0.8,40.0,0.1103087924039381,71.0,T71,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,109,Max McGreevy,0.0,0.8,40.5,-0.1680574299518302,,CUT,,
+6,Sony Open in Hawaii,pga,2026,110,Adrien Dumont De Chassart,0.0,0.0,3.6,-0.5421614220775794,24.0,T24,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,111,Rafael Campos,0.0,0.0,14.2,-0.4040221581407171,,CUT,,
+6,Sony Open in Hawaii,pga,2026,112,Joe Highsmith,0.0,0.0,2.6,-0.5851033012803629,66.0,T66,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,113,Zach Johnson,0.0,0.4,31.9,-0.1418165795752274,61.0,T61,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,114,Beau Hossler,0.0,0.0,19.1,-0.3133362451379409,,CUT,,
+6,Sony Open in Hawaii,pga,2026,115,Kazuki Higa,0.0,0.2,28.3,0.0754913717291416,,CUT,,
+6,Sony Open in Hawaii,pga,2026,116,Peter Malnati,0.0,0.0,14.4,-0.4248241662109748,,CUT,,
+6,Sony Open in Hawaii,pga,2026,117,Chandler Phillips,0.0,0.1,24.8,-0.0267447240704976,19.0,T19,0.0,0.0
+6,Sony Open in Hawaii,pga,2026,118,Davis Riley,0.0,0.1,22.8,0.0258386260571011,6.0,T6,0.0,1.0
+6,Sony Open in Hawaii,pga,2026,119,Yuta Sugiura,0.0,0.1,23.5,0.0754913717291416,,WD,,
+6,Sony Open in Hawaii,pga,2026,120,Danny Walker,0.0,0.1,17.3,-0.5134606235052157,,CUT,,

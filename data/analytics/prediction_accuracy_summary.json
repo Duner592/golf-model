@@ -1,0 +1,13 @@
+{
+  "pga": {
+    "events": 11,
+    "rows": 1271,
+    "brier_win": 0.01636770675066313,
+    "brier_top10": 0.1509329469496021,
+    "brier_mc": null,
+    "mean_predicted_win_pct": 0.8651927616050354,
+    "mean_actual_win_rate": 0.014588859416445624,
+    "mean_predicted_top10_pct": 8.654760031471284,
+    "mean_actual_top10_rate": 0.16578249336870027
+  }
+}

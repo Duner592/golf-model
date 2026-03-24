@@ -12,6 +12,7 @@ import argparse
 import datetime
 import json
 import os
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -27,9 +28,14 @@ def load_yaml(path: Path) -> dict:
 
 
 def normalize_name(s: str) -> str:
+    """
+    Normalize event names for file paths so downstream readers resolve the same path.
+    Matches the normalization used by course fit/history builders.
+    """
     s0 = (s or "").lower()
-    s0 = s0.replace(" ", "_")
-    return s0
+    s0 = re.sub(r"[^a-z0-9]+", " ", s0)
+    s0 = re.sub(r"\s+", " ", s0).strip()
+    return s0.replace(" ", "_")
 
 
 def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> tuple[pd.DataFrame, list]:
