@@ -1,14 +1,14 @@
 {
   "tour": "pga",
-  "event_id": "20",
-  "event_name": "Texas Children's Houston Open",
+  "event_id": "41",
+  "event_name": "Valero Texas Open",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-03-26",
-  "generated_utc": "24-Mar-2026 09:09:05",
+  "r1_date": "2026-04-02",
+  "generated_utc": "30-Mar-2026 13:38:40",
   "resources": {
-    "downloads_csv": "pga/downloads/event_20_texas_children_s_houston_open_2026-03-24_leaderboard.csv",
-    "downloads_html": "pga/downloads/event_20_texas_children_s_houston_open_2026-03-24_leaderboard.html",
+    "downloads_csv": "pga/downloads/event_41_valero_texas_open_2026-03-30_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_41_valero_texas_open_2026-03-30_leaderboard.html",
     "weather_meta": "pga/weather_meta.json",
     "weather_round_neutral": "pga/weather_round_neutral.json",
     "weather_round_wave": "pga/weather_round_wave.json",
@@ -19,36 +19,36 @@
     "leaderboard": "pga/leaderboard.json",
     "summary": "pga/summary.json",
     "schedule": "pga/schedule.json",
-    "primary_event_dir": "pga/events/event_20"
+    "primary_event_dir": "pga/events/event_41"
   },
   "active_events": [
     {
-      "event_id": "20",
-      "event_name": "Texas Children's Houston Open",
-      "r1_date": "2026-03-26",
-      "start_date": "2026-03-26",
-      "generated_utc": "24-Mar-2026 09:09:05",
+      "event_id": "41",
+      "event_name": "Valero Texas Open",
+      "r1_date": "2026-04-02",
+      "start_date": "2026-04-02",
+      "generated_utc": "30-Mar-2026 13:38:40",
       "has_predictions": true,
       "resources": {
-        "leaderboard": "pga/events/event_20/leaderboard.json",
-        "summary": "pga/events/event_20/summary.json",
-        "meta": "pga/events/event_20/meta.json",
-        "downloads_csv": "pga/downloads/event_20_texas_children_s_houston_open_2026-03-24_leaderboard.csv",
-        "downloads_html": "pga/downloads/event_20_texas_children_s_houston_open_2026-03-24_leaderboard.html",
-        "weather_meta": "pga/events/event_20/weather_meta.json",
-        "weather_round_neutral": "pga/events/event_20/weather_round_neutral.json",
-        "weather_round_wave": "pga/events/event_20/weather_round_wave.json",
-        "course_fit_weights": "pga/events/event_20/course_fit_weights.json",
-        "course_history_summary": "pga/events/event_20/course_history_summary.json",
-        "tournament_summary": "pga/events/event_20/tournament_summary.json",
-        "field_teetimes": "pga/events/event_20/field_teetimes.csv",
+        "leaderboard": "pga/events/event_41/leaderboard.json",
+        "summary": "pga/events/event_41/summary.json",
+        "meta": "pga/events/event_41/meta.json",
+        "downloads_csv": "pga/downloads/event_41_valero_texas_open_2026-03-30_leaderboard.csv",
+        "downloads_html": "pga/downloads/event_41_valero_texas_open_2026-03-30_leaderboard.html",
+        "weather_meta": "pga/events/event_41/weather_meta.json",
+        "weather_round_neutral": "pga/events/event_41/weather_round_neutral.json",
+        "weather_round_wave": "pga/events/event_41/weather_round_wave.json",
+        "course_fit_weights": "pga/events/event_41/course_fit_weights.json",
+        "course_history_summary": "pga/events/event_41/course_history_summary.json",
+        "tournament_summary": "pga/events/event_41/tournament_summary.json",
+        "field_teetimes": "pga/events/event_41/field_teetimes.csv",
         "schedule": "pga/schedule.json"
       },
-      "source_csv": "data/preds/pga/event_20_texas_children_s_houston_open_2026-03-24_leaderboard.csv",
-      "event_dir": "pga/events/event_20",
+      "source_csv": "data/preds/pga/event_41_valero_texas_open_2026-03-30_leaderboard.csv",
+      "event_dir": "pga/events/event_41",
       "lat": null,
       "lon": null
     }
   ],
-  "primary_event_dir": "pga/events/event_20"
+  "primary_event_dir": "pga/events/event_41"
 }

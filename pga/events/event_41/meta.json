@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "41",
+  "event_name": "Valero Texas Open",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-04-02",
+  "start_date": "2026-04-02",
+  "generated_utc": "30-Mar-2026 13:38:40",
+  "source_csv": "data/preds/pga/event_41_valero_texas_open_2026-03-30_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_41/leaderboard.json",
+    "summary": "pga/events/event_41/summary.json",
+    "meta": "pga/events/event_41/meta.json",
+    "downloads_csv": "pga/downloads/event_41_valero_texas_open_2026-03-30_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_41_valero_texas_open_2026-03-30_leaderboard.html",
+    "weather_meta": "pga/events/event_41/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_41/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_41/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_41/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_41/course_history_summary.json",
+    "tournament_summary": "pga/events/event_41/tournament_summary.json",
+    "field_teetimes": "pga/events/event_41/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}

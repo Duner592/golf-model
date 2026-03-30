@@ -1,12 +1,7 @@
 {
-  "event_id": "2026113",
-  "event_name": "Hero Indian Open",
-  "source_csv": "data/preds/euro/event_2026113_hero_indian_open_2026-03-24_leaderboard.csv",
-  "generated_utc": "24-Mar-2026 09:09:20",
-  "metrics": {
-    "field_size": 138,
-    "p_win_max": 0.6015333333333334,
-    "p_win_median": 8.333333333333334e-05,
-    "p_win_sum": 1.0
-  }
+  "event_id": "0",
+  "event_name": "No Event",
+  "source_csv": null,
+  "generated_utc": "30-Mar-2026 13:38:46",
+  "metrics": null
 }
