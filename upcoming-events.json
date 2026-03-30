@@ -500,13 +500,13 @@
       "location": "Houston, TX",
       "longitude": -95.261,
       "start_date": "2026-03-26",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Woodland, Gary (12577)"
     },
     {
       "country": "IND",
-      "course": "DLF G&CC",
+      "course": "Dlf G&Cc Player Course",
       "course_key": "dlf g&cc player course",
       "event_id": "2026113",
       "event_name": "Hero Indian Open",
@@ -514,23 +514,23 @@
       "location": "Gurgaon, India",
       "longitude": 77.106,
       "start_date": "2026-03-26",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Fitzpatrick, Alex (25362)"
     },
     {
       "country": "USA",
-      "course": "The Landings Golf & Athletic Club",
+      "course": "The Landings Golf & Athletic Club - Deer Creek",
       "course_key": "805",
       "event_id": "128",
-      "event_name": "Club Car Championship at The Landings Golf & Athletic Club",
+      "event_name": "Club Car Championship",
       "latitude": 31.93,
       "location": "Savannah, GA",
       "longitude": -81.058,
       "start_date": "2026-03-26",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "kft",
-      "winner": "TBD"
+      "winner": "Lamb, Davis (29324)"
     },
     {
       "country": "USA",
@@ -632,9 +632,9 @@
     },
     {
       "country": "CHN",
-      "course": "Shanghai Enhance Anting GC",
+      "course": "Enhance Anting GC",
       "course_key": "enhance anting gc",
-      "event_id": "TBD",
+      "event_id": "2026115",
       "event_name": "Volvo China Open",
       "latitude": 31.27,
       "location": "Jiading District, China",
