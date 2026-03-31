@@ -1,4 +1,22 @@
 {
+  "2026_hero_indian_open": {
+    "event_id": "2026113",
+    "event_name": "Hero Indian Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "hero_indian_open"
+  },
+  "2026_texas_children_s_houston_open": {
+    "event_id": "20",
+    "event_name": "Texas Children's Houston Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "texas_children_s_houston_open"
+  },
   "2026_hainan_classic_presented_by_maextro": {
     "event_id": "2026112",
     "event_name": "Hainan Classic presented by MAEXTRO",
