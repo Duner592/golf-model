@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "14",
+  "event_name": "Masters Tournament",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-04-09",
+  "start_date": "2026-04-09",
+  "generated_utc": "07-Apr-2026 09:11:46",
+  "source_csv": "data/preds/pga/event_14_masters_tournament_2026-04-07_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_14/leaderboard.json",
+    "summary": "pga/events/event_14/summary.json",
+    "meta": "pga/events/event_14/meta.json",
+    "downloads_csv": "pga/downloads/event_14_masters_tournament_2026-04-07_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_14_masters_tournament_2026-04-07_leaderboard.html",
+    "weather_meta": "pga/events/event_14/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_14/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_14/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_14/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_14/course_history_summary.json",
+    "tournament_summary": "pga/events/event_14/tournament_summary.json",
+    "field_teetimes": "pga/events/event_14/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}

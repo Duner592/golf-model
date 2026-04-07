@@ -13,6 +13,7 @@
 import argparse
 import json
 import os
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -69,6 +70,35 @@ def deep_get(d: dict, *keys) -> Any:
     return cur
 
 
+def get_with_retry(
+    url: str,
+    *,
+    params: dict | None = None,
+    timeout: float = 20.0,
+    retries: int = 5,
+    backoff: float = 2.0,
+    status_forcelist: tuple[int, ...] = (500, 502, 503, 504),
+) -> requests.Response:
+    """Call requests.get with exponential backoff for transient failures."""
+    for attempt in range(retries + 1):
+        try:
+            resp = requests.get(url, params=params, timeout=timeout)
+            resp.raise_for_status()
+            return resp
+        except requests.HTTPError as exc:
+            status = getattr(exc.response, "status_code", None)
+            if status not in status_forcelist or attempt == retries:
+                raise
+        except requests.RequestException as exc:
+            status = getattr(getattr(exc, "response", None), "status_code", None)
+            if attempt == retries:
+                raise
+        sleep_for = backoff * (2**attempt)
+        status_info = f"status {status}" if status is not None else "no status"
+        print(f"[weather] transient error ({status_info}); retry {attempt + 1}/{retries} in {sleep_for:.1f}s")
+        time.sleep(sleep_for)
+
+
 def pick_event_from_schedule(events: list[dict], known_event_id: str | int | None = None) -> dict | None:
     # Match known event_id first
     if known_event_id is not None:
@@ -118,9 +148,8 @@ def fetch_open_meteo_hourly(lat: float, lon: float, start_date: str, end_date: s
         "timezone": tz,
         "windspeed_unit": "mph",  # return mph directly
     }
-    r = requests.get(url, params=params, timeout=20)
-    r.raise_for_status()
-    return r.json()
+    resp = get_with_retry(url, params=params, timeout=20)
+    return resp.json()
 
 
 def fetch_open_meteo_archive(lat: float, lon: float, start_date: str, end_date: str, tz: str = "auto") -> dict:
@@ -138,9 +167,8 @@ def fetch_open_meteo_archive(lat: float, lon: float, start_date: str, end_date: 
         "timezone": tz,
         "hourly": "wind_speed_10m,wind_gusts_10m,temperature_2m,precipitation",
     }
-    r = requests.get(url, params=params, timeout=20)
-    r.raise_for_status()
-    data = r.json()
+    resp = get_with_retry(url, params=params, timeout=20)
+    data = resp.json()
 
     # Derive precipitation_probability (0 or 100) from precipitation > 0
     if "hourly" in data and "precipitation" in data["hourly"]:
