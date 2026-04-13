@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "12",
+  "event_name": "RBC Heritage",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-04-16",
+  "start_date": "2026-04-16",
+  "generated_utc": "13-Apr-2026 14:00:47",
+  "source_csv": "data/preds/pga/event_12_rbc_heritage_2026-04-13_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_12/leaderboard.json",
+    "summary": "pga/events/event_12/summary.json",
+    "meta": "pga/events/event_12/meta.json",
+    "downloads_csv": "pga/downloads/event_12_rbc_heritage_2026-04-13_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_12_rbc_heritage_2026-04-13_leaderboard.html",
+    "weather_meta": "pga/events/event_12/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_12/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_12/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_12/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_12/course_history_summary.json",
+    "tournament_summary": "pga/events/event_12/tournament_summary.json",
+    "field_teetimes": "pga/events/event_12/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}

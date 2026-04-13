@@ -1,5 +1,14 @@
 [
   {
+    "event_id": "12",
+    "event_name": "RBC Heritage",
+    "tour": "pga",
+    "slug": "rbc_heritage",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-04-13 14:00:47 UTC"
+  },
+  {
     "event_id": "14",
     "event_name": "Masters Tournament",
     "tour": "pga",

@@ -1,14 +1,14 @@
 {
   "tour": "pga",
-  "event_id": "14",
-  "event_name": "Masters Tournament",
+  "event_id": "12",
+  "event_name": "RBC Heritage",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-04-09",
-  "generated_utc": "07-Apr-2026 09:11:46",
+  "r1_date": "2026-04-16",
+  "generated_utc": "13-Apr-2026 14:00:47",
   "resources": {
-    "downloads_csv": "pga/downloads/event_14_masters_tournament_2026-04-07_leaderboard.csv",
-    "downloads_html": "pga/downloads/event_14_masters_tournament_2026-04-07_leaderboard.html",
+    "downloads_csv": "pga/downloads/event_12_rbc_heritage_2026-04-13_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_12_rbc_heritage_2026-04-13_leaderboard.html",
     "weather_meta": "pga/weather_meta.json",
     "weather_round_neutral": "pga/weather_round_neutral.json",
     "weather_round_wave": "pga/weather_round_wave.json",
@@ -19,36 +19,36 @@
     "leaderboard": "pga/leaderboard.json",
     "summary": "pga/summary.json",
     "schedule": "pga/schedule.json",
-    "primary_event_dir": "pga/events/event_14"
+    "primary_event_dir": "pga/events/event_12"
   },
   "active_events": [
     {
-      "event_id": "14",
-      "event_name": "Masters Tournament",
-      "r1_date": "2026-04-09",
-      "start_date": "2026-04-09",
-      "generated_utc": "07-Apr-2026 09:11:46",
+      "event_id": "12",
+      "event_name": "RBC Heritage",
+      "r1_date": "2026-04-16",
+      "start_date": "2026-04-16",
+      "generated_utc": "13-Apr-2026 14:00:47",
       "has_predictions": true,
       "resources": {
-        "leaderboard": "pga/events/event_14/leaderboard.json",
-        "summary": "pga/events/event_14/summary.json",
-        "meta": "pga/events/event_14/meta.json",
-        "downloads_csv": "pga/downloads/event_14_masters_tournament_2026-04-07_leaderboard.csv",
-        "downloads_html": "pga/downloads/event_14_masters_tournament_2026-04-07_leaderboard.html",
-        "weather_meta": "pga/events/event_14/weather_meta.json",
-        "weather_round_neutral": "pga/events/event_14/weather_round_neutral.json",
-        "weather_round_wave": "pga/events/event_14/weather_round_wave.json",
-        "course_fit_weights": "pga/events/event_14/course_fit_weights.json",
-        "course_history_summary": "pga/events/event_14/course_history_summary.json",
-        "tournament_summary": "pga/events/event_14/tournament_summary.json",
-        "field_teetimes": "pga/events/event_14/field_teetimes.csv",
+        "leaderboard": "pga/events/event_12/leaderboard.json",
+        "summary": "pga/events/event_12/summary.json",
+        "meta": "pga/events/event_12/meta.json",
+        "downloads_csv": "pga/downloads/event_12_rbc_heritage_2026-04-13_leaderboard.csv",
+        "downloads_html": "pga/downloads/event_12_rbc_heritage_2026-04-13_leaderboard.html",
+        "weather_meta": "pga/events/event_12/weather_meta.json",
+        "weather_round_neutral": "pga/events/event_12/weather_round_neutral.json",
+        "weather_round_wave": "pga/events/event_12/weather_round_wave.json",
+        "course_fit_weights": "pga/events/event_12/course_fit_weights.json",
+        "course_history_summary": "pga/events/event_12/course_history_summary.json",
+        "tournament_summary": "pga/events/event_12/tournament_summary.json",
+        "field_teetimes": "pga/events/event_12/field_teetimes.csv",
         "schedule": "pga/schedule.json"
       },
-      "source_csv": "data/preds/pga/event_14_masters_tournament_2026-04-07_leaderboard.csv",
-      "event_dir": "pga/events/event_14",
+      "source_csv": "data/preds/pga/event_12_rbc_heritage_2026-04-13_leaderboard.csv",
+      "event_dir": "pga/events/event_12",
       "lat": null,
       "lon": null
     }
   ],
-  "primary_event_dir": "pga/events/event_14"
+  "primary_event_dir": "pga/events/event_12"
 }

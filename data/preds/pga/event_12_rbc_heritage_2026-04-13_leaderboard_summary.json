@@ -1,9 +1,8 @@
 {
   "event_id": "12",
   "event_name": "RBC Heritage",
-  "source_csv": "data/preds/pga/event_12_rbc_heritage_2026-04-13_leaderboard.csv",
-  "generated_utc": "13-Apr-2026 14:00:47",
-  "metrics": {
+  "generated_utc": "2026-04-13T135543Z",
+  "summary": {
     "field_size": 82,
     "p_win_max": 0.3978,
     "p_win_median": 0.0011,
