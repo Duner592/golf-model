@@ -33,8 +33,13 @@
         .prediction-section { margin: 2.5rem auto; width: min(95vw, 1300px); }
         .prediction-header { text-align: center; color: #2e8b57; margin-bottom: 0.5rem; }
         .prediction-description { text-align: center; color: #555; margin-bottom: 1.5rem; font-size: 0.95rem; }
-        .prediction-grid { display: grid; gap: 1.5rem; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .chart-wrapper { position: relative; width: min(100%, 620px); min-height: clamp(320px, 50vh, 520px); height: clamp(340px, 55vh, 560px); padding: 1.25rem; margin: 0 auto; background: #f7f9fb; border: 1px solid #ccc; border-radius: 12px; box-shadow: 0 12px 36px -24px rgba(0,0,0,0.35); }
+        .prediction-grid { display: grid; gap: 1.75rem; justify-content: center; align-items: stretch; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+        .chart-wrapper { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 620px; min-height: clamp(320px, 50vh, 520px); height: clamp(340px, 55vh, 560px); padding: 1.25rem; margin: 0 auto; background: #f7f9fb; border: 1px solid #ccc; border-radius: 12px; box-shadow: 0 12px 36px -24px rgba(0,0,0,0.35); }
+        .chart-wrapper.wide { grid-column: 1 / -1; max-width: 960px; }
+        .chart-title { margin: 0; font-size: 1.05rem; font-weight: 600; color: #134e4a; }
+        .chart-description { margin: 0; color: #444; font-size: 0.95rem; line-height: 1.45; }
+        .chart-canvas { position: relative; flex: 1 1 auto; }
+        .chart-canvas canvas { width: 100% !important; height: 100% !important; }
         canvas { width: 100% !important; height: 100% !important; }
         .logo {
             position: absolute;
@@ -88,12 +93,37 @@
     <h3 class="prediction-header">Prediction Accuracy Snapshot</h3>
     <p class="prediction-description">Archived model probabilities vs actual tournament outcomes.</p>
     <div class="prediction-grid">
-        <div class="chart-wrapper"><canvas id="archiveWinChart"></canvas></div>
-        <div class="chart-wrapper"><canvas id="archiveWinnerRankChart"></canvas></div>
-        <div class="chart-wrapper"><canvas id="archiveTop10Chart"></canvas></div>
+        <div class="chart-wrapper wide">
+            <h4 class="chart-title">Season Performance Trend</h4>
+            <p class="chart-description">Track how the model's winner probabilities and top-10 coverage evolve across each tournament week.</p>
+            <div class="chart-canvas">
+                <canvas id="archivePerformanceTrend"></canvas>
+            </div>
+        </div>
+        <div class="chart-wrapper">
+            <h4 class="chart-title">Winner Win Probabilities</h4>
+            <p class="chart-description">Shows the pre-event win percentage the model assigned to every eventual champion.</p>
+            <div class="chart-canvas">
+                <canvas id="archiveWinChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-wrapper">
+            <h4 class="chart-title">Winner Model Ranking</h4>
+            <p class="chart-description">Highlights where each winner was ranked by the model before play began.</p>
+            <div class="chart-canvas">
+                <canvas id="archiveWinnerRankChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-wrapper">
+            <h4 class="chart-title">Top-10 Coverage</h4>
+            <p class="chart-description">Compares actual top-10 finishers against the model's projected top-10 list for every archived event.</p>
+            <div class="chart-canvas">
+                <canvas id="archiveTop10Chart"></canvas>
+            </div>
+        </div>
     </div>
     <p class="muted" id="predictionSnapshotSummary" style="text-align:center; display:none;"></p>
-    <p class="muted" id="predictionSnapshotNote" style="text-align:center; display:none;">Includes completed events with archived results. Hover bars for event details.</p>
+    <p class="muted" id="predictionSnapshotNote" style="text-align:center; display:none;">Includes completed events with archived results. Hover the charts for event details.</p>
 </section>
 
 <script>
@@ -662,29 +692,156 @@ async function fetchLeaderboard(basePath) {
                 }
             });
 
-    const averageWinProbability = averageOf(winProbabilities);
-    const medianWinnerRank = medianOf(winnerRanks);
-    const averageTop10HitRate = averageOf(top10HitRates);
+            const toPercentSeries = (values) => values.map((value) => {
+                const numeric = toNumber(value, NaN);
+                return Number.isFinite(numeric) ? numeric : null;
+            });
+            const winProbabilitySeries = toPercentSeries(winProbabilities);
+            const top10HitRateSeries = toPercentSeries(top10HitRates);
+            const runningTop10AverageSeries = [];
+            const runningCompletedCounts = [];
+            let cumulativeTop10 = 0;
+            let completedEvents = 0;
+            for (let idx = 0; idx < top10HitRateSeries.length; idx += 1) {
+                const value = top10HitRateSeries[idx];
+                if (value != null) {
+                    cumulativeTop10 += value;
+                    completedEvents += 1;
+                    runningTop10AverageSeries.push(cumulativeTop10 / completedEvents);
+                    runningCompletedCounts.push(completedEvents);
+                } else {
+                    runningTop10AverageSeries.push(completedEvents ? cumulativeTop10 / completedEvents : null);
+                    runningCompletedCounts.push(completedEvents);
+                }
+            }
 
-    if (summaryEl) {
-        const winText = averageWinProbability != null ? `${averageWinProbability.toFixed(1)}%` : '—';
-        const rankText = medianWinnerRank != null ? `#${Math.round(medianWinnerRank)}` : '—';
-        const hitText = averageTop10HitRate != null ? `${averageTop10HitRate.toFixed(1)}%` : '—';
-        summaryEl.textContent = `Across ${results.length} completed events, the model gave winners an average pre-tournament win probability of ${winText}, the median winner ranked ${rankText}, and ${hitText} of actual top-10 finishers were inside the model's top-10 projections.`;
-    }
+            const performanceCanvas = document.getElementById('archivePerformanceTrend');
+            if (performanceCanvas) {
+                new Chart(performanceCanvas.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                label: 'Top-10 Coverage',
+                                data: top10HitRateSeries,
+                                borderColor: 'rgba(37, 99, 235, 0.95)',
+                                backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                                pointRadius: 3,
+                                pointHoverRadius: 5,
+                                tension: 0.25,
+                                spanGaps: false,
+                                order: 1
+                            },
+                            {
+                                label: 'Running Average Top-10 Coverage',
+                                data: runningTop10AverageSeries,
+                                borderColor: 'rgba(96, 165, 250, 0.9)',
+                                backgroundColor: 'rgba(96, 165, 250, 0.08)',
+                                borderDash: [6, 4],
+                                pointRadius: 0,
+                                pointHoverRadius: 0,
+                                tension: 0.2,
+                                spanGaps: true,
+                                order: 0
+                            },
+                            {
+                                label: 'Winner Win Probability',
+                                data: winProbabilitySeries,
+                                borderColor: 'rgba(5, 150, 105, 0.9)',
+                                backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                                pointRadius: 3,
+                                pointHoverRadius: 5,
+                                tension: 0.25,
+                                spanGaps: false,
+                                order: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                                ticks: {
+                                    callback: (value) => `${value}%`
+                                },
+                                title: { display: true, text: 'Percentage (%)' }
+                            },
+                            x: {
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 20
+                                },
+                                title: { display: true, text: 'Event order (ISO week)' }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: {
+                                callbacks: {
+                                    title: (context) => context[0]?.label ?? '',
+                                    label: (context) => {
+                                        const idx = context.dataIndex;
+                                        const value = context.parsed.y;
+                                        if (!Number.isFinite(value)) {
+                                            return `${context.dataset.label}: data unavailable`;
+                                        }
+                                        if (context.dataset.label === 'Winner Win Probability') {
+                                            const rank = winnerRanks[idx];
+                                            const rankText = Number.isFinite(rank) ? `ranked #${Math.round(rank)}` : 'rank unavailable';
+                                            return `${context.dataset.label}: ${value.toFixed(2)}% • ${winners[idx]} (${rankText})`;
+                                        }
+                                        if (context.dataset.label === 'Top-10 Coverage') {
+                                            const hits = results[idx].top10Hits;
+                                            const total = results[idx].top10Count;
+                                            if (Number.isFinite(hits) && Number.isFinite(total)) {
+                                                return `${context.dataset.label}: ${value.toFixed(1)}% (${hits}/${total} actual top-10 predicted)`;
+                                            }
+                                            return `${context.dataset.label}: ${value.toFixed(1)}%`;
+                                        }
+                                        if (context.dataset.label === 'Running Average Top-10 Coverage') {
+                                            const through = runningCompletedCounts[idx];
+                                            if (!through) {
+                                                return `${context.dataset.label}: data unavailable`;
+                                            }
+                                            return `${context.dataset.label}: ${value.toFixed(1)}% through ${through} completed events`;
+                                        }
+                                        return `${context.dataset.label}: ${value.toFixed(1)}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
 
-    if (note) {
-        const baseNote = 'Ordered by ISO week number; colors indicate tour (PGA = green, Euro = purple). Hover bars for event details.';
-        const pendingList = Array.from(pendingEvents.entries()).map(([label, reasons]) => {
-            const reasonText = Array.from(reasons).join(', ');
-            return `${label}${reasonText ? ` (${reasonText})` : ''}`;
-        });
-        if (pendingList.length) {
-            note.textContent = `${baseNote} Pending actual data for: ${pendingList.join('; ')}.`;
-        } else {
-            note.textContent = baseNote;
-        }
-    }
+            const averageWinProbability = averageOf(winProbabilities);
+            const medianWinnerRank = medianOf(winnerRanks);
+            const averageTop10HitRate = averageOf(top10HitRates);
+
+            if (summaryEl) {
+                const winText = averageWinProbability != null ? `${averageWinProbability.toFixed(1)}%` : '—';
+                const rankText = medianWinnerRank != null ? `#${Math.round(medianWinnerRank)}` : '—';
+                const hitText = averageTop10HitRate != null ? `${averageTop10HitRate.toFixed(1)}%` : '—';
+                summaryEl.textContent = `Across ${results.length} completed events, the model gave winners an average pre-tournament win probability of ${winText}, the median winner ranked ${rankText}, and ${hitText} of actual top-10 finishers were inside the model's top-10 projections.`;
+            }
+
+            if (note) {
+                const baseNote = 'Ordered by ISO week number. Trend lines track top-10 coverage and winner win probabilities, while bar colors indicate tour (PGA = green, Euro = purple). Hover any visualization for event details.';
+                const pendingList = Array.from(pendingEvents.entries()).map(([label, reasons]) => {
+                    const reasonText = Array.from(reasons).join(', ');
+                    return `${label}${reasonText ? ` (${reasonText})` : ''}`;
+                });
+                if (pendingList.length) {
+                    note.textContent = `${baseNote} Pending actual data for: ${pendingList.join('; ')}.`;
+                } else {
+                    note.textContent = baseNote;
+                }
+            }
 
     } catch (error) {
         console.error('Prediction snapshot failed:', error);
