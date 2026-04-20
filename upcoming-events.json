@@ -584,9 +584,9 @@
       "location": "Hilton Head Island, SC",
       "longitude": -80.81,
       "start_date": "2026-04-16",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Fitzpatrick, Matt (17646)"
     },
     {
       "country": "MEX",
@@ -598,9 +598,9 @@
       "location": "Mexico City, Mexico",
       "longitude": -99.244,
       "start_date": "2026-04-16",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "liv",
-      "winner": "TBD"
+      "winner": "Rahm, Jon (19195)"
     },
     {
       "country": "MEX",
@@ -612,9 +612,9 @@
       "location": "Akumal, Quintana Roo, Mexico",
       "longitude": -87.34,
       "start_date": "2026-04-16",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "kft",
-      "winner": "TBD"
+      "winner": "Menante, Dylan (29970)"
     },
     {
       "country": "USA",
@@ -660,8 +660,8 @@
     },
     {
       "country": "TUR",
-      "course": "TBC",
-      "course_key": "tbc",
+      "course": "National GC",
+      "course_key": "national gc",
       "event_id": "TBD",
       "event_name": "Turkish Airlines Open",
       "latitude": 0.0,
