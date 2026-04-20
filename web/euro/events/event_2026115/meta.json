@@ -1,0 +1,27 @@
+{
+  "tour": "euro",
+  "event_id": "2026115",
+  "event_name": "Volvo China Open",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-04-23",
+  "start_date": "2026-04-23",
+  "generated_utc": "20-Apr-2026 09:59:25",
+  "source_csv": "data/preds/euro/event_2026115_volvo_china_open_2026-04-20_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "euro/events/event_2026115/leaderboard.json",
+    "summary": "euro/events/event_2026115/summary.json",
+    "meta": "euro/events/event_2026115/meta.json",
+    "downloads_csv": "euro/downloads/event_2026115_volvo_china_open_2026-04-20_leaderboard.csv",
+    "downloads_html": "euro/downloads/event_2026115_volvo_china_open_2026-04-20_leaderboard.html",
+    "weather_meta": "euro/events/event_2026115/weather_meta.json",
+    "weather_round_neutral": "euro/events/event_2026115/weather_round_neutral.json",
+    "weather_round_wave": "euro/events/event_2026115/weather_round_wave.json",
+    "course_fit_weights": "euro/events/event_2026115/course_fit_weights.json",
+    "course_history_summary": "euro/events/event_2026115/course_history_summary.json",
+    "tournament_summary": "euro/events/event_2026115/tournament_summary.json",
+    "field_teetimes": "euro/events/event_2026115/field_teetimes.csv",
+    "schedule": "euro/schedule.json"
+  }
+}
