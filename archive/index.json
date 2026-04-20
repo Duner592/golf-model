@@ -1,5 +1,23 @@
 [
   {
+    "event_id": "2026115",
+    "event_name": "Volvo China Open",
+    "tour": "euro",
+    "slug": "volvo_china_open",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-04-20 09:59:25 UTC"
+  },
+  {
+    "event_id": "18",
+    "event_name": "Zurich Classic of New Orleans",
+    "tour": "pga",
+    "slug": "zurich_classic_of_new_orleans",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-04-20 09:59:16 UTC"
+  },
+  {
     "event_id": "12",
     "event_name": "RBC Heritage",
     "tour": "pga",
