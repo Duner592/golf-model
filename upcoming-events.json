@@ -577,7 +577,7 @@
     {
       "country": "USA",
       "course": "Harbour Town Golf Links",
-      "course_key": "012",
+      "course_key": "12",
       "event_id": "12",
       "event_name": "RBC Heritage",
       "latitude": 32.136,
@@ -591,8 +591,8 @@
     {
       "country": "MEX",
       "course": "Club de Golf Chapultepec",
-      "course_key": "28",
-      "event_id": "709",
+      "course_key": "1",
+      "event_id": "59",
       "event_name": "Mexico City",
       "latitude": 19.43,
       "location": "Mexico City, Mexico",
@@ -605,9 +605,9 @@
     {
       "country": "MEX",
       "course": "PGA Riviera Maya",
-      "course_key": "098",
+      "course_key": "98",
       "event_id": "171",
-      "event_name": "Tulum Championship at PGA Riviera Maya",
+      "event_name": "Tulum Championship",
       "latitude": 20.375,
       "location": "Akumal, Quintana Roo, Mexico",
       "longitude": -87.34,
