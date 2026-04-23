@@ -1,4 +1,13 @@
 {
+  "2026_rbc_heritage": {
+    "event_id": "12",
+    "event_name": "RBC Heritage",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "rbc_heritage"
+  },
   "2026_masters_tournament": {
     "event_id": "14",
     "event_name": "Masters Tournament",
