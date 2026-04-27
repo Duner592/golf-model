@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "556",
+  "event_name": "Cadillac Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-04-30",
+  "start_date": "2026-04-30",
+  "generated_utc": "27-Apr-2026 08:55:34",
+  "source_csv": "data/preds/pga/event_556_cadillac_championship_2026-04-27_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_556/leaderboard.json",
+    "summary": "pga/events/event_556/summary.json",
+    "meta": "pga/events/event_556/meta.json",
+    "downloads_csv": "pga/downloads/event_556_cadillac_championship_2026-04-27_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_556_cadillac_championship_2026-04-27_leaderboard.html",
+    "weather_meta": "pga/events/event_556/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_556/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_556/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_556/course_fit_weights.json",
+    "course_history_summary": null,
+    "tournament_summary": "pga/events/event_556/tournament_summary.json",
+    "field_teetimes": "pga/events/event_556/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}
