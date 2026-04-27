@@ -1,14 +1,14 @@
 {
   "tour": "euro",
-  "event_id": "2026115",
-  "event_name": "Volvo China Open",
+  "event_id": "2026116",
+  "event_name": "Turkish Airlines Open",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-04-23",
-  "generated_utc": "20-Apr-2026 09:59:25",
+  "r1_date": "2026-04-30",
+  "generated_utc": "27-Apr-2026 08:55:39",
   "resources": {
-    "downloads_csv": "euro/downloads/event_2026115_volvo_china_open_2026-04-20_leaderboard.csv",
-    "downloads_html": "euro/downloads/event_2026115_volvo_china_open_2026-04-20_leaderboard.html",
+    "downloads_csv": "euro/downloads/event_2026116_turkish_airlines_open_2026-04-27_leaderboard.csv",
+    "downloads_html": "euro/downloads/event_2026116_turkish_airlines_open_2026-04-27_leaderboard.html",
     "weather_meta": "euro/weather_meta.json",
     "weather_round_neutral": "euro/weather_round_neutral.json",
     "weather_round_wave": "euro/weather_round_wave.json",
@@ -19,36 +19,36 @@
     "leaderboard": "euro/leaderboard.json",
     "summary": "euro/summary.json",
     "schedule": "euro/schedule.json",
-    "primary_event_dir": "euro/events/event_2026115"
+    "primary_event_dir": "euro/events/event_2026116"
   },
   "active_events": [
     {
-      "event_id": "2026115",
-      "event_name": "Volvo China Open",
-      "r1_date": "2026-04-23",
-      "start_date": "2026-04-23",
-      "generated_utc": "20-Apr-2026 09:59:25",
+      "event_id": "2026116",
+      "event_name": "Turkish Airlines Open",
+      "r1_date": "2026-04-30",
+      "start_date": "2026-04-30",
+      "generated_utc": "27-Apr-2026 08:55:39",
       "has_predictions": true,
       "resources": {
-        "leaderboard": "euro/events/event_2026115/leaderboard.json",
-        "summary": "euro/events/event_2026115/summary.json",
-        "meta": "euro/events/event_2026115/meta.json",
-        "downloads_csv": "euro/downloads/event_2026115_volvo_china_open_2026-04-20_leaderboard.csv",
-        "downloads_html": "euro/downloads/event_2026115_volvo_china_open_2026-04-20_leaderboard.html",
-        "weather_meta": "euro/events/event_2026115/weather_meta.json",
-        "weather_round_neutral": "euro/events/event_2026115/weather_round_neutral.json",
-        "weather_round_wave": "euro/events/event_2026115/weather_round_wave.json",
-        "course_fit_weights": "euro/events/event_2026115/course_fit_weights.json",
-        "course_history_summary": "euro/events/event_2026115/course_history_summary.json",
-        "tournament_summary": "euro/events/event_2026115/tournament_summary.json",
-        "field_teetimes": "euro/events/event_2026115/field_teetimes.csv",
+        "leaderboard": "euro/events/event_2026116/leaderboard.json",
+        "summary": "euro/events/event_2026116/summary.json",
+        "meta": "euro/events/event_2026116/meta.json",
+        "downloads_csv": "euro/downloads/event_2026116_turkish_airlines_open_2026-04-27_leaderboard.csv",
+        "downloads_html": "euro/downloads/event_2026116_turkish_airlines_open_2026-04-27_leaderboard.html",
+        "weather_meta": "euro/events/event_2026116/weather_meta.json",
+        "weather_round_neutral": "euro/events/event_2026116/weather_round_neutral.json",
+        "weather_round_wave": "euro/events/event_2026116/weather_round_wave.json",
+        "course_fit_weights": "euro/events/event_2026116/course_fit_weights.json",
+        "course_history_summary": "euro/events/event_2026116/course_history_summary.json",
+        "tournament_summary": "euro/events/event_2026116/tournament_summary.json",
+        "field_teetimes": "euro/events/event_2026116/field_teetimes.csv",
         "schedule": "euro/schedule.json"
       },
-      "source_csv": "data/preds/euro/event_2026115_volvo_china_open_2026-04-20_leaderboard.csv",
-      "event_dir": "euro/events/event_2026115",
+      "source_csv": "data/preds/euro/event_2026116_turkish_airlines_open_2026-04-27_leaderboard.csv",
+      "event_dir": "euro/events/event_2026116",
       "lat": null,
       "lon": null
     }
   ],
-  "primary_event_dir": "euro/events/event_2026115"
+  "primary_event_dir": "euro/events/event_2026116"
 }
