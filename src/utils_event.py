@@ -56,13 +56,16 @@ def _resolve_single_event_id(cli_event_id: str | None = None, tour: str = TOUR_D
     if cli_event_id:
         return str(cli_event_id)
 
-    # Prefer current week from field-updates.json (written by fetch_field_updates.py)
+    # Prefer current week from field-updates.json (written by fetch_field_updates.py),
+    # but only when it belongs to the requested tour. This file is shared across
+    # tours, so using a stale PGA payload for a Euro run can drift to the wrong id.
     fu = ROOT / "scripts" / "field-updates.json"
     if fu.exists():
         try:
             data = json.loads(fu.read_text(encoding="utf-8"))
             eid = data.get("event_id")
-            if eid is not None:
+            payload_tour = data.get("tour")
+            if eid is not None and (not tour or not payload_tour or str(payload_tour).lower() == str(tour).lower()):
                 return str(eid)
         except Exception:
             pass

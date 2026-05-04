@@ -1,5 +1,32 @@
 [
   {
+    "event_id": "2026117",
+    "event_name": "Estrella Damm Catalunya Championship",
+    "tour": "euro",
+    "slug": "estrella_damm_catalunya_championship",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-05-04 10:32:44 UTC"
+  },
+  {
+    "event_id": "480",
+    "event_name": "Truist Championship",
+    "tour": "pga",
+    "slug": "truist_championship",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-05-04 10:32:35 UTC"
+  },
+  {
+    "event_id": "553",
+    "event_name": "ONEflight Myrtle Beach Classic",
+    "tour": "pga",
+    "slug": "oneflight_myrtle_beach_classic",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-05-04 10:32:35 UTC"
+  },
+  {
     "event_id": "2026116",
     "event_name": "Turkish Airlines Open",
     "tour": "euro",

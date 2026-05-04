@@ -87,6 +87,7 @@ def main():
         print(f"[info] Events to process for tour={TOUR}: {', '.join(event_ids)}")
 
         for event_id in event_ids:
+            requested_event_id = event_id
             print(f"[info] === Processing event_id={event_id} ===")
             per_event_suffix = ["--event_id", event_id] + cmd_suffix
 
@@ -130,6 +131,16 @@ def main():
                         with open(field_updates_path, encoding="utf-8") as f:
                             fetched_payload = json.load(f)
                         if isinstance(fetched_payload, dict):
+                            payload_event_id = fetched_payload.get("event_id")
+                            if payload_event_id is not None and str(payload_event_id) != str(event_id):
+                                print(
+                                    "[warn] Field updates returned "
+                                    f"event_id={payload_event_id} for requested event_id={event_id}; "
+                                    "using the returned id for downstream files."
+                                )
+                                event_id = str(payload_event_id)
+                                per_event_suffix = ["--event_id", event_id] + cmd_suffix
+
                             error_msg = fetched_payload.get("error")
                             field_entries = fetched_payload.get("field")
                             if error_msg:
@@ -162,8 +173,9 @@ def main():
                             meta = json.load(f)
                         with open(upcoming_file, encoding="utf-8") as f:
                             data = json.load(f)
+                        event_id_candidates = {str(event_id), str(requested_event_id)}
                         for event in data.get("schedule", []):
-                            if str(event.get("event_id")) == event_id and event.get("tour") == TOUR:
+                            if str(event.get("event_id")) in event_id_candidates and event.get("tour") == TOUR:
                                 if "latitude" not in meta or not meta.get("latitude"):
                                     meta["latitude"] = event.get("latitude")
                                 if "longitude" not in meta or not meta.get("longitude"):
