@@ -1,0 +1,12 @@
+{
+  "event_id": "553",
+  "event_name": "ONEflight Myrtle Beach Classic",
+  "source_csv": "data/preds/pga/event_553_oneflight_myrtle_beach_classic_2026-05-04_leaderboard.csv",
+  "generated_utc": "04-May-2026 10:32:35",
+  "metrics": {
+    "field_size": 117,
+    "p_win_max": 0.38713333333333333,
+    "p_win_median": 0.0007333333333333333,
+    "p_win_sum": 1.0000000000000002
+  }
+}
