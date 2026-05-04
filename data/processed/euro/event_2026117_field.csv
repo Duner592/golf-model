@@ -18,7 +18,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,USA,32550,399.0,201.0,"Bryant, Davis",106152,11,[],29,2026117
 0,AUS,27379,,,"Buchanan, Jack",101595,4,[],163,2026117
 0,ESP,7457,260.0,255.0,"Cabrera Bello, Rafa",32111,6,[],53,2026117
-0,ESP,14016,178.0,162.0,"Campillo, Jorge",36867,20,[],22,2026117
+0,ESP,14016,178.0,162.0,"Campillo, Jorge",36867,21,[],22,2026117
 0,ESP,19635,,465.0,"Cantero Gutierrez, Ivan",40516,6,[],133,2026117
 0,ITA,23549,,412.0,"Celli, Filippo",100024,4,[],192,2026117
 0,ESP,26745,130.0,123.0,"Chacarra, Eugenio",43332,15,[],18,2026117
@@ -28,7 +28,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,FRA,20727,188.0,216.0,"Coussaud, Ugo",40882,9,[],37,2026117
 0,FRA,27811,192.0,145.0,"Couvra, Martin",101251,8,[],39,2026117
 0,USA,23610,410.0,401.0,"Crocker, Sean",41684,5,[],103,2026117
-0,POR,27149,340.0,,"Da Costa Rodrigues, Daniel",105484,32,[],27,2026117
+0,POR,27149,340.0,,"Da Costa Rodrigues, Daniel",105484,34,[],27,2026117
 0,RSA,17068,434.0,257.0,"Daffue, MJ",39189,7,[],,2026117
 0,SWE,14018,474.0,440.0,"Dantorp, Jens",36484,14,[],124,2026117
 0,ITA,26506,356.0,394.0,"De Leo, Gregorio",100023,13,[],47,2026117
@@ -42,7 +42,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,ESP,33839,,,"Ereno Perez, Pablo",108141,8,[],,2026117
 0,USA,29520,,,"Erickson, Dan",101057,2,[],,2026117
 0,ESP,8262,,,"Fdez-Castano, Gonzalo",31267,3,[],,2026117
-0,SCO,21646,164.0,182.0,"Ferguson, Ewen",40946,16,[],34,2026117
+0,SCO,21646,164.0,182.0,"Ferguson, Ewen",40946,17,[],34,2026117
 0,ENG,9396,,,"Fisher, Ross",32435,4,[],139,2026117
 0,ZIM,15211,,,"Follet-Smith, Benjamin",42160,2,[],154,2026117
 0,SCO,16475,233.0,177.0,"Forrest, Grant",38956,5,[],55,2026117
@@ -82,7 +82,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,SCO,14784,329.0,228.0,"Law, David",37562,4,[],88,2026117
 0,KOR,13498,,250.0,"Lee, Junghwan",39251,9,[],109,2026117
 0,FRA,14973,420.0,,"Levy, Alexander",37791,12,[],110,2026117
-0,SWE,20084,186.0,220.0,"Lindberg, Mikael",41330,82,[],7,2026117
+0,SWE,20084,186.0,220.0,"Lindberg, Mikael",41330,86,[],7,2026117
 0,FIN,20085,92.0,158.0,"Lindell, Oliver",40874,17,[],31,2026117
 0,USA,7960,,,"List, Luke",35448,4,[],,2026117
 0,USA,31866,,,"Logan, Hunter",108174,6,[],,2026117
@@ -90,7 +90,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,NED,10158,274.0,205.0,"Luiten, Joost",34085,2,[],81,2026117
 0,ITA,11460,265.0,277.0,"Manassero, Matteo",34788,18,[],75,2026117
 0,ITA,20844,,426.0,"Mazzoli, Stefano",40892,6,[],146,2026117
-0,AUS,24172,,,"McKinney, Connor",101468,8,[],170,2026117
+0,AUS,24172,,,"McKinney, Connor",101468,9,[],170,2026117
 1,ESP,30045598,,,"Mestre Carceller, Vicente",109274,4,[],,2026117
 0,AUS,19224,,462.0,"Micheluzzi, David",42600,8,[],104,2026117
 0,ITA,17357,328.0,312.0,"Migliozzi, Guido",39271,15,[],41,2026117
@@ -103,7 +103,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,RSA,19429,,447.0,"Naidoo, Dylan",40468,8,[],147,2026117
 0,DEN,15676,392.0,235.0,"Norgaard, Niklas",38379,12,[],123,2026117
 0,RSA,7677,455.0,120.0,"Norris, Shaun",32013,12,[],19,2026117
-0,DEN,25611,157.0,142.0,"Olesen, Jacob Skov",105456,29,[],26,2026117
+0,DEN,25611,157.0,142.0,"Olesen, Jacob Skov",105456,30,[],26,2026117
 0,UAE,14975,209.0,222.0,"Otaegui, Adrian",37793,18,[],15,2026117
 0,ITA,16549,,267.0,"Paratore, Renato",39042,5,[],173,2026117
 0,ESP,24133,,,"Pastor, Victor",42509,4,[],,2026117
@@ -113,7 +113,7 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,RSA,25890,,,"Premlall, Yurav",43173,5,[],157,2026117
 0,FIN,13139,424.0,458.0,"Pulkkanen, Tapio",36168,11,[],131,2026117
 0,AUS,18900,419.0,498.0,"Quayle, Anthony",41948,8,[],73,2026117
-0,SCO,11396,426.0,446.0,"Ramsay, Richie",34772,12,[],145,2026117
+0,SCO,11396,426.0,446.0,"Ramsay, Richie",34772,13,[],145,2026117
 0,FRA,23416,361.0,338.0,"Ravetto, David",43883,6,[],64,2026117
 0,ESP,31235,,337.0,"Repetto Taylor, Rocco Paolo",104066,10,[],134,2026117
 0,RSA,18174,264.0,154.0,"Ritchie, JC",39862,6,[],71,2026117
@@ -148,10 +148,10 @@ am,country,player_id,dg_rank,owgr_rank,player_name,player_num,pre_tourn_pageview
 0,GER,22231,435.0,241.0,"Von Dellingshausen, Nicolai",41420,7,[],130,2026117
 0,SCO,27147,482.0,462.0,"Walker, Euan",43569,5,[],80,2026117
 0,ENG,12426,324.0,304.0,"Waring, Paul",34264,8,[],149,2026117
-0,AUT,9531,219.0,214.0,"Wiesberger, Bernd",33676,29,[],14,2026117
+0,AUT,9531,219.0,214.0,"Wiesberger, Bernd",33676,30,[],14,2026117
 0,RSA,24093,,493.0,"Williams, Robin",42213,4,[],152,2026117
 0,DEN,15680,405.0,325.0,"Winther, Jeff",38296,8,[],126,2026117
 0,SCO,19908,376.0,330.0,"Young, Daniel",40650,9,[],98,2026117
 0,ENG,22496,,,"Yule, Jack",41412,4,[],,2026117
 0,PAR,9842,,480.0,"Zanotti, Fabrizio",34563,4,[],177,2026117
-0,CHN,29119,317.0,231.0,"Zhou, Yanhan",103918,10,[],86,2026117
+0,CHN,29119,317.0,231.0,"Zhou, Yanhan",103918,11,[],86,2026117
