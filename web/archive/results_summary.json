@@ -1,4 +1,22 @@
 {
+  "2026_volvo_china_open": {
+    "event_id": "2026115",
+    "event_name": "Volvo China Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "volvo_china_open"
+  },
+  "2026_zurich_classic_of_new_orleans": {
+    "event_id": "18",
+    "event_name": "Zurich Classic of New Orleans",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "zurich_classic_of_new_orleans"
+  },
   "2026_rbc_heritage": {
     "event_id": "12",
     "event_name": "RBC Heritage",
