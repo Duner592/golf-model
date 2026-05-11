@@ -1,4 +1,49 @@
 {
+  "2026_truist_championship": {
+    "event_id": "480",
+    "event_name": "Truist Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "truist_championship"
+  },
+  "2026_oneflight_myrtle_beach_classic": {
+    "event_id": "553",
+    "event_name": "ONEflight Myrtle Beach Classic",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "oneflight_myrtle_beach_classic"
+  },
+  "2026_estrella_damm_catalunya_championship": {
+    "event_id": "2026117",
+    "event_name": "Estrella Damm Catalunya Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "estrella_damm_catalunya_championship"
+  },
+  "2026_turkish_airlines_open": {
+    "event_id": "2026116",
+    "event_name": "Turkish Airlines Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "turkish_airlines_open"
+  },
+  "2026_cadillac_championship": {
+    "event_id": "556",
+    "event_name": "Cadillac Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "cadillac_championship"
+  },
   "2026_volvo_china_open": {
     "event_id": "2026115",
     "event_name": "Volvo China Open",
