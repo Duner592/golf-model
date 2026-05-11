@@ -1,0 +1,1417 @@
+{
+  "event": {
+    "event_id": "2026117",
+    "event_name": "Estrella Damm Catalunya Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "estrella_damm_catalunya_championship"
+  },
+  "players": [
+    {
+      "player": "Yurav Premlall",
+      "player_id": 25890,
+      "finish_text": "1",
+      "finish_pos": 1,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Shaun Norris",
+      "player_id": 7677,
+      "finish_text": "2",
+      "finish_pos": 2,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "JC Ritchie",
+      "player_id": 18174,
+      "finish_text": "T3",
+      "finish_pos": 3,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Oihan Guillamoundeguy",
+      "player_id": 28239,
+      "finish_text": "T3",
+      "finish_pos": 3,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Alejandro Del Rey",
+      "player_id": 22259,
+      "finish_text": "T3",
+      "finish_pos": 3,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Kiradech Aphibarnrat",
+      "player_id": 12321,
+      "finish_text": "T6",
+      "finish_pos": 6,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Kazuma Kobori",
+      "player_id": 24369,
+      "finish_text": "T6",
+      "finish_pos": 6,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Dan Bradbury",
+      "player_id": 29971,
+      "finish_text": "T6",
+      "finish_pos": 6,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Rafa Cabrera Bello",
+      "player_id": 7457,
+      "finish_text": "T6",
+      "finish_pos": 6,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Martin Couvra",
+      "player_id": 27811,
+      "finish_text": "T10",
+      "finish_pos": 10,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Oliver Lindell",
+      "player_id": 20085,
+      "finish_text": "T10",
+      "finish_pos": 10,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Eugenio Lopez-Chacarra",
+      "player_id": 26745,
+      "finish_text": "T10",
+      "finish_pos": 10,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ricardo Gouveia",
+      "player_id": 18722,
+      "finish_text": "T13",
+      "finish_pos": 13,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Stefano Mazzoli",
+      "player_id": 20844,
+      "finish_text": "T13",
+      "finish_pos": 13,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Paul Waring",
+      "player_id": 12426,
+      "finish_text": "T13",
+      "finish_pos": 13,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Bernd Wiesberger",
+      "player_id": 9531,
+      "finish_text": "T13",
+      "finish_pos": 13,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Lucas Bjerregaard",
+      "player_id": 11619,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Richie Ramsay",
+      "player_id": 11396,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Antoine Rozner",
+      "player_id": 18770,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ivan Cantero Gutierrez",
+      "player_id": 19635,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "David Law",
+      "player_id": 14784,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Adam Blomme",
+      "player_id": 23784,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Joakim Lagergren",
+      "player_id": 14780,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Eddie Pepperell",
+      "player_id": 15113,
+      "finish_text": "T17",
+      "finish_pos": 17,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jayden Trey Schaper",
+      "player_id": 26991,
+      "finish_text": "T25",
+      "finish_pos": 25,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Alfredo Garcia-Heredia",
+      "player_id": 7887,
+      "finish_text": "T25",
+      "finish_pos": 25,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ugo Coussaud",
+      "player_id": 20727,
+      "finish_text": "T25",
+      "finish_pos": 25,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jorge Campillo",
+      "player_id": 14016,
+      "finish_text": "T25",
+      "finish_pos": 25,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ignacio Elvira Mijares",
+      "player_id": 12988,
+      "finish_text": "T25",
+      "finish_pos": 25,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ewen Ferguson",
+      "player_id": 21646,
+      "finish_text": "T25",
+      "finish_pos": 25,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Benjamin Follet-Smith",
+      "player_id": 15211,
+      "finish_text": "T31",
+      "finish_pos": 31,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Alexander Levy",
+      "player_id": 14973,
+      "finish_text": "T31",
+      "finish_pos": 31,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Tom Vaillant",
+      "player_id": 28157,
+      "finish_text": "T31",
+      "finish_pos": 31,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Davis Bryant",
+      "player_id": 32550,
+      "finish_text": "T31",
+      "finish_pos": 31,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Andreas Halvorsen",
+      "player_id": 17747,
+      "finish_text": "T31",
+      "finish_pos": 31,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Yuvraj Singh Sandhu",
+      "player_id": 23060,
+      "finish_text": "T31",
+      "finish_pos": 31,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jonothan Broomhead",
+      "player_id": 30210,
+      "finish_text": "T37",
+      "finish_pos": 37,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Yuto Katsuragawa",
+      "player_id": 20448,
+      "finish_text": "T37",
+      "finish_pos": 37,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jack Senior",
+      "player_id": 15115,
+      "finish_text": "T37",
+      "finish_pos": 37,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Andrew Johnston",
+      "player_id": 14666,
+      "finish_text": "T37",
+      "finish_pos": 37,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Marcel Schneider",
+      "player_id": 12522,
+      "finish_text": "T37",
+      "finish_pos": 37,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jason Scrivener",
+      "player_id": 12734,
+      "finish_text": "T37",
+      "finish_pos": 37,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Hugo Townsend",
+      "player_id": 31165,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Albin Bergstrom",
+      "player_id": 23620,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Yannik Paul",
+      "player_id": 19898,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jeff Winther",
+      "player_id": 15680,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Rikuya Hoshino",
+      "player_id": 19190,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Sam Bairstow",
+      "player_id": 28615,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "David Ravetto",
+      "player_id": 23416,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Daniel Da Costa Rodrigues",
+      "player_id": 27149,
+      "finish_text": "T43",
+      "finish_pos": 43,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Niklas Norgaard Moller",
+      "player_id": 15676,
+      "finish_text": "T51",
+      "finish_pos": 51,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ross Fisher",
+      "player_id": 9396,
+      "finish_text": "T51",
+      "finish_pos": 51,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Filippo Celli",
+      "player_id": 23549,
+      "finish_text": "T51",
+      "finish_pos": 51,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Marcus Kinhult",
+      "player_id": 18514,
+      "finish_text": "T54",
+      "finish_pos": 54,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Adri Arnaus",
+      "player_id": 23236,
+      "finish_text": "T54",
+      "finish_pos": 54,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Scott Jamieson",
+      "player_id": 11397,
+      "finish_text": "T54",
+      "finish_pos": 54,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Rocco Paolo Repetto Taylor",
+      "player_id": 31235,
+      "finish_text": "T54",
+      "finish_pos": 54,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Matthew Baldwin",
+      "player_id": 13344,
+      "finish_text": "T54",
+      "finish_pos": 54,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Andres German Gallegos",
+      "player_id": 19296,
+      "finish_text": "T59",
+      "finish_pos": 59,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Quim Vidal",
+      "player_id": 29712,
+      "finish_text": "T59",
+      "finish_pos": 59,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ding Wenyi",
+      "player_id": 26193,
+      "finish_text": "T59",
+      "finish_pos": 59,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jovan Rebula",
+      "player_id": 22912,
+      "finish_text": "T59",
+      "finish_pos": 59,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jacques Kruyswijk",
+      "player_id": 16896,
+      "finish_text": "T59",
+      "finish_pos": 59,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Angel Hidalgo",
+      "player_id": 24127,
+      "finish_text": "T64",
+      "finish_pos": 64,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jack Yule",
+      "player_id": 22496,
+      "finish_text": "T64",
+      "finish_pos": 64,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Mj Daffue",
+      "player_id": 17068,
+      "finish_text": "T64",
+      "finish_pos": 64,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Dylan Naidoo",
+      "player_id": 19429,
+      "finish_text": "T64",
+      "finish_pos": 64,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Aaron Cockerill",
+      "player_id": 15596,
+      "finish_text": "T64",
+      "finish_pos": 64,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Joe Dean",
+      "player_id": 16497,
+      "finish_text": "T64",
+      "finish_pos": 64,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Romain Langasque",
+      "player_id": 16652,
+      "finish_text": "T70",
+      "finish_pos": 70,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Tobias Jonsson",
+      "player_id": 28686,
+      "finish_text": "T70",
+      "finish_pos": 70,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Michael Hollick",
+      "player_id": 15993,
+      "finish_text": "T70",
+      "finish_pos": 70,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Gregorio De Leo",
+      "player_id": 26506,
+      "finish_text": "T70",
+      "finish_pos": 70,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Callum Tarren",
+      "player_id": 20519,
+      "finish_text": "T70",
+      "finish_pos": 70,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Zander Lombard",
+      "player_id": 16897,
+      "finish_text": "75",
+      "finish_pos": 75,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "James Morrison",
+      "player_id": 11061,
+      "finish_text": "T76",
+      "finish_pos": 76,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Sadom Kaewkanjana",
+      "player_id": 19844,
+      "finish_text": "T76",
+      "finish_pos": 76,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ben Schmidt",
+      "player_id": 27258,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Adrian Otaegui",
+      "player_id": 14975,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Matthew Southgate",
+      "player_id": 15191,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Joel Moscatel",
+      "player_id": 27815,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Maximilian Kieffer",
+      "player_id": 12317,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Yanhan Zhou",
+      "player_id": 29119,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Renato Paratore",
+      "player_id": 16549,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Daniel Van Tonder",
+      "player_id": 15193,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Connor McKinney",
+      "player_id": 24172,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Joel Girrbach",
+      "player_id": 15592,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Manuel Elvira",
+      "player_id": 26008,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Junghwan Lee",
+      "player_id": 13498,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Cameron Adam",
+      "player_id": 34024,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Brandon Robinson-Thompson",
+      "player_id": 24497,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Marcus Helligkilde",
+      "player_id": 20190,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Francesco Laporta",
+      "player_id": 14987,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Joost Luiten",
+      "player_id": 10158,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Freddy Schott",
+      "player_id": 27588,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Kota Kaneko",
+      "player_id": 28268,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Anthony Quayle",
+      "player_id": 18900,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Sean Crocker",
+      "player_id": 23610,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Pablo Ereno",
+      "player_id": 33839,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Maximilian Steinlechner",
+      "player_id": 21677,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Daniel Young",
+      "player_id": 19908,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Sebastian Soderberg",
+      "player_id": 18517,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Joshua Berry",
+      "player_id": 31520,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Angel Ayora",
+      "player_id": 30445,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Nathan Kimsey",
+      "player_id": 18027,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Guido Migliozzi",
+      "player_id": 17357,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Hennie Du Plessis",
+      "player_id": 19421,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Quentin Debove",
+      "player_id": 25325,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Pablo Larrazabal",
+      "player_id": 9133,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Brandon Stone",
+      "player_id": 15229,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Shubhankar Sharma",
+      "player_id": 17081,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Clement Sordet",
+      "player_id": 17718,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Santiago Tarrio Ben",
+      "player_id": 20704,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Matteo Manassero",
+      "player_id": 11460,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Sebastian Garcia Rodriguez",
+      "player_id": 12258,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Herman Wibe Sekne",
+      "player_id": 23797,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Nicolai Von Dellingshausen",
+      "player_id": 22231,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Todd Clements",
+      "player_id": 22608,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jacob Skov Olesen",
+      "player_id": 25611,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Felix Mory",
+      "player_id": 25089,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Dan Erickson",
+      "player_id": 29520,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Darius Van Driel",
+      "player_id": 13374,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Euan Walker",
+      "player_id": 27147,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jeong Weon Ko",
+      "player_id": 26213,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ryan Peake",
+      "player_id": 15169,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jens Dantorp",
+      "player_id": 14018,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Veer Ahlawat",
+      "player_id": 22897,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Fabrizio Zanotti",
+      "player_id": 9842,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Dylan Frittelli",
+      "player_id": 11955,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "David Micheluzzi",
+      "player_id": 19224,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Francesco Molinari",
+      "player_id": 7655,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Albert Boneta",
+      "player_id": 29948,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ryggs Johnston",
+      "player_id": 32449,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Josep Maria Serra",
+      "player_id": 29822,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Victor Pastor",
+      "player_id": 24133,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Vicente Mestre Carceller",
+      "player_id": 35194,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Julien Guerrier",
+      "player_id": 10201,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Richard Sterne",
+      "player_id": 7049,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Luke List",
+      "player_id": 7960,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Gonzalo Fdez-Castano",
+      "player_id": 8262,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Simon Forsstrom",
+      "player_id": 19806,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Tapio Pulkkanen",
+      "player_id": 13139,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Jack Buchanan",
+      "player_id": 27379,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Fred Biondi",
+      "player_id": 25614,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Michael Mjaaseth",
+      "player_id": 27717,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Marcus Armitage",
+      "player_id": 17813,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Gavin Green",
+      "player_id": 12530,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Robin Williams",
+      "player_id": 24093,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Palmer Jackson",
+      "player_id": 30464,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Hunter Logan",
+      "player_id": 31866,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Grant Forrest",
+      "player_id": 16475,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Ockie Strydom",
+      "player_id": 13731,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Johannes Veerman",
+      "player_id": 20522,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Clement Charmasson",
+      "player_id": 22220,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Mike Toorop",
+      "player_id": 25273,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    },
+    {
+      "player": "Edoardo Molinari",
+      "player_id": 7033,
+      "finish_text": "CUT",
+      "finish_pos": null,
+      "score": null,
+      "to_par": null,
+      "made_cut": null
+    }
+  ]
+}

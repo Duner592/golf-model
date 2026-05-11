@@ -15,20 +15,6 @@
       "winner": "Puig, David (28984)"
     },
     {
-      "country": "AUS",
-      "course": "Royal Melbourne GC",
-      "course_key": "royal melbourne gc",
-      "event_id": "2026101",
-      "event_name": "Crown Australian Open",
-      "latitude": -37.97,
-      "location": "Black Rock, Australia",
-      "longitude": 145.03,
-      "start_date": "2025-12-04",
-      "status": "completed",
-      "tour": "euro",
-      "winner": "Neergaard-Petersen, Rasmus (23841)"
-    },
-    {
       "country": "RSA",
       "course": "Gary Player CC",
       "course_key": "gary player cc",
@@ -41,6 +27,20 @@
       "status": "completed",
       "tour": "euro",
       "winner": "Reitan, Kristoffer (21407)"
+    },
+    {
+      "country": "AUS",
+      "course": "Royal Melbourne GC",
+      "course_key": "royal melbourne gc",
+      "event_id": "2026101",
+      "event_name": "Crown Australian Open",
+      "latitude": -37.97,
+      "location": "Black Rock, Australia",
+      "longitude": 145.03,
+      "start_date": "2025-12-04",
+      "status": "completed",
+      "tour": "euro",
+      "winner": "Neergaard-Petersen, Rasmus (23841)"
     },
     {
       "country": "RSA",
@@ -646,17 +646,17 @@
     },
     {
       "country": "USA",
-      "course": "Trump National Doral (Blue Monster)",
-      "course_key": "008",
+      "course": "Trump National Doral - Blue Monster Course",
+      "course_key": "8",
       "event_id": "556",
       "event_name": "Cadillac Championship",
       "latitude": 25.813,
       "location": "Miami, FL",
       "longitude": -80.339,
       "start_date": "2026-04-30",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Young, Cameron (26651)"
     },
     {
       "country": "TUR",
@@ -668,9 +668,9 @@
       "location": "Antalya, Turkey",
       "longitude": 30.986,
       "start_date": "2026-04-30",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Lindberg, Mikael (20084)"
     },
     {
       "country": "USA",
@@ -682,9 +682,9 @@
       "location": "Charlotte, NC",
       "longitude": -80.842,
       "start_date": "2026-05-07",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Reitan, Kristoffer (21407)"
     },
     {
       "country": "USA",
@@ -696,37 +696,37 @@
       "location": "Myrtle Beach, SC",
       "longitude": -78.796,
       "start_date": "2026-05-07",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Snedeker, Brandt (8820)"
     },
     {
       "country": "USA",
       "course": "Trump National Washington",
-      "course_key": "15",
-      "event_id": "715",
+      "course_key": "1",
+      "event_id": "60",
       "event_name": "Virginia",
       "latitude": 39.052,
       "location": "Potomac Falls, VA",
       "longitude": -77.347,
       "start_date": "2026-05-07",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "liv",
-      "winner": "TBD"
+      "winner": "Herbert, Lucas (17064)"
     },
     {
-      "country": "ESP",
-      "course": "Real Club de Golf El Prat",
-      "course_key": "real club de golf el prat",
+      "country": "",
+      "course": "Real Club De Golf El Prat Rosa Course",
+      "course_key": "real club de golf el prat rosa course",
       "event_id": "2026117",
       "event_name": "Estrella Damm Catalunya Championship",
-      "latitude": 41.572,
-      "location": "Terrassa, Spain",
-      "longitude": 2.056,
+      "latitude": 0.0,
+      "location": "TBD",
+      "longitude": 0.0,
       "start_date": "2026-05-07",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Premlall, Yurav (25890)"
     },
     {
       "country": "USA",
@@ -774,7 +774,7 @@
       "country": "BEL",
       "course": "Rinkven International GC",
       "course_key": "rinkven international gc",
-      "event_id": "TBD",
+      "event_id": "2026119",
       "event_name": "Soudal Open",
       "latitude": 51.281,
       "location": "Schilde, Belgium",

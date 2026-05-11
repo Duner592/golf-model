@@ -1,54 +1,27 @@
 {
   "tour": "euro",
-  "event_id": "2026117",
-  "event_name": "Estrella Damm Catalunya Championship",
+  "event_id": "0",
+  "event_name": "No Event",
   "lat": null,
   "lon": null,
-  "r1_date": "2026-05-07",
-  "generated_utc": "04-May-2026 10:41:02",
+  "r1_date": null,
+  "generated_utc": "11-May-2026 13:50:17",
   "resources": {
-    "downloads_csv": "euro/downloads/event_2026117_estrella_damm_catalunya_championship_2026-05-04_leaderboard.csv",
-    "downloads_html": "euro/downloads/event_2026117_estrella_damm_catalunya_championship_2026-05-04_leaderboard.html",
-    "weather_meta": "euro/weather_meta.json",
-    "weather_round_neutral": "euro/weather_round_neutral.json",
-    "weather_round_wave": "euro/weather_round_wave.json",
-    "course_fit_weights": "euro/course_fit_weights.json",
+    "downloads_csv": null,
+    "downloads_html": null,
+    "weather_meta": null,
+    "weather_round_neutral": null,
+    "weather_round_wave": null,
+    "course_fit_weights": null,
     "course_history_summary": null,
-    "tournament_summary": "euro/tournament_summary.json",
-    "field_teetimes": "euro/field_teetimes.csv",
+    "tournament_summary": null,
+    "field_teetimes": null,
     "leaderboard": "euro/leaderboard.json",
     "summary": "euro/summary.json",
     "schedule": "euro/schedule.json",
-    "primary_event_dir": "euro/events/event_2026117"
+    "primary_event_dir": null
   },
-  "active_events": [
-    {
-      "event_id": "2026117",
-      "event_name": "Estrella Damm Catalunya Championship",
-      "r1_date": "2026-05-07",
-      "start_date": "2026-05-07",
-      "generated_utc": "04-May-2026 10:41:02",
-      "has_predictions": true,
-      "resources": {
-        "leaderboard": "euro/events/event_2026117/leaderboard.json",
-        "summary": "euro/events/event_2026117/summary.json",
-        "meta": "euro/events/event_2026117/meta.json",
-        "downloads_csv": "euro/downloads/event_2026117_estrella_damm_catalunya_championship_2026-05-04_leaderboard.csv",
-        "downloads_html": "euro/downloads/event_2026117_estrella_damm_catalunya_championship_2026-05-04_leaderboard.html",
-        "weather_meta": "euro/events/event_2026117/weather_meta.json",
-        "weather_round_neutral": "euro/events/event_2026117/weather_round_neutral.json",
-        "weather_round_wave": "euro/events/event_2026117/weather_round_wave.json",
-        "course_fit_weights": "euro/events/event_2026117/course_fit_weights.json",
-        "course_history_summary": null,
-        "tournament_summary": "euro/events/event_2026117/tournament_summary.json",
-        "field_teetimes": "euro/events/event_2026117/field_teetimes.csv",
-        "schedule": "euro/schedule.json"
-      },
-      "source_csv": "data/preds/euro/event_2026117_estrella_damm_catalunya_championship_2026-05-04_leaderboard.csv",
-      "event_dir": "euro/events/event_2026117",
-      "lat": null,
-      "lon": null
-    }
-  ],
-  "primary_event_dir": "euro/events/event_2026117"
+  "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!",
+  "active_events": [],
+  "primary_event_dir": null
 }
