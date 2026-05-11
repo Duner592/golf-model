@@ -1,0 +1,27 @@
+{
+  "tour": "pga",
+  "event_id": "33",
+  "event_name": "PGA Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-05-14",
+  "start_date": "2026-05-14",
+  "generated_utc": "11-May-2026 07:14:07",
+  "source_csv": "data/preds/pga/event_33_pga_championship_2026-05-11_leaderboard.csv",
+  "has_predictions": true,
+  "resources": {
+    "leaderboard": "pga/events/event_33/leaderboard.json",
+    "summary": "pga/events/event_33/summary.json",
+    "meta": "pga/events/event_33/meta.json",
+    "downloads_csv": "pga/downloads/event_33_pga_championship_2026-05-11_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_33_pga_championship_2026-05-11_leaderboard.html",
+    "weather_meta": "pga/events/event_33/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_33/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_33/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_33/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_33/course_history_summary.json",
+    "tournament_summary": "pga/events/event_33/tournament_summary.json",
+    "field_teetimes": "pga/events/event_33/field_teetimes.csv",
+    "schedule": "pga/schedule.json"
+  }
+}

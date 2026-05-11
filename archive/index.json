@@ -1,5 +1,14 @@
 [
   {
+    "event_id": "33",
+    "event_name": "PGA Championship",
+    "tour": "pga",
+    "slug": "pga_championship",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-05-11 07:14:07 UTC"
+  },
+  {
     "event_id": "480",
     "event_name": "Truist Championship",
     "tour": "pga",
