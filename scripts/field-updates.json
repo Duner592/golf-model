@@ -1,3 +1,4850 @@
 {
-  "error": "no euro event this week."
+  "course_name": "Aronimink Golf Club",
+  "current_round": 1,
+  "date_end": "2026-05-17",
+  "date_start": "2026-05-14",
+  "event_id": 33,
+  "event_name": "PGA Championship",
+  "field": [
+    {
+      "am": 0,
+      "country": "SWE",
+      "dg_id": 23950,
+      "dg_rank": 6,
+      "owgr_rank": 15,
+      "player_name": "Aberg, Ludvig",
+      "player_num": 52955,
+      "pre_tourn_pageviews": 4648,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:18",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:43",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "9"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "dg_id": 30445,
+      "dg_rank": 78,
+      "owgr_rank": 107,
+      "player_name": "Ayora, Angel",
+      "player_num": 64052,
+      "pre_tourn_pageviews": 673,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 09:02",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:27",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17617,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Berg, Derek",
+      "player_num": 39464,
+      "pre_tourn_pageviews": 97,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:07",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:32",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17606,
+      "dg_rank": 62,
+      "owgr_rank": 42,
+      "player_name": "Berger, Daniel",
+      "player_num": 40026,
+      "pre_tourn_pageviews": 867,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:21",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:56",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "36"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 18103,
+      "dg_rank": 57,
+      "owgr_rank": 92,
+      "player_name": "Bezuidenhout, Christiaan",
+      "player_num": 45522,
+      "pre_tourn_pageviews": 759,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:38",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:13",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "89"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26096,
+      "dg_rank": 27,
+      "owgr_rank": 23,
+      "player_name": "Bhatia, Akshay",
+      "player_num": 56630,
+      "pre_tourn_pageviews": 2059,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:37",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:12",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "8"
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "dg_id": 16776,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Bide, Francisco",
+      "player_num": 36964,
+      "pre_tourn_pageviews": 114,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 06:56",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:21",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 24956,
+      "dg_rank": 175,
+      "owgr_rank": 112,
+      "player_name": "Blanchet, Chandler",
+      "player_num": 54788,
+      "pre_tourn_pageviews": 335,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:16",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:51",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "81"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12333,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Block, Michael",
+      "player_num": 22764,
+      "pre_tourn_pageviews": 576,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:10",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 13872,
+      "dg_rank": 36,
+      "owgr_rank": 32,
+      "player_name": "Bradley, Keegan",
+      "player_num": 33141,
+      "pre_tourn_pageviews": 2104,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:54",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:29",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "72"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29197,
+      "dg_rank": 95,
+      "owgr_rank": 52,
+      "player_name": "Brennan, Michael",
+      "player_num": 61522,
+      "pre_tourn_pageviews": 731,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:18",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:43",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "123"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29433,
+      "dg_rank": 41,
+      "owgr_rank": 19,
+      "player_name": "Bridgeman, Jacob",
+      "player_num": 60004,
+      "pre_tourn_pageviews": 2010,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:02",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:27",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "5"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 20766,
+      "dg_rank": 168,
+      "owgr_rank": 102,
+      "player_name": "Brown, Dan",
+      "player_num": 57259,
+      "pre_tourn_pageviews": 238,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:51",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:16",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "130"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19483,
+      "dg_rank": 16,
+      "owgr_rank": 35,
+      "player_name": "Burns, Sam",
+      "player_num": 47504,
+      "pre_tourn_pageviews": 2958,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:34",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "30"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18628,
+      "dg_rank": 281,
+      "owgr_rank": 104,
+      "player_name": "Campbell, Brian",
+      "player_num": 46443,
+      "pre_tourn_pageviews": 266,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:38",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:13",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "140"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15466,
+      "dg_rank": 10,
+      "owgr_rank": 30,
+      "player_name": "Cantlay, Patrick",
+      "player_num": 35450,
+      "pre_tourn_pageviews": 4038,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:56",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:21",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "34"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 27819,
+      "dg_rank": 102,
+      "owgr_rank": 90,
+      "player_name": "Castillo, Ricky",
+      "player_num": 59440,
+      "pre_tourn_pageviews": 372,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:37",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:12",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "48"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14502,
+      "dg_rank": 76,
+      "owgr_rank": 66,
+      "player_name": "Cauley, Bud",
+      "player_num": 34021,
+      "pre_tourn_pageviews": 702,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:02",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:27",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "54"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 5665,
+      "dg_rank": 126,
+      "owgr_rank": null,
+      "player_name": "Cink, Stewart",
+      "player_num": 20229,
+      "pre_tourn_pageviews": 500,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:48",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:23",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23604,
+      "dg_rank": 66,
+      "owgr_rank": 71,
+      "player_name": "Clark, Wyndham",
+      "player_num": 51766,
+      "pre_tourn_pageviews": 1181,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:10",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "79"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28077,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Collet, Tyler",
+      "player_num": 59570,
+      "pre_tourn_pageviews": 61,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:22",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 17576,
+      "dg_rank": 49,
+      "owgr_rank": 50,
+      "player_name": "Conners, Corey",
+      "player_num": 39997,
+      "pre_tourn_pageviews": 1410,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:21",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:56",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "70"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28309,
+      "dg_rank": 60,
+      "owgr_rank": 55,
+      "player_name": "Coody, Pierceson",
+      "player_num": 59836,
+      "pre_tourn_pageviews": 783,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:27",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:02",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "41"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 9771,
+      "dg_rank": 50,
+      "owgr_rank": 41,
+      "player_name": "Day, Jason",
+      "player_num": 28089,
+      "pre_tourn_pageviews": 1346,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:34",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "51"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19841,
+      "dg_rank": 13,
+      "owgr_rank": 28,
+      "player_name": "DeChambeau, Bryson",
+      "player_num": 47959,
+      "pre_tourn_pageviews": 3836,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:18",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:43",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "BEL",
+      "dg_id": 14181,
+      "dg_rank": 43,
+      "owgr_rank": 61,
+      "player_name": "Detry, Thomas",
+      "player_num": 33653,
+      "pre_tourn_pageviews": 2163,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:24",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:49",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 4163,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Donald, Luke",
+      "player_num": 23983,
+      "pre_tourn_pageviews": 210,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:48",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:23",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 24584,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Droemer, Jesse",
+      "player_num": 54954,
+      "pre_tourn_pageviews": 117,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:48",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:23",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 7301,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Dufner, Jason",
+      "player_num": 25686,
+      "pre_tourn_pageviews": 247,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:05",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:40",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "COL",
+      "dg_id": 22833,
+      "dg_rank": 144,
+      "owgr_rank": 48,
+      "player_name": "Echavarria, Nico",
+      "player_num": 51349,
+      "pre_tourn_pageviews": 374,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:26",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:01",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "31"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14577,
+      "dg_rank": 25,
+      "owgr_rank": 21,
+      "player_name": "English, Harris",
+      "player_num": 34099,
+      "pre_tourn_pageviews": 2018,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:51",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:16",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "37"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 10027484,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Fisher, Bryce",
+      "player_num": 27484,
+      "pre_tourn_pageviews": 67,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:12",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:37",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26657,
+      "dg_rank": 133,
+      "owgr_rank": 134,
+      "player_name": "Fisk, Steven",
+      "player_num": 57123,
+      "pre_tourn_pageviews": 259,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:21",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 06:56",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "112"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 25362,
+      "dg_rank": 48,
+      "owgr_rank": 83,
+      "player_name": "Fitzpatrick, Alex",
+      "player_num": 55721,
+      "pre_tourn_pageviews": 2624,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:10",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "22"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 17646,
+      "dg_rank": 5,
+      "owgr_rank": 4,
+      "player_name": "Fitzpatrick, Matt",
+      "player_num": 40098,
+      "pre_tourn_pageviews": 3093,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:05",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:40",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "3"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 12294,
+      "dg_rank": 7,
+      "owgr_rank": 6,
+      "player_name": "Fleetwood, Tommy",
+      "player_num": 30911,
+      "pre_tourn_pageviews": 3267,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:43",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:18",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "11"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12965,
+      "dg_rank": 12,
+      "owgr_rank": 37,
+      "player_name": "Fowler, Rickie",
+      "player_num": 32102,
+      "pre_tourn_pageviews": 5910,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:18",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:43",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "17"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "dg_id": 11889,
+      "dg_rank": 83,
+      "owgr_rank": 56,
+      "player_name": "Fox, Ryan",
+      "player_num": 29936,
+      "pre_tourn_pageviews": 667,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:35",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:00",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "61"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 10070407,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Gabriele, Chris",
+      "player_num": 70407,
+      "pre_tourn_pageviews": 78,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:01",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:26",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 21886,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Geddes, Mark",
+      "player_num": 49893,
+      "pre_tourn_pageviews": 103,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:21",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 06:56",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29767,
+      "dg_rank": 52,
+      "owgr_rank": 36,
+      "player_name": "Gerard, Ryan",
+      "player_num": 59018,
+      "pre_tourn_pageviews": 888,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 06:56",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:21",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "29"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 7399,
+      "dg_rank": 109,
+      "owgr_rank": 93,
+      "player_name": "Glover, Lucas",
+      "player_num": 25900,
+      "pre_tourn_pageviews": 441,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:40",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:05",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "109"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 27774,
+      "dg_rank": 22,
+      "owgr_rank": 10,
+      "player_name": "Gotterup, Chris",
+      "player_num": 59095,
+      "pre_tourn_pageviews": 3542,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:43",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:18",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "6"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23465,
+      "dg_rank": 111,
+      "owgr_rank": 70,
+      "player_name": "Greyserman, Max",
+      "player_num": 51977,
+      "pre_tourn_pageviews": 647,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:13",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:38",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "116"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 24968,
+      "dg_rank": 32,
+      "owgr_rank": 14,
+      "player_name": "Griffin, Ben",
+      "player_num": 54591,
+      "pre_tourn_pageviews": 1488,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:10",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "39"
+    },
+    {
+      "am": 0,
+      "country": "ARG",
+      "dg_id": 12808,
+      "dg_rank": 209,
+      "owgr_rank": 115,
+      "player_name": "Grillo, Emiliano",
+      "player_num": 31646,
+      "pre_tourn_pageviews": 256,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:27",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:02",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "128"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23892,
+      "dg_rank": null,
+      "owgr_rank": 315,
+      "player_name": "Gumberg, Jordan",
+      "player_num": 51989,
+      "pre_tourn_pageviews": 147,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:15",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 06:50",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 27194,
+      "dg_rank": 29,
+      "owgr_rank": 57,
+      "player_name": "Hall, Harry",
+      "player_num": 57975,
+      "pre_tourn_pageviews": 1864,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 06:56",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:21",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "42"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 8825,
+      "dg_rank": 67,
+      "owgr_rank": 53,
+      "player_name": "Harman, Brian",
+      "player_num": 27644,
+      "pre_tourn_pageviews": 907,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:10",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "65"
+    },
+    {
+      "am": 0,
+      "country": "IRL",
+      "dg_id": 5716,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Harrington, Padraig",
+      "player_num": 20766,
+      "pre_tourn_pageviews": 304,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:24",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:49",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 14796,
+      "dg_rank": 46,
+      "owgr_rank": 26,
+      "player_name": "Hatton, Tyrrell",
+      "player_num": 34363,
+      "pre_tourn_pageviews": 2893,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:29",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:54",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 10070406,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Haynes, Zach",
+      "player_num": 70406,
+      "pre_tourn_pageviews": 60,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:16",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:51",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14578,
+      "dg_rank": 9,
+      "owgr_rank": 9,
+      "player_name": "Henley, Russell",
+      "player_num": 34098,
+      "pre_tourn_pageviews": 2989,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:10",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "24"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 15756,
+      "dg_rank": 406,
+      "owgr_rank": 152,
+      "player_name": "Higa, Kazuki",
+      "player_num": 35778,
+      "pre_tourn_pageviews": 165,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:35",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:00",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 24342,
+      "dg_rank": 238,
+      "owgr_rank": 85,
+      "player_name": "Higgo, Garrick",
+      "player_num": 54421,
+      "pre_tourn_pageviews": 245,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:18",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:43",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "173"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28469,
+      "dg_rank": 372,
+      "owgr_rank": 151,
+      "player_name": "Highsmith, Joe",
+      "player_num": 60067,
+      "pre_tourn_pageviews": 270,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:07",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:32",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "148"
+    },
+    {
+      "am": 0,
+      "country": "NZL",
+      "dg_id": 21362,
+      "dg_rank": 55,
+      "owgr_rank": 96,
+      "player_name": "Hillier, Daniel",
+      "player_num": 49813,
+      "pre_tourn_pageviews": 546,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:51",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:16",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 22760,
+      "dg_rank": 74,
+      "owgr_rank": 59,
+      "player_name": "Hisatsune, Ryo",
+      "player_num": 51287,
+      "pre_tourn_pageviews": 852,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:46",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "32"
+    },
+    {
+      "am": 0,
+      "country": "PHI",
+      "dg_id": 23504,
+      "dg_rank": 127,
+      "owgr_rank": 88,
+      "player_name": "Hoey, Rico",
+      "player_num": 51696,
+      "pre_tourn_pageviews": 336,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:07",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:32",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "120"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15575,
+      "dg_rank": 276,
+      "owgr_rank": 124,
+      "player_name": "Hoge, Tom",
+      "player_num": 35532,
+      "pre_tourn_pageviews": 357,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:12",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:37",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "77"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 23602,
+      "dg_rank": 21,
+      "owgr_rank": 29,
+      "player_name": "Hojgaard, Nicolai",
+      "player_num": 52453,
+      "pre_tourn_pageviews": 3471,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:07",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:32",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "15"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 23838,
+      "dg_rank": 79,
+      "owgr_rank": 64,
+      "player_name": "Hojgaard, Rasmus",
+      "player_num": 52686,
+      "pre_tourn_pageviews": 1030,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:10",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "94"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25036,
+      "dg_rank": 143,
+      "owgr_rank": 113,
+      "player_name": "Holt, Ian",
+      "player_num": 54525,
+      "pre_tourn_pageviews": 331,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:23",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:48",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17538,
+      "dg_rank": 90,
+      "owgr_rank": 123,
+      "player_name": "Homa, Max",
+      "player_num": 39977,
+      "pre_tourn_pageviews": 1054,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:34",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "64"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 11276,
+      "dg_rank": 147,
+      "owgr_rank": 117,
+      "player_name": "Horschel, Billy",
+      "player_num": 29420,
+      "pre_tourn_pageviews": 620,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:23",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:48",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "86"
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "dg_id": 18841,
+      "dg_rank": 24,
+      "owgr_rank": 27,
+      "player_name": "Hovland, Viktor",
+      "player_num": 46717,
+      "pre_tourn_pageviews": 2588,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:32",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:07",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "59"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29498,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Hurt, Austin",
+      "player_num": 62845,
+      "pre_tourn_pageviews": 52,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:32",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:07",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "dg_id": 17488,
+      "dg_rank": 105,
+      "owgr_rank": 67,
+      "player_name": "Im, Sungjae",
+      "player_num": 39971,
+      "pre_tourn_pageviews": 1194,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:32",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:07",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "56"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "dg_id": 16394,
+      "dg_rank": 141,
+      "owgr_rank": 100,
+      "player_name": "Jaeger, Stephan",
+      "player_num": 36799,
+      "pre_tourn_pageviews": 508,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:40",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:05",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "75"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 26947,
+      "dg_rank": 88,
+      "owgr_rank": 72,
+      "player_name": "Jarvis, Casey",
+      "player_num": 57688,
+      "pre_tourn_pageviews": 532,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:32",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:07",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12422,
+      "dg_rank": 117,
+      "owgr_rank": 471,
+      "player_name": "Johnson, Dustin",
+      "player_num": 30925,
+      "pre_tourn_pageviews": 695,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:10",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 06:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29501,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Jones, Jared",
+      "player_num": 58391,
+      "pre_tourn_pageviews": 60,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:46",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 28268,
+      "dg_rank": 178,
+      "owgr_rank": 192,
+      "player_name": "Kaneko, Kota",
+      "player_num": 61148,
+      "pre_tourn_pageviews": 201,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:22",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23469,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Kartrude, Michael",
+      "player_num": 51836,
+      "pre_tourn_pageviews": 47,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:43",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:18",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "dg_id": 8117,
+      "dg_rank": 399,
+      "owgr_rank": null,
+      "player_name": "Kaymer, Martin",
+      "player_num": 27408,
+      "pre_tourn_pageviews": 223,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:54",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:29",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 32457,
+      "dg_rank": 181,
+      "owgr_rank": 74,
+      "player_name": "Keefer, Johnny",
+      "player_num": 63454,
+      "pre_tourn_pageviews": 400,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:07",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:32",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "82"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25439,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Kern, Ben",
+      "player_num": 55752,
+      "pre_tourn_pageviews": 69,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:10",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17543,
+      "dg_rank": 70,
+      "owgr_rank": 45,
+      "player_name": "Kim, Michael",
+      "player_num": 39975,
+      "pre_tourn_pageviews": 573,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:46",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:11",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "55"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "dg_id": 14609,
+      "dg_rank": 14,
+      "owgr_rank": 22,
+      "player_name": "Kim, Si Woo",
+      "player_num": 37455,
+      "pre_tourn_pageviews": 2471,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:07",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:32",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "7"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12423,
+      "dg_rank": 101,
+      "owgr_rank": 98,
+      "player_name": "Kirk, Chris",
+      "player_num": 30926,
+      "pre_tourn_pageviews": 371,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:13",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:38",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "137"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21891,
+      "dg_rank": 33,
+      "owgr_rank": 34,
+      "player_name": "Kitayama, Kurt",
+      "player_num": 48117,
+      "pre_tourn_pageviews": 1969,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:26",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:01",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "23"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 16243,
+      "dg_rank": 82,
+      "owgr_rank": 125,
+      "player_name": "Koepka, Brooks",
+      "player_num": 36689,
+      "pre_tourn_pageviews": 3216,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:29",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:54",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "66"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 16841,
+      "dg_rank": 23,
+      "owgr_rank": 31,
+      "player_name": "Lee, Min Woo",
+      "player_num": 37378,
+      "pre_tourn_pageviews": 2526,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:56",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:21",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "12"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18711,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Lenahan, Ryan",
+      "player_num": 46581,
+      "pre_tourn_pageviews": 48,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:35",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:00",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "CHN",
+      "dg_id": 15310,
+      "dg_rank": 136,
+      "owgr_rank": 80,
+      "player_name": "Li, Haotong",
+      "player_num": 35296,
+      "pre_tourn_pageviews": 600,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:05",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:40",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "99"
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "dg_id": 20084,
+      "dg_rank": 132,
+      "owgr_rank": 137,
+      "player_name": "Lindberg, Mikael",
+      "player_num": 48293,
+      "pre_tourn_pageviews": 697,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 09:02",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:27",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 15980,
+      "dg_rank": 163,
+      "owgr_rank": 91,
+      "player_name": "Lipsky, David",
+      "player_num": 36326,
+      "pre_tourn_pageviews": 359,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:21",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 06:56",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "57"
+    },
+    {
+      "am": 0,
+      "country": "IRL",
+      "dg_id": 13900,
+      "dg_rank": 28,
+      "owgr_rank": 38,
+      "player_name": "Lowry, Shane",
+      "player_num": 33204,
+      "pre_tourn_pageviews": 1576,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:32",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:07",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "45"
+    },
+    {
+      "am": 0,
+      "country": "SCO",
+      "dg_id": 23323,
+      "dg_rank": 17,
+      "owgr_rank": 12,
+      "player_name": "MacIntyre, Robert",
+      "player_num": 52215,
+      "pre_tourn_pageviews": 1974,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:43",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:18",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "27"
+    },
+    {
+      "am": 0,
+      "country": "JPN",
+      "dg_id": 13562,
+      "dg_rank": 30,
+      "owgr_rank": 17,
+      "player_name": "Matsuyama, Hideki",
+      "player_num": 32839,
+      "pre_tourn_pageviews": 1785,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:34",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "26"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19870,
+      "dg_rank": 85,
+      "owgr_rank": 99,
+      "player_name": "McCarthy, Denny",
+      "player_num": 47993,
+      "pre_tourn_pageviews": 598,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 06:50",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:15",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "96"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 28635,
+      "dg_rank": 42,
+      "owgr_rank": 43,
+      "player_name": "McCarty, Matt",
+      "player_num": 59141,
+      "pre_tourn_pageviews": 2000,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:29",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:54",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "28"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 10058597,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "McClure, Paul",
+      "player_num": 58597,
+      "pre_tourn_pageviews": 56,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 09:02",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:27",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23505,
+      "dg_rank": 94,
+      "owgr_rank": 80,
+      "player_name": "McGreevy, Max",
+      "player_num": 51950,
+      "pre_tourn_pageviews": 294,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:51",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:16",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "114"
+    },
+    {
+      "am": 0,
+      "country": "NIR",
+      "dg_id": 10091,
+      "dg_rank": 4,
+      "owgr_rank": 2,
+      "player_name": "McIlroy, Rory",
+      "player_num": 28237,
+      "pre_tourn_pageviews": 4140,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:40",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:05",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "10"
+    },
+    {
+      "am": 0,
+      "country": "NIR",
+      "dg_id": 22322,
+      "dg_rank": 110,
+      "owgr_rank": 108,
+      "player_name": "McKibbin, Tom",
+      "player_num": 50823,
+      "pre_tourn_pageviews": 502,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:40",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:05",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18634,
+      "dg_rank": 18,
+      "owgr_rank": 33,
+      "player_name": "McNealy, Maverick",
+      "player_num": 46442,
+      "pre_tourn_pageviews": 1552,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:24",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:49",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "44"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 4377,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Micheel, Shaun",
+      "player_num": 6515,
+      "pre_tourn_pageviews": 161,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:18",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:43",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17365,
+      "dg_rank": 54,
+      "owgr_rank": 109,
+      "player_name": "Mitchell, Keith",
+      "player_num": 39546,
+      "pre_tourn_pageviews": 716,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:23",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:48",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "71"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 22085,
+      "dg_rank": 11,
+      "owgr_rank": 5,
+      "player_name": "Morikawa, Collin",
+      "player_num": 50525,
+      "pre_tourn_pageviews": 3050,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:32",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:07",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "4"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 29770,
+      "dg_rank": 118,
+      "owgr_rank": 132,
+      "player_name": "Mouw, William",
+      "player_num": 63121,
+      "pre_tourn_pageviews": 310,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:01",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:26",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "107"
+    },
+    {
+      "am": 0,
+      "country": "DEN",
+      "dg_id": 23841,
+      "dg_rank": 124,
+      "owgr_rank": 77,
+      "player_name": "Neergaard-Petersen, Rasmus",
+      "player_num": 52689,
+      "pre_tourn_pageviews": 432,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:16",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:51",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "126"
+    },
+    {
+      "am": 0,
+      "country": "CHI",
+      "dg_id": 18079,
+      "dg_rank": 56,
+      "owgr_rank": 167,
+      "player_name": "Niemann, Joaquin",
+      "player_num": 45486,
+      "pre_tourn_pageviews": 1824,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:12",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:37",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "SWE",
+      "dg_id": 10419,
+      "dg_rank": 26,
+      "owgr_rank": 18,
+      "player_name": "Noren, Alex",
+      "player_num": 27349,
+      "pre_tourn_pageviews": 1450,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:02",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:27",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "46"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23475,
+      "dg_rank": 92,
+      "owgr_rank": 54,
+      "player_name": "Novak, Andrew",
+      "player_num": 51997,
+      "pre_tourn_pageviews": 544,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:15",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 06:50",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "67"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 13764,
+      "dg_rank": 89,
+      "owgr_rank": 87,
+      "player_name": "Parry, John",
+      "player_num": 28723,
+      "pre_tourn_pageviews": 418,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:15",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 06:50",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "85"
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 17780,
+      "dg_rank": 96,
+      "owgr_rank": 86,
+      "player_name": "Pendrith, Taylor",
+      "player_num": 40250,
+      "pre_tourn_pageviews": 624,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:01",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:26",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "92"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 22465,
+      "dg_rank": 115,
+      "owgr_rank": 40,
+      "player_name": "Penge, Marco",
+      "player_num": 51003,
+      "pre_tourn_pageviews": 886,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:49",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:24",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "78"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 20344,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Polland, Ben",
+      "player_num": 47567,
+      "pre_tourn_pageviews": 109,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:26",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:01",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 21554,
+      "dg_rank": 69,
+      "owgr_rank": 79,
+      "player_name": "Poston, J.T.",
+      "player_num": 49771,
+      "pre_tourn_pageviews": 525,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:10",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:45",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "113"
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 27900,
+      "dg_rank": 185,
+      "owgr_rank": 75,
+      "player_name": "Potgieter, Aldrich",
+      "player_num": 63343,
+      "pre_tourn_pageviews": 701,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 06:50",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:15",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "50"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "dg_id": 28984,
+      "dg_rank": 47,
+      "owgr_rank": 62,
+      "player_name": "Puig, David",
+      "player_num": 61193,
+      "pre_tourn_pageviews": 1877,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 06:50",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:15",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14704,
+      "dg_rank": 68,
+      "owgr_rank": 82,
+      "player_name": "Putnam, Andrew",
+      "player_num": 34256,
+      "pre_tourn_pageviews": 699,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:43",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:18",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "52"
+    },
+    {
+      "am": 0,
+      "country": "ESP",
+      "dg_id": 19195,
+      "dg_rank": 2,
+      "owgr_rank": 20,
+      "player_name": "Rahm, Jon",
+      "player_num": 46970,
+      "pre_tourn_pageviews": 4588,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:40",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:05",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 18554,
+      "dg_rank": 63,
+      "owgr_rank": 44,
+      "player_name": "Rai, Aaron",
+      "player_num": 46414,
+      "pre_tourn_pageviews": 1010,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:00",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:35",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "108"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14838,
+      "dg_rank": 34,
+      "owgr_rank": 24,
+      "player_name": "Reed, Patrick",
+      "player_num": 34360,
+      "pre_tourn_pageviews": 2680,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:27",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:02",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "NOR",
+      "dg_id": 21407,
+      "dg_rank": 44,
+      "owgr_rank": 25,
+      "player_name": "Reitan, Kristoffer",
+      "player_num": 49855,
+      "pre_tourn_pageviews": 3095,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:13",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:38",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "13"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19872,
+      "dg_rank": 422,
+      "owgr_rank": 141,
+      "player_name": "Riley, Davis",
+      "player_num": 47995,
+      "pre_tourn_pageviews": 493,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:54",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:29",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "124"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 16283,
+      "dg_rank": 93,
+      "owgr_rank": 73,
+      "player_name": "Rodgers, Patrick",
+      "player_num": 36699,
+      "pre_tourn_pageviews": 455,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:49",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:24",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "43"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 6093,
+      "dg_rank": 35,
+      "owgr_rank": 7,
+      "player_name": "Rose, Justin",
+      "player_num": 22405,
+      "pre_tourn_pageviews": 2643,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:05",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:40",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "20"
+    },
+    {
+      "am": 0,
+      "country": "FRA",
+      "dg_id": 14792,
+      "dg_rank": 212,
+      "owgr_rank": 101,
+      "player_name": "Saddier, Adrien",
+      "player_num": 34371,
+      "pre_tourn_pageviews": 173,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:51",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 13:16",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "177"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 13196,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Sapp, Garrett",
+      "player_num": 32467,
+      "pre_tourn_pageviews": 123,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:46",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "RSA",
+      "dg_id": 26991,
+      "dg_rank": 53,
+      "owgr_rank": 65,
+      "player_name": "Schaper, Jayden",
+      "player_num": 57737,
+      "pre_tourn_pageviews": 620,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:46",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19895,
+      "dg_rank": 8,
+      "owgr_rank": 11,
+      "player_name": "Schauffele, Xander",
+      "player_num": 48081,
+      "pre_tourn_pageviews": 3740,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:29",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:54",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "16"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18417,
+      "dg_rank": 1,
+      "owgr_rank": 1,
+      "player_name": "Scheffler, Scottie",
+      "player_num": 46046,
+      "pre_tourn_pageviews": 4191,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:05",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:40",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "2"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 19477,
+      "dg_rank": 413,
+      "owgr_rank": 155,
+      "player_name": "Schenk, Adam",
+      "player_num": 47347,
+      "pre_tourn_pageviews": 194,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:38",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:13",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "133"
+    },
+    {
+      "am": 0,
+      "country": "GER",
+      "dg_id": 20722,
+      "dg_rank": 154,
+      "owgr_rank": 97,
+      "player_name": "Schmid, Matti",
+      "player_num": 48867,
+      "pre_tourn_pageviews": 302,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:22",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "84"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 6430,
+      "dg_rank": 19,
+      "owgr_rank": 46,
+      "player_name": "Scott, Adam",
+      "player_num": 24502,
+      "pre_tourn_pageviews": 2806,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:21",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:56",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "19"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 31027,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Shattuck, Braden",
+      "player_num": 63181,
+      "pre_tourn_pageviews": 124,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 06:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:10",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 18474,
+      "dg_rank": 38,
+      "owgr_rank": 78,
+      "player_name": "Smalley, Alex",
+      "player_num": 46340,
+      "pre_tourn_pageviews": 2045,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:16",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:51",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "35"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 15856,
+      "dg_rank": 146,
+      "owgr_rank": 239,
+      "player_name": "Smith, Cameron",
+      "player_num": 35891,
+      "pre_tourn_pageviews": 1186,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:45",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:10",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 18586,
+      "dg_rank": 72,
+      "owgr_rank": 68,
+      "player_name": "Smith, Jordan",
+      "player_num": 46464,
+      "pre_tourn_pageviews": 653,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:16",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:51",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "60"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 22985,
+      "dg_rank": 122,
+      "owgr_rank": 84,
+      "player_name": "Smotherman, Austin",
+      "player_num": 50095,
+      "pre_tourn_pageviews": 640,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:22",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "53"
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 24200,
+      "dg_rank": 224,
+      "owgr_rank": 94,
+      "player_name": "Smylie, Elvis",
+      "player_num": 54185,
+      "pre_tourn_pageviews": 326,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:54",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:29",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "AUS",
+      "dg_id": 19232,
+      "dg_rank": 309,
+      "owgr_rank": 145,
+      "player_name": "Smyth, Trav",
+      "player_num": 47078,
+      "pre_tourn_pageviews": 195,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:00",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:35",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 8820,
+      "dg_rank": 165,
+      "owgr_rank": 131,
+      "player_name": "Snedeker, Brandt",
+      "player_num": 27649,
+      "pre_tourn_pageviews": 927,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 08:57",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 14:22",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "63"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 17536,
+      "dg_rank": 15,
+      "owgr_rank": 8,
+      "player_name": "Spaun, J.J.",
+      "player_num": 39324,
+      "pre_tourn_pageviews": 3252,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:59",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:34",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "18"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14636,
+      "dg_rank": 37,
+      "owgr_rank": 51,
+      "player_name": "Spieth, Jordan",
+      "player_num": 34046,
+      "pre_tourn_pageviews": 3414,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:40",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:05",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "40"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25569,
+      "dg_rank": 75,
+      "owgr_rank": 49,
+      "player_name": "Stevens, Sam",
+      "player_num": 55893,
+      "pre_tourn_pageviews": 717,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:11",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:46",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "49"
+    },
+    {
+      "am": 0,
+      "country": "AUT",
+      "dg_id": 17511,
+      "dg_rank": 39,
+      "owgr_rank": 13,
+      "player_name": "Straka, Sepp",
+      "player_num": 49960,
+      "pre_tourn_pageviews": 2109,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:49",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:24",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "14"
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 15326,
+      "dg_rank": 231,
+      "owgr_rank": 106,
+      "player_name": "Sullivan, Andy",
+      "player_num": 35314,
+      "pre_tourn_pageviews": 248,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:27",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 09:02",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 13126,
+      "dg_rank": 40,
+      "owgr_rank": 58,
+      "player_name": "Taylor, Nick",
+      "player_num": 25493,
+      "pre_tourn_pageviews": 1374,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:16",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:51",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "47"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 23014,
+      "dg_rank": 71,
+      "owgr_rank": 76,
+      "player_name": "Theegala, Sahith",
+      "player_num": 51634,
+      "pre_tourn_pageviews": 1055,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:56",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 13:21",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "33"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 14139,
+      "dg_rank": 45,
+      "owgr_rank": 16,
+      "player_name": "Thomas, Justin",
+      "player_num": 33448,
+      "pre_tourn_pageviews": 2746,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:54",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:29",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "58"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26649,
+      "dg_rank": 58,
+      "owgr_rank": 63,
+      "player_name": "Thorbjornsen, Michael",
+      "player_num": 57364,
+      "pre_tourn_pageviews": 1297,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 12:37",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 07:12",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "62"
+    },
+    {
+      "am": 0,
+      "country": "FIN",
+      "dg_id": 23816,
+      "dg_rank": 145,
+      "owgr_rank": 60,
+      "player_name": "Valimaki, Sami",
+      "player_num": 52666,
+      "pre_tourn_pageviews": 348,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:00",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:35",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "127"
+    },
+    {
+      "am": 0,
+      "country": "VEN",
+      "dg_id": 13508,
+      "dg_rank": 206,
+      "owgr_rank": 126,
+      "player_name": "Vegas, Jhonattan",
+      "player_num": 27064,
+      "pre_tourn_pageviews": 324,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:29",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:54",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "117"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 7326,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Vermeer, Ryan",
+      "player_num": 24964,
+      "pre_tourn_pageviews": 73,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 08:51",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 14:16",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 7293,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Walker, Jimmy",
+      "player_num": 25632,
+      "pre_tourn_pageviews": 276,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 13:05",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:40",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "ENG",
+      "dg_id": 20706,
+      "dg_rank": 86,
+      "owgr_rank": 69,
+      "player_name": "Wallace, Matt",
+      "player_num": 48887,
+      "pre_tourn_pageviews": 616,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 12:43",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 07:18",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "68"
+    },
+    {
+      "am": 0,
+      "country": "AUT",
+      "dg_id": 9531,
+      "dg_rank": 170,
+      "owgr_rank": 203,
+      "player_name": "Wiesberger, Bernd",
+      "player_num": 29454,
+      "pre_tourn_pageviews": 492,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:27",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 09:02",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 25085,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Wiseman, Timothy",
+      "player_num": 55417,
+      "pre_tourn_pageviews": 91,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 14:22",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 08:57",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 12577,
+      "dg_rank": 51,
+      "owgr_rank": 47,
+      "player_name": "Woodland, Gary",
+      "player_num": 31323,
+      "pre_tourn_pageviews": 2045,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 10,
+          "teetime": "2026-05-14 07:34",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 1,
+          "teetime": "2026-05-15 12:59",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": "25"
+    },
+    {
+      "am": 0,
+      "country": "KOR",
+      "dg_id": 6629,
+      "dg_rank": null,
+      "owgr_rank": null,
+      "player_name": "Yang, Y.E.",
+      "player_num": 24663,
+      "pre_tourn_pageviews": 240,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 07:29",
+          "wave": "early"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 12:54",
+          "wave": "late"
+        }
+      ],
+      "tour_rank": null
+    },
+    {
+      "am": 0,
+      "country": "CAN",
+      "dg_id": 29925,
+      "dg_rank": 77,
+      "owgr_rank": 105,
+      "player_name": "Yellamaraju, Sudarshan",
+      "player_num": 60386,
+      "pre_tourn_pageviews": 1390,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 14:27",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 09:02",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "38"
+    },
+    {
+      "am": 0,
+      "country": "USA",
+      "dg_id": 26651,
+      "dg_rank": 3,
+      "owgr_rank": 3,
+      "player_name": "Young, Cameron",
+      "player_num": 57366,
+      "pre_tourn_pageviews": 4038,
+      "teetimes": [
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 1,
+          "start_hole": 1,
+          "teetime": "2026-05-14 13:54",
+          "wave": "late"
+        },
+        {
+          "course_code": "",
+          "course_name": "Aronimink Golf Club",
+          "course_num": 773,
+          "round_num": 2,
+          "start_hole": 10,
+          "teetime": "2026-05-15 08:29",
+          "wave": "early"
+        }
+      ],
+      "tour_rank": "1"
+    }
+  ],
+  "last_updated": "2026-05-13 10:10:54 UTC",
+  "multi_course": "no",
+  "tour": "pga",
+  "tz_offset": -14400
 }
