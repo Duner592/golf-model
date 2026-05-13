@@ -1,11 +1,11 @@
 {
   "event_id": "33",
   "event_name": "PGA Championship",
-  "source_csv": "data/preds/pga/event_33_pga_championship_2026-05-11_leaderboard.csv",
-  "generated_utc": "11-May-2026 13:50:12",
+  "source_csv": "data/preds/pga/event_33_pga_championship_2026-05-13_leaderboard.csv",
+  "generated_utc": "13-May-2026 10:21:53",
   "metrics": {
     "field_size": 156,
-    "p_win_max": 0.4091666666666667,
+    "p_win_max": 0.4171,
     "p_win_median": 3.3333333333333335e-05,
     "p_win_sum": 1.0
   }
