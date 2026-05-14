@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c0da8a94-9b7b-4b0b-8339-9c752df365e3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_course_fit_diy.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_course_fit_diy.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_course_fit_weights.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_course_fit_weights.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_dg_rankings.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_dg_rankings.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_field.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_field.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_field.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_field.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_field_teetimes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_field_teetimes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_field_teetimes.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_field_teetimes.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_player_sigma.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_player_sigma.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_skill_ratings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_skill_ratings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_skill_ratings.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_skill_ratings.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_weather_hourly.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_weather_hourly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_weather_meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_weather_meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_weather_round_neutral.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_weather_round_neutral.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/pga/event_33_weather_round_wave.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/pga/event_33_weather_round_wave.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/field-updates.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/field-updates.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/archive/2026/pga_championship/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/pga_championship/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/archive/2026/pga_championship/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/pga_championship/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/archive/2026/pga_championship/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/2026/pga_championship/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/archive/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/archive/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/course_fit_weights.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/course_fit_weights.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/course_fit_weights.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/course_fit_weights.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/field_teetimes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/field_teetimes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/weather_meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/weather_meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/weather_round_neutral.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/weather_round_neutral.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/events/event_33/weather_round_wave.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/events/event_33/weather_round_wave.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/field_teetimes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/field_teetimes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/leaderboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/leaderboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/weather_meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/weather_meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/weather_round_neutral.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/weather_round_neutral.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pga/weather_round_wave.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/pga/weather_round_wave.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="3Dcazs7jxO9b0iUg6b3rQDNnKAg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0da8a94-9b7b-4b0b-8339-9c752df365e3" name="Changes" comment="" />
+      <created>1778584076296</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778584076296</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
