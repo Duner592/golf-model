@@ -51,12 +51,15 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 
 Scheduled model runs always export the full field leaderboard. `export_leaderboard.py --topN` remains available for ad hoc local Top-N files, but it is not exposed in the GitHub workflow.
 
-## Homepage Status
+## Site Status
 
-The homepage status card reads `web/status.json`.
+The site status card is injected by `web/menu.js` at the bottom of every page that loads the shared menu. It reads `web/status.json` and checks the published `web/spreadsheet_data.csv` metadata for the betting-data timestamp.
 
 - Model workflows update the model run timestamp, tour, and event IDs after web assets are rebuilt.
+- Local `build_web_assets.py` runs also update the model run status for the tour they rebuild.
+- Running `run_weekly_all.py` alone does not update the web page status until the web assets are rebuilt.
 - Schedule-refresh workflows update the schedule refresh timestamp after `upcoming-events.json` is refreshed.
+- Betting-data timing appears in the same status card as `Betting Data Updated`.
 - Other workflows that deploy `web/` should run `scripts/update_web_status.py --sync-assets` before uploading the Pages artifact.
 
 ## Previous-Week Event IDs

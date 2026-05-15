@@ -5,7 +5,7 @@
     <title>Golf Model Hub - Links and Tools</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
-    <script src="menu.js"></script>
+    <script src="menu.js?v=20260515-status2"></script>
     <!-- Added Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Added theme.css for shared styles -->
@@ -106,16 +106,6 @@
             padding-bottom: 0.5rem;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: auto;
-            padding: 1rem;
-            font-size: 0.9rem;
-            color: #666;
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-
         .links-list {
             list-style: none;
             padding: 0;
@@ -202,33 +192,7 @@
     </div>
 </div>
 
-<!-- Added footer for last updated timestamp -->
-<div class="footer" id="last-updated">Last updated: Loading...</div>
-
 <script>
-    // Reuse similar scripts from index.html for consistency, e.g., last updated timestamp
-    async function getLastModifiedTimestamp() {
-        try {
-            const meta = await BettingData.getMeta();
-            if (meta && meta.lastModified) {
-                return new Date(meta.lastModified).toLocaleString();
-            }
-            if (meta && meta.storedAt) {
-                return new Date(meta.storedAt).toLocaleString();
-            }
-            return 'Unavailable';
-        } catch (e) {
-            return 'Unavailable';
-        }
-    }
-
-    async function init() {
-        const lastModified = await getLastModifiedTimestamp();
-        document.getElementById('last-updated').innerHTML = `Last updated: ${lastModified}`;
-    }
-
-    init();
-
     // Load menu HTML
     fetch('menu.html?v=20260417').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
 </script>

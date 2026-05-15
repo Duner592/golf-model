@@ -138,6 +138,19 @@ def write_json(path: Path, obj) -> None:
     path.write_text(json.dumps(safe_obj, indent=2, allow_nan=False), encoding="utf-8")
 
 
+def update_site_status(tour: str) -> None:
+    """Record that web assets for this tour were refreshed."""
+    try:
+        from update_web_status import read_status, update_betting_data, update_model_run, write_status
+
+        status = read_status()
+        update_model_run(status, tour, "build-web-assets")
+        update_betting_data(status)
+        write_status(status)
+    except Exception as exc:
+        print(f"[warn] Could not update web/status.json: {exc}")
+
+
 # ---------- formatting helpers ----------
 def normalize_utc_str(s: str | None, fallback: str) -> str:
     """
@@ -1686,6 +1699,8 @@ def main():
 
     for message in reports:
         print(f"[info] {message}")
+
+    update_site_status(TOUR)
 
 
 if __name__ == "__main__":

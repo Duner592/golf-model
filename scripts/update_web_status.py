@@ -25,15 +25,16 @@ def read_json(path: Path) -> Any:
 
 def read_status() -> dict[str, Any]:
     if not STATUS_PATH.exists():
-        return {"model_runs": {}, "schedule": {}}
+        return {"model_runs": {}, "schedule": {}, "betting_data": {}}
     try:
         data = read_json(STATUS_PATH)
     except Exception:
-        return {"model_runs": {}, "schedule": {}}
+        return {"model_runs": {}, "schedule": {}, "betting_data": {}}
     if not isinstance(data, dict):
-        return {"model_runs": {}, "schedule": {}}
+        return {"model_runs": {}, "schedule": {}, "betting_data": {}}
     data.setdefault("model_runs", {})
     data.setdefault("schedule", {})
+    data.setdefault("betting_data", {})
     return data
 
 
@@ -121,6 +122,18 @@ def update_schedule(status: dict[str, Any], workflow: str | None) -> None:
     }
 
 
+def update_betting_data(status: dict[str, Any]) -> None:
+    csv_path = ROOT / "web" / "spreadsheet_data.csv"
+    if not csv_path.exists():
+        status["betting_data"] = {"source": "web/spreadsheet_data.csv", "last_modified": None}
+        return
+    modified = datetime.fromtimestamp(csv_path.stat().st_mtime, timezone.utc).replace(microsecond=0)
+    status["betting_data"] = {
+        "source": "web/spreadsheet_data.csv",
+        "last_modified": modified.isoformat().replace("+00:00", "Z"),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Update web/status.json")
     parser.add_argument("--model-run", action="store_true", help="Record a completed model/web asset run.")
@@ -141,6 +154,7 @@ def main() -> None:
             update_model_run(status, tour, args.workflow)
     if args.schedule_refreshed:
         update_schedule(status, args.workflow)
+    update_betting_data(status)
 
     write_status(status)
 

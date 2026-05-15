@@ -27,7 +27,7 @@ Testing
 Automation
 - GitHub Actions workflows live in `.github/workflows/`.
 - `upcoming-events.json` is refreshed hourly from DataGolf by `scripts/update_upcoming_events.py`.
-- Homepage status data is generated in `web/status.json` by `scripts/update_web_status.py`.
+- Shared site status data is generated in `web/status.json` by `scripts/update_web_status.py`.
 - Scheduled/manual model runs use `scripts/ci_run_model.sh`.
 - Previous-week archive updates use `scripts/update_previous_week_archives.py`.
 - Daily actual-results refresh uses `scripts/ci_fetch_actual_results.sh`.

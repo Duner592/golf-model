@@ -157,16 +157,6 @@ h1 {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1)); /* Shadow on logo */
 }
 
-.footer {
-    text-align: center;
-    margin-top: auto; /* Push to bottom */
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #666;
-    background: #f9f9f9;
-    border-radius: 8px;
-}
-
 @media (max-width: 768px) {
     body {
         padding: 1rem;

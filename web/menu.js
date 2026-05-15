@@ -471,6 +471,169 @@
         applyQuickNavActiveState();
     }
 
+    function formatStatusTime(value) {
+        if (!value) {
+            return 'Unavailable';
+        }
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) {
+            return String(value);
+        }
+        return parsed.toLocaleString(undefined, {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    function tourLabel(tour) {
+        const key = (tour || '').toLowerCase();
+        if (key === 'pga') {
+            return 'PGA';
+        }
+        if (key === 'euro') {
+            return 'DPWT';
+        }
+        return key ? key.toUpperCase() : 'Unknown';
+    }
+
+    function latestModelRun(modelRuns) {
+        const runs = Object.values(modelRuns || {}).filter(run => run && run.last_run_utc);
+        if (!runs.length) {
+            return null;
+        }
+        return runs.reduce((latest, run) => {
+            const latestTime = new Date(latest.last_run_utc).getTime();
+            const runTime = new Date(run.last_run_utc).getTime();
+            return runTime >= latestTime ? run : latest;
+        }, runs[0]);
+    }
+
+    function statusItem(label, id) {
+        const item = document.createElement('div');
+        item.className = 'site-status-item';
+        const labelEl = document.createElement('span');
+        labelEl.className = 'site-status-label';
+        labelEl.textContent = label;
+        const valueEl = document.createElement('span');
+        valueEl.className = 'site-status-value';
+        valueEl.id = id;
+        valueEl.textContent = 'Loading...';
+        item.appendChild(labelEl);
+        item.appendChild(valueEl);
+        return item;
+    }
+
+    function injectSiteStatus() {
+        if (document.getElementById('site-status')) {
+            return;
+        }
+        const section = document.createElement('section');
+        section.className = 'site-status-card';
+        section.id = 'site-status';
+        section.setAttribute('aria-labelledby', 'site-status-title');
+
+        const header = document.createElement('div');
+        header.className = 'site-status-card__header';
+        const title = document.createElement('h2');
+        title.id = 'site-status-title';
+        title.textContent = 'Site Status';
+        const updated = document.createElement('span');
+        updated.className = 'site-status-card__updated';
+        updated.id = 'site-status-updated';
+        updated.textContent = 'Loading status...';
+        header.appendChild(title);
+        header.appendChild(updated);
+
+        const grid = document.createElement('div');
+        grid.className = 'site-status-grid';
+        grid.appendChild(statusItem('Last Model Run', 'site-status-model-run'));
+        grid.appendChild(statusItem('Tour', 'site-status-tours'));
+        grid.appendChild(statusItem('Event ID', 'site-status-events'));
+        grid.appendChild(statusItem('Schedule Refreshed', 'site-status-schedule'));
+        grid.appendChild(statusItem('Betting Data Updated', 'site-status-betting'));
+
+        section.appendChild(header);
+        section.appendChild(grid);
+        document.body.appendChild(section);
+    }
+
+    function renderSiteStatus(status, bettingUpdated) {
+        const modelRuns = status?.model_runs || {};
+        const runs = Object.values(modelRuns).filter(Boolean);
+        const latestRun = latestModelRun(modelRuns);
+        const modelRunEl = document.getElementById('site-status-model-run');
+        const toursEl = document.getElementById('site-status-tours');
+        const eventsEl = document.getElementById('site-status-events');
+        const scheduleEl = document.getElementById('site-status-schedule');
+        const bettingEl = document.getElementById('site-status-betting');
+        const updatedEl = document.getElementById('site-status-updated');
+
+        if (modelRunEl) {
+            modelRunEl.textContent = latestRun ? formatStatusTime(latestRun.last_run_utc) : 'No model run recorded';
+        }
+        if (toursEl) {
+            toursEl.textContent = runs.length ? runs.map(run => `${tourLabel(run.tour)}: ${run.last_run_utc ? formatStatusTime(run.last_run_utc) : 'Not recorded'}`).join(' | ') : 'No tours recorded';
+        }
+        if (eventsEl) {
+            const eventLabels = runs.flatMap(run => {
+                const ids = Array.isArray(run.event_ids) && run.event_ids.length ? run.event_ids : [run.event_id].filter(Boolean);
+                return ids.map(id => `${tourLabel(run.tour)} ${id}`);
+            });
+            eventsEl.textContent = eventLabels.length ? eventLabels.join(' | ') : 'No active event IDs';
+        }
+        if (scheduleEl) {
+            scheduleEl.textContent = formatStatusTime(status?.schedule?.last_refreshed_utc);
+        }
+        if (bettingEl) {
+            bettingEl.textContent = formatStatusTime(bettingUpdated || status?.betting_data?.last_modified);
+        }
+        if (updatedEl) {
+            updatedEl.textContent = `Status file updated ${formatStatusTime(status?.updated_at_utc)}`;
+        }
+    }
+
+    async function loadBettingDataTimestamp() {
+        try {
+            const response = await fetch('spreadsheet_data.csv', { method: 'HEAD', cache: 'no-store' });
+            if (!response.ok) {
+                return null;
+            }
+            return response.headers.get('Last-Modified');
+        } catch (_) {
+            return null;
+        }
+    }
+
+    async function loadSiteStatus() {
+        injectSiteStatus();
+        try {
+            const [statusResponse, bettingUpdated] = await Promise.all([
+                fetch(`status.json?v=${Date.now()}`, { cache: 'no-store' }),
+                loadBettingDataTimestamp()
+            ]);
+            if (!statusResponse.ok) {
+                throw new Error(`HTTP ${statusResponse.status}`);
+            }
+            const status = await statusResponse.json();
+            renderSiteStatus(status, bettingUpdated);
+        } catch (_) {
+            const fallback = 'Status unavailable';
+            ['site-status-model-run', 'site-status-tours', 'site-status-events', 'site-status-schedule', 'site-status-betting'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.textContent = fallback;
+                }
+            });
+            const updatedEl = document.getElementById('site-status-updated');
+            if (updatedEl) {
+                updatedEl.textContent = 'Status file unavailable';
+            }
+        }
+    }
+
     function initializeMenuObserver() {
         if (menuObserverStarted) {
             return;
@@ -548,19 +711,25 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        const { overlay, body, menu } = getMenuElements();
-        if (overlay && !overlay.hasAttribute('aria-hidden')) {
-            overlay.setAttribute('aria-hidden', 'true');
-        }
-        ensureHamburgerAttributes();
-        injectSiteHeader();
-        initializeMenuObserver();
-        if (menu && menu.children.length) {
-            hydrateMenuContent(menu);
-        }
-        applyQuickNavActiveState();
-        if (body && !body.classList.contains('has-fixed-menu')) {
-            body.classList.add('has-fixed-menu');
+        try {
+            const { overlay, body, menu } = getMenuElements();
+            if (overlay && !overlay.hasAttribute('aria-hidden')) {
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+            ensureHamburgerAttributes();
+            injectSiteHeader();
+            initializeMenuObserver();
+            if (menu && menu.children.length) {
+                hydrateMenuContent(menu);
+            }
+            applyQuickNavActiveState();
+            if (body && !body.classList.contains('has-fixed-menu')) {
+                body.classList.add('has-fixed-menu');
+            }
+        } catch (error) {
+            console.error('Failed to initialize site menu:', error);
+        } finally {
+            loadSiteStatus();
         }
     });
 

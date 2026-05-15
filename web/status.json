@@ -1,4 +1,8 @@
 {
+  "betting_data": {
+    "last_modified": "2026-05-15T08:04:28Z",
+    "source": "web/spreadsheet_data.csv"
+  },
   "model_runs": {
     "euro": {
       "artifact_generated_utc": "11-May-2026 13:50:17",
@@ -41,11 +45,11 @@
   },
   "schedule": {
     "event_count": 119,
-    "last_refreshed_utc": "2026-05-15T10:31:27Z",
+    "last_refreshed_utc": "2026-05-15T10:43:40Z",
     "season": 2026,
     "source": "DataGolf",
     "tour": "all",
     "workflow": "initial-assets"
   },
-  "updated_at_utc": "2026-05-15T10:31:27Z"
+  "updated_at_utc": "2026-05-15T10:43:40Z"
 }
