@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "web/**"
+      - "scripts/update_web_status.py"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -26,6 +27,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Update site status
+        run: python3 scripts/update_web_status.py --sync-assets --workflow "deploy-pages"
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

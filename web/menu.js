@@ -560,7 +560,7 @@
         document.body.appendChild(section);
     }
 
-    function renderSiteStatus(status, bettingUpdated) {
+    function renderSiteStatus(status) {
         const modelRuns = status?.model_runs || {};
         const runs = Object.values(modelRuns).filter(Boolean);
         const latestRun = latestModelRun(modelRuns);
@@ -588,37 +588,22 @@
             scheduleEl.textContent = formatStatusTime(status?.schedule?.last_refreshed_utc);
         }
         if (bettingEl) {
-            bettingEl.textContent = formatStatusTime(bettingUpdated || status?.betting_data?.last_modified);
+            bettingEl.textContent = formatStatusTime(status?.betting_data?.last_modified);
         }
         if (updatedEl) {
             updatedEl.textContent = `Status file updated ${formatStatusTime(status?.updated_at_utc)}`;
         }
     }
 
-    async function loadBettingDataTimestamp() {
-        try {
-            const response = await fetch('spreadsheet_data.csv', { method: 'HEAD', cache: 'no-store' });
-            if (!response.ok) {
-                return null;
-            }
-            return response.headers.get('Last-Modified');
-        } catch (_) {
-            return null;
-        }
-    }
-
     async function loadSiteStatus() {
         injectSiteStatus();
         try {
-            const [statusResponse, bettingUpdated] = await Promise.all([
-                fetch(`status.json?v=${Date.now()}`, { cache: 'no-store' }),
-                loadBettingDataTimestamp()
-            ]);
+            const statusResponse = await fetch(`status.json?v=${Date.now()}`, { cache: 'no-store' });
             if (!statusResponse.ok) {
                 throw new Error(`HTTP ${statusResponse.status}`);
             }
             const status = await statusResponse.json();
-            renderSiteStatus(status, bettingUpdated);
+            renderSiteStatus(status);
         } catch (_) {
             const fallback = 'Status unavailable';
             ['site-status-model-run', 'site-status-tours', 'site-status-events', 'site-status-schedule', 'site-status-betting'].forEach(id => {

@@ -1,7 +1,8 @@
 {
   "betting_data": {
-    "last_modified": "2026-05-15T08:04:28Z",
-    "source": "web/spreadsheet_data.csv"
+    "last_modified": "2026-05-15T08:04:22Z",
+    "source": "web/spreadsheet_data.csv",
+    "timestamp_source": "git_commit"
   },
   "model_runs": {
     "euro": {
@@ -51,5 +52,5 @@
     "tour": "all",
     "workflow": "initial-assets"
   },
-  "updated_at_utc": "2026-05-15T10:43:40Z"
+  "updated_at_utc": "2026-05-15T11:40:12Z"
 }

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -14,8 +15,58 @@ ROOT = Path(__file__).resolve().parent.parent
 STATUS_PATH = ROOT / "web" / "status.json"
 
 
+def format_utc(value: datetime) -> str:
+    return value.astimezone(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
 def utc_now() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return format_utc(datetime.now(timezone.utc))
+
+
+def file_mtime_utc(path: Path) -> str:
+    return format_utc(datetime.fromtimestamp(path.stat().st_mtime, timezone.utc))
+
+
+def git_relative_path(path: Path) -> str:
+    return path.resolve().relative_to(ROOT).as_posix()
+
+
+def git_file_is_dirty(path: Path) -> bool:
+    try:
+        rel_path = git_relative_path(path)
+    except ValueError:
+        return False
+    result = subprocess.run(
+        ["git", "status", "--porcelain", "--", rel_path],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+        check=False,
+    )
+    return bool(result.stdout.strip())
+
+
+def git_last_commit_utc(path: Path) -> str | None:
+    try:
+        rel_path = git_relative_path(path)
+    except ValueError:
+        return None
+    result = subprocess.run(
+        ["git", "log", "-1", "--format=%cI", "--", rel_path],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+        check=False,
+    )
+    value = result.stdout.strip()
+    if not value:
+        return None
+    try:
+        return format_utc(datetime.fromisoformat(value.replace("Z", "+00:00")))
+    except ValueError:
+        return None
 
 
 def read_json(path: Path) -> Any:
@@ -127,10 +178,19 @@ def update_betting_data(status: dict[str, Any]) -> None:
     if not csv_path.exists():
         status["betting_data"] = {"source": "web/spreadsheet_data.csv", "last_modified": None}
         return
-    modified = datetime.fromtimestamp(csv_path.stat().st_mtime, timezone.utc).replace(microsecond=0)
+    betting_data = status.get("betting_data")
+    existing = betting_data.get("last_modified") if isinstance(betting_data, dict) else None
+    if git_file_is_dirty(csv_path):
+        last_modified = file_mtime_utc(csv_path)
+        timestamp_source = "filesystem_mtime"
+    else:
+        committed_modified = git_last_commit_utc(csv_path)
+        last_modified = committed_modified or existing or file_mtime_utc(csv_path)
+        timestamp_source = "git_commit" if committed_modified else "existing_or_filesystem_mtime"
     status["betting_data"] = {
         "source": "web/spreadsheet_data.csv",
-        "last_modified": modified.isoformat().replace("+00:00", "Z"),
+        "last_modified": last_modified,
+        "timestamp_source": timestamp_source,
     }
 
 
