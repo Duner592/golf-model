@@ -20,6 +20,8 @@ if [[ -z "${DATAGOLF_API_KEY:-}" ]]; then
   exit 1
 fi
 
+"$PYTHON_BIN" scripts/update_upcoming_events.py
+
 echo "::group::Fetch actual results for $YEAR"
 "$PYTHON_BIN" scripts/fetch_actual_results.py --year "$YEAR"
 echo "::endgroup::"
@@ -27,3 +29,5 @@ echo "::endgroup::"
 echo "::group::Build prediction accuracy for $YEAR"
 "$PYTHON_BIN" scripts/build_prediction_accuracy.py --year "$YEAR"
 echo "::endgroup::"
+
+"$PYTHON_BIN" scripts/update_web_status.py --schedule-refreshed --sync-assets --workflow "actual-results"

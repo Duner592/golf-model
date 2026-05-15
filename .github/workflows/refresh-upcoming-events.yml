@@ -13,14 +13,19 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: refresh-upcoming-events
+  group: pages
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     env:
       DATAGOLF_API_KEY: ${{ secrets.DATAGOLF_API_KEY }}
       SEASON: ${{ inputs.season || '' }}
@@ -46,6 +51,7 @@ jobs:
             args+=(--season "$SEASON")
           fi
           python scripts/update_upcoming_events.py "${args[@]}"
+          python scripts/update_web_status.py --schedule-refreshed --sync-assets --workflow "refresh-upcoming-events"
 
       - name: Commit refreshed schedule
         run: |
@@ -59,3 +65,15 @@ jobs:
           git commit -m "Refresh upcoming events schedule [skip ci]"
           git pull --rebase origin master
           git push
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload web artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

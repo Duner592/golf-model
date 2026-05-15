@@ -98,10 +98,79 @@
             font-size: 0.85rem;
             color: #4c5c52;
         }
+        .site-status-card {
+            width: min(1120px, calc(100% - 2rem));
+            margin: 1.25rem auto 1.75rem;
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(17, 94, 45, 0.16);
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 16px 34px -28px rgba(16, 50, 31, 0.5);
+        }
+        .site-status-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        .site-status-card h2 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #1f4532;
+        }
+        .site-status-card__updated {
+            font-size: 0.82rem;
+            color: #5b7062;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+        }
+        .site-status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+        .site-status-item {
+            min-width: 0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            background: #f6f9f7;
+            border: 1px solid rgba(34, 139, 34, 0.12);
+        }
+        .site-status-label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #5b7062;
+            text-transform: uppercase;
+        }
+        .site-status-value {
+            display: block;
+            color: #20352a;
+            font-size: 0.9rem;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+        }
         @media (max-width: 960px) {
             .betting-header {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+            .site-status-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 560px) {
+            .site-status-card__header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .site-status-card__updated {
+                text-align: left;
+            }
+            .site-status-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -182,6 +251,31 @@
         </div>
     </aside>
 </div>
+
+<section class="site-status-card" aria-labelledby="site-status-title">
+    <div class="site-status-card__header">
+        <h2 id="site-status-title">Site Status</h2>
+        <span class="site-status-card__updated" id="site-status-updated">Loading status...</span>
+    </div>
+    <div class="site-status-grid">
+        <div class="site-status-item">
+            <span class="site-status-label">Last Model Run</span>
+            <span class="site-status-value" id="site-status-model-run">Loading...</span>
+        </div>
+        <div class="site-status-item">
+            <span class="site-status-label">Tour</span>
+            <span class="site-status-value" id="site-status-tours">Loading...</span>
+        </div>
+        <div class="site-status-item">
+            <span class="site-status-label">Event ID</span>
+            <span class="site-status-value" id="site-status-events">Loading...</span>
+        </div>
+        <div class="site-status-item">
+            <span class="site-status-label">Schedule Refreshed</span>
+            <span class="site-status-value" id="site-status-schedule">Loading...</span>
+        </div>
+    </div>
+</section>
 
 <!-- Added footer for last updated timestamp -->
 <div class="footer" id="last-updated">Last updated: Loading...</div>
@@ -758,6 +852,86 @@
         }
     }
 
+    function formatStatusTime(value) {
+        if (!value) return 'Unavailable';
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) {
+            return String(value);
+        }
+        return parsed.toLocaleString(undefined, {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    function tourLabel(tour) {
+        const key = (tour || '').toLowerCase();
+        if (key === 'pga') return 'PGA';
+        if (key === 'euro') return 'DPWT';
+        return key ? key.toUpperCase() : 'Unknown';
+    }
+
+    function latestModelRun(modelRuns) {
+        const runs = Object.values(modelRuns || {}).filter(Boolean);
+        if (!runs.length) return null;
+        return runs.reduce((latest, run) => {
+            const latestTime = latest?.last_run_utc ? new Date(latest.last_run_utc).getTime() : 0;
+            const runTime = run?.last_run_utc ? new Date(run.last_run_utc).getTime() : 0;
+            return runTime >= latestTime ? run : latest;
+        }, runs[0]);
+    }
+
+    function renderSiteStatus(status) {
+        const modelRuns = status?.model_runs || {};
+        const runs = Object.values(modelRuns).filter(Boolean);
+        const latestRun = latestModelRun(modelRuns);
+        const modelRunEl = document.getElementById('site-status-model-run');
+        const toursEl = document.getElementById('site-status-tours');
+        const eventsEl = document.getElementById('site-status-events');
+        const scheduleEl = document.getElementById('site-status-schedule');
+        const updatedEl = document.getElementById('site-status-updated');
+
+        if (modelRunEl) {
+            modelRunEl.textContent = latestRun ? formatStatusTime(latestRun.last_run_utc || latestRun.artifact_generated_utc) : 'No model run recorded';
+        }
+        if (toursEl) {
+            toursEl.textContent = runs.length ? runs.map(run => `${tourLabel(run.tour)}: ${formatStatusTime(run.last_run_utc || run.artifact_generated_utc)}`).join(' | ') : 'No tours recorded';
+        }
+        if (eventsEl) {
+            const eventLabels = runs.flatMap(run => {
+                const ids = Array.isArray(run.event_ids) && run.event_ids.length ? run.event_ids : [run.event_id].filter(Boolean);
+                return ids.map(id => `${tourLabel(run.tour)} ${id}`);
+            });
+            eventsEl.textContent = eventLabels.length ? eventLabels.join(' | ') : 'No active event IDs';
+        }
+        if (scheduleEl) {
+            scheduleEl.textContent = formatStatusTime(status?.schedule?.last_refreshed_utc);
+        }
+        if (updatedEl) {
+            updatedEl.textContent = `Status file updated ${formatStatusTime(status?.updated_at_utc)}`;
+        }
+    }
+
+    async function loadSiteStatus() {
+        try {
+            const response = await fetch(`status.json?v=${Date.now()}`, { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const status = await response.json();
+            renderSiteStatus(status);
+        } catch (e) {
+            const fallback = 'Status unavailable';
+            ['site-status-model-run', 'site-status-tours', 'site-status-events', 'site-status-schedule'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = fallback;
+            });
+            const updatedEl = document.getElementById('site-status-updated');
+            if (updatedEl) updatedEl.textContent = 'Status file unavailable';
+        }
+    }
+
     async function init() {
         const [upcomingHtml, pgaSummary, euroSummary] = await Promise.all([
             loadUpcomingEvents(),
@@ -783,6 +957,7 @@
         const lastModified = await getLastModifiedTimestamp();
         document.getElementById('last-updated').innerHTML = `Last updated: ${lastModified}`;
         initBettingOverview(bettingRowsCache, lastModified);
+        loadSiteStatus();
     }
 
     init();

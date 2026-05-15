@@ -52,6 +52,7 @@ jobs:
 
       - name: Update previous-week archives
         run: |
+          python scripts/update_upcoming_events.py
           args=()
           if [ -n "$REFERENCE_DATE" ]; then
             args+=(--date "$REFERENCE_DATE")
@@ -60,6 +61,7 @@ jobs:
             args+=(--dry-run)
           fi
           python scripts/update_previous_week_archives.py "${args[@]}"
+          python scripts/update_web_status.py --schedule-refreshed --sync-assets --workflow "archive-update"
 
       - name: Configure Pages
         if: ${{ inputs.dry_run != true }}

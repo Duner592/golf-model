@@ -1,0 +1,51 @@
+{
+  "model_runs": {
+    "euro": {
+      "artifact_generated_utc": "11-May-2026 13:50:17",
+      "event_id": "0",
+      "event_ids": [],
+      "event_name": "No Event",
+      "events": [
+        {
+          "event_id": "0",
+          "event_name": "No Event",
+          "generated_utc": "11-May-2026 13:50:17",
+          "has_predictions": false,
+          "start_date": null
+        }
+      ],
+      "last_run_utc": null,
+      "tour": "euro",
+      "workflow": "initial-assets"
+    },
+    "pga": {
+      "artifact_generated_utc": "13-May-2026 10:21:53",
+      "event_id": "33",
+      "event_ids": [
+        "33"
+      ],
+      "event_name": "PGA Championship",
+      "events": [
+        {
+          "event_id": "33",
+          "event_name": "PGA Championship",
+          "generated_utc": "13-May-2026 10:21:53",
+          "has_predictions": true,
+          "start_date": "2026-05-14"
+        }
+      ],
+      "last_run_utc": null,
+      "tour": "pga",
+      "workflow": "initial-assets"
+    }
+  },
+  "schedule": {
+    "event_count": 119,
+    "last_refreshed_utc": "2026-05-15T10:31:27Z",
+    "season": 2026,
+    "source": "DataGolf",
+    "tour": "all",
+    "workflow": "initial-assets"
+  },
+  "updated_at_utc": "2026-05-15T10:31:27Z"
+}

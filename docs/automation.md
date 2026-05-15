@@ -13,6 +13,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 - `.github/workflows/refresh-upcoming-events.yml`
   - Runs hourly at minute 7 UTC.
   - Runs `python scripts/update_upcoming_events.py`.
+  - Updates `web/status.json` with the latest schedule refresh timestamp.
   - Commits `upcoming-events.json` back to `master` only when the file changes.
   - Defaults to refreshing PGA and Euro from DataGolf while preserving existing non-refreshed tours in the file.
 
@@ -49,6 +50,14 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 - `fast`: skips slower course/history and HTML leaderboard work.
 
 Scheduled model runs always export the full field leaderboard. `export_leaderboard.py --topN` remains available for ad hoc local Top-N files, but it is not exposed in the GitHub workflow.
+
+## Homepage Status
+
+The homepage status card reads `web/status.json`.
+
+- Model workflows update the model run timestamp, tour, and event IDs after web assets are rebuilt.
+- Schedule-refresh workflows update the schedule refresh timestamp after `upcoming-events.json` is refreshed.
+- Other workflows that deploy `web/` should run `scripts/update_web_status.py --sync-assets` before uploading the Pages artifact.
 
 ## Previous-Week Event IDs
 

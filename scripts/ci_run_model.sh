@@ -47,6 +47,9 @@ case "$TOUR" in
     ;;
 esac
 
+"$PYTHON_BIN" scripts/update_upcoming_events.py
+"$PYTHON_BIN" scripts/update_web_status.py --schedule-refreshed --sync-assets --workflow "scheduled-model"
+
 spreadsheet_checksum=""
 if [[ -f web/spreadsheet_data.csv ]]; then
   read -r spreadsheet_checksum _ < <(checksum_file web/spreadsheet_data.csv)
@@ -72,6 +75,8 @@ for tour in "${tours[@]}"; do
   echo "::group::Build web assets for $tour"
   "$PYTHON_BIN" scripts/build_web_assets.py --tour "$tour" "${web_args[@]}"
   echo "::endgroup::"
+
+  "$PYTHON_BIN" scripts/update_web_status.py --model-run --tour "$tour" --workflow "scheduled-model"
 done
 
 if [[ -n "$spreadsheet_checksum" ]]; then
