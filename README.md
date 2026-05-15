@@ -24,6 +24,15 @@ Data layout
 Testing
 - cd web/ && python -m http.server 8000 - Test webpage from local
 
+Automation
+- GitHub Actions workflows live in `.github/workflows/`.
+- `upcoming-events.json` is refreshed hourly from DataGolf by `scripts/update_upcoming_events.py`.
+- Scheduled/manual model runs use `scripts/ci_run_model.sh`.
+- Previous-week archive updates use `scripts/update_previous_week_archives.py`.
+- Daily actual-results refresh uses `scripts/ci_fetch_actual_results.sh`.
+- `web/spreadsheet_data.csv` remains a manual input; automation fails if it changes during a model run.
+- Setup and operating notes: `docs/automation.md`.
+
 
 Actual results
 - scripts/fetch_actual_results.py – pulls final finishes via DataGolf's `historical-raw-data/rounds` endpoint and populates `web/archive/<year>/<slug>/results.json`.

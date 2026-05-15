@@ -1,0 +1,61 @@
+name: Refresh upcoming events
+
+on:
+  schedule:
+    # Runs hourly at minute 7 UTC, before the model refresh jobs at minute 23.
+    - cron: "7 * * * *"
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season/year to refresh. Defaults to the current UTC year."
+        type: string
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-upcoming-events
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      DATAGOLF_API_KEY: ${{ secrets.DATAGOLF_API_KEY }}
+      SEASON: ${{ inputs.season || '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+
+      - name: Refresh upcoming-events.json
+        run: |
+          args=()
+          if [ -n "$SEASON" ]; then
+            args+=(--season "$SEASON")
+          fi
+          python scripts/update_upcoming_events.py "${args[@]}"
+
+      - name: Commit refreshed schedule
+        run: |
+          if git diff --quiet -- upcoming-events.json; then
+            echo "upcoming-events.json is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add upcoming-events.json
+          git commit -m "Refresh upcoming events schedule [skip ci]"
+          git pull --rebase origin master
+          git push

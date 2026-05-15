@@ -1,0 +1,71 @@
+# Golf Model Project Context
+
+Last updated: 2026-05-15
+
+## Purpose
+
+Build and maintain a weekly golf tournament win-probability model for PGA and DP World Tour events, with generated leaderboards, archive pages, actual-result tracking, and betting ROI support.
+
+Hosted site: https://duner592.github.io/golf-model/
+
+## Current Operating Model
+
+- Data source: DataGolf, with `DATAGOLF_API_KEY` stored in `.env`.
+- Weather source: Open-Meteo via event schedule/location metadata.
+- Course fit: internal DIY method using historical regression/course history.
+- Simulation: common-shock simulator with player sigma and wave-aware weather adjustments.
+- Output: predictions and summaries in `data/preds/`, archive output under `web/archive/`, and static web assets under `web/`.
+
+## Important Commands
+
+```sh
+python scripts/run_weekly_all.py --tour $TOUR
+python scripts/update_upcoming_events.py
+TOUR=pga FAST=true DATAGOLF_API_KEY=... bash scripts/ci_run_model.sh
+python scripts/update_previous_week_archives.py --dry-run
+YEAR=2026 DATAGOLF_API_KEY=... bash scripts/ci_fetch_actual_results.sh
+python scripts/update_archived_event.py --event_id $EVENT_ID
+python scripts/fetch_actual_results.py --year $YEAR
+python scripts/build_web_assets.py --tour $TOUR
+python scripts/summarize_status.py
+```
+
+Local web check:
+
+```sh
+cd web/ && python -m http.server 8000
+```
+
+## Data And Artifacts
+
+- `data/processed/`: normalized event inputs, including field, tee times, weather summaries, rankings, course fit, and metadata.
+- `data/features/`: model feature tables.
+- `data/preds/`: prediction outputs, leaderboards, and summaries.
+- `data/analytics/`: prediction accuracy and actual-vs-predicted tracking.
+- `web/archive/`: generated archive pages and event result JSON.
+
+Generated artifacts should usually be regenerated through scripts rather than manually edited.
+
+## Known Guardrails
+
+- Never expose or commit `.env` values.
+- Be careful with event IDs and tour naming. PGA and DPWT/Euro data can coexist in parallel folder structures.
+- Use explicit years for historical/actual result tasks.
+- When comparing predictions to actuals, confirm whether the event has final results available before treating missing results as model failure.
+- `web/spreadsheet_data.csv` is manually maintained and should not be overwritten by scheduled automation.
+
+## Automation Notes
+
+- GitHub Actions workflows were added for Pages deploys and scheduled/manual model runs.
+- Schedule refresh: hourly at minute 7 UTC. It refreshes `upcoming-events.json` from DataGolf and commits it to `master` only when changed.
+- Model refresh schedule: every 2 hours Monday-Wednesday at minute 23 UTC.
+- Archive update schedule: Monday at 12:00 and 21:00 UTC. Previous-week event IDs come from `scripts/update_previous_week_archives.py --dry-run`.
+- Actual-results schedule: daily at 02:17 UTC, defaulting to current UTC year.
+- GitHub repo setup still needs `DATAGOLF_API_KEY` added as an Actions secret.
+- GitHub Pages should be configured to deploy from GitHub Actions.
+- Scheduled model runs deploy the generated `web/` directory directly as a Pages artifact and do not commit generated data back to `master`.
+
+## Open Notes
+
+- Expand this file as we make modeling decisions, discover data quirks, or settle on recurring workflows.
+- Track any future calibration choices, feature changes, and archive publishing steps here.

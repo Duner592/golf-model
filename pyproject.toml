@@ -2,7 +2,17 @@
 name = "golf-model"
 version = "0.1.0"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+  "matplotlib>=3.8",
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "pyarrow>=15",
+  "python-dotenv>=1.0",
+  "PyYAML>=6.0",
+  "requests>=2.31",
+  "requests-cache>=1.2",
+  "scikit-learn>=1.4",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -5,7 +5,7 @@
 # Usage: python scripts/update_archived_event.py --event_id <event_id>
 #
 # This script:
-# - Checks if the event status is "completed" in upcoming-events.json; skips if "upcoming".
+# - Checks if the event status is "completed" in upcoming-events.json; skips if "upcoming" unless --force is used.
 # - Finds the archived tournament_summary.json for the given event_id.
 # - Updates status to "completed".
 # - Fetches the winner from DataGolf API, or falls back to upcoming-events.json if API fails.
@@ -14,6 +14,7 @@
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 import re
@@ -68,7 +69,11 @@ def fetch_winner_from_api(event_id: str, year: str) -> str | None:
         str or None: Winner name.
     """
     try:
-        response = requests.get(f"https://datagolf.ca/api/get-schedule?season={year}")
+        params = {"season": year}
+        api_key = os.getenv("DATAGOLF_API_KEY")
+        if api_key:
+            params["key"] = api_key
+        response = requests.get("https://datagolf.ca/api/get-schedule", params=params, timeout=20)
         if response.status_code == 200:
             schedule_data = response.json()
             for sched_event in schedule_data.get("schedule", []):
@@ -124,6 +129,11 @@ def update_tournament_summary(ts_path: Path, winner: str | None) -> None:
 def main():
     ap = argparse.ArgumentParser(description="Update archived tournament_summary.json for a completed event.")
     ap.add_argument("--event_id", type=str, required=True, help="Event ID to update")
+    ap.add_argument(
+        "--force",
+        action="store_true",
+        help="Ignore local upcoming/in-progress status. Used by scheduled previous-week archive updates once a winner is available.",
+    )
     args = ap.parse_args()
 
     event_id = args.event_id
@@ -138,8 +148,8 @@ def main():
         print(f"Error: Event ID {event_id} not found in upcoming-events.json")
         return
 
-    # Check status
-    if event_details.get("status") == "upcoming":
+    local_status = str(event_details.get("status", "")).lower()
+    if local_status in {"upcoming", "in_progress", "in-progress"} and not args.force:
         print(f"Skipping: Event {event_id} is still upcoming or in progress.")
         return
 
@@ -161,6 +171,9 @@ def main():
     if winner is None:
         winner = event_details.get("winner")
         print(f"DEBUG: Using fallback winner from upcoming-events.json: {winner}")
+    if args.force and local_status in {"upcoming", "in_progress", "in-progress"} and winner is None:
+        print(f"Skipping: Event {event_id} is locally {local_status!r} and no winner is available yet.")
+        return
 
     # Update the file
     update_tournament_summary(archive_path, winner)

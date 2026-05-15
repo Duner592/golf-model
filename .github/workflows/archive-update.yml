@@ -1,0 +1,77 @@
+name: Update previous-week archives
+
+on:
+  schedule:
+    # GitHub cron is UTC. Runs Monday at 12:00 and 21:00 UTC.
+    - cron: "0 12,21 * * 1"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Optional reference date in YYYY-MM-DD format. Previous week is calculated from this date."
+        type: string
+        required: false
+      dry_run:
+        description: "List previous-week event IDs without updating archives."
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-archives:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      DATAGOLF_API_KEY: ${{ secrets.DATAGOLF_API_KEY }}
+      REFERENCE_DATE: ${{ inputs.date || '' }}
+      DRY_RUN: ${{ inputs.dry_run || 'false' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+
+      - name: Update previous-week archives
+        run: |
+          args=()
+          if [ -n "$REFERENCE_DATE" ]; then
+            args+=(--date "$REFERENCE_DATE")
+          fi
+          if [ "$DRY_RUN" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          python scripts/update_previous_week_archives.py "${args[@]}"
+
+      - name: Configure Pages
+        if: ${{ inputs.dry_run != true }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload web artifact
+        if: ${{ inputs.dry_run != true }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - name: Deploy to GitHub Pages
+        if: ${{ inputs.dry_run != true }}
+        id: deployment
+        uses: actions/deploy-pages@v4
