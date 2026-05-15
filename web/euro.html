@@ -122,6 +122,16 @@
         .weather-stat.weather-severity--calm .weather-stat__value { color: #1d7c42; }
         .weather-stat.weather-severity--warn .weather-stat__value { color: #8a6100; }
         .weather-stat.weather-severity--alert .weather-stat__value { color: #9b2e24; }
+        .model-summary-list {
+          margin: 0.45rem 0 0;
+          padding-left: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+        .model-summary-list li {
+          list-style: disc;
+        }
 
         @media (max-width: 900px) {
           .layout { grid-template-columns: 1fr; }
@@ -182,6 +192,11 @@
 
     <!-- Sidebar -->
     <div class="stack">
+        <div class="card">
+            <div><strong>Model Generation Summary</strong></div>
+            <div id="modelSummary" class="small" style="line-height:1.5;"></div>
+        </div>
+
         <div class="card">
             <div><strong>Weather (mph, %)</strong></div>
             <div id="wxList" class="small" style="line-height:1.5;"></div>
@@ -255,6 +270,10 @@
       if (!raw || typeof raw !== "string") return null;
       const trimmed = raw.trim();
       if (!trimmed) return null;
+      const compact = trimmed.match(/^(\d{4}-\d{2}-\d{2})T(\d{2})(\d{2})(\d{2})Z$/);
+      if (compact) {
+        return `${compact[1]}T${compact[2]}:${compact[3]}:${compact[4]}Z`;
+      }
       if (/T/.test(trimmed) && /(?:Z|[+-]\d{2}:?\d{2})$/.test(trimmed)) return trimmed;
       if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d+)? ?UTC$/i.test(trimmed)) {
         return trimmed.replace(/\s*UTC$/i, "Z").replace(" ", "T");
@@ -395,6 +414,124 @@
       const a = document.createElement("a");
       a.textContent = text; a.href = href; a.target = "_blank"; a.rel = "noopener";
       const el = document.createElement("li"); el.appendChild(a); return el;
+    }
+
+    const MODEL_CONFIG = {
+      sims: 30000,
+      cutTop: 65,
+      courseHistoryBeta: -0.30,
+      courseFitBeta: -0.10,
+      softenedCourseHistoryBeta: -0.25,
+      softenedCourseFitBeta: -0.08,
+      softenedEvents: new Set(["7", "9", "10", "12", "34"]),
+      weatherWindBaselineMph: 8.0,
+      weatherStrokeSlope: 0.12,
+      roundShockSd: 0.20,
+      waveShockSd: 0.12,
+      sigmaDefault: 2.8,
+      sigmaMin: 1.8,
+      sigmaMax: 3.8
+    };
+    const WEIGHT_LABELS = {
+      sg_ott: "Off the tee SG",
+      sg_app: "Approach SG",
+      sg_arg: "Around green SG",
+      sg_putt: "Putting SG",
+      sg_t2g: "Tee-to-green SG",
+      da_z: "Driving accuracy",
+      dd_z: "Driving distance"
+    };
+
+    function formatPctWeight(value){
+      const n = Number(value);
+      return Number.isFinite(n) ? `${(n * 100).toFixed(1)}%` : "";
+    }
+
+    function formatCourseFitWeights(courseFit){
+      const weights = courseFit?.weights || {};
+      const entries = Object.entries(weights)
+        .filter(([, value]) => Number.isFinite(Number(value)))
+        .sort((a, b) => Math.abs(Number(b[1])) - Math.abs(Number(a[1])));
+      if (!entries.length) return null;
+      return entries.map(([key, value]) => `${WEIGHT_LABELS[key] || key}: ${formatPctWeight(value)}`).join("; ");
+    }
+
+    function formatLatLon(meta){
+      const lat = Number(meta?.lat);
+      const lon = Number(meta?.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+      return `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+    }
+
+    function activeModelBetas(eventId){
+      const softened = MODEL_CONFIG.softenedEvents.has(String(eventId));
+      return {
+        hist: softened ? MODEL_CONFIG.softenedCourseHistoryBeta : MODEL_CONFIG.courseHistoryBeta,
+        fit: softened ? MODEL_CONFIG.softenedCourseFitBeta : MODEL_CONFIG.courseFitBeta,
+        softened
+      };
+    }
+
+    function renderModelSummary(meta, rows, summary, snapshotMissing, weatherMeta, courseFit){
+      const el = document.getElementById("modelSummary");
+      if (!el) return;
+      el.innerHTML = "";
+
+      const list = document.createElement("ul");
+      list.className = "model-summary-list";
+      const add = (text) => {
+        if (!text) return;
+        const item = document.createElement("li");
+        item.textContent = text;
+        list.appendChild(item);
+      };
+
+      if (snapshotMissing) {
+        add("Initial-run snapshot has not been created yet. It will be saved after the next successful model asset build for this event.");
+        el.appendChild(list);
+        return;
+      }
+
+      const resources = meta?.resources || {};
+      const metrics = summary?.metrics || {};
+      const fieldSize = metrics.field_size || (Array.isArray(rows) ? rows.length : 0);
+      const hasPredictions = Array.isArray(rows) && rows.length > 0;
+      const hasWeather = Boolean(resources.weather_round_neutral || resources.weather_round_wave);
+      const hasWaveWeather = Boolean(resources.weather_round_wave);
+      const hasCourseFit = Boolean(resources.course_fit_weights);
+      const hasCourseHistory = Boolean(resources.course_history_summary);
+      const hasTeeTimes = Boolean(resources.field_teetimes || (rows || []).some(row => row.r1_teetime || row.r2_teetime));
+      const source = summary?.source_csv || meta?.source_csv;
+      const betas = activeModelBetas(meta?.event_id);
+      const weightsText = formatCourseFitWeights(courseFit);
+      const weatherSource = weatherMeta?.source || (hasWeather ? "Open-Meteo forecast/archive" : null);
+      const weatherLocation = formatLatLon(weatherMeta);
+      const weatherDates = [weatherMeta?.r1_date, weatherMeta?.r2_date, weatherMeta?.r3_date, weatherMeta?.r4_date].filter(Boolean);
+      const roundDates = weatherDates.length ? `${weatherDates[0]} to ${weatherDates[weatherDates.length - 1]}` : "";
+      const weatherSaved = weatherMeta?.saved_at_utc ? formatGeneratedTimestamp(weatherMeta.saved_at_utc) : "";
+
+      add(`${IS_INITIAL_SNAPSHOT ? "Initial-run snapshot" : "Latest scheduled model"} for ${meta?.event_name || "this event"}${fieldSize ? `, built from a ${fieldSize}-player field` : ""}.`);
+      add("Inputs combine DataGolf field/player data, current event metadata, player performance features and model-derived player volatility.");
+      add(`Top-level scoring weights: base player skill is the core term at -1.00x; course history beta ${betas.hist.toFixed(2)}; course-fit beta ${betas.fit.toFixed(2)}${betas.softened ? " for this softened event" : ""}. Higher skill/course signals lower the simulated stroke expectation.`);
+      if (weightsText) {
+        add(`Course-fit criteria weights learned from historical venue rounds: ${weightsText}. Ridge-regression coefficients are converted to absolute shares that sum to 100%.`);
+      } else {
+        add("Course-fit criteria weights were not available for this asset.");
+      }
+      add(`${hasWeather ? "Round and weather adjustments are included" : "No weather adjustment file is available for this asset"}${hasWaveWeather ? ", including AM/PM wave splits where tee times are known" : ""}.`);
+      if (weatherSource) {
+        add(`Weather source: ${weatherSource}${weatherLocation ? ` at ${weatherLocation}` : ""}${roundDates ? ` for ${roundDates}` : ""}. Current/future events use the Open-Meteo forecast API; fully historical windows use the Open-Meteo ERA5 archive. Hourly wind, gust, temperature, precipitation probability and weather code are summarized by round.`);
+      }
+      if (weatherSaved) {
+        add(`Weather file refreshed ${weatherSaved}.`);
+      }
+      add(`Weather weighting: round/wave stroke delta = max(0, mean wind mph - ${MODEL_CONFIG.weatherWindBaselineMph.toFixed(1)}) x ${MODEL_CONFIG.weatherStrokeSlope.toFixed(2)}. Shared shocks use ${MODEL_CONFIG.roundShockSd.toFixed(2)} strokes by round and ${MODEL_CONFIG.waveShockSd.toFixed(2)} strokes by AM/PM wave.`);
+      add(`${hasCourseFit || hasCourseHistory ? "Course fit and course-history signals are included where available" : "Course fit and course-history signals were not available for this asset"}.`);
+      add(`${hasTeeTimes ? "Tee-time and starting-hole data are merged into the leaderboard where available" : "Tee-time data were not available for this asset"}.`);
+      add(hasPredictions ? `${MODEL_CONFIG.sims.toLocaleString()} Monte Carlo simulations produce full-field win, top-10 and make-cut probabilities; the cut is approximated at top ${MODEL_CONFIG.cutTop}. Per-player sigma is clipped between ${MODEL_CONFIG.sigmaMin.toFixed(1)} and ${MODEL_CONFIG.sigmaMax.toFixed(1)} strokes, default ${MODEL_CONFIG.sigmaDefault.toFixed(1)}.` : "No prediction rows are currently available for this event.");
+      if (source) add(`Leaderboard source artifact: ${source.split("/").pop()}.`);
+
+      el.appendChild(list);
     }
 
     const weatherSeverityClass = (value, warnThreshold, alertThreshold, opts = {}) => {
@@ -791,6 +928,11 @@
       const rows = IS_INITIAL_SNAPSHOT
         ? await safeLoadJSON(meta.resources?.leaderboard, [])
         : await loadJSON(meta.resources?.leaderboard || "euro/leaderboard.json");
+      const [summary, weatherMeta, courseFit] = await Promise.all([
+        safeLoadJSON(meta.resources?.summary || "euro/summary.json", null),
+        safeLoadJSON(meta.resources?.weather_meta, null),
+        safeLoadJSON(meta.resources?.course_fit_weights, null)
+      ]);
 
       // Extract year from meta.r1_date
       let year = '';
@@ -876,6 +1018,7 @@
 
       attachSortHandlers();
       renderTable(sortRows(data, "rank", true));
+      renderModelSummary(meta, rows, summary, snapshotMissing, weatherMeta, courseFit);
       await renderSidebar(meta);
       await renderTournament(meta);
     }

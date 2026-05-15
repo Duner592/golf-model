@@ -1,0 +1,38 @@
+{
+  "event_name": "PGA Championship",
+  "event_id": "33",
+  "course": "Aronimink Golf Club",
+  "total_yardage": null,
+  "course_location": "Newtown Square, PA",
+  "start_date": "14-May-2026",
+  "field_size": 156,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Scheffler, Scottie",
+      "score": -11
+    },
+    {
+      "year": 2024,
+      "winner": "Schauffele, Xander",
+      "score": -21
+    },
+    {
+      "year": 2023,
+      "winner": "Koepka, Brooks",
+      "score": -13
+    },
+    {
+      "year": 2022,
+      "winner": "Thomas, Justin",
+      "score": -9
+    },
+    {
+      "year": 2021,
+      "winner": "Mickelson, Phil",
+      "score": -2
+    }
+  ]
+}
