@@ -187,6 +187,85 @@
         .model-link-row .link {
             margin: 0;
         }
+        #pga-section {
+            --tour-accent: #0b4c91;
+            --tour-accent-dark: #07315f;
+            --tour-accent-soft: rgba(11, 76, 145, 0.1);
+            --tour-accent-secondary: #d21f32;
+        }
+        #euro-section {
+            --tour-accent: #003764;
+            --tour-accent-dark: #00213d;
+            --tour-accent-soft: rgba(0, 149, 109, 0.11);
+            --tour-accent-secondary: #00956d;
+        }
+        .tour-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .tour-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--tour-accent), var(--tour-accent-secondary));
+        }
+        .tour-section__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.95rem;
+            border-bottom: 1px solid rgba(26, 55, 40, 0.12);
+        }
+        .tour-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            min-width: 0;
+        }
+        .tour-logo-frame {
+            width: 76px;
+            height: 58px;
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.45rem;
+            border-radius: 8px;
+            background: #ffffff;
+            border: 1px solid rgba(16, 45, 31, 0.12);
+            box-shadow: 0 12px 28px -22px rgba(0, 0, 0, 0.7);
+        }
+        .tour-logo-frame--wide {
+            width: 128px;
+        }
+        .tour-logo {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .tour-brand-copy {
+            min-width: 0;
+        }
+        .tour-brand h2 {
+            margin: 0;
+            padding: 0;
+            border-bottom: 0;
+            color: var(--tour-accent-dark);
+            font-size: 1.5rem;
+            line-height: 1.15;
+        }
+        .tour-brand p {
+            margin: 0.25rem 0 0;
+            color: #53675b;
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
         .tour-summary-grid {
             display: grid;
             grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) minmax(220px, 1.2fr);
@@ -381,6 +460,17 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+            .tour-section__header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .tour-logo-frame {
+                width: 64px;
+                height: 52px;
+            }
+            .tour-logo-frame--wide {
+                width: 112px;
+            }
             .tour-summary-grid {
                 grid-template-columns: 1fr;
             }
@@ -421,7 +511,17 @@
 <div class="main-content">
     <div class="tour-container">
         <div class="tour-section" id="pga-section">
-            <h2>PGA Tour</h2>
+            <div class="tour-section__header">
+                <div class="tour-brand">
+                    <span class="tour-logo-frame">
+                        <img class="tour-logo" src="assets/logos/pga-tour.svg" alt="PGA Tour logo" loading="lazy">
+                    </span>
+                    <div class="tour-brand-copy">
+                        <h2>PGA Tour</h2>
+                        <p>Latest model snapshot, field context and course weather.</p>
+                    </div>
+                </div>
+            </div>
             <div id="pga-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <div class="model-link-row" aria-label="PGA model results">
                 <a href="pga.html" class="link">Model Results</a>
@@ -429,7 +529,17 @@
         </div>
 
         <div class="tour-section" id="euro-section">
-            <h2>DP World Tour</h2>
+            <div class="tour-section__header">
+                <div class="tour-brand">
+                    <span class="tour-logo-frame tour-logo-frame--wide">
+                        <img class="tour-logo" src="assets/logos/dp-world-tour.svg" alt="DP World Tour logo" loading="lazy">
+                    </span>
+                    <div class="tour-brand-copy">
+                        <h2>DP World Tour</h2>
+                        <p>Latest model snapshot, field context and course weather.</p>
+                    </div>
+                </div>
+            </div>
             <div id="euro-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <div class="model-link-row" aria-label="DP World Tour model results">
                 <a href="euro.html" class="link">Model Results</a>
