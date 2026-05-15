@@ -4,7 +4,6 @@ set -euo pipefail
 TOUR="${TOUR:-both}"
 EVENT_ID="${EVENT_ID:-}"
 FAST="${FAST:-false}"
-TOP_N="${TOP_N:-20}"
 PYTHON_BIN="${PYTHON_BIN:-}"
 
 if [[ -z "$PYTHON_BIN" ]]; then
@@ -53,7 +52,7 @@ if [[ -f web/spreadsheet_data.csv ]]; then
   read -r spreadsheet_checksum _ < <(checksum_file web/spreadsheet_data.csv)
 fi
 
-run_args=(--topN "$TOP_N")
+run_args=()
 web_args=()
 
 if [[ -n "$EVENT_ID" ]]; then

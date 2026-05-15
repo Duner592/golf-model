@@ -4,14 +4,14 @@
 # Export a clean, shareable leaderboard with QoL features:
 # - Player names; hide IDs
 # - Timestamp + event name slug in filenames
-# - Full + Top-N variants (default --topN 20)
+# - Full-field leaderboard by default; optional Top-N variant with --topN
 # - Optional HTML (--html)
 # - Auto-include tee times if present
 # - Summary footer (field size, max/median/sum of p_win)
 #
 # Outputs:
 #   data/preds/{tour}/event_{id}_{slug}_{date}_leaderboard.csv
-#   data/preds/{tour}/event_{id}_{slug}_{date}_leaderboard_top{N}.csv
+#   data/preds/{tour}/event_{id}_{slug}_{date}_leaderboard_top{N}.csv (only when --topN > 0)
 #   data/preds/{tour}/event_{id}_{slug}_{date}_summary.json
 
 from __future__ import annotations
@@ -197,19 +197,21 @@ def save_outputs(
     leaderboard.to_csv(out_full, index=False)
     print("Saved:", out_full)
 
-    N = topN if topN and topN > 0 else 20
-    lb_top = leaderboard.head(N).copy()
-    out_top = preds_dir / f"{base}_top{N}.csv"
-    lb_top.to_csv(out_top, index=False)
-    print("Saved:", out_top)
+    N = topN if topN and topN > 0 else None
+    lb_top = leaderboard.head(N).copy() if N else None
+    if N:
+        out_top = preds_dir / f"{base}_top{N}.csv"
+        lb_top.to_csv(out_top, index=False)
+        print("Saved:", out_top)
 
     if html:
         out_full_html = preds_dir / f"{base}.html"
-        out_top_html = preds_dir / f"{base}_top{N}.html"
         leaderboard.to_html(out_full_html, index=False)
-        lb_top.to_html(out_top_html, index=False)
         print("Saved:", out_full_html)
-        print("Saved:", out_top_html)
+        if N and lb_top is not None:
+            out_top_html = preds_dir / f"{base}_top{N}.html"
+            lb_top.to_html(out_top_html, index=False)
+            print("Saved:", out_top_html)
 
     summary = compute_summary(preds_raw)
     summary_path = preds_dir / f"{base}_summary.json"
@@ -229,7 +231,7 @@ def save_outputs(
 def main():
     parser = argparse.ArgumentParser(description="Export leaderboard CSV/HTML with QoL features.")
     parser.add_argument("--tour", type=str, default=TOUR_DEFAULT)
-    parser.add_argument("--topN", type=int, default=20)
+    parser.add_argument("--topN", type=int, default=0)
     parser.add_argument("--html", action="store_true")
     parser.add_argument("--event_id", type=str, default=None)  # NEW
     args = parser.parse_args()

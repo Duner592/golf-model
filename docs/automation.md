@@ -47,7 +47,8 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 - `tour`: `both`, `pga`, or `euro`.
 - `event_id`: optional pinned event ID. If set, choose `pga` or `euro`, not `both`.
 - `fast`: skips slower course/history and HTML leaderboard work.
-- `top_n`: leaderboard size for `export_leaderboard.py`.
+
+Scheduled model runs always export the full field leaderboard. `export_leaderboard.py --topN` remains available for ad hoc local Top-N files, but it is not exposed in the GitHub workflow.
 
 ## Previous-Week Event IDs
 

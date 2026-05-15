@@ -13,7 +13,7 @@
 #   --skip-weather      Skip weather fetch/summarize
 #   --skip-course       Skip DIY course-fit and course-history merges
 #   --skip-html         Do not produce HTML
-#   --topN <int>        Top-N leaderboard (default 20)
+#   --topN <int>        Optional Top-N leaderboard variant; 0 disables it (default 0)
 #   --fast              Alias for --skip-course and --skip-html
 #
 from __future__ import annotations
@@ -46,7 +46,7 @@ def main():
     ap.add_argument("--skip-weather", action="store_true", help="Skip weather fetch/summarize")
     ap.add_argument("--skip-course", action="store_true", help="Skip DIY course-fit and course-history merges")
     ap.add_argument("--skip-html", action="store_true", help="Skip HTML leaderboard output")
-    ap.add_argument("--topN", type=int, default=20, help="Top-N leaderboard variant (default 20)")
+    ap.add_argument("--topN", type=int, default=0, help="Optional Top-N leaderboard variant; 0 disables it (default 0)")
     ap.add_argument("--fast", action="store_true", help="Fast mode: same as --skip-course and --skip-html")
     args = ap.parse_args()
 
