@@ -98,6 +98,86 @@
             font-size: 0.85rem;
             color: #4c5c52;
         }
+        .sidebar-heading-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+        .sidebar-heading-link:hover {
+            color: var(--gm-primary-dark);
+        }
+        .sidebar-heading-link__arrow {
+            margin-left: auto;
+            color: rgba(29, 124, 66, 0.72);
+            font-size: 0.82rem;
+            transition: transform 0.18s ease;
+        }
+        .sidebar-heading-link:hover .sidebar-heading-link__arrow {
+            transform: translateX(2px);
+        }
+        .sidebar-data-link {
+            color: #224e34;
+            font-weight: 650;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+        }
+        .sidebar-data-link:hover,
+        .sidebar-data-link:focus-visible {
+            color: var(--gm-primary);
+            border-bottom-color: rgba(29, 124, 66, 0.45);
+            outline: none;
+        }
+        .sidebar-list-link {
+            font-size: 0.95rem;
+        }
+        .sidebar-list-link--tour {
+            color: #345f43;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .sidebar-list-link--event {
+            font-weight: 700;
+        }
+        .pending-bet-title-link {
+            font-size: 0.95rem;
+        }
+        .pending-bet-player-link {
+            font-size: 0.92rem;
+            color: #375f47;
+        }
+        .pending-bet-bookmaker-link {
+            font-size: 0.9rem;
+            color: #375f47;
+            font-weight: 650;
+        }
+        .pending-bet-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 0.75rem;
+            background: #fafafa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .pending-bet-line {
+            display: flex;
+            align-items: baseline;
+            gap: 0.45rem;
+            margin-top: 0.3rem;
+        }
+        .pending-bet-line:first-child {
+            margin-top: 0;
+        }
+        .pending-bet-icon {
+            width: 1rem;
+            color: var(--gm-primary);
+            text-align: center;
+            flex: 0 0 auto;
+        }
         .model-link-row {
             display: flex;
             flex-wrap: wrap;
@@ -107,10 +187,222 @@
         .model-link-row .link {
             margin: 0;
         }
+        .tour-summary-grid {
+            display: grid;
+            grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) minmax(220px, 1.2fr);
+            gap: 1rem;
+            align-items: start;
+        }
+        .tour-summary-panel {
+            height: 100%;
+            min-width: 0;
+            border: 1px solid rgba(34, 139, 34, 0.14);
+            border-radius: 8px;
+            padding: 0.85rem;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 10px 26px -22px rgba(17, 94, 45, 0.52);
+        }
+        .tour-summary-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .tour-summary-detail {
+            display: grid;
+            grid-template-columns: 1.9rem minmax(0, 1fr);
+            gap: 0.55rem;
+            align-items: start;
+            color: #24382d;
+            line-height: 1.35;
+        }
+        .tour-summary-detail__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.55rem;
+            height: 1.55rem;
+            border-radius: 50%;
+            background: rgba(29, 124, 66, 0.1);
+            color: #315b3f;
+            font-size: 0.78rem;
+        }
+        .tour-summary-detail__label {
+            color: #5b7062;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .tour-summary-detail__value {
+            display: block;
+            margin-top: 0.1rem;
+            color: #17251d;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+        .home-snippet {
+            min-width: 0;
+        }
+        .home-snippet-title {
+            margin: 0 0 0.45rem;
+            color: #355542;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .home-snippet-title i {
+            color: var(--gm-primary);
+            font-size: 0.85rem;
+        }
+        .model-top-list {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            list-style: none;
+        }
+        .model-top-list li {
+            margin: 0;
+            padding: 0.45rem 0.55rem;
+            border: 1px solid rgba(34, 139, 34, 0.1);
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(248, 252, 249, 0.96), rgba(240, 248, 243, 0.84));
+        }
+        .model-top-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.75rem;
+            line-height: 1.35;
+        }
+        .model-top-name {
+            min-width: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.45rem;
+        }
+        .model-top-rank {
+            flex: 0 0 auto;
+            color: #5b7062;
+            font-size: 0.78rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+        .model-top-player {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #17251d;
+            font-weight: 700;
+        }
+        .model-top-metric {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 3.4rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 999px;
+            background: rgba(29, 124, 66, 0.1);
+            color: #176336;
+            font-variant-numeric: tabular-nums;
+            font-weight: 800;
+        }
+        .model-top-submetric {
+            color: #5b7062;
+            font-size: 0.78rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .weather-snippet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.45rem;
+        }
+        .weather-snippet-card {
+            border: 1px solid rgba(34, 139, 34, 0.14);
+            border-radius: 8px;
+            padding: 0.45rem 0.55rem;
+            background: linear-gradient(180deg, rgba(248, 252, 249, 0.96), rgba(240, 248, 243, 0.84));
+        }
+        .weather-snippet-round {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            color: #315b3f;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .weather-snippet-main {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.35rem;
+            color: #26352c;
+            font-size: 0.88rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .weather-snippet-temp {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.9rem;
+            padding: 0.12rem 0.35rem;
+            border-radius: 999px;
+            background: rgba(13, 94, 150, 0.1);
+            color: #0d5e96;
+            font-size: 0.76rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+        .weather-snippet-sub {
+            display: block;
+            margin-top: 0.15rem;
+            color: #5b7062;
+            font-size: 0.78rem;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.25;
+        }
+        .snippet-empty {
+            color: #5b7062;
+            font-size: 0.9rem;
+        }
         @media (max-width: 960px) {
             .betting-header {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+            .tour-summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .home-snippet {
+                padding-top: 0;
+                border-top: 0;
+            }
+            .model-top-row {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+            .model-top-metric {
+                min-width: 0;
+            }
+        }
+        @media (min-width: 961px) and (max-width: 1180px) {
+            .tour-summary-grid {
+                grid-template-columns: minmax(180px, 1fr) minmax(220px, 1.2fr);
+            }
+            .weather-summary-snippet {
+                grid-column: 1 / -1;
             }
         }
     </style>
@@ -185,11 +477,23 @@
     <aside class="sidebar" role="complementary" aria-label="Sidebar">
         <div class="sidebar-sections">
             <section class="sidebar-section" aria-labelledby="upcoming-events-title">
-                <h3 id="upcoming-events-title"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Upcoming Events</h3>
+                <h3 id="upcoming-events-title">
+                    <a class="sidebar-heading-link" href="schedule.html">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        <span>Upcoming Events</span>
+                        <i class="fas fa-arrow-right sidebar-heading-link__arrow" aria-hidden="true"></i>
+                    </a>
+                </h3>
                 <div id="upcoming-events"><div class="spinner"></div>Loading...</div>
             </section>
             <section class="sidebar-section" aria-labelledby="pending-bets-title">
-                <h3 id="pending-bets-title"><i class="fas fa-coins" aria-hidden="true"></i> Pending Bets</h3>
+                <h3 id="pending-bets-title">
+                    <a class="sidebar-heading-link" href="spreadsheet.html?outcome=pending">
+                        <i class="fas fa-coins" aria-hidden="true"></i>
+                        <span>Pending Bets</span>
+                        <i class="fas fa-arrow-right sidebar-heading-link__arrow" aria-hidden="true"></i>
+                    </a>
+                </h3>
                 <div id="pending-bets"><div class="spinner"></div>Loading...</div>
             </section>
         </div>
@@ -654,11 +958,90 @@
         return 'No';
     }
 
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, char => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        }[char]));
+    }
+
+    function formatPercent(value, digits = 1) {
+        const n = Number(value);
+        return Number.isFinite(n) ? `${n.toFixed(digits)}%` : '—';
+    }
+
+    function formatNumber(value, digits = 1) {
+        const n = Number(value);
+        return Number.isFinite(n) ? n.toFixed(digits) : '—';
+    }
+
+    function bettingFilterLink(param, value, className = '') {
+        const text = value || 'N/A';
+        if (!value || value === 'N/A') return escapeHtml(text);
+        const classes = ['sidebar-data-link', className].filter(Boolean).join(' ');
+        return `<a class="${classes}" href="spreadsheet.html?${param}=${encodeURIComponent(value)}">${escapeHtml(text)}</a>`;
+    }
+
+    function renderModelSnippet(rows) {
+        const safeRows = Array.isArray(rows) ? rows : [];
+        const topRows = safeRows
+            .filter(row => row && row.player_name)
+            .sort((a, b) => Number(a.rank || 9999) - Number(b.rank || 9999))
+            .slice(0, 5);
+        if (!topRows.length) {
+            return '<div class="snippet-empty">No model rows available.</div>';
+        }
+        const items = topRows.map(row => `
+            <li>
+                <div class="model-top-row">
+                    <span class="model-top-name">
+                        <span class="model-top-rank">#${escapeHtml(row.rank || '')}</span>
+                        <span class="model-top-player">
+                            ${escapeHtml(row.player_name)}
+                            <span class="model-top-submetric">${formatPercent(row['p_top10_%'], 0)} top 10</span>
+                        </span>
+                    </span>
+                    <span class="model-top-metric">${formatPercent(row['p_win_%'])}</span>
+                </div>
+            </li>
+        `).join('');
+        return `<ol class="model-top-list">${items}</ol>`;
+    }
+
+    function renderWeatherSnippet(rows) {
+        const safeRows = Array.isArray(rows) ? rows : [];
+        const rounds = safeRows
+            .filter(row => row && row.round != null)
+            .sort((a, b) => Number(a.round) - Number(b.round))
+            .slice(0, 4);
+        if (!rounds.length) {
+            return '<div class="snippet-empty">No weather summary available.</div>';
+        }
+        const cards = rounds.map(row => `
+            <div class="weather-snippet-card">
+                <span class="weather-snippet-round">
+                    <span>Round ${escapeHtml(row.round)}</span>
+                    <span class="weather-snippet-temp">${formatNumber(row.temp_c)}°C</span>
+                </span>
+                <span class="weather-snippet-main"><i class="fas fa-wind" aria-hidden="true"></i>${formatNumber(row.wind_mph)} mph wind</span>
+                <span class="weather-snippet-sub">${formatNumber(row.gust_mph)} mph gust | ${formatPercent(row.precip_pct, 0)} rain</span>
+            </div>
+        `).join('');
+        return `<div class="weather-snippet-grid">${cards}</div>`;
+    }
+
     async function loadSummary(tour) {
         try {
             const cacheBust = Date.now();
-            const meta = await fetch(`${tour}/meta.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json());
-            const tournament = await fetch(`${tour}/tournament_summary.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => ({}));
+            const [meta, tournament, leaderboard, weather] = await Promise.all([
+                fetch(`${tour}/meta.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()),
+                fetch(`${tour}/tournament_summary.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => ({})),
+                fetch(`${tour}/leaderboard.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => []),
+                fetch(`${tour}/weather_round_neutral.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => [])
+            ]);
 
             const eventName = meta.event_name || 'Unknown Event';
             const startDate = tournament.start_date || 'TBD';
@@ -676,13 +1059,37 @@
             const previousWinner = winners.length ? `${winnerName} (${winners[0].score})` : 'N/A';
 
             return `
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong>🏌️ Event:</strong> ${eventName}</div>
-                    <div><strong>📅 Start Date:</strong> ${startDate}</div>
-                    <div><strong>🏞️ Course:</strong> ${course}</div>
-                    <div><strong>👥 Field Size:</strong> ${fieldSize}</div>
-                    <div><strong>⏱️ Tee Times Available:</strong> ${teeTimesAvailable}</div>
-                    <div><strong>🏆 Previous Winner:</strong> ${previousWinner}</div>
+                <div class="tour-summary-grid">
+                    <div class="tour-summary-panel tour-summary-details">
+                        <div class="tour-summary-detail">
+                            <span class="tour-summary-detail__icon"><i class="fas fa-flag" aria-hidden="true"></i></span>
+                            <span><span class="tour-summary-detail__label">Event</span><span class="tour-summary-detail__value">${escapeHtml(eventName)}</span></span>
+                        </div>
+                        <div class="tour-summary-detail">
+                            <span class="tour-summary-detail__icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></span>
+                            <span><span class="tour-summary-detail__label">Start Date</span><span class="tour-summary-detail__value">${escapeHtml(startDate)}</span></span>
+                        </div>
+                        <div class="tour-summary-detail">
+                            <span class="tour-summary-detail__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+                            <span><span class="tour-summary-detail__label">Course</span><span class="tour-summary-detail__value">${escapeHtml(course)}</span></span>
+                        </div>
+                        <div class="tour-summary-detail">
+                            <span class="tour-summary-detail__icon"><i class="fas fa-users" aria-hidden="true"></i></span>
+                            <span><span class="tour-summary-detail__label">Field / Tee Times</span><span class="tour-summary-detail__value">${escapeHtml(fieldSize)} players | ${escapeHtml(teeTimesAvailable)}</span></span>
+                        </div>
+                        <div class="tour-summary-detail">
+                            <span class="tour-summary-detail__icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>
+                            <span><span class="tour-summary-detail__label">Previous Winner</span><span class="tour-summary-detail__value">${escapeHtml(previousWinner)}</span></span>
+                        </div>
+                    </div>
+                    <div class="tour-summary-panel home-snippet model-summary-snippet">
+                        <div class="home-snippet-title"><i class="fas fa-chart-line" aria-hidden="true"></i>Model Top 5</div>
+                        ${renderModelSnippet(leaderboard)}
+                    </div>
+                    <div class="tour-summary-panel home-snippet weather-summary-snippet">
+                        <div class="home-snippet-title"><i class="fas fa-cloud-sun" aria-hidden="true"></i>Weather Summary</div>
+                        ${renderWeatherSnippet(weather)}
+                    </div>
                 </div>
             `;
         } catch (e) {
@@ -712,7 +1119,7 @@
                 if (currentWeek !== null && week !== currentWeek) {
                     html += '<br>';
                 }
-                html += `<li><strong>${e.tour}:</strong> ${e.date} | ${e.event}</li>`;
+                html += `<li><strong>${bettingFilterLink('tour', e.tour, 'sidebar-list-link sidebar-list-link--tour')}:</strong> ${escapeHtml(e.date)} | ${bettingFilterLink('tournament', e.event, 'sidebar-list-link sidebar-list-link--event')}</li>`;
                 currentWeek = week;
             });
             html += '</ul>';
@@ -750,11 +1157,11 @@
                 }
 
                 html += `
-                    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 0.75rem; background: #fafafa; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
-                        <div><strong>${tournament}</strong> - ${player} (${type})</div>
-                        <div>💰 Price: ${price} | Stake: ${stake}</div>
-                        <div>📅 Date: ${date} | Bookmaker: ${bookmaker}</div>
-                        <div>🏅 Place terms: ${placeTerms}</div>
+                    <div class="pending-bet-card">
+                        <div class="pending-bet-line"><i class="fas fa-golf-ball pending-bet-icon" aria-hidden="true"></i><span><strong>${bettingFilterLink('tournament', tournament, 'pending-bet-title-link')}</strong> - ${bettingFilterLink('player', player, 'pending-bet-player-link')} (${escapeHtml(type)})</span></div>
+                        <div class="pending-bet-line"><i class="fas fa-coins pending-bet-icon" aria-hidden="true"></i><span>Price: ${escapeHtml(price)} | Stake: ${escapeHtml(stake)}</span></div>
+                        <div class="pending-bet-line"><i class="fas fa-calendar-alt pending-bet-icon" aria-hidden="true"></i><span>Date: ${escapeHtml(date)} | Bookmaker: ${bettingFilterLink('bookmaker', bookmaker, 'pending-bet-bookmaker-link')}</span></div>
+                        <div class="pending-bet-line"><i class="fas fa-medal pending-bet-icon" aria-hidden="true"></i><span>Place terms: ${escapeHtml(placeTerms)}</span></div>
                     </div>
                 `;
             });

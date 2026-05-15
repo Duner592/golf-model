@@ -188,6 +188,7 @@
             const tourFilter = urlParams.get('tour');
             const bookmakerFilter = urlParams.get('bookmaker');
             const betTypeFilter = urlParams.get('betType');
+            const outcomeFilter = urlParams.get('outcome');
 
             if (filterYear) {
                 data = data.filter(row => {
@@ -213,6 +214,9 @@
             if (betTypeFilter) {
                 data = data.filter(row => (row['Type'] || 'Unknown') === betTypeFilter);
             }
+            if (outcomeFilter) {
+                data = data.filter(row => (row['Outcome'] || '').trim().toLowerCase() === outcomeFilter.trim().toLowerCase());
+            }
 
             tableData = data;
             headers = Object.keys(data[0] || {});
@@ -235,6 +239,7 @@
             if (tourFilter) activeFilters.push(`Tour ${tourFilter}`);
             if (bookmakerFilter) activeFilters.push(`Bookmaker ${bookmakerFilter}`);
             if (betTypeFilter) activeFilters.push(`Type ${betTypeFilter}`);
+            if (outcomeFilter) activeFilters.push(`Outcome ${outcomeFilter}`);
             const roiLabel = activeFilters.join(' · ');
             const roiHtml = activeFilters.length ? `<p style="text-align: left;"><strong>ROI for ${roiLabel}: ${roi}%</strong></p>` : '';
 
