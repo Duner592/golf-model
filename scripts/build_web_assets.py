@@ -138,6 +138,47 @@ def write_json(path: Path, obj) -> None:
     path.write_text(json.dumps(safe_obj, indent=2, allow_nan=False), encoding="utf-8")
 
 
+def has_teetime_value(value) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, float) and math.isnan(value):
+        return False
+    text = str(value).strip()
+    return bool(text and text.lower() not in {"nan", "none", "null", "nat"})
+
+
+def tee_times_available_from_field_updates(root: Path, event_id: str) -> bool | None:
+    """Return whether DataGolf field updates contain at least one populated tee time."""
+    path = root / "scripts" / "field-updates.json"
+    if not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if not isinstance(payload, dict) or str(payload.get("event_id", "")) != str(event_id):
+        return None
+
+    field = payload.get("field")
+    if not isinstance(field, list):
+        return None
+    for player in field:
+        if not isinstance(player, dict):
+            continue
+        entries = player.get("teetimes")
+        if not isinstance(entries, list):
+            continue
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            if any(
+                has_teetime_value(entry.get(key))
+                for key in ("teetime", "tee_time", "teetime_local", "teetime_utc")
+            ):
+                return True
+    return False
+
+
 def update_site_status(tour: str) -> None:
     """Record that web assets for this tour were refreshed."""
     try:
@@ -1512,6 +1553,9 @@ def process_event(
     lat = meta_proc.get("lat")
     lon = meta_proc.get("lon")
     start_date = meta_proc.get("start") or meta_proc.get("start_date")
+    tee_times_available = tee_times_available_from_field_updates(root, event_id)
+    if tee_times_available is None:
+        tee_times_available = bool(meta_proc.get("has_r1_teetimes") or meta_proc.get("has_r2_teetimes"))
 
     weather_meta_path = processed_dir / f"event_{event_id}_weather_meta.json"
     r1_date = None
@@ -1657,6 +1701,7 @@ def process_event(
         "generated_utc": summary_data["generated_utc"],
         "source_csv": summary_data["source_csv"],
         "has_predictions": has_predictions,
+        "tee_times_available": tee_times_available,
         "resources": resources,
     }
     write_json(event_dir / "meta.json", event_meta)
@@ -1706,6 +1751,7 @@ def process_event(
         "start_date": start_date,
         "generated_utc": summary_data["generated_utc"],
         "has_predictions": has_predictions,
+        "tee_times_available": tee_times_available,
         "resources": resources,
         "source_csv": summary_data["source_csv"],
         "event_dir": event_base,
@@ -1793,6 +1839,7 @@ def main():
             "lon": None,
             "r1_date": None,
             "generated_utc": generated_utc,
+            "tee_times_available": False,
             "resources": resources_placeholder,
             "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!",
             "active_events": [],
@@ -1838,6 +1885,7 @@ def main():
                 "lon": None,
                 "r1_date": None,
                 "generated_utc": generated_utc,
+                "tee_times_available": False,
                 "resources": {
                     "leaderboard": f"{TOUR}/leaderboard.json",
                     "summary": f"{TOUR}/summary.json",
@@ -1880,6 +1928,7 @@ def main():
                 "lon": primary.get("lon"),
                 "r1_date": primary.get("r1_date"),
                 "generated_utc": generated_utc,
+                "tee_times_available": primary.get("tee_times_available", False),
                 "resources": resources_primary,
                 "active_events": aggregated_events,
                 "primary_event_dir": primary["event_dir"],

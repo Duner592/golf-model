@@ -6,6 +6,7 @@
   "lon": null,
   "r1_date": "2026-05-14",
   "generated_utc": "13-May-2026 10:21:53",
+  "tee_times_available": true,
   "resources": {
     "downloads_csv": "pga/downloads/event_33_pga_championship_2026-05-13_leaderboard.csv",
     "downloads_html": "pga/downloads/event_33_pga_championship_2026-05-13_leaderboard.html",
@@ -29,6 +30,7 @@
       "start_date": "2026-05-14",
       "generated_utc": "13-May-2026 10:21:53",
       "has_predictions": true,
+      "tee_times_available": true,
       "resources": {
         "leaderboard": "pga/events/event_33/leaderboard.json",
         "summary": "pga/events/event_33/summary.json",

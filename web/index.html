@@ -132,7 +132,7 @@
             <h2>PGA Tour</h2>
             <div id="pga-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <div class="model-link-row" aria-label="PGA model results">
-                <a href="pga.html" class="link">Latest Model Results</a>
+                <a href="pga.html" class="link">Model Results</a>
             </div>
         </div>
 
@@ -140,7 +140,7 @@
             <h2>DP World Tour</h2>
             <div id="euro-summary" class="summary"><div class="spinner"></div>Loading...</div>
             <div class="model-link-row" aria-label="DP World Tour model results">
-                <a href="euro.html" class="link">Latest Model Results</a>
+                <a href="euro.html" class="link">Model Results</a>
             </div>
         </div>
         <section class="betting-overview" aria-labelledby="betting-overview-title">
@@ -645,15 +645,26 @@
         }
     }
 
+    function formatTeeTimesAvailable(meta) {
+        if (!meta || meta.event_id === '0') return 'N/A';
+        const candidates = [meta, ...(Array.isArray(meta.active_events) ? meta.active_events : [])];
+        if (candidates.some(item => item && item.tee_times_available === true)) return 'Yes';
+        if (candidates.some(item => item && item.tee_times_available === false)) return 'No';
+        if (candidates.some(item => item && item.resources && item.resources.field_teetimes)) return 'Yes';
+        return 'No';
+    }
+
     async function loadSummary(tour) {
         try {
-            const meta = await fetch(`${tour}/meta.json`).then(r => r.json());
-            const tournament = await fetch(`${tour}/tournament_summary.json`).then(r => r.json()).catch(() => ({}));
+            const cacheBust = Date.now();
+            const meta = await fetch(`${tour}/meta.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json());
+            const tournament = await fetch(`${tour}/tournament_summary.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => ({}));
 
             const eventName = meta.event_name || 'Unknown Event';
             const startDate = tournament.start_date || 'TBD';
             const course = tournament.course || 'Unknown Course';
             const fieldSize = tournament.field_size || 'N/A';
+            const teeTimesAvailable = formatTeeTimesAvailable(meta);
             const winners = tournament.previous_winners || [];
             let winnerName = winners.length ? winners[0].winner : '';
             if (winnerName.includes(',')) {
@@ -670,6 +681,7 @@
                     <div><strong>📅 Start Date:</strong> ${startDate}</div>
                     <div><strong>🏞️ Course:</strong> ${course}</div>
                     <div><strong>👥 Field Size:</strong> ${fieldSize}</div>
+                    <div><strong>⏱️ Tee Times Available:</strong> ${teeTimesAvailable}</div>
                     <div><strong>🏆 Previous Winner:</strong> ${previousWinner}</div>
                 </div>
             `;
