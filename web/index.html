@@ -277,8 +277,7 @@
     </div>
 </section>
 
-<!-- Added footer for last updated timestamp -->
-<div class="footer" id="last-updated">Last updated: Loading...</div>
+<div class="footer" id="last-updated">Betting data updated: Loading...</div>
 
 <script>
     const BETTING_TOUR_OVERRIDES = {
@@ -955,7 +954,7 @@
 
         // Set the last updated timestamp to the last modified time of spreadsheet_data.csv
         const lastModified = await getLastModifiedTimestamp();
-        document.getElementById('last-updated').innerHTML = `Last updated: ${lastModified}`;
+        document.getElementById('last-updated').innerHTML = `Betting data updated: ${lastModified}`;
         initBettingOverview(bettingRowsCache, lastModified);
         loadSiteStatus();
     }
