@@ -50,6 +50,28 @@
         .small { font-size: 0.9rem; color: #333; }
         .stack { display: flex; flex-direction: column; gap: 0.5rem; }
         .table-container { overflow-x: auto; position: relative; }
+        .model-mode {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.9rem;
+        }
+        .mode-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 0.2rem 0.55rem;
+            border: 1px solid #cfd8d0;
+            border-radius: 6px;
+            color: #294f35;
+            text-decoration: none;
+            background: #fff;
+        }
+        .mode-link[aria-current="page"] {
+            color: #fff;
+            border-color: var(--gm-primary);
+            background: var(--gm-primary);
+        }
 
         .logo {
             position: absolute;
@@ -128,6 +150,11 @@
                 <a id="dlCsv" href="#" download>CSV</a>
                 <a id="dlHtml" href="#" download style="display:none;">HTML</a>
             </div>
+            <div class="model-mode" aria-label="Prediction result version">
+                <span>Model:</span>
+                <a id="latestModeLink" class="mode-link" href="euro.html">Latest</a>
+                <a id="initialModeLink" class="mode-link" href="euro.html?snapshot=initial">Initial run</a>
+            </div>
             <div>
                 <label>Filter:&nbsp;<input type="search" id="filterBox" placeholder="Search player" /></label>
             </div>
@@ -184,6 +211,45 @@
       jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06",
       jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12",
     };
+    const params = new URLSearchParams(window.location.search);
+    const MODEL_SNAPSHOT = params.get("snapshot") === "initial" ? "initial" : "latest";
+    const IS_INITIAL_SNAPSHOT = MODEL_SNAPSHOT === "initial";
+
+    function eventYear(meta){
+      const candidates = [meta?.r1_date, meta?.start_date, meta?.generated_utc];
+      for (const value of candidates) {
+        if (typeof value === "string" && /^\d{4}/.test(value)) return value.slice(0, 4);
+      }
+      return String(new Date().getFullYear());
+    }
+
+    function initialSnapshotResources(meta){
+      const id = String(meta?.event_id ?? "0");
+      const year = eventYear(meta);
+      const base = `euro/initial/${year}/event_${id}`;
+      return {
+        leaderboard: `${base}/leaderboard.json`,
+        summary: `${base}/summary.json`,
+        meta: `${base}/meta.json`,
+        downloads_csv: `${base}/leaderboard.csv`,
+        downloads_html: `${base}/leaderboard.html`,
+        weather_meta: `${base}/weather_meta.json`,
+        weather_round_neutral: `${base}/weather_round_neutral.json`,
+        weather_round_wave: `${base}/weather_round_wave.json`,
+        course_fit_weights: `${base}/course_fit_weights.json`,
+        course_history_summary: `${base}/course_history_summary.json`,
+        tournament_summary: `${base}/tournament_summary.json`,
+        field_teetimes: `${base}/field_teetimes.csv`,
+        schedule: "euro/schedule.json",
+      };
+    }
+
+    function applyModeLinks(){
+      const latest = document.getElementById("latestModeLink");
+      const initial = document.getElementById("initialModeLink");
+      if (latest) latest.setAttribute("aria-current", IS_INITIAL_SNAPSHOT ? "false" : "page");
+      if (initial) initial.setAttribute("aria-current", IS_INITIAL_SNAPSHOT ? "page" : "false");
+    }
 
     function normalizeTimestamp(raw){
       if (!raw || typeof raw !== "string") return null;
@@ -671,11 +737,11 @@
     }
 
     // Tournament summary
-    async function renderTournament() {
+    async function renderTournament(meta) {
       const el = document.getElementById("tournament");
       if (!el) return;
       let t = null;
-      try { t = await loadJSON("euro/tournament_summary.json"); } catch {}
+      try { t = await loadJSON(meta?.resources?.tournament_summary || "euro/tournament_summary.json"); } catch {}
       if (!t) { el.textContent = "No summary."; return; }
 
     const lines = [];
@@ -705,8 +771,26 @@
 
     // Main
     async function main(){
-      const meta = await loadJSON("euro/meta.json");
-      const rows = await loadJSON("euro/leaderboard.json");
+      applyModeLinks();
+      if (IS_INITIAL_SNAPSHOT) {
+        document.querySelector("h1").textContent = "Eds Golf Model - Euro Initial Run Predictions";
+      }
+      const liveMeta = await loadJSON("euro/meta.json");
+      let meta = liveMeta;
+      let snapshotMissing = false;
+      if (IS_INITIAL_SNAPSHOT) {
+        const initialResources = initialSnapshotResources(liveMeta);
+        const initialMeta = await safeLoadJSON(initialResources.meta, null);
+        if (initialMeta) {
+          meta = initialMeta;
+        } else {
+          snapshotMissing = true;
+          meta = { ...liveMeta, resources: initialResources };
+        }
+      }
+      const rows = IS_INITIAL_SNAPSHOT
+        ? await safeLoadJSON(meta.resources?.leaderboard, [])
+        : await loadJSON(meta.resources?.leaderboard || "euro/leaderboard.json");
 
       // Extract year from meta.r1_date
       let year = '';
@@ -719,14 +803,19 @@
       document.getElementById("subtitle").textContent = subtitle;
       const generatedEl = document.getElementById("generatedAt");
       if (generatedEl) {
-        const generatedRaw = meta.generated_utc ?? meta.saved_at_utc ?? meta.last_updated ?? null;
-        const formatted = generatedRaw ? formatGeneratedTimestamp(generatedRaw) : "";
-        if (formatted) {
-          generatedEl.textContent = `Predictions updated ${formatted}`;
+        if (snapshotMissing) {
+          generatedEl.textContent = "Initial snapshot not available yet. It will appear after the next successful model asset build.";
           generatedEl.style.display = "block";
         } else {
-          generatedEl.textContent = "";
-          generatedEl.style.display = "none";
+          const generatedRaw = meta.snapshot_created_utc ?? meta.generated_utc ?? meta.saved_at_utc ?? meta.last_updated ?? null;
+          const formatted = generatedRaw ? formatGeneratedTimestamp(generatedRaw) : "";
+          if (formatted) {
+            generatedEl.textContent = `${IS_INITIAL_SNAPSHOT ? "Initial predictions saved" : "Predictions updated"} ${formatted}`;
+            generatedEl.style.display = "block";
+          } else {
+            generatedEl.textContent = "";
+            generatedEl.style.display = "none";
+          }
         }
       }
 
@@ -788,7 +877,7 @@
       attachSortHandlers();
       renderTable(sortRows(data, "rank", true));
       await renderSidebar(meta);
-      await renderTournament();
+      await renderTournament(meta);
     }
 
     // Kick off

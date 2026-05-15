@@ -98,6 +98,21 @@
             font-size: 0.85rem;
             color: #4c5c52;
         }
+        .model-link-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .model-link-row .link {
+            margin: 0;
+        }
+        .model-link-row .link-secondary {
+            background: linear-gradient(135deg, #5d7281, #314653);
+        }
+        .model-link-row .link-secondary:hover {
+            background: linear-gradient(135deg, #314653, #1f303a);
+        }
         @media (max-width: 960px) {
             .betting-header {
                 flex-direction: column;
@@ -122,13 +137,19 @@
         <div class="tour-section" id="pga-section">
             <h2>PGA Tour</h2>
             <div id="pga-summary" class="summary"><div class="spinner"></div>Loading...</div>
-            <a href="pga.html" class="link">View PGA Predictions</a>
+            <div class="model-link-row" aria-label="PGA model result versions">
+                <a href="pga.html" class="link">Latest Model Results</a>
+                <a href="pga.html?snapshot=initial" class="link link-secondary">Initial Run Results</a>
+            </div>
         </div>
 
         <div class="tour-section" id="euro-section">
             <h2>DP World Tour</h2>
             <div id="euro-summary" class="summary"><div class="spinner"></div>Loading...</div>
-            <a href="euro.html" class="link">View DP World Predictions</a>
+            <div class="model-link-row" aria-label="DP World Tour model result versions">
+                <a href="euro.html" class="link">Latest Model Results</a>
+                <a href="euro.html?snapshot=initial" class="link link-secondary">Initial Run Results</a>
+            </div>
         </div>
         <section class="betting-overview" aria-labelledby="betting-overview-title">
             <div class="betting-header">

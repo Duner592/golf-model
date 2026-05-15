@@ -44,6 +44,7 @@ cd web/ && python -m http.server 8000
 - `data/preds/`: prediction outputs, leaderboards, and summaries.
 - `data/analytics/`: prediction accuracy and actual-vs-predicted tracking.
 - `web/archive/`: generated archive pages and event result JSON.
+- `web/{tour}/initial/{year}/event_{event_id}/`: frozen first successful prediction snapshot for an event/week; later scheduled runs keep live assets updated without overwriting this initial copy.
 
 Generated artifacts should usually be regenerated through scripts rather than manually edited.
 
@@ -66,6 +67,7 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - GitHub repo setup still needs `DATAGOLF_API_KEY` added as an Actions secret.
 - GitHub Pages should be configured to deploy from GitHub Actions.
 - Scheduled model runs deploy the generated `web/` directory directly as a Pages artifact and do not commit generated data back to `master`.
+- `scripts/build_web_assets.py` now preserves the first successful model output for each tour/event/year as an initial snapshot. Prediction archives should use that snapshot rather than later refreshed live assets. Homepage links expose latest results and `?snapshot=initial` initial-run results.
 
 ## Open Notes
 

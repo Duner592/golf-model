@@ -1247,7 +1247,19 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
 
 
 # ---------- archive event predictions ----------
-def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: str, r1_date: str | None, lb_csv: Path | None, source_dir: Path) -> None:
+def archive_event_predictions(
+    root: Path,
+    tour: str,
+    event_name: str,
+    event_id: str,
+    r1_date: str | None,
+    lb_csv: Path | None,
+    source_dir: Path,
+    *,
+    archived_at: str | None = None,
+    snapshot_type: str = "initial",
+    overwrite: bool = False,
+) -> None:
     """
     Archive the current event's prediction data into web/archive/{year}/.
     """
@@ -1265,6 +1277,9 @@ def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: 
     event_slug = _slug_event(event_name)
     event_archive_dir = archive_dir / event_slug
     event_archive_dir.mkdir(parents=True, exist_ok=True)
+    if (event_archive_dir / "leaderboard.json").exists() and not overwrite:
+        print(f"[info] Archive already exists for {event_name} ({year}); keeping the saved {snapshot_type} snapshot.")
+        return
 
     # Files to copy
     files_to_copy = [
@@ -1302,10 +1317,16 @@ def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: 
         "slug": event_slug,
         "year": year,
         "csv_available": csv_available,
-        "archived_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "archived_at": _archive_time(archived_at),
+        "prediction_snapshot": snapshot_type,
+        "initial_snapshot_created_utc": archived_at if snapshot_type == "initial" else None,
     }
     # Remove existing entry for this event
-    index_data = [e for e in index_data if e.get("event_id") != event_id or e.get("tour") != tour]
+    index_data = [
+        e
+        for e in index_data
+        if not (str(e.get("event_id")) == str(event_id) and e.get("tour") == tour and str(e.get("year")) == str(year))
+    ]
     index_data.append(event_entry)
 
     # Sort by date descending
@@ -1313,6 +1334,152 @@ def archive_event_predictions(root: Path, tour: str, event_name: str, event_id: 
 
     write_json(index_file, index_data)
     print(f"Archived predictions for {event_name} ({year}) in {event_archive_dir}")
+
+
+def _snapshot_year(r1_date: str | None, start_date: str | None) -> str:
+    for value in (r1_date, start_date):
+        if isinstance(value, str) and re.match(r"^\d{4}", value):
+            return value[:4]
+    return str(datetime.utcnow().year)
+
+
+def _utc_iso() -> str:
+    return datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+
+def _archive_time(value: str | None = None) -> str:
+    if value:
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            return parsed.strftime("%Y-%m-%d %H:%M:%S UTC")
+        except Exception:
+            pass
+    return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
+
+def _initial_snapshot_resources(tour: str, year: str, event_id: str, snapshot_dir: Path) -> dict[str, str | None]:
+    base = f"{tour}/initial/{year}/event_{event_id}"
+
+    def rel(name: str, *, always: bool = False) -> str | None:
+        return f"{base}/{name}" if always or (snapshot_dir / name).exists() else None
+
+    return {
+        "leaderboard": rel("leaderboard.json"),
+        "summary": rel("summary.json"),
+        "meta": rel("meta.json", always=True),
+        "downloads_csv": rel("leaderboard.csv"),
+        "downloads_html": rel("leaderboard.html"),
+        "timestamped_csv": next((f"{base}/{path.name}" for path in sorted(snapshot_dir.glob("leaderboard_*.csv"))), None),
+        "timestamped_html": next((f"{base}/{path.name}" for path in sorted(snapshot_dir.glob("leaderboard_*.html"))), None),
+        "weather_meta": rel("weather_meta.json"),
+        "weather_round_neutral": rel("weather_round_neutral.json"),
+        "weather_round_wave": rel("weather_round_wave.json"),
+        "course_fit_weights": rel("course_fit_weights.json"),
+        "course_history_summary": rel("course_history_summary.json"),
+        "tournament_summary": rel("tournament_summary.json"),
+        "field_teetimes": rel("field_teetimes.csv"),
+        "snapshot": rel("snapshot.json", always=True),
+        "schedule": f"{tour}/schedule.json",
+    }
+
+
+def ensure_initial_snapshot(
+    root: Path,
+    tour: str,
+    event_name: str,
+    event_id: str,
+    r1_date: str | None,
+    start_date: str | None,
+    event_meta: dict,
+    lb_csv: Path | None,
+    lb_html: Path | None,
+    source_dir: Path,
+) -> dict | None:
+    """
+    Keep the first successful prediction build for an event/year.
+
+    Later scheduled builds continue to update live assets, but this snapshot is
+    left untouched and is the source for prediction archives.
+    """
+    if not event_meta.get("has_predictions"):
+        return None
+
+    year = _snapshot_year(r1_date, start_date)
+    snapshot_dir = root / "web" / tour / "initial" / year / f"event_{event_id}"
+    snapshot_json = snapshot_dir / "snapshot.json"
+    existing_snapshot = snapshot_json.exists() and (snapshot_dir / "leaderboard.json").exists() and (snapshot_dir / "meta.json").exists()
+
+    if existing_snapshot:
+        try:
+            payload = json.loads(snapshot_json.read_text(encoding="utf-8"))
+        except Exception:
+            payload = {}
+        return {
+            "created": False,
+            "dir": snapshot_dir,
+            "year": year,
+            "snapshot_created_utc": payload.get("snapshot_created_utc"),
+            "resources": _initial_snapshot_resources(tour, year, event_id, snapshot_dir),
+        }
+
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    snapshot_created_utc = _utc_iso()
+    stamp = snapshot_created_utc.replace("-", "").replace(":", "").replace("Z", "Z")
+
+    for file_name in [
+        "leaderboard.json",
+        "summary.json",
+        "weather_round_neutral.json",
+        "weather_round_wave.json",
+        "weather_meta.json",
+        "course_fit_weights.json",
+        "course_history_summary.json",
+        "tournament_summary.json",
+        "field_teetimes.csv",
+    ]:
+        src = source_dir / file_name
+        if src.exists():
+            shutil.copy(src, snapshot_dir / file_name)
+
+    if lb_csv and lb_csv.exists():
+        shutil.copy(lb_csv, snapshot_dir / "leaderboard.csv")
+        shutil.copy(lb_csv, snapshot_dir / f"leaderboard_{stamp}.csv")
+    if lb_html and lb_html.exists():
+        shutil.copy(lb_html, snapshot_dir / "leaderboard.html")
+        shutil.copy(lb_html, snapshot_dir / f"leaderboard_{stamp}.html")
+
+    resources = _initial_snapshot_resources(tour, year, event_id, snapshot_dir)
+    snapshot_meta = dict(event_meta)
+    snapshot_meta["resources"] = resources
+    snapshot_meta["snapshot_type"] = "initial"
+    snapshot_meta["snapshot_created_utc"] = snapshot_created_utc
+    snapshot_meta["snapshot_label"] = "Initial run"
+    write_json(snapshot_dir / "meta.json", snapshot_meta)
+
+    payload = {
+        "snapshot_type": "initial",
+        "snapshot_label": "Initial run",
+        "snapshot_created_utc": snapshot_created_utc,
+        "tour": tour,
+        "event_id": event_id,
+        "event_name": event_name,
+        "year": year,
+        "r1_date": r1_date,
+        "start_date": start_date,
+        "source_csv": event_meta.get("source_csv"),
+        "artifact_generated_utc": event_meta.get("generated_utc"),
+        "resources": resources,
+    }
+    write_json(snapshot_json, payload)
+    print(f"Saved initial prediction snapshot for {event_name} ({year}) in {snapshot_dir}")
+
+    return {
+        "created": True,
+        "dir": snapshot_dir,
+        "year": year,
+        "snapshot_created_utc": snapshot_created_utc,
+        "resources": _initial_snapshot_resources(tour, year, event_id, snapshot_dir),
+    }
 
 
 def process_event(
@@ -1462,8 +1629,6 @@ def process_event(
     if primary:
         publish_primary_assets(event_dir, web_dir)
 
-    archive_event_predictions(root, tour, event_name, event_id, r1_date, lb_csv, event_dir)
-
     event_base = f"{tour}/events/event_{event_id}"
     resources = {
         "leaderboard": f"{event_base}/leaderboard.json",
@@ -1495,6 +1660,44 @@ def process_event(
         "resources": resources,
     }
     write_json(event_dir / "meta.json", event_meta)
+
+    initial_snapshot = ensure_initial_snapshot(
+        root,
+        tour,
+        event_name,
+        event_id,
+        r1_date,
+        start_date,
+        event_meta,
+        lb_csv,
+        lb_html,
+        event_dir,
+    )
+    if initial_snapshot:
+        resources["initial_snapshot"] = initial_snapshot["resources"].get("meta")
+        resources["initial_leaderboard"] = initial_snapshot["resources"].get("leaderboard")
+        resources["initial_downloads_csv"] = initial_snapshot["resources"].get("downloads_csv")
+        resources["initial_downloads_html"] = initial_snapshot["resources"].get("downloads_html")
+        event_meta["resources"] = resources
+        event_meta["initial_snapshot"] = {
+            "snapshot_type": "initial",
+            "snapshot_created_utc": initial_snapshot.get("snapshot_created_utc"),
+            "meta": initial_snapshot["resources"].get("meta"),
+            "leaderboard": initial_snapshot["resources"].get("leaderboard"),
+        }
+        write_json(event_dir / "meta.json", event_meta)
+        archive_event_predictions(
+            root,
+            tour,
+            event_name,
+            event_id,
+            r1_date,
+            initial_snapshot["dir"] / "leaderboard.csv",
+            initial_snapshot["dir"],
+            archived_at=initial_snapshot.get("snapshot_created_utc"),
+            snapshot_type="initial",
+            overwrite=bool(initial_snapshot.get("created")),
+        )
 
     return {
         "event_id": event_id,
@@ -1653,6 +1856,10 @@ def main():
             resources_primary = {
                 "downloads_csv": primary["resources"].get("downloads_csv"),
                 "downloads_html": primary["resources"].get("downloads_html"),
+                "initial_snapshot": primary["resources"].get("initial_snapshot"),
+                "initial_leaderboard": primary["resources"].get("initial_leaderboard"),
+                "initial_downloads_csv": primary["resources"].get("initial_downloads_csv"),
+                "initial_downloads_html": primary["resources"].get("initial_downloads_html"),
                 "weather_meta": f"{TOUR}/weather_meta.json" if (web_dir / "weather_meta.json").exists() else None,
                 "weather_round_neutral": f"{TOUR}/weather_round_neutral.json" if (web_dir / "weather_round_neutral.json").exists() else None,
                 "weather_round_wave": f"{TOUR}/weather_round_wave.json" if (web_dir / "weather_round_wave.json").exists() else None,

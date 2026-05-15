@@ -62,6 +62,20 @@ The site status card is injected by `web/menu.js` at the bottom of every page th
 - Betting-data timing appears in the same status card as `Betting Data Updated`.
 - Other workflows that deploy `web/` should run `scripts/update_web_status.py --sync-assets` before uploading the Pages artifact.
 
+## Initial Prediction Snapshots
+
+`scripts/build_web_assets.py` keeps two versions of each active model output:
+
+- Latest assets stay under `web/{tour}/...` and are replaced by each scheduled model run.
+- The first successful prediction build for each tour/event/year is frozen under `web/{tour}/initial/{year}/event_{event_id}/`.
+
+The frozen initial snapshot is left untouched by later scheduled runs. Prediction archives are copied from that initial snapshot, so archive accuracy remains tied to the first model view of the week rather than a later refreshed model.
+
+The home page links to both versions:
+
+- `pga.html` / `euro.html` for latest model results.
+- `pga.html?snapshot=initial` / `euro.html?snapshot=initial` for initial-run results.
+
 ## Previous-Week Event IDs
 
 To see which event IDs will be archived on a Monday run:

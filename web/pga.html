@@ -50,6 +50,28 @@
         .small { font-size: 0.9rem; color: #333; }
         .stack { display: flex; flex-direction: column; gap: 0.5rem; }
         .table-container { overflow-x: auto; position: relative; }
+        .model-mode {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.9rem;
+        }
+        .mode-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 0.2rem 0.55rem;
+            border: 1px solid #cfd8d0;
+            border-radius: 6px;
+            color: #294f35;
+            text-decoration: none;
+            background: #fff;
+        }
+        .mode-link[aria-current="page"] {
+            color: #fff;
+            border-color: var(--gm-primary);
+            background: var(--gm-primary);
+        }
 
         .logo {
             position: absolute;
@@ -127,6 +149,11 @@
             <div class="links small">
                 <a id="dlCsv" href="#" download>CSV</a>
                 <a id="dlHtml" href="#" download style="display:none;">HTML</a>
+            </div>
+            <div class="model-mode" aria-label="Prediction result version">
+                <span>Model:</span>
+                <a id="latestModeLink" class="mode-link" href="pga.html">Latest</a>
+                <a id="initialModeLink" class="mode-link" href="pga.html?snapshot=initial">Initial run</a>
             </div>
             <div>
                 <label>Event:&nbsp;<select id="eventSelector"></select></label>
@@ -695,6 +722,51 @@
     let tourMeta = null;
     let currentEventId = null;
     let sortHandlersAttached = false;
+    const params = new URLSearchParams(window.location.search);
+    const MODEL_SNAPSHOT = params.get("snapshot") === "initial" ? "initial" : "latest";
+    const IS_INITIAL_SNAPSHOT = MODEL_SNAPSHOT === "initial";
+
+    function eventYear(eventSummary){
+      const candidates = [
+        eventSummary?.r1_date,
+        eventSummary?.start_date,
+        tourMeta?.r1_date,
+        tourMeta?.start_date,
+        tourMeta?.generated_utc,
+      ];
+      for (const value of candidates) {
+        if (typeof value === "string" && /^\d{4}/.test(value)) return value.slice(0, 4);
+      }
+      return String(new Date().getFullYear());
+    }
+
+    function initialSnapshotResources(eventSummary){
+      const id = String(eventSummary.event_id ?? "0");
+      const year = eventYear(eventSummary);
+      const base = `pga/initial/${year}/event_${id}`;
+      return {
+        leaderboard: `${base}/leaderboard.json`,
+        summary: `${base}/summary.json`,
+        meta: `${base}/meta.json`,
+        downloads_csv: `${base}/leaderboard.csv`,
+        downloads_html: `${base}/leaderboard.html`,
+        weather_meta: `${base}/weather_meta.json`,
+        weather_round_neutral: `${base}/weather_round_neutral.json`,
+        weather_round_wave: `${base}/weather_round_wave.json`,
+        course_fit_weights: `${base}/course_fit_weights.json`,
+        course_history_summary: `${base}/course_history_summary.json`,
+        tournament_summary: `${base}/tournament_summary.json`,
+        field_teetimes: `${base}/field_teetimes.csv`,
+        schedule: "pga/schedule.json",
+      };
+    }
+
+    function applyModeLinks(){
+      const latest = document.getElementById("latestModeLink");
+      const initial = document.getElementById("initialModeLink");
+      if (latest) latest.setAttribute("aria-current", IS_INITIAL_SNAPSHOT ? "false" : "page");
+      if (initial) initial.setAttribute("aria-current", IS_INITIAL_SNAPSHOT ? "page" : "false");
+    }
 
     async function safeLoadJSON(path){
       if (!path) return null;
@@ -708,7 +780,7 @@
     async function loadEventData(eventSummary){
       const id = String(eventSummary.event_id ?? "0");
       if (eventStore.has(id)) return eventStore.get(id);
-      const resources = eventSummary.resources || {};
+      const resources = IS_INITIAL_SNAPSHOT ? initialSnapshotResources(eventSummary) : (eventSummary.resources || {});
       const [
         meta,
         leaderboard,
@@ -729,12 +801,13 @@
         resources.course_fit_weights ? safeLoadJSON(resources.course_fit_weights) : null,
       ]);
       const fallbackId = String(tourMeta?.event_id ?? "0");
-      const effectiveMeta = meta || (fallbackId === id ? tourMeta : null);
+      const effectiveMeta = meta || (!IS_INITIAL_SNAPSHOT && fallbackId === id ? tourMeta : null);
       const combinedResources = {
         ...(resources || {}),
         ...((effectiveMeta && effectiveMeta.resources) || {}),
       };
       const generatedCandidates = [
+        effectiveMeta?.snapshot_created_utc,
         effectiveMeta?.saved_at_utc,
         effectiveMeta?.last_updated,
         effectiveMeta?.generated_utc,
@@ -757,6 +830,7 @@
         resources: combinedResources,
         downloadsCsv: combinedResources.downloads_csv || null,
         downloadsHtml: combinedResources.downloads_html || null,
+        snapshotMissing: IS_INITIAL_SNAPSHOT && !meta,
         r1Date: eventSummary.r1_date || effectiveMeta?.r1_date || null,
         lat: effectiveMeta?.lat ?? tourMeta?.lat ?? null,
         lon: effectiveMeta?.lon ?? tourMeta?.lon ?? null,
@@ -826,13 +900,18 @@
       subtitleEl.textContent = buildSubtitle(eventData);
       const generatedEl = document.getElementById("generatedAt");
       if (generatedEl) {
-        const formatted = eventData.generatedRaw ? formatGeneratedTimestamp(eventData.generatedRaw) : "";
-        if (formatted) {
-          generatedEl.textContent = `Predictions updated ${formatted}`;
+        if (eventData.snapshotMissing) {
+          generatedEl.textContent = "Initial snapshot not available yet. It will appear after the next successful model asset build.";
           generatedEl.style.display = "block";
         } else {
-          generatedEl.textContent = "";
-          generatedEl.style.display = "none";
+          const formatted = eventData.generatedRaw ? formatGeneratedTimestamp(eventData.generatedRaw) : "";
+          if (formatted) {
+            generatedEl.textContent = `${IS_INITIAL_SNAPSHOT ? "Initial predictions saved" : "Predictions updated"} ${formatted}`;
+            generatedEl.style.display = "block";
+          } else {
+            generatedEl.textContent = "";
+            generatedEl.style.display = "none";
+          }
         }
       }
       updateDownloads(eventData);
@@ -907,6 +986,10 @@
     }
 
     async function main(){
+      applyModeLinks();
+      if (IS_INITIAL_SNAPSHOT) {
+        document.querySelector("h1").textContent = "Eds Golf Model - PGA Initial Run Predictions";
+      }
       tourMeta = await loadJSON("pga/meta.json");
       eventsList = Array.isArray(tourMeta.active_events) && tourMeta.active_events.length
         ? tourMeta.active_events.map(ev => ({ ...ev, event_id: String(ev.event_id ?? ev.id ?? ev) }))
