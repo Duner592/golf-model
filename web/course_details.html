@@ -48,6 +48,7 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="assets/js/betting-data.js"></script>
+    <script src="assets/js/course-notes.js"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
@@ -76,6 +77,7 @@
 
 <script>
     let csvData = [];  // Store parsed CSV data globally for filtering
+    const initialParams = new URLSearchParams(window.location.search);
 
     async function loadOverallROI() {
         try {
@@ -125,8 +127,8 @@
                 courseSelect.appendChild(option);
             });
 
-            // Initial display (show all)
-            displayResults(csvData);
+            applyInitialFilters();
+            applyFilter();
         } catch (e) {
             console.error('Error loading data:', e);
             document.getElementById('course-details').innerHTML = '<div class="error">Data unavailable. Check console for errors.</div>';
@@ -147,14 +149,14 @@
         const resultsDiv = document.getElementById('course-details');
 
         // Collect unique courses with their details (removes duplicates)
-        const uniqueCourses = new Map();  // Key: course name, Value: { detail, tournament }
+        const uniqueCourses = new Map();  // Key: course name, Value: { detail, tournament, row }
         filteredData.forEach(row => {
             const courseName = (row['Course'] || '').trim();
             const courseDetailRaw = (row['Course Details'] || '').trim();
             const tournament = row['Tournament'] || row['Tour/Majors'] || '';
 
             if (courseName && courseName.toLowerCase() !== 'n/a' && courseDetailRaw && !uniqueCourses.has(courseName)) {
-                uniqueCourses.set(courseName, { detail: courseDetailRaw, tournament: tournament });
+                uniqueCourses.set(courseName, { detail: courseDetailRaw, tournament: tournament, row });
             }
         });
 
@@ -170,8 +172,8 @@
             const rawDetail = typeof data.detail === 'string' ? data.detail : '';
             const hasDetail = rawDetail.trim().length > 0;
             const detailHtml = hasDetail
-                ? escapeHtml(rawDetail).replace(/\r?\n/g, '<br>')
-                : 'Course details unavailable.';
+                ? CourseNotes.render(CourseNotes.parseRow({ ...data.row, Course: courseName, 'Course Details': rawDetail }))
+                : CourseNotes.render(CourseNotes.parseDetails('', { course: courseName }));
             const detailClass = hasDetail ? 'course-detail-block' : 'course-detail-block empty';
 
             let courseHtml = `<div class="course-card"><h3>${safeCourseName}</h3>`;
@@ -196,6 +198,20 @@
         });
 
         displayResults(filtered);
+    }
+
+    function setSelectFromParam(selectEl, value) {
+        if (!selectEl || !value) return;
+        const target = value.trim().toLowerCase();
+        const option = Array.from(selectEl.options).find(opt => opt.value.trim().toLowerCase() === target);
+        if (option) {
+            selectEl.value = option.value;
+        }
+    }
+
+    function applyInitialFilters() {
+        setSelectFromParam(document.getElementById('course-filter'), initialParams.get('course'));
+        setSelectFromParam(document.getElementById('tournament-filter'), initialParams.get('tournament'));
     }
 
     async function init() {

@@ -147,6 +147,41 @@ h1 {
     font-style: italic;
 }
 
+.course-notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 0;
+}
+
+.course-note-row {
+    margin: 0;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(29, 124, 66, 0.1);
+}
+
+.course-note-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.course-note-row dt {
+    margin: 0;
+    color: var(--gm-primary-dark);
+}
+
+.course-note-value {
+    margin: 0.15rem 0 0;
+    color: #26352c;
+    line-height: 1.45;
+    white-space: normal;
+}
+
+.course-note-value--missing {
+    color: #737d76;
+    font-style: italic;
+}
+
 .logo {
     position: absolute;
     top: 10px;

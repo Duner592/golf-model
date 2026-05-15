@@ -13,6 +13,68 @@
         h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
         h2 { font-size: 1.2rem; margin: 0 0 0.5rem; color: #666; }
         .muted { color: #555; font-size: 0.95rem; }
+        .tour-page-header {
+            --tour-accent: var(--gm-primary);
+            --tour-accent-dark: var(--gm-primary-dark);
+            --tour-accent-secondary: var(--gm-primary-light);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.9rem;
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(20, 50, 32, 0.12);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f4fbf7 100%);
+            box-shadow: 0 16px 34px -28px rgba(15, 62, 34, 0.55);
+        }
+        .tour-page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--tour-accent), var(--tour-accent-secondary));
+        }
+        .tour-page-header--euro {
+            --tour-accent: #003764;
+            --tour-accent-dark: #00213d;
+            --tour-accent-secondary: #00956d;
+        }
+        .tour-page-logo-frame {
+            width: 128px;
+            height: 58px;
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.45rem;
+            border: 1px solid rgba(16, 45, 31, 0.12);
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 12px 28px -22px rgba(0, 0, 0, 0.7);
+        }
+        .tour-page-logo {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .tour-page-heading {
+            min-width: 0;
+        }
+        .tour-page-heading h1 {
+            color: var(--tour-accent-dark);
+            line-height: 1.15;
+        }
+        .tour-page-heading h2 {
+            margin-bottom: 0.25rem;
+        }
+        .tour-page-heading .muted {
+            margin: 0;
+        }
         .layout { display: grid; grid-template-columns: 1fr 320px; gap: 1rem; }
         .card { border: 1px solid #e2e2e2; border-radius: 8px; padding: 0.75rem 1rem; background: #fff; }
         table { border-collapse: collapse; width: 100%; background: #fff; table-layout: fixed; }
@@ -170,6 +232,8 @@
         }
 
         @media (max-width: 900px) {
+          .tour-page-header { align-items: flex-start; }
+          .tour-page-logo-frame { width: 112px; height: 52px; }
           .layout { grid-template-columns: 1fr; }
           input[type="search"] { width: 100%; }
           table { font-size: 0.9rem; }
@@ -184,9 +248,16 @@
 <div class="menu-container"></div>
 <div class="menu" id="menu"></div>
 
-<h1>Eds Golf Model - Euro Predictions Leaderboard</h1>
-<h2 id="subtitle"></h2>
-<p id="generatedAt" class="muted" style="margin:0 0 0.75rem; display:none;"></p>
+<header class="tour-page-header tour-page-header--euro">
+    <span class="tour-page-logo-frame">
+        <img class="tour-page-logo" src="assets/logos/dp-world-tour.svg" alt="DP World Tour logo" loading="lazy">
+    </span>
+    <div class="tour-page-heading">
+        <h1>Eds Golf Model - Euro Predictions Leaderboard</h1>
+        <h2 id="subtitle"></h2>
+        <p id="generatedAt" class="muted" style="display:none;"></p>
+    </div>
+</header>
 
 <div class="layout">
     <!-- Main column -->
@@ -923,29 +994,29 @@
       try { t = await loadJSON(meta?.resources?.tournament_summary || "euro/tournament_summary.json"); } catch {}
       if (!t) { el.textContent = "No summary."; return; }
 
-    const lines = [];
-    if (t.event_name) lines.push(`Event: ${t.event_name}`);
-    if (t.course) lines.push(`Course: ${t.course}`);
-    if (t.total_yardage != null) lines.push(`Total yardage: ${Number(t.total_yardage).toLocaleString()}`);
-    if (t.course_location) lines.push(`Location: ${t.course_location}`);
-    if (t.start_date) lines.push(`Start date: ${t.start_date}`);
-    if (t.field_size != null) lines.push(`Field size: ${t.field_size}`);
+      const lines = [];
+      if (t.event_name) lines.push(`Event: ${t.event_name}`);
+      if (t.course) lines.push(`Course: ${t.course}`);
+      if (t.total_yardage != null) lines.push(`Total yardage: ${Number(t.total_yardage).toLocaleString()}`);
+      if (t.course_location) lines.push(`Location: ${t.course_location}`);
+      if (t.start_date) lines.push(`Start date: ${t.start_date}`);
+      if (t.field_size != null) lines.push(`Field size: ${t.field_size}`);
 
-    if (Array.isArray(t.previous_winners) && t.previous_winners.length) {
+      if (Array.isArray(t.previous_winners) && t.previous_winners.length) {
         const top = t.previous_winners.slice(0, 5);
         const list = top.map(w => {
-            let winnerName = w.winner;
-            if (winnerName.includes(',')) {
-                const parts = winnerName.split(', ');
-                if (parts.length === 2) {
-                    winnerName = `${parts[1]} ${parts[0]}`;
-                }
+          let winnerName = w.winner;
+          if (winnerName.includes(',')) {
+            const parts = winnerName.split(', ');
+            if (parts.length === 2) {
+              winnerName = `${parts[1]} ${parts[0]}`;
             }
-            return `• ${w.year}: ${winnerName}${w.score ? ` (${w.score})` : ""}`;
+          }
+          return `• ${w.year}: ${winnerName}${w.score ? ` (${w.score})` : ""}`;
         }).join("<br/>");
         lines.push(`<div style="margin-top:0.25rem;"><strong>Previous winners</strong><br/>${list}</div>`);
-    }
-    el.innerHTML = lines.join("<br/>");
+      }
+      el.innerHTML = lines.join("<br/>");
     }
 
     // Main
