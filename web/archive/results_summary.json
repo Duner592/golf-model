@@ -1,4 +1,13 @@
 {
+  "2026_pga_championship": {
+    "event_id": "33",
+    "event_name": "PGA Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "pga_championship"
+  },
   "2026_truist_championship": {
     "event_id": "480",
     "event_name": "Truist Championship",
