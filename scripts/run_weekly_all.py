@@ -67,6 +67,8 @@ def main():
             for event in schedule:
                 if not isinstance(event, dict):
                     continue
+                if str(event.get("tour", "")).lower() != str(TOUR).lower():
+                    continue
                 eid = event.get("event_id")
                 if eid is None:
                     continue
