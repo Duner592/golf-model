@@ -65,6 +65,10 @@ jobs:
           python scripts/update_previous_week_archives.py "${args[@]}"
           python scripts/update_web_status.py --schedule-refreshed --sync-assets --workflow "archive-update"
 
+      - name: Guard current model assets
+        if: ${{ inputs.dry_run != true }}
+        run: python scripts/guard_pages_model_assets.py
+
       - name: Configure Pages
         if: ${{ inputs.dry_run != true }}
         uses: actions/configure-pages@v6

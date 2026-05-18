@@ -13,9 +13,9 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 - `.github/workflows/refresh-upcoming-events.yml`
   - Runs hourly at minute 7 UTC.
   - Runs `python scripts/update_upcoming_events.py`.
-  - Updates `web/status.json` with the latest schedule refresh timestamp.
   - Commits `upcoming-events.json` back to `master` only when the file changes.
   - Defaults to refreshing PGA and Euro from DataGolf while preserving existing non-refreshed tours in the file.
+  - Does not deploy GitHub Pages. Live model assets are generated in Actions and are not committed to `master`, so deploying this workflow's checked-out `web/` tree can overwrite the last good model deployment with stale files.
 
 - `.github/workflows/deploy-pages.yml`
   - Refreshes model assets, then deploys the generated `web/` directory to GitHub Pages.
@@ -33,17 +33,19 @@ This repo is set up to run the weekly model and publish the static `web/` site w
     - `python scripts/build_web_assets.py --tour pga`
     - `python scripts/run_weekly_all.py --tour euro`
     - `python scripts/build_web_assets.py --tour euro`
-  - If a tour has a current event but DataGolf field data is not available yet, that tour is skipped and its existing web assets are preserved. If neither tour builds successfully, the workflow fails.
+  - If any requested tour fails, the workflow fails before Pages deploy. This preserves the last good Pages deployment instead of uploading a partial artifact with stale checked-in assets for the failed tour.
 
 - `.github/workflows/archive-update.yml`
   - Runs Monday at 12:00 and 21:00 UTC.
   - Finds PGA and Euro events that started in the previous Monday-Sunday window.
   - Runs `python scripts/update_archived_event.py --event_id <event_id> --force` for each matching event.
+  - Before deploying Pages, verifies checked-out live model assets match the active current-week PGA/Euro events. If not, it fails before upload to preserve the last good model deployment.
 
 - `.github/workflows/actual-results.yml`
   - Runs once per day at 02:17 UTC.
   - Runs `python scripts/fetch_actual_results.py --year <year>`.
   - Defaults to the current UTC year unless a manual workflow input overrides it.
+  - Before deploying Pages, uses the same active-event guard as archive updates.
 
 ## Manual Run Inputs
 
@@ -62,7 +64,7 @@ The site status card is injected by `web/menu.js` at the bottom of every page th
 - Running `run_weekly_all.py` alone does not update the web page status until the web assets are rebuilt.
 - Schedule-refresh workflows update the schedule refresh timestamp after `upcoming-events.json` is refreshed.
 - Betting-data timing appears in the same status card as `Betting Data Updated`.
-- Other workflows that deploy `web/` should run `scripts/update_web_status.py --sync-assets` before uploading the Pages artifact.
+- Other workflows that deploy `web/` should run `scripts/update_web_status.py --sync-assets` before uploading the Pages artifact, then `scripts/guard_pages_model_assets.py` unless they rebuilt all active live model assets in that job.
 
 ## Initial Prediction Snapshots
 

@@ -108,7 +108,7 @@ for tour in "${tours[@]}"; do
   else
     rc=$?
     tour_failures+=("$tour")
-    echo "::warning::Model refresh failed for $tour with exit code $rc. Existing web assets for this tour will be preserved in this deploy."
+    echo "::error::Model refresh failed for $tour with exit code $rc. Refusing to deploy a partial Pages artifact."
   fi
 done
 
@@ -118,7 +118,9 @@ if [[ "${#tour_successes[@]}" -eq 0 ]]; then
 fi
 
 if [[ "${#tour_failures[@]}" -gt 0 ]]; then
-  echo "::warning::Partial model refresh. Successful tours: ${tour_successes[*]}; failed tours: ${tour_failures[*]}"
+  echo "::error::Partial model refresh. Successful tours: ${tour_successes[*]}; failed tours: ${tour_failures[*]}"
+  echo "::error::Generated model assets are not committed to master, so deploying now could overwrite the last good Pages site with stale checked-in assets."
+  exit 1
 fi
 
 if [[ -n "$spreadsheet_checksum" ]]; then

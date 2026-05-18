@@ -49,6 +49,9 @@ jobs:
       - name: Fetch actual results
         run: bash scripts/ci_fetch_actual_results.sh
 
+      - name: Guard current model assets
+        run: python scripts/guard_pages_model_assets.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
 
