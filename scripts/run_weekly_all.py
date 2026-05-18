@@ -85,6 +85,8 @@ def main():
             raise ValueError(f"No events resolved for tour={TOUR}. Please update upcoming-events.json or pass --event_id.")
 
         print(f"[info] Events to process for tour={TOUR}: {', '.join(event_ids)}")
+        processed_event_ids: list[str] = []
+        skipped_events: list[tuple[str, str]] = []
 
         for event_id in event_ids:
             requested_event_id = event_id
@@ -126,6 +128,7 @@ def main():
                 # Inspect fetched field data before parsing to avoid hard failures
                 field_updates_path = SCRIPT_DIR / "field-updates.json"
                 skip_event = False
+                skip_reason = "field data unavailable"
                 if field_updates_path.exists():
                     try:
                         with open(field_updates_path, encoding="utf-8") as f:
@@ -144,18 +147,23 @@ def main():
                             error_msg = fetched_payload.get("error")
                             field_entries = fetched_payload.get("field")
                             if error_msg:
-                                print(f"[warn] Skipping event_id={event_id}: field updates API returned error: {error_msg}")
+                                skip_reason = f"field updates API returned error: {error_msg}"
+                                print(f"[warn] Skipping event_id={event_id}: {skip_reason}")
                                 skip_event = True
                             elif not field_entries:
-                                print(f"[warn] Skipping event_id={event_id}: field updates payload contains no field entries.")
+                                skip_reason = "field updates payload contains no field entries"
+                                print(f"[warn] Skipping event_id={event_id}: {skip_reason}.")
                                 skip_event = True
                     except Exception as exc:
+                        skip_reason = f"unable to inspect field-updates.json: {exc}"
                         print(f"[warn] Unable to inspect field-updates.json for event_id={event_id}: {exc}")
                 else:
+                    skip_reason = "expected field-updates.json not found after fetch"
                     print(f"[warn] Expected field-updates.json not found after fetch for event_id={event_id}; skipping event.")
                     skip_event = True
 
                 if skip_event:
+                    skipped_events.append((event_id, skip_reason))
                     continue
 
                 run([sys.executable, str(SCRIPT_DIR / "parse_field_updates.py")] + cmd_suffix)
@@ -248,11 +256,23 @@ def main():
             run([sys.executable, str(SCRIPT_DIR / "summarize_status.py")] + per_event_suffix)
 
             print(f"[info] Completed pipeline for event_id={event_id}", flush=True)
+            processed_event_ids.append(event_id)
 
-        print(f"[done] Weekly run completed successfully for events: {', '.join(event_ids)}", flush=True)
+        if not processed_event_ids:
+            skipped_summary = "; ".join(f"{eid} ({reason})" for eid, reason in skipped_events) or "none"
+            raise RuntimeError(f"No events were processed for tour={TOUR}. Skipped events: {skipped_summary}")
+
+        if skipped_events:
+            skipped_summary = "; ".join(f"{eid} ({reason})" for eid, reason in skipped_events)
+            print(f"[warn] Some events were skipped for tour={TOUR}: {skipped_summary}", flush=True)
+
+        print(f"[done] Weekly run completed successfully for events: {', '.join(processed_event_ids)}", flush=True)
     except subprocess.CalledProcessError as e:
         print(f"[error] Step failed with return code {e.returncode}: {e}", flush=True)
         sys.exit(e.returncode)
+    except Exception as e:
+        print(f"[error] {e}", flush=True)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

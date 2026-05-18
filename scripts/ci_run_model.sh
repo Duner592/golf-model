@@ -67,17 +67,59 @@ if [[ "$FAST" == "true" ]]; then
   run_args+=(--fast)
 fi
 
-for tour in "${tours[@]}"; do
-  echo "::group::Run weekly pipeline for $tour"
-  "$PYTHON_BIN" scripts/run_weekly_all.py --tour "$tour" "${run_args[@]}"
+run_grouped() {
+  local title="$1"
+  shift
+  local rc
+  echo "::group::$title"
+  set +e
+  "$@"
+  rc=$?
+  set -e
   echo "::endgroup::"
+  return "$rc"
+}
 
-  echo "::group::Build web assets for $tour"
-  "$PYTHON_BIN" scripts/build_web_assets.py --tour "$tour" "${web_args[@]}"
-  echo "::endgroup::"
+run_tour() {
+  local tour="$1"
+  local rc
+
+  run_grouped "Run weekly pipeline for $tour" "$PYTHON_BIN" scripts/run_weekly_all.py --tour "$tour" "${run_args[@]}"
+  rc=$?
+  if [[ "$rc" -ne 0 ]]; then
+    return "$rc"
+  fi
+
+  run_grouped "Build web assets for $tour" "$PYTHON_BIN" scripts/build_web_assets.py --tour "$tour" "${web_args[@]}"
+  rc=$?
+  if [[ "$rc" -ne 0 ]]; then
+    return "$rc"
+  fi
 
   "$PYTHON_BIN" scripts/update_web_status.py --model-run --tour "$tour" --workflow "scheduled-model"
+}
+
+tour_successes=()
+tour_failures=()
+
+for tour in "${tours[@]}"; do
+  if run_tour "$tour"; then
+    tour_successes+=("$tour")
+  else
+    rc=$?
+    tour_failures+=("$tour")
+    echo "::warning::Model refresh failed for $tour with exit code $rc. Existing web assets for this tour will be preserved in this deploy."
+  fi
 done
+
+if [[ "${#tour_successes[@]}" -eq 0 ]]; then
+  echo "::error::No tour model assets were built successfully."
+  exit 1
+fi
+
+if [[ "${#tour_failures[@]}" -gt 0 ]]; then
+  echo "::warning::Partial model refresh. Successful tours: ${tour_successes[*]}; failed tours: ${tour_failures[*]}"
+fi
 
 if [[ -n "$spreadsheet_checksum" ]]; then
   if [[ ! -f web/spreadsheet_data.csv ]]; then

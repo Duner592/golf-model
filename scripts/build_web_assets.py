@@ -1539,15 +1539,15 @@ def process_event(
     Build assets for a single event and return metadata summary for aggregation.
     """
     event_dir = web_dir / "events" / f"event_{event_id}"
-    if event_dir.exists():
-        shutil.rmtree(event_dir)
-    event_dir.mkdir(parents=True, exist_ok=True)
-
     try:
         meta_proc = load_meta_for_event(processed_dir, event_id)
     except FileNotFoundError:
         print(f"[warn] Skipping event_id={event_id}: meta not found in {processed_dir}")
         return None
+
+    if event_dir.exists():
+        shutil.rmtree(event_dir)
+    event_dir.mkdir(parents=True, exist_ok=True)
 
     event_name = meta_proc.get("event_name", f"event_{event_id}")
     lat = meta_proc.get("lat")
@@ -1865,39 +1865,11 @@ def main():
                 aggregated_events.append(summary)
 
         if not aggregated_events:
-            generated_utc = datetime.utcnow().strftime("%d-%b-%Y %H:%M:%S")
-            write_json(web_dir / "leaderboard.json", [])
-            write_json(
-                web_dir / "summary.json",
-                {
-                    "event_id": "0",
-                    "event_name": "No Event",
-                    "source_csv": None,
-                    "generated_utc": generated_utc,
-                    "metrics": None,
-                },
+            raise RuntimeError(
+                f"No web assets were generated for resolved {TOUR} event(s): {', '.join(event_ids)}. "
+                "Run the model pipeline first, or check whether DataGolf field data is available."
             )
-            meta_out = {
-                "tour": TOUR,
-                "event_id": "0",
-                "event_name": "No Event",
-                "lat": None,
-                "lon": None,
-                "r1_date": None,
-                "generated_utc": generated_utc,
-                "tee_times_available": False,
-                "resources": {
-                    "leaderboard": f"{TOUR}/leaderboard.json",
-                    "summary": f"{TOUR}/summary.json",
-                    "schedule": f"{TOUR}/schedule.json" if (web_dir / "schedule.json").exists() else None,
-                    "primary_event_dir": None,
-                },
-                "no_event_message": "No event data available.",
-                "active_events": [],
-                "primary_event_dir": None,
-            }
-            write_json(web_dir / "meta.json", meta_out)
-            reports.append("Event data missing; reverted to placeholder assets.")
+
         else:
             primary = aggregated_events[0]
             generated_utc = primary["generated_utc"]

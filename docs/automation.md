@@ -18,9 +18,10 @@ This repo is set up to run the weekly model and publish the static `web/` site w
   - Defaults to refreshing PGA and Euro from DataGolf while preserving existing non-refreshed tours in the file.
 
 - `.github/workflows/deploy-pages.yml`
-  - Deploys the current `web/` directory to GitHub Pages.
+  - Refreshes model assets, then deploys the generated `web/` directory to GitHub Pages.
   - Runs when files under `web/` are pushed to `master`.
   - Can also be run manually from the Actions tab.
+  - This avoids overwriting a scheduled model deploy with stale checked-in `web/` assets.
 
 - `.github/workflows/weekly-model.yml`
   - Runs every 2 hours on Monday, Tuesday, and Wednesday at minute 23 UTC.
@@ -32,6 +33,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
     - `python scripts/build_web_assets.py --tour pga`
     - `python scripts/run_weekly_all.py --tour euro`
     - `python scripts/build_web_assets.py --tour euro`
+  - If a tour has a current event but DataGolf field data is not available yet, that tour is skipped and its existing web assets are preserved. If neither tour builds successfully, the workflow fails.
 
 - `.github/workflows/archive-update.yml`
   - Runs Monday at 12:00 and 21:00 UTC.
@@ -104,7 +106,7 @@ python scripts/update_previous_week_archives.py --tour pga --dry-run
 
 `web/spreadsheet_data.csv` is treated as a manual input. The scheduled model wrapper hashes it before and after the run and fails the workflow if the file changes or disappears.
 
-Manual spreadsheet updates should be committed directly to `master`. The static deploy workflow will publish the updated `web/` folder without running the model pipeline.
+Manual spreadsheet updates should be committed directly to `master`. The static deploy workflow refreshes model assets before publishing so it does not replace a scheduled model deploy with stale checked-in assets.
 
 ## First Test Run
 
