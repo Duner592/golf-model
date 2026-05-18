@@ -45,7 +45,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
   - Runs once per day at 02:17 UTC.
   - Runs `python scripts/fetch_actual_results.py --year <year>`.
   - Defaults to the current UTC year unless a manual workflow input overrides it.
-  - Before deploying Pages, uses the same active-event guard as archive updates.
+  - Commits changed `web/archive/**` results and `data/analytics/**` outputs back to `master`. The resulting push triggers `.github/workflows/deploy-pages.yml`, which rebuilds active model assets before publishing.
 
 ## Manual Run Inputs
 

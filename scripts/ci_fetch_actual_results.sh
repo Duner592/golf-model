@@ -29,5 +29,3 @@ echo "::endgroup::"
 echo "::group::Build prediction accuracy for $YEAR"
 "$PYTHON_BIN" scripts/build_prediction_accuracy.py --year "$YEAR"
 echo "::endgroup::"
-
-"$PYTHON_BIN" scripts/update_web_status.py --schedule-refreshed --sync-assets --workflow "actual-results"

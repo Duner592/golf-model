@@ -12,20 +12,15 @@ on:
         required: false
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: actual-results
   cancel-in-progress: false
 
 jobs:
   fetch-actual-results:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     env:
       DATAGOLF_API_KEY: ${{ secrets.DATAGOLF_API_KEY }}
       YEAR: ${{ inputs.year || '' }}
@@ -49,17 +44,15 @@ jobs:
       - name: Fetch actual results
         run: bash scripts/ci_fetch_actual_results.sh
 
-      - name: Guard current model assets
-        run: python scripts/guard_pages_model_assets.py
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v6
-
-      - name: Upload web artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: web
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Commit actual result updates
+        run: |
+          if git diff --quiet -- upcoming-events.json web/archive data/analytics; then
+            echo "No actual-result changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add upcoming-events.json web/archive data/analytics
+          git commit -m "Update actual results"
+          git pull --rebase --autostash origin master
+          git push
