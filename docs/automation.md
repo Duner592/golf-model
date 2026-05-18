@@ -39,7 +39,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
   - Runs Monday at 12:00 and 21:00 UTC.
   - Finds PGA and Euro events that started in the previous Monday-Sunday window.
   - Runs `python scripts/update_archived_event.py --event_id <event_id> --force` for each matching event.
-  - Before deploying Pages, verifies checked-out live model assets match the active current-week PGA/Euro events. If not, it fails before upload to preserve the last good model deployment.
+  - Commits changed `web/archive/**` files back to `master` instead of deploying Pages directly. The resulting push triggers `.github/workflows/deploy-pages.yml`, which rebuilds active model assets before publishing the archive changes.
 
 - `.github/workflows/actual-results.yml`
   - Runs once per day at 02:17 UTC.

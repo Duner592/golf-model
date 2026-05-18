@@ -57,7 +57,18 @@ def get_event_details(event_id: str, upcoming_data: dict) -> dict | None:
     return None
 
 
-def fetch_winner_from_api(event_id: str, year: str) -> str | None:
+def _schedule_events_from_payload(payload):
+    if isinstance(payload, list):
+        return [event for event in payload if isinstance(event, dict)]
+    if isinstance(payload, dict):
+        for key in ("schedule", "events", "data"):
+            value = payload.get(key)
+            if isinstance(value, list):
+                return [event for event in value if isinstance(event, dict)]
+    return []
+
+
+def fetch_winner_from_api(event_id: str, year: str, tour: str | None) -> str | None:
     """
     Fetch winner from DataGolf API.
 
@@ -69,19 +80,26 @@ def fetch_winner_from_api(event_id: str, year: str) -> str | None:
         str or None: Winner name.
     """
     try:
-        params = {"season": year}
+        if not tour:
+            return None
+
         api_key = os.getenv("DATAGOLF_API_KEY")
+        params_base = {"tour": tour}
         if api_key:
-            params["key"] = api_key
-        response = requests.get("https://datagolf.ca/api/get-schedule", params=params, timeout=20)
-        if response.status_code == 200:
-            schedule_data = response.json()
-            for sched_event in schedule_data.get("schedule", []):
+            params_base["key"] = api_key
+        for year_key in ("year", "season"):
+            params = dict(params_base)
+            params[year_key] = year
+            response = requests.get("https://feeds.datagolf.com/get-schedule", params=params, timeout=20)
+            if response.status_code != 200:
+                print(f"Warn: API response status {response.status_code} for {event_id} using {year_key}")
+                continue
+            for sched_event in _schedule_events_from_payload(response.json()):
                 if str(sched_event.get("event_id")) == str(event_id):
                     winner = sched_event.get("winner")
                     print(f"DEBUG: API returned winner for {event_id}: {winner}")
                     return winner
-        print(f"Warn: API response status {response.status_code} or no winner found for {event_id}")
+        print(f"Warn: no winner found from API for {event_id}")
     except Exception as e:
         print(f"Warn: Failed to fetch winner from API: {e}")
     return None
@@ -167,7 +185,8 @@ def main():
     archive_path = root / "web" / "archive" / year / slug / "tournament_summary.json"
 
     # Fetch winner from API, fallback to upcoming-events.json
-    winner = fetch_winner_from_api(event_id, year)
+    tour = event_details.get("tour")
+    winner = fetch_winner_from_api(event_id, year, tour)
     if winner is None:
         winner = event_details.get("winner")
         print(f"DEBUG: Using fallback winner from upcoming-events.json: {winner}")
