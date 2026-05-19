@@ -20,6 +20,10 @@ dg_cache*
 .vscode/
 .idea/
 
+# Office lock files
+~$*
+**/~$*
+
 # Project outputs
 snapshot/
 data/raw/

@@ -22,6 +22,7 @@ This repository is a weekly golf tournament win-probability model for PGA and DP
 - Fetch actual results: `python scripts/fetch_actual_results.py --year $YEAR`
 - Build web assets: `python scripts/build_web_assets.py --tour $TOUR`
 - Summarize artifacts/status: `python scripts/summarize_status.py`
+- Safely commit local edits around scheduled workflow commits: `scripts/commit_and_push.sh "message"`
 - Test local web output: `cd web/ && python -m http.server 8000`
 
 ## Automation

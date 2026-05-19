@@ -110,6 +110,14 @@ python scripts/update_previous_week_archives.py --tour pga --dry-run
 
 Manual spreadsheet updates should be committed directly to `master`. The static deploy workflow refreshes model assets before publishing so it does not replace a scheduled model deploy with stale checked-in assets.
 
+For local edits, prefer the safe commit helper so scheduled workflow commits are rebased in before pushing:
+
+```sh
+scripts/commit_and_push.sh "updating SS"
+```
+
+The helper stages current edits, ignores `.env` and Office lock files, rebases over `origin/master`, commits, rebases once more in case automation landed during the commit, then pushes.
+
 ## First Test Run
 
 Use the Actions tab to run `Scheduled model run` manually with:

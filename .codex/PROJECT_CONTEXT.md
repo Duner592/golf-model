@@ -69,6 +69,7 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - Scheduled model runs deploy the generated `web/` directory directly as a Pages artifact and do not commit generated data back to `master`.
 - Because live model assets are generated in Actions and not committed to `master`, non-model workflows must not deploy the checked-out `web/` tree unless they first rebuild all active model assets or pass `scripts/guard_pages_model_assets.py`. The hourly schedule refresh intentionally does not deploy Pages.
 - `scripts/ci_run_model.sh` fails the workflow if any requested tour fails. A partial deploy can overwrite the last good Pages deployment with stale checked-in assets for the failed tour.
+- Local edits should usually be committed with `scripts/commit_and_push.sh "message"`, which stages edits, ignores `.env` and Office lock files, rebases over workflow commits on `origin/master`, commits, rebases once more, and pushes.
 - `scripts/build_web_assets.py` now preserves the first successful model output for each tour/event/year as an initial snapshot. Prediction archives should use that snapshot rather than later refreshed live assets. Homepage links expose latest results and `?snapshot=initial` initial-run results.
 
 ## Open Notes
