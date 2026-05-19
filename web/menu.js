@@ -34,6 +34,7 @@
             href: 'betting_analytics.html',
             children: [
                 { label: 'Analytics', href: 'betting_analytics.html' },
+                { label: 'Odds & Value', href: 'odds_value.html' },
                 { label: 'Overall Data', href: 'spreadsheet.html' },
                 { label: 'ROI% Data', href: 'roi.html' },
                 { label: 'Yearly 2026', href: 'spreadsheet.html?year=2026' },

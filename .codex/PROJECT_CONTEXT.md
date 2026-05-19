@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-05-18
+Last updated: 2026-05-19
 
 ## Purpose
 
@@ -76,3 +76,4 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 
 - Expand this file as we make modeling decisions, discover data quirks, or settle on recurring workflows.
 - Track any future calibration choices, feature changes, and archive publishing steps here.
+- Page/model improvement ideas are tracked in `docs/page_model_roadmap.md`, split into near-term, next, and longer-term work.

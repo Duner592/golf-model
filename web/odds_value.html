@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Odds &amp; Value - Golf Model Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js?v=20260519-odds-value"></script>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 100px 1.25rem 1.25rem;
+            color: #17231b;
+        }
+
+        h1 {
+            margin-bottom: 0.35rem;
+            color: var(--gm-primary-dark);
+        }
+
+        .page-shell {
+            width: min(1500px, 100%);
+            margin: 0 auto;
+        }
+
+        .page-intro {
+            margin: 0 auto 1.25rem;
+            max-width: 850px;
+            text-align: center;
+            color: #526158;
+            line-height: 1.5;
+        }
+
+        .related-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: -0.35rem 0 1rem;
+        }
+
+        .related-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 2rem;
+            padding: 0.22rem 0.7rem;
+            border: 1px solid rgba(29, 124, 66, 0.22);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--gm-primary-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 8px 18px -18px rgba(22, 79, 46, 0.35);
+        }
+
+        .related-link:hover {
+            color: var(--gm-primary);
+            border-color: rgba(29, 124, 66, 0.38);
+            text-decoration: underline;
+            text-underline-offset: 0.18em;
+        }
+
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+
+        .toolbar,
+        .summary-grid,
+        .source-panel,
+        .table-panel {
+            background: #fff;
+            border: 1px solid rgba(29, 124, 66, 0.16);
+            border-radius: 8px;
+            box-shadow: 0 10px 24px -20px rgba(22, 79, 46, 0.35);
+        }
+
+        .toolbar {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(140px, 1fr));
+            gap: 0.85rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            align-items: end;
+        }
+
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            min-width: 0;
+        }
+
+        .control label,
+        .toggle-control {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #3a4d41;
+            text-transform: uppercase;
+            letter-spacing: 0;
+        }
+
+        .control select,
+        .control input[type="search"] {
+            width: 100%;
+            min-height: 2.35rem;
+            border: 1px solid #cdd8d1;
+            border-radius: 6px;
+            background: #fff;
+            color: #17231b;
+            font: inherit;
+            padding: 0.45rem 0.65rem;
+            box-sizing: border-box;
+        }
+
+        .toggle-control {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 2.35rem;
+            text-transform: none;
+            font-size: 0.9rem;
+            font-weight: 650;
+        }
+
+        .toggle-control input {
+            width: 1rem;
+            height: 1rem;
+            accent-color: var(--gm-primary);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .metric {
+            padding: 0.85rem 1rem;
+            border-right: 1px solid rgba(29, 124, 66, 0.12);
+            min-width: 0;
+        }
+
+        .metric:last-child {
+            border-right: 0;
+        }
+
+        .metric-label {
+            display: block;
+            color: #5f7067;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: clamp(1.1rem, 2vw, 1.65rem);
+            font-weight: 750;
+            color: #16261b;
+            line-height: 1.15;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .metric-note {
+            display: block;
+            margin-top: 0.2rem;
+            color: #68776e;
+            font-size: 0.78rem;
+            min-height: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .source-panel {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .explainer {
+            margin-bottom: 1rem;
+            padding: 0.85rem 1rem;
+            background: #fff;
+            border: 1px solid rgba(29, 124, 66, 0.16);
+            border-radius: 8px;
+            box-shadow: 0 10px 24px -20px rgba(22, 79, 46, 0.35);
+        }
+
+        .explainer summary {
+            cursor: pointer;
+            color: var(--gm-primary-dark);
+            font-weight: 750;
+        }
+
+        .explainer-body {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+            color: #415148;
+            line-height: 1.5;
+        }
+
+        .explainer-body p {
+            margin: 0;
+        }
+
+        .formula {
+            display: inline-block;
+            margin-top: 0.25rem;
+            padding: 0.2rem 0.35rem;
+            border-radius: 4px;
+            background: #f4f8f5;
+            color: #1f3426;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.88rem;
+        }
+
+        .threshold-list {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .threshold-row {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+
+        .threshold-row .badge {
+            flex: 0 0 auto;
+        }
+
+        .source-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.65rem;
+            align-items: center;
+            color: #415148;
+            min-width: 0;
+        }
+
+        .source-title {
+            font-weight: 750;
+            color: #1d3828;
+        }
+
+        .source-meta {
+            color: #68776e;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 1.55rem;
+            padding: 0.12rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 750;
+            line-height: 1.2;
+            white-space: nowrap;
+            background: #eef5f0;
+            color: #2f5940;
+            border: 1px solid rgba(29, 124, 66, 0.16);
+        }
+
+        .badge--positive {
+            background: #e7f6ec;
+            color: #176336;
+            border-color: rgba(23, 99, 54, 0.24);
+        }
+
+        .badge--strong {
+            background: #d9f1e3;
+            color: #0f5029;
+            border-color: rgba(15, 80, 41, 0.3);
+        }
+
+        .badge--close {
+            background: #fff7e1;
+            color: #75530d;
+            border-color: rgba(117, 83, 13, 0.22);
+        }
+
+        .badge--negative {
+            background: #f9e7e4;
+            color: #8b2417;
+            border-color: rgba(139, 36, 23, 0.22);
+        }
+
+        .badge--muted {
+            background: #f1f4f2;
+            color: #5d6962;
+            border-color: #dce5df;
+        }
+
+        .table-panel {
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid rgba(29, 124, 66, 0.14);
+        }
+
+        .table-header h2 {
+            margin: 0;
+            color: var(--gm-primary-dark);
+            font-size: 1.15rem;
+        }
+
+        .table-note {
+            color: #67786e;
+            font-size: 0.9rem;
+        }
+
+        .table-scroll {
+            overflow-x: visible;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            min-width: 0;
+            font-size: 0.8rem;
+        }
+
+        th,
+        td {
+            padding: 0.5rem 0.45rem;
+            text-align: left;
+            border-bottom: 1px solid #edf2ef;
+            vertical-align: top;
+            overflow-wrap: anywhere;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            background: #f6faf7;
+            color: #34493b;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            z-index: 1;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        .col-date { width: 7%; }
+        .col-player { width: 14%; }
+        .col-tournament { width: 16%; }
+        .col-bet { width: 13%; }
+        .col-win { width: 10%; }
+        .col-place { width: 12%; }
+        .col-value { width: 10%; }
+        .col-result { width: 9%; }
+        .col-pnl { width: 9%; }
+
+        tbody tr:hover {
+            background: #fbfdfb;
+        }
+
+        .num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            white-space: normal;
+        }
+
+        .player-cell {
+            min-width: 0;
+        }
+
+        .player-name {
+            display: block;
+            font-weight: 750;
+            color: #17231b;
+        }
+
+        .history-link {
+            color: var(--gm-primary-dark);
+            text-decoration: none;
+            text-underline-offset: 0.18em;
+        }
+
+        .history-link:hover {
+            color: var(--gm-primary);
+            text-decoration: underline;
+        }
+
+        .player-sub {
+            display: block;
+            color: #68776e;
+            font-size: 0.76rem;
+            margin-top: 0.15rem;
+        }
+
+        .cell-stack {
+            display: grid;
+            gap: 0.16rem;
+            min-width: 0;
+        }
+
+        .cell-main {
+            color: #17231b;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .cell-muted {
+            color: #68776e;
+            font-size: 0.74rem;
+            line-height: 1.25;
+            overflow-wrap: anywhere;
+        }
+
+        .cell-pair {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 0.25rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .cell-pair span:first-child {
+            color: #68776e;
+        }
+
+        .cell-pair span:last-child {
+            text-align: right;
+            font-weight: 650;
+        }
+
+        .edge-positive {
+            color: #176336;
+            font-weight: 750;
+        }
+
+        .edge-negative {
+            color: #8b2417;
+            font-weight: 750;
+        }
+
+        .pnl-positive {
+            color: #176336;
+            font-weight: 750;
+        }
+
+        .pnl-negative {
+            color: #8b2417;
+            font-weight: 750;
+        }
+
+        .pnl-muted {
+            color: #68776e;
+            font-weight: 650;
+        }
+
+        .empty-state,
+        .loading-state {
+            padding: 2.5rem 1rem;
+            text-align: center;
+            color: #5e6c63;
+        }
+
+        .error-state {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #fff3f1;
+            border: 1px solid #f1c7bf;
+            color: #872719;
+        }
+
+        @media (max-width: 1100px) {
+            .toolbar {
+                grid-template-columns: repeat(3, minmax(150px, 1fr));
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .metric {
+                border-bottom: 1px solid rgba(29, 124, 66, 0.12);
+            }
+        }
+
+        @media (max-width: 760px) {
+            body {
+                margin: 88px 0.75rem 1rem;
+            }
+
+            .logo {
+                height: 58px;
+                top: 5px;
+                right: 8px;
+            }
+
+            .toolbar,
+            .source-panel,
+            .explainer-body {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .metric:nth-child(even) {
+                border-right: 0;
+            }
+        }
+
+        @media (max-width: 980px) {
+            table,
+            tbody,
+            tr,
+            td {
+                display: block;
+                width: 100%;
+            }
+
+            colgroup,
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: grid;
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+
+            tbody tr {
+                border: 1px solid rgba(29, 124, 66, 0.14);
+                border-radius: 8px;
+                background: #fff;
+                box-shadow: 0 8px 18px -18px rgba(22, 79, 46, 0.35);
+                overflow: hidden;
+            }
+
+            tbody tr:hover {
+                background: #fff;
+            }
+
+            td {
+                display: grid;
+                grid-template-columns: 7rem minmax(0, 1fr);
+                gap: 0.75rem;
+                padding: 0.48rem 0.65rem;
+                border-bottom: 1px solid #edf2ef;
+            }
+
+            td:last-child {
+                border-bottom: 0;
+            }
+
+            td::before {
+                content: attr(data-label);
+                color: #68776e;
+                font-size: 0.72rem;
+                font-weight: 750;
+                text-transform: uppercase;
+                letter-spacing: 0;
+            }
+
+            td.num {
+                text-align: left;
+            }
+
+            .empty-state,
+            .loading-state {
+                display: block;
+            }
+
+            .empty-state::before,
+            .loading-state::before {
+                content: none;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
+</head>
+<body>
+<img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container"></div>
+<div class="menu" id="menu"></div>
+
+<main class="page-shell">
+    <h1>Odds &amp; Value</h1>
+    <p class="page-intro">Model probabilities compared with the prices recorded in the betting sheet.</p>
+    <nav class="related-links" aria-label="Related pages">
+        <a class="related-link" href="archive_accuracy.html">Prediction Accuracy</a>
+    </nav>
+
+    <details class="explainer">
+        <summary>How this page works</summary>
+        <div class="explainer-body">
+            <p><strong>Implied win</strong> is the bookmaker price turned into a probability. A 40-1 price implies about 2.4% before margin.</p>
+            <p><strong>Win edge</strong> is model win % minus implied win %. Positive means the model is higher than the price implies.</p>
+            <p><strong>E/W value</strong> combines the win and place legs. Top 10 places use the model Top 10 directly; Top 7/8 places are estimated from Top 10 and marked as estimates.</p>
+            <p><strong>EV</strong> is the long-run expected return if the model probability is right.<br><span class="formula">EV = decimal odds x model probability - 1</span><br><span class="formula">E/W EV = (win EV + place EV) / 2</span></p>
+            <p><strong>Included bets</strong> are pre-tournament `E/W` and `Outright` only, so the board stays aligned to the tournament outright model.</p>
+            <p><strong>Archive view</strong> uses saved 2026 archive leaderboards, so previous weeks are scored against the prediction snapshot stored for that event.</p>
+            <div class="threshold-list" aria-label="Value label thresholds">
+                <div class="threshold-row"><span class="badge badge--strong">Strong value</span><span>+15% EV or better.</span></div>
+                <div class="threshold-row"><span class="badge badge--positive">Positive</span><span>0% to +14.9% EV.</span></div>
+                <div class="threshold-row"><span class="badge badge--close">Close</span><span>-10% to -0.1% EV.</span></div>
+                <div class="threshold-row"><span class="badge badge--negative">Negative</span><span>Below -10% EV.</span></div>
+            </div>
+        </div>
+    </details>
+
+    <section class="toolbar" aria-label="Odds value filters">
+        <div class="control">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter">
+                <option value="pending">Pending</option>
+                <option value="all">All bets</option>
+                <option value="settled">Settled</option>
+            </select>
+        </div>
+        <div class="control">
+            <label for="sourceFilter">Source</label>
+            <select id="sourceFilter">
+                <option value="current">Current week</option>
+                <option value="archive2026">2026 archive</option>
+                <option value="all2026">All 2026</option>
+            </select>
+        </div>
+        <div class="control">
+            <label for="tourFilter">Tour</label>
+            <select id="tourFilter">
+                <option value="all">All tours</option>
+            </select>
+        </div>
+        <div class="control">
+            <label for="tournamentFilter">Tournament</label>
+            <select id="tournamentFilter">
+                <option value="all">All tournaments</option>
+            </select>
+        </div>
+        <div class="control">
+            <label for="sortFilter">Sort</label>
+            <select id="sortFilter">
+                <option value="value">Best value</option>
+                <option value="date">Newest</option>
+                <option value="stake">Stake</option>
+                <option value="tournament">Tournament</option>
+            </select>
+        </div>
+        <div class="control">
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="Player, bookmaker, tournament">
+        </div>
+        <label class="toggle-control">
+            <input id="matchedOnly" type="checkbox">
+            Matched model rows only
+        </label>
+    </section>
+
+    <section class="summary-grid" aria-label="Odds value summary">
+        <div class="metric">
+            <span class="metric-label">Rows</span>
+            <span class="metric-value" id="metricRows">-</span>
+            <span class="metric-note" id="metricRowsNote">Visible bets</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Matched</span>
+            <span class="metric-value" id="metricMatched">-</span>
+            <span class="metric-note">Player in model field</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Positive</span>
+            <span class="metric-value" id="metricPositive">-</span>
+            <span class="metric-note">Positive value EV</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Stake</span>
+            <span class="metric-value" id="metricStake">-</span>
+            <span class="metric-note" id="metricStakeNote">Visible stake</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Best EV</span>
+            <span class="metric-value" id="metricBest">-</span>
+            <span class="metric-note" id="metricBestNote">-</span>
+        </div>
+    </section>
+
+    <section class="source-panel" aria-label="Model sources" id="sourcePanel"></section>
+
+    <section class="table-panel">
+        <div class="table-header">
+            <h2>Bet Value Board</h2>
+            <span class="table-note" id="tableNote">Loading...</span>
+        </div>
+        <div id="messageArea"></div>
+        <div class="table-scroll">
+            <table>
+                <colgroup>
+                    <col class="col-date">
+                    <col class="col-player">
+                    <col class="col-tournament">
+                    <col class="col-bet">
+                    <col class="col-win">
+                    <col class="col-place">
+                    <col class="col-value">
+                    <col class="col-result">
+                    <col class="col-pnl">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Player</th>
+                        <th>Tournament</th>
+                        <th>Bet</th>
+                        <th>Win</th>
+                        <th>Place</th>
+                        <th>Value</th>
+                        <th>Actual Result</th>
+                        <th class="num">P/L</th>
+                    </tr>
+                </thead>
+                <tbody id="valueRows">
+                    <tr><td colspan="9" class="loading-state">Loading odds and model data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script>
+    const LIVE_BASE = 'https://duner592.github.io/golf-model/';
+    const TOUR_ORDER = ['PGA Tour', 'DP World Tour', 'Majors'];
+    const state = {
+        bets: [],
+        enriched: [],
+        models: {},
+        archiveModels: [],
+        filters: {
+            status: 'pending',
+            source: 'current',
+            tour: 'all',
+            tournament: 'all',
+            sort: 'value',
+            search: '',
+            matchedOnly: false
+        }
+    };
+
+    function isLocalPreview() {
+        return ['localhost', '127.0.0.1', '::1', ''].includes(window.location.hostname) || window.location.protocol === 'file:';
+    }
+
+    function withCacheBust(path) {
+        const separator = path.includes('?') ? '&' : '?';
+        return `${path}${separator}v=${Date.now()}`;
+    }
+
+    function remoteUrl(path) {
+        return new URL(path, LIVE_BASE).toString();
+    }
+
+    async function fetchJson(path, options = {}) {
+        const target = options.remote ? remoteUrl(path) : path;
+        const response = await fetch(withCacheBust(target), { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`Failed to load ${target}: ${response.status}`);
+        }
+        return response.json();
+    }
+
+    function normalizeText(value) {
+        return String(value || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/&/g, 'and')
+            .replace(/\bthe\b/g, '')
+            .replace(/[^a-z0-9]+/gi, ' ')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .toLowerCase();
+    }
+
+    function normalizePlayerName(name) {
+        const cleaned = String(name || '').replace(/\s+/g, ' ').trim();
+        if (!cleaned) return '';
+        if (cleaned.includes(',')) {
+            const [last, first] = cleaned.split(',', 2).map(part => part.trim());
+            return normalizeText(first ? `${first} ${last}` : last);
+        }
+        return normalizeText(cleaned);
+    }
+
+    function parseDateString(dateStr) {
+        const parts = String(dateStr || '').split('/').map(part => Number.parseInt(part, 10));
+        if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+        const [day, month, year] = parts;
+        const date = new Date(Date.UTC(year, month - 1, day));
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function getYearFromDateString(dateStr) {
+        const date = parseDateString(dateStr);
+        if (date) return String(date.getUTCFullYear());
+        const match = String(dateStr || '').match(/\b(20\d{2})\b/);
+        return match ? match[1] : '';
+    }
+
+    function formatDate(dateStr) {
+        const date = parseDateString(dateStr);
+        if (!date) return dateStr || '-';
+        return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function parseCurrency(value) {
+        const cleaned = String(value || '')
+            .replace(/[£,\s]/g, '')
+            .replace(/^\((.*)\)$/g, '-$1');
+        const number = Number.parseFloat(cleaned);
+        return Number.isFinite(number) ? number : 0;
+    }
+
+    function formatCurrency(value) {
+        return new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(Number(value) || 0);
+    }
+
+    function toNumber(value) {
+        if (value == null || value === '') return null;
+        const number = Number(String(value).replace(/[%£,]/g, '').trim());
+        return Number.isFinite(number) ? number : null;
+    }
+
+    function formatPercent(value, decimals = 1) {
+        if (!Number.isFinite(value)) return '-';
+        return `${value.toFixed(decimals)}%`;
+    }
+
+    function formatEdge(value) {
+        if (!Number.isFinite(value)) return '-';
+        const sign = value > 0 ? '+' : '';
+        return `${sign}${value.toFixed(1)} pts`;
+    }
+
+    function formatEv(value) {
+        if (!Number.isFinite(value)) return '-';
+        const sign = value > 0 ? '+' : '';
+        return `${sign}${(value * 100).toFixed(0)}% EV`;
+    }
+
+    function parseFractionalOdds(value) {
+        const raw = String(value || '').trim();
+        if (!raw || /^pending$/i.test(raw) || /^n\/a$/i.test(raw)) return null;
+        const cleaned = raw.replace(/[–—]/g, '-').replace(/\s+/g, '');
+        const match = cleaned.match(/^(\d+(?:\.\d+)?)[-/](\d+(?:\.\d+)?)$/);
+        if (!match) return null;
+        const numerator = Number.parseFloat(match[1]);
+        const denominator = Number.parseFloat(match[2]);
+        if (!Number.isFinite(numerator) || !Number.isFinite(denominator) || denominator <= 0) return null;
+        const fractional = numerator / denominator;
+        const decimal = fractional + 1;
+        return {
+            raw,
+            fractional,
+            decimal,
+            impliedPercent: 100 / decimal
+        };
+    }
+
+    function parsePlaceTerms(value, odds) {
+        const raw = String(value || '').trim();
+        if (!raw || /^n\/a$/i.test(raw) || !odds) return null;
+        const fractionMatch = raw.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/i);
+        const topMatch = raw.match(/top\s*(\d+)/i);
+        if (!fractionMatch) return null;
+        const numerator = Number.parseFloat(fractionMatch[1]);
+        const denominator = Number.parseFloat(fractionMatch[2]);
+        if (!Number.isFinite(numerator) || !Number.isFinite(denominator) || denominator <= 0) return null;
+        const placeFraction = numerator / denominator;
+        const placeDecimal = 1 + odds.fractional * placeFraction;
+        const topPlaces = topMatch ? Number.parseInt(topMatch[1], 10) : null;
+        return {
+            raw,
+            topPlaces,
+            placeFraction,
+            placeDecimal,
+            impliedPercent: 100 / placeDecimal
+        };
+    }
+
+    function getMarketInfo(row) {
+        const type = String(row.Type || '').trim();
+        const normalized = type.toLowerCase();
+        if (normalized === 'e/w' || normalized === 'each way') {
+            return {
+                kind: 'eachWay',
+                label: 'Each-way',
+                reason: ''
+            };
+        }
+        if (normalized === 'outright') {
+            return {
+                kind: 'outright',
+                label: 'Outright',
+                reason: ''
+            };
+        }
+        return null;
+    }
+
+    function isIncludedBet(row) {
+        const timing = String(row['Pre/Mid Tournament'] || '').trim().toLowerCase();
+        return timing === 'pre' && Boolean(getMarketInfo(row));
+    }
+
+    function estimatePlaceProbability(placeTerms, player, market) {
+        if (!placeTerms || !player || market.kind !== 'eachWay' || !Number.isFinite(player.pTop10)) {
+            return null;
+        }
+        const places = placeTerms.topPlaces;
+        if (!Number.isFinite(places) || places <= 0) {
+            return null;
+        }
+        if (places === 10) {
+            return {
+                percent: player.pTop10,
+                exact: true,
+                label: 'Top 10 model'
+            };
+        }
+        if (places < 10) {
+            return {
+                percent: Math.max(0, Math.min(player.pTop10, player.pTop10 * (places / 10))),
+                exact: false,
+                label: `Top ${places} estimate from Top 10`
+            };
+        }
+        return null;
+    }
+
+    function calculateValueEv(market, winEv, placeEv) {
+        if (market.kind === 'eachWay') {
+            if (Number.isFinite(winEv) && Number.isFinite(placeEv)) {
+                return (winEv + placeEv) / 2;
+            }
+            return null;
+        }
+        return Number.isFinite(winEv) ? winEv : null;
+    }
+
+    function tourCodeFromRow(row) {
+        const label = String(row['Tour/Majors'] || '').toLowerCase();
+        if (label.includes('dp') || label.includes('euro')) return 'euro';
+        if (label.includes('pga') || label.includes('major')) return 'pga';
+        return null;
+    }
+
+    function displayTour(row) {
+        return row['Tour/Majors'] || 'Unknown';
+    }
+
+    function getOutcomeStatus(row) {
+        const outcome = String(row.Outcome || '').trim().toLowerCase();
+        const result = String(row.Result || '').trim().toLowerCase();
+        if (outcome === 'pending' || result === 'pending') return 'pending';
+        return 'settled';
+    }
+
+    function isSameTournament(a, b) {
+        return tournamentMatchScore(a, b) >= 0.7;
+    }
+
+    function tournamentMatchScore(a, b) {
+        const left = normalizeText(a);
+        const right = normalizeText(b);
+        if (!left || !right) return 0;
+        if (left === right) return 1;
+        if (left.includes(right) || right.includes(left)) return 0.92;
+        const leftTokens = new Set(left.split(' ').filter(token => token.length > 1));
+        const rightTokens = new Set(right.split(' ').filter(token => token.length > 1));
+        if (!leftTokens.size || !rightTokens.size) return 0;
+        let overlap = 0;
+        leftTokens.forEach(token => {
+            if (rightTokens.has(token)) overlap += 1;
+        });
+        return overlap / Math.min(leftTokens.size, rightTokens.size);
+    }
+
+    function parseBuildTimestamp(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return NaN;
+        const direct = Date.parse(raw);
+        if (Number.isFinite(direct)) return direct;
+        const match = raw.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+        if (!match) return NaN;
+        const months = {
+            jan: 0,
+            feb: 1,
+            mar: 2,
+            apr: 3,
+            may: 4,
+            jun: 5,
+            jul: 6,
+            aug: 7,
+            sep: 8,
+            oct: 9,
+            nov: 10,
+            dec: 11
+        };
+        const month = months[match[2].toLowerCase()];
+        if (!Number.isFinite(month)) return NaN;
+        return Date.UTC(
+            Number.parseInt(match[3], 10),
+            month,
+            Number.parseInt(match[1], 10),
+            Number.parseInt(match[4], 10),
+            Number.parseInt(match[5], 10),
+            Number.parseInt(match[6] || '0', 10)
+        );
+    }
+
+    function buildPlayerMap(leaderboard) {
+        const map = new Map();
+        (Array.isArray(leaderboard) ? leaderboard : []).forEach((row) => {
+            const key = normalizePlayerName(row.player_name || row.Player || row.Name);
+            if (!key || map.has(key)) return;
+            map.set(key, {
+                playerName: row.player_name || row.Player || row.Name,
+                rank: toNumber(row.rank || row.Rank),
+                pWin: toNumber(row['p_win_%'] ?? row.p_win ?? row.pWin),
+                pTop10: toNumber(row['p_top10_%'] ?? row.p_top10 ?? row.pTop10),
+                pMakeCut: toNumber(row['p_mc_%'] ?? row.p_mc ?? row.pMakeCut),
+                courseFit: toNumber(row.course_fit_score)
+            });
+        });
+        return map;
+    }
+
+    function modelLooksCurrent(localModel, remoteModel) {
+        if (!remoteModel || remoteModel.error) return true;
+        if (!localModel || localModel.error) return false;
+        if (normalizeText(localModel.eventName) === normalizeText(remoteModel.eventName)) return true;
+        if (normalizeText(localModel.eventName) === 'no event') return false;
+        if (!localModel.leaderboard.length && remoteModel.leaderboard.length) return false;
+        const localDate = parseBuildTimestamp(localModel.generatedUtc);
+        const remoteDate = parseBuildTimestamp(remoteModel.generatedUtc);
+        if (Number.isFinite(localDate) && Number.isFinite(remoteDate)) {
+            return localDate >= remoteDate;
+        }
+        return true;
+    }
+
+    async function loadModelSource(tour, options = {}) {
+        try {
+            const meta = await fetchJson(`${tour}/meta.json`, options);
+            const leaderboardPath = meta?.resources?.leaderboard || `${tour}/leaderboard.json`;
+            const leaderboard = await fetchJson(leaderboardPath, options);
+            return {
+                tour,
+                eventName: meta?.event_name || 'Unknown event',
+                eventId: meta?.event_id || '',
+                generatedUtc: meta?.generated_utc || '',
+                leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
+                playerMap: buildPlayerMap(leaderboard),
+                source: options.remote ? 'published site' : 'local files',
+                remote: Boolean(options.remote)
+            };
+        } catch (error) {
+            return {
+                tour,
+                eventName: 'Unavailable',
+                eventId: '',
+                generatedUtc: '',
+                leaderboard: [],
+                playerMap: new Map(),
+                source: options.remote ? 'published site' : 'local files',
+                remote: Boolean(options.remote),
+                error
+            };
+        }
+    }
+
+    async function loadTourModel(tour) {
+        const localModel = await loadModelSource(tour);
+        if (!isLocalPreview()) {
+            return localModel;
+        }
+        const remoteModel = await loadModelSource(tour, { remote: true });
+        return modelLooksCurrent(localModel, remoteModel) ? localModel : remoteModel;
+    }
+
+    async function loadArchiveModels(year = '2026') {
+        try {
+            const index = await fetchJson('archive/index.json');
+            const events = (Array.isArray(index) ? index : [])
+                .filter(event => String(event.year) === String(year) && event.slug);
+            const models = await Promise.all(events.map(async (event) => {
+                const basePath = `archive/${event.year}/${event.slug}`;
+                try {
+                    const leaderboard = await fetchJson(`${basePath}/leaderboard.json`);
+                    return {
+                        tour: event.tour,
+                        eventName: event.event_name || event.slug,
+                        eventId: event.event_id || '',
+                        generatedUtc: event.archived_at || '',
+                        leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
+                        playerMap: buildPlayerMap(leaderboard),
+                        source: '2026 archive',
+                        remote: false,
+                        archive: true,
+                        year: String(event.year),
+                        slug: event.slug
+                    };
+                } catch (error) {
+                    return null;
+                }
+            }));
+            return models.filter(Boolean);
+        } catch (error) {
+            console.warn(error);
+            return [];
+        }
+    }
+
+    function findModelForBet(row) {
+        const preferredTour = tourCodeFromRow(row);
+        const tournament = row.Tournament || '';
+        const playerKey = normalizePlayerName(row.Player);
+        const candidates = [];
+        const currentModels = [];
+        if (preferredTour && state.models[preferredTour]) currentModels.push(state.models[preferredTour]);
+        Object.values(state.models).forEach((model) => {
+            if (!currentModels.includes(model)) currentModels.push(model);
+        });
+        const archiveModels = state.archiveModels
+            .filter(model => !preferredTour || String(model.tour).toLowerCase() === preferredTour);
+        if (getOutcomeStatus(row) === 'pending') {
+            candidates.push(...currentModels, ...archiveModels);
+        } else {
+            candidates.push(...archiveModels, ...currentModels);
+        }
+
+        let best = { score: 0, model: null };
+        for (const model of candidates) {
+            if (!model || model.error) continue;
+            const score = tournamentMatchScore(tournament, model.eventName);
+            if (score > best.score) {
+                best = { score, model };
+            }
+        }
+        if (best.score < 0.7 || !best.model) {
+            return { model: null, player: null };
+        }
+        return {
+            model: best.model,
+            player: best.model.playerMap.get(playerKey) || null
+        };
+    }
+
+    function classifyValue(row) {
+        if (!row.model) return { label: 'No model match', className: 'badge--muted' };
+        if (!row.player) return { label: 'Player not found', className: 'badge--muted' };
+        if (!row.odds) return { label: 'No odds', className: 'badge--muted' };
+        if (row.market.kind === 'eachWay' && !row.placeProjection) return { label: 'Place estimate missing', className: 'badge--muted' };
+        if (Number.isFinite(row.valueEv) && row.valueEv >= 0.15) return { label: 'Strong value', className: 'badge--strong' };
+        if (Number.isFinite(row.valueEv) && row.valueEv >= 0) return { label: 'Positive', className: 'badge--positive' };
+        if (Number.isFinite(row.valueEv) && row.valueEv >= -0.1) return { label: 'Close', className: 'badge--close' };
+        return { label: 'Negative', className: 'badge--negative' };
+    }
+
+    function enrichBet(row, index) {
+        const odds = parseFractionalOdds(row.Price);
+        const placeTerms = parsePlaceTerms(row['Place Terms'], odds);
+        const market = getMarketInfo(row);
+        const match = findModelForBet(row);
+        const pWin = match.player?.pWin;
+        const pTop10 = match.player?.pTop10;
+        const winEdge = odds && Number.isFinite(pWin) ? pWin - odds.impliedPercent : null;
+        const winEv = odds && Number.isFinite(pWin) ? (odds.decimal * (pWin / 100)) - 1 : null;
+        const placeProjection = estimatePlaceProbability(placeTerms, match.player, market);
+        const placeEdge = placeTerms && placeProjection
+            ? placeProjection.percent - placeTerms.impliedPercent
+            : null;
+        const placeEv = placeTerms && placeProjection
+            ? (placeTerms.placeDecimal * (placeProjection.percent / 100)) - 1
+            : null;
+        const valueEv = calculateValueEv(market, winEv, placeEv);
+        const betYear = getYearFromDateString(row.Date);
+        const status = getOutcomeStatus(row);
+        const isArchiveRow = Boolean(match.model?.archive) || (status === 'settled' && betYear === '2026');
+        const enriched = {
+            index,
+            raw: row,
+            date: parseDateString(row.Date),
+            betYear,
+            tour: displayTour(row),
+            status,
+            stake: parseCurrency(row.Stake),
+            market,
+            odds,
+            placeTerms,
+            placeProjection,
+            model: match.model,
+            player: match.player,
+            pWin,
+            pTop10,
+            winEdge,
+            winEv,
+            placeEdge,
+            placeEv,
+            valueEv,
+            bestEv: valueEv,
+            sourceType: isArchiveRow ? 'archive' : 'current',
+            sourceLabel: isArchiveRow ? '2026 archive' : 'Current week'
+        };
+        enriched.value = classifyValue(enriched);
+        return enriched;
+    }
+
+    function populateFilters() {
+        const tourSelect = document.getElementById('tourFilter');
+        const tournamentSelect = document.getElementById('tournamentFilter');
+        const statusValue = document.getElementById('statusFilter').value || 'pending';
+        const sourceValue = document.getElementById('sourceFilter').value || 'current';
+        const currentTour = tourSelect.value || 'all';
+        const currentTournament = tournamentSelect.value || 'all';
+
+        const statusFilteredRows = state.enriched.filter(row => {
+            const statusMatches = statusValue === 'all' || row.status === statusValue;
+            return statusMatches && sourceMatches(row, sourceValue);
+        });
+        const tours = Array.from(new Set(statusFilteredRows.map(row => row.tour).filter(Boolean))).sort((a, b) => {
+            const ai = TOUR_ORDER.indexOf(a);
+            const bi = TOUR_ORDER.indexOf(b);
+            if (ai !== -1 || bi !== -1) return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+            return a.localeCompare(b);
+        });
+        tourSelect.innerHTML = '<option value="all">All tours</option>' + tours.map(tour => `<option value="${escapeHtml(tour)}">${escapeHtml(tour)}</option>`).join('');
+        tourSelect.value = tours.includes(currentTour) ? currentTour : 'all';
+
+        const filteredByTour = statusFilteredRows.filter(row => tourSelect.value === 'all' || row.tour === tourSelect.value);
+        const tournaments = Array.from(new Set(filteredByTour.map(row => row.raw.Tournament).filter(Boolean))).sort((a, b) => a.localeCompare(b));
+        tournamentSelect.innerHTML = '<option value="all">All tournaments</option>' + tournaments.map(tournament => `<option value="${escapeHtml(tournament)}">${escapeHtml(tournament)}</option>`).join('');
+        tournamentSelect.value = tournaments.includes(currentTournament) ? currentTournament : 'all';
+    }
+
+    function updateFiltersFromControls() {
+        state.filters.status = document.getElementById('statusFilter').value;
+        state.filters.source = document.getElementById('sourceFilter').value;
+        state.filters.tour = document.getElementById('tourFilter').value;
+        state.filters.tournament = document.getElementById('tournamentFilter').value;
+        state.filters.sort = document.getElementById('sortFilter').value;
+        state.filters.search = document.getElementById('searchInput').value.trim().toLowerCase();
+        state.filters.matchedOnly = document.getElementById('matchedOnly').checked;
+    }
+
+    function sourceMatches(row, source = state.filters.source) {
+        if (source === 'current') return row.sourceType === 'current';
+        if (source === 'archive2026') return row.sourceType === 'archive' && row.betYear === '2026';
+        if (source === 'all2026') return row.betYear === '2026';
+        return true;
+    }
+
+    function rowMatchesFilters(row) {
+        const filters = state.filters;
+        if (!sourceMatches(row, filters.source)) return false;
+        if (filters.status !== 'all' && row.status !== filters.status) return false;
+        if (filters.tour !== 'all' && row.tour !== filters.tour) return false;
+        if (filters.tournament !== 'all' && row.raw.Tournament !== filters.tournament) return false;
+        if (filters.matchedOnly && !row.player) return false;
+        if (filters.search) {
+            const haystack = [
+                row.raw.Player,
+                row.raw.Tournament,
+                row.raw.Bookmaker,
+                row.raw.Type,
+                row.tour
+            ].join(' ').toLowerCase();
+            if (!haystack.includes(filters.search)) return false;
+        }
+        return true;
+    }
+
+    function sortRows(rows) {
+        const sort = state.filters.sort;
+        const copy = rows.slice();
+        copy.sort((a, b) => {
+            if (sort === 'date') return (b.date?.getTime() || 0) - (a.date?.getTime() || 0);
+            if (sort === 'stake') return (b.stake || 0) - (a.stake || 0);
+            if (sort === 'tournament') {
+                const tournamentCompare = String(a.raw.Tournament || '').localeCompare(String(b.raw.Tournament || ''));
+                if (tournamentCompare !== 0) return tournamentCompare;
+                return String(a.raw.Player || '').localeCompare(String(b.raw.Player || ''));
+            }
+            const aValue = Number.isFinite(a.valueEv) ? a.valueEv : Number.NEGATIVE_INFINITY;
+            const bValue = Number.isFinite(b.valueEv) ? b.valueEv : Number.NEGATIVE_INFINITY;
+            if (bValue !== aValue) return bValue - aValue;
+            return (b.date?.getTime() || 0) - (a.date?.getTime() || 0);
+        });
+        return copy;
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function bettingHistoryUrl(filters = {}) {
+        const params = new URLSearchParams();
+        Object.entries(filters).forEach(([key, value]) => {
+            const text = String(value || '').trim();
+            if (text) params.set(key, text);
+        });
+        const query = params.toString();
+        return `spreadsheet.html${query ? `?${query}` : ''}`;
+    }
+
+    function historyLink(label, filters, ariaLabel) {
+        const text = String(label || '').trim();
+        if (!text) return '-';
+        return `<a class="history-link" href="${escapeHtml(bettingHistoryUrl(filters))}" aria-label="${escapeHtml(ariaLabel || `View betting history for ${text}`)}">${escapeHtml(text)}</a>`;
+    }
+
+    function profitLossDisplay(row) {
+        if (row.status === 'pending') {
+            return {
+                text: 'Pending',
+                className: 'pnl-muted'
+            };
+        }
+        const raw = String(row.raw['Profit/Loss'] || '').trim();
+        const value = parseCurrency(raw);
+        return {
+            text: raw || formatCurrency(value),
+            className: value > 0 ? 'pnl-positive' : value < 0 ? 'pnl-negative' : 'pnl-muted'
+        };
+    }
+
+    function renderSourcePanel() {
+        const panel = document.getElementById('sourcePanel');
+        const modelItems = ['pga', 'euro'].map((tour) => {
+            const model = state.models[tour];
+            const title = tour === 'pga' ? 'PGA model' : 'DP World model';
+            if (!model || model.error) {
+                return `
+                    <div class="source-item">
+                        <span class="source-title">${title}</span>
+                        <span class="badge badge--negative">Unavailable</span>
+                    </div>
+                `;
+            }
+            const sourceClass = model.remote ? 'badge--close' : 'badge--positive';
+            const generated = model.generatedUtc ? `Built ${escapeHtml(model.generatedUtc)}` : 'Build time unavailable';
+            return `
+                <div class="source-item">
+                    <span class="source-title">${title}</span>
+                    <span>${escapeHtml(model.eventName)}</span>
+                    <span class="badge ${sourceClass}">${escapeHtml(model.source)}</span>
+                    <span class="source-meta">${generated}</span>
+                </div>
+            `;
+        }).join('');
+        const archiveItem = `
+            <div class="source-item">
+                <span class="source-title">2026 value archive</span>
+                <span>${state.archiveModels.length} archived events loaded</span>
+                <span class="badge badge--positive">same page</span>
+            </div>
+        `;
+        panel.innerHTML = modelItems + archiveItem;
+    }
+
+    function renderSummary(rows) {
+        const matched = rows.filter(row => row.player).length;
+        const positive = rows.filter(row => Number.isFinite(row.valueEv) && row.valueEv >= 0).length;
+        const stake = rows.reduce((total, row) => total + row.stake, 0);
+        const best = rows.find(row => Number.isFinite(row.valueEv));
+
+        document.getElementById('metricRows').textContent = String(rows.length);
+        document.getElementById('metricRowsNote').textContent = state.filters.status === 'pending' ? 'Pending bets' : 'Visible bets';
+        document.getElementById('metricMatched').textContent = String(matched);
+        document.getElementById('metricPositive').textContent = String(positive);
+        document.getElementById('metricStake').textContent = formatCurrency(stake);
+        document.getElementById('metricStakeNote').textContent = state.filters.status === 'pending' ? 'Pending stake' : 'Visible stake';
+        document.getElementById('metricBest').textContent = best ? formatEv(best.valueEv) : '-';
+        document.getElementById('metricBestNote').textContent = best ? best.raw.Player : '-';
+    }
+
+    function pctCell(value) {
+        return `<td class="num">${formatPercent(value)}</td>`;
+    }
+
+    function edgeCell(value) {
+        const className = Number.isFinite(value) ? (value >= 0 ? 'edge-positive' : 'edge-negative') : '';
+        return `<td class="num ${className}">${formatEdge(value)}</td>`;
+    }
+
+    function renderRows(rows) {
+        const tbody = document.getElementById('valueRows');
+        document.getElementById('tableNote').textContent = `${rows.length} row${rows.length === 1 ? '' : 's'}`;
+        if (!rows.length) {
+            tbody.innerHTML = '<tr><td colspan="9" class="empty-state">No bets match the current filters.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = rows.map((row) => {
+            const playerName = row.raw.Player || '-';
+            const tournamentName = row.raw.Tournament || '-';
+            const playerSub = row.player
+                ? `Model rank #${row.player.rank || '-'}`
+                : row.model
+                    ? `Model field: ${escapeHtml(row.model.eventName)}`
+                    : 'No matching active event';
+            let placeText = '-';
+            if (row.placeTerms && row.placeProjection) {
+                placeText = `${formatPercent(row.placeProjection.percent)} model vs ${formatPercent(row.placeTerms.impliedPercent)} implied`;
+            } else if (row.placeTerms) {
+                placeText = `No place estimate for ${escapeHtml(row.placeTerms.raw)}`;
+            }
+            const valueNote = Number.isFinite(row.valueEv)
+                ? `${formatEv(row.valueEv)} | ${row.market.label}`
+                : 'EV unavailable';
+            const placeEdgeClass = Number.isFinite(row.placeEdge)
+                ? (row.placeEdge >= 0 ? 'edge-positive' : 'edge-negative')
+                : '';
+            const placeDetail = Number.isFinite(row.placeEdge)
+                ? row.placeProjection.label
+                : placeText;
+            const pnl = profitLossDisplay(row);
+            const actualResult = row.raw.Result || row.raw.Outcome || '-';
+            return `
+                <tr>
+                    <td data-label="Date">${formatDate(row.raw.Date)}</td>
+                    <td data-label="Player" class="player-cell">
+                        <span class="player-name">${historyLink(playerName, { player: playerName }, `View betting history for ${playerName}`)}</span>
+                        <span class="player-sub">${playerSub}</span>
+                    </td>
+                    <td data-label="Tournament">
+                        <strong>${historyLink(tournamentName, { tournament: tournamentName }, `View betting history for ${tournamentName}`)}</strong><br>
+                        <span class="player-sub">${escapeHtml(row.tour)} | ${escapeHtml(row.raw.Bookmaker || '-')} | ${escapeHtml(row.sourceLabel)}</span>
+                    </td>
+                    <td data-label="Bet">
+                        <span class="cell-stack">
+                            <span class="cell-main">${escapeHtml(row.raw.Type || '-')}</span>
+                            <span class="cell-pair"><span>Odds</span><span>${escapeHtml(row.raw.Price || '-')}</span></span>
+                            <span class="cell-pair"><span>Stake</span><span>${formatCurrency(row.stake)}</span></span>
+                            <span class="cell-muted">${escapeHtml(row.raw['Place Terms'] || '-')}</span>
+                        </span>
+                    </td>
+                    <td data-label="Win">
+                        <span class="cell-stack">
+                            <span class="cell-pair"><span>Model</span><span>${formatPercent(row.pWin)}</span></span>
+                            <span class="cell-pair"><span>Implied</span><span>${formatPercent(row.odds?.impliedPercent)}</span></span>
+                            <span class="cell-pair ${Number.isFinite(row.winEdge) ? (row.winEdge >= 0 ? 'edge-positive' : 'edge-negative') : ''}"><span>Edge</span><span>${formatEdge(row.winEdge)}</span></span>
+                        </span>
+                    </td>
+                    <td data-label="Place" class="${placeEdgeClass}">
+                        <span class="cell-stack">
+                            <span class="cell-pair"><span>Top 10</span><span>${formatPercent(row.pTop10)}</span></span>
+                            <span class="cell-pair"><span>Edge</span><span>${Number.isFinite(row.placeEdge) ? formatEdge(row.placeEdge) : '-'}</span></span>
+                            <span class="cell-muted">${escapeHtml(placeDetail)}</span>
+                        </span>
+                    </td>
+                    <td data-label="Value"><span class="badge ${row.value.className}">${row.value.label}</span><br><span class="player-sub">${escapeHtml(valueNote)}</span></td>
+                    <td data-label="Actual Result"><strong>${escapeHtml(actualResult)}</strong><br><span class="player-sub">${escapeHtml(row.raw.Outcome || '-')}</span></td>
+                    <td data-label="P/L" class="num ${pnl.className}">${escapeHtml(pnl.text)}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    function renderWarnings() {
+        const messageArea = document.getElementById('messageArea');
+        const remoteModels = Object.values(state.models).filter(model => model?.remote);
+        if (!remoteModels.length) {
+            messageArea.innerHTML = '';
+            return;
+        }
+        messageArea.innerHTML = `
+            <div class="error-state">
+                Local model files are older than the published site for ${remoteModels.map(model => escapeHtml(model.tour.toUpperCase())).join(', ')}.
+                This localhost preview is using published model JSON for those tours.
+            </div>
+        `;
+    }
+
+    function render() {
+        updateFiltersFromControls();
+        populateFilters();
+        updateFiltersFromControls();
+        const visible = sortRows(state.enriched.filter(rowMatchesFilters));
+        renderSourcePanel();
+        renderWarnings();
+        renderSummary(visible);
+        renderRows(visible);
+    }
+
+    function bindControls() {
+        ['statusFilter', 'sourceFilter', 'tourFilter', 'tournamentFilter', 'sortFilter', 'searchInput', 'matchedOnly'].forEach((id) => {
+            const element = document.getElementById(id);
+            element.addEventListener(id === 'searchInput' ? 'input' : 'change', () => {
+                if (id === 'sourceFilter') {
+                    const statusFilter = document.getElementById('statusFilter');
+                    if (element.value !== 'current' && statusFilter.value === 'pending') {
+                        statusFilter.value = 'all';
+                    }
+                }
+                if (id === 'tourFilter') {
+                    document.getElementById('tournamentFilter').value = 'all';
+                }
+                render();
+            });
+        });
+    }
+
+    async function init() {
+        try {
+            bindControls();
+            const [bets, pgaModel, euroModel, archiveModels] = await Promise.all([
+                BettingData.load(),
+                loadTourModel('pga'),
+                loadTourModel('euro'),
+                loadArchiveModels('2026')
+            ]);
+            state.bets = Array.isArray(bets) ? bets.filter(row => row && row.Player && row.Tournament && isIncludedBet(row)) : [];
+            state.models = { pga: pgaModel, euro: euroModel };
+            state.archiveModels = archiveModels;
+            state.enriched = state.bets.map(enrichBet);
+            render();
+        } catch (error) {
+            document.getElementById('messageArea').innerHTML = `<div class="error-state">${escapeHtml(error.message || error)}</div>`;
+            document.getElementById('valueRows').innerHTML = '<tr><td colspan="9" class="empty-state">Unable to load odds value data.</td></tr>';
+            document.getElementById('tableNote').textContent = 'Error';
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>
