@@ -2,6 +2,29 @@
 
 This is a backlog for improvements to the golf model site and prediction pipeline. The aim is to separate quick wins from bigger model-quality work so ideas do not get lost between weekly runs.
 
+## Completed
+
+### Odds And Value View
+
+Completed on 2026-05-19.
+
+Implemented in `web/odds_value.html` and linked from the Betting History menu.
+
+Current features:
+
+- Loads bets from `web/spreadsheet_data.csv`.
+- Includes only pre-tournament `E/W` and `Outright` bets.
+- Joins bets to current PGA/DP World model leaderboards.
+- Loads 2026 archived prediction leaderboards from `web/archive/index.json`.
+- Adds a source filter for current week, 2026 archive, and all 2026 bets.
+- Calculates bookmaker implied probability, model edge, win EV, place EV, and combined each-way EV.
+- Uses visible value labels with documented thresholds.
+- Links player names and tournament names back to filtered betting history.
+- Includes actual result and profit/loss columns.
+- Links to the prediction accuracy dashboard.
+
+Future follow-ups for this view belong under the existing `Closing-Line Value Tracking` item unless they require a separate page.
+
 ## Do Soon
 
 ### Site Integrity Check
@@ -48,20 +71,18 @@ Potential labels:
 
 This would make archive problems easier to see from the page itself.
 
-### Odds And Value View
+### Homepage Recent Improvements
 
-Connect model probabilities to the manually maintained betting data in `web/spreadsheet_data.csv`.
+Add a compact recent-improvements section to the homepage showing the last 3-4 meaningful site/model changes.
 
-Show:
+Useful fields:
 
-- Model probability.
-- Bookmaker implied probability.
-- Estimated edge.
-- Bet/result.
-- ROI.
-- Optional stake band or confidence label.
+- Date.
+- Short title.
+- One-line description.
+- Optional link to the changed page or relevant dashboard.
 
-This turns the model output into a clearer decision view.
+The section should be manually curated or generated from a small JSON file rather than inferred from every Git commit, so routine data refreshes and workflow commits do not create noise.
 
 ## Do Next
 
@@ -207,7 +228,6 @@ This is optional because the site integrity check and health page should cover m
 1. Add `scripts/check_site_integrity.py`.
 2. Add a basic model health page using the integrity-check output.
 3. Improve archive labels so incomplete events are visible.
-4. Build the odds/value page.
-5. Add calibration and backtest dashboards.
-6. Add player drilldowns and course-fit confidence.
-7. Add weather sensitivity and variant tracking.
+4. Add calibration and backtest dashboards.
+5. Add player drilldowns and course-fit confidence.
+6. Add weather sensitivity and variant tracking.

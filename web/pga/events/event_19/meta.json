@@ -1,0 +1,38 @@
+{
+  "tour": "pga",
+  "event_id": "19",
+  "event_name": "THE CJ CUP Byron Nelson",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-05-21",
+  "start_date": "2026-05-21",
+  "generated_utc": "19-May-2026 14:47:28",
+  "source_csv": "data/preds/pga/event_19_the_cj_cup_byron_nelson_2026-05-19_leaderboard.csv",
+  "has_predictions": true,
+  "tee_times_available": false,
+  "resources": {
+    "leaderboard": "pga/events/event_19/leaderboard.json",
+    "summary": "pga/events/event_19/summary.json",
+    "meta": "pga/events/event_19/meta.json",
+    "downloads_csv": "pga/downloads/event_19_the_cj_cup_byron_nelson_2026-05-19_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_19_the_cj_cup_byron_nelson_2026-05-19_leaderboard.html",
+    "weather_meta": "pga/events/event_19/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_19/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_19/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_19/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_19/course_history_summary.json",
+    "tournament_summary": "pga/events/event_19/tournament_summary.json",
+    "field_teetimes": "pga/events/event_19/field_teetimes.csv",
+    "schedule": "pga/schedule.json",
+    "initial_snapshot": "pga/initial/2026/event_19/meta.json",
+    "initial_leaderboard": "pga/initial/2026/event_19/leaderboard.json",
+    "initial_downloads_csv": "pga/initial/2026/event_19/leaderboard.csv",
+    "initial_downloads_html": "pga/initial/2026/event_19/leaderboard.html"
+  },
+  "initial_snapshot": {
+    "snapshot_type": "initial",
+    "snapshot_created_utc": "2026-05-19T14:47:28Z",
+    "meta": "pga/initial/2026/event_19/meta.json",
+    "leaderboard": "pga/initial/2026/event_19/leaderboard.json"
+  }
+}

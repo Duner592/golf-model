@@ -1,56 +1,58 @@
 {
   "betting_data": {
-    "last_modified": "2026-05-15T08:04:22Z",
+    "last_modified": "2026-05-19T14:45:55Z",
     "source": "web/spreadsheet_data.csv",
     "timestamp_source": "git_commit"
   },
   "model_runs": {
     "euro": {
-      "artifact_generated_utc": "11-May-2026 13:50:17",
-      "event_id": "0",
-      "event_ids": [],
-      "event_name": "No Event",
+      "artifact_generated_utc": "19-May-2026 14:48:06",
+      "event_id": "2026119",
+      "event_ids": [
+        "2026119"
+      ],
+      "event_name": "Soudal Open",
       "events": [
         {
-          "event_id": "0",
-          "event_name": "No Event",
-          "generated_utc": "11-May-2026 13:50:17",
-          "has_predictions": false,
-          "start_date": null
+          "event_id": "2026119",
+          "event_name": "Soudal Open",
+          "generated_utc": "19-May-2026 14:48:06",
+          "has_predictions": true,
+          "start_date": "2026-05-21"
         }
       ],
-      "last_run_utc": null,
+      "last_run_utc": "2026-05-19T14:48:06Z",
       "tour": "euro",
-      "workflow": "initial-assets"
+      "workflow": "scheduled-model"
     },
     "pga": {
-      "artifact_generated_utc": "13-May-2026 10:21:53",
-      "event_id": "33",
+      "artifact_generated_utc": "19-May-2026 14:47:28",
+      "event_id": "19",
       "event_ids": [
-        "33"
+        "19"
       ],
-      "event_name": "PGA Championship",
+      "event_name": "THE CJ CUP Byron Nelson",
       "events": [
         {
-          "event_id": "33",
-          "event_name": "PGA Championship",
-          "generated_utc": "13-May-2026 10:21:53",
+          "event_id": "19",
+          "event_name": "THE CJ CUP Byron Nelson",
+          "generated_utc": "19-May-2026 14:47:28",
           "has_predictions": true,
-          "start_date": "2026-05-14"
+          "start_date": "2026-05-21"
         }
       ],
-      "last_run_utc": null,
+      "last_run_utc": "2026-05-19T14:47:28Z",
       "tour": "pga",
-      "workflow": "initial-assets"
+      "workflow": "scheduled-model"
     }
   },
   "schedule": {
     "event_count": 119,
-    "last_refreshed_utc": "2026-05-15T10:43:40Z",
+    "last_refreshed_utc": "2026-05-19T14:47:11Z",
     "season": 2026,
     "source": "DataGolf",
     "tour": "all",
-    "workflow": "initial-assets"
+    "workflow": "scheduled-model"
   },
-  "updated_at_utc": "2026-05-15T11:40:12Z"
+  "updated_at_utc": "2026-05-19T14:48:06Z"
 }

@@ -1,0 +1,38 @@
+{
+  "tour": "euro",
+  "event_id": "2026119",
+  "event_name": "Soudal Open",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-05-21",
+  "start_date": "2026-05-21",
+  "generated_utc": "19-May-2026 14:48:06",
+  "source_csv": "data/preds/euro/event_2026119_soudal_open_2026-05-19_leaderboard.csv",
+  "has_predictions": true,
+  "tee_times_available": true,
+  "resources": {
+    "leaderboard": "euro/events/event_2026119/leaderboard.json",
+    "summary": "euro/events/event_2026119/summary.json",
+    "meta": "euro/events/event_2026119/meta.json",
+    "downloads_csv": "euro/downloads/event_2026119_soudal_open_2026-05-19_leaderboard.csv",
+    "downloads_html": "euro/downloads/event_2026119_soudal_open_2026-05-19_leaderboard.html",
+    "weather_meta": "euro/events/event_2026119/weather_meta.json",
+    "weather_round_neutral": "euro/events/event_2026119/weather_round_neutral.json",
+    "weather_round_wave": "euro/events/event_2026119/weather_round_wave.json",
+    "course_fit_weights": "euro/events/event_2026119/course_fit_weights.json",
+    "course_history_summary": "euro/events/event_2026119/course_history_summary.json",
+    "tournament_summary": "euro/events/event_2026119/tournament_summary.json",
+    "field_teetimes": "euro/events/event_2026119/field_teetimes.csv",
+    "schedule": "euro/schedule.json",
+    "initial_snapshot": "euro/initial/2026/event_2026119/meta.json",
+    "initial_leaderboard": "euro/initial/2026/event_2026119/leaderboard.json",
+    "initial_downloads_csv": "euro/initial/2026/event_2026119/leaderboard.csv",
+    "initial_downloads_html": "euro/initial/2026/event_2026119/leaderboard.html"
+  },
+  "initial_snapshot": {
+    "snapshot_type": "initial",
+    "snapshot_created_utc": "2026-05-19T14:48:06Z",
+    "meta": "euro/initial/2026/event_2026119/meta.json",
+    "leaderboard": "euro/initial/2026/event_2026119/leaderboard.json"
+  }
+}

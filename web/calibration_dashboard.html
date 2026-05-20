@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Golf Model - Calibration Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js?v=20260515-status2"></script>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
+        h1 { font-size: 1.6rem; margin: 0 0 0.35rem; }
+        h2 { font-size: 1.2rem; margin: 0 0 1.2rem; color: #666; }
+        .muted { color: #555; font-size: 0.95rem; }
+        .card { border: 1px solid #e2e2e2; border-radius: 8px; padding: 0.9rem 1.1rem; background: #fff; margin-bottom: 1.5rem; }
+        .title-row { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+        .title-row h1 { margin-bottom: 0; }
+        .beta-badge { display: inline-flex; align-items: center; min-height: 1.65rem; padding: 0.2rem 0.65rem; border: 1px solid #b7dbc3; border-radius: 999px; background: #e8f7ed; color: #176336; font-size: 0.78rem; font-weight: 800; letter-spacing: 0; text-transform: uppercase; }
+        .initiative-note { border-color: #b7dbc3; background: #f4fbf6; }
+        .initiative-note strong { color: #176336; }
+        .explainer { margin-bottom: 1.5rem; padding: 0.9rem 1.1rem; background: #fff; border: 1px solid rgba(29, 124, 66, 0.16); border-radius: 8px; box-shadow: 0 10px 24px -20px rgba(22, 79, 46, 0.35); }
+        .explainer summary { cursor: pointer; color: #176336; font-weight: 800; }
+        .explainer-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.85rem 1.1rem; margin-top: 0.9rem; color: #415148; line-height: 1.5; }
+        .explainer-body p { margin: 0; }
+        .explainer-body strong { color: #173d28; }
+        .dashboard { margin: 2rem auto; width: min(95vw, 1180px); }
+        .dashboard-header { text-align: center; color: #2e8b57; margin-bottom: 0.5rem; }
+        .dashboard-description { text-align: center; color: #555; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .controls { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin: 0 auto 1.25rem; }
+        .control { display: flex; flex-direction: column; gap: 0.25rem; min-width: 150px; color: #375044; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        .control select { min-height: 2.35rem; padding: 0.45rem 0.65rem; border: 1px solid #cdd8d1; border-radius: 6px; background: #fff; color: #17231b; font: inherit; text-transform: none; }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; width: min(100%, 960px); margin: 0 auto 1.5rem; }
+        .metric-tile { padding: 0.75rem 0.85rem; border: 1px solid rgba(29, 124, 66, 0.16); border-radius: 8px; background: #fff; box-shadow: 0 10px 24px -22px rgba(22, 79, 46, 0.35); }
+        .metric-label { display: block; margin-bottom: 0.25rem; color: #637369; font-size: 0.72rem; font-weight: 750; text-transform: uppercase; }
+        .metric-value { display: block; color: #17231b; font-size: 1.25rem; font-weight: 800; line-height: 1.1; }
+        .metric-note { display: block; margin-top: 0.2rem; color: #6b7a70; font-size: 0.78rem; }
+        .panel { border: 1px solid #d6ded9; border-radius: 8px; padding: 1.1rem 1.25rem; background: #f7f9fb; box-shadow: 0 12px 36px -24px rgba(0,0,0,0.35); margin-bottom: 1.5rem; }
+        .panel-title { margin: 0; font-size: 1.05rem; font-weight: 700; color: #134e4a; }
+        .panel-description { margin: 0 0 0.75rem; color: #444; font-size: 0.95rem; line-height: 1.45; }
+        .chart-canvas { position: relative; height: clamp(380px, 55vh, 620px); }
+        .chart-canvas canvas { width: 100% !important; height: 100% !important; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th, td { padding: 0.55rem 0.65rem; border-bottom: 1px solid #e7eee9; text-align: right; font-variant-numeric: tabular-nums; }
+        th:first-child, td:first-child { text-align: left; }
+        th { background: #f6faf7; color: #375044; font-size: 0.75rem; text-transform: uppercase; }
+        .gap-good { color: #176336; font-weight: 750; }
+        .gap-watch { color: #75530d; font-weight: 750; }
+        .gap-bad { color: #8b2417; font-weight: 750; }
+        .status-message { text-align: center; margin: 2rem 0; font-size: 0.96rem; }
+        .logo { position: absolute; top: 8px; right: 16px; height: 80px; width: auto; z-index: 1002; }
+
+        @media (max-width: 768px) {
+            .logo { height: 60px; top: 5px; right: 5px; }
+            .explainer-body { grid-template-columns: 1fr; }
+            .chart-canvas { height: 420px; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container"></div>
+<div class="menu" id="menu"></div>
+
+<p><a href="archive_accuracy.html">← Back to Prediction Accuracy</a></p>
+<div class="title-row">
+    <h1>Calibration Dashboard</h1>
+    <span class="beta-badge">Beta</span>
+</div>
+<h2>Do model probabilities happen as often as forecast?</h2>
+
+<div class="card initiative-note">
+    <p class="muted"><strong>New for the 2026 season.</strong> Calibration tracking is a beta initiative that started with the beginning of the 2026 archive. Treat the early read as directional while more completed tournaments build the sample.</p>
+</div>
+
+<div class="card">
+    <p class="muted">This dashboard uses completed 2026 archive events and compares player-level model probabilities with actual outcomes. Lower Brier score and log loss are better. A positive bucket gap means the outcome happened more often than the model predicted.</p>
+</div>
+
+<details class="explainer" open>
+    <summary>How this page works</summary>
+    <div class="explainer-body">
+        <p><strong>What it is checking:</strong> every player prediction from completed 2026 archive events is matched to the actual result. The page asks whether probabilities like 5%, 20%, or 70% happen roughly that often.</p>
+        <p><strong>Metric selector:</strong> Win checks tournament winners, Top 10 checks actual top-10 finishes, and Make Cut checks whether the player made the cut where cut data can be inferred.</p>
+        <p><strong>Calibration curve:</strong> the dotted diagonal is perfect calibration. Points above it mean the outcome happened more often than forecast; points below it mean the model forecast was too high for that bucket.</p>
+        <p><strong>Buckets:</strong> rows are sorted by model probability and split into up to 10 similarly sized groups from lowest probability to highest. Each chart point and table row is one of those groups.</p>
+        <p><strong>Avg Pred vs Actual:</strong> Avg Pred is the average model probability inside the bucket. Actual is the percentage of players in that same bucket who achieved the selected outcome.</p>
+        <p><strong>Scores:</strong> Brier and log loss are player-level error scores where lower is better. Avg Gap is the average bucket miss in percentage points, weighted by rows.</p>
+    </div>
+</details>
+
+<p class="muted status-message" id="loading">Loading calibration metrics...</p>
+
+<section id="dashboard" class="dashboard" style="display:none;">
+    <h3 class="dashboard-header">Player-Level Calibration</h3>
+    <p class="dashboard-description">Choose a metric and split by tour or year.</p>
+
+    <div class="controls" aria-label="Calibration filters">
+        <label class="control">Metric
+            <select id="metric">
+                <option value="win">Win</option>
+                <option value="top10">Top 10</option>
+                <option value="madeCut">Make Cut</option>
+            </select>
+        </label>
+        <label class="control">Tour
+            <select id="tour">
+                <option value="all">All tours</option>
+            </select>
+        </label>
+        <label class="control">Year
+            <select id="year">
+                <option value="all">All years</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="metric-grid" aria-label="Calibration summary">
+        <div class="metric-tile">
+            <span class="metric-label">Rows</span>
+            <span class="metric-value" id="rows">-</span>
+            <span class="metric-note">Player predictions</span>
+        </div>
+        <div class="metric-tile">
+            <span class="metric-label">Events</span>
+            <span class="metric-value" id="events">-</span>
+            <span class="metric-note">Archived events</span>
+        </div>
+        <div class="metric-tile">
+            <span class="metric-label">Brier</span>
+            <span class="metric-value" id="brier">-</span>
+            <span class="metric-note">Lower is better</span>
+        </div>
+        <div class="metric-tile">
+            <span class="metric-label">Log Loss</span>
+            <span class="metric-value" id="logLoss">-</span>
+            <span class="metric-note">Lower is better</span>
+        </div>
+        <div class="metric-tile">
+            <span class="metric-label">Avg Gap</span>
+            <span class="metric-value" id="gap">-</span>
+            <span class="metric-note">Predicted vs actual</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h4 class="panel-title">Calibration Curve</h4>
+        <p class="panel-description">Each point is a probability bucket. Points above the diagonal mean outcomes happened more often than the model predicted.</p>
+        <div class="chart-canvas">
+            <canvas id="curve"></canvas>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h4 class="panel-title">Calibration Buckets</h4>
+        <p class="panel-description" id="bucketDescription">Bucket-level predicted probability, observed outcome rate, and gap.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bucket Group</th>
+                        <th>Rows</th>
+                        <th>Avg Pred</th>
+                        <th>Actual</th>
+                        <th>Gap</th>
+                    </tr>
+                </thead>
+                <tbody id="bucketRows">
+                    <tr><td colspan="5">Loading calibration buckets...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p class="muted" id="note" style="text-align:center;"></p>
+</section>
+
+<script>
+    const METRICS = {
+        win: {
+            label: 'Win',
+            probabilityKey: 'pWin',
+            actualKey: 'actualWin',
+            description: 'Win calibration compares model win probability with actual tournament winners.'
+        },
+        top10: {
+            label: 'Top 10',
+            probabilityKey: 'pTop10',
+            actualKey: 'actualTop10',
+            description: 'Top-10 calibration compares model top-10 probability with actual top-10 finishes, including ties.'
+        },
+        madeCut: {
+            label: 'Make Cut',
+            probabilityKey: 'pMakeCut',
+            actualKey: 'actualMadeCut',
+            description: 'Make-cut calibration compares model make-cut probability with results derived from finish position and cut status.'
+        }
+    };
+
+    let allRows = [];
+    let calibrationChart = null;
+
+    function normalizeName(name) {
+        if (!name) return null;
+        let cleaned = String(name).replace(/\s+/g, ' ').trim();
+        if (!cleaned) return null;
+        if (cleaned.includes(',')) {
+            const [last, first] = cleaned.split(',', 2).map((part) => part.trim());
+            cleaned = first ? `${first} ${last}` : last;
+        }
+        return cleaned.toLowerCase();
+    }
+
+    function toNumber(value, fallback = null) {
+        if (value === null || value === undefined) return fallback;
+        if (typeof value === 'number') return Number.isFinite(value) ? value : fallback;
+        const trimmed = String(value).trim();
+        if (!trimmed) return fallback;
+        const numeric = Number(trimmed.replace(/,/g, ''));
+        return Number.isFinite(numeric) ? numeric : fallback;
+    }
+
+    async function fetchJson(path) {
+        const response = await fetch(path, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
+        return response.json();
+    }
+
+    async function fetchLeaderboard(basePath) {
+        try {
+            const jsonData = await fetchJson(`${basePath}/leaderboard.json`);
+            return jsonData.map((entry, idx) => ({
+                playerName: entry.player_name ?? entry.Player ?? entry.Name ?? '',
+                rank: toNumber(entry.rank ?? entry.Rank, idx + 1),
+                pWin: toNumber(entry.p_win ?? entry['p_win_%'] ?? entry.pWin ?? entry['P_WIN_%'] ?? entry.P_WIN),
+                pTop10: toNumber(entry.p_top10 ?? entry['p_top10_%'] ?? entry.pTop10 ?? entry['P_TOP10_%'] ?? entry.P_TOP10),
+                pMakeCut: toNumber(entry.p_mc ?? entry['p_mc_%'] ?? entry.pMakeCut ?? entry['P_MC_%'] ?? entry.P_MC)
+            }));
+        } catch (err) {
+            try {
+                const csvText = await fetch(`${basePath}/leaderboard.csv`, { cache: 'no-store' }).then((response) => {
+                    if (!response.ok) throw new Error(`Failed to load leaderboard CSV: ${response.status}`);
+                    return response.text();
+                });
+                const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: 'greedy' });
+                return (parsed.data || []).map((row, idx) => ({
+                    playerName: row.player_name || row.Player || row.Name || '',
+                    rank: toNumber(row.rank ?? row.Rank, idx + 1),
+                    pWin: toNumber(row['p_win_%'] ?? row['P_WIN_%'] ?? row.p_win ?? row.P_WIN),
+                    pTop10: toNumber(row['p_top10_%'] ?? row['P_TOP10_%'] ?? row.p_top10 ?? row.P_TOP10),
+                    pMakeCut: toNumber(row['p_mc_%'] ?? row['P_MC_%'] ?? row.p_mc ?? row.P_MC)
+                }));
+            } catch (csvErr) {
+                console.warn(err.message || err, csvErr);
+                return [];
+            }
+        }
+    }
+
+    function coerceBoolean(value) {
+        if (typeof value === 'boolean') return value;
+        if (typeof value === 'number') return Number.isFinite(value) ? Boolean(value) : null;
+        if (typeof value === 'string') {
+            const cleaned = value.trim().toLowerCase();
+            if (['true', 't', 'yes', 'y', '1'].includes(cleaned)) return true;
+            if (['false', 'f', 'no', 'n', '0'].includes(cleaned)) return false;
+        }
+        return null;
+    }
+
+    function inferMadeCut(player) {
+        const explicit = coerceBoolean(player?.made_cut);
+        if (explicit != null) return explicit;
+        const finishPos = toNumber(player?.finish_pos);
+        if (finishPos != null) return true;
+        const finishText = String(player?.finish_text ?? '').trim().toUpperCase();
+        if (!finishText) return null;
+        if (finishText.includes('CUT') || finishText === 'MC') return false;
+        if (finishText.includes('WD') || finishText.includes('DQ')) return null;
+        return null;
+    }
+
+    function formatPct(value, digits = 1) {
+        return Number.isFinite(value) ? `${value.toFixed(digits)}%` : '-';
+    }
+
+    function formatMetricNumber(value, digits = 4) {
+        return Number.isFinite(value) ? value.toFixed(digits) : '-';
+    }
+
+    function availableRows(rows, metric, filters = {}) {
+        return rows.filter((row) => {
+            if (filters.tour && filters.tour !== 'all' && row.tour !== filters.tour) return false;
+            if (filters.year && filters.year !== 'all' && row.year !== filters.year) return false;
+            return Number.isFinite(row[metric.probabilityKey]) && Number.isFinite(row[metric.actualKey]);
+        });
+    }
+
+    function buildBuckets(rows, metric, bucketTarget = 10, probabilityDigits = 1) {
+        const sorted = rows.slice().sort((a, b) => a[metric.probabilityKey] - b[metric.probabilityKey]);
+        if (!sorted.length) return [];
+        const bucketCount = Math.min(bucketTarget, sorted.length);
+        const bucketSize = Math.ceil(sorted.length / bucketCount);
+        const buckets = [];
+        for (let start = 0; start < sorted.length; start += bucketSize) {
+            const bucketRows = sorted.slice(start, start + bucketSize);
+            const probs = bucketRows.map((row) => row[metric.probabilityKey]);
+            const actuals = bucketRows.map((row) => row[metric.actualKey]);
+            const avgPred = probs.reduce((sum, value) => sum + value, 0) / probs.length;
+            const actualRate = (actuals.reduce((sum, value) => sum + value, 0) / actuals.length) * 100;
+            const minPred = Math.min(...probs);
+            const maxPred = Math.max(...probs);
+            buckets.push({
+                label: `${formatPct(minPred, probabilityDigits)}-${formatPct(maxPred, probabilityDigits)}`,
+                count: bucketRows.length,
+                avgPred,
+                actualRate,
+                gap: actualRate - avgPred,
+                absGap: Math.abs(actualRate - avgPred)
+            });
+        }
+        return buckets;
+    }
+
+    function stats(rows, metric, buckets) {
+        if (!rows.length) return { brier: null, logLoss: null, avgPred: null, actualRate: null, avgGap: null, events: 0 };
+        let brier = 0;
+        let logLoss = 0;
+        let predSum = 0;
+        let actualSum = 0;
+        const eventIds = new Set();
+        rows.forEach((row) => {
+            const p = Math.min(1 - 1e-12, Math.max(1e-12, row[metric.probabilityKey] / 100));
+            const y = row[metric.actualKey];
+            brier += (p - y) ** 2;
+            logLoss += -(y * Math.log(p) + (1 - y) * Math.log(1 - p));
+            predSum += row[metric.probabilityKey];
+            actualSum += y;
+            eventIds.add(`${row.year}:${row.eventId}`);
+        });
+        const weightedGap = buckets.reduce((sum, bucket) => sum + bucket.absGap * bucket.count, 0);
+        return {
+            brier: brier / rows.length,
+            logLoss: logLoss / rows.length,
+            avgPred: predSum / rows.length,
+            actualRate: (actualSum / rows.length) * 100,
+            avgGap: weightedGap / rows.length,
+            events: eventIds.size
+        };
+    }
+
+    function gapClass(gap) {
+        const abs = Math.abs(gap);
+        if (abs <= 2) return 'gap-good';
+        if (abs <= 5) return 'gap-watch';
+        return 'gap-bad';
+    }
+
+    function bucketPositionLabel(index, total) {
+        if (index === 0) return 'Lowest probabilities';
+        if (index === total - 1) return 'Highest probabilities';
+        return `Group ${index + 1}`;
+    }
+
+    function populateControls() {
+        const metricSelect = document.getElementById('metric');
+        const tourSelect = document.getElementById('tour');
+        const yearSelect = document.getElementById('year');
+
+        Array.from(metricSelect.options).forEach((option) => {
+            option.disabled = !availableRows(allRows, METRICS[option.value]).length;
+        });
+
+        const selectedTour = tourSelect.value || 'all';
+        const tours = Array.from(new Set(allRows.map((row) => row.tour).filter(Boolean))).sort();
+        tourSelect.innerHTML = '<option value="all">All tours</option>' + tours.map((tour) => `<option value="${tour}">${tour.toUpperCase()}</option>`).join('');
+        tourSelect.value = tours.includes(selectedTour) ? selectedTour : 'all';
+
+        const selectedYear = yearSelect.value || 'all';
+        const years = Array.from(new Set(allRows.map((row) => row.year).filter(Boolean))).sort();
+        yearSelect.innerHTML = '<option value="all">All years</option>' + years.map((year) => `<option value="${year}">${year}</option>`).join('');
+        yearSelect.value = years.includes(selectedYear) ? selectedYear : 'all';
+    }
+
+    function render() {
+        populateControls();
+        const metricKey = document.getElementById('metric').value || 'win';
+        const tour = document.getElementById('tour').value || 'all';
+        const year = document.getElementById('year').value || 'all';
+        const metric = METRICS[metricKey] || METRICS.win;
+        const probabilityDigits = metricKey === 'win' ? 2 : 1;
+        const rows = availableRows(allRows, metric, { tour, year });
+        const buckets = buildBuckets(rows, metric, 10, probabilityDigits);
+        const summary = stats(rows, metric, buckets);
+
+        document.getElementById('rows').textContent = String(rows.length);
+        document.getElementById('events').textContent = String(summary.events || 0);
+        document.getElementById('brier').textContent = formatMetricNumber(summary.brier, 4);
+        document.getElementById('logLoss').textContent = formatMetricNumber(summary.logLoss, 3);
+        document.getElementById('gap').textContent = summary.avgGap == null ? '-' : `${summary.avgGap.toFixed(1)} pts`;
+
+        const avgPred = summary.avgPred == null ? '-' : formatPct(summary.avgPred);
+        const actualRate = summary.actualRate == null ? '-' : formatPct(summary.actualRate);
+        document.getElementById('bucketDescription').textContent = `${metric.description} Buckets are equal-sized player groups sorted by model probability from lowest to highest. Average predicted rate: ${avgPred}; actual rate: ${actualRate}.`;
+
+        const bucketRows = document.getElementById('bucketRows');
+        if (!rows.length) {
+            bucketRows.innerHTML = '<tr><td colspan="5">No calibration rows are available for this metric/filter.</td></tr>';
+            if (calibrationChart) {
+                calibrationChart.destroy();
+                calibrationChart = null;
+            }
+            return;
+        }
+
+        bucketRows.innerHTML = buckets.map((bucket, idx) => `
+            <tr>
+                <td>${bucketPositionLabel(idx, buckets.length)}<br><span class="muted">${bucket.label}</span></td>
+                <td>${bucket.count}</td>
+                <td>${formatPct(bucket.avgPred, probabilityDigits)}</td>
+                <td>${formatPct(bucket.actualRate)}</td>
+                <td class="${gapClass(bucket.gap)}">${bucket.gap >= 0 ? '+' : ''}${bucket.gap.toFixed(1)} pts</td>
+            </tr>
+        `).join('');
+
+        const maxBucketValue = Math.max(...buckets.flatMap((bucket) => [bucket.avgPred, bucket.actualRate]), metricKey === 'win' ? 5 : 20);
+        const axisMax = metricKey === 'win'
+            ? Math.min(100, Math.max(5, Math.ceil((maxBucketValue + 2) / 5) * 5))
+            : 100;
+        const canvas = document.getElementById('curve');
+        if (calibrationChart) calibrationChart.destroy();
+        calibrationChart = new Chart(canvas.getContext('2d'), {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'Perfect calibration',
+                        data: [{ x: 0, y: 0 }, { x: axisMax, y: axisMax }],
+                        borderColor: 'rgba(100, 116, 139, 0.75)',
+                        backgroundColor: 'rgba(100, 116, 139, 0.08)',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        tension: 0
+                    },
+                    {
+                        label: `${metric.label} buckets`,
+                        data: buckets.map((bucket, index) => ({
+                            x: bucket.avgPred,
+                            y: bucket.actualRate,
+                            count: bucket.count,
+                            gap: bucket.gap,
+                            group: bucketPositionLabel(index, buckets.length),
+                            label: bucket.label
+                        })),
+                        borderColor: 'rgba(29, 124, 66, 0.95)',
+                        backgroundColor: 'rgba(29, 124, 66, 0.7)',
+                        pointRadius: buckets.map((bucket) => Math.min(9, Math.max(4, Math.sqrt(bucket.count) / 1.8))),
+                        pointHoverRadius: 9
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        min: 0,
+                        max: axisMax,
+                        title: { display: true, text: 'Average predicted probability (%)' },
+                        ticks: { callback: (value) => `${value}%` }
+                    },
+                    y: {
+                        min: 0,
+                        max: axisMax,
+                        title: { display: true, text: 'Actual outcome rate (%)' },
+                        ticks: { callback: (value) => `${value}%` }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                const point = context.raw || {};
+                                if (context.dataset.label === 'Perfect calibration') return 'Ideal predicted = actual';
+                                return [
+                                    `${point.group}: ${point.label} (${point.count} rows)`,
+                                    `Predicted ${formatPct(point.x)}; actual ${formatPct(point.y)}`,
+                                    `Gap ${point.gap >= 0 ? '+' : ''}${point.gap.toFixed(1)} pts`
+                                ];
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        document.getElementById('note').textContent = `Beta calibration tracking started with the 2026 season, so early readings should be treated as directional until the archive sample grows. Brier and log loss use player-level predictions. Avg gap is the weighted average absolute bucket gap in percentage points. ${metric.description}`;
+    }
+
+    async function loadRows() {
+        const index = await fetchJson('archive/index.json');
+        const events = Array.isArray(index) ? index : [];
+        const rows = [];
+
+        for (const event of events) {
+            const { year, slug } = event;
+            const basePath = `archive/${year}/${slug}`;
+            let summary;
+            try {
+                summary = await fetchJson(`${basePath}/tournament_summary.json`);
+            } catch (err) {
+                console.warn(`Skipping ${event.event_name}: ${err.message}`);
+                continue;
+            }
+            if ((summary.status || '').toLowerCase() !== 'completed') continue;
+
+            let players = [];
+            try {
+                const resultsData = await fetchJson(`${basePath}/results.json`);
+                players = Array.isArray(resultsData.players) ? resultsData.players : [];
+            } catch (err) {
+                console.warn(`Skipping ${event.event_name}: ${err.message}`);
+                continue;
+            }
+
+            const leaderboard = await fetchLeaderboard(basePath);
+            if (!leaderboard.length) continue;
+
+            const actualByPlayer = new Map();
+            players.forEach((player) => {
+                const key = normalizeName(player.player);
+                if (key) actualByPlayer.set(key, player);
+            });
+
+            leaderboard.forEach((entry) => {
+                const actual = actualByPlayer.get(normalizeName(entry.playerName));
+                if (!actual) return;
+                const finishPos = toNumber(actual.finish_pos);
+                const madeCut = inferMadeCut(actual);
+                rows.push({
+                    eventId: String(event.event_id ?? ''),
+                    eventName: event.event_name ?? '',
+                    year: String(event.year ?? ''),
+                    tour: String(event.tour ?? '').toLowerCase(),
+                    player: entry.playerName ?? '',
+                    rank: entry.rank,
+                    pWin: entry.pWin,
+                    pTop10: entry.pTop10,
+                    pMakeCut: entry.pMakeCut,
+                    actualWin: finishPos != null ? Number(finishPos === 1) : 0,
+                    actualTop10: finishPos != null ? Number(finishPos <= 10) : 0,
+                    actualMadeCut: madeCut == null ? null : Number(madeCut)
+                });
+            });
+        }
+
+        return rows;
+    }
+
+    function bindControls() {
+        ['metric', 'tour', 'year'].forEach((id) => {
+            document.getElementById(id)?.addEventListener('change', render);
+        });
+    }
+
+    fetch('menu.html?v=20260417')
+        .then((response) => response.text())
+        .then((html) => { document.getElementById('menu').innerHTML = html; })
+        .catch((err) => console.error('Menu failed to load:', err));
+
+    loadRows()
+        .then((rows) => {
+            allRows = rows;
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('dashboard').style.display = '';
+            bindControls();
+            render();
+        })
+        .catch((error) => {
+            console.error('Calibration dashboard failed:', error);
+            document.getElementById('loading').textContent = 'Calibration dashboard unavailable right now.';
+        });
+</script>
+</body>
+</html>

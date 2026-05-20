@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-05-19
+Last updated: 2026-05-20
 
 ## Purpose
 
@@ -45,6 +45,9 @@ cd web/ && python -m http.server 8000
 - `data/analytics/`: prediction accuracy and actual-vs-predicted tracking.
 - `web/archive/`: generated archive pages and event result JSON.
 - `web/{tour}/initial/{year}/event_{event_id}/`: frozen first successful prediction snapshot for an event/week; later scheduled runs keep live assets updated without overwriting this initial copy.
+- `web/odds_value.html`: browser-rendered Odds & Value page comparing betting-sheet prices with model probabilities. It is presented as a beta initiative that started with the 2026 season; value labels should be treated as decision support while archive samples, result links, and place assumptions mature.
+- `web/archive_accuracy.html`: browser-rendered prediction accuracy dashboard for completed archive events. It uses compact week/tour x-axis labels to keep charts readable, keeps full tournament names in chart hover text, supports All/PGA/Euro tour filters, and auto-scales the trend chart y-axis to the selected data instead of forcing a fixed 0-100% range.
+- `web/calibration_dashboard.html`: browser-rendered player-level calibration dashboard. It is presented as a beta initiative that started with the 2026 season and includes a visible explainer for calibration curves, bucket groups, Brier/log loss, and Avg Gap. It must use files served under `web/` (`web/archive/index.json`, archived leaderboards, and `results.json`) rather than `data/analytics/**`, which is not directly served by GitHub Pages. Make-cut calibration derives outcomes from finish position and cut status when explicit `made_cut` flags are missing.
 
 Generated artifacts should usually be regenerated through scripts rather than manually edited.
 
