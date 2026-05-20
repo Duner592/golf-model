@@ -680,7 +680,7 @@
             <p><strong>E/W value</strong> combines the win and place legs. Top 10 places use the model Top 10 directly; Top 7/8 places are estimated from Top 10 and marked as estimates.</p>
             <p><strong>EV</strong> is the long-run expected return if the model probability is right.<br><span class="formula">EV = decimal odds x model probability - 1</span><br><span class="formula">E/W EV = (win EV + place EV) / 2</span></p>
             <p><strong>Included bets</strong> are pre-tournament `E/W` and `Outright` only, so the board stays aligned to the tournament outright model.</p>
-            <p><strong>Archive view</strong> uses saved 2026 archive leaderboards, so previous weeks are scored against the prediction snapshot stored for that event.</p>
+            <p><strong>View</strong> has two modes: Pending shows current pending bets against the live model, while 2026 archive scores previous archived tournaments against the stored prediction snapshot for that event.</p>
             <div class="threshold-list" aria-label="Value label thresholds">
                 <div class="threshold-row"><span class="badge badge--strong">Strong value</span><span>+15% EV or better.</span></div>
                 <div class="threshold-row"><span class="badge badge--positive">Positive</span><span>0% to +14.9% EV.</span></div>
@@ -692,19 +692,10 @@
 
     <section class="toolbar" aria-label="Odds value filters">
         <div class="control">
-            <label for="statusFilter">Status</label>
-            <select id="statusFilter">
-                <option value="pending">Pending</option>
-                <option value="all">All bets</option>
-                <option value="settled">Settled</option>
-            </select>
-        </div>
-        <div class="control">
-            <label for="sourceFilter">Source</label>
+            <label for="sourceFilter">View</label>
             <select id="sourceFilter">
-                <option value="current">Current week</option>
+                <option value="pending">Pending</option>
                 <option value="archive2026">2026 archive</option>
-                <option value="all2026">All 2026</option>
             </select>
         </div>
         <div class="control">
@@ -817,8 +808,7 @@
         models: {},
         archiveModels: [],
         filters: {
-            status: 'pending',
-            source: 'current',
+            source: 'pending',
             tour: 'all',
             tournament: 'all',
             sort: 'value',
@@ -1295,7 +1285,7 @@
             valueEv,
             bestEv: valueEv,
             sourceType: isArchiveRow ? 'archive' : 'current',
-            sourceLabel: isArchiveRow ? '2026 archive' : 'Current week'
+            sourceLabel: isArchiveRow ? '2026 archive' : 'Pending'
         };
         enriched.value = classifyValue(enriched);
         return enriched;
@@ -1304,16 +1294,12 @@
     function populateFilters() {
         const tourSelect = document.getElementById('tourFilter');
         const tournamentSelect = document.getElementById('tournamentFilter');
-        const statusValue = document.getElementById('statusFilter').value || 'pending';
-        const sourceValue = document.getElementById('sourceFilter').value || 'current';
+        const sourceValue = document.getElementById('sourceFilter').value || 'pending';
         const currentTour = tourSelect.value || 'all';
         const currentTournament = tournamentSelect.value || 'all';
 
-        const statusFilteredRows = state.enriched.filter(row => {
-            const statusMatches = statusValue === 'all' || row.status === statusValue;
-            return statusMatches && sourceMatches(row, sourceValue);
-        });
-        const tours = Array.from(new Set(statusFilteredRows.map(row => row.tour).filter(Boolean))).sort((a, b) => {
+        const sourceFilteredRows = state.enriched.filter(row => sourceMatches(row, sourceValue));
+        const tours = Array.from(new Set(sourceFilteredRows.map(row => row.tour).filter(Boolean))).sort((a, b) => {
             const ai = TOUR_ORDER.indexOf(a);
             const bi = TOUR_ORDER.indexOf(b);
             if (ai !== -1 || bi !== -1) return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
@@ -1322,14 +1308,13 @@
         tourSelect.innerHTML = '<option value="all">All tours</option>' + tours.map(tour => `<option value="${escapeHtml(tour)}">${escapeHtml(tour)}</option>`).join('');
         tourSelect.value = tours.includes(currentTour) ? currentTour : 'all';
 
-        const filteredByTour = statusFilteredRows.filter(row => tourSelect.value === 'all' || row.tour === tourSelect.value);
+        const filteredByTour = sourceFilteredRows.filter(row => tourSelect.value === 'all' || row.tour === tourSelect.value);
         const tournaments = Array.from(new Set(filteredByTour.map(row => row.raw.Tournament).filter(Boolean))).sort((a, b) => a.localeCompare(b));
         tournamentSelect.innerHTML = '<option value="all">All tournaments</option>' + tournaments.map(tournament => `<option value="${escapeHtml(tournament)}">${escapeHtml(tournament)}</option>`).join('');
         tournamentSelect.value = tournaments.includes(currentTournament) ? currentTournament : 'all';
     }
 
     function updateFiltersFromControls() {
-        state.filters.status = document.getElementById('statusFilter').value;
         state.filters.source = document.getElementById('sourceFilter').value;
         state.filters.tour = document.getElementById('tourFilter').value;
         state.filters.tournament = document.getElementById('tournamentFilter').value;
@@ -1339,16 +1324,14 @@
     }
 
     function sourceMatches(row, source = state.filters.source) {
-        if (source === 'current') return row.sourceType === 'current';
+        if (source === 'pending') return row.status === 'pending' && row.sourceType === 'current';
         if (source === 'archive2026') return row.sourceType === 'archive' && row.betYear === '2026';
-        if (source === 'all2026') return row.betYear === '2026';
         return true;
     }
 
     function rowMatchesFilters(row) {
         const filters = state.filters;
         if (!sourceMatches(row, filters.source)) return false;
-        if (filters.status !== 'all' && row.status !== filters.status) return false;
         if (filters.tour !== 'all' && row.tour !== filters.tour) return false;
         if (filters.tournament !== 'all' && row.raw.Tournament !== filters.tournament) return false;
         if (filters.matchedOnly && !row.player) return false;
@@ -1465,11 +1448,11 @@
         const best = rows.find(row => Number.isFinite(row.valueEv));
 
         document.getElementById('metricRows').textContent = String(rows.length);
-        document.getElementById('metricRowsNote').textContent = state.filters.status === 'pending' ? 'Pending bets' : 'Visible bets';
+        document.getElementById('metricRowsNote').textContent = state.filters.source === 'pending' ? 'Pending bets' : 'Archived bets';
         document.getElementById('metricMatched').textContent = String(matched);
         document.getElementById('metricPositive').textContent = String(positive);
         document.getElementById('metricStake').textContent = formatCurrency(stake);
-        document.getElementById('metricStakeNote').textContent = state.filters.status === 'pending' ? 'Pending stake' : 'Visible stake';
+        document.getElementById('metricStakeNote').textContent = state.filters.source === 'pending' ? 'Pending stake' : 'Archived stake';
         document.getElementById('metricBest').textContent = best ? formatEv(best.valueEv) : '-';
         document.getElementById('metricBestNote').textContent = best ? best.raw.Player : '-';
     }
@@ -1584,14 +1567,12 @@
     }
 
     function bindControls() {
-        ['statusFilter', 'sourceFilter', 'tourFilter', 'tournamentFilter', 'sortFilter', 'searchInput', 'matchedOnly'].forEach((id) => {
+        ['sourceFilter', 'tourFilter', 'tournamentFilter', 'sortFilter', 'searchInput', 'matchedOnly'].forEach((id) => {
             const element = document.getElementById(id);
             element.addEventListener(id === 'searchInput' ? 'input' : 'change', () => {
                 if (id === 'sourceFilter') {
-                    const statusFilter = document.getElementById('statusFilter');
-                    if (element.value !== 'current' && statusFilter.value === 'pending') {
-                        statusFilter.value = 'all';
-                    }
+                    document.getElementById('tourFilter').value = 'all';
+                    document.getElementById('tournamentFilter').value = 'all';
                 }
                 if (id === 'tourFilter') {
                     document.getElementById('tournamentFilter').value = 'all';

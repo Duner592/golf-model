@@ -164,14 +164,18 @@
     }
 
     async function fetchLeaderboard(basePath) {
+        const normalizeLeaderboardRows = (rows) => rows.map((entry, idx) => ({
+            player_name: entry.player_name ?? entry.Player ?? entry.Name ?? '',
+            rank: toNumber(entry.rank ?? entry.Rank, idx + 1),
+            p_win: toNumber(entry.p_win ?? entry['p_win_%'] ?? entry.pWin ?? entry['P_WIN_%'] ?? entry.P_WIN),
+            p_top10: toNumber(entry.p_top10 ?? entry['p_top10_%'] ?? entry.pTop10 ?? entry['P_TOP10_%'] ?? entry.P_TOP10)
+        }));
         try {
             const jsonData = await fetchJson(`${basePath}/leaderboard.json`);
-            return jsonData.map((entry, idx) => ({
-                player_name: entry.player_name ?? entry.Player ?? entry.Name ?? '',
-                rank: toNumber(entry.rank ?? entry.Rank, idx + 1),
-                p_win: toNumber(entry.p_win ?? entry['p_win_%'] ?? entry.pWin ?? entry['P_WIN_%'] ?? entry.P_WIN),
-                p_top10: toNumber(entry.p_top10 ?? entry['p_top10_%'] ?? entry.pTop10 ?? entry['P_TOP10_%'] ?? entry.P_TOP10)
-            }));
+            if (Array.isArray(jsonData) && jsonData.length) {
+                return normalizeLeaderboardRows(jsonData);
+            }
+            throw new Error(`Archived leaderboard JSON empty for ${basePath}`);
         } catch (err) {
             try {
                 const csvText = await fetch(`${basePath}/leaderboard.csv`, { cache: 'no-store' }).then((r) => {
@@ -179,12 +183,7 @@
                     return r.text();
                 });
                 const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: 'greedy' });
-                return (parsed.data || []).map((row, idx) => ({
-                    player_name: row.player_name || row.Player || row.Name || '',
-                    rank: toNumber(row.rank ?? row.Rank, idx + 1),
-                    p_win: toNumber(row['p_win_%'] ?? row['P_WIN_%'] ?? row.p_win ?? row.P_WIN),
-                    p_top10: toNumber(row['p_top10_%'] ?? row['P_TOP10_%'] ?? row.p_top10 ?? row.P_TOP10)
-                }));
+                return normalizeLeaderboardRows(parsed.data || []);
             } catch (csvErr) {
                 console.warn(err.message || err, csvErr);
                 return [];
