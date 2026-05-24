@@ -642,7 +642,7 @@
       "start_date": "2026-04-23",
       "status": "completed",
       "tour": "pga",
-      "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
+      "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
     },
     {
       "country": "TUR",
@@ -766,9 +766,9 @@
       "location": "Schilde, Belgium",
       "longitude": 4.576,
       "start_date": "2026-05-21",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Sterne, Richard (7049)"
     },
     {
       "country": "USA",
@@ -794,15 +794,15 @@
       "location": "McKinney, TX",
       "longitude": -96.72,
       "start_date": "2026-05-21",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Clark, Wyndham (23604)"
     },
     {
       "country": "AUT",
       "course": "Kitzbuhel-Schwarzsee GC",
       "course_key": "kitzbuhel-schwarzsee gc",
-      "event_id": "TBD",
+      "event_id": "2026120",
       "event_name": "Austrian Alpine Open presented by Kitzbuhel Tirol",
       "latitude": 47.459,
       "location": "Kitzbuhel, Austria",
@@ -858,7 +858,7 @@
       "country": "NED",
       "course": "The International",
       "course_key": "international",
-      "event_id": "TBD",
+      "event_id": "2026121",
       "event_name": "KLM Open",
       "latitude": 52.328,
       "location": "Badhoevedorp, Netherlands",
