@@ -6,7 +6,7 @@
 #
 # This script:
 # - Checks if the event status is "completed" in upcoming-events.json; skips if "upcoming" unless --force is used.
-# - Finds the archived tournament_summary.json for the given event_id.
+# - Finds the archived tournament_summary.json for the given event_id, or skips if no archive exists.
 # - Updates status to "completed".
 # - Fetches the winner from DataGolf API, or falls back to upcoming-events.json if API fails.
 # - Updates only the "winner" field (does not modify "previous_winners").
@@ -115,6 +115,32 @@ def normalize_slug(name: str | None) -> str:
     return txt.replace(" ", "_")
 
 
+def find_archive_summary_path(root: Path, event_details: dict, year: str) -> Path:
+    """Resolve the archived summary path, preferring the committed archive index."""
+    event_id = str(event_details.get("event_id"))
+    tour = str(event_details.get("tour", "")).lower()
+    index_path = root / "web" / "archive" / "index.json"
+
+    if index_path.exists():
+        try:
+            index_data = json.loads(index_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            index_data = []
+        if isinstance(index_data, list):
+            for entry in index_data:
+                if not isinstance(entry, dict):
+                    continue
+                same_event = str(entry.get("event_id")) == event_id
+                same_tour = str(entry.get("tour", "")).lower() == tour
+                same_year = str(entry.get("year")) == str(year)
+                slug = entry.get("slug")
+                if same_event and same_tour and same_year and slug:
+                    return root / "web" / "archive" / str(year) / str(slug) / "tournament_summary.json"
+
+    slug = event_details.get("slug") or normalize_slug(event_details.get("event_name"))
+    return root / "web" / "archive" / year / str(slug) / "tournament_summary.json"
+
+
 def update_tournament_summary(ts_path: Path, winner: str | None) -> None:
     """
     Update the tournament_summary.json file.
@@ -177,12 +203,17 @@ def main():
         print(f"Error: No start_date for event {event_id}")
         return
 
-    # Extract year and slug
+    # Extract year
     year = start_date.split("-")[0]
-    slug = event_details.get("slug") or normalize_slug(event_name)
 
     # Build archive path
-    archive_path = root / "web" / "archive" / year / slug / "tournament_summary.json"
+    archive_path = find_archive_summary_path(root, event_details, year)
+    if not archive_path.exists():
+        print(
+            "Skipping: archived tournament_summary.json not found for "
+            f"event {event_id} ({event_name}) at {archive_path}"
+        )
+        return
 
     # Fetch winner from API, fallback to upcoming-events.json
     tour = event_details.get("tour")

@@ -101,7 +101,7 @@ def print_event(event: dict[str, Any]) -> None:
     start_date = event.get("start_date")
     name = event.get("event_name")
     status = event.get("status")
-    print(f"{tour} {start_date} event_id={event_id} status={status} - {name}")
+    print(f"{tour} {start_date} event_id={event_id} status={status} - {name}", flush=True)
 
 
 def main() -> None:
@@ -111,18 +111,18 @@ def main() -> None:
     start, end = previous_week_window(reference_date)
 
     events = matching_events(reference_date, tours, args.completed_only)
-    print(f"Previous-week window: {start.isoformat()} to {end.isoformat()}")
-    print(f"Tours: {', '.join(sorted(tours))}")
+    print(f"Previous-week window: {start.isoformat()} to {end.isoformat()}", flush=True)
+    print(f"Tours: {', '.join(sorted(tours))}", flush=True)
 
     if not events:
-        print("No matching previous-week events found.")
+        print("No matching previous-week events found.", flush=True)
         return
 
     for event in events:
         print_event(event)
         event_id = str(event.get("event_id"))
         cmd = [sys.executable, str(ROOT / "scripts" / "update_archived_event.py"), "--event_id", event_id, "--force"]
-        print("Command:", f"python scripts/update_archived_event.py --event_id {event_id} --force")
+        print("Command:", f"python scripts/update_archived_event.py --event_id {event_id} --force", flush=True)
         if not args.dry_run:
             subprocess.run(cmd, check=True)
 

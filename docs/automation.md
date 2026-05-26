@@ -96,7 +96,7 @@ python scripts/update_previous_week_archives.py --date 2026-05-18 --dry-run
 
 The script reads `upcoming-events.json`, finds `pga` and `euro` events whose `start_date` falls in the previous Monday-Sunday window, prints the event IDs, and prints the exact `update_archived_event.py` command it will run.
 
-Archive automation uses `--force` because the checked-in `upcoming-events.json` may still show a previous-week event as `upcoming`. The updater still skips forced updates when no winner is available yet.
+Archive automation uses `--force` because the checked-in `upcoming-events.json` may still show a previous-week event as `upcoming`. The updater still skips forced updates when no winner is available yet, and it skips events that do not already have a committed archive snapshot under `web/archive/{year}/{slug}/`.
 
 To update only one tour:
 
