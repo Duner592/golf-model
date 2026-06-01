@@ -682,14 +682,18 @@
 
                 let resultsData;
                 let players = [];
-                let resultsAvailable = true;
                 try {
                     resultsData = await fetchJson(`${basePath}/results.json`);
                     players = Array.isArray(resultsData.players) ? resultsData.players : [];
                 } catch (err) {
                     console.warn(`Missing results for ${eventName}: ${err.message}`);
-                    resultsAvailable = false;
                     addPendingEvent(pendingEvents, eventLabel, tourCode, 'results not yet archived');
+                    continue;
+                }
+
+                if (!players.length) {
+                    addPendingEvent(pendingEvents, eventLabel, tourCode, 'results not yet archived');
+                    continue;
                 }
 
                 let winnerPlayer = Array.isArray(players)
@@ -708,8 +712,9 @@
                     continue;
                 }
 
-                if (!resultsAvailable || !top10Players.length) {
+                if (!top10Players.length) {
                     addPendingEvent(pendingEvents, eventLabel, tourCode, 'top-10 finish data incomplete');
+                    continue;
                 }
 
                 const leaderboard = await fetchLeaderboard(basePath);

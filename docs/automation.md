@@ -46,9 +46,9 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 
 - `.github/workflows/actual-results.yml`
   - Runs once per day at 02:17 UTC.
-  - Runs `python scripts/fetch_actual_results.py --year <year>`.
+  - Runs `python scripts/fetch_actual_results.py --year <year> --allow-missing`.
   - Defaults to the current UTC year unless a manual workflow input overrides it.
-  - Commits changed `web/archive/**` results and `data/analytics/**` outputs back to `master`. The resulting push triggers `.github/workflows/deploy-pages.yml`, which rebuilds active model assets before publishing.
+  - Commits changed `web/archive/**` results and `data/analytics/**` outputs back to `master`, even if DataGolf has not published every latest event yet. The resulting push triggers `.github/workflows/deploy-pages.yml`, which rebuilds active model assets before publishing.
 
 ## Manual Run Inputs
 

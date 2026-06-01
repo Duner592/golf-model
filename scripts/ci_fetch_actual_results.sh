@@ -23,7 +23,7 @@ fi
 "$PYTHON_BIN" scripts/update_upcoming_events.py
 
 echo "::group::Fetch actual results for $YEAR"
-"$PYTHON_BIN" scripts/fetch_actual_results.py --year "$YEAR"
+"$PYTHON_BIN" scripts/fetch_actual_results.py --year "$YEAR" --allow-missing
 echo "::endgroup::"
 
 echo "::group::Build prediction accuracy for $YEAR"
