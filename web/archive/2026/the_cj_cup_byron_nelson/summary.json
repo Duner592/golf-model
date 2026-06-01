@@ -1,0 +1,12 @@
+{
+  "event_id": "19",
+  "event_name": "THE CJ CUP Byron Nelson",
+  "source_csv": "data/preds/pga/event_19_the_cj_cup_byron_nelson_2026-05-19_leaderboard.csv",
+  "generated_utc": "19-May-2026 14:47:28",
+  "metrics": {
+    "field_size": 147,
+    "p_win_max": 0.769,
+    "p_win_median": 0.0001,
+    "p_win_sum": 1.0
+  }
+}

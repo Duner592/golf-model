@@ -46,7 +46,8 @@ jobs:
 
       - name: Commit actual result updates
         run: |
-          if git diff --quiet -- upcoming-events.json web/archive data/analytics; then
+          changes="$(git status --porcelain --untracked-files=all -- upcoming-events.json web/archive data/analytics)"
+          if [ -z "$changes" ]; then
             echo "No actual-result changes to commit."
             exit 0
           fi

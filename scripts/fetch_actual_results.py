@@ -8,7 +8,7 @@ leaderboard with finishing positions for each player. The results are saved in
 `web/archive/results_summary.json` for convenience.
 
 Usage:
-    python scripts/fetch_actual_results.py [--year 2026]
+    python scripts/fetch_actual_results.py [--year 2026] [--allow-missing]
 
 Environment:
     Requires `DATAGOLF_API_KEY` in your environment (.env) for authentication.
@@ -127,6 +127,11 @@ def append_summary(summary: dict[str, Any], key: str, value: Any) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description="Fetch actual tournament results for archived events")
     ap.add_argument("--year", type=str, default=None, help="Filter archive entries by year (e.g. 2026)")
+    ap.add_argument(
+        "--allow-missing",
+        action="store_true",
+        help="Warn instead of failing when DataGolf has not published results for every completed archive event yet.",
+    )
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parent.parent
@@ -213,7 +218,9 @@ def main() -> None:
         print("\nEncountered errors:")
         for msg in errors:
             print(" -", msg)
-        sys.exit(1)
+        if not args.allow_missing:
+            sys.exit(1)
+        print("Continuing because --allow-missing was set.")
 
 
 if __name__ == "__main__":

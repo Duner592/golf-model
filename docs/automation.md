@@ -28,6 +28,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
   - Can be run manually from the Actions tab.
   - Installs the Python package and dependencies from `pyproject.toml`.
   - Runs `scripts/ci_run_model.sh`, then deploys the generated `web/` directory to GitHub Pages.
+  - Commits durable prediction artifacts (`web/archive/**` and `web/{tour}/initial/**`) back to `master` on full runs so archive snapshots survive later workflow checkouts. Live `web/{tour}/...` assets still stay artifact-only.
   - Scheduled runs process both tours:
     - `python scripts/run_weekly_all.py --tour pga`
     - `python scripts/build_web_assets.py --tour pga`
@@ -39,7 +40,9 @@ This repo is set up to run the weekly model and publish the static `web/` site w
   - Runs Monday at 12:00 and 21:00 UTC.
   - Finds PGA and Euro events that started in the previous Monday-Sunday window.
   - Runs `python scripts/update_archived_event.py --event_id <event_id> --force` for each matching event.
-  - Commits changed `web/archive/**` files back to `master` instead of deploying Pages directly. The resulting push triggers `.github/workflows/deploy-pages.yml`, which rebuilds active model assets before publishing the archive changes.
+  - If an archive entry is missing, the updater first tries to create it from `web/{tour}/initial/{year}/event_{event_id}/`, then from checked-in `web/{tour}/events/event_{event_id}/` assets.
+  - Refreshes actual results with `--allow-missing` and rebuilds prediction accuracy after archive updates, so completed events appear in the accuracy dashboards as soon as DataGolf results are available.
+  - Commits changed `web/archive/**` and `data/analytics/**` files back to `master` instead of deploying Pages directly. The resulting push triggers `.github/workflows/deploy-pages.yml`, which rebuilds active model assets before publishing the archive changes.
 
 - `.github/workflows/actual-results.yml`
   - Runs once per day at 02:17 UTC.
@@ -75,6 +78,8 @@ The site status card is injected by `web/menu.js` at the bottom of every page th
 
 The frozen initial snapshot is left untouched by later scheduled runs. Prediction archives are copied from that initial snapshot, so archive accuracy remains tied to the first model view of the week rather than a later refreshed model.
 
+Scheduled model runs commit these initial snapshot and archive files back to `master`. They do not commit the refreshed live model assets under `web/{tour}/...`.
+
 The home page links to both versions:
 
 - `pga.html` / `euro.html` for latest model results.
@@ -96,7 +101,7 @@ python scripts/update_previous_week_archives.py --date 2026-05-18 --dry-run
 
 The script reads `upcoming-events.json`, finds `pga` and `euro` events whose `start_date` falls in the previous Monday-Sunday window, prints the event IDs, and prints the exact `update_archived_event.py` command it will run.
 
-Archive automation uses `--force` because the checked-in `upcoming-events.json` may still show a previous-week event as `upcoming`. The updater still skips forced updates when no winner is available yet, and it skips events that do not already have a committed archive snapshot under `web/archive/{year}/{slug}/`.
+Archive automation uses `--force` because the checked-in `upcoming-events.json` may still show a previous-week event as `upcoming`. The updater still skips forced updates when no winner is available yet. If `web/archive/{year}/{slug}/` is missing, it attempts to materialize the archive from saved initial snapshots or checked-in event assets before updating status and winner.
 
 To update only one tour:
 

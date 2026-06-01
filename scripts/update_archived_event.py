@@ -6,7 +6,8 @@
 #
 # This script:
 # - Checks if the event status is "completed" in upcoming-events.json; skips if "upcoming" unless --force is used.
-# - Finds the archived tournament_summary.json for the given event_id, or skips if no archive exists.
+# - Finds the archived tournament_summary.json for the given event_id.
+# - If the archive is missing, creates it from the saved initial snapshot or checked-in event assets.
 # - Updates status to "completed".
 # - Fetches the winner from DataGolf API, or falls back to upcoming-events.json if API fails.
 # - Updates only the "winner" field (does not modify "previous_winners").
@@ -15,6 +16,8 @@
 import argparse
 import json
 import os
+import shutil
+from datetime import datetime
 from pathlib import Path
 
 import re
@@ -115,6 +118,137 @@ def normalize_slug(name: str | None) -> str:
     return txt.replace(" ", "_")
 
 
+def read_json(path: Path) -> dict:
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    return data if isinstance(data, dict) else {}
+
+
+def write_json(path: Path, data) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+
+def archive_time(value: str | None = None) -> str:
+    if value:
+        for fmt in (None, "%d-%b-%Y %H:%M:%S"):
+            try:
+                if fmt:
+                    parsed = datetime.strptime(value, fmt)
+                else:
+                    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+                return parsed.strftime("%Y-%m-%d %H:%M:%S UTC")
+            except Exception:
+                continue
+    return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
+
+def resolve_web_resource(root: Path, resource: str | None) -> Path | None:
+    if not resource:
+        return None
+    resource_path = Path(resource)
+    if resource_path.is_absolute():
+        return resource_path if resource_path.exists() else None
+    candidate = root / "web" / resource_path
+    return candidate if candidate.exists() else None
+
+
+def source_candidates(root: Path, event_details: dict, year: str) -> list[tuple[Path, str]]:
+    event_id = str(event_details.get("event_id"))
+    tour = str(event_details.get("tour", "")).lower()
+    return [
+        (root / "web" / tour / "initial" / year / f"event_{event_id}", "initial"),
+        (root / "web" / tour / "events" / f"event_{event_id}", "event_assets"),
+    ]
+
+
+def copy_optional_csv(root: Path, source_dir: Path, archive_dir: Path) -> bool:
+    direct_csv = source_dir / "leaderboard.csv"
+    if direct_csv.exists():
+        shutil.copy(direct_csv, archive_dir / "leaderboard.csv")
+        return True
+
+    meta_path = source_dir / "meta.json"
+    if not meta_path.exists():
+        return False
+    meta = read_json(meta_path)
+    resources = meta.get("resources") if isinstance(meta.get("resources"), dict) else {}
+    for key in ("initial_downloads_csv", "downloads_csv"):
+        csv_path = resolve_web_resource(root, resources.get(key))
+        if csv_path:
+            shutil.copy(csv_path, archive_dir / "leaderboard.csv")
+            return True
+    return False
+
+
+def materialize_missing_archive(root: Path, event_details: dict, year: str, archive_path: Path) -> bool:
+    event_id = str(event_details.get("event_id"))
+    event_name = event_details.get("event_name")
+    tour = str(event_details.get("tour", "")).lower()
+    event_slug = archive_path.parent.name
+
+    for source_dir, source_type in source_candidates(root, event_details, year):
+        if not (source_dir / "leaderboard.json").exists() or not (source_dir / "tournament_summary.json").exists():
+            continue
+
+        archive_dir = archive_path.parent
+        archive_dir.mkdir(parents=True, exist_ok=True)
+        for file_name in ("leaderboard.json", "meta.json", "tournament_summary.json", "summary.json"):
+            src = source_dir / file_name
+            if src.exists():
+                shutil.copy(src, archive_dir / file_name)
+
+        csv_available = copy_optional_csv(root, source_dir, archive_dir)
+        source_meta = read_json(source_dir / "meta.json") if (source_dir / "meta.json").exists() else {}
+        initial_snapshot = source_meta.get("initial_snapshot") if isinstance(source_meta.get("initial_snapshot"), dict) else {}
+        snapshot_created = source_meta.get("snapshot_created_utc") or initial_snapshot.get("snapshot_created_utc")
+        generated_utc = source_meta.get("generated_utc")
+
+        index_file = root / "web" / "archive" / "index.json"
+        try:
+            index_data = json.loads(index_file.read_text(encoding="utf-8")) if index_file.exists() else []
+        except json.JSONDecodeError:
+            index_data = []
+        if not isinstance(index_data, list):
+            index_data = []
+
+        index_data = [
+            entry
+            for entry in index_data
+            if not (
+                isinstance(entry, dict)
+                and str(entry.get("event_id")) == event_id
+                and str(entry.get("tour", "")).lower() == tour
+                and str(entry.get("year")) == str(year)
+            )
+        ]
+        index_data.append(
+            {
+                "event_id": event_id,
+                "event_name": event_name,
+                "tour": tour,
+                "slug": event_slug,
+                "year": year,
+                "csv_available": csv_available,
+                "archived_at": archive_time(snapshot_created or generated_utc),
+                "prediction_snapshot": "initial" if source_type == "initial" else "event_assets",
+                "initial_snapshot_created_utc": snapshot_created,
+            }
+        )
+        index_data.sort(key=lambda x: x.get("archived_at", ""), reverse=True)
+        write_json(index_file, index_data)
+
+        print(f"Created missing archive for {event_id} ({event_name}) from {source_dir}")
+        return True
+
+    print(
+        "Skipping: archived tournament_summary.json not found and no source snapshot/assets were available for "
+        f"event {event_id} ({event_name})"
+    )
+    return False
+
+
 def find_archive_summary_path(root: Path, event_details: dict, year: str) -> Path:
     """Resolve the archived summary path, preferring the committed archive index."""
     event_id = str(event_details.get("event_id"))
@@ -206,15 +340,6 @@ def main():
     # Extract year
     year = start_date.split("-")[0]
 
-    # Build archive path
-    archive_path = find_archive_summary_path(root, event_details, year)
-    if not archive_path.exists():
-        print(
-            "Skipping: archived tournament_summary.json not found for "
-            f"event {event_id} ({event_name}) at {archive_path}"
-        )
-        return
-
     # Fetch winner from API, fallback to upcoming-events.json
     tour = event_details.get("tour")
     winner = fetch_winner_from_api(event_id, year, tour)
@@ -223,6 +348,11 @@ def main():
         print(f"DEBUG: Using fallback winner from upcoming-events.json: {winner}")
     if args.force and local_status in {"upcoming", "in_progress", "in-progress"} and winner is None:
         print(f"Skipping: Event {event_id} is locally {local_status!r} and no winner is available yet.")
+        return
+
+    # Build archive path, creating a missing archive from saved web assets when possible.
+    archive_path = find_archive_summary_path(root, event_details, year)
+    if not archive_path.exists() and not materialize_missing_archive(root, event_details, year, archive_path):
         return
 
     # Update the file

@@ -30,11 +30,11 @@ This repository is a weekly golf tournament win-probability model for PGA and DP
 - GitHub Actions workflow files must use `.yml` or `.yaml`.
 - `.github/workflows/deploy-pages.yml` deploys `web/` to GitHub Pages on manual runs and pushes that touch `web/**`.
 - `.github/workflows/refresh-upcoming-events.yml` runs hourly at minute 7 UTC, refreshes `upcoming-events.json` from DataGolf, and commits only that file when it changes.
-- `.github/workflows/weekly-model.yml` runs every 2 hours Monday-Wednesday at minute 23 UTC, then deploys `web/` as a Pages artifact.
+- `.github/workflows/weekly-model.yml` runs every 2 hours Monday-Wednesday at minute 23 UTC, commits durable `web/archive/**` and `web/{tour}/initial/**` prediction snapshots on full runs, then deploys `web/` as a Pages artifact.
 - Scheduled model runs always export full-field leaderboards. Do not add a leaderboard-size input to the workflow.
 - The shared status card is injected by `web/menu.js`, appears at the bottom of every page that loads the menu, and reads `web/status.json`; keep `scripts/update_web_status.py` wired into workflows that deploy `web/`.
 - `scripts/build_web_assets.py` preserves an initial prediction snapshot under `web/{tour}/initial/{year}/event_{event_id}/`; prediction archives should be based on this frozen first run while scheduled runs keep live `web/{tour}/` assets current.
-- `.github/workflows/archive-update.yml` runs Monday at 12:00 and 21:00 UTC, resolves previous-week PGA/Euro event IDs, updates archived summaries, and commits changed `web/archive/**` files to `master`; the normal deploy workflow then rebuilds model assets and publishes `web/`.
+- `.github/workflows/archive-update.yml` runs Monday at 12:00 and 21:00 UTC, resolves previous-week PGA/Euro event IDs, materializes missing archives from saved snapshots or checked-in event assets, refreshes actual results/accuracy, and commits changed `web/archive/**` and `data/analytics/**` files to `master`; the normal deploy workflow then rebuilds model assets and publishes `web/`.
 - `.github/workflows/actual-results.yml` runs daily at 02:17 UTC, refreshes actual results for the selected/current year, rebuilds prediction accuracy, and commits changed `web/archive/**` and `data/analytics/**` outputs to `master`; the normal deploy workflow then rebuilds model assets and publishes `web/`.
 - `web/spreadsheet_data.csv` is a manual source-of-truth input. Do not overwrite it from automation.
 

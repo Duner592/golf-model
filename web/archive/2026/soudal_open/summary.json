@@ -1,0 +1,12 @@
+{
+  "event_id": "2026119",
+  "event_name": "Soudal Open",
+  "source_csv": "data/preds/euro/event_2026119_soudal_open_2026-05-19_leaderboard.csv",
+  "generated_utc": "19-May-2026 14:48:06",
+  "metrics": {
+    "field_size": 156,
+    "p_win_max": 0.112,
+    "p_win_median": 0.00135,
+    "p_win_sum": 1.0
+  }
+}

@@ -1,5 +1,27 @@
 [
   {
+    "event_id": "2026119",
+    "event_name": "Soudal Open",
+    "tour": "euro",
+    "slug": "soudal_open",
+    "year": "2026",
+    "csv_available": false,
+    "archived_at": "2026-05-19 14:48:06 UTC",
+    "prediction_snapshot": "event_assets",
+    "initial_snapshot_created_utc": "2026-05-19T14:48:06Z"
+  },
+  {
+    "event_id": "19",
+    "event_name": "THE CJ CUP Byron Nelson",
+    "tour": "pga",
+    "slug": "the_cj_cup_byron_nelson",
+    "year": "2026",
+    "csv_available": false,
+    "archived_at": "2026-05-19 14:47:28 UTC",
+    "prediction_snapshot": "event_assets",
+    "initial_snapshot_created_utc": "2026-05-19T14:47:28Z"
+  },
+  {
     "event_id": "33",
     "event_name": "PGA Championship",
     "tour": "pga",

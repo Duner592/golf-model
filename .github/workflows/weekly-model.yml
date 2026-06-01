@@ -27,7 +27,7 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -65,6 +65,51 @@ jobs:
 
       - name: Run model pipeline
         run: bash scripts/ci_run_model.sh
+
+      - name: Commit durable prediction snapshots
+        run: |
+          if [ "$FAST" = "true" ]; then
+            echo "Skipping durable snapshot commit for FAST=true."
+            exit 0
+          fi
+
+          snapshot_paths=(web/archive)
+          case "$TOUR" in
+            pga)
+              snapshot_paths+=(web/pga/initial)
+              ;;
+            euro)
+              snapshot_paths+=(web/euro/initial)
+              ;;
+            both|"")
+              snapshot_paths+=(web/pga/initial web/euro/initial)
+              ;;
+          esac
+
+          existing_paths=()
+          for path in "${snapshot_paths[@]}"; do
+            if [ -e "$path" ]; then
+              existing_paths+=("$path")
+            fi
+          done
+
+          if [ "${#existing_paths[@]}" -eq 0 ]; then
+            echo "No durable snapshot paths exist."
+            exit 0
+          fi
+
+          changes="$(git status --porcelain --untracked-files=all -- "${existing_paths[@]}")"
+          if [ -z "$changes" ]; then
+            echo "No durable prediction snapshot changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${existing_paths[@]}"
+          git commit -m "Persist model prediction snapshots [skip ci]"
+          git pull --rebase --autostash origin master
+          git push
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

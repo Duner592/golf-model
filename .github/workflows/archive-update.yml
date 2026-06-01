@@ -59,16 +59,23 @@ jobs:
           fi
           python scripts/update_previous_week_archives.py "${args[@]}"
 
+      - name: Refresh actual results and accuracy
+        if: ${{ env.DRY_RUN != 'true' }}
+        run: |
+          python scripts/fetch_actual_results.py --allow-missing
+          python scripts/build_prediction_accuracy.py
+
       - name: Commit archive updates
         if: ${{ env.DRY_RUN != 'true' }}
         run: |
-          if git diff --quiet -- upcoming-events.json web/archive; then
+          changes="$(git status --porcelain --untracked-files=all -- upcoming-events.json web/archive data/analytics)"
+          if [ -z "$changes" ]; then
             echo "No previous-week archive changes to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add upcoming-events.json web/archive
+          git add upcoming-events.json web/archive data/analytics
           git commit -m "Update previous-week archives"
           git pull --rebase --autostash origin master
           git push
