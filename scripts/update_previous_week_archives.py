@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Update archive summaries for events that started in the previous week.
+"""Update archive summaries for recently completed events.
 
 The default previous-week window is Monday through Sunday before the reference
 date. This is intended for Monday archive-update runs after the prior week's
@@ -9,6 +9,7 @@ Usage:
     python scripts/update_previous_week_archives.py --dry-run
     python scripts/update_previous_week_archives.py
     python scripts/update_previous_week_archives.py --date 2026-05-18 --tour pga
+    python scripts/update_previous_week_archives.py --lookback-weeks 6 --completed-only
 """
 
 from __future__ import annotations
@@ -32,6 +33,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--tour", action="append", choices=DEFAULT_TOURS, help="Tour to include. Repeat for multiple tours.")
     parser.add_argument("--dry-run", action="store_true", help="Print the matching event IDs and commands without updating files.")
     parser.add_argument("--completed-only", action="store_true", help="Only include events marked completed in upcoming-events.json.")
+    parser.add_argument(
+        "--lookback-weeks",
+        type=int,
+        default=1,
+        help="Number of completed Monday-Sunday windows before the reference week to scan. Defaults to 1.",
+    )
     return parser.parse_args()
 
 
@@ -46,6 +53,15 @@ def previous_week_window(reference_date: date) -> tuple[date, date]:
     previous_monday = current_monday - timedelta(days=7)
     previous_sunday = current_monday - timedelta(days=1)
     return previous_monday, previous_sunday
+
+
+def lookback_window(reference_date: date, weeks: int) -> tuple[date, date]:
+    if weeks < 1:
+        raise ValueError("--lookback-weeks must be at least 1")
+    current_monday = reference_date - timedelta(days=reference_date.weekday())
+    first_monday = current_monday - timedelta(days=7 * weeks)
+    previous_sunday = current_monday - timedelta(days=1)
+    return first_monday, previous_sunday
 
 
 def load_schedule() -> list[dict[str, Any]]:
@@ -68,8 +84,8 @@ def event_start_date(event: dict[str, Any]) -> date | None:
         return None
 
 
-def matching_events(reference_date: date, tours: set[str], completed_only: bool) -> list[dict[str, Any]]:
-    start, end = previous_week_window(reference_date)
+def matching_events(reference_date: date, tours: set[str], completed_only: bool, lookback_weeks: int) -> list[dict[str, Any]]:
+    start, end = lookback_window(reference_date, lookback_weeks)
     matches: list[dict[str, Any]] = []
     for event in load_schedule():
         tour = str(event.get("tour", "")).lower()
@@ -108,14 +124,15 @@ def main() -> None:
     args = parse_args()
     reference_date = parse_reference_date(args.date)
     tours = {tour.lower() for tour in (args.tour or DEFAULT_TOURS)}
-    start, end = previous_week_window(reference_date)
+    start, end = lookback_window(reference_date, args.lookback_weeks)
 
-    events = matching_events(reference_date, tours, args.completed_only)
-    print(f"Previous-week window: {start.isoformat()} to {end.isoformat()}", flush=True)
+    events = matching_events(reference_date, tours, args.completed_only, args.lookback_weeks)
+    window_label = "Previous-week window" if args.lookback_weeks == 1 else f"{args.lookback_weeks}-week archive lookback"
+    print(f"{window_label}: {start.isoformat()} to {end.isoformat()}", flush=True)
     print(f"Tours: {', '.join(sorted(tours))}", flush=True)
 
     if not events:
-        print("No matching previous-week events found.", flush=True)
+        print("No matching archive events found.", flush=True)
         return
 
     for event in events:

@@ -29,8 +29,9 @@ Automation
 - `upcoming-events.json` is refreshed hourly from DataGolf by `scripts/update_upcoming_events.py`.
 - Shared site status data is generated in `web/status.json` by `scripts/update_web_status.py`.
 - Scheduled/manual model runs use `scripts/ci_run_model.sh`.
-- Previous-week archive updates use `scripts/update_previous_week_archives.py`.
-- Daily actual-results refresh uses `scripts/ci_fetch_actual_results.sh`.
+- Pages deploy refreshes also persist durable archive and initial-snapshot files.
+- Previous-week and lookback archive updates use `scripts/update_previous_week_archives.py`.
+- Daily actual-results refresh uses `scripts/ci_fetch_actual_results.sh`, which backfills recent completed archives before fetching results.
 - `web/spreadsheet_data.csv` remains a manual input; automation fails if it changes during a model run.
 - Setup and operating notes: `docs/automation.md`.
 

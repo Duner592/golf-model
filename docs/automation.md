@@ -78,7 +78,7 @@ The site status card is injected by `web/menu.js` at the bottom of every page th
 
 The frozen initial snapshot is left untouched by later scheduled runs. Prediction archives are copied from that initial snapshot, so archive accuracy remains tied to the first model view of the week rather than a later refreshed model.
 
-Scheduled model runs commit these initial snapshot and archive files back to `master`. They do not commit the refreshed live model assets under `web/{tour}/...`.
+Scheduled model runs and deploy-time model refreshes commit these initial snapshot and archive files back to `master`. They do not commit the refreshed live model assets under `web/{tour}/...`.
 
 The home page links to both versions:
 
@@ -99,7 +99,13 @@ To test a specific Monday reference date:
 python scripts/update_previous_week_archives.py --date 2026-05-18 --dry-run
 ```
 
-The script reads `upcoming-events.json`, finds `pga` and `euro` events whose `start_date` falls in the previous Monday-Sunday window, prints the event IDs, and prints the exact `update_archived_event.py` command it will run.
+To scan more than one completed week, use a lookback:
+
+```sh
+python scripts/update_previous_week_archives.py --lookback-weeks 6 --completed-only --dry-run
+```
+
+The script reads `upcoming-events.json`, finds `pga` and `euro` events whose `start_date` falls in the selected completed Monday-Sunday window(s), prints the event IDs, and prints the exact `update_archived_event.py` command it will run.
 
 Archive automation uses `--force` because the checked-in `upcoming-events.json` may still show a previous-week event as `upcoming`. The updater still skips forced updates when no winner is available yet. If `web/archive/{year}/{slug}/` is missing, it attempts to materialize the archive from saved initial snapshots or checked-in event assets before updating status and winner.
 

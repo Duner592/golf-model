@@ -1,4 +1,22 @@
 {
+  "2026_soudal_open": {
+    "event_id": "2026119",
+    "event_name": "Soudal Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "soudal_open"
+  },
+  "2026_the_cj_cup_byron_nelson": {
+    "event_id": "19",
+    "event_name": "THE CJ CUP Byron Nelson",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "the_cj_cup_byron_nelson"
+  },
   "2026_pga_championship": {
     "event_id": "33",
     "event_name": "PGA Championship",

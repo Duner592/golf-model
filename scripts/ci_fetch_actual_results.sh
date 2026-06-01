@@ -3,6 +3,7 @@ set -euo pipefail
 
 YEAR="${YEAR:-$(date -u +%Y)}"
 PYTHON_BIN="${PYTHON_BIN:-}"
+ARCHIVE_LOOKBACK_WEEKS="${ARCHIVE_LOOKBACK_WEEKS:-6}"
 
 if [[ -z "$PYTHON_BIN" ]]; then
   if command -v python >/dev/null 2>&1; then
@@ -21,6 +22,10 @@ if [[ -z "${DATAGOLF_API_KEY:-}" ]]; then
 fi
 
 "$PYTHON_BIN" scripts/update_upcoming_events.py
+
+echo "::group::Backfill recent completed archives"
+"$PYTHON_BIN" scripts/update_previous_week_archives.py --lookback-weeks "$ARCHIVE_LOOKBACK_WEEKS" --completed-only
+echo "::endgroup::"
 
 echo "::group::Fetch actual results for $YEAR"
 "$PYTHON_BIN" scripts/fetch_actual_results.py --year "$YEAR" --allow-missing

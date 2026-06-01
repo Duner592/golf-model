@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -45,6 +45,35 @@ jobs:
 
       - name: Refresh model assets
         run: bash scripts/ci_run_model.sh
+
+      - name: Commit durable prediction snapshots
+        run: |
+          snapshot_paths=(web/archive web/pga/initial web/euro/initial)
+
+          existing_paths=()
+          for path in "${snapshot_paths[@]}"; do
+            if [ -e "$path" ]; then
+              existing_paths+=("$path")
+            fi
+          done
+
+          if [ "${#existing_paths[@]}" -eq 0 ]; then
+            echo "No durable snapshot paths exist."
+            exit 0
+          fi
+
+          changes="$(git status --porcelain --untracked-files=all -- "${existing_paths[@]}")"
+          if [ -z "$changes" ]; then
+            echo "No durable prediction snapshot changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${existing_paths[@]}"
+          git commit -m "Persist deployed prediction snapshots [skip ci]"
+          git pull --rebase --autostash origin master
+          git push
 
       - name: Update site status
         run: python3 scripts/update_web_status.py --sync-assets --workflow "deploy-pages"

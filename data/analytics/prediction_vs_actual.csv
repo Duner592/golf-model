@@ -1,4 +1,307 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+2026119,Soudal Open,euro,2026,1,Adrian Meronk,11.2,52.6,88.9,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,2,Matthew Jordan,10.68,52.2,89.0,-0.1324924989999999,,CUT,,
+2026119,Soudal Open,euro,2026,3,Romain Langasque,9.28,48.1,87.2,-0.491366827,53.0,T53,0.0,0.0
+2026119,Soudal Open,euro,2026,4,Ewen Ferguson,5.23,36.1,82.1,0.1843910839999999,,CUT,,
+2026119,Soudal Open,euro,2026,5,Hennie Du Plessis,5.08,35.5,81.8,0.227034355,63.0,T63,0.0,0.0
+2026119,Soudal Open,euro,2026,6,Thomas Detry,5.01,36.2,82.2,0.298796204,53.0,T53,0.0,0.0
+2026119,Soudal Open,euro,2026,7,Sam Bairstow,4.67,33.8,80.9,-0.172959503,,CUT,,
+2026119,Soudal Open,euro,2026,8,Oliver Lindell,4.58,33.8,81.1,0.263884056,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,9,Victor Perez,4.32,33.2,80.7,0.106822939,2.0,T2,0.0,1.0
+2026119,Soudal Open,euro,2026,10,Eugenio Chacarra,3.08,26.9,77.2,0.124184346,,,,
+2026119,Soudal Open,euro,2026,11,Paul Waring,3.01,26.6,76.9,0.01692187,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,12,Ignacio Elvira Mijares,2.45,23.8,74.7,-0.270015929,,CUT,,
+2026119,Soudal Open,euro,2026,13,Ben Schmidt,1.87,19.7,72.2,-0.224596367,8.0,T8,0.0,1.0
+2026119,Soudal Open,euro,2026,14,Kazuma Kobori,1.64,17.8,69.8,-0.17586358,,CUT,,
+2026119,Soudal Open,euro,2026,15,Adrian Otaegui,1.24,15.6,67.9,-0.100391528,,CUT,,
+2026119,Soudal Open,euro,2026,16,Jayden Schaper,1.21,15.7,68.0,0.130862624,,,,
+2026119,Soudal Open,euro,2026,17,Richie Ramsay,1.05,14.0,66.0,-0.335251039,,CUT,,
+2026119,Soudal Open,euro,2026,18,Richard Mansell,1.05,13.5,65.5,-0.0654369519999999,,CUT,,
+2026119,Soudal Open,euro,2026,19,Calum Hill,0.97,12.9,63.9,-0.321518282,59.0,T59,0.0,0.0
+2026119,Soudal Open,euro,2026,20,Francesco Laporta,0.94,13.2,65.0,-0.0879489459999999,17.0,T17,0.0,0.0
+2026119,Soudal Open,euro,2026,21,Jose Luis Ballester,0.93,12.7,63.8,0.259743535,,CUT,,
+2026119,Soudal Open,euro,2026,22,Matteo Manassero,0.9,12.6,64.3,-0.137804328,53.0,T53,0.0,0.0
+2026119,Soudal Open,euro,2026,23,Ugo Coussaud,0.88,12.2,63.2,0.0048449129999999,,CUT,,
+2026119,Soudal Open,euro,2026,24,Thriston Lawrence,0.8,12.3,64.0,0.010745679,,CUT,,
+2026119,Soudal Open,euro,2026,25,Todd Clements,0.78,11.9,63.2,0.023834776,,CUT,,
+2026119,Soudal Open,euro,2026,26,Grant Forrest,0.77,11.9,63.1,-0.296630577,,CUT,,
+2026119,Soudal Open,euro,2026,27,Darius Van Driel,0.71,10.4,61.1,-0.110090695,13.0,T13,0.0,0.0
+2026119,Soudal Open,euro,2026,28,Felix Mory,0.7,11.1,61.8,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,29,Joe Dean,0.69,11.6,62.8,-0.5070273070000001,47.0,T47,0.0,0.0
+2026119,Soudal Open,euro,2026,30,Manuel Elvira,0.62,10.7,62.0,-0.162967547,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,31,Frederic LaCroix,0.62,9.6,59.5,0.0251165239999999,,CUT,,
+2026119,Soudal Open,euro,2026,32,Aaron Cockerill,0.61,9.8,60.0,-0.458547728,,CUT,,
+2026119,Soudal Open,euro,2026,33,Niklas Norgaard,0.6,10.3,61.0,-0.354882565,,,,
+2026119,Soudal Open,euro,2026,34,Brandon Robinson Thompson,0.6,10.1,60.2,-0.239570435,,CUT,,
+2026119,Soudal Open,euro,2026,35,Jacob Skov Olesen,0.49,8.7,58.3,-0.127500878,2.0,T2,0.0,1.0
+2026119,Soudal Open,euro,2026,36,Kiradech Aphibarnrat,0.46,8.5,57.9,-0.323981387,,CUT,,
+2026119,Soudal Open,euro,2026,37,Angel Hidalgo Portillo,0.41,7.8,56.8,-0.450630472,,,,
+2026119,Soudal Open,euro,2026,38,Nathan Kimsey,0.33,6.3,53.7,-0.003411359,8.0,T8,0.0,1.0
+2026119,Soudal Open,euro,2026,39,Martin Couvra,0.31,6.8,54.4,-0.034738965,24.0,T24,0.0,0.0
+2026119,Soudal Open,euro,2026,40,Daniel Hillier,0.27,5.7,52.5,0.30112823,,CUT,,
+2026119,Soudal Open,euro,2026,41,Casey Jarvis,0.25,6.2,53.2,0.24048808,22.0,T22,0.0,0.0
+2026119,Soudal Open,euro,2026,42,Tom Vaillant,0.23,5.4,50.7,-0.33153816,13.0,T13,0.0,0.0
+2026119,Soudal Open,euro,2026,43,Marcus Armitage,0.22,5.0,50.1,-0.1143207149999999,2.0,T2,0.0,1.0
+2026119,Soudal Open,euro,2026,44,Mike Toorop,0.22,4.3,47.6,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,45,Cameron Adam,0.22,4.1,47.7,-0.287204681,41.0,T41,0.0,0.0
+2026119,Soudal Open,euro,2026,46,Jack Buchanan,0.2,4.4,47.4,-0.287204681,24.0,T24,0.0,0.0
+2026119,Soudal Open,euro,2026,47,Kota Kaneko,0.2,4.0,47.6,-0.287204681,2.0,T2,0.0,1.0
+2026119,Soudal Open,euro,2026,48,Hunter Logan,0.2,4.2,47.5,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,49,Sean Crocker,0.2,4.4,48.8,-0.143843081,41.0,T41,0.0,0.0
+2026119,Soudal Open,euro,2026,50,Deon Germishuys,0.19,5.3,51.3,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,51,Connor McKinney,0.19,4.2,47.8,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,52,Simon Forsstrom,0.19,4.3,48.0,-0.6665613100000002,,CUT,,
+2026119,Soudal Open,euro,2026,53,Daniel Young,0.19,4.3,48.1,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,54,Tobias Jonsson,0.19,4.2,47.6,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,55,Anthony Quayle,0.18,4.1,47.5,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,56,Eddie Pepperell,0.18,4.0,46.7,-0.0232525229999999,24.0,T24,0.0,0.0
+2026119,Soudal Open,euro,2026,57,Rocco Paolo Repetto Taylor,0.18,4.2,47.3,-0.287204681,47.0,T47,0.0,0.0
+2026119,Soudal Open,euro,2026,58,Jack Yule,0.18,4.1,47.4,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,59,Yanhan Zhou,0.18,4.1,47.6,-0.287204681,41.0,T41,0.0,0.0
+2026119,Soudal Open,euro,2026,60,Michael Hollick,0.18,4.2,47.5,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,61,Yuvraj Singh Sandhu,0.18,4.1,47.7,-0.287204681,63.0,T63,0.0,0.0
+2026119,Soudal Open,euro,2026,62,Stefano Mazzoli,0.17,4.1,47.9,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,63,Daniel Da Costa Rodrigues,0.17,4.1,47.3,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,64,Ryan Peake,0.17,4.1,47.1,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,65,Yurav Premlall,0.17,3.9,47.2,-0.287204681,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,66,Joost Luiten,0.17,3.5,45.4,-0.238596231,74.0,T74,0.0,0.0
+2026119,Soudal Open,euro,2026,67,MJ Daffue,0.17,4.3,48.3,-0.287204681,8.0,T8,0.0,1.0
+2026119,Soudal Open,euro,2026,68,Fred Biondi,0.16,4.1,47.3,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,69,Benjamin Follet-Smith,0.16,4.0,47.9,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,70,Clement Charmasson,0.16,4.3,47.7,-0.287204681,47.0,T47,0.0,0.0
+2026119,Soudal Open,euro,2026,71,Mikael Lindberg,0.16,4.2,47.4,0.0513093929999999,17.0,T17,0.0,0.0
+2026119,Soudal Open,euro,2026,72,Albin Bergstrom,0.16,4.1,47.4,-0.287204681,13.0,T13,0.0,0.0
+2026119,Soudal Open,euro,2026,73,Quentin Debove,0.15,3.9,47.8,-0.287204681,68.0,T68,0.0,0.0
+2026119,Soudal Open,euro,2026,74,Anthony De Schutter,0.15,4.3,47.6,-0.287204681,41.0,T41,0.0,0.0
+2026119,Soudal Open,euro,2026,75,Andres Gallegos,0.15,4.2,48.3,-0.287204681,,,,
+2026119,Soudal Open,euro,2026,76,Hugo Townsend,0.15,4.1,47.8,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,77,Jorge Campillo,0.14,3.7,46.0,-0.024685321,2.0,T2,0.0,1.0
+2026119,Soudal Open,euro,2026,78,Julien Guerrier,0.14,3.9,47.4,-0.09069927,47.0,T47,0.0,0.0
+2026119,Soudal Open,euro,2026,79,Jonothan Broomhead,0.13,4.2,47.7,-0.287204681,41.0,T41,0.0,0.0
+2026119,Soudal Open,euro,2026,80,Quim Vidal,0.13,4.0,47.8,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,81,Oihan Guillamoundeguy,0.13,4.1,47.7,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,82,Euan Walker,0.12,4.0,47.6,-0.287204681,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,83,Maximilian Steinlechner,0.12,4.0,47.3,-0.287204681,59.0,T59,0.0,0.0
+2026119,Soudal Open,euro,2026,84,Fabrizio Zanotti,0.11,2.7,42.8,-0.346765535,17.0,T17,0.0,0.0
+2026119,Soudal Open,euro,2026,85,James Morrison,0.11,2.8,42.9,-0.7753828380000001,,CUT,,
+2026119,Soudal Open,euro,2026,86,Caleb Surratt,0.1,4.6,48.4,-0.138394079,70.0,T70,0.0,0.0
+2026119,Soudal Open,euro,2026,87,Andy Sullivan,0.08,3.0,44.0,-0.177128544,47.0,T47,0.0,0.0
+2026119,Soudal Open,euro,2026,88,Marcel Schneider,0.08,2.8,42.3,-0.373645303,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,89,Rafa Cabrera Bello,0.08,2.1,38.7,-0.197269972,,CUT,,
+2026119,Soudal Open,euro,2026,90,Ross Fisher,0.07,1.8,37.0,-0.351233055,73.0,73,0.0,0.0
+2026119,Soudal Open,euro,2026,91,Andreas Halvorsen,0.07,2.4,41.0,-0.268979781,41.0,T41,0.0,0.0
+2026119,Soudal Open,euro,2026,92,Marcus Helligkilde,0.06,1.8,38.0,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,93,Marcus Kinhult,0.05,1.4,34.2,-0.4201774650000001,2.0,T2,0.0,1.0
+2026119,Soudal Open,euro,2026,94,Daniel Gavins,0.05,1.8,37.0,-0.287204681,,WD,,
+2026119,Soudal Open,euro,2026,95,Brandon Stone,0.05,1.5,35.7,-0.128866056,,CUT,,
+2026119,Soudal Open,euro,2026,96,Joakim Lagergren,0.04,2.0,38.5,-0.328707671,,CUT,,
+2026119,Soudal Open,euro,2026,97,Lev Grinberg,0.04,1.4,34.1,-0.287204681,74.0,T74,0.0,0.0
+2026119,Soudal Open,euro,2026,98,Jordan Gumberg,0.04,1.0,32.2,-0.238394621,,CUT,,
+2026119,Soudal Open,euro,2026,99,Sadom Kaewkanjana,0.03,1.1,32.2,-0.414776033,63.0,T63,0.0,0.0
+2026119,Soudal Open,euro,2026,100,Kristof Ulenaers,0.03,1.3,34.0,-0.287204681,59.0,T59,0.0,0.0
+2026119,Soudal Open,euro,2026,101,Jens Dantorp,0.03,1.1,32.2,-0.5467936689999999,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,102,Andrew Johnston,0.03,1.2,33.9,-0.130047835,13.0,T13,0.0,0.0
+2026119,Soudal Open,euro,2026,103,Jason Scrivener,0.02,1.2,32.8,-0.336286663,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,104,David Ravetto,0.02,1.1,31.6,-0.266689368,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,105,JC Ritchie,0.02,1.2,33.4,-0.0657775209999999,,CUT,,
+2026119,Soudal Open,euro,2026,106,Filippo Celli,0.02,0.8,29.6,-0.6374449860000001,,CUT,,
+2026119,Soudal Open,euro,2026,107,Jeff Winther,0.02,0.6,27.3,-0.4626593619999999,17.0,T17,0.0,0.0
+2026119,Soudal Open,euro,2026,108,Matthew Baldwin,0.02,0.5,24.5,-0.389713564,47.0,T47,0.0,0.0
+2026119,Soudal Open,euro,2026,109,Max Kieffer,0.02,0.9,30.9,-0.5872081200000001,,,,
+2026119,Soudal Open,euro,2026,110,Yente Van Doren,0.01,0.5,25.1,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,111,Zander Lombard,0.01,0.6,27.4,-0.268175454,8.0,T8,0.0,1.0
+2026119,Soudal Open,euro,2026,112,David Micheluzzi,0.01,0.3,21.3,-0.866290405,,CUT,,
+2026119,Soudal Open,euro,2026,113,Edoardo Molinari,0.01,0.6,26.4,-0.8887405610000001,,CUT,,
+2026119,Soudal Open,euro,2026,114,Gregorio De Leo,0.01,1.4,34.3,-0.155191741,8.0,T8,0.0,1.0
+2026119,Soudal Open,euro,2026,115,Wenyi Ding,0.01,0.8,29.4,-0.124613852,,,,
+2026119,Soudal Open,euro,2026,116,James Meyer De Beco,0.01,0.3,20.4,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,117,Pablo Larrazabal,0.01,0.3,23.1,-0.722952926,,CUT,,
+2026119,Soudal Open,euro,2026,118,Yuto Katsuragawa,0.01,0.5,26.5,-0.267812607,59.0,T59,0.0,0.0
+2026119,Soudal Open,euro,2026,119,David Law,0.01,0.4,25.1,-0.303337437,,CUT,,
+2026119,Soudal Open,euro,2026,120,Richard Sterne,0.01,0.2,18.8,-0.350782035,1.0,1,1.0,1.0
+2026119,Soudal Open,euro,2026,121,Daan Huizing,0.01,0.1,13.4,-1.025127716,,CUT,,
+2026119,Soudal Open,euro,2026,122,Sebastian Garcia Rodriguez,0.01,0.4,21.6,-0.427262476,,CUT,,
+2026119,Soudal Open,euro,2026,123,Shubhankar Sharma,0.01,0.3,21.3,-0.50152691,,CUT,,
+2026119,Soudal Open,euro,2026,124,Nicolas Colsaerts,0.0,0.1,13.4,-0.50018668,,CUT,,
+2026119,Soudal Open,euro,2026,125,Nicolai Von Dellingshausen,0.0,0.4,22.8,-0.548213122,70.0,T70,0.0,0.0
+2026119,Soudal Open,euro,2026,126,Adri Arnaus,0.0,0.1,14.0,-0.6897428299999999,,CUT,,
+2026119,Soudal Open,euro,2026,127,Frank Kennedy,0.0,0.6,26.0,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,128,Scott Jamieson,0.0,0.2,16.6,-0.5998420019999999,63.0,T63,0.0,0.0
+2026119,Soudal Open,euro,2026,129,Callum Tarren,0.0,0.4,22.9,-0.491515364,,CUT,,
+2026119,Soudal Open,euro,2026,130,Freddy Schott,0.0,0.2,19.4,-0.211121994,,CUT,,
+2026119,Soudal Open,euro,2026,131,Nathan Cossement,0.0,0.0,11.5,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,132,Matthis Besard,0.0,0.0,6.7,-0.7143522880000001,,CUT,,
+2026119,Soudal Open,euro,2026,133,Liam Bentein,0.0,0.0,7.7,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,134,Ivan Cantero Gutierrez,0.0,0.2,17.0,-0.531334519,53.0,T53,0.0,0.0
+2026119,Soudal Open,euro,2026,135,Lucas Bjerregaard,0.0,0.1,12.1,-0.5418175180000001,,CUT,,
+2026119,Soudal Open,euro,2026,136,Lars Buijs,0.0,0.1,13.4,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,137,Davis Bryant,0.0,0.0,2.9,-0.178621796,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,138,Adam Blomme,0.0,0.0,6.0,-0.287204681,63.0,T63,0.0,0.0
+2026119,Soudal Open,euro,2026,139,Joshua Berry,0.0,0.1,14.2,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,140,Arthur Haghedooren,0.0,0.0,8.2,-0.287204681,68.0,T68,0.0,0.0
+2026119,Soudal Open,euro,2026,141,Alexander Levy,0.0,0.0,12.2,-0.523049824,24.0,T24,0.0,0.0
+2026119,Soudal Open,euro,2026,142,Jeong Weon Ko,0.0,0.1,16.8,-0.8845093780000001,,CUT,,
+2026119,Soudal Open,euro,2026,143,Rikuya Hoshino,0.0,0.2,16.8,-0.495878009,53.0,T53,0.0,0.0
+2026119,Soudal Open,euro,2026,144,Ryggs Johnston,0.0,0.0,2.2,-0.865718962,,CUT,,
+2026119,Soudal Open,euro,2026,145,Gavin Green,0.0,0.0,5.4,-0.950541315,70.0,T70,0.0,0.0
+2026119,Soudal Open,euro,2026,146,Ricardo Gouveia,0.0,0.2,19.4,-0.288559099,24.0,T24,0.0,0.0
+2026119,Soudal Open,euro,2026,147,Joel Girrbach,0.0,0.3,21.0,-0.242502657,,CUT,,
+2026119,Soudal Open,euro,2026,148,Dylan Naidoo,0.0,0.0,0.5,-0.6862426910000001,,CUT,,
+2026119,Soudal Open,euro,2026,149,Yannik Paul,0.0,0.5,24.8,-0.8154855400000001,,CUT,,
+2026119,Soudal Open,euro,2026,150,Renato Paratore,0.0,0.0,5.9,-0.7180666790000001,30.0,T30,0.0,0.0
+2026119,Soudal Open,euro,2026,151,Jarno Tollenaire,0.0,0.0,10.1,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,152,James Skeet,0.0,0.0,12.9,-0.287204681,,CUT,,
+2026119,Soudal Open,euro,2026,153,Jack Senior,0.0,0.2,20.1,-0.579082472,,CUT,,
+2026119,Soudal Open,euro,2026,154,Connor Syme,0.0,0.4,23.4,-0.334553319,74.0,T74,0.0,0.0
+2026119,Soudal Open,euro,2026,155,Marcel Siem,0.0,0.0,10.7,-0.5650177470000001,53.0,T53,0.0,0.0
+2026119,Soudal Open,euro,2026,156,Robin Williams,0.0,0.2,15.9,-0.700924481,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,1,Scottie Scheffler,76.9,99.1,99.9,0.5370428600396604,3.0,3,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,2,Jordan Spieth,6.74,72.2,94.9,0.284929446204475,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,3,Si Woo Kim,3.62,59.0,91.8,0.1767790089844046,2.0,2,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,4,Eric Cole,1.91,48.1,88.7,0.0094315303386409,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,5,Taylor Pendrith,1.72,45.1,87.5,0.2821613847582738,47.0,T47,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,6,Christiaan Bezuidenhout,1.72,46.6,88.2,0.1141797293899377,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,7,Takumi Kanaya,1.52,43.4,86.5,-0.1949084978389844,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,8,Austin Eckroat,0.68,32.0,81.8,0.3187840615298337,40.0,T40,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,9,Michael Thorbjornsen,0.58,29.5,80.8,0.2533884935022204,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,10,Sungjae Im,0.49,26.1,78.5,0.2864622722592161,9.0,T9,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,11,Zecheng Dou,0.37,22.7,76.6,0.264275265808193,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,12,Patrick Rodgers,0.26,18.3,72.9,0.1822379209789371,47.0,T47,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,13,Ryo Hisatsune,0.21,15.5,70.3,-0.0204126375820897,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,14,Thorbjorn Olesen,0.21,16.3,70.5,0.1345475579368282,62.0,T62,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,15,Kevin Roy,0.21,16.7,71.5,0.079480805909053,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,16,Adrien Dumont De Chassart,0.2,16.0,70.5,-0.0837492590478264,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,17,Tom Kim,0.18,14.9,69.3,0.1968824407172412,54.0,T54,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,18,Keith Mitchell,0.17,14.5,69.3,0.249261662200851,5.0,5,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,19,Stephan Jaeger,0.16,16.4,70.8,0.343263365846523,9.0,T9,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,20,Doug Ghim,0.14,12.2,66.7,0.2312321168115632,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,21,Mark Hubbard,0.13,11.8,65.1,0.1101406403983065,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,22,Seamus Power,0.13,12.3,66.7,0.0002660899993977,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,23,Danny Walker,0.12,11.4,64.9,-0.1045892503327123,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,24,Vince Whaley,0.11,9.4,62.3,0.0200696261700588,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,25,Wyndham Clark,0.09,9.4,62.6,0.0812962588316236,1.0,1,1.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,26,Jhonattan Vegas,0.09,10.8,63.9,0.1304649319472209,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,27,Kevin Yu,0.08,10.6,63.3,0.341634558346344,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,28,Carson Young,0.08,9.1,61.5,0.2259468594265185,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,29,Rasmus Hojgaard,0.08,9.1,61.5,-0.04366255917179,62.0,T62,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,30,Ben Kohles,0.06,7.3,58.3,-0.0999426265586086,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,31,Nick Dunlap,0.05,5.4,54.1,0.0876812300890288,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,32,K.H. Lee,0.05,6.9,57.8,0.0430633545086856,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,33,Mackenzie Hughes,0.05,7.7,59.0,0.082340371969981,66.0,66,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,34,Jordan Smith,0.05,6.3,56.4,-0.052125701285858,59.0,T59,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,35,Haotong Li,0.04,4.8,51.9,-0.057240869285858,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,36,Aaron Wise,0.04,4.5,50.6,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,37,Rico Hoey,0.03,5.0,53.5,0.2873274838489901,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,38,Davis Thompson,0.03,4.2,50.4,0.3225262647304951,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,39,Matt Kuchar,0.03,5.6,55.4,0.0374393273112538,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,40,Chris Kirk,0.03,3.6,48.9,-0.032007452285858,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,41,Jonathan Byrd,0.03,5.2,53.8,-0.04366255917179,59.0,T59,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,42,Pierceson Coody,0.02,4.8,52.2,0.3097825588506734,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,43,Scott Piercy,0.02,3.9,49.8,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,44,Michael Brennan,0.02,5.3,54.4,-0.082185397285858,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,45,Zach Bauchou,0.02,3.0,46.7,-0.015235365285858,6.0,T6,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,46,Adam Schenk,0.02,3.1,45.8,-0.0012888384810072,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,47,Erik Van Rooyen,0.02,4.5,51.6,-0.0766960246800194,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,48,Keita Nakajima,0.02,2.3,42.1,-0.052181112285858,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,49,Pontus Nyholm,0.02,2.7,44.9,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,50,Nathan Petronzio,0.02,2.7,45.5,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,51,John Parry,0.02,4.1,50.6,-0.020166941285858,47.0,T47,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,52,Tom Hoge,0.02,3.4,48.1,0.154462850943582,6.0,T6,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,53,Alex Huang,0.02,2.8,45.3,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,54,Hank Lebioda,0.02,3.9,49.9,-0.2519471777408831,62.0,T62,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,55,Justin Lower,0.02,2.6,44.3,-0.1424136268606859,47.0,T47,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,56,Adam Headley,0.01,2.6,45.4,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,57,Kris Ventura,0.01,1.3,36.2,0.00895458233185,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,58,Cameron Champ,0.01,3.0,46.7,0.1857059818184948,,WD,,
+19,THE CJ CUP Byron Nelson,pga,2026,59,Davis Chatfield,0.01,2.7,44.3,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,60,Beau Hossler,0.01,2.3,42.6,-0.1612157533291899,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,61,Ronin Banerjee,0.01,2.4,44.6,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,62,Rasmus Neergaard-Petersen,0.01,4.1,50.3,-0.051117043285858,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,63,Ben Martin,0.01,2.1,41.3,-0.0783957036555098,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,64,Preston Stout,0.01,2.6,45.3,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,65,Karl Vilips,0.01,2.5,43.8,-0.2274955621927542,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,66,William Sides,0.01,2.7,45.2,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,67,Taylor Moore,0.01,2.3,42.7,0.0833507380896904,14.0,T14,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,68,Dylan Wu,0.01,0.6,29.0,-0.4369925989046442,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,69,Will Gordon,0.01,1.8,40.4,0.058761037415155,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,70,Emiliano Grillo,0.01,2.6,43.8,-0.3453476066763963,38.0,T38,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,71,James Hahn,0.01,2.9,44.9,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,72,Tony Finau,0.01,3.0,45.7,0.0309053387141419,6.0,T6,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,73,Johnny Keefer,0.01,2.6,44.5,-0.085389142285858,9.0,T9,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,74,Kensei Hirata,0.01,2.8,45.9,-0.04366255917179,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,75,Brice Garnett,0.01,1.2,35.8,-0.0814495058792924,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,76,Yongjun Bae,0.01,2.7,45.7,-0.04366255917179,62.0,T62,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,77,David Skinns,0.01,2.3,42.1,-0.3845140665311113,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,78,Max McGreevy,0.01,3.2,47.0,-0.0976002172855869,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,79,Davis Riley,0.01,2.9,45.9,0.1877212933695214,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,80,Steven Fisk,0.01,3.2,47.5,-0.014158038285858,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,81,A.J. Ewart,0.01,1.5,38.4,-0.006196281285858,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,82,Adam Svensson,0.01,1.1,34.7,-0.3261950527733178,54.0,T54,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,83,Jackson Buchanan,0.01,2.5,45.0,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,84,Lee Hodges,0.01,1.3,37.6,-0.065142643678382,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,85,Brooks Koepka,0.01,3.3,47.7,0.2477807740233837,14.0,T14,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,86,Mason Howell,0.01,2.8,44.9,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,87,David Ford,0.01,2.6,45.5,-0.062509964285858,,,,
+19,THE CJ CUP Byron Nelson,pga,2026,88,Matthieu Pavon,0.01,1.5,37.3,-0.039103951285858,40.0,T40,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,89,Blades Brown,0.0,2.7,44.4,-0.04366255917179,14.0,T14,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,90,Chandler Blanchet,0.0,2.6,44.8,-0.088525053285858,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,91,Ryan Brehm,0.0,0.9,33.7,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,92,Chad Ramey,0.0,0.9,33.1,-0.0355345682029006,59.0,T59,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,93,Mac Meissner,0.0,0.8,31.6,-0.1888358757674967,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,94,Patton Kizzire,0.0,1.2,37.1,-0.0525816423976785,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,95,Dan Brown,0.0,2.0,41.1,-0.061578176285858,47.0,T47,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,96,John VanDerLaan,0.0,2.6,44.7,-0.04366255917179,67.0,T67,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,97,Hayden Springer,0.0,0.8,31.5,-0.1070889257267001,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,98,Marcelo Rozo,0.0,2.7,45.2,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,99,Neal Shipley,0.0,1.1,35.3,-0.095564383285858,40.0,T40,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,100,Paul Peterson,0.0,0.7,29.2,-0.1586080471080636,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,101,Adrien Saddier,0.0,1.8,41.1,-0.049711706285858,40.0,T40,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,102,Sam Ryder,0.0,1.1,35.7,0.0128389003080893,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,103,Greg Gregory,0.0,2.6,45.1,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,104,Patrick Fishburn,0.0,0.4,26.1,0.0205032609295756,47.0,T47,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,105,Max Greyserman,0.0,0.8,31.6,-0.1632412781366793,9.0,T9,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,106,Garrick Higgo,0.0,1.6,39.4,0.1920810138926433,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,107,Martin Laird,0.0,0.4,24.7,-0.0753642435233569,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,108,Luke Clanton,0.0,0.7,30.4,-0.096106404285858,31.0,T31,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,109,Rafael Campos,0.0,0.3,21.0,-0.095421066222131,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,110,Zac Blair,0.0,0.2,22.1,-0.4672560795109851,69.0,69,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,111,Tyler Duncan,0.0,0.4,27.0,-0.04366255917179,40.0,T40,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,112,Trace Crowe,0.0,0.9,33.1,-0.0850104272153032,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,113,Nick Hardy,0.0,0.8,30.9,-0.00964956147117,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,114,Harry Higgs,0.0,0.1,14.8,-0.3414982331615461,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,115,Joe Highsmith,0.0,0.5,27.4,-0.0936884205181918,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,116,Peter Malnati,0.0,0.1,16.1,-0.2927169589427847,19.0,T19,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,117,Luke List,0.0,0.4,25.3,0.076044256099683,40.0,T40,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,118,Christo Lamprecht,0.0,0.0,8.0,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,119,Chan Kim,0.0,0.1,17.4,-0.4787546807823892,38.0,T38,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,120,Billy Horschel,0.0,1.5,38.2,-0.030769851285858,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,121,Charley Hoffman,0.0,0.2,18.9,-0.207945020692806,54.0,T54,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,122,Jeffrey Kang,0.0,0.0,9.1,-0.04366255917179,54.0,T54,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,123,Austin Cook,0.0,1.0,33.4,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,124,Cam Davis,0.0,0.1,12.8,-0.168606158335956,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,125,Joel Dahmen,0.0,0.7,31.6,-0.188256414542588,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,126,Noah Goodwin,0.0,0.0,8.0,-0.438725616361612,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,127,Lanto Griffin,0.0,1.7,40.7,0.1649360996107839,67.0,T67,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,128,Adam Hadwin,0.0,0.5,27.8,0.0815185609191671,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,129,William Mouw,0.0,0.9,33.8,-0.3646772349393673,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,130,Ryan Palmer,0.0,0.3,24.1,0.1125054724395553,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,131,Jeremy Paul,0.0,0.1,15.7,0.2458036001184961,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,132,Gordon Sargent,0.0,0.4,25.1,-0.057862590285858,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,133,Chandler Phillips,0.0,1.2,35.4,-0.1779780631579237,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,134,Troy Merritt,0.0,0.7,31.3,-0.103284346500589,54.0,T54,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,135,Taylor Montgomery,0.0,0.1,14.8,-0.5065734092937725,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,136,Henrik Norlander,0.0,0.7,30.4,-0.189039912181353,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,137,S.Y. Noh,0.0,1.1,34.3,-0.04366255917179,18.0,18,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,138,Matti Schmid,0.0,0.9,32.3,-0.1414380376912195,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,139,Ben Silverman,0.0,0.1,15.4,-0.2685342358239915,17.0,17,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,140,Jesper Svensson,0.0,0.3,23.1,-0.1385836897782993,9.0,T9,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,141,Jackson Suber,0.0,0.0,9.2,-0.4704930565183204,4.0,4,0.0,1.0
+19,THE CJ CUP Byron Nelson,pga,2026,142,Kevin Streelman,0.0,0.0,2.3,-0.3603719210059281,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,143,Robert Streb,0.0,1.6,39.1,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,144,Jimmy Stanger,0.0,0.2,20.4,-0.04366255917179,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,145,Alejandro Tosti,0.0,0.1,13.7,0.1323369932193099,,CUT,,
+19,THE CJ CUP Byron Nelson,pga,2026,146,Danny Willett,0.0,0.0,8.4,-0.2277346540417693,70.0,70,0.0,0.0
+19,THE CJ CUP Byron Nelson,pga,2026,147,Camilo Villegas,0.0,0.0,4.0,-0.8681269634338094,40.0,T40,0.0,0.0
 33,PGA Championship,pga,2026,1,Scottie Scheffler,41.71,92.5,99.3,0.493726141425271,14.0,T14,0.0,0.0
 33,PGA Championship,pga,2026,2,Bryson DeChambeau,13.45,73.6,97.0,0.2991367002622811,,CUT,,
 33,PGA Championship,pga,2026,3,Xander Schauffele,7.52,61.2,94.8,0.4706827182212898,7.0,T7,0.0,1.0

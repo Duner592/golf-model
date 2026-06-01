@@ -24,6 +24,7 @@ jobs:
     env:
       DATAGOLF_API_KEY: ${{ secrets.DATAGOLF_API_KEY }}
       YEAR: ${{ inputs.year || '' }}
+      ARCHIVE_LOOKBACK_WEEKS: "6"
     steps:
       - name: Checkout
         uses: actions/checkout@v5
