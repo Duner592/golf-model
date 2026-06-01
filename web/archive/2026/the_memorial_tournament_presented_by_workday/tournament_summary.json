@@ -1,0 +1,38 @@
+{
+  "event_name": "the Memorial Tournament presented by Workday",
+  "event_id": "23",
+  "course": "Muirfield Village Golf Club",
+  "total_yardage": null,
+  "course_location": "Dublin, OH",
+  "start_date": "04-Jun-2026",
+  "field_size": 72,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Scheffler, Scottie",
+      "score": -6
+    },
+    {
+      "year": 2024,
+      "winner": "Scheffler, Scottie",
+      "score": -4
+    },
+    {
+      "year": 2023,
+      "winner": "Hovland, Viktor",
+      "score": -3
+    },
+    {
+      "year": 2022,
+      "winner": "Horschel, Billy",
+      "score": -9
+    },
+    {
+      "year": 2021,
+      "winner": "Cantlay, Patrick",
+      "score": -9
+    }
+  ]
+}

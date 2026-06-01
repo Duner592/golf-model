@@ -1,0 +1,28 @@
+{
+  "event_name": "KLM Open",
+  "event_id": "2026121",
+  "course": "The International",
+  "total_yardage": null,
+  "course_location": "Badhoevedorp, Netherlands",
+  "start_date": "04-Jun-2026",
+  "field_size": 155,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Syme, Connor",
+      "score": -11
+    },
+    {
+      "year": 2024,
+      "winner": "Migliozzi, Guido",
+      "score": -11
+    },
+    {
+      "year": 2023,
+      "winner": "Larrazabal, Pablo",
+      "score": -9
+    }
+  ]
+}

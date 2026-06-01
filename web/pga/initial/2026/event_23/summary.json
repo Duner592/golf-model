@@ -1,0 +1,12 @@
+{
+  "event_id": "23",
+  "event_name": "the Memorial Tournament presented by Workday",
+  "source_csv": "data/preds/pga/event_23_the_memorial_tournament_presented_by_workday_2026-06-01_leaderboard.csv",
+  "generated_utc": "01-Jun-2026 12:13:21",
+  "metrics": {
+    "field_size": 72,
+    "p_win_max": 0.8237333333333333,
+    "p_win_median": 0.00011666666666666667,
+    "p_win_sum": 1.0
+  }
+}

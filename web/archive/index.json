@@ -1,5 +1,27 @@
 [
   {
+    "event_id": "2026121",
+    "event_name": "KLM Open",
+    "tour": "euro",
+    "slug": "klm_open",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-06-01 12:13:57 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-01T12:13:57Z"
+  },
+  {
+    "event_id": "23",
+    "event_name": "the Memorial Tournament presented by Workday",
+    "tour": "pga",
+    "slug": "the_memorial_tournament_presented_by_workday",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-06-01 12:13:21 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-01T12:13:21Z"
+  },
+  {
     "event_id": "2026119",
     "event_name": "Soudal Open",
     "tour": "euro",

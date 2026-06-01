@@ -1,0 +1,12 @@
+{
+  "event_id": "2026121",
+  "event_name": "KLM Open",
+  "source_csv": "data/preds/euro/event_2026121_klm_open_2026-06-01_leaderboard.csv",
+  "generated_utc": "01-Jun-2026 12:13:57",
+  "metrics": {
+    "field_size": 155,
+    "p_win_max": 0.12433333333333334,
+    "p_win_median": 0.0008,
+    "p_win_sum": 1.0
+  }
+}
