@@ -1,4 +1,231 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+2026121,KLM Open,euro,2026,1,Daniel Hillier,12.43,57.2,90.6,0.188704597,14.0,T14,0.0,0.0
+2026121,KLM Open,euro,2026,2,Matteo Manassero,11.14,54.4,90.0,-0.024678192,32.0,T32,0.0,0.0
+2026121,KLM Open,euro,2026,3,Angel Ayora,9.92,51.6,88.9,0.131098093,3.0,T3,0.0,1.0
+2026121,KLM Open,euro,2026,4,Ewen Ferguson,8.63,48.8,88.1,0.0838003619999999,,WD,,
+2026121,KLM Open,euro,2026,5,Nathan Kimsey,6.26,42.6,85.9,-0.070707096,,WD,,
+2026121,KLM Open,euro,2026,6,Bernd Wiesberger,4.56,35.7,82.5,0.1028015929999999,21.0,T21,0.0,0.0
+2026121,KLM Open,euro,2026,7,Jacob Skov Olesen,4.36,35.3,82.4,-0.011083663,55.0,T55,0.0,0.0
+2026121,KLM Open,euro,2026,8,Jayden Schaper,3.18,29.4,79.6,0.166140754,,,,
+2026121,KLM Open,euro,2026,9,Jorge Campillo,3.07,29.3,79.3,0.039033098,,CUT,,
+2026121,KLM Open,euro,2026,10,Grant Forrest,2.65,26.1,77.1,-0.243448383,,CUT,,
+2026121,KLM Open,euro,2026,11,Adrian Otaegui,2.51,26.2,77.6,-0.103927756,,CUT,,
+2026121,KLM Open,euro,2026,12,Matthew Jordan,2.28,24.5,76.4,-0.168351649,,CUT,,
+2026121,KLM Open,euro,2026,13,Connor Syme,2.0,22.9,74.9,-0.382423053,71.0,T71,0.0,0.0
+2026121,KLM Open,euro,2026,14,Jack Senior,1.83,21.1,73.7,-0.442191927,,WD,,
+2026121,KLM Open,euro,2026,15,Francesco Laporta,1.73,20.7,73.0,-0.035129265,,,,
+2026121,KLM Open,euro,2026,16,Eugenio Chacarra,1.63,20.7,73.3,0.080407561,,,,
+2026121,KLM Open,euro,2026,17,Joakim Lagergren,1.56,19.9,72.8,-0.337631185,,CUT,,
+2026121,KLM Open,euro,2026,18,Dan Bradbury,1.49,18.9,72.4,0.140229052,65.0,65,0.0,0.0
+2026121,KLM Open,euro,2026,19,Andy Sullivan,1.3,18.3,71.3,-0.127973909,,CUT,,
+2026121,KLM Open,euro,2026,20,Lars Van Meijel,1.27,16.7,70.0,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,21,Alejandro Del Rey,1.03,15.8,68.9,-0.07860518,,CUT,,
+2026121,KLM Open,euro,2026,22,Rafa Cabrera Bello,0.94,13.7,66.3,-0.174082956,66.0,T66,0.0,0.0
+2026121,KLM Open,euro,2026,23,Mikael Lindberg,0.86,12.8,65.3,-0.049590933,60.0,T60,0.0,0.0
+2026121,KLM Open,euro,2026,24,David Ravetto,0.84,13.1,66.0,-0.225799173,14.0,T14,0.0,0.0
+2026121,KLM Open,euro,2026,25,Filippo Celli,0.76,12.1,64.8,-0.5795729629999999,,WD,,
+2026121,KLM Open,euro,2026,26,Joe Dean,0.76,12.4,64.5,-0.377234284,3.0,T3,0.0,1.0
+2026121,KLM Open,euro,2026,27,Jason Scrivener,0.75,12.3,65.2,-0.2365060159999999,58.0,T58,0.0,0.0
+2026121,KLM Open,euro,2026,28,Casey Jarvis,0.58,10.6,62.4,0.226322166,,CUT,,
+2026121,KLM Open,euro,2026,29,Sean Crocker,0.53,9.9,61.7,-0.156300513,,CUT,,
+2026121,KLM Open,euro,2026,30,Rikuya Hoshino,0.49,9.3,61.3,-0.35972292,58.0,T58,0.0,0.0
+2026121,KLM Open,euro,2026,31,Oliver Lindell,0.46,9.2,60.9,0.246971737,2.0,2,0.0,1.0
+2026121,KLM Open,euro,2026,32,Richard Sterne,0.36,8.0,57.9,-0.260921889,11.0,T11,0.0,0.0
+2026121,KLM Open,euro,2026,33,Julien Guerrier,0.34,7.8,58.6,-0.144994637,7.0,T7,0.0,1.0
+2026121,KLM Open,euro,2026,34,Kiradech Aphibarnrat,0.3,6.8,55.7,-0.3398319490000001,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,35,Tom Vaillant,0.27,6.1,54.2,-0.190556592,,CUT,,
+2026121,KLM Open,euro,2026,36,Fabrizio Zanotti,0.27,6.3,54.6,-0.321255543,,CUT,,
+2026121,KLM Open,euro,2026,37,Marcus Kinhult,0.25,5.9,53.7,-0.241126245,71.0,T71,0.0,0.0
+2026121,KLM Open,euro,2026,38,Marcel Schneider,0.25,5.9,54.1,-0.2841521059999999,73.0,73,0.0,0.0
+2026121,KLM Open,euro,2026,39,Joost Luiten,0.22,5.2,51.8,-0.2994880690000001,60.0,T60,0.0,0.0
+2026121,KLM Open,euro,2026,40,Danny Willett,0.2,5.2,51.6,-0.425932481,7.0,T7,0.0,1.0
+2026121,KLM Open,euro,2026,41,Darius Van Driel,0.19,4.6,50.2,-0.091929169,,CUT,,
+2026121,KLM Open,euro,2026,42,Richie Ramsay,0.19,5.2,52.2,-0.249244885,,CUT,,
+2026121,KLM Open,euro,2026,43,Johannes Veerman,0.17,4.6,50.6,-0.345372636,,CUT,,
+2026121,KLM Open,euro,2026,44,Kristoffer Broberg,0.15,4.4,49.6,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,45,Hennie Du Plessis,0.15,3.6,47.4,0.072920451,,CUT,,
+2026121,KLM Open,euro,2026,46,Marcus Helligkilde,0.14,4.1,48.7,-0.242287314,14.0,T14,0.0,0.0
+2026121,KLM Open,euro,2026,47,Antoine Rozner,0.13,3.6,46.9,0.090693565,55.0,T55,0.0,0.0
+2026121,KLM Open,euro,2026,48,Yurav Premlall,0.13,2.7,44.6,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,49,Ryan Peake,0.12,2.9,44.3,-0.242287314,32.0,T32,0.0,0.0
+2026121,KLM Open,euro,2026,50,Jack Yule,0.12,2.9,44.5,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,51,Francesco Molinari,0.11,3.9,47.2,0.016553996,32.0,T32,0.0,0.0
+2026121,KLM Open,euro,2026,52,Floris De Haas,0.11,3.0,44.0,-0.242287314,,WD,,
+2026121,KLM Open,euro,2026,53,Anthony Quayle,0.11,3.0,43.6,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,54,Ignacio Elvira Mijares,0.11,3.4,46.6,-0.301900104,11.0,T11,0.0,0.0
+2026121,KLM Open,euro,2026,55,Yanhan Zhou,0.11,3.0,43.9,-0.242287314,9.0,9,0.0,1.0
+2026121,KLM Open,euro,2026,56,Stefano Mazzoli,0.11,2.8,43.9,-0.242287314,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,57,Pieter Werner,0.1,2.8,43.8,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,58,Alvaro Quiros,0.1,2.9,43.9,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,59,Jack Buchanan,0.1,2.8,44.2,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,60,Hugo Townsend,0.1,2.8,43.4,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,61,Martin Couvra,0.09,3.3,46.0,0.0112857,,CUT,,
+2026121,KLM Open,euro,2026,62,Connor McKinney,0.09,2.8,44.1,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,63,Felix Mory,0.09,3.0,44.1,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,64,Dylan Naidoo,0.09,2.4,42.6,-0.6285823510000002,,CUT,,
+2026121,KLM Open,euro,2026,65,Euan Walker,0.09,2.9,43.9,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,66,Fred Biondi,0.09,2.9,44.3,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,67,Pablo Ereno Perez,0.09,2.9,44.3,-0.242287314,,,,
+2026121,KLM Open,euro,2026,68,Yuvraj Singh Sandhu,0.09,2.8,44.3,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,69,Romain Wattel,0.09,2.9,44.2,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,70,Tobias Jonsson,0.09,2.9,44.5,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,71,Daniel Young,0.08,2.9,44.0,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,72,Albin Bergstrom,0.08,2.9,43.7,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,73,Cameron Adam,0.08,2.8,44.8,-0.242287314,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,74,Michael Feuerstein,0.08,2.9,44.5,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,75,Jonothan Broomhead,0.08,3.0,44.4,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,76,Mason Howell,0.08,2.8,43.7,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,77,Andres Gallegos,0.08,2.8,43.9,-0.242287314,,,,
+2026121,KLM Open,euro,2026,78,James Morrison,0.08,2.9,45.5,-0.685741823,14.0,T14,0.0,0.0
+2026121,KLM Open,euro,2026,79,Clement Charmasson,0.08,3.0,44.3,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,80,Quim Vidal,0.08,2.9,44.3,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,81,Hunter Logan,0.08,2.9,44.1,-0.242287314,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,82,Joshua Berry,0.07,2.7,44.1,-0.242287314,,,,
+2026121,KLM Open,euro,2026,83,Rocco Paolo Repetto Taylor,0.07,2.9,44.2,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,84,Michael Hollick,0.07,2.9,44.5,-0.242287314,28.0,T28,0.0,0.0
+2026121,KLM Open,euro,2026,85,Wil Besseling,0.07,2.4,42.4,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,86,Maximilian Steinlechner,0.07,2.9,44.2,-0.242287314,3.0,T3,0.0,1.0
+2026121,KLM Open,euro,2026,87,Lars Van Der Vight,0.07,2.1,40.4,-0.242287314,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,88,Marcel Siem,0.07,1.5,36.3,-0.507356982,32.0,T32,0.0,0.0
+2026121,KLM Open,euro,2026,89,Todd Clements,0.06,1.4,35.6,-0.104937993,,CUT,,
+2026121,KLM Open,euro,2026,90,Jerry Ji,0.06,2.4,42.4,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,91,Marcus Armitage,0.06,2.1,40.0,-0.029963223,14.0,T14,0.0,0.0
+2026121,KLM Open,euro,2026,92,Sami Valimaki,0.06,1.8,38.6,0.083098648,10.0,10,0.0,1.0
+2026121,KLM Open,euro,2026,93,Quentin Debove,0.05,2.9,44.3,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,94,Guido Migliozzi,0.05,1.9,39.2,-0.1081207839999999,28.0,T28,0.0,0.0
+2026121,KLM Open,euro,2026,95,Daniel Da Costa Rodrigues,0.05,3.1,44.2,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,96,Wenyi Ding,0.05,2.3,41.1,-0.1041087329999999,,,,
+2026121,KLM Open,euro,2026,97,Romain Langasque,0.04,2.1,40.4,-0.402791275,,,,
+2026121,KLM Open,euro,2026,98,JC Ritchie,0.04,1.2,33.4,-0.097987618,45.0,T45,0.0,0.0
+2026121,KLM Open,euro,2026,99,Ivan Cantero Gutierrez,0.03,1.5,36.7,-0.500738248,,CUT,,
+2026121,KLM Open,euro,2026,100,Gregorio De Leo,0.03,1.3,34.6,-0.095321874,,CUT,,
+2026121,KLM Open,euro,2026,101,Davis Bryant,0.03,1.3,35.6,-0.12449323,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,102,Eddie Pepperell,0.03,1.3,35.7,0.031904883,60.0,T60,0.0,0.0
+2026121,KLM Open,euro,2026,103,Matthew Baldwin,0.02,1.1,33.5,-0.356337777,66.0,T66,0.0,0.0
+2026121,KLM Open,euro,2026,104,David Law,0.02,0.6,28.9,-0.285291472,45.0,T45,0.0,0.0
+2026121,KLM Open,euro,2026,105,Thriston Lawrence,0.02,1.1,33.6,-0.053071283,,,,
+2026121,KLM Open,euro,2026,106,Oihan Guillamoundeguy,0.02,1.0,31.1,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,107,Pablo Larrazabal,0.02,1.0,33.0,-0.5968663590000001,,CUT,,
+2026121,KLM Open,euro,2026,108,Nicolai Von Dellingshausen,0.02,0.9,31.0,-0.521779316,66.0,T66,0.0,0.0
+2026121,KLM Open,euro,2026,109,Sadom Kaewkanjana,0.02,0.6,28.4,-0.3089488549999999,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,110,Mike Toorop,0.02,0.7,28.8,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,111,Sebastian Garcia Rodriguez,0.02,0.7,29.1,-0.448711781,60.0,T60,0.0,0.0
+2026121,KLM Open,euro,2026,112,Sebastian Soderberg,0.02,0.9,32.3,-0.200412544,3.0,T3,0.0,1.0
+2026121,KLM Open,euro,2026,113,Kazuma Kobori,0.01,0.4,22.4,-0.130004413,28.0,T28,0.0,0.0
+2026121,KLM Open,euro,2026,114,Niklas Norgaard,0.01,1.3,34.5,-0.334101152,,,,
+2026121,KLM Open,euro,2026,115,Brandon Stone,0.01,0.6,28.2,-0.204099746,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,116,Richard Mansell,0.01,0.4,24.0,-0.18748891,,CUT,,
+2026121,KLM Open,euro,2026,117,Paul Waring,0.01,0.5,25.2,-0.008708052,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,118,Jens Dantorp,0.01,0.2,18.3,-0.366065237,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,119,Daan Huizing,0.01,0.6,26.2,-0.851676619,,CUT,,
+2026121,KLM Open,euro,2026,120,Andreas Halvorsen,0.01,0.5,24.9,-0.218666462,32.0,T32,0.0,0.0
+2026121,KLM Open,euro,2026,121,Calum Hill,0.01,0.2,20.7,-0.206575643,14.0,T14,0.0,0.0
+2026121,KLM Open,euro,2026,122,Ross Fisher,0.01,0.2,17.9,-0.387329143,21.0,T21,0.0,0.0
+2026121,KLM Open,euro,2026,123,Wouter De Vries,0.01,0.2,20.6,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,124,Yuto Katsuragawa,0.0,0.3,23.9,-0.274154772,32.0,T32,0.0,0.0
+2026121,KLM Open,euro,2026,125,Jeff Winther,0.0,0.1,14.8,-0.25410884,,CUT,,
+2026121,KLM Open,euro,2026,126,Daniel Gavins,0.0,0.6,27.4,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,127,Gonzalo Fdez-Castano,0.0,0.3,22.5,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,128,Robin Williams,0.0,0.4,23.7,-0.610978444,45.0,T45,0.0,0.0
+2026121,KLM Open,euro,2026,129,Zander Lombard,0.0,0.6,28.7,-0.268019509,,CUT,,
+2026121,KLM Open,euro,2026,130,Brandon Robinson Thompson,0.0,0.2,20.1,-0.216310526,21.0,T21,0.0,0.0
+2026121,KLM Open,euro,2026,131,Adri Arnaus,0.0,0.0,11.6,-0.543919396,55.0,T55,0.0,0.0
+2026121,KLM Open,euro,2026,132,Sam Bairstow,0.0,0.1,17.1,-0.258120996,,CUT,,
+2026121,KLM Open,euro,2026,133,Ricardo Gouveia,0.0,0.1,12.7,-0.216202466,38.0,T38,0.0,0.0
+2026121,KLM Open,euro,2026,134,Joel Girrbach,0.0,0.0,2.0,-0.247737156,,WD,,
+2026121,KLM Open,euro,2026,135,Dylan Frittelli,0.0,0.2,20.0,-0.324981215,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,136,Angel Hidalgo Portillo,0.0,0.1,18.3,-0.484714297,,,,
+2026121,KLM Open,euro,2026,137,Jordan Gumberg,0.0,0.1,17.3,-0.374617206,21.0,T21,0.0,0.0
+2026121,KLM Open,euro,2026,138,Benjamin Follet-Smith,0.0,0.0,11.3,-0.3456782559999999,,CUT,,
+2026121,KLM Open,euro,2026,139,Frederic LaCroix,0.0,0.0,12.3,-0.078279852,70.0,70,0.0,0.0
+2026121,KLM Open,euro,2026,140,Alexander Levy,0.0,0.0,10.4,-0.4441636519999999,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,141,Niklas Lemke,0.0,0.0,7.6,-0.32356158,,CUT,,
+2026121,KLM Open,euro,2026,142,Guus Lafeber,0.0,0.0,12.1,-0.242287314,,CUT,,
+2026121,KLM Open,euro,2026,143,Scott Jamieson,0.0,0.0,8.2,-0.5569004160000001,21.0,T21,0.0,0.0
+2026121,KLM Open,euro,2026,144,Ryggs Johnston,0.0,0.0,6.3,-0.8094290150000001,,CUT,,
+2026121,KLM Open,euro,2026,145,Andrew Johnston,0.0,0.4,24.2,-0.15220471,,,,
+2026121,KLM Open,euro,2026,146,Jeong Weon Ko,0.0,0.0,5.8,-0.7905581740000001,,CUT,,
+2026121,KLM Open,euro,2026,147,David Micheluzzi,0.0,0.0,0.9,-0.683464006,,WD,,
+2026121,KLM Open,euro,2026,148,Ben Schmidt,0.0,0.0,7.2,-0.157733515,,CUT,,
+2026121,KLM Open,euro,2026,149,Nevill Ruiter,0.0,0.0,9.1,-0.242287314,66.0,T66,0.0,0.0
+2026121,KLM Open,euro,2026,150,Yannik Paul,0.0,0.0,12.1,-0.61111937,,CUT,,
+2026121,KLM Open,euro,2026,151,Renato Paratore,0.0,0.1,10.8,-0.5163192750000001,60.0,T60,0.0,0.0
+2026121,KLM Open,euro,2026,152,Kevin Na,0.0,0.2,19.4,-0.412348184,,CUT,,
+2026121,KLM Open,euro,2026,153,Callum Tarren,0.0,0.1,15.0,-0.422111946,28.0,T28,0.0,0.0
+2026121,KLM Open,euro,2026,154,Ashun Wu,0.0,0.1,14.6,-0.3939758379999999,48.0,T48,0.0,0.0
+2026121,KLM Open,euro,2026,155,Scott Woltering,0.0,0.0,9.5,-0.242287314,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,1,Scottie Scheffler,82.37,99.8,100.0,0.3836255050377782,12.0,T12,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,2,Rory McIlroy,3.76,73.1,99.9,0.263974906971831,12.0,T12,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,3,Ludvig Aberg,3.13,71.9,99.9,0.3167609552945838,39.0,39,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,4,Si Woo Kim,2.21,63.4,99.8,0.5710467563109652,10.0,T10,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,5,Xander Schauffele,2.21,62.2,99.8,0.2319478295403756,29.0,T29,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,6,Maverick McNealy,1.64,57.7,99.7,0.3100211045468119,10.0,T10,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,7,Patrick Cantlay,1.56,58.9,99.8,0.2104719451811066,17.0,T17,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,8,Tommy Fleetwood,0.52,38.8,99.3,0.3889488046561453,4.0,T4,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,9,Matt Fitzpatrick,0.42,35.6,99.2,0.3555733132824518,36.0,T36,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,10,Jordan Spieth,0.39,34.6,99.2,0.186437009232754,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,11,Sam Burns,0.23,26.3,98.6,0.2524246371666195,4.0,T4,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,12,Robert MacIntyre,0.18,25.7,98.8,0.4111965917177148,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,13,Russell Henley,0.17,25.6,98.6,0.3846436448585758,22.0,T22,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,14,Nick Taylor,0.13,20.1,98.1,0.2991887773941234,43.0,T43,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,15,Ben Griffin,0.12,19.0,97.8,0.0882422226037122,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,16,Shane Lowry,0.11,17.3,97.8,0.0950416806802725,22.0,T22,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,17,Sepp Straka,0.09,18.2,97.8,0.4293541541054398,40.0,T40,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,18,Sungjae Im,0.09,17.0,97.6,0.4129981388089765,32.0,T32,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,19,Adam Scott,0.08,13.3,96.9,0.0016114261142748,12.0,T12,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,20,Ryan Fox,0.05,12.1,96.7,-0.4627150581649981,27.0,T27,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,21,Rickie Fowler,0.05,11.4,96.6,0.0918361780406719,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,22,Hideki Matsuyama,0.04,12.4,96.9,0.1690450711069673,43.0,T43,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,23,J.J. Spaun,0.04,10.1,95.9,-0.0124361597203483,12.0,T12,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,24,Ryan Gerard,0.04,11.1,96.6,0.3135684629629628,2.0,2,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,25,Sahith Theegala,0.04,9.0,95.7,-0.0691268779431318,32.0,T32,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,26,Akshay Bhatia,0.03,7.1,94.6,0.3480068288803303,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,27,Tony Finau,0.03,10.0,95.9,-0.3258437583525227,29.0,T29,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,28,Alex Noren,0.03,8.3,95.5,-0.0183248818652358,9.0,9,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,29,Cameron Young,0.03,8.8,95.8,0.2208692752204206,46.0,T46,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,30,Daniel Berger,0.03,8.3,95.2,0.3782755110266454,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,31,Jason Day,0.02,5.1,93.5,0.2614965260686039,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,32,Keegan Bradley,0.02,8.2,95.2,0.078634498062512,19.0,T19,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,33,Alex Fitzpatrick,0.02,4.1,92.7,0.104534461000617,6.0,T6,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,34,Jacob Bridgeman,0.01,6.0,94.0,0.1487836369646674,34.0,T34,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,35,Justin Thomas,0.01,6.8,94.4,-0.0268524475045577,19.0,T19,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,36,Denny McCarthy,0.01,6.9,94.6,-0.0324104530709986,34.0,T34,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,37,Sam Stevens,0.01,6.5,94.4,0.1336954297243388,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,38,Corey Conners,0.01,6.6,94.3,0.4181302919317495,53.0,53,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,39,Ryo Hisatsune,0.01,4.7,93.3,0.112990598000617,52.0,52,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,40,Harris English,0.01,3.1,91.2,0.1633738093047879,17.0,T17,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,41,Mac Meissner,0.01,3.4,91.6,0.095056771000617,46.0,T46,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,42,Bud Cauley,0.01,2.1,89.1,0.4492551185084738,22.0,T22,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,43,Matt McCarty,0.01,3.4,91.8,0.088786371000617,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,44,Taylor Pendrith,0.01,3.7,92.0,-0.0887441998755482,43.0,T43,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,45,Mark Hubbard,0.01,3.2,91.4,-0.0543753574920668,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,46,Kristoffer Reitan,0.01,5.6,94.0,0.105263493000617,6.0,T6,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,47,Chris Gotterup,0.0,2.8,90.8,-0.1869054666990139,27.0,T27,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,48,Gary Woodland,0.0,3.1,91.4,0.1121080700849139,36.0,T36,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,49,Pierceson Coody,0.0,3.7,92.0,0.065683716000617,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,50,Harry Hall,0.0,4.9,93.4,0.129081561000617,29.0,T29,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,51,Brian Campbell,0.0,0.0,39.3,-0.3452821254352435,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,52,Lucas Glover,0.0,0.1,65.2,0.3358332353972099,46.0,T46,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,53,Nico Echavarria,0.0,0.1,67.7,-0.2290165094616505,40.0,T40,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,54,Eric Cole,0.0,2.0,88.9,0.0662304567407599,8.0,8,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,55,Wyndham Clark,0.0,2.6,90.1,-0.0645795096940439,3.0,3,0.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,56,Nicolai Hojgaard,0.0,0.7,82.3,-0.2477092134257772,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,57,Matt Kuchar,0.0,0.4,77.5,0.0910054465198953,22.0,T22,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,58,Jake Knapp,0.0,1.3,86.2,-0.3826679706206581,,,,
+23,the Memorial Tournament presented by Workday,pga,2026,59,Kurt Kitayama,0.0,0.3,76.8,-0.172823298930186,22.0,T22,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,60,Michael Kim,0.0,0.5,79.3,-0.2608343110114057,49.0,T49,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,61,Billy Horschel,0.0,0.9,84.6,0.0731099776073524,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,62,Brian Harman,0.0,1.5,87.3,0.34879441994502,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,63,Tom Hoge,0.0,0.1,63.8,-0.0183875415771041,51.0,51,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,64,Min Woo Lee,0.0,2.3,89.8,0.2036361954781954,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,65,Patrick Rodgers,0.0,0.1,63.4,-0.3658519936463924,49.0,T49,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,66,Aaron Rai,0.0,1.7,88.4,0.4590449699246656,19.0,T19,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,67,J.T. Poston,0.0,2.3,89.4,0.0332084818696199,1.0,1,1.0,1.0
+23,the Memorial Tournament presented by Workday,pga,2026,68,Andrew Novak,0.0,0.2,70.7,0.4287359006341004,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,69,Alex Smalley,0.0,0.4,77.7,0.0086643947890919,,CUT,,
+23,the Memorial Tournament presented by Workday,pga,2026,70,Brandt Snedeker,0.0,0.8,83.9,0.109091654534142,36.0,T36,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,71,Justin Rose,0.0,0.4,76.8,0.1090896415460647,12.0,T12,0.0,0.0
+23,the Memorial Tournament presented by Workday,pga,2026,72,Jhonattan Vegas,0.0,0.6,81.5,-0.3522814748476999,,CUT,,
 2026119,Soudal Open,euro,2026,1,Adrian Meronk,11.2,52.6,88.9,-0.287204681,,CUT,,
 2026119,Soudal Open,euro,2026,2,Matthew Jordan,10.68,52.2,89.0,-0.1324924989999999,,CUT,,
 2026119,Soudal Open,euro,2026,3,Romain Langasque,9.28,48.1,87.2,-0.491366827,53.0,T53,0.0,0.0

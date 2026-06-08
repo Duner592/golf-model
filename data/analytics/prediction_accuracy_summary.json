@@ -1,24 +1,24 @@
 {
   "euro": {
-    "events": 13,
-    "rows": 1788,
-    "brier_win": 0.01601706107638889,
-    "brier_top10": 0.1590721909722222,
+    "events": 14,
+    "rows": 1943,
+    "brier_win": 0.014894320321888413,
+    "brier_top10": 0.15656280686695276,
     "brier_mc": null,
-    "mean_predicted_win_pct": 0.7269071588366891,
-    "mean_actual_win_rate": 0.015046296296296295,
-    "mean_predicted_top10_pct": 7.269574944071588,
-    "mean_actual_top10_rate": 0.17708333333333334
+    "mean_predicted_win_pct": 0.7204014410705095,
+    "mean_actual_win_rate": 0.013948497854077254,
+    "mean_predicted_top10_pct": 7.204323211528564,
+    "mean_actual_top10_rate": 0.17381974248927037
   },
   "pga": {
-    "events": 21,
-    "rows": 2421,
-    "brier_win": 0.017032594456596037,
-    "brier_top10": 0.15294295078605602,
+    "events": 22,
+    "rows": 2493,
+    "brier_win": 0.01755848800660066,
+    "brier_top10": 0.15479606930693068,
     "brier_mc": null,
-    "mean_predicted_win_pct": 0.8672325485336638,
-    "mean_actual_win_rate": 0.015037593984962405,
-    "mean_predicted_top10_pct": 8.674184221396118,
-    "mean_actual_top10_rate": 0.17429938482570062
+    "mean_predicted_win_pct": 0.8823024468511833,
+    "mean_actual_win_rate": 0.015181518151815182,
+    "mean_predicted_top10_pct": 8.824909747292418,
+    "mean_actual_top10_rate": 0.17557755775577558
   }
 }
