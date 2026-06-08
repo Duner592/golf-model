@@ -1,0 +1,31 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-06-08T08:58:00Z",
+  "tour": "pga",
+  "event_id": "32",
+  "event_name": "RBC Canadian Open",
+  "year": "2026",
+  "r1_date": "2026-06-11",
+  "start_date": "2026-06-11",
+  "source_csv": "data/preds/pga/event_32_rbc_canadian_open_2026-06-08_leaderboard.csv",
+  "artifact_generated_utc": "08-Jun-2026 08:58:00",
+  "resources": {
+    "leaderboard": "pga/initial/2026/event_32/leaderboard.json",
+    "summary": "pga/initial/2026/event_32/summary.json",
+    "meta": "pga/initial/2026/event_32/meta.json",
+    "downloads_csv": "pga/initial/2026/event_32/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_32/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_32/leaderboard_20260608T085800Z.csv",
+    "timestamped_html": "pga/initial/2026/event_32/leaderboard_20260608T085800Z.html",
+    "weather_meta": "pga/initial/2026/event_32/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_32/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_32/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_32/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_32/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_32/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_32/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_32/snapshot.json",
+    "schedule": "pga/schedule.json"
+  }
+}

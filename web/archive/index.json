@@ -1,5 +1,16 @@
 [
   {
+    "event_id": "32",
+    "event_name": "RBC Canadian Open",
+    "tour": "pga",
+    "slug": "rbc_canadian_open",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-06-08 08:58:00 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-08T08:58:00Z"
+  },
+  {
     "event_id": "2026121",
     "event_name": "KLM Open",
     "tour": "euro",

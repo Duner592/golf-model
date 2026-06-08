@@ -1,0 +1,12 @@
+{
+  "event_id": "32",
+  "event_name": "RBC Canadian Open",
+  "source_csv": "data/preds/pga/event_32_rbc_canadian_open_2026-06-08_leaderboard.csv",
+  "generated_utc": "08-Jun-2026 08:58:00",
+  "metrics": {
+    "field_size": 145,
+    "p_win_max": 0.39926666666666666,
+    "p_win_median": 3.3333333333333335e-05,
+    "p_win_sum": 1.0
+  }
+}
