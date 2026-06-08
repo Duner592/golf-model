@@ -642,7 +642,7 @@
       "start_date": "2026-04-23",
       "status": "completed",
       "tour": "pga",
-      "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
+      "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
     },
     {
       "country": "TUR",
@@ -864,9 +864,9 @@
       "location": "Badhoevedorp, Netherlands",
       "longitude": 4.803,
       "start_date": "2026-06-04",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Chacarra, Eugenio (26745)"
     },
     {
       "country": "USA",
@@ -906,9 +906,9 @@
       "location": "Dublin, OH",
       "longitude": -83.141,
       "start_date": "2026-06-04",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Poston, J.T. (21554)"
     },
     {
       "country": "USA",
@@ -954,10 +954,10 @@
     },
     {
       "country": "ITA",
-      "course": "TBC",
-      "course_key": "tbc",
-      "event_id": "TBD",
-      "event_name": "Open d'Italia",
+      "course": "Circolo Golf Torino",
+      "course_key": "circolo golf torino",
+      "event_id": "2026123",
+      "event_name": "DS Automobiles 83deg Open d'Italia",
       "latitude": 0.0,
       "location": "TBD",
       "longitude": 0.0,
