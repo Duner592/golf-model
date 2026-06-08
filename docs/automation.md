@@ -34,7 +34,8 @@ This repo is set up to run the weekly model and publish the static `web/` site w
     - `python scripts/build_web_assets.py --tour pga`
     - `python scripts/run_weekly_all.py --tour euro`
     - `python scripts/build_web_assets.py --tour euro`
-  - If any requested tour fails, the workflow fails before Pages deploy. This preserves the last good Pages deployment instead of uploading a partial artifact with stale checked-in assets for the failed tour.
+  - In automatic `tour=both` runs, if a tour has no runnable current-week event in `upcoming-events.json`, the wrapper skips that tour's model pipeline, builds its no-event web placeholder, and continues with the other tour.
+  - If any requested tour with a runnable event fails, the workflow fails before Pages deploy. Explicit single-tour and pinned-event runs remain strict. This preserves the last good Pages deployment instead of uploading a partial artifact with stale checked-in assets for a failed tour.
 
 - `.github/workflows/archive-update.yml`
   - Runs Monday at 12:00 and 21:00 UTC.

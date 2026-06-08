@@ -33,6 +33,7 @@ fi
 case "$TOUR" in
   pga|euro)
     tours=("$TOUR")
+    allow_no_event_skip="false"
     ;;
   both|"")
     if [[ -n "$EVENT_ID" ]]; then
@@ -40,6 +41,7 @@ case "$TOUR" in
       exit 1
     fi
     tours=("pga" "euro")
+    allow_no_event_skip="true"
     ;;
   *)
     echo "::error::Unsupported TOUR '$TOUR'. Expected pga, euro, or both."
@@ -80,6 +82,11 @@ run_grouped() {
   return "$rc"
 }
 
+has_current_week_event() {
+  local tour="$1"
+  "$PYTHON_BIN" -c 'from src.utils_event import current_week_event_ids; import sys; sys.exit(0 if current_week_event_ids(sys.argv[1], require_resolved_id=True) else 1)' "$tour"
+}
+
 run_tour() {
   local tour="$1"
   local rc
@@ -100,9 +107,24 @@ run_tour() {
 }
 
 tour_successes=()
+tour_skips=()
 tour_failures=()
 
 for tour in "${tours[@]}"; do
+  if [[ -z "$EVENT_ID" && "$allow_no_event_skip" == "true" ]] && ! has_current_week_event "$tour"; then
+    echo "::notice::No current-week event found for $tour in upcoming-events.json. Generating no-event web assets and skipping the model pipeline for this tour."
+    if run_grouped "Build no-event web assets for $tour" "$PYTHON_BIN" scripts/build_web_assets.py --tour "$tour"; then
+      "$PYTHON_BIN" scripts/update_web_status.py --model-run --tour "$tour" --workflow "scheduled-model"
+      tour_skips+=("$tour")
+      continue
+    else
+      rc=$?
+      tour_failures+=("$tour")
+      echo "::error::No-event web asset build failed for $tour with exit code $rc."
+      continue
+    fi
+  fi
+
   if run_tour "$tour"; then
     tour_successes+=("$tour")
   else
@@ -112,8 +134,8 @@ for tour in "${tours[@]}"; do
   fi
 done
 
-if [[ "${#tour_successes[@]}" -eq 0 ]]; then
-  echo "::error::No tour model assets were built successfully."
+if [[ "${#tour_successes[@]}" -eq 0 && "${#tour_skips[@]}" -eq 0 ]]; then
+  echo "::error::No tour model or no-event assets were built successfully."
   exit 1
 fi
 
@@ -121,6 +143,10 @@ if [[ "${#tour_failures[@]}" -gt 0 ]]; then
   echo "::error::Partial model refresh. Successful tours: ${tour_successes[*]}; failed tours: ${tour_failures[*]}"
   echo "::error::Generated model assets are not committed to master, so deploying now could overwrite the last good Pages site with stale checked-in assets."
   exit 1
+fi
+
+if [[ "${#tour_skips[@]}" -gt 0 ]]; then
+  echo "::notice::Skipped model pipeline for tours with no current-week event: ${tour_skips[*]}"
 fi
 
 if [[ -n "$spreadsheet_checksum" ]]; then

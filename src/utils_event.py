@@ -6,11 +6,12 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 TOUR_DEFAULT = "pga"
 ROOT = Path(__file__).resolve().parents[1]  # repo root: .../personal/golf-model
+UNRESOLVED_EVENT_IDS = {"", "tbd", "none", "null", "nan"}
 
 
 def _parse_ts(iso: str | None) -> float:
@@ -42,6 +43,100 @@ def _parse_cli_event_ids(cli_event_ids: str | None) -> list[str]:
         return []
     parts = [p.strip() for p in re.split(r"[\s,]+", str(cli_event_ids)) if p.strip()]
     return [str(p) for p in parts]
+
+
+def is_resolved_event_id(event_id: object) -> bool:
+    if event_id is None:
+        return False
+    return str(event_id).strip().lower() not in UNRESOLVED_EVENT_IDS
+
+
+def current_week_bounds(reference_date: date | None = None, *, include_next_week_on_sunday: bool = False) -> tuple[date, date]:
+    today = reference_date or datetime.now().date()
+    start_of_week = today - timedelta(days=today.weekday())
+    end_of_week = start_of_week + timedelta(days=6)
+    if include_next_week_on_sunday and today.weekday() == 6:
+        end_of_week = start_of_week + timedelta(days=13)
+    return start_of_week, end_of_week
+
+
+def current_week_events(
+    tour: str = TOUR_DEFAULT,
+    *,
+    reference_date: date | None = None,
+    schedule_path: Path | None = None,
+    require_resolved_id: bool = True,
+    include_next_week_on_sunday: bool = False,
+) -> list[dict]:
+    upcoming_file = schedule_path or (ROOT / "upcoming-events.json")
+    if not upcoming_file.exists():
+        return []
+
+    try:
+        data = json.loads(upcoming_file.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    schedule = data.get("schedule", [])
+    if not isinstance(schedule, list):
+        return []
+
+    start_of_week, end_of_week = current_week_bounds(
+        reference_date,
+        include_next_week_on_sunday=include_next_week_on_sunday,
+    )
+    events: list[tuple[date, int | str, dict]] = []
+    for event in schedule:
+        if not isinstance(event, dict):
+            continue
+        if tour and str(event.get("tour", "")).lower() != str(tour).lower():
+            continue
+
+        event_id = event.get("event_id")
+        if require_resolved_id and not is_resolved_event_id(event_id):
+            continue
+
+        start_date = event.get("start_date")
+        if not start_date:
+            continue
+        try:
+            event_dt = datetime.fromisoformat(str(start_date).replace("Z", "+00:00"))
+        except Exception:
+            continue
+        event_date = event_dt.date()
+        if start_of_week <= event_date <= end_of_week:
+            try:
+                sort_id: int | str = int(str(event_id))
+            except Exception:
+                sort_id = str(event_id)
+            events.append((event_date, sort_id, event))
+
+    return [event for _, _, event in sorted(events, key=lambda row: (row[0], row[1]))]
+
+
+def current_week_event_ids(
+    tour: str = TOUR_DEFAULT,
+    *,
+    reference_date: date | None = None,
+    schedule_path: Path | None = None,
+    require_resolved_id: bool = True,
+    include_next_week_on_sunday: bool = False,
+) -> list[str]:
+    ids: list[str] = []
+    seen: set[str] = set()
+    for event in current_week_events(
+        tour,
+        reference_date=reference_date,
+        schedule_path=schedule_path,
+        require_resolved_id=require_resolved_id,
+        include_next_week_on_sunday=include_next_week_on_sunday,
+    ):
+        eid = str(event.get("event_id", "")).strip()
+        if not eid or eid in seen:
+            continue
+        seen.add(eid)
+        ids.append(eid)
+    return ids
 
 
 def _resolve_single_event_id(cli_event_id: str | None = None, tour: str = TOUR_DEFAULT) -> str:
@@ -113,51 +208,9 @@ def resolve_event_ids(cli_event_ids: str | None = None, tour: str = TOUR_DEFAULT
             ordered.append(eid)
         return ordered
 
-    upcoming_file = ROOT / "upcoming-events.json"
-    events_in_week: list[tuple[datetime, str]] = []
-    today = datetime.now().date()
-    start_of_week = today - timedelta(days=today.weekday())
-    end_of_week = start_of_week + timedelta(days=6)
-
-    if upcoming_file.exists():
-        try:
-            data = json.loads(upcoming_file.read_text(encoding="utf-8"))
-            schedule = data.get("schedule", [])
-            if tour:
-                schedule = [e for e in schedule if e.get("tour") == tour]
-            for event in schedule:
-                if not isinstance(event, dict):
-                    continue
-                eid = event.get("event_id")
-                start_date = event.get("start_date")
-                if eid is None or start_date is None:
-                    continue
-                try:
-                    event_date = datetime.fromisoformat(start_date).date()
-                except Exception:
-                    continue
-                if start_of_week <= event_date <= end_of_week:
-                    events_in_week.append((datetime.fromisoformat(start_date), str(eid)))
-        except Exception:
-            events_in_week = []
-
-    def _sort_key_pair(pair: tuple[datetime, str]) -> tuple[datetime, int | str]:
-        dt, eid = pair
-        try:
-            return dt, int(str(eid))
-        except Exception:
-            return dt, str(eid)
-
-    if events_in_week:
-        events_in_week.sort(key=_sort_key_pair)
-        ordered = [eid for _, eid in events_in_week]
-        seen = set()
-        unique = []
-        for eid in ordered:
-            if eid not in seen:
-                seen.add(eid)
-                unique.append(eid)
-        return unique
+    current_ids = current_week_event_ids(tour, require_resolved_id=True)
+    if current_ids:
+        return current_ids
 
     single = _resolve_single_event_id(None, tour)
     return [single] if single is not None else []

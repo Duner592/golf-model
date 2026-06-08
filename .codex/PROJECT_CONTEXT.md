@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-06-01
+Last updated: 2026-06-08
 
 ## Purpose
 
@@ -76,7 +76,7 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - GitHub Pages should be configured to deploy from GitHub Actions.
 - Scheduled model runs deploy the generated `web/` directory directly as a Pages artifact. Full scheduled runs and deploy-time model refreshes also commit durable prediction snapshots (`web/archive/**` and `web/{tour}/initial/**`) back to `master`; refreshed live `web/{tour}/...` assets remain artifact-only.
 - Because live model assets are generated in Actions and not committed to `master`, non-model workflows must not deploy the checked-out `web/` tree unless they first rebuild all active model assets or pass `scripts/guard_pages_model_assets.py`. The hourly schedule refresh intentionally does not deploy Pages.
-- `scripts/ci_run_model.sh` fails the workflow if any requested tour fails. A partial deploy can overwrite the last good Pages deployment with stale checked-in assets for the failed tour.
+- In automatic multi-tour runs, `scripts/ci_run_model.sh` skips the model pipeline for a tour that has no runnable current-week event in `upcoming-events.json`, builds that tour's no-event web placeholder, and still deploys other successful tours. Explicit single-tour and pinned-event runs remain strict. Real requested-tour failures still fail the workflow because a partial deploy can overwrite the last good Pages deployment with stale checked-in assets for the failed tour.
 - Local edits should usually be committed with `scripts/commit_and_push.sh "message"`, which stages edits, ignores `.env` and Office lock files, rebases over workflow commits on `origin/master`, commits, rebases once more, and pushes.
 - `scripts/build_web_assets.py` now preserves the first successful model output for each tour/event/year as an initial snapshot. Prediction archives should use that snapshot rather than later refreshed live assets. Homepage links expose latest results and `?snapshot=initial` initial-run results.
 

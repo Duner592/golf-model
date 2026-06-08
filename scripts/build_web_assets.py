@@ -22,7 +22,7 @@ import math
 import re
 import shutil
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -31,7 +31,7 @@ import requests  # Added for API calls
 
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-from src.utils_event import resolve_event_ids
+from src.utils_event import current_week_event_ids, resolve_event_ids
 
 MPH_PER_MPS = 2.237
 KMH_TO_MPH = 0.621371
@@ -1125,38 +1125,7 @@ def has_current_week_events(tour: str) -> bool:
     Returns:
         bool: True if events exist in the current week (or next week on Sunday).
     """
-    root = Path(__file__).resolve().parent.parent
-    upcoming_file = root / "upcoming-events.json"
-    if not upcoming_file.exists():
-        return False
-
-    try:
-        with open(upcoming_file, encoding="utf-8") as f:
-            data = json.load(f)
-        events = data.get("schedule", [])
-        if tour:
-            events = [e for e in events if e.get("tour") == tour]
-    except (json.JSONDecodeError, FileNotFoundError, KeyError):
-        return False
-
-    today = datetime.now().date()
-    start_of_week = today - timedelta(days=today.weekday())  # Monday
-    end_of_week = start_of_week + timedelta(days=6)  # Sunday
-
-    # If today is Sunday, extend to next Sunday (include next week)
-    if today.weekday() == 6:
-        end_of_week = start_of_week + timedelta(days=13)
-
-    for event in events:
-        if not isinstance(event, dict) or "event_id" not in event or "start_date" not in event:
-            continue
-        try:
-            event_date = datetime.fromisoformat(event["start_date"]).date()
-            if start_of_week <= event_date <= end_of_week:
-                return True
-        except (ValueError, KeyError):
-            continue
-    return False
+    return bool(current_week_event_ids(tour, require_resolved_id=True, include_next_week_on_sunday=True))
 
 
 # ---------- new helper to clear old event assets in no-event mode ----------
@@ -1841,7 +1810,7 @@ def main():
             "generated_utc": generated_utc,
             "tee_times_available": False,
             "resources": resources_placeholder,
-            "no_event_message": "No upcoming events during the holiday season. Stay tuned for 2026!",
+            "no_event_message": "No scheduled event for this tour this week.",
             "active_events": [],
             "primary_event_dir": None,
         }
