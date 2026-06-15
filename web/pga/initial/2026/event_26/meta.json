@@ -11,6 +11,7 @@
   "has_predictions": true,
   "tee_times_available": false,
   "resources": {
+    "model_page": "pga/initial/2026/event_26/model_page.html",
     "leaderboard": "pga/initial/2026/event_26/leaderboard.json",
     "summary": "pga/initial/2026/event_26/summary.json",
     "meta": "pga/initial/2026/event_26/meta.json",

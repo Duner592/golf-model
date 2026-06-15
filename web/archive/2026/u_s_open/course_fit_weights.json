@@ -1,0 +1,22 @@
+{
+  "weights": {
+    "sg_ott": 0.009946,
+    "sg_app": 0.145031,
+    "sg_arg": 0.143271,
+    "sg_putt": 0.015975,
+    "da_z": 0.412954,
+    "dd_z": 0.272824
+  },
+  "cats_used": [
+    "sg_ott",
+    "sg_app",
+    "sg_arg",
+    "sg_putt"
+  ],
+  "driving_norm": {
+    "da_field_mean": 0.6010022396416572,
+    "da_field_std": 0.15939531041086372,
+    "dd_field_mean": 297.3081746920492,
+    "dd_field_std": 11.539911515554724
+  }
+}
