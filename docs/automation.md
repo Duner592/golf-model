@@ -36,6 +36,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
     - `python scripts/build_web_assets.py --tour euro`
   - In automatic `tour=both` runs, if a tour has no runnable current-week event in `upcoming-events.json`, the wrapper skips that tour's model pipeline, builds its no-event web placeholder, and continues with the other tour.
   - If any requested tour with a runnable event fails, the workflow fails before Pages deploy. Explicit single-tour and pinned-event runs remain strict. This preserves the last good Pages deployment instead of uploading a partial artifact with stale checked-in assets for a failed tour.
+  - The model runner now refuses to continue when DataGolf returns a different `event_id` from the one requested. This prevents missed historical events from being accidentally filled with the current tournament's field/predictions.
 
 - `.github/workflows/archive-update.yml`
   - Runs Monday at 12:00 and 21:00 UTC.
@@ -80,6 +81,8 @@ The site status card is injected by `web/menu.js` at the bottom of every page th
 The frozen initial snapshot is left untouched by later scheduled runs. Prediction archives are copied from that initial snapshot, so archive accuracy remains tied to the first model view of the week rather than a later refreshed model.
 
 Scheduled model runs and deploy-time model refreshes commit these initial snapshot and archive files back to `master`. They do not commit the refreshed live model assets under `web/{tour}/...`.
+
+New schedule asset builds include `event_id`, `tour`, `status`, and ISO `start_date` in `web/{tour}/schedule.json`. The prediction accuracy dashboard uses those fields when available, and falls back to event/date matching for older checked-in schedules, to list completed events that are missing prediction archives.
 
 The home page links to both versions:
 

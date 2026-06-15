@@ -138,13 +138,16 @@ def main():
                         if isinstance(fetched_payload, dict):
                             payload_event_id = fetched_payload.get("event_id")
                             if payload_event_id is not None and str(payload_event_id) != str(event_id):
+                                skip_reason = (
+                                    "field updates returned mismatched "
+                                    f"event_id={payload_event_id} for requested event_id={event_id}"
+                                )
                                 print(
                                     "[warn] Field updates returned "
                                     f"event_id={payload_event_id} for requested event_id={event_id}; "
-                                    "using the returned id for downstream files."
+                                    "skipping to avoid writing predictions against the wrong tournament."
                                 )
-                                event_id = str(payload_event_id)
-                                per_event_suffix = ["--event_id", event_id] + cmd_suffix
+                                skip_event = True
 
                             error_msg = fetched_payload.get("error")
                             field_entries = fetched_payload.get("field")

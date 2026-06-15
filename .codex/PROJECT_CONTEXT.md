@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-06-08
+Last updated: 2026-06-15
 
 ## Purpose
 
@@ -48,6 +48,7 @@ cd web/ && python -m http.server 8000
 - `web/{tour}/initial/{year}/event_{event_id}/`: frozen first successful prediction snapshot for an event/week; later scheduled runs keep live assets updated without overwriting this initial copy.
 - `web/odds_value.html`: browser-rendered Odds & Value page comparing betting-sheet prices with model probabilities. It is presented as a beta initiative that started with the 2026 season; value labels should be treated as decision support while archive samples, result links, and place assumptions mature. The page has two view modes: `Pending` for current pending bets against live model files, and `2026 archive` for bets matched to archived 2026 event snapshots.
 - `web/archive_accuracy.html`: browser-rendered prediction accuracy dashboard for completed archive events with archived `results.json`. It uses compact week/tour x-axis labels to keep charts readable, keeps full tournament names in chart hover text, supports All/PGA/Euro tour filters, lists completed events with missing actual results as pending instead of plotting partial data, and auto-scales the trend chart y-axis to the selected data instead of forcing a fixed 0-100% range.
+- `web/archive_accuracy.html` also checks served PGA/Euro schedule files and lists completed events that have no prediction archive as "prediction archive missing" so missed model snapshots do not silently disappear from the accuracy dashboard.
 - `web/archive/2026/the_players_championship/leaderboard.json` was repaired from its archived CSV after it had been overwritten to an empty array while `results.json` and `leaderboard.csv` were valid. If an archive has a valid CSV but empty JSON, rebuild the JSON from CSV rather than treating actual results as missing.
 - `web/calibration_dashboard.html`: browser-rendered player-level calibration dashboard. It is presented as a beta initiative that started with the 2026 season and includes a visible explainer for calibration curves, bucket groups, Brier/log loss, and Avg Gap. It must use files served under `web/` (`web/archive/index.json`, archived leaderboards, and `results.json`) rather than `data/analytics/**`, which is not directly served by GitHub Pages. Make-cut calibration derives outcomes from finish position and cut status when explicit `made_cut` flags are missing.
 
@@ -77,6 +78,9 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - Scheduled model runs deploy the generated `web/` directory directly as a Pages artifact. Full scheduled runs and deploy-time model refreshes also commit durable prediction snapshots (`web/archive/**` and `web/{tour}/initial/**`) back to `master`; refreshed live `web/{tour}/...` assets remain artifact-only.
 - Because live model assets are generated in Actions and not committed to `master`, non-model workflows must not deploy the checked-out `web/` tree unless they first rebuild all active model assets or pass `scripts/guard_pages_model_assets.py`. The hourly schedule refresh intentionally does not deploy Pages.
 - In automatic multi-tour runs, `scripts/ci_run_model.sh` skips the model pipeline for a tour that has no runnable current-week event in `upcoming-events.json`, builds that tour's no-event web placeholder, and still deploys other successful tours. Explicit single-tour and pinned-event runs remain strict. Real requested-tour failures still fail the workflow because a partial deploy can overwrite the last good Pages deployment with stale checked-in assets for the failed tour.
+- `scripts/run_weekly_all.py` refuses to continue if DataGolf `field-updates` returns an `event_id` different from the requested event. This prevents a pinned or scheduled run from writing current-event predictions under a missed historical event.
+- New `web/{tour}/schedule.json` builds include `event_id`, `tour`, `status`, and ISO `start_date` alongside the existing display fields so browser pages can match scheduled events back to archive entries.
+- The 2026 Charles Schwab Challenge / Charles Schwab Classic has no saved prediction archive in `web/archive/index.json` or `web/pga/initial/2026/event_21/`. DataGolf field updates no longer return event 21 after the week has passed, so accuracy metrics cannot be backfilled honestly without the original prediction snapshot; the dashboard should show it as "prediction archive missing" rather than plotting it.
 - Local edits should usually be committed with `scripts/commit_and_push.sh "message"`, which stages edits, ignores `.env` and Office lock files, rebases over workflow commits on `origin/master`, commits, rebases once more, and pushes.
 - `scripts/build_web_assets.py` now preserves the first successful model output for each tour/event/year as an initial snapshot. Prediction archives should use that snapshot rather than later refreshed live assets. Homepage links expose latest results and `?snapshot=initial` initial-run results.
 

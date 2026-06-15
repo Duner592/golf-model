@@ -134,6 +134,16 @@
         return Number.isNaN(retry.getTime()) ? null : retry;
     }
 
+    function parseScheduleDate(value) {
+        if (!value) return null;
+        const match = String(value).trim().match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+        if (match) {
+            const [, day, month, year] = match;
+            return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+        }
+        return parseEventDate(value);
+    }
+
     function getIsoWeek(date) {
         if (!(date instanceof Date) || Number.isNaN(date.getTime())) return null;
         const target = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -161,6 +171,109 @@
             throw new Error(`Failed to load ${path}: ${response.status}`);
         }
         return response.json();
+    }
+
+    function normalizeEventKey(name) {
+        return String(name || '')
+            .toLowerCase()
+            .replace(/&/g, ' and ')
+            .replace(/[^a-z0-9]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function archiveEventKeys(events) {
+        const lookup = { keys: new Set(), namesByTourYear: new Map(), yearsByTour: new Map() };
+        for (const event of events) {
+            const tour = String(event.tour || '').toLowerCase();
+            const year = String(event.year || '');
+            const eventId = event.event_id != null ? String(event.event_id) : '';
+            const nameKey = normalizeEventKey(event.event_name);
+            if (tour && year) {
+                if (!lookup.yearsByTour.has(tour)) {
+                    lookup.yearsByTour.set(tour, new Set());
+                }
+                lookup.yearsByTour.get(tour).add(year);
+            }
+            if (eventId) lookup.keys.add(`${tour}|${year}|id:${eventId}`);
+            if (nameKey) {
+                lookup.keys.add(`${tour}|${year}|name:${nameKey}`);
+                const groupKey = `${tour}|${year}`;
+                if (!lookup.namesByTourYear.has(groupKey)) {
+                    lookup.namesByTourYear.set(groupKey, new Set());
+                }
+                lookup.namesByTourYear.get(groupKey).add(nameKey);
+            }
+        }
+        return lookup;
+    }
+
+    function eventNamesLikelyMatch(left, right) {
+        if (!left || !right) return false;
+        if (left === right) return true;
+        const minLength = 12;
+        return (
+            (left.length >= minLength && right.includes(left)) ||
+            (right.length >= minLength && left.includes(right))
+        );
+    }
+
+    function hasArchivedEvent(archiveLookup, tour, year, eventId, nameKey) {
+        if (eventId && archiveLookup.keys.has(`${tour}|${year}|id:${eventId}`)) {
+            return true;
+        }
+        if (nameKey && archiveLookup.keys.has(`${tour}|${year}|name:${nameKey}`)) {
+            return true;
+        }
+        const archivedNames = archiveLookup.namesByTourYear.get(`${tour}|${year}`);
+        if (!nameKey || !archivedNames) return false;
+        return Array.from(archivedNames).some((archivedName) => eventNamesLikelyMatch(nameKey, archivedName));
+    }
+
+    function scheduleEventProbablyComplete(startDate) {
+        if (!(startDate instanceof Date) || Number.isNaN(startDate.getTime())) return false;
+        const completionDate = new Date(Date.UTC(
+            startDate.getUTCFullYear(),
+            startDate.getUTCMonth(),
+            startDate.getUTCDate() + 4
+        ));
+        const now = new Date();
+        const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+        return completionDate.getTime() <= today.getTime();
+    }
+
+    async function addMissingArchiveScheduleEvents(pendingEvents, archivedKeys) {
+        const scheduleSources = [
+            { tour: 'pga', path: 'pga/schedule.json' },
+            { tour: 'euro', path: 'euro/schedule.json' }
+        ];
+
+        await Promise.all(scheduleSources.map(async ({ tour, path }) => {
+            let schedule;
+            try {
+                schedule = await fetchJson(path);
+            } catch (err) {
+                console.warn(`Unable to load ${path}: ${err.message}`);
+                return;
+            }
+            if (!Array.isArray(schedule)) return;
+
+            for (const item of schedule) {
+                const eventName = item.event_name || item.event || item.name;
+                const startDate = parseScheduleDate(item.start_date || item.date);
+                if (!eventName || !scheduleEventProbablyComplete(startDate)) continue;
+
+                const year = String(startDate.getUTCFullYear());
+                const eventId = item.event_id != null ? String(item.event_id) : '';
+                const nameKey = normalizeEventKey(eventName);
+                const archiveYears = archivedKeys.yearsByTour.get(tour);
+                if (archiveYears && !archiveYears.has(year)) continue;
+                const hasArchive = hasArchivedEvent(archivedKeys, tour, year, eventId, nameKey);
+                if (hasArchive) continue;
+
+                addPendingEvent(pendingEvents, `${eventName} (${year})`, tour, 'prediction archive missing');
+            }
+        }));
     }
 
     async function fetchLeaderboard(basePath) {
@@ -643,7 +756,7 @@
                     return `${label}${reasonText ? ` (${reasonText})` : ''}`;
                 });
             if (pendingList.length) {
-                note.textContent = `${baseNote} Pending actual data for: ${pendingList.join('; ')}.`;
+                note.textContent = `${baseNote} Events not plotted yet: ${pendingList.join('; ')}.`;
             } else {
                 note.textContent = baseNote;
             }
@@ -657,6 +770,7 @@
         try {
             const index = await fetchJson('archive/index.json');
             const events = Array.isArray(index) ? index : [];
+            const archivedKeys = archiveEventKeys(events);
             const results = [];
 
             for (const event of events) {
@@ -787,6 +901,8 @@
                     weekNumber
                 });
             }
+
+            await addMissingArchiveScheduleEvents(pendingEvents, archivedKeys);
 
             if (!results.length) {
                 if (loadingEl) loadingEl.textContent = 'No completed archive events with results were found yet.';

@@ -1244,6 +1244,10 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
                         pass
                 schedule.append(
                     {
+                        "event_id": event.get("event_id"),
+                        "tour": event.get("tour"),
+                        "status": event.get("status"),
+                        "start_date": date_str,
                         "date": formatted_date,
                         "event": event_name,
                         "course": event.get("course"),
