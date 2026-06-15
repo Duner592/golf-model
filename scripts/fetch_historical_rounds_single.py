@@ -12,7 +12,6 @@ import yaml
 from dotenv import load_dotenv
 
 load_dotenv()
-TOUR = "pga"
 
 
 def load_yaml(p: Path) -> dict:
@@ -22,6 +21,8 @@ def load_yaml(p: Path) -> dict:
 def main():
     ap = argparse.ArgumentParser(description="Fetch historical rounds for pinned event (single year).")
     ap.add_argument("--year", required=True, type=int)
+    ap.add_argument("--event_id", type=str, default=None, help="Event ID to fetch. Defaults to latest processed meta.")
+    ap.add_argument("--tour", type=str, default=None, help="Tour to process. Defaults to datagolf.yaml.")
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parent.parent
@@ -33,15 +34,16 @@ def main():
     if not api_key:
         raise RuntimeError(f"Missing API key in env var: {envv}")
 
-    tour = cfg["defaults"]["tour"]
+    tour = args.tour or cfg["defaults"]["tour"]
     endpoint = cfg["endpoints"]["historical_rounds"]["path"]
-    # read pinned event_id
-    proc = root / "data" / "processed" / tour
-    metas = sorted(proc.glob("event_*_meta.json"))
-    if not metas:
-        raise FileNotFoundError("No pinned meta found.")
-    meta = json.loads(metas[-1].read_text(encoding="utf-8"))
-    event_id = str(meta["event_id"])
+    event_id = args.event_id
+    if event_id is None:
+        proc = root / "data" / "processed" / tour
+        metas = sorted(proc.glob("event_*_meta.json"))
+        if not metas:
+            raise FileNotFoundError("No pinned meta found. Pass --event_id for explicit historical fetches.")
+        meta = json.loads(metas[-1].read_text(encoding="utf-8"))
+        event_id = str(meta["event_id"])
 
     url = f"{base}/{endpoint.lstrip('/')}"
     params = {

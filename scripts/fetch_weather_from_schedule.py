@@ -203,9 +203,20 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
     if wm.exists():
         return json.loads(wm.read_text(encoding="utf-8"))
     m = processed_dir / f"event_{event_id}_meta.json"
-    if not m.exists():
-        raise FileNotFoundError(f"Missing meta for pinned event_id={event_id}: {m}")
-    return json.loads(m.read_text(encoding="utf-8"))
+    if m.exists():
+        return json.loads(m.read_text(encoding="utf-8"))
+
+    root = processed_dir.parents[2]
+    tour = processed_dir.name
+    schedule_path = root / "upcoming-events.json"
+    if schedule_path.exists():
+        payload = json.loads(schedule_path.read_text(encoding="utf-8"))
+        events = payload.get("schedule") if isinstance(payload, dict) else []
+        for event in events or []:
+            if str(event.get("event_id")) == str(event_id) and str(event.get("tour", "")).lower() == tour.lower():
+                return event
+
+    raise FileNotFoundError(f"Missing meta for pinned event_id={event_id}: {m}")
 
 
 # -------------------------
@@ -247,7 +258,7 @@ def main():
         # Accept either original keys or upcoming-events.json keys
         lat = pinned_meta.get("lat") or pinned_meta.get("latitude")
         lon = pinned_meta.get("lon") or pinned_meta.get("longitude")
-        start = pinned_meta.get("r1_date") or pinned_meta.get("start")
+        start = pinned_meta.get("r1_date") or pinned_meta.get("start") or pinned_meta.get("start_date")
         if not (lat and lon and start):
             raise ValueError(f"Pinned meta for event_id={args.event_id} missing lat/lon/start")
         start_date, end_date, round_dates = to_round_dates(str(start))

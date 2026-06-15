@@ -73,6 +73,7 @@
         <th>Date</th>
         <th>Status</th>
         <th>Winner</th>
+        <th>Backup</th>
     </tr>
     </thead>
     <tbody id="archiveTableBody"></tbody>
@@ -103,7 +104,7 @@
         const tbody = document.getElementById('archiveTableBody');
         if (!tbody) return;
 
-        tbody.innerHTML = "<tr><td colspan='7'>Loading...</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='8'>Loading...</td></tr>";
 
         try {
             let events = [];
@@ -163,6 +164,11 @@
                 }
 
                 const tr = document.createElement('tr');
+                const modelPage = event.model_page || null;
+                const modelPageLink = modelPage
+                    ? `<a href="${modelPage}" target="_blank" rel="noopener">Model snapshot</a>`
+                    : '—';
+
                 tr.innerHTML = `
                     <td>${event.tour}</td>
                     <td><span class="link" onclick="loadEvent('${event.year}', '${event.slug}', '${event.event_name}', '${event.tour.toLowerCase()}')">${event.event_name}</span></td>
@@ -171,12 +177,13 @@
                     <td class="num">${event.archived_at ? event.archived_at.split(' ')[0] : '—'}</td>
                     <td>${status}</td>
                     <td>${winner}</td>
+                    <td>${modelPageLink}</td>
                 `;
                 tbody.appendChild(tr);
             }
 
             if (!events.length) {
-                tbody.innerHTML = "<tr><td colspan='7'>No events found.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='8'>No events found.</td></tr>";
             }
         } catch (err) {
             console.error('Failed to load events:', err);
@@ -198,7 +205,7 @@
         console.error('Archive page failed to initialise:', err);
         const tbody = document.getElementById('archiveTableBody');
         if (tbody) {
-            tbody.innerHTML = "<tr><td colspan='7'>Unable to load archive data.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='8'>Unable to load archive data.</td></tr>";
         }
     });
 </script>

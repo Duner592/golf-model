@@ -1,5 +1,19 @@
 [
   {
+    "event_id": "21",
+    "event_name": "Charles Schwab Challenge",
+    "tour": "pga",
+    "slug": "charles_schwab_challenge",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-06-15 19:47:50 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-15T19:47:50Z",
+    "model_page": "archive/2026/charles_schwab_challenge/model_page.html",
+    "reconstruction": true,
+    "snapshot_label": "Reconstructed backfill"
+  },
+  {
     "event_id": "26",
     "event_name": "U.S. Open",
     "tour": "pga",

@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import math
 import re
@@ -1114,6 +1115,18 @@ def load_meta_for_event(processed_dir: Path, event_id: str) -> dict:
     raise FileNotFoundError(f"No meta for event_id={event_id} (looked for meta and weather_meta).")
 
 
+def load_reconstruction_meta(processed_dir: Path, event_id: str) -> dict | None:
+    p = processed_dir / f"event_{event_id}_reconstruction_meta.json"
+    if not p.exists():
+        return None
+    try:
+        payload = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"[warn] Could not read reconstruction metadata for event_id={event_id}: {exc}")
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
 # ---------- new helper for current week events ----------
 def has_current_week_events(tour: str) -> bool:
     """
@@ -1291,28 +1304,49 @@ def archive_event_predictions(
     event_slug = _slug_event(event_name)
     event_archive_dir = archive_dir / event_slug
     event_archive_dir.mkdir(parents=True, exist_ok=True)
-    if (event_archive_dir / "leaderboard.json").exists() and not overwrite:
-        print(f"[info] Archive already exists for {event_name} ({year}); keeping the saved {snapshot_type} snapshot.")
-        return
 
     # Files to copy
     files_to_copy = [
+        "model_page.html",
         "leaderboard.json",
         "meta.json",
         "tournament_summary.json",
         "summary.json",
+        "weather_round_neutral.json",
+        "weather_round_wave.json",
+        "weather_meta.json",
+        "course_fit_weights.json",
+        "course_history_summary.json",
+        "snapshot.json",
+        "field_teetimes.csv",
     ]
+    existing_archive = (event_archive_dir / "leaderboard.json").exists() and not overwrite
+    if existing_archive:
+        print(f"[info] Archive already exists for {event_name} ({year}); keeping the saved {snapshot_type} snapshot.")
+
     if lb_csv and lb_csv.exists():
         # Copy CSV to archive
-        shutil.copy(lb_csv, event_archive_dir / "leaderboard.csv")
+        dst_csv = event_archive_dir / "leaderboard.csv"
+        if not existing_archive or not dst_csv.exists():
+            shutil.copy(lb_csv, dst_csv)
         csv_available = True
     else:
-        csv_available = False
+        csv_available = (event_archive_dir / "leaderboard.csv").exists()
 
     for file_name in files_to_copy:
         src = source_dir / file_name
-        if src.exists():
-            shutil.copy(src, event_archive_dir / file_name)
+        dst = event_archive_dir / file_name
+        if src.exists() and (not existing_archive or not dst.exists()):
+            shutil.copy(src, dst)
+
+    reconstruction_meta = None
+    archive_meta_path = event_archive_dir / "meta.json"
+    if archive_meta_path.exists():
+        try:
+            archive_meta = json.loads(archive_meta_path.read_text(encoding="utf-8"))
+            reconstruction_meta = archive_meta.get("reconstruction") if isinstance(archive_meta, dict) else None
+        except Exception:
+            reconstruction_meta = None
 
     # Update index.json (in root archive dir)
     index_file = root / "web" / "archive" / "index.json"
@@ -1335,6 +1369,11 @@ def archive_event_predictions(
         "prediction_snapshot": snapshot_type,
         "initial_snapshot_created_utc": archived_at if snapshot_type == "initial" else None,
     }
+    if (event_archive_dir / "model_page.html").exists():
+        event_entry["model_page"] = f"archive/{year}/{event_slug}/model_page.html"
+    if reconstruction_meta:
+        event_entry["reconstruction"] = True
+        event_entry["snapshot_label"] = "Reconstructed backfill"
     # Remove existing entry for this event
     index_data = [
         e
@@ -1378,6 +1417,7 @@ def _initial_snapshot_resources(tour: str, year: str, event_id: str, snapshot_di
         return f"{base}/{name}" if always or (snapshot_dir / name).exists() else None
 
     return {
+        "model_page": rel("model_page.html"),
         "leaderboard": rel("leaderboard.json"),
         "summary": rel("summary.json"),
         "meta": rel("meta.json", always=True),
@@ -1395,6 +1435,258 @@ def _initial_snapshot_resources(tour: str, year: str, event_id: str, snapshot_di
         "snapshot": rel("snapshot.json", always=True),
         "schedule": f"{tour}/schedule.json",
     }
+
+
+def _read_snapshot_json(snapshot_dir: Path, name: str, default):
+    path = snapshot_dir / name
+    if not path.exists():
+        return default
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return default
+
+
+def write_model_page_snapshot(
+    snapshot_dir: Path,
+    *,
+    tour: str,
+    event_name: str,
+    event_id: str,
+    year: str,
+    snapshot_created_utc: str,
+    event_meta: dict,
+) -> None:
+    """
+    Write a standalone, event-specific model page snapshot.
+
+    The live tour pages are generic and depend on the current tour metadata. This
+    file embeds the event data directly so the page remains recoverable after the
+    live model rolls forward to later tournaments.
+    """
+    leaderboard = _read_snapshot_json(snapshot_dir, "leaderboard.json", [])
+    summary = _read_snapshot_json(snapshot_dir, "summary.json", {})
+    tournament = _read_snapshot_json(snapshot_dir, "tournament_summary.json", {})
+    weather_meta = _read_snapshot_json(snapshot_dir, "weather_meta.json", {})
+    weather_neutral = _read_snapshot_json(snapshot_dir, "weather_round_neutral.json", [])
+    weather_wave = _read_snapshot_json(snapshot_dir, "weather_round_wave.json", [])
+    course_history = _read_snapshot_json(snapshot_dir, "course_history_summary.json", {})
+    course_fit = _read_snapshot_json(snapshot_dir, "course_fit_weights.json", {})
+
+    local_files = {
+        label: filename
+        for label, filename in {
+            "Snapshot metadata": "snapshot.json",
+            "Event metadata": "meta.json",
+            "Leaderboard JSON": "leaderboard.json",
+            "Leaderboard CSV": "leaderboard.csv",
+            "Leaderboard HTML": "leaderboard.html",
+            "Tournament summary": "tournament_summary.json",
+            "Weather metadata": "weather_meta.json",
+            "Neutral weather": "weather_round_neutral.json",
+            "Wave weather": "weather_round_wave.json",
+            "Course-fit weights": "course_fit_weights.json",
+            "Course-history summary": "course_history_summary.json",
+            "Field tee times": "field_teetimes.csv",
+        }.items()
+        if (snapshot_dir / filename).exists()
+    }
+
+    payload = {
+        "tour": tour,
+        "event_id": event_id,
+        "event_name": event_name,
+        "year": year,
+        "snapshot_created_utc": snapshot_created_utc,
+        "snapshot_label": "Reconstructed backfill" if event_meta.get("reconstruction") else "Initial run",
+        "generated_utc": event_meta.get("generated_utc"),
+        "r1_date": event_meta.get("r1_date"),
+        "start_date": event_meta.get("start_date"),
+        "reconstruction": event_meta.get("reconstruction"),
+        "leaderboard": leaderboard if isinstance(leaderboard, list) else [],
+        "summary": summary if isinstance(summary, dict) else {},
+        "tournament": tournament if isinstance(tournament, dict) else {},
+        "weather_meta": weather_meta if isinstance(weather_meta, dict) else {},
+        "weather_neutral": weather_neutral if isinstance(weather_neutral, list) else [],
+        "weather_wave": weather_wave if isinstance(weather_wave, list) else [],
+        "course_history": course_history if isinstance(course_history, dict) else {},
+        "course_fit": course_fit if isinstance(course_fit, dict) else {},
+        "local_files": local_files,
+    }
+    payload_json = json.dumps(payload, ensure_ascii=True, separators=(",", ":")).replace("</", "<\\/")
+    page_title = html.escape(f"{event_name} Model Page Snapshot")
+    page = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>__PAGE_TITLE__</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1rem; color: #111; background: #f7faf8; }
+    header, section { max-width: 1180px; margin: 0 auto 1rem; }
+    header { padding: 1rem 0 0.25rem; }
+    h1 { margin: 0 0 0.35rem; font-size: clamp(1.45rem, 3vw, 2.1rem); }
+    h2 { margin: 0 0 0.55rem; font-size: 1.05rem; }
+    .muted { color: #53615a; font-size: 0.95rem; }
+    .pill { display: inline-flex; gap: 0.35rem; align-items: center; margin: 0.15rem 0.25rem 0.15rem 0; padding: 0.25rem 0.55rem; border: 1px solid #cfd9d3; border-radius: 999px; background: #fff; font-size: 0.86rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+    .card { border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; padding: 0.85rem; }
+    .links a { display: inline-block; margin: 0.2rem 0.4rem 0.2rem 0; color: #0b5a32; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+    input[type="search"] { width: min(100%, 280px); padding: 0.45rem 0.6rem; border: 1px solid #cbd8d0; border-radius: 6px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    th, td { padding: 0.45rem 0.5rem; border-bottom: 1px solid #edf2ef; text-align: left; white-space: nowrap; }
+    th { background: #f2f7f4; cursor: pointer; position: sticky; top: 0; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="muted">__TOUR_LABEL__ model page backup</div>
+    <h1>__EVENT_TITLE__</h1>
+    <div id="metaLine" class="muted"></div>
+    <div id="badges"></div>
+  </header>
+  <section class="grid" id="summaryCards"></section>
+  <section class="card">
+    <div class="toolbar">
+      <h2 style="margin-right:auto;">Leaderboard</h2>
+      <label class="muted">Filter <input id="filterBox" type="search" placeholder="Search player" /></label>
+    </div>
+    <div class="table-wrap">
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th data-key="rank">Rank</th>
+            <th data-key="player_name">Player</th>
+            <th data-key="p_win_%">Win %</th>
+            <th data-key="p_top10_%">Top-10 %</th>
+            <th data-key="p_mc_%">Make Cut %</th>
+            <th data-key="course_fit_score">Course Fit</th>
+            <th data-key="r1_teetime">R1 Tee</th>
+            <th data-key="r2_teetime">R2 Tee</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="card"><h2>Tournament</h2><div id="tournament"></div></div>
+    <div class="card"><h2>Weather</h2><div id="weather"></div></div>
+    <div class="card"><h2>Course Fit</h2><div id="courseFit"></div></div>
+    <div class="card"><h2>Files</h2><div id="files" class="links"></div></div>
+  </section>
+  <script type="application/json" id="snapshotPayload">__PAYLOAD__</script>
+  <script>
+    const SNAPSHOT = JSON.parse(document.getElementById("snapshotPayload").textContent);
+    const rows = Array.isArray(SNAPSHOT.leaderboard) ? SNAPSHOT.leaderboard : [];
+    let sortKey = "rank";
+    let sortAsc = true;
+    const fmt = (v, d = 2) => v === null || v === undefined || v === "" || Number.isNaN(Number(v)) ? "" : Number(v).toFixed(d);
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const get = (row, keys) => {
+      for (const key of keys) if (row[key] !== undefined && row[key] !== null && row[key] !== "") return row[key];
+      return "";
+    };
+    function sortRows(items) {
+      return [...items].sort((a, b) => {
+        const av = get(a, [sortKey]);
+        const bv = get(b, [sortKey]);
+        const an = Number(av);
+        const bn = Number(bv);
+        const result = Number.isFinite(an) && Number.isFinite(bn) ? an - bn : String(av).localeCompare(String(bv));
+        return sortAsc ? result : -result;
+      });
+    }
+    function renderTable() {
+      const q = document.getElementById("filterBox").value.trim().toLowerCase();
+      const filtered = q ? rows.filter((row) => String(get(row, ["player_name", "Player"])).toLowerCase().includes(q)) : rows;
+      document.querySelector("#leaderboardTable tbody").innerHTML = sortRows(filtered).map((row, idx) => `
+        <tr>
+          <td class="num">${escapeHtml(get(row, ["rank"]) || idx + 1)}</td>
+          <td>${escapeHtml(get(row, ["player_name", "Player"]))}</td>
+          <td class="num">${fmt(get(row, ["p_win_%", "p_win"]))}</td>
+          <td class="num">${fmt(get(row, ["p_top10_%", "p_top10"]))}</td>
+          <td class="num">${fmt(get(row, ["p_mc_%", "p_mc"]))}</td>
+          <td class="num">${fmt(get(row, ["course_fit_score"]))}</td>
+          <td>${escapeHtml(get(row, ["r1_teetime"]))}</td>
+          <td>${escapeHtml(get(row, ["r2_teetime"]))}</td>
+        </tr>`).join("");
+    }
+    function card(title, value, detail = "") {
+      return `<div class="card"><div class="muted">${escapeHtml(title)}</div><strong>${escapeHtml(value)}</strong>${detail ? `<div class="muted">${escapeHtml(detail)}</div>` : ""}</div>`;
+    }
+    function renderSummary() {
+      const metrics = SNAPSHOT.summary?.metrics || {};
+      const maxWin = rows.reduce((max, row) => Math.max(max, Number(get(row, ["p_win_%", "p_win"])) || 0), 0);
+      document.getElementById("metaLine").textContent = [
+        SNAPSHOT.snapshot_label,
+        SNAPSHOT.snapshot_created_utc ? `saved ${SNAPSHOT.snapshot_created_utc}` : "",
+        SNAPSHOT.generated_utc ? `generated ${SNAPSHOT.generated_utc}` : "",
+      ].filter(Boolean).join(" | ");
+      const badges = [`Tour: ${SNAPSHOT.tour?.toUpperCase()}`, `Event ID: ${SNAPSHOT.event_id}`, `Year: ${SNAPSHOT.year}`];
+      if (SNAPSHOT.reconstruction) badges.push("Reconstructed backfill");
+      document.getElementById("badges").innerHTML = badges.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
+      document.getElementById("summaryCards").innerHTML = [
+        card("Field", metrics.field_size || rows.length || "0", "players"),
+        card("Top Win Probability", maxWin ? `${maxWin.toFixed(2)}%` : "0.00%"),
+        card("Win Probability Sum", metrics.p_win_sum != null ? Number(metrics.p_win_sum).toFixed(3) : ""),
+        card("Prediction Source", SNAPSHOT.summary?.source_csv ? SNAPSHOT.summary.source_csv.split("/").pop() : "snapshot"),
+      ].join("");
+    }
+    function renderDetails() {
+      const t = SNAPSHOT.tournament || {};
+      document.getElementById("tournament").innerHTML = [
+        ["Event", t.event_name],
+        ["Course", t.course],
+        ["Location", t.course_location],
+        ["Start", t.start_date || SNAPSHOT.start_date || SNAPSHOT.r1_date],
+        ["Field size", t.field_size],
+        ["Winner", t.winner],
+      ].filter(([, value]) => value !== undefined && value !== null && value !== "").map(([label, value]) => `<div><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</div>`).join("") || "<span class='muted'>No tournament summary.</span>";
+      const neutral = Array.isArray(SNAPSHOT.weather_neutral) ? SNAPSHOT.weather_neutral : [];
+      const weatherMeta = SNAPSHOT.weather_meta || {};
+      const weatherLines = [];
+      if (weatherMeta.source) weatherLines.push(`<div><strong>Source:</strong> ${escapeHtml(weatherMeta.source)}</div>`);
+      neutral.forEach((row) => weatherLines.push(`<div>Round ${escapeHtml(row.round)}: wind ${fmt(row.wind_mph, 1)} mph, gust ${fmt(row.gust_mph, 1)} mph, delta ${fmt(row.delta_strokes, 2)} strokes</div>`));
+      document.getElementById("weather").innerHTML = weatherLines.join("") || "<span class='muted'>No weather snapshot.</span>";
+      const weights = SNAPSHOT.course_fit?.weights || {};
+      const weightLines = Object.entries(weights).map(([key, value]) => `<div><strong>${escapeHtml(key)}:</strong> ${fmt(value, 4)}</div>`);
+      document.getElementById("courseFit").innerHTML = weightLines.join("") || "<span class='muted'>No course-fit weights.</span>";
+      document.getElementById("files").innerHTML = Object.entries(SNAPSHOT.local_files || {}).map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("") || "<span class='muted'>No local file links.</span>";
+      if (SNAPSHOT.reconstruction) {
+        const note = document.createElement("pre");
+        note.textContent = JSON.stringify(SNAPSHOT.reconstruction, null, 2);
+        const wrap = document.createElement("section");
+        wrap.className = "card";
+        wrap.innerHTML = "<h2>Reconstruction Provenance</h2>";
+        wrap.appendChild(note);
+        document.body.appendChild(wrap);
+      }
+    }
+    document.querySelectorAll("th[data-key]").forEach((th) => th.addEventListener("click", () => {
+      const key = th.dataset.key;
+      if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
+      renderTable();
+    }));
+    document.getElementById("filterBox").addEventListener("input", renderTable);
+    renderSummary();
+    renderDetails();
+    renderTable();
+  </script>
+</body>
+</html>
+"""
+    page = (
+        page.replace("__PAGE_TITLE__", page_title)
+        .replace("__TOUR_LABEL__", html.escape(tour.upper()))
+        .replace("__EVENT_TITLE__", html.escape(event_name))
+        .replace("__PAYLOAD__", payload_json)
+    )
+    (snapshot_dir / "model_page.html").write_text(page, encoding="utf-8")
 
 
 def ensure_initial_snapshot(
@@ -1428,11 +1720,33 @@ def ensure_initial_snapshot(
             payload = json.loads(snapshot_json.read_text(encoding="utf-8"))
         except Exception:
             payload = {}
+        snapshot_created_utc = payload.get("snapshot_created_utc") or _utc_iso()
+        if not (snapshot_dir / "model_page.html").exists():
+            write_model_page_snapshot(
+                snapshot_dir,
+                tour=tour,
+                event_name=event_name,
+                event_id=event_id,
+                year=year,
+                snapshot_created_utc=snapshot_created_utc,
+                event_meta=event_meta,
+            )
+            resources = _initial_snapshot_resources(tour, year, event_id, snapshot_dir)
+            payload["resources"] = resources
+            write_json(snapshot_json, payload)
+            meta_path = snapshot_dir / "meta.json"
+            try:
+                snapshot_meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
+            except Exception:
+                snapshot_meta = {}
+            snapshot_meta["resources"] = resources
+            write_json(meta_path, snapshot_meta)
+            print(f"Added model page snapshot for {event_name} ({year}) in {snapshot_dir}")
         return {
             "created": False,
             "dir": snapshot_dir,
             "year": year,
-            "snapshot_created_utc": payload.get("snapshot_created_utc"),
+            "snapshot_created_utc": snapshot_created_utc,
             "resources": _initial_snapshot_resources(tour, year, event_id, snapshot_dir),
         }
 
@@ -1462,12 +1776,24 @@ def ensure_initial_snapshot(
         shutil.copy(lb_html, snapshot_dir / "leaderboard.html")
         shutil.copy(lb_html, snapshot_dir / f"leaderboard_{stamp}.html")
 
+    write_model_page_snapshot(
+        snapshot_dir,
+        tour=tour,
+        event_name=event_name,
+        event_id=event_id,
+        year=year,
+        snapshot_created_utc=snapshot_created_utc,
+        event_meta=event_meta,
+    )
+
     resources = _initial_snapshot_resources(tour, year, event_id, snapshot_dir)
     snapshot_meta = dict(event_meta)
     snapshot_meta["resources"] = resources
     snapshot_meta["snapshot_type"] = "initial"
     snapshot_meta["snapshot_created_utc"] = snapshot_created_utc
     snapshot_meta["snapshot_label"] = "Initial run"
+    if event_meta.get("reconstruction"):
+        snapshot_meta["snapshot_label"] = "Reconstructed backfill"
     write_json(snapshot_dir / "meta.json", snapshot_meta)
 
     payload = {
@@ -1484,6 +1810,9 @@ def ensure_initial_snapshot(
         "artifact_generated_utc": event_meta.get("generated_utc"),
         "resources": resources,
     }
+    if event_meta.get("reconstruction"):
+        payload["snapshot_label"] = "Reconstructed backfill"
+        payload["reconstruction"] = event_meta["reconstruction"]
     write_json(snapshot_json, payload)
     print(f"Saved initial prediction snapshot for {event_name} ({year}) in {snapshot_dir}")
 
@@ -1677,6 +2006,9 @@ def process_event(
         "tee_times_available": tee_times_available,
         "resources": resources,
     }
+    reconstruction_meta = load_reconstruction_meta(processed_dir, event_id)
+    if reconstruction_meta:
+        event_meta["reconstruction"] = reconstruction_meta
     write_json(event_dir / "meta.json", event_meta)
 
     initial_snapshot = ensure_initial_snapshot(

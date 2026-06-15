@@ -1,0 +1,51 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Reconstructed backfill",
+  "snapshot_created_utc": "2026-06-15T19:47:50Z",
+  "tour": "pga",
+  "event_id": "21",
+  "event_name": "Charles Schwab Challenge",
+  "year": "2026",
+  "r1_date": "2026-05-28",
+  "start_date": "2026-05-28",
+  "source_csv": "data/preds/pga/event_21_charles_schwab_challenge_2026-06-15_leaderboard.csv",
+  "artifact_generated_utc": "15-Jun-2026 19:47:49",
+  "resources": {
+    "model_page": "pga/initial/2026/event_21/model_page.html",
+    "leaderboard": "pga/initial/2026/event_21/leaderboard.json",
+    "summary": "pga/initial/2026/event_21/summary.json",
+    "meta": "pga/initial/2026/event_21/meta.json",
+    "downloads_csv": "pga/initial/2026/event_21/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_21/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_21/leaderboard_20260615T194750Z.csv",
+    "timestamped_html": "pga/initial/2026/event_21/leaderboard_20260615T194750Z.html",
+    "weather_meta": "pga/initial/2026/event_21/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_21/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_21/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_21/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_21/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_21/tournament_summary.json",
+    "field_teetimes": null,
+    "snapshot": "pga/initial/2026/event_21/snapshot.json",
+    "schedule": "pga/schedule.json"
+  },
+  "reconstruction": {
+    "event_id": "21",
+    "event_name": "Charles Schwab Challenge",
+    "tour": "pga",
+    "year": "2026",
+    "reconstruction": true,
+    "reconstructed_at_utc": "2026-06-15T19:44:09Z",
+    "reason": "Backfilled missing Charles Schwab Challenge prediction archive after the original first-run snapshot was not recoverable from current git/Pages artifacts.",
+    "inputs": {
+      "field_results": "data/raw/historical/pga/event_21_2026_rounds.json",
+      "weather": "Open-Meteo historical archive via scripts/fetch_weather_from_schedule.py",
+      "ratings_source_event_id": "33",
+      "ratings_source_description": "Checked-in PGA Championship snapshot from May 2026, closest prior local PGA rankings/skill files available in the repo."
+    },
+    "limitations": [
+      "This is not the original scheduled Charles Schwab first-run prediction snapshot.",
+      "The field/results are known after completion; ratings are the nearest prior local snapshot, not the unavailable original event-21 live pull."
+    ]
+  }
+}

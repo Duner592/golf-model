@@ -48,6 +48,18 @@ def build_course_history_stats(df_hist: pd.DataFrame) -> pd.DataFrame:
     if df_hist.empty:
         return pd.DataFrame()
 
+    if "sg_total" in df_hist.columns:
+        id_col = "player_id" if "player_id" in df_hist.columns else ("dg_id" if "dg_id" in df_hist.columns else None)
+        if id_col is None:
+            return pd.DataFrame()
+        df_long = df_hist.copy().rename(columns={id_col: "player_id"})
+        df_long["sg_total"] = pd.to_numeric(df_long["sg_total"], errors="coerce")
+        stats = df_long.dropna(subset=["sg_total"]).groupby("player_id", as_index=False).agg(
+            sg_course_mean_shrunk=("sg_total", "mean"),
+            rounds_course=("sg_total", "count"),
+        )
+        return stats
+
     # Find all round-specific sg_total columns
     sg_cols = [col for col in df_hist.columns if col.endswith(".sg_total")]
     if not sg_cols:

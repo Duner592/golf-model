@@ -102,6 +102,18 @@ def wide_rounds_to_long(df: pd.DataFrame) -> pd.DataFrame:
     if id_col is None:
         raise ValueError("No player id column found in historical rounds (expected dg_id/player_id).")
 
+    if {"round", "sg_total"}.issubset(df.columns):
+        keep = [id_col, "year", "round", "sg_total"]
+        keep.extend([c for c in ("driving_acc", "driving_dist") if c in df.columns])
+        out = df[keep].copy().rename(columns={id_col: "player_id"})
+        out["player_id"] = out["player_id"].astype(str)
+        out["round"] = pd.to_numeric(out["round"], errors="coerce")
+        out["sg_total"] = pd.to_numeric(out["sg_total"], errors="coerce")
+        for col in ("driving_acc", "driving_dist"):
+            if col in out.columns:
+                out[col] = pd.to_numeric(out[col], errors="coerce")
+        return out.dropna(subset=["round", "sg_total"])
+
     # Patterns to detect columns
     pat_sg = re.compile(r"^round_(\d+)\.(sg_total|sg)$", re.IGNORECASE)
     pat_da = re.compile(r"^round_(\d+)\.driving_acc$", re.IGNORECASE)

@@ -1,0 +1,19 @@
+{
+  "event_id": "21",
+  "event_name": "Charles Schwab Challenge",
+  "tour": "pga",
+  "year": "2026",
+  "reconstruction": true,
+  "reconstructed_at_utc": "2026-06-15T19:44:09Z",
+  "reason": "Backfilled missing Charles Schwab Challenge prediction archive after the original first-run snapshot was not recoverable from current git/Pages artifacts.",
+  "inputs": {
+    "field_results": "data/raw/historical/pga/event_21_2026_rounds.json",
+    "weather": "Open-Meteo historical archive via scripts/fetch_weather_from_schedule.py",
+    "ratings_source_event_id": "33",
+    "ratings_source_description": "Checked-in PGA Championship snapshot from May 2026, closest prior local PGA rankings/skill files available in the repo."
+  },
+  "limitations": [
+    "This is not the original scheduled Charles Schwab first-run prediction snapshot.",
+    "The field/results are known after completion; ratings are the nearest prior local snapshot, not the unavailable original event-21 live pull."
+  ]
+}

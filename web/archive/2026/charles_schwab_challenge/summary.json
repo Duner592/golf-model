@@ -1,0 +1,12 @@
+{
+  "event_id": "21",
+  "event_name": "Charles Schwab Challenge",
+  "source_csv": "data/preds/pga/event_21_charles_schwab_challenge_2026-06-15_leaderboard.csv",
+  "generated_utc": "15-Jun-2026 19:47:49",
+  "metrics": {
+    "field_size": 132,
+    "p_win_max": 0.1164,
+    "p_win_median": 0.00265,
+    "p_win_sum": 1.0
+  }
+}

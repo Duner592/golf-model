@@ -198,7 +198,20 @@ def materialize_missing_archive(root: Path, event_details: dict, year: str, arch
 
         archive_dir = archive_path.parent
         archive_dir.mkdir(parents=True, exist_ok=True)
-        for file_name in ("leaderboard.json", "meta.json", "tournament_summary.json", "summary.json"):
+        for file_name in (
+            "model_page.html",
+            "leaderboard.json",
+            "meta.json",
+            "tournament_summary.json",
+            "summary.json",
+            "weather_round_neutral.json",
+            "weather_round_wave.json",
+            "weather_meta.json",
+            "course_fit_weights.json",
+            "course_history_summary.json",
+            "snapshot.json",
+            "field_teetimes.csv",
+        ):
             src = source_dir / file_name
             if src.exists():
                 shutil.copy(src, archive_dir / file_name)
@@ -227,19 +240,20 @@ def materialize_missing_archive(root: Path, event_details: dict, year: str, arch
                 and str(entry.get("year")) == str(year)
             )
         ]
-        index_data.append(
-            {
-                "event_id": event_id,
-                "event_name": event_name,
-                "tour": tour,
-                "slug": event_slug,
-                "year": year,
-                "csv_available": csv_available,
-                "archived_at": archive_time(snapshot_created or generated_utc),
-                "prediction_snapshot": "initial" if source_type == "initial" else "event_assets",
-                "initial_snapshot_created_utc": snapshot_created,
-            }
-        )
+        index_entry = {
+            "event_id": event_id,
+            "event_name": event_name,
+            "tour": tour,
+            "slug": event_slug,
+            "year": year,
+            "csv_available": csv_available,
+            "archived_at": archive_time(snapshot_created or generated_utc),
+            "prediction_snapshot": "initial" if source_type == "initial" else "event_assets",
+            "initial_snapshot_created_utc": snapshot_created,
+        }
+        if (archive_dir / "model_page.html").exists():
+            index_entry["model_page"] = f"archive/{year}/{event_slug}/model_page.html"
+        index_data.append(index_entry)
         index_data.sort(key=lambda x: x.get("archived_at", ""), reverse=True)
         write_json(index_file, index_data)
 

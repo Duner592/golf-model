@@ -1,0 +1,38 @@
+{
+  "event_name": "Charles Schwab Challenge",
+  "event_id": "21",
+  "course": "Colonial Country Club",
+  "total_yardage": null,
+  "course_location": "Fort Worth, TX",
+  "start_date": "28-May-2026",
+  "field_size": 132,
+  "status": "completed",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2026,
+      "winner": "Henley, Russell",
+      "score": 268.0
+    },
+    {
+      "year": 2025,
+      "winner": "Griffin, Ben",
+      "score": 268.0
+    },
+    {
+      "year": 2024,
+      "winner": "Riley, Davis",
+      "score": 266.0
+    },
+    {
+      "year": 2023,
+      "winner": "Grillo, Emiliano",
+      "score": 272.0
+    },
+    {
+      "year": 2022,
+      "winner": "Burns, Sam",
+      "score": 271.0
+    }
+  ]
+}
