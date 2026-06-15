@@ -1,13 +1,4 @@
 {
-  "2026_charles_schwab_challenge": {
-    "event_id": "21",
-    "event_name": "Charles Schwab Challenge",
-    "tour": "pga",
-    "year": "2026",
-    "fetched_at": null,
-    "source": "historical-raw-data/rounds",
-    "slug": "charles_schwab_challenge"
-  },
   "2026_rbc_canadian_open": {
     "event_id": "32",
     "event_name": "RBC Canadian Open",
@@ -34,6 +25,15 @@
     "fetched_at": null,
     "source": "historical-raw-data/rounds",
     "slug": "the_memorial_tournament_presented_by_workday"
+  },
+  "2026_charles_schwab_challenge": {
+    "event_id": "21",
+    "event_name": "Charles Schwab Challenge",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "charles_schwab_challenge"
   },
   "2026_soudal_open": {
     "event_id": "2026119",
