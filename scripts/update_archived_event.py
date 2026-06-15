@@ -233,10 +233,10 @@ def materialize_missing_archive(root: Path, event_details: dict, year: str, arch
         index_file = root / "web" / "archive" / "index.json"
         try:
             index_data = json.loads(index_file.read_text(encoding="utf-8")) if index_file.exists() else []
-        except json.JSONDecodeError:
-            index_data = []
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Archive index is invalid JSON: {index_file}") from exc
         if not isinstance(index_data, list):
-            index_data = []
+            raise ValueError(f"Archive index must be a list: {index_file}")
 
         index_data = [
             entry
@@ -285,8 +285,8 @@ def find_archive_summary_path(root: Path, event_details: dict, year: str) -> Pat
     if index_path.exists():
         try:
             index_data = json.loads(index_path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            index_data = []
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Archive index is invalid JSON: {index_path}") from exc
         if isinstance(index_data, list):
             for entry in index_data:
                 if not isinstance(entry, dict):

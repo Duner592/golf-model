@@ -1354,8 +1354,10 @@ def archive_event_predictions(
     if index_file.exists():
         try:
             index_data = json.loads(index_file.read_text(encoding="utf-8"))
-        except Exception:
-            index_data = []
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Archive index is invalid JSON: {index_file}") from exc
+    if not isinstance(index_data, list):
+        raise ValueError(f"Archive index must be a list: {index_file}")
 
     # Add/update this event
     event_entry = {

@@ -85,6 +85,7 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - `scripts/fetch_historical_rounds_single.py` supports explicit `--event_id`/`--tour` arguments for targeted backfills, and pinned `scripts/fetch_weather_from_schedule.py` can fall back to `upcoming-events.json` metadata when processed event meta is missing.
 - Local edits should usually be committed with `scripts/commit_and_push.sh "message"`, which stages edits, ignores `.env` and Office lock files, rebases over workflow commits on `origin/master`, commits, rebases once more, and pushes.
 - `scripts/build_web_assets.py` now preserves the first successful model output for each tour/event/year as an initial snapshot, including a self-contained `model_page.html` backup. Prediction archives should use that snapshot rather than later refreshed live assets. Homepage links expose latest results and `?snapshot=initial` initial-run results.
+- Archive writers must fail on invalid `web/archive/index.json` rather than falling back to an empty list. A deploy on 2026-06-15 exposed why: conflict markers in the index caused `scripts/build_web_assets.py` to publish a one-event U.S. Open index, and the archive page then showed no displayable completed events because U.S. Open was still upcoming.
 
 ## Open Notes
 
