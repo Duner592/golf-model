@@ -112,15 +112,56 @@
         return name.replace(/\s*\(\d+\)\s*$/, '').trim();
     }
 
-    function normalizeName(name) {
+    const PLAYER_SUFFIXES = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v']);
+
+    function normalizePredictionDisplayName(name) {
         if (!name) return null;
-        let cleaned = String(name).replace(/\s+/g, ' ').trim();
+        let cleaned = stripPlayerId(String(name)).replace(/\s+/g, ' ').trim();
         if (!cleaned) return null;
         if (cleaned.includes(',')) {
             const [last, first] = cleaned.split(',', 2).map((part) => part.trim());
             cleaned = first ? `${first} ${last}` : last;
         }
-        return cleaned.toLowerCase();
+        return cleaned;
+    }
+
+    function playerNameTokens(name) {
+        const displayName = normalizePredictionDisplayName(name);
+        if (!displayName) return [];
+        const asciiName = displayName.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+        const tokens = asciiName.toLowerCase().match(/[a-z0-9]+/g) || [];
+        while (tokens.length && PLAYER_SUFFIXES.has(tokens[tokens.length - 1])) {
+            tokens.pop();
+        }
+        return tokens;
+    }
+
+    function playerNameKeys(name) {
+        const tokens = playerNameTokens(name);
+        const keys = new Set();
+        if (tokens.length) {
+            keys.add(tokens.join(''));
+        }
+        if (tokens.length >= 3) {
+            keys.add(`${tokens[0]}${tokens[tokens.length - 1]}`);
+        }
+        return [...keys];
+    }
+
+    function normalizeName(name) {
+        return playerNameKeys(name)[0] || null;
+    }
+
+    function hasSharedPlayerKey(leftKeys, rightKeys) {
+        if (!leftKeys?.length || !rightKeys?.length) return false;
+        const lookup = new Set(leftKeys);
+        return rightKeys.some((key) => lookup.has(key));
+    }
+
+    function findLeaderboardEntry(leaderboardEntries, playerName) {
+        const keys = playerNameKeys(playerName);
+        if (!keys.length) return null;
+        return leaderboardEntries.find((entry) => hasSharedPlayerKey(entry.keys, keys)) || null;
     }
 
     function parseEventDate(value) {
@@ -840,14 +881,14 @@
                 const leaderboardEntries = leaderboard.map((entry, idx) => ({
                     player_name: entry.player_name ?? '',
                     normalized: normalizeName(entry.player_name ?? ''),
+                    keys: playerNameKeys(entry.player_name ?? ''),
                     rank: entry.rank ?? (idx + 1),
                     p_win: entry.p_win,
                     p_top10: entry.p_top10
                 }));
 
                 const winnerDisplayName = cleanWinnerName(stripPlayerId(winnerPlayer.player));
-                const winnerKey = normalizeName(winnerPlayer.player);
-                const winnerEntry = winnerKey ? leaderboardEntries.find((entry) => entry.normalized === winnerKey) : null;
+                const winnerEntry = findLeaderboardEntry(leaderboardEntries, winnerPlayer.player);
                 const winProbability = winnerEntry?.p_win ?? null;
                 const winnerRank = winnerEntry?.rank ?? null;
 
@@ -859,21 +900,18 @@
                     .filter((entry) => entry.rank != null)
                     .sort((a, b) => a.rank - b.rank);
                 const predictedTop10 = new Set(
-                    sortedByRank
-                        .slice(0, 10)
-                        .map((entry) => entry.normalized)
-                        .filter(Boolean)
+                    sortedByRank.slice(0, 10).flatMap((entry) => entry.keys || [])
                 );
 
                 let top10Hits = 0;
                 const top10Probabilities = [];
                 for (const player of top10Players) {
-                    const normalized = normalizeName(player.player);
-                    if (!normalized) continue;
-                    if (predictedTop10.has(normalized)) {
+                    const keys = playerNameKeys(player.player);
+                    if (!keys.length) continue;
+                    if (keys.some((key) => predictedTop10.has(key))) {
                         top10Hits += 1;
                     }
-                    const entry = leaderboardEntries.find((item) => item.normalized === normalized);
+                    const entry = leaderboardEntries.find((item) => hasSharedPlayerKey(item.keys, keys));
                     if (entry && typeof entry.p_top10 === 'number') {
                         top10Probabilities.push(entry.p_top10);
                     }

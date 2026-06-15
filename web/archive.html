@@ -73,7 +73,6 @@
         <th>Date</th>
         <th>Status</th>
         <th>Winner</th>
-        <th>Backup</th>
     </tr>
     </thead>
     <tbody id="archiveTableBody"></tbody>
@@ -100,11 +99,40 @@
         return response.json();
     }
 
+    function parseArchiveDate(value) {
+        if (!value) return null;
+        const text = String(value).trim();
+        if (!text || text === '—') return null;
+
+        const iso = text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (iso) {
+            const [, year, month, day] = iso;
+            return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+        }
+
+        const dmy = text.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/);
+        if (dmy) {
+            const months = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+            const [, day, monthName, year] = dmy;
+            const month = months[monthName.toLowerCase()];
+            if (month !== undefined) return new Date(Date.UTC(Number(year), month, Number(day)));
+        }
+
+        const parsed = new Date(text.replace(' UTC', 'Z'));
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function formatArchiveDate(value) {
+        const parsed = parseArchiveDate(value);
+        if (!parsed) return value ? String(value).split(' ')[0] : '—';
+        return parsed.toISOString().slice(0, 10);
+    }
+
     async function loadArchive() {
         const tbody = document.getElementById('archiveTableBody');
         if (!tbody) return;
 
-        tbody.innerHTML = "<tr><td colspan='8'>Loading...</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='7'>Loading...</td></tr>";
 
         try {
             let events = [];
@@ -138,13 +166,14 @@
                 }
             }
 
-            tbody.innerHTML = '';
+            const rows = [];
 
             for (const event of events) {
                 let course = '—';
                 let location = '—';
                 let status = event.year === 'current' ? 'Current' : 'Archived';
                 let winner = '—';
+                let eventDate = event.start_date || event.archived_at || '';
 
                 try {
                     const summaryPath = event.year === 'current'
@@ -155,6 +184,7 @@
                     location = summary.course_location || '—';
                     status = summary.status || status;
                     winner = cleanWinnerName(summary.winner) || '—';
+                    eventDate = summary.start_date || eventDate;
                 } catch (summaryErr) {
                     console.warn(`Failed to load summary for ${event.event_name}: ${summaryErr.message}`);
                 }
@@ -163,27 +193,43 @@
                     continue;
                 }
 
+                rows.push({
+                    event,
+                    course,
+                    location,
+                    status,
+                    winner,
+                    eventDate,
+                    sortDate: parseArchiveDate(eventDate) || parseArchiveDate(event.archived_at)
+                });
+            }
+
+            rows.sort((a, b) => {
+                const timeA = a.sortDate instanceof Date ? a.sortDate.getTime() : 0;
+                const timeB = b.sortDate instanceof Date ? b.sortDate.getTime() : 0;
+                if (timeA !== timeB) return timeB - timeA;
+                return String(a.event.event_name || '').localeCompare(String(b.event.event_name || ''));
+            });
+
+            tbody.innerHTML = '';
+            for (const row of rows) {
+                const { event, course, location, status, winner, eventDate } = row;
                 const tr = document.createElement('tr');
-                const modelPage = event.model_page || null;
-                const modelPageLink = modelPage
-                    ? `<a href="${modelPage}" target="_blank" rel="noopener">Model snapshot</a>`
-                    : '—';
 
                 tr.innerHTML = `
                     <td>${event.tour}</td>
                     <td><span class="link" onclick="loadEvent('${event.year}', '${event.slug}', '${event.event_name}', '${event.tour.toLowerCase()}')">${event.event_name}</span></td>
                     <td>${course}</td>
                     <td>${location}</td>
-                    <td class="num">${event.archived_at ? event.archived_at.split(' ')[0] : '—'}</td>
+                    <td class="num">${formatArchiveDate(eventDate)}</td>
                     <td>${status}</td>
                     <td>${winner}</td>
-                    <td>${modelPageLink}</td>
                 `;
                 tbody.appendChild(tr);
             }
 
-            if (!events.length) {
-                tbody.innerHTML = "<tr><td colspan='8'>No events found.</td></tr>";
+            if (!rows.length) {
+                tbody.innerHTML = "<tr><td colspan='7'>No events found.</td></tr>";
             }
         } catch (err) {
             console.error('Failed to load events:', err);
@@ -205,7 +251,7 @@
         console.error('Archive page failed to initialise:', err);
         const tbody = document.getElementById('archiveTableBody');
         if (tbody) {
-            tbody.innerHTML = "<tr><td colspan='8'>Unable to load archive data.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='7'>Unable to load archive data.</td></tr>";
         }
     });
 </script>

@@ -148,6 +148,14 @@ def archive_time(value: str | None = None) -> str:
     return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
 
+def archive_sort_value(entry: dict) -> str:
+    for key in ("start_date", "r1_date", "archived_at"):
+        value = entry.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
+
+
 def resolve_web_resource(root: Path, resource: str | None) -> Path | None:
     if not resource:
         return None
@@ -246,6 +254,7 @@ def materialize_missing_archive(root: Path, event_details: dict, year: str, arch
             "tour": tour,
             "slug": event_slug,
             "year": year,
+            "start_date": event_details.get("start_date"),
             "csv_available": csv_available,
             "archived_at": archive_time(snapshot_created or generated_utc),
             "prediction_snapshot": "initial" if source_type == "initial" else "event_assets",
@@ -254,7 +263,7 @@ def materialize_missing_archive(root: Path, event_details: dict, year: str, arch
         if (archive_dir / "model_page.html").exists():
             index_entry["model_page"] = f"archive/{year}/{event_slug}/model_page.html"
         index_data.append(index_entry)
-        index_data.sort(key=lambda x: x.get("archived_at", ""), reverse=True)
+        index_data.sort(key=archive_sort_value, reverse=True)
         write_json(index_file, index_data)
 
         print(f"Created missing archive for {event_id} ({event_name}) from {source_dir}")

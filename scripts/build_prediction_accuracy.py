@@ -24,6 +24,7 @@ import json
 import re
 import subprocess
 import sys
+import unicodedata
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -66,11 +67,32 @@ def normalize_prediction_name(name: str | None) -> str:
     return name
 
 
-def clean_name_key(name: str | None) -> str:
+PLAYER_SUFFIXES = {"jr", "sr", "ii", "iii", "iv", "v"}
+
+
+def name_tokens(name: str | None) -> list[str]:
     name = normalize_prediction_name(name)
-    name = name.lower()
-    name = re.sub(r"[^a-z0-9]", "", name)
-    return name
+    if not name:
+        return []
+    ascii_name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode("ascii")
+    tokens = re.findall(r"[a-z0-9]+", ascii_name.lower())
+    while tokens and tokens[-1] in PLAYER_SUFFIXES:
+        tokens.pop()
+    return tokens
+
+
+def clean_name_key(name: str | None) -> str:
+    return "".join(name_tokens(name))
+
+
+def name_key_candidates(name: str | None) -> list[str]:
+    tokens = name_tokens(name)
+    keys: list[str] = []
+    if tokens:
+        keys.append("".join(tokens))
+    if len(tokens) >= 3:
+        keys.append(f"{tokens[0]}{tokens[-1]}")
+    return list(dict.fromkeys(keys))
 
 
 def coerce_bool(val: Any) -> bool | None:
@@ -121,6 +143,7 @@ def load_predictions(event_dir: Path) -> pd.DataFrame:
         raise ValueError(f"Leaderboard missing player column in {event_dir}")
     df["player"] = df["player"].apply(normalize_prediction_name)
     df["player_key"] = df["player"].apply(clean_name_key)
+    df["_match_keys"] = df["player"].apply(name_key_candidates)
     for col in ("p_win_pct", "p_top5_pct", "p_top10_pct", "p_mc_pct"):
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
@@ -140,6 +163,7 @@ def load_actual_results(event_dir: Path) -> pd.DataFrame | None:
         raise ValueError(f"results.json missing 'player' entries in {event_dir}")
     df["player"] = df["player"].apply(normalize_prediction_name)
     df["player_key"] = df["player"].apply(clean_name_key)
+    df["_match_keys"] = df["player"].apply(name_key_candidates)
     return df
 
 
@@ -163,6 +187,59 @@ def brier_score(probs: Iterable[float], outcomes: Iterable[float]) -> float | No
         return None
     diff = probs_series[mask] / 100.0 - outcomes_series[mask]
     return float((diff ** 2).mean())
+
+
+def merge_predictions_with_actuals(pred_df: pd.DataFrame, actual_df: pd.DataFrame) -> pd.DataFrame:
+    actual_cols = [
+        "player_key",
+        "player",
+        "finish_text",
+        "finish_pos",
+        "score",
+        "to_par",
+        "made_cut",
+    ]
+    key_to_indices: dict[str, list[int]] = {}
+    for actual_idx, actual_row in actual_df.iterrows():
+        for key in actual_row.get("_match_keys") or [actual_row.get("player_key")]:
+            if key:
+                key_to_indices.setdefault(str(key), []).append(actual_idx)
+
+    unique_key_to_index = {
+        key: indices[0]
+        for key, indices in key_to_indices.items()
+        if len(set(indices)) == 1
+    }
+
+    matched_records: list[dict[str, Any]] = []
+    for _, pred_row in pred_df.iterrows():
+        matched_idx = None
+        for key in pred_row.get("_match_keys") or [pred_row.get("player_key")]:
+            matched_idx = unique_key_to_index.get(str(key))
+            if matched_idx is not None:
+                break
+
+        if matched_idx is None:
+            matched_records.append({col: None for col in actual_cols})
+            continue
+
+        matched_row = actual_df.loc[matched_idx]
+        matched_records.append({col: matched_row.get(col) for col in actual_cols})
+
+    actual_matches = pd.DataFrame(matched_records)
+    actual_matches = actual_matches.rename(
+        columns={
+            "player_key": "player_key_actual",
+            "player": "player_actual",
+        }
+    )
+    return pd.concat(
+        [
+            pred_df.drop(columns=["_match_keys"], errors="ignore").reset_index(drop=True),
+            actual_matches.reset_index(drop=True),
+        ],
+        axis=1,
+    )
 
 
 def main() -> None:
@@ -224,22 +301,7 @@ def main() -> None:
             skipped_events.append(f"{year}-{event_name} (no actual results)")
             continue
 
-        merged = pred_df.merge(
-            actual_df[
-                [
-                    "player_key",
-                    "player",
-                    "finish_text",
-                    "finish_pos",
-                    "score",
-                    "to_par",
-                    "made_cut",
-                ]
-            ],
-            on="player_key",
-            how="left",
-            suffixes=("", "_actual"),
-        )
+        merged = merge_predictions_with_actuals(pred_df, actual_df)
 
         merged["event_id"] = event_id
         merged["event_name"] = event_name

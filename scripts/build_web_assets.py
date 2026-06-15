@@ -1364,6 +1364,7 @@ def archive_event_predictions(
         "tour": tour,
         "slug": event_slug,
         "year": year,
+        "start_date": r1_date,
         "csv_available": csv_available,
         "archived_at": _archive_time(archived_at),
         "prediction_snapshot": snapshot_type,
@@ -1382,8 +1383,8 @@ def archive_event_predictions(
     ]
     index_data.append(event_entry)
 
-    # Sort by date descending
-    index_data.sort(key=lambda x: x.get("archived_at", ""), reverse=True)
+    # Sort by tournament date descending, not by archive write time.
+    index_data.sort(key=_archive_sort_value, reverse=True)
 
     write_json(index_file, index_data)
     print(f"Archived predictions for {event_name} ({year}) in {event_archive_dir}")
@@ -1408,6 +1409,14 @@ def _archive_time(value: str | None = None) -> str:
         except Exception:
             pass
     return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
+
+def _archive_sort_value(entry: dict) -> str:
+    for key in ("start_date", "r1_date", "archived_at"):
+        value = entry.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
 
 
 def _initial_snapshot_resources(tour: str, year: str, event_id: str, snapshot_dir: Path) -> dict[str, str | None]:
