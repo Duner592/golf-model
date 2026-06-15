@@ -1,5 +1,16 @@
 [
   {
+    "event_id": "26",
+    "event_name": "U.S. Open",
+    "tour": "pga",
+    "slug": "u_s_open",
+    "year": "2026",
+    "csv_available": true,
+    "archived_at": "2026-06-15 05:31:49 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-15T05:31:49Z"
+  },
+  {
     "event_id": "32",
     "event_name": "RBC Canadian Open",
     "tour": "pga",

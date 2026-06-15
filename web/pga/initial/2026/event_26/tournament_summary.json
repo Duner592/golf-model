@@ -1,0 +1,33 @@
+{
+  "event_name": "U.S. Open",
+  "event_id": "26",
+  "course": "Shinnecock Hills Golf Club",
+  "total_yardage": null,
+  "course_location": "Southampton, NY",
+  "start_date": "18-Jun-2026",
+  "field_size": 156,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Spaun, J.J.",
+      "score": -5
+    },
+    {
+      "year": 2024,
+      "winner": "DeChambeau, Bryson",
+      "score": -10
+    },
+    {
+      "year": 2023,
+      "winner": "Clark, Wyndham",
+      "score": -14
+    },
+    {
+      "year": 2022,
+      "winner": "Fitzpatrick, Matt",
+      "score": -10
+    }
+  ]
+}
