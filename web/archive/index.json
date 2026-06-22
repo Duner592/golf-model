@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "34",
+    "event_name": "Travelers Championship",
+    "tour": "pga",
+    "slug": "travelers_championship",
+    "year": "2026",
+    "start_date": "2026-06-25",
+    "csv_available": true,
+    "archived_at": "2026-06-22 05:34:47 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-22T05:34:47Z",
+    "model_page": "archive/2026/travelers_championship/model_page.html"
+  },
+  {
+    "event_id": "2026123",
+    "event_name": "DS Automobiles 83\u00b0 Open d\u2019Italia",
+    "tour": "euro",
+    "slug": "ds_automobiles_83_open_d_italia",
+    "year": "2026",
+    "start_date": "2026-06-25",
+    "csv_available": true,
+    "archived_at": "2026-06-22 05:35:22 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-22T05:35:22Z",
+    "model_page": "archive/2026/ds_automobiles_83_open_d_italia/model_page.html"
+  },
+  {
     "event_id": "26",
     "event_name": "U.S. Open",
     "tour": "pga",

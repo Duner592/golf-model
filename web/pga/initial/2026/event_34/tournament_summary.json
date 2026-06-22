@@ -1,0 +1,38 @@
+{
+  "event_name": "Travelers Championship",
+  "event_id": "34",
+  "course": "TPC River Highlands",
+  "total_yardage": null,
+  "course_location": "Hartford, CT",
+  "start_date": "25-Jun-2026",
+  "field_size": 71,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Bradley, Keegan",
+      "score": -19
+    },
+    {
+      "year": 2024,
+      "winner": "Scheffler, Scottie",
+      "score": -26
+    },
+    {
+      "year": 2023,
+      "winner": "Bradley, Keegan",
+      "score": -27
+    },
+    {
+      "year": 2022,
+      "winner": "Schauffele, Xander",
+      "score": -23
+    },
+    {
+      "year": 2021,
+      "winner": "English, Harris",
+      "score": -17
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "event_id": "2026123",
+  "event_name": "DS Automobiles 83\u00b0 Open d\u2019Italia",
+  "source_csv": "data/preds/euro/event_2026123_ds_automobiles_83_open_d_italia_2026-06-22_leaderboard.csv",
+  "generated_utc": "22-Jun-2026 05:35:22",
+  "metrics": {
+    "field_size": 154,
+    "p_win_max": 0.0559,
+    "p_win_median": 0.00455,
+    "p_win_sum": 1.0
+  }
+}
