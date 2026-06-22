@@ -846,6 +846,8 @@
             .replace(/&/g, 'and')
             .replace(/\bthe\b/g, '')
             .replace(/[^a-z0-9]+/gi, ' ')
+            .replace(/\btravellers\b/gi, 'travelers')
+            .replace(/\bopen d italia\b/gi, 'italian open')
             .replace(/\s+/g, ' ')
             .trim()
             .toLowerCase();
@@ -1110,6 +1112,22 @@
         return map;
     }
 
+    function buildResultMap(resultsPayload) {
+        const map = new Map();
+        const players = Array.isArray(resultsPayload?.players) ? resultsPayload.players : [];
+        players.forEach((row) => {
+            const key = normalizePlayerName(row.player || row.player_name || row.Player || row.Name);
+            if (!key || map.has(key)) return;
+            map.set(key, {
+                playerName: row.player || row.player_name || row.Player || row.Name,
+                finishText: row.finish_text || row.fin_text || row.Result || '',
+                finishPos: toNumber(row.finish_pos || row.position || row.pos),
+                madeCut: row.made_cut
+            });
+        });
+        return map;
+    }
+
     function modelLooksCurrent(localModel, remoteModel) {
         if (!remoteModel || remoteModel.error) return true;
         if (!localModel || localModel.error) return false;
@@ -1172,6 +1190,13 @@
                 const basePath = `archive/${event.year}/${event.slug}`;
                 try {
                     const leaderboard = await fetchJson(`${basePath}/leaderboard.json`);
+                    let results = null;
+                    try {
+                        results = await fetchJson(`${basePath}/results.json`);
+                    } catch (_) {
+                        results = null;
+                    }
+                    const resultMap = buildResultMap(results);
                     return {
                         tour: event.tour,
                         eventName: event.event_name || event.slug,
@@ -1179,6 +1204,8 @@
                         generatedUtc: event.archived_at || '',
                         leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
                         playerMap: buildPlayerMap(leaderboard),
+                        resultMap,
+                        resultsAvailable: resultMap.size > 0,
                         source: '2026 archive',
                         remote: false,
                         archive: true,
@@ -1249,6 +1276,7 @@
         const match = findModelForBet(row);
         const pWin = match.player?.pWin;
         const pTop10 = match.player?.pTop10;
+        const actualResult = match.model?.resultMap?.get(normalizePlayerName(row.Player)) || null;
         const winEdge = odds && Number.isFinite(pWin) ? pWin - odds.impliedPercent : null;
         const winEv = odds && Number.isFinite(pWin) ? (odds.decimal * (pWin / 100)) - 1 : null;
         const placeProjection = estimatePlaceProbability(placeTerms, match.player, market);
@@ -1276,6 +1304,7 @@
             placeProjection,
             model: match.model,
             player: match.player,
+            actualResult,
             pWin,
             pTop10,
             winEdge,
@@ -1435,6 +1464,7 @@
             <div class="source-item">
                 <span class="source-title">2026 value archive</span>
                 <span>${state.archiveModels.length} archived events loaded</span>
+                <span class="source-meta">${state.archiveModels.filter(model => model.resultsAvailable).length} with results</span>
                 <span class="badge badge--positive">same page</span>
             </div>
         `;
@@ -1498,7 +1528,15 @@
                 ? row.placeProjection.label
                 : placeText;
             const pnl = profitLossDisplay(row);
-            const actualResult = row.raw.Result || row.raw.Outcome || '-';
+            const sheetResult = String(row.raw.Result || '').trim();
+            const archiveResult = String(row.actualResult?.finishText || '').trim();
+            const useArchiveResult = archiveResult && (!sheetResult || /^pending$/i.test(sheetResult));
+            const actualResult = useArchiveResult ? archiveResult : (sheetResult || row.raw.Outcome || '-');
+            const actualResultNote = useArchiveResult
+                ? 'DataGolf archive result'
+                : archiveResult && archiveResult !== sheetResult
+                    ? `Sheet result | archive: ${archiveResult}`
+                    : (row.raw.Outcome || '-');
             return `
                 <tr>
                     <td data-label="Date">${formatDate(row.raw.Date)}</td>
@@ -1533,7 +1571,7 @@
                         </span>
                     </td>
                     <td data-label="Value"><span class="badge ${row.value.className}">${row.value.label}</span><br><span class="player-sub">${escapeHtml(valueNote)}</span></td>
-                    <td data-label="Actual Result"><strong>${escapeHtml(actualResult)}</strong><br><span class="player-sub">${escapeHtml(row.raw.Outcome || '-')}</span></td>
+                    <td data-label="Actual Result"><strong>${escapeHtml(actualResult)}</strong><br><span class="player-sub">${escapeHtml(actualResultNote)}</span></td>
                     <td data-label="P/L" class="num ${pnl.className}">${escapeHtml(pnl.text)}</td>
                 </tr>
             `;
