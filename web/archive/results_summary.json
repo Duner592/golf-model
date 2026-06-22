@@ -1,4 +1,13 @@
 {
+  "2026_u_s_open": {
+    "event_id": "26",
+    "event_name": "U.S. Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "u_s_open"
+  },
   "2026_rbc_canadian_open": {
     "event_id": "32",
     "event_name": "RBC Canadian Open",

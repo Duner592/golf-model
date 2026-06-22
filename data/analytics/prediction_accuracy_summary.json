@@ -11,14 +11,14 @@
     "mean_actual_top10_rate": 0.17523609653725078
   },
   "pga": {
-    "events": 24,
-    "rows": 2770,
-    "brier_win": 0.017257884202287778,
-    "brier_top10": 0.15317353160746539,
+    "events": 25,
+    "rows": 2926,
+    "brier_win": 0.017181214408540105,
+    "brier_top10": 0.15242893941142527,
     "brier_mc": null,
-    "mean_predicted_win_pct": 0.8662599277978339,
-    "mean_actual_win_rate": 0.015051173991571343,
-    "mean_predicted_top10_pct": 8.664259927797834,
-    "mean_actual_top10_rate": 0.17338952438290187
+    "mean_predicted_win_pct": 0.8542549555707452,
+    "mean_actual_win_rate": 0.015002885170225043,
+    "mean_predicted_top10_pct": 8.544087491455912,
+    "mean_actual_top10_rate": 0.17195614541257934
   }
 }
