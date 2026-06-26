@@ -10,13 +10,14 @@ from __future__ import annotations
 import argparse
 import json
 from dataclasses import dataclass
-from datetime import UTC, date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
 TOURS = ("pga", "euro")
+UTC = timezone.utc
 
 
 @dataclass
