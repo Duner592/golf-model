@@ -4,6 +4,20 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### Archive Page Status Labels
+
+Completed on 2026-06-26.
+
+Implemented in `web/archive.html`.
+
+Current features:
+
+- Displays compact status badges instead of raw status text.
+- Marks completed archives as `Completed`.
+- Marks reconstructed archives as `Reconstructed`.
+- Shows `Summary pending` when an archive index entry has no tournament summary.
+- Shows `Awaiting results` or `Results unknown` when completed archived events do not have result data.
+
 ### Site Integrity Check
 
 Completed on 2026-06-26.
@@ -57,20 +71,6 @@ Useful fields:
 - Any missing or stale files from the site integrity check.
 
 This page can be plain and functional. It is mainly for diagnosing workflow and publishing issues quickly.
-
-### Archive Page Status Labels
-
-Make archive entries visible even when they are incomplete, instead of silently hiding them.
-
-Potential labels:
-
-- `Completed`
-- `Awaiting results`
-- `Summary pending`
-- `Accuracy pending`
-- `Results unavailable`
-
-This would make archive problems easier to see from the page itself.
 
 ### Homepage Recent Improvements
 

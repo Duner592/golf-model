@@ -27,6 +27,13 @@
         .num { font-variant-numeric: tabular-nums; }
         .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary)); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer; box-shadow: 0 8px 18px -14px rgba(29,124,66,0.55); transition: background 0.2s ease, transform 0.2s ease; }
         .link:hover { background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark)); transform: translateY(-1px); }
+        .status-stack { display: flex; flex-wrap: wrap; gap: 0.25rem; align-items: center; }
+        .status-badge { display: inline-flex; align-items: center; min-height: 1.35rem; padding: 0.12rem 0.42rem; border-radius: 999px; font-size: 0.76rem; font-weight: 700; line-height: 1; border: 1px solid transparent; }
+        .status-badge--completed { color: #155e35; background: #e8f7ee; border-color: #bfe5cd; }
+        .status-badge--current { color: #155e75; background: #e6f6fb; border-color: #b9e3ee; }
+        .status-badge--pending { color: #805300; background: #fff4d6; border-color: #f1d794; }
+        .status-badge--missing { color: #7a2e0e; background: #ffede5; border-color: #f1c3af; }
+        .status-badge--reconstructed { color: #4a3b78; background: #f0ecff; border-color: #d5caf9; }
         @media (max-width: 900px) {
             table { font-size: 0.9rem; }
         }
@@ -128,6 +135,54 @@
         return parsed.toISOString().slice(0, 10);
     }
 
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function normalizeStatus(value) {
+        return String(value || '').trim().toLowerCase().replace(/[_-]+/g, ' ');
+    }
+
+    function statusBadge(label, className) {
+        return `<span class="status-badge ${className}">${escapeHtml(label)}</span>`;
+    }
+
+    function renderStatusBadges(row) {
+        const badges = [];
+        const status = normalizeStatus(row.status);
+
+        if (row.summaryMissing) {
+            badges.push(statusBadge('Summary pending', 'status-badge--missing'));
+        } else if (status === 'completed') {
+            badges.push(statusBadge('Completed', 'status-badge--completed'));
+        } else if (status === 'current') {
+            badges.push(statusBadge('Current', 'status-badge--current'));
+        } else if (status) {
+            badges.push(statusBadge(row.status, 'status-badge--pending'));
+        } else {
+            badges.push(statusBadge('Status pending', 'status-badge--pending'));
+        }
+
+        if (row.event?.reconstruction || row.event?.snapshot_label === 'Reconstructed backfill') {
+            badges.push(statusBadge('Reconstructed', 'status-badge--reconstructed'));
+        }
+
+        if (status === 'completed' && row.event.year !== 'current') {
+            if (row.resultsAvailable === false) {
+                badges.push(statusBadge('Awaiting results', 'status-badge--pending'));
+            } else if (row.resultsAvailable === null) {
+                badges.push(statusBadge('Results unknown', 'status-badge--missing'));
+            }
+        }
+
+        return `<span class="status-stack">${badges.join('')}</span>`;
+    }
+
     async function loadArchive() {
         const tbody = document.getElementById('archiveTableBody');
         if (!tbody) return;
@@ -174,6 +229,8 @@
                 let status = event.year === 'current' ? 'Current' : 'Archived';
                 let winner = '—';
                 let eventDate = event.start_date || event.archived_at || '';
+                let summaryMissing = false;
+                let resultsAvailable = event.year === 'current' ? null : false;
 
                 try {
                     const summaryPath = event.year === 'current'
@@ -187,9 +244,19 @@
                     eventDate = summary.start_date || eventDate;
                 } catch (summaryErr) {
                     console.warn(`Failed to load summary for ${event.event_name}: ${summaryErr.message}`);
+                    summaryMissing = true;
                 }
 
-                if (status === 'upcoming') {
+                if (event.year !== 'current') {
+                    try {
+                        await loadJSON(`archive/${event.year}/${event.slug}/results.json`);
+                        resultsAvailable = true;
+                    } catch (resultsErr) {
+                        resultsAvailable = false;
+                    }
+                }
+
+                if (normalizeStatus(status) === 'upcoming') {
                     continue;
                 }
 
@@ -200,6 +267,8 @@
                     status,
                     winner,
                     eventDate,
+                    summaryMissing,
+                    resultsAvailable,
                     sortDate: parseArchiveDate(eventDate) || parseArchiveDate(event.archived_at)
                 });
             }
@@ -222,7 +291,7 @@
                     <td>${course}</td>
                     <td>${location}</td>
                     <td class="num">${formatArchiveDate(eventDate)}</td>
-                    <td>${status}</td>
+                    <td>${renderStatusBadges(row)}</td>
                     <td>${winner}</td>
                 `;
                 tbody.appendChild(tr);
