@@ -22,17 +22,19 @@ This repository is a weekly golf tournament win-probability model for PGA and DP
 - Fetch actual results: `python scripts/fetch_actual_results.py --year $YEAR`
 - Build web assets: `python scripts/build_web_assets.py --tour $TOUR`
 - Summarize artifacts/status: `python scripts/summarize_status.py`
+- Check generated site integrity: `python scripts/check_site_integrity.py`
 - Safely commit local edits around scheduled workflow commits: `scripts/commit_and_push.sh "message"`
 - Test local web output: `cd web/ && python -m http.server 8000`
 
 ## Automation
 
 - GitHub Actions workflow files must use `.yml` or `.yaml`.
-- `.github/workflows/deploy-pages.yml` deploys `web/` to GitHub Pages on manual runs and pushes that touch `web/**`.
+- `.github/workflows/deploy-pages.yml` deploys `web/` to GitHub Pages on manual runs and pushes that touch `web/**`; it runs `scripts/check_site_integrity.py` before uploading the Pages artifact.
 - `.github/workflows/refresh-upcoming-events.yml` runs hourly at minute 7 UTC, refreshes `upcoming-events.json` from DataGolf, and commits only that file when it changes.
-- `.github/workflows/weekly-model.yml` runs every 2 hours Monday-Wednesday at minute 23 UTC, commits durable `web/archive/**` and `web/{tour}/initial/**` prediction snapshots on full runs, then deploys `web/` as a Pages artifact.
+- `.github/workflows/weekly-model.yml` runs every 2 hours Monday-Wednesday at minute 23 UTC, commits durable `web/archive/**` and `web/{tour}/initial/**` prediction snapshots on full runs, checks site integrity, then deploys `web/` as a Pages artifact.
 - Scheduled model runs always export full-field leaderboards. Do not add a leaderboard-size input to the workflow.
 - The shared status card is injected by `web/menu.js`, appears at the bottom of every page that loads the menu, and reads `web/status.json`; keep `scripts/update_web_status.py` wired into workflows that deploy `web/`.
+- `scripts/check_site_integrity.py` validates checked-out site assets against `upcoming-events.json`, `web/status.json`, and `web/archive/index.json`; use it before deploy-related changes to catch stale live model pages, broken archive entries, missing recent archives/results, and stale status metadata.
 - `scripts/build_web_assets.py` preserves an initial prediction snapshot under `web/{tour}/initial/{year}/event_{event_id}/`; prediction archives should be based on this frozen first run while scheduled runs keep live `web/{tour}/` assets current.
 - `.github/workflows/archive-update.yml` runs Monday at 12:00 and 21:00 UTC, resolves previous-week PGA/Euro event IDs, materializes missing archives from saved snapshots or checked-in event assets, refreshes actual results/accuracy, and commits changed `web/archive/**` and `data/analytics/**` files to `master`; the normal deploy workflow then rebuilds model assets and publishes `web/`.
 - `.github/workflows/actual-results.yml` runs daily at 02:17 UTC, refreshes actual results for the selected/current year with missing latest results allowed, rebuilds prediction accuracy, and commits changed `web/archive/**` and `data/analytics/**` outputs to `master`; the normal deploy workflow then rebuilds model assets and publishes `web/`.

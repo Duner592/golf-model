@@ -111,6 +111,9 @@ jobs:
           git pull --rebase --autostash origin master
           git push
 
+      - name: Check site integrity
+        run: python3 scripts/check_site_integrity.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
 

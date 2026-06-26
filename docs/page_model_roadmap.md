@@ -4,6 +4,22 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### Site Integrity Check
+
+Completed on 2026-06-26.
+
+Implemented in `scripts/check_site_integrity.py`.
+
+Current features:
+
+- Validates `upcoming-events.json`, `web/status.json`, `web/{tour}/meta.json`, and `web/archive/index.json` parse correctly.
+- Checks current-week PGA/Euro schedule events against published tour metadata.
+- Fails when an active published event is missing predictions.
+- Warns when status metadata is stale or points at different model events than the current schedule.
+- Checks archive entries for missing directories and leaderboard files.
+- Warns on recent completed events missing from the archive index or archived events missing `results.json`.
+- Supports `--strict`, `--status-age-hours`, and `--archive-lookback-days` for CI/local tuning.
+
 ### Odds And Value View
 
 Completed on 2026-05-19.
@@ -26,21 +42,6 @@ Current features:
 Future follow-ups for this view belong under the existing `Closing-Line Value Tracking` item unless they require a separate page.
 
 ## Do Soon
-
-### Site Integrity Check
-
-Add a script such as `scripts/check_site_integrity.py` that can be run locally and in GitHub Actions before deploys.
-
-Checks to include:
-
-- Current PGA/Euro events in `upcoming-events.json` agree with `web/{tour}/meta.json`.
-- No active tour page is deployed as `No Event` when DataGolf has a current event.
-- `web/status.json` is fresh enough and agrees with current tour metadata.
-- Completed archive events are not still marked as `upcoming`.
-- Completed archive events have `results.json` when actual results are available.
-- `web/archive/index.json` includes the event summaries that should be visible on the archive page.
-
-Why this matters: it should catch stale deploys, missing DP World pages, hidden archives, and incomplete actual-results updates before they reach the public site.
 
 ### Model Health Page
 

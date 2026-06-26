@@ -19,9 +19,10 @@ This repo is set up to run the weekly model and publish the static `web/` site w
 
 - `.github/workflows/deploy-pages.yml`
   - Refreshes model assets, then deploys the generated `web/` directory to GitHub Pages.
-  - Runs when files under `web/` are pushed to `master`.
+  - Runs when files under `web/`, the deploy workflow, or site status/integrity scripts are pushed to `master`.
   - Can also be run manually from the Actions tab.
   - This avoids overwriting a scheduled model deploy with stale checked-in `web/` assets.
+  - Runs `python scripts/check_site_integrity.py` before uploading the Pages artifact. Errors block deploy; warnings are reported without blocking.
 
 - `.github/workflows/weekly-model.yml`
   - Runs every 2 hours on Monday, Tuesday, and Wednesday at minute 23 UTC.
@@ -37,6 +38,7 @@ This repo is set up to run the weekly model and publish the static `web/` site w
   - In automatic `tour=both` runs, if a tour has no runnable current-week event in `upcoming-events.json`, the wrapper skips that tour's model pipeline, builds its no-event web placeholder, and continues with the other tour.
   - If any requested tour with a runnable event fails, the workflow fails before Pages deploy. Explicit single-tour and pinned-event runs remain strict. This preserves the last good Pages deployment instead of uploading a partial artifact with stale checked-in assets for a failed tour.
   - The model runner now refuses to continue when DataGolf returns a different `event_id` from the one requested. This prevents missed historical events from being accidentally filled with the current tournament's field/predictions.
+  - Runs `python scripts/check_site_integrity.py` before uploading the Pages artifact. Errors block deploy; warnings are reported without blocking.
 
 - `.github/workflows/archive-update.yml`
   - Runs Monday at 12:00 and 21:00 UTC.
@@ -70,6 +72,26 @@ The site status card is injected by `web/menu.js` at the bottom of every page th
 - Schedule-refresh workflows update the schedule refresh timestamp after `upcoming-events.json` is refreshed.
 - Betting-data timing appears in the same status card as `Betting Data Updated`.
 - Other workflows that deploy `web/` should run `scripts/update_web_status.py --sync-assets` before uploading the Pages artifact, then `scripts/guard_pages_model_assets.py` unless they rebuilt all active live model assets in that job.
+
+## Site Integrity Check
+
+Run this before deploy-related changes or after rebuilding web assets:
+
+```sh
+python scripts/check_site_integrity.py
+```
+
+The deploy and scheduled model workflows run this before uploading the Pages artifact. The check validates that current PGA/Euro events in `upcoming-events.json` agree with `web/{tour}/meta.json`, that active published events have predictions, that `web/status.json` is fresh and points at the same model events, and that archive entries point to expected files. Recent completed schedule events missing from `web/archive/index.json` and archived events missing `results.json` are warnings by default because DataGolf results and historical backfills can lag.
+
+Useful options:
+
+```sh
+python scripts/check_site_integrity.py --strict
+python scripts/check_site_integrity.py --archive-lookback-days 0
+python scripts/check_site_integrity.py --status-age-hours 48
+```
+
+`--strict` exits non-zero for warnings as well as errors. `--archive-lookback-days 0` checks every completed PGA/Euro event in the schedule, including older events that may predate archive automation.
 
 ## Initial Prediction Snapshots
 

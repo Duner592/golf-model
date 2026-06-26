@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-06-15
+Last updated: 2026-06-26
 
 ## Purpose
 
@@ -30,6 +30,7 @@ python scripts/update_archived_event.py --event_id $EVENT_ID
 python scripts/fetch_actual_results.py --year $YEAR
 python scripts/build_web_assets.py --tour $TOUR
 python scripts/summarize_status.py
+python scripts/check_site_integrity.py
 ```
 
 Local web check:
@@ -52,6 +53,7 @@ cd web/ && python -m http.server 8000
 - Player matching for prediction accuracy uses compact normalized name keys plus a first-name/final-surname fallback in both `web/archive_accuracy.html` and `scripts/build_prediction_accuracy.py`. Keep those behaviors aligned so DataGolf display-name differences such as `Eugenio Lopez-Chacarra` versus `Eugenio Chacarra` do not drop winner probabilities or actual-result matches.
 - `web/archive/2026/the_players_championship/leaderboard.json` was repaired from its archived CSV after it had been overwritten to an empty array while `results.json` and `leaderboard.csv` were valid. If an archive has a valid CSV but empty JSON, rebuild the JSON from CSV rather than treating actual results as missing.
 - `web/calibration_dashboard.html`: browser-rendered player-level calibration dashboard. It is presented as a beta initiative that started with the 2026 season and includes a visible explainer for calibration curves, bucket groups, Brier/log loss, and Avg Gap. It must use files served under `web/` (`web/archive/index.json`, archived leaderboards, and `results.json`) rather than `data/analytics/**`, which is not directly served by GitHub Pages. Make-cut calibration derives outcomes from finish position and cut status when explicit `made_cut` flags are missing.
+- `scripts/check_site_integrity.py`: read-only local/CI diagnostic for generated site assets. It validates current PGA/Euro events against `web/{tour}/meta.json`, checks active prediction presence, flags stale or mismatched `web/status.json`, validates archive index entry files, and warns on recent completed events missing archives or archived results. It runs before Pages artifact upload in `deploy-pages.yml` and `weekly-model.yml`. Use `--strict` to fail on warnings, `--archive-lookback-days 0` to scan all completed scheduled PGA/Euro events, and `--status-age-hours` to tune status freshness.
 
 Generated artifacts should usually be regenerated through scripts rather than manually edited.
 
@@ -86,6 +88,7 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - Local edits should usually be committed with `scripts/commit_and_push.sh "message"`, which stages edits, ignores `.env` and Office lock files, rebases over workflow commits on `origin/master`, commits, rebases once more, and pushes.
 - `scripts/build_web_assets.py` now preserves the first successful model output for each tour/event/year as an initial snapshot, including a self-contained `model_page.html` backup. Prediction archives should use that snapshot rather than later refreshed live assets. Homepage links expose latest results and `?snapshot=initial` initial-run results.
 - Archive writers must fail on invalid `web/archive/index.json` rather than falling back to an empty list. A deploy on 2026-06-15 exposed why: conflict markers in the index caused `scripts/build_web_assets.py` to publish a one-event U.S. Open index, and the archive page then showed no displayable completed events because U.S. Open was still upcoming.
+- `scripts/check_site_integrity.py` currently distinguishes errors from warnings: stale/mismatched live tour assets are errors, while stale status metadata and recent missing archive/results are warnings unless `--strict` is used. This keeps local diagnostics useful even when checked-in live assets intentionally lag scheduled model deployments.
 
 ## Open Notes
 

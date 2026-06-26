@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "web/**"
+      - "scripts/check_site_integrity.py"
       - "scripts/update_web_status.py"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
@@ -77,6 +78,9 @@ jobs:
 
       - name: Update site status
         run: python3 scripts/update_web_status.py --sync-assets --workflow "deploy-pages"
+
+      - name: Check site integrity
+        run: python3 scripts/check_site_integrity.py
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
