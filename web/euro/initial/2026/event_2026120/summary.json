@@ -1,0 +1,12 @@
+{
+  "event_id": "2026120",
+  "event_name": "Austrian Alpine Open",
+  "source_csv": "data/preds/euro/event_2026120_austrian_alpine_open_2026-06-26_leaderboard.csv",
+  "generated_utc": "26-Jun-2026 14:23:11",
+  "metrics": {
+    "field_size": 156,
+    "p_win_max": 0.0386,
+    "p_win_median": 0.004866666666666667,
+    "p_win_sum": 1.0
+  }
+}

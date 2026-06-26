@@ -44,6 +44,15 @@
     "source": "historical-raw-data/rounds",
     "slug": "charles_schwab_challenge"
   },
+  "2026_austrian_alpine_open": {
+    "event_id": "2026120",
+    "event_name": "Austrian Alpine Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "austrian_alpine_open"
+  },
   "2026_soudal_open": {
     "event_id": "2026119",
     "event_name": "Soudal Open",

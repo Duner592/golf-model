@@ -90,6 +90,21 @@
     "start_date": "2026-05-28"
   },
   {
+    "event_id": "2026120",
+    "event_name": "Austrian Alpine Open",
+    "tour": "euro",
+    "slug": "austrian_alpine_open",
+    "year": "2026",
+    "start_date": "2026-05-28",
+    "csv_available": true,
+    "archived_at": "2026-06-26 14:23:12 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-26T14:23:12Z",
+    "model_page": "archive/2026/austrian_alpine_open/model_page.html",
+    "reconstruction": true,
+    "snapshot_label": "Reconstructed backfill"
+  },
+  {
     "event_id": "2026119",
     "event_name": "Soudal Open",
     "tour": "euro",

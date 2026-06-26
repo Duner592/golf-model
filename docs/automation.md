@@ -81,7 +81,7 @@ Run this before deploy-related changes or after rebuilding web assets:
 python scripts/check_site_integrity.py
 ```
 
-The deploy and scheduled model workflows run this before uploading the Pages artifact. The check validates that current PGA/Euro events in `upcoming-events.json` agree with `web/{tour}/meta.json`, that active published events have predictions, that `web/status.json` is fresh and points at the same model events, and that archive entries point to expected files. Recent completed schedule events missing from `web/archive/index.json` and archived events missing `results.json` are warnings by default because DataGolf results and historical backfills can lag.
+The deploy and scheduled model workflows run this before uploading the Pages artifact. The check validates that current PGA/Euro events in `upcoming-events.json` agree with `web/{tour}/meta.json`, that active published events have predictions, that `web/status.json` is fresh and points at the same model events, and that archive entries point to expected files. Recent completed schedule events missing from `web/archive/index.json` are warnings only when saved source snapshots/assets exist; events with no materializable source are reported as info. Archived events missing `results.json` are warnings because DataGolf results can lag.
 
 Useful options:
 

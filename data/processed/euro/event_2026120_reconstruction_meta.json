@@ -1,0 +1,19 @@
+{
+  "event_id": "2026120",
+  "event_name": "Austrian Alpine Open",
+  "tour": "euro",
+  "year": "2026",
+  "reconstruction": true,
+  "reconstructed_at_utc": "2026-06-26T13:45:00Z",
+  "reason": "Backfilled missing Austrian Alpine Open prediction archive after no original first-run snapshot or checked-in event assets were available.",
+  "inputs": {
+    "field_results": "DataGolf historical-raw-data/rounds for event_id 2026120, year 2026",
+    "weather": "Open-Meteo historical archive via scripts/fetch_weather_from_schedule.py",
+    "ratings_source": "DataGolf player data fetched during the 2026-06-26 reconstruction run"
+  },
+  "limitations": [
+    "This is not the original scheduled Austrian Alpine Open first-run prediction snapshot.",
+    "The field/results are known after completion, and player ratings were fetched during reconstruction rather than from an unavailable original event-week run.",
+    "Course-fit and course-history inputs were unavailable for this event, so course-fit scores are neutral."
+  ]
+}

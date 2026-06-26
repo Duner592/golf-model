@@ -1,0 +1,62 @@
+[
+  {
+    "round": 1,
+    "wave": "AM",
+    "wind_mph": 2.79,
+    "gust_mph": 15.2,
+    "temp_c": 15.4,
+    "precip_pct": 42.0,
+    "delta_strokes": 0.0,
+    "weathercode": null
+  },
+  {
+    "round": 1,
+    "wave": "PM",
+    "wind_mph": 6.83,
+    "gust_mph": 27.31,
+    "temp_c": 20.4,
+    "precip_pct": 25.0,
+    "delta_strokes": 0.0,
+    "weathercode": null
+  },
+  {
+    "round": 2,
+    "wave": "AM",
+    "wind_mph": 2.58,
+    "gust_mph": 10.36,
+    "temp_c": 14.1,
+    "precip_pct": 0.0,
+    "delta_strokes": 0.0,
+    "weathercode": null
+  },
+  {
+    "round": 2,
+    "wave": "PM",
+    "wind_mph": 5.38,
+    "gust_mph": 20.02,
+    "temp_c": 21.5,
+    "precip_pct": 0.0,
+    "delta_strokes": 0.0,
+    "weathercode": null
+  },
+  {
+    "round": 3,
+    "wave": "ALL",
+    "wind_mph": 4.31,
+    "gust_mph": 18.02,
+    "temp_c": 17.7,
+    "precip_pct": 21.0,
+    "delta_strokes": 0.0,
+    "weathercode": null
+  },
+  {
+    "round": 4,
+    "wave": "ALL",
+    "wind_mph": 4.69,
+    "gust_mph": 22.35,
+    "temp_c": 17.7,
+    "precip_pct": 54.0,
+    "delta_strokes": 0.0,
+    "weathercode": null
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Reconstructed backfill",
+  "snapshot_created_utc": "2026-06-26T14:23:12Z",
+  "tour": "euro",
+  "event_id": "2026120",
+  "event_name": "Austrian Alpine Open",
+  "year": "2026",
+  "r1_date": "2026-05-28",
+  "start_date": null,
+  "source_csv": "data/preds/euro/event_2026120_austrian_alpine_open_2026-06-26_leaderboard.csv",
+  "artifact_generated_utc": "26-Jun-2026 14:23:11",
+  "resources": {
+    "model_page": "euro/initial/2026/event_2026120/model_page.html",
+    "leaderboard": "euro/initial/2026/event_2026120/leaderboard.json",
+    "summary": "euro/initial/2026/event_2026120/summary.json",
+    "meta": "euro/initial/2026/event_2026120/meta.json",
+    "downloads_csv": "euro/initial/2026/event_2026120/leaderboard.csv",
+    "downloads_html": "euro/initial/2026/event_2026120/leaderboard.html",
+    "timestamped_csv": "euro/initial/2026/event_2026120/leaderboard_20260626T142312Z.csv",
+    "timestamped_html": "euro/initial/2026/event_2026120/leaderboard_20260626T142312Z.html",
+    "weather_meta": "euro/initial/2026/event_2026120/weather_meta.json",
+    "weather_round_neutral": "euro/initial/2026/event_2026120/weather_round_neutral.json",
+    "weather_round_wave": "euro/initial/2026/event_2026120/weather_round_wave.json",
+    "course_fit_weights": "euro/initial/2026/event_2026120/course_fit_weights.json",
+    "course_history_summary": null,
+    "tournament_summary": "euro/initial/2026/event_2026120/tournament_summary.json",
+    "field_teetimes": null,
+    "snapshot": "euro/initial/2026/event_2026120/snapshot.json",
+    "schedule": "euro/schedule.json"
+  },
+  "reconstruction": {
+    "event_id": "2026120",
+    "event_name": "Austrian Alpine Open",
+    "tour": "euro",
+    "year": "2026",
+    "reconstruction": true,
+    "reconstructed_at_utc": "2026-06-26T13:45:00Z",
+    "reason": "Backfilled missing Austrian Alpine Open prediction archive after no original first-run snapshot or checked-in event assets were available.",
+    "inputs": {
+      "field_results": "DataGolf historical-raw-data/rounds for event_id 2026120, year 2026",
+      "weather": "Open-Meteo historical archive via scripts/fetch_weather_from_schedule.py",
+      "ratings_source": "DataGolf player data fetched during the 2026-06-26 reconstruction run"
+    },
+    "limitations": [
+      "This is not the original scheduled Austrian Alpine Open first-run prediction snapshot.",
+      "The field/results are known after completion, and player ratings were fetched during reconstruction rather than from an unavailable original event-week run.",
+      "Course-fit and course-history inputs were unavailable for this event, so course-fit scores are neutral."
+    ]
+  }
+}

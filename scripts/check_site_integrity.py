@@ -39,6 +39,9 @@ class IntegrityCheck:
     def warn(self, code: str, message: str) -> None:
         self.findings.append(Finding("warning", code, message))
 
+    def info(self, code: str, message: str) -> None:
+        self.findings.append(Finding("info", code, message))
+
     def read_json(self, rel_path: str) -> Any | None:
         path = ROOT / rel_path
         if not path.exists():
@@ -158,10 +161,16 @@ class IntegrityCheck:
                         f"{tour} {event_id} is marked completed but starts {start.isoformat()}",
                     )
                 if event_id not in archive_by_id and self.should_expect_archive(start):
-                    self.warn(
-                        "completed-event-missing-archive",
-                        f"{tour} {event_id} {event.get('event_name', '')!r} is completed but missing from web/archive/index.json",
-                    )
+                    if materializable_archive_source_exists(event):
+                        self.warn(
+                            "completed-event-missing-archive",
+                            f"{tour} {event_id} {event.get('event_name', '')!r} is completed but missing from web/archive/index.json",
+                        )
+                    else:
+                        self.info(
+                            "completed-event-no-archive-source",
+                            f"{tour} {event_id} {event.get('event_name', '')!r} is completed but has no saved source snapshot/assets to archive",
+                        )
             elif start and start + timedelta(days=4) < date.today() and status == "upcoming":
                 self.warn(
                     "past-event-still-upcoming",
@@ -274,6 +283,23 @@ def published_events(meta: dict[str, Any]) -> dict[str, bool]:
     return {}
 
 
+def materializable_archive_source_exists(event: dict[str, Any]) -> bool:
+    event_id = str(event.get("event_id", "")).strip()
+    tour = str(event.get("tour", "")).lower()
+    start = parse_date(event.get("start_date"))
+    if not event_id or not tour or not start:
+        return False
+
+    year = str(start.year)
+    for source_dir in (
+        ROOT / "web" / tour / "initial" / year / f"event_{event_id}",
+        ROOT / "web" / tour / "events" / f"event_{event_id}",
+    ):
+        if (source_dir / "leaderboard.json").exists() and (source_dir / "tournament_summary.json").exists():
+            return True
+    return False
+
+
 def format_timedelta(delta: timedelta) -> str:
     total_hours = int(delta.total_seconds() // 3600)
     days, hours = divmod(total_hours, 24)
@@ -310,12 +336,13 @@ def main() -> int:
     findings = checker.check()
     errors = [finding for finding in findings if finding.severity == "error"]
     warnings = [finding for finding in findings if finding.severity == "warning"]
+    infos = [finding for finding in findings if finding.severity == "info"]
 
     if not findings:
         print("Site integrity check passed.")
         return 0
 
-    print(f"Site integrity check found {len(errors)} error(s), {len(warnings)} warning(s).")
+    print(f"Site integrity check found {len(errors)} error(s), {len(warnings)} warning(s), {len(infos)} info item(s).")
     for finding in findings:
         print(f"[{finding.severity}] {finding.code}: {finding.message}")
 

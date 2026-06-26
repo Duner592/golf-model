@@ -1,14 +1,14 @@
 {
   "euro": {
-    "events": 14,
-    "rows": 1943,
-    "brier_win": 0.016203619842602306,
-    "brier_top10": 0.15707018572927595,
+    "events": 15,
+    "rows": 2099,
+    "brier_win": 0.01612150531894014,
+    "brier_top10": 0.15562582826300295,
     "brier_mc": null,
-    "mean_predicted_win_pct": 0.7204014410705095,
-    "mean_actual_win_rate": 0.014690451206715634,
-    "mean_predicted_top10_pct": 7.204323211528564,
-    "mean_actual_top10_rate": 0.17523609653725078
+    "mean_predicted_win_pct": 0.7145307289185328,
+    "mean_actual_win_rate": 0.014720314033366046,
+    "mean_predicted_top10_pct": 7.145259647451168,
+    "mean_actual_top10_rate": 0.17369970559371933
   },
   "pga": {
     "events": 25,
