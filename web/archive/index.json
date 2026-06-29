@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "30",
+    "event_name": "John Deere Classic",
+    "tour": "pga",
+    "slug": "john_deere_classic",
+    "year": "2026",
+    "start_date": "2026-07-02",
+    "csv_available": true,
+    "archived_at": "2026-06-29 13:44:56 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-29T13:44:56Z",
+    "model_page": "archive/2026/john_deere_classic/model_page.html"
+  },
+  {
+    "event_id": "2026124",
+    "event_name": "BMW International Open",
+    "tour": "euro",
+    "slug": "bmw_international_open",
+    "year": "2026",
+    "start_date": "2026-07-02",
+    "csv_available": true,
+    "archived_at": "2026-06-29 13:45:35 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-06-29T13:45:35Z",
+    "model_page": "archive/2026/bmw_international_open/model_page.html"
+  },
+  {
     "event_id": "34",
     "event_name": "Travelers Championship",
     "tour": "pga",

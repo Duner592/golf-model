@@ -1,0 +1,12 @@
+{
+  "event_id": "30",
+  "event_name": "John Deere Classic",
+  "source_csv": "data/preds/pga/event_30_john_deere_classic_2026-06-29_leaderboard.csv",
+  "generated_utc": "29-Jun-2026 13:44:56",
+  "metrics": {
+    "field_size": 139,
+    "p_win_max": 0.119,
+    "p_win_median": 0.0002,
+    "p_win_sum": 1.0
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "event_name": "John Deere Classic",
+  "event_id": "30",
+  "course": "TPC Deere Run",
+  "total_yardage": null,
+  "course_location": "Silvis, IL",
+  "start_date": "02-Jul-2026",
+  "field_size": 139,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Campbell, Brian",
+      "score": -18
+    },
+    {
+      "year": 2024,
+      "winner": "Thompson, Davis",
+      "score": -28
+    },
+    {
+      "year": 2023,
+      "winner": "Straka, Sepp",
+      "score": -21
+    },
+    {
+      "year": 2022,
+      "winner": "Poston, J.T.",
+      "score": -21
+    },
+    {
+      "year": 2021,
+      "winner": "Glover, Lucas",
+      "score": -19
+    }
+  ]
+}

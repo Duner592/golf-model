@@ -1,0 +1,12 @@
+{
+  "event_id": "2026124",
+  "event_name": "BMW International Open",
+  "source_csv": "data/preds/euro/event_2026124_bmw_international_open_2026-06-29_leaderboard.csv",
+  "generated_utc": "29-Jun-2026 13:45:35",
+  "metrics": {
+    "field_size": 156,
+    "p_win_max": 0.16096666666666667,
+    "p_win_median": 0.0005666666666666667,
+    "p_win_sum": 1.0
+  }
+}
