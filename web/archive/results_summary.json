@@ -1,4 +1,22 @@
 {
+  "2026_travelers_championship": {
+    "event_id": "34",
+    "event_name": "Travelers Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "travelers_championship"
+  },
+  "2026_ds_automobiles_83_open_d_italia": {
+    "event_id": "2026123",
+    "event_name": "DS Automobiles 83\u00b0 Open d\u2019Italia",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "ds_automobiles_83_open_d_italia"
+  },
   "2026_u_s_open": {
     "event_id": "26",
     "event_name": "U.S. Open",

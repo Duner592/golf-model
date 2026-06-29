@@ -1,4 +1,229 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+34,Travelers Championship,pga,2026,1,Scottie Scheffler,40.75,90.5,100.0,0.4520630573567493,2.0,2,0.0,1.0
+34,Travelers Championship,pga,2026,2,Patrick Cantlay,9.51,62.1,99.7,0.3286978584157382,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,3,Justin Thomas,8.38,59.7,99.6,0.0138653983638429,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,4,Xander Schauffele,7.33,57.0,99.6,0.2792544917208588,51.0,T51,0.0,0.0
+34,Travelers Championship,pga,2026,5,Tommy Fleetwood,4.14,44.6,99.3,0.3371061077253972,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,6,Brian Harman,3.74,42.9,99.2,0.3776384700384022,25.0,T25,0.0,0.0
+34,Travelers Championship,pga,2026,7,Russell Henley,3.36,39.8,99.0,0.3241988527815129,12.0,T12,0.0,0.0
+34,Travelers Championship,pga,2026,8,Keegan Bradley,2.1,32.9,98.8,0.1792222035981316,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,9,Ludvig Aberg,2.0,30.6,98.6,0.2898481669791878,55.0,T55,0.0,0.0
+34,Travelers Championship,pga,2026,10,Viktor Hovland,1.42,26.8,98.4,0.5102006320050498,1.0,1,1.0,1.0
+34,Travelers Championship,pga,2026,11,Matt Fitzpatrick,1.29,24.0,98.0,0.3213500228486906,4.0,4,0.0,1.0
+34,Travelers Championship,pga,2026,12,Robert MacIntyre,1.19,24.0,98.1,0.2360339951538605,10.0,T10,0.0,1.0
+34,Travelers Championship,pga,2026,13,Adam Scott,1.01,21.3,97.8,0.0755116611520023,65.0,65,0.0,0.0
+34,Travelers Championship,pga,2026,14,Harris English,1.0,21.6,97.9,-0.0530319720740072,38.0,T38,0.0,0.0
+34,Travelers Championship,pga,2026,15,Aaron Rai,0.95,21.4,97.8,0.387619283045083,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,16,Hideki Matsuyama,0.83,19.9,97.4,0.3068623724311021,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,17,Shane Lowry,0.81,19.2,97.4,0.2163550885399459,22.0,T22,0.0,0.0
+34,Travelers Championship,pga,2026,18,Cameron Young,0.79,19.6,97.5,0.1539949943424466,47.0,T47,0.0,0.0
+34,Travelers Championship,pga,2026,19,Corey Conners,0.7,17.9,97.2,0.4224009359287063,7.0,T7,0.0,1.0
+34,Travelers Championship,pga,2026,20,Collin Morikawa,0.66,17.2,97.0,0.5766167691284505,3.0,3,0.0,1.0
+34,Travelers Championship,pga,2026,21,Wyndham Clark,0.61,16.0,97.0,0.2419862107025993,5.0,T5,0.0,1.0
+34,Travelers Championship,pga,2026,22,Alex Smalley,0.58,15.3,96.7,0.384427341439188,47.0,T47,0.0,0.0
+34,Travelers Championship,pga,2026,23,Min Woo Lee,0.56,15.0,96.4,-0.0590414523181125,62.0,T62,0.0,0.0
+34,Travelers Championship,pga,2026,24,Sam Burns,0.54,15.2,96.7,0.138687729498286,12.0,T12,0.0,0.0
+34,Travelers Championship,pga,2026,25,Bud Cauley,0.5,14.2,96.4,0.15075108249837,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,26,Maverick McNealy,0.45,13.8,96.5,0.4141514110372827,55.0,T55,0.0,0.0
+34,Travelers Championship,pga,2026,27,J.J. Spaun,0.35,11.1,95.7,0.2746839535810402,7.0,T7,0.0,1.0
+34,Travelers Championship,pga,2026,28,Sahith Theegala,0.35,11.6,95.8,0.07419969824744,51.0,T51,0.0,0.0
+34,Travelers Championship,pga,2026,29,Kurt Kitayama,0.31,11.0,95.6,-0.0183206216457354,25.0,T25,0.0,0.0
+34,Travelers Championship,pga,2026,30,Ryan Fox,0.26,10.9,95.2,-0.1168592900618314,66.0,T66,0.0,0.0
+34,Travelers Championship,pga,2026,31,Harry Hall,0.25,10.5,95.4,-0.3663742262598106,51.0,T51,0.0,0.0
+34,Travelers Championship,pga,2026,32,Si Woo Kim,0.25,9.0,94.8,0.3010761648157831,44.0,T44,0.0,0.0
+34,Travelers Championship,pga,2026,33,Alex Noren,0.23,8.1,94.3,0.0823632187100799,55.0,T55,0.0,0.0
+34,Travelers Championship,pga,2026,34,Eric Cole,0.23,8.0,94.4,-0.0748115759551601,38.0,T38,0.0,0.0
+34,Travelers Championship,pga,2026,35,J.T. Poston,0.23,8.9,94.4,0.1002973044556074,69.0,69,0.0,0.0
+34,Travelers Championship,pga,2026,36,Chris Gotterup,0.22,7.7,94.1,0.169228915505,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,37,Sungjae Im,0.21,8.1,94.3,0.0093299712932457,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,38,Gary Woodland,0.19,8.4,94.7,0.1971883826420996,71.0,71,0.0,0.0
+34,Travelers Championship,pga,2026,39,Akshay Bhatia,0.18,8.0,94.5,0.3483691891753074,5.0,T5,0.0,1.0
+34,Travelers Championship,pga,2026,40,Kristoffer Reitan,0.18,7.5,94.0,0.117023839724994,22.0,T22,0.0,0.0
+34,Travelers Championship,pga,2026,41,Sepp Straka,0.15,8.1,94.2,0.1799830016805806,72.0,72,0.0,0.0
+34,Travelers Championship,pga,2026,42,Alex Fitzpatrick,0.14,7.3,94.0,0.133368810724994,7.0,T7,0.0,1.0
+34,Travelers Championship,pga,2026,43,Nicolai Hojgaard,0.14,6.7,93.5,0.129454809724994,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,44,Jason Day,0.13,6.8,93.2,0.1598767525906843,55.0,T55,0.0,0.0
+34,Travelers Championship,pga,2026,45,Denny McCarthy,0.1,5.3,92.1,-0.1108301280132404,14.0,T14,0.0,0.0
+34,Travelers Championship,pga,2026,46,Taylor Pendrith,0.09,6.1,93.0,0.2036912488792396,61.0,61,0.0,0.0
+34,Travelers Championship,pga,2026,47,Andrew Novak,0.09,4.7,91.5,0.2468624735799674,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,48,Ryo Hisatsune,0.08,3.7,90.6,0.088316075724994,38.0,T38,0.0,0.0
+34,Travelers Championship,pga,2026,49,Mark Hubbard,0.06,2.7,88.5,-0.3526486860117509,70.0,70,0.0,0.0
+34,Travelers Championship,pga,2026,50,Mac Meissner,0.06,4.3,91.1,0.134183558724994,44.0,T44,0.0,0.0
+34,Travelers Championship,pga,2026,51,Ben Griffin,0.06,4.3,90.8,0.0085740712145783,10.0,T10,0.0,1.0
+34,Travelers Championship,pga,2026,52,Rickie Fowler,0.05,3.9,91.0,-0.1843376883954207,38.0,T38,0.0,0.0
+34,Travelers Championship,pga,2026,53,Matt McCarty,0.04,3.8,90.3,0.109007663724994,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,54,Nick Taylor,0.03,2.3,87.8,0.080073251106541,25.0,T25,0.0,0.0
+34,Travelers Championship,pga,2026,55,Justin Rose,0.03,1.2,82.8,-0.2079585339321356,25.0,T25,0.0,0.0
+34,Travelers Championship,pga,2026,56,Tony Finau,0.02,3.2,90.2,0.0739916286587046,55.0,T55,0.0,0.0
+34,Travelers Championship,pga,2026,57,Jackson Suber,0.02,2.1,86.5,0.066275416724994,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,58,Daniel Berger,0.01,1.4,84.3,0.172643014661609,25.0,T25,0.0,0.0
+34,Travelers Championship,pga,2026,59,Jake Knapp,0.01,1.7,85.3,-0.3749676397211016,55.0,T55,0.0,0.0
+34,Travelers Championship,pga,2026,60,Ryan Gerard,0.01,1.0,82.0,0.269115728240854,44.0,T44,0.0,0.0
+34,Travelers Championship,pga,2026,61,Michael Kim,0.01,1.6,84.8,-0.1237455671725557,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,62,Sam Stevens,0.01,1.9,86.3,0.3014139690901424,62.0,T62,0.0,0.0
+34,Travelers Championship,pga,2026,63,Jacob Bridgeman,0.01,1.3,83.6,-0.233485144601293,47.0,T47,0.0,0.0
+34,Travelers Championship,pga,2026,64,Tom Hoge,0.01,0.5,76.9,-0.1500549374873147,38.0,T38,0.0,0.0
+34,Travelers Championship,pga,2026,65,Nico Echavarria,0.0,0.3,71.5,0.4349863299179701,30.0,T30,0.0,0.0
+34,Travelers Championship,pga,2026,66,Brian Campbell,0.0,0.2,69.0,0.019055252724994,47.0,T47,0.0,0.0
+34,Travelers Championship,pga,2026,67,Lucas Glover,0.0,0.2,71.4,0.219309192278935,66.0,T66,0.0,0.0
+34,Travelers Championship,pga,2026,68,Ben James,0.0,0.1,62.6,0.1523730384204082,62.0,T62,0.0,0.0
+34,Travelers Championship,pga,2026,69,Brandt Snedeker,0.0,0.6,77.5,-0.1350876998636735,38.0,T38,0.0,0.0
+34,Travelers Championship,pga,2026,70,Jordan Spieth,0.0,1.1,82.5,0.1593786649718999,66.0,T66,0.0,0.0
+34,Travelers Championship,pga,2026,71,Jhonattan Vegas,0.0,0.1,65.9,-0.3365454905653245,51.0,T51,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,1,Joaquin Niemann,5.59,30.4,73.3,0.0,3.0,3,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,2,Patrick Reed,5.44,29.1,72.0,0.0,45.0,T45,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,3,David Puig,4.43,26.4,70.4,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,4,Eugenio Chacarra,3.27,21.5,66.3,0.0,1.0,1,1.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,5,Angel Ayora,2.78,19.7,64.4,0.0,5.0,5,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,6,Thomas Detry,2.75,20.7,65.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,7,Daniel Hillier,2.45,19.0,64.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,8,Tom McKibbin,2.1,17.5,62.5,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,9,Matt Wallace,2.05,16.1,60.6,0.0,2.0,2,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,10,Branden Grace,1.8,15.6,60.3,0.0,,WD,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,11,Oliver Lindell,1.71,14.3,58.7,0.0,6.0,T6,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,12,Ewen Ferguson,1.35,12.1,55.8,0.0,19.0,T19,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,13,Casey Jarvis,1.33,12.3,56.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,14,Jacob Skov Olesen,1.19,11.4,54.6,0.0,41.0,T41,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,15,Jose Luis Ballester,1.1,10.8,53.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,16,Bernd Wiesberger,1.09,11.1,54.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,17,Hugo Townsend,0.91,8.9,50.4,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,18,Mikael Lindberg,0.91,10.0,52.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,19,Joshua Berry,0.91,8.8,50.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,20,Marcus Helligkilde,0.91,9.2,51.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,21,Daniel Young,0.9,9.2,51.2,0.0,60.0,T60,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,22,Ryan Peake,0.9,9.3,51.1,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,23,Alessandro Nodari,0.89,8.8,51.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,24,Jeff Overton,0.89,9.0,50.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,25,Yuvraj Singh Sandhu,0.89,9.3,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,26,Anthony Quayle,0.88,8.9,51.0,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,27,Michael Hollick,0.88,8.7,51.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,28,Matteo Cristoni,0.87,8.7,50.6,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,29,Julien Quesne,0.87,9.0,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,30,Quentin Debove,0.87,8.7,51.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,31,Jacopo Vecchi Fossa,0.87,8.6,50.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,32,Filippo Ponzano,0.86,8.9,50.8,0.0,35.0,T35,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,33,Euan Walker,0.86,8.8,50.4,0.0,45.0,T45,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,34,Yurav Premlall,0.85,8.8,50.4,0.0,74.0,T74,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,35,Andrea Romano,0.85,9.2,50.9,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,36,Ugo Coussaud,0.85,9.4,51.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,37,Oihan Guillamoundeguy,0.85,8.8,51.0,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,38,Michele Ferrero,0.84,8.9,51.1,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,39,Quim Vidal,0.84,8.9,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,40,Rocco Paolo Repetto Taylor,0.84,9.0,51.3,0.0,41.0,T41,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,41,Daniel Van Tonder,0.84,9.1,51.1,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,42,Lorenzo Scalise,0.83,8.7,51.7,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,43,Felix Mory,0.83,8.8,50.9,0.0,35.0,T35,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,44,Giovanni Binaghi,0.83,9.0,50.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,45,Filippo Grossi,0.82,8.8,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,46,Jack Buchanan,0.82,8.8,50.6,0.0,35.0,T35,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,47,Antoine Rozner,0.81,8.8,50.7,0.0,60.0,T60,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,48,Jonothan Broomhead,0.81,9.0,50.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,49,Gonzalo Fdez-Castano,0.81,8.8,50.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,50,Yanhan Zhou,0.81,8.8,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,51,Albin Bergstrom,0.8,8.8,51.2,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,52,Kota Kaneko,0.8,8.9,50.5,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,53,Tobias Jonsson,0.78,8.6,50.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,54,Aron Zemmer,0.78,8.9,51.1,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,55,Adrien Saddier,0.78,8.6,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,56,Fred Biondi,0.78,8.6,50.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,57,Cameron Adam,0.77,8.8,51.2,0.0,60.0,T60,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,58,Will Porter,0.75,9.0,51.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,59,Clement Charmasson,0.74,8.9,50.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,60,Stefano Mazzoli,0.73,8.7,50.5,0.0,19.0,T19,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,61,Francesco Laporta,0.72,7.8,49.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,62,Daniel Da Costa Rodrigues,0.71,8.9,50.8,0.0,6.0,T6,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,63,Martin Couvra,0.7,7.7,48.9,0.0,55.0,T55,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,64,Julien Guerrier,0.68,8.5,50.0,0.0,,,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,65,Dan Bradbury,0.68,7.5,48.0,0.0,41.0,T41,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,66,Calum Hill,0.65,7.9,49.6,0.0,19.0,T19,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,67,Marcus Armitage,0.65,7.9,49.5,0.0,66.0,T66,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,68,JC Ritchie,0.58,7.6,49.1,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,69,David Ravetto,0.57,6.6,46.0,0.0,60.0,T60,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,70,Alejandro Del Rey,0.55,6.6,46.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,71,Tom Vaillant,0.53,5.9,43.8,0.0,55.0,T55,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,72,Gregorio De Leo,0.49,6.6,45.8,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,73,Matteo Manassero,0.48,5.2,43.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,74,Kazuma Kobori,0.47,5.9,44.3,0.0,19.0,T19,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,75,Francesco Molinari,0.47,6.1,45.1,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,76,Jorge Campillo,0.46,6.7,47.1,0.0,19.0,T19,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,77,Elvis Smylie,0.46,5.7,44.2,0.0,41.0,T41,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,78,Davis Bryant,0.45,5.6,43.8,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,79,Andreas Halvorsen,0.44,5.1,43.1,0.0,,WD,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,80,Ricardo Gouveia,0.41,5.4,43.0,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,81,Thriston Lawrence,0.41,5.2,43.3,0.0,74.0,T74,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,82,Brandon Robinson Thompson,0.41,6.0,44.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,83,Darius Van Driel,0.4,5.2,42.6,0.0,66.0,T66,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,84,Eddie Pepperell,0.39,5.2,42.1,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,85,Guido Migliozzi,0.36,4.9,41.7,0.0,35.0,T35,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,86,Wenyi Ding,0.35,5.1,42.8,0.0,,,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,87,Maximilian Steinlechner,0.35,4.9,42.6,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,88,Brandon Stone,0.33,5.0,42.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,89,Andy Sullivan,0.32,4.3,40.7,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,90,Joe Dean,0.3,4.6,41.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,91,Richard Mansell,0.29,4.2,39.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,92,Adrian Otaegui,0.27,3.7,38.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,93,Frederic LaCroix,0.27,3.6,38.7,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,94,Manuel Elvira,0.27,4.5,40.8,0.0,55.0,T55,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,95,Jacques Kruyswijk,0.25,3.1,36.2,0.0,70.0,T70,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,96,Ben Schmidt,0.25,3.8,38.4,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,97,Romain Langasque,0.25,3.2,37.2,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,98,Sebastian Soderberg,0.25,3.5,38.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,99,Niklas Norgaard,0.24,3.6,38.5,0.0,,,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,100,Grant Forrest,0.24,4.4,40.8,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,101,Freddy Schott,0.24,3.9,38.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,102,Yuto Katsuragawa,0.22,4.0,39.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,103,Jason Scrivener,0.22,3.2,37.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,104,Ignacio Elvira Mijares,0.22,3.5,38.1,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,105,Todd Clements,0.21,4.0,38.9,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,106,Rafa Cabrera Bello,0.21,3.3,36.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,107,Marcus Kinhult,0.21,3.3,37.0,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,108,Sadom Kaewkanjana,0.21,2.8,34.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,109,Kiradech Aphibarnrat,0.19,3.6,38.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,110,Marcel Schneider,0.19,3.0,35.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,111,Danny Willett,0.18,2.9,36.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,112,Dylan Frittelli,0.17,2.7,34.9,0.0,11.0,T11,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,113,Joost Luiten,0.17,3.2,36.4,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,114,Joakim Lagergren,0.16,2.1,32.3,0.0,4.0,4,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,115,David Law,0.15,2.6,34.6,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,116,Rikuya Hoshino,0.15,2.9,35.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,117,Zander Lombard,0.14,2.6,34.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,118,Sam Bairstow,0.13,2.2,32.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,119,Ashun Wu,0.12,2.5,33.0,0.0,66.0,T66,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,120,Jens Dantorp,0.12,1.6,29.4,0.0,55.0,T55,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,121,Joel Girrbach,0.11,2.3,32.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,122,Jordan Gumberg,0.11,2.2,32.5,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,123,Junghwan Lee,0.1,1.9,30.9,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,124,Richie Ramsay,0.1,1.6,28.9,0.0,6.0,T6,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,125,Ivan Cantero Gutierrez,0.09,2.1,31.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,126,Scott Jamieson,0.08,1.1,25.9,0.0,70.0,T70,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,127,Filippo Celli,0.08,1.4,26.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,128,Ross Fisher,0.07,1.8,29.7,0.0,69.0,69,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,129,Jeff Winther,0.07,1.5,28.3,0.0,6.0,T6,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,130,Johannes Veerman,0.07,1.4,27.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,131,Niklas Lemke,0.07,1.2,26.5,0.0,60.0,T60,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,132,Angel Hidalgo Portillo,0.07,1.6,29.5,0.0,,,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,133,Sean Crocker,0.06,2.0,31.9,0.0,35.0,T35,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,134,Matthew Baldwin,0.06,1.3,27.4,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,135,Sebastian Garcia Rodriguez,0.06,1.1,26.4,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,136,Renato Paratore,0.06,1.3,28.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,137,Nicolai Von Dellingshausen,0.06,1.3,27.4,0.0,10.0,10,0.0,1.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,138,Adri Arnaus,0.05,1.2,25.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,139,Charley Hoffman,0.05,1.1,26.2,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,140,Connor Syme,0.04,0.7,22.7,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,141,James Morrison,0.03,1.0,25.4,0.0,70.0,T70,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,142,Benjamin Follet-Smith,0.03,0.4,17.4,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,143,David Micheluzzi,0.03,0.6,21.5,0.0,60.0,T60,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,144,Luke Donald,0.02,0.8,23.1,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,145,Marcel Siem,0.02,0.8,23.4,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,146,Edoardo Molinari,0.01,0.4,18.5,0.0,48.0,T48,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,147,Jack Senior,0.01,0.6,20.8,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,148,Dylan Naidoo,0.01,0.5,19.6,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,149,Jeong Weon Ko,0.01,0.1,12.5,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,150,Pablo Larrazabal,0.01,0.5,19.6,0.0,55.0,T55,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,151,Ryan Palmer,0.0,0.1,9.3,0.0,,CUT,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,152,Ryggs Johnston,0.0,0.4,17.1,0.0,25.0,T25,0.0,0.0
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,153,Daniel Gavins,0.0,0.0,2.5,0.0,,WD,,
+2026123,DS Automobiles 83° Open d’Italia,euro,2026,154,Ockie Strydom,0.0,0.2,12.8,0.0,70.0,T70,0.0,0.0
 26,U.S. Open,pga,2026,1,J.J. Spaun,26.76,91.5,99.5,-0.0073005204804332,,CUT,,
 26,U.S. Open,pga,2026,2,Rory McIlroy,24.27,90.1,99.4,0.6693226669290058,32.0,T32,0.0,0.0
 26,U.S. Open,pga,2026,3,Scottie Scheffler,22.02,89.5,99.3,0.4642268869791904,4.0,T4,0.0,1.0
