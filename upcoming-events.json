@@ -1261,6 +1261,20 @@
       "winner": "TBD"
     },
     {
+      "country": "GBR",
+      "course": "Trump International Golf Links",
+      "course_key": "trump international golf links",
+      "event_id": "TBD",
+      "event_name": "Nexo Championship",
+      "latitude": 57.277,
+      "location": "Aberdeen, United Kingdom",
+      "longitude": -2.021,
+      "start_date": "2026-08-20",
+      "status": "upcoming",
+      "tour": "euro",
+      "winner": "TBD"
+    },
+    {
       "country": "USA",
       "course": "Blue Hills Country Club",
       "course_key": "810",
@@ -1303,11 +1317,11 @@
       "winner": "TBD"
     },
     {
-      "country": "ENG",
+      "country": "TBD",
       "course": "The Belfry Hotel & Resort",
       "course_key": "brabazon course at the belfry",
       "event_id": "TBD",
-      "event_name": "British Masters hosted by Sir Nick Faldo",
+      "event_name": "Husqvarna British Masters hosted by Sir Nick Faldo",
       "latitude": 52.554,
       "location": "Sutton Coldfield, England",
       "longitude": -1.734,
@@ -1542,13 +1556,13 @@
     },
     {
       "country": "KOR",
-      "course": "TBC",
-      "course_key": "tbc",
+      "course": "Woo Jeong Hills CC",
+      "course_key": "woo jeong hills cc",
       "event_id": "TBD",
       "event_name": "Genesis Championship",
-      "latitude": 0.0,
-      "location": "TBD",
-      "longitude": 0.0,
+      "latitude": 36.768,
+      "location": "Cheonan-si, South Korea",
+      "longitude": 127.22,
       "start_date": "2026-10-22",
       "status": "upcoming",
       "tour": "euro",
