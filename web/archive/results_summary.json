@@ -1,4 +1,22 @@
 {
+  "2026_john_deere_classic": {
+    "event_id": "30",
+    "event_name": "John Deere Classic",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "john_deere_classic"
+  },
+  "2026_bmw_international_open": {
+    "event_id": "2026124",
+    "event_name": "BMW International Open",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "bmw_international_open"
+  },
   "2026_travelers_championship": {
     "event_id": "34",
     "event_name": "Travelers Championship",
