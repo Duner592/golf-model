@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-06-26
+Last updated: 2026-07-06
 
 ## Purpose
 
@@ -83,6 +83,7 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 - Because live model assets are generated in Actions and not committed to `master`, non-model workflows must not deploy the checked-out `web/` tree unless they first rebuild all active model assets or pass `scripts/guard_pages_model_assets.py`. The hourly schedule refresh intentionally does not deploy Pages.
 - In automatic multi-tour runs, `scripts/ci_run_model.sh` skips the model pipeline for a tour that has no runnable current-week event in `upcoming-events.json`, builds that tour's no-event web placeholder, and still deploys other successful tours. Explicit single-tour and pinned-event runs remain strict. Real requested-tour failures still fail the workflow because a partial deploy can overwrite the last good Pages deployment with stale checked-in assets for the failed tour.
 - `scripts/run_weekly_all.py` refuses to continue if DataGolf `field-updates` returns an `event_id` different from the requested event. This prevents a pinned or scheduled run from writing current-event predictions under a missed historical event.
+- When two PGA events share a start date, DataGolf's `field-updates` feed can return the active event for `tour=pga` or `tour=opp` regardless of the requested `event_id`. `scripts/run_weekly_all.py` now retries the alternate field feed only when the mismatched payload event is one of the same-start PGA events, then still refuses to parse unresolved mismatches.
 - New `web/{tour}/schedule.json` builds include `event_id`, `tour`, `status`, and ISO `start_date` alongside the existing display fields so browser pages can match scheduled events back to archive entries.
 - The 2026 Charles Schwab Challenge / Charles Schwab Classic archive was reconstructed on 2026-06-15 because the original first-run snapshot was not recoverable from the repo or Pages artifacts. Its provenance is recorded in `data/processed/pga/event_21_reconstruction_meta.json` and propagated to `web/pga/initial/2026/event_21/` and `web/archive/index.json`. Treat it as a reconstructed backfill, not the original scheduled model output: field/results came from DataGolf historical rounds, weather from Open-Meteo archive, and player ratings/skills from the nearest prior checked-in PGA Championship snapshot (`event_33`).
 - The 2026 Austrian Alpine Open archive (`event_id=2026120`) was reconstructed on 2026-06-26 because no original first-run snapshot or checked-in event assets were available. Its provenance is recorded in `data/processed/euro/event_2026120_reconstruction_meta.json` and propagated to `web/euro/initial/2026/event_2026120/` and `web/archive/2026/austrian_alpine_open/`. Treat it as a reconstructed backfill: field/results came from DataGolf historical raw rounds, weather from Open-Meteo archive, player ratings/skills from the reconstruction run, and course-fit/course-history were unavailable so course-fit scores are neutral.

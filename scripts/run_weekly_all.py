@@ -37,6 +37,16 @@ def run(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     return subprocess.run(cmd, check=check)
 
 
+def field_update_tour_attempts(tour: str, preferred_tour: str) -> list[str]:
+    attempts: list[str] = []
+    for candidate in (preferred_tour, "pga", "opp"):
+        if tour.lower() != "pga" and candidate != preferred_tour:
+            continue
+        if candidate not in attempts:
+            attempts.append(candidate)
+    return attempts
+
+
 def main():
     ap = argparse.ArgumentParser(description="Weekly pipeline runner for current/pinned event.")
     ap.add_argument("--event_id", type=str, default=None, help="Pinned event id; if omitted, use this week's event from upcoming-events.json")
@@ -117,55 +127,82 @@ def main():
             if args.pinned or args.skip_field:
                 print("[info] Pinned/skip-field: skipping field-updates/parse; using existing processed meta/field.")
             else:
-                fetch_cmd = [
-                    sys.executable,
-                    str(SCRIPT_DIR / "fetch_field_updates.py"),
-                    "--event_id",
-                    event_id,
-                    "--tour",
-                    field_update_tour,
-                ]
-                run(fetch_cmd)
-
-                # Inspect fetched field data before parsing to avoid hard failures
                 field_updates_path = SCRIPT_DIR / "field-updates.json"
-                skip_event = False
+                skip_event = True
                 skip_reason = "field data unavailable"
-                if field_updates_path.exists():
-                    try:
-                        with open(field_updates_path, encoding="utf-8") as f:
-                            fetched_payload = json.load(f)
-                        if isinstance(fetched_payload, dict):
-                            payload_event_id = fetched_payload.get("event_id")
-                            if payload_event_id is not None and str(payload_event_id) != str(event_id):
-                                skip_reason = (
-                                    "field updates returned mismatched "
-                                    f"event_id={payload_event_id} for requested event_id={event_id}"
-                                )
-                                print(
-                                    "[warn] Field updates returned "
-                                    f"event_id={payload_event_id} for requested event_id={event_id}; "
-                                    "skipping to avoid writing predictions against the wrong tournament."
-                                )
-                                skip_event = True
+                same_start_id_set = {str(eid) for eid in same_start_ids}
+                field_tour_attempts = field_update_tour_attempts(TOUR, field_update_tour)
 
-                            error_msg = fetched_payload.get("error")
-                            field_entries = fetched_payload.get("field")
-                            if error_msg:
-                                skip_reason = f"field updates API returned error: {error_msg}"
-                                print(f"[warn] Skipping event_id={event_id}: {skip_reason}")
-                                skip_event = True
-                            elif not field_entries:
-                                skip_reason = "field updates payload contains no field entries"
-                                print(f"[warn] Skipping event_id={event_id}: {skip_reason}.")
-                                skip_event = True
-                    except Exception as exc:
-                        skip_reason = f"unable to inspect field-updates.json: {exc}"
-                        print(f"[warn] Unable to inspect field-updates.json for event_id={event_id}: {exc}")
-                else:
-                    skip_reason = "expected field-updates.json not found after fetch"
-                    print(f"[warn] Expected field-updates.json not found after fetch for event_id={event_id}; skipping event.")
-                    skip_event = True
+                for idx, candidate_field_tour in enumerate(field_tour_attempts):
+                    fetch_cmd = [
+                        sys.executable,
+                        str(SCRIPT_DIR / "fetch_field_updates.py"),
+                        "--event_id",
+                        event_id,
+                        "--tour",
+                        candidate_field_tour,
+                    ]
+                    run(fetch_cmd)
+
+                    # Inspect fetched field data before parsing to avoid hard failures
+                    if field_updates_path.exists():
+                        try:
+                            with open(field_updates_path, encoding="utf-8") as f:
+                                fetched_payload = json.load(f)
+                            if isinstance(fetched_payload, dict):
+                                payload_event_id = fetched_payload.get("event_id")
+                                if payload_event_id is not None and str(payload_event_id) != str(event_id):
+                                    skip_reason = (
+                                        "field updates returned mismatched "
+                                        f"event_id={payload_event_id} for requested event_id={event_id}"
+                                    )
+                                    can_retry_same_start = str(payload_event_id) in same_start_id_set
+                                    remaining_attempts = field_tour_attempts[idx + 1 :]
+                                    if can_retry_same_start and remaining_attempts:
+                                        print(
+                                            "[warn] Field updates returned "
+                                            f"event_id={payload_event_id} from tour={candidate_field_tour} "
+                                            f"for requested event_id={event_id}; trying alternate field feed."
+                                        )
+                                        continue
+                                    print(
+                                        "[warn] Field updates returned "
+                                        f"event_id={payload_event_id} for requested event_id={event_id}; "
+                                        "skipping to avoid writing predictions against the wrong tournament."
+                                    )
+                                    break
+
+                                error_msg = fetched_payload.get("error")
+                                field_entries = fetched_payload.get("field")
+                                if error_msg:
+                                    skip_reason = f"field updates API returned error: {error_msg}"
+                                    print(f"[warn] Skipping event_id={event_id}: {skip_reason}")
+                                    break
+                                if not field_entries:
+                                    skip_reason = "field updates payload contains no field entries"
+                                    print(f"[warn] Skipping event_id={event_id}: {skip_reason}.")
+                                    break
+
+                                skip_event = False
+                                skip_reason = ""
+                                if candidate_field_tour != field_update_tour:
+                                    print(
+                                        "[info] Using "
+                                        f"tour={candidate_field_tour} field updates for event_id={event_id} "
+                                        f"after initial tour={field_update_tour} mismatch."
+                                    )
+                                break
+                        except Exception as exc:
+                            skip_reason = f"unable to inspect field-updates.json: {exc}"
+                            print(f"[warn] Unable to inspect field-updates.json for event_id={event_id}: {exc}")
+                            break
+                    else:
+                        skip_reason = "expected field-updates.json not found after fetch"
+                        print(
+                            f"[warn] Expected field-updates.json not found after fetch for event_id={event_id}; "
+                            "skipping event."
+                        )
+                        break
 
                 if skip_event:
                     skipped_events.append((event_id, skip_reason))
