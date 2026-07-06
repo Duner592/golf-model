@@ -1,0 +1,38 @@
+{
+  "event_name": "ISCO Championship",
+  "event_id": "518",
+  "course": "Hurstbourne Country Club",
+  "total_yardage": null,
+  "course_location": "Louisville, KY",
+  "start_date": "09-Jul-2026",
+  "field_size": 140,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Mouw, William",
+      "score": -14
+    },
+    {
+      "year": 2024,
+      "winner": "Hall, Harry",
+      "score": -18
+    },
+    {
+      "year": 2023,
+      "winner": "Norrman, Vincent",
+      "score": -18
+    },
+    {
+      "year": 2022,
+      "winner": "Mullinax, Trey",
+      "score": -21
+    },
+    {
+      "year": 2021,
+      "winner": "Power, Seamus",
+      "score": -17
+    }
+  ]
+}

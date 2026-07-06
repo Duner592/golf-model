@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "518",
+    "event_name": "ISCO Championship",
+    "tour": "pga",
+    "slug": "isco_championship",
+    "year": "2026",
+    "start_date": "2026-07-09",
+    "csv_available": true,
+    "archived_at": "2026-07-06 10:46:21 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-07-06T10:46:21Z",
+    "model_page": "archive/2026/isco_championship/model_page.html"
+  },
+  {
+    "event_id": "541",
+    "event_name": "Genesis Scottish Open",
+    "tour": "pga",
+    "slug": "genesis_scottish_open",
+    "year": "2026",
+    "start_date": "2026-07-09",
+    "csv_available": true,
+    "archived_at": "2026-07-06 10:46:21 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-07-06T10:46:21Z",
+    "model_page": "archive/2026/genesis_scottish_open/model_page.html"
+  },
+  {
     "event_id": "30",
     "event_name": "John Deere Classic",
     "tour": "pga",

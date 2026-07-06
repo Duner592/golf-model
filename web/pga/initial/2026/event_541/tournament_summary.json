@@ -1,0 +1,33 @@
+{
+  "event_name": "Genesis Scottish Open",
+  "event_id": "541",
+  "course": "The Renaissance Club",
+  "total_yardage": null,
+  "course_location": "North Berwick, Scotland",
+  "start_date": "09-Jul-2026",
+  "field_size": 156,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Gotterup, Chris",
+      "score": -19
+    },
+    {
+      "year": 2024,
+      "winner": "MacIntyre, Robert",
+      "score": -22
+    },
+    {
+      "year": 2023,
+      "winner": "McIlroy, Rory",
+      "score": -19
+    },
+    {
+      "year": 2022,
+      "winner": "Schauffele, Xander",
+      "score": -11
+    }
+  ]
+}

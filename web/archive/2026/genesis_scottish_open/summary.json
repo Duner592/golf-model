@@ -1,0 +1,12 @@
+{
+  "event_id": "541",
+  "event_name": "Genesis Scottish Open",
+  "source_csv": "data/preds/pga/event_541_genesis_scottish_open_2026-07-06_leaderboard.csv",
+  "generated_utc": "06-Jul-2026 10:46:21",
+  "metrics": {
+    "field_size": 156,
+    "p_win_max": 0.41003333333333336,
+    "p_win_median": 3.3333333333333335e-05,
+    "p_win_sum": 1.0
+  }
+}
