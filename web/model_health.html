@@ -504,6 +504,30 @@
             .toLowerCase();
     }
 
+    function tournamentMatchScore(left, right) {
+        const a = normalizeName(left);
+        const b = normalizeName(right);
+        if (!a || !b) return 0;
+        if (a === b) return 1;
+        if (a.includes(b) || b.includes(a)) return 0.92;
+        const aTokens = new Set(a.split(" ").filter(token => token.length > 1));
+        const bTokens = new Set(b.split(" ").filter(token => token.length > 1));
+        if (!aTokens.size || !bTokens.size) return 0;
+        let overlap = 0;
+        aTokens.forEach(token => {
+            if (bTokens.has(token)) overlap += 1;
+        });
+        return overlap / Math.min(aTokens.size, bTokens.size);
+    }
+
+    function archiveMatchesScheduleEvent(entry, event) {
+        const entryTour = String(entry.tour || "").toLowerCase();
+        const eventTour = String(event.tour || "").toLowerCase();
+        if (entryTour && eventTour && entryTour !== eventTour) return false;
+        if (entry.event_id && event.event_id && String(entry.event_id) === String(event.event_id)) return true;
+        return tournamentMatchScore(entry.event_name, event.event) >= 0.7;
+    }
+
     function currentScheduleEvents(schedule) {
         const { start, end } = currentWindow();
         return (Array.isArray(schedule) ? schedule : [])
@@ -658,7 +682,6 @@
         if (!Array.isArray(archiveIndex)) {
             addFinding("error", "archive-index-shape", "archive/index.json must be a list", "archive", "archive/index.json");
         }
-        const byName = new Set(entries.map(entry => normalizeName(entry.event_name)).filter(Boolean));
         const recentScheduleEvents = TOURS.flatMap(tour => (schedules[tour.code] || []).map(event => ({ ...event, tour: tour.code })))
             .map(event => ({ ...event, parsedDate: parseDate(event.date || event.start_date) }))
             .filter(event => event.parsedDate && event.parsedDate >= addDays(startOfUtcDay(), -ARCHIVE_LOOKBACK_DAYS))
@@ -667,7 +690,8 @@
         recentScheduleEvents.forEach(event => {
             const winner = String(event.winner || "").trim().toLowerCase();
             const isComplete = winner && winner !== "tbd";
-            if (isComplete && !byName.has(normalizeName(event.event))) {
+            const archiveMatch = entries.find(entry => archiveMatchesScheduleEvent(entry, event));
+            if (isComplete && !archiveMatch) {
                 addFinding(
                     "warning",
                     "completed-event-missing-archive",
