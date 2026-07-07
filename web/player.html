@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Golf Model - Player Drilldown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js?v=20260515-status2"></script>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 100px 1.25rem 1.25rem;
+            color: #17251d;
+            background: var(--gm-body-gradient);
+            transition: padding-left 0.3s;
+        }
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+        .page-header {
+            --tour-accent: var(--gm-primary);
+            --tour-accent-dark: var(--gm-primary-dark);
+            --tour-accent-secondary: var(--gm-primary-light);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.9rem;
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(20, 50, 32, 0.12);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f4fbf7 100%);
+            box-shadow: 0 16px 34px -28px rgba(15, 62, 34, 0.55);
+        }
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--tour-accent), var(--tour-accent-secondary));
+        }
+        .page-header--pga {
+            --tour-accent: #0b4c91;
+            --tour-accent-dark: #07315f;
+            --tour-accent-secondary: #d21f32;
+        }
+        .page-header--euro {
+            --tour-accent: #003764;
+            --tour-accent-dark: #00213d;
+            --tour-accent-secondary: #00956d;
+        }
+        .page-title {
+            min-width: 0;
+        }
+        h1 {
+            margin: 0;
+            color: var(--tour-accent-dark);
+            font-size: 1.65rem;
+            line-height: 1.15;
+        }
+        .subtitle {
+            margin: 0.3rem 0 0;
+            color: #53675b;
+            font-size: 0.95rem;
+        }
+        .header-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+        .control-panel,
+        .card {
+            border: 1px solid rgba(20, 50, 32, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 12px 26px -24px rgba(17, 94, 45, 0.48);
+        }
+        .control-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: end;
+            margin-bottom: 1rem;
+            padding: 0.85rem 1rem;
+        }
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            color: #53675b;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        select {
+            min-width: 12rem;
+            min-height: 2.35rem;
+            padding: 0.35rem 0.55rem;
+            border: 1px solid #cfd8d0;
+            border-radius: 6px;
+            background: #fff;
+            color: #17251d;
+            font: inherit;
+            font-size: 0.92rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        #playerSelect {
+            min-width: 16rem;
+        }
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 340px;
+            gap: 1rem;
+            align-items: start;
+        }
+        .main-stack,
+        .side-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .card {
+            padding: 1rem;
+        }
+        .card h2,
+        .card h3 {
+            margin: 0 0 0.75rem;
+            color: #254332;
+        }
+        .card h2 {
+            font-size: 1.15rem;
+        }
+        .card h3 {
+            font-size: 1rem;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.75rem;
+        }
+        .metric-card {
+            min-height: 5rem;
+            padding: 0.85rem;
+            border: 1px solid rgba(34, 139, 34, 0.12);
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(248, 252, 249, 0.96), rgba(240, 248, 243, 0.84));
+        }
+        .metric-label {
+            color: #5b7062;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .metric-value {
+            display: block;
+            margin-top: 0.35rem;
+            color: #17251d;
+            font-size: 1.45rem;
+            font-weight: 800;
+            line-height: 1.15;
+            font-variant-numeric: tabular-nums;
+        }
+        .metric-sub {
+            display: block;
+            margin-top: 0.25rem;
+            color: #607066;
+            font-size: 0.82rem;
+            line-height: 1.3;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.65rem;
+        }
+        .detail-row {
+            display: grid;
+            grid-template-columns: 1.7rem minmax(0, 1fr);
+            gap: 0.5rem;
+            align-items: start;
+            padding: 0.55rem 0.6rem;
+            border: 1px solid rgba(34, 139, 34, 0.1);
+            border-radius: 8px;
+            background: rgba(248, 252, 249, 0.78);
+        }
+        .detail-icon {
+            color: var(--gm-primary);
+            text-align: center;
+        }
+        .detail-label {
+            display: block;
+            color: #5b7062;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .detail-value {
+            display: block;
+            margin-top: 0.1rem;
+            color: #17251d;
+            font-weight: 650;
+            overflow-wrap: anywhere;
+        }
+        .link,
+        .text-link {
+            color: #1d7c42;
+            font-weight: 750;
+            text-decoration: none;
+        }
+        .text-link {
+            border-bottom: 1px solid rgba(29, 124, 66, 0.35);
+        }
+        .text-link:hover,
+        .text-link:focus-visible {
+            color: #176336;
+            border-bottom-color: rgba(29, 124, 66, 0.7);
+            outline: none;
+        }
+        .link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2.1rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary));
+            color: #fff;
+            box-shadow: 0 8px 18px -14px rgba(29, 124, 66, 0.55);
+        }
+        .link:hover,
+        .link:focus-visible {
+            background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark));
+            outline: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        th,
+        td {
+            padding: 0.55rem 0.45rem;
+            border-bottom: 1px solid #edf2ef;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            color: #53675b;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: #f8fbf9;
+        }
+        .num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        .status-message {
+            padding: 1rem;
+            border: 1px solid rgba(183, 129, 0, 0.22);
+            border-radius: 8px;
+            background: rgba(255, 245, 217, 0.82);
+            color: #66501b;
+            font-weight: 650;
+        }
+        .muted {
+            color: #67766c;
+        }
+        .empty {
+            color: #67766c;
+            font-size: 0.92rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+        }
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.7rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(29, 124, 66, 0.1);
+            color: #176336;
+            font-size: 0.82rem;
+            font-weight: 750;
+        }
+        @media (max-width: 960px) {
+            .page-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .header-links {
+                justify-content: flex-start;
+            }
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            body {
+                margin: 88px 0.8rem 1rem;
+            }
+            .logo {
+                height: 60px;
+                right: 8px;
+            }
+            select,
+            #playerSelect {
+                min-width: min(100%, 18rem);
+                width: 100%;
+            }
+            .control-panel label {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container"></div>
+<div class="menu" id="menu"></div>
+
+<header class="page-header" id="pageHeader">
+    <div class="page-title">
+        <h1 id="playerTitle">Player Drilldown</h1>
+        <p class="subtitle" id="playerSubtitle">Loading player context...</p>
+    </div>
+    <div class="header-links">
+        <a class="link" id="leaderboardLink" href="pga.html">Leaderboard</a>
+        <a class="link" id="oddsLink" href="odds_value.html">Odds &amp; Value</a>
+    </div>
+</header>
+
+<section class="control-panel" aria-label="Player drilldown controls">
+    <label>
+        Tour
+        <select id="tourSelect">
+            <option value="pga">PGA Tour</option>
+            <option value="euro">DP World Tour</option>
+        </select>
+    </label>
+    <label>
+        Model
+        <select id="snapshotSelect">
+            <option value="latest">Latest</option>
+            <option value="initial">Initial run</option>
+        </select>
+    </label>
+    <label>
+        Event
+        <select id="eventSelect"></select>
+    </label>
+    <label>
+        Player
+        <select id="playerSelect"></select>
+    </label>
+</section>
+
+<main class="layout">
+    <div class="main-stack">
+        <section class="card" id="statusCard" hidden></section>
+        <section class="card">
+            <h2>Current Event Model</h2>
+            <div class="metric-grid" id="metricGrid"></div>
+        </section>
+        <section class="card">
+            <h2>Event Context</h2>
+            <div class="detail-grid" id="detailGrid"></div>
+        </section>
+        <section class="card">
+            <h2>Recent Archive Performance</h2>
+            <div class="table-wrap" id="archiveWrap"></div>
+        </section>
+    </div>
+    <aside class="side-stack" aria-label="Player supporting data">
+        <section class="card">
+            <h3>Betting Summary</h3>
+            <div id="bettingSummary"></div>
+        </section>
+        <section class="card">
+            <h3>Recent Bets</h3>
+            <div class="table-wrap" id="bettingRows"></div>
+        </section>
+        <section class="card">
+            <h3>Quick Links</h3>
+            <div class="pill-row" id="quickLinks"></div>
+        </section>
+    </aside>
+</main>
+
+<script>
+    const TOUR_LABELS = {
+        pga: "PGA Tour",
+        euro: "DP World Tour"
+    };
+    const TOUR_PAGES = {
+        pga: "pga.html",
+        euro: "euro.html"
+    };
+    const PLAYER_SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
+    const state = {
+        tours: new Map(),
+        events: new Map(),
+        archive: null
+    };
+
+    const els = {
+        header: document.getElementById("pageHeader"),
+        title: document.getElementById("playerTitle"),
+        subtitle: document.getElementById("playerSubtitle"),
+        tour: document.getElementById("tourSelect"),
+        snapshot: document.getElementById("snapshotSelect"),
+        event: document.getElementById("eventSelect"),
+        player: document.getElementById("playerSelect"),
+        leaderboard: document.getElementById("leaderboardLink"),
+        odds: document.getElementById("oddsLink"),
+        status: document.getElementById("statusCard"),
+        metrics: document.getElementById("metricGrid"),
+        details: document.getElementById("detailGrid"),
+        archive: document.getElementById("archiveWrap"),
+        bettingSummary: document.getElementById("bettingSummary"),
+        bettingRows: document.getElementById("bettingRows"),
+        quickLinks: document.getElementById("quickLinks")
+    };
+
+    function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#39;"
+        }[char]));
+    }
+
+    function fmtPct(value, digits = 1) {
+        const n = Number(value);
+        return Number.isFinite(n) ? `${n.toFixed(digits)}%` : "-";
+    }
+
+    function fmtNum(value, digits = 2) {
+        const n = Number(value);
+        return Number.isFinite(n) ? n.toFixed(digits) : "-";
+    }
+
+    function fmtCurrency(value) {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return "-";
+        const sign = n < 0 ? "-" : "";
+        return `${sign}£${Math.abs(n).toFixed(2)}`;
+    }
+
+    function parseMoney(value) {
+        if (value == null) return 0;
+        const cleaned = String(value).replace(/[^0-9.-]/g, "");
+        const n = Number(cleaned);
+        return Number.isFinite(n) ? n : 0;
+    }
+
+    function parseDate(value) {
+        if (!value) return null;
+        const text = String(value).trim();
+        const uk = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+        if (uk) return new Date(`${uk[3]}-${uk[2].padStart(2, "0")}-${uk[1].padStart(2, "0")}T00:00:00Z`);
+        const parsed = new Date(text);
+        return Number.isNaN(parsed.valueOf()) ? null : parsed;
+    }
+
+    function displayDate(value) {
+        const parsed = parseDate(value);
+        if (!parsed) return value || "-";
+        return parsed.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function stripPlayerId(name) {
+        return String(name ?? "").replace(/\s*\(\d+\)\s*$/, "").trim();
+    }
+
+    function normalizePredictionDisplayName(name) {
+        let cleaned = stripPlayerId(name).replace(/\s+/g, " ").trim();
+        if (!cleaned) return "";
+        if (cleaned.includes(",")) {
+            const [last, first] = cleaned.split(",", 2).map(part => part.trim());
+            cleaned = first ? `${first} ${last}` : last;
+        }
+        return cleaned;
+    }
+
+    function playerNameTokens(name) {
+        const displayName = normalizePredictionDisplayName(name);
+        if (!displayName) return [];
+        const asciiName = displayName.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+        const tokens = asciiName.toLowerCase().match(/[a-z0-9]+/g) || [];
+        while (tokens.length && PLAYER_SUFFIXES.has(tokens[tokens.length - 1])) {
+            tokens.pop();
+        }
+        return tokens;
+    }
+
+    function playerNameKeys(name) {
+        const tokens = playerNameTokens(name);
+        const keys = new Set();
+        if (tokens.length) keys.add(tokens.join(""));
+        if (tokens.length >= 3) keys.add(`${tokens[0]}${tokens[tokens.length - 1]}`);
+        return [...keys];
+    }
+
+    function hasSharedPlayerKey(leftKeys, rightKeys) {
+        if (!leftKeys?.length || !rightKeys?.length) return false;
+        const lookup = new Set(leftKeys);
+        return rightKeys.some(key => lookup.has(key));
+    }
+
+    function samePlayer(left, right) {
+        return hasSharedPlayerKey(playerNameKeys(left), playerNameKeys(right));
+    }
+
+    function findPlayer(rows, playerName) {
+        if (!Array.isArray(rows) || !rows.length) return null;
+        if (!playerName) return rows[0];
+        const keys = playerNameKeys(playerName);
+        return rows.find(row => hasSharedPlayerKey(playerNameKeys(row.player_name ?? row.Player ?? row.player), keys))
+            || rows.find(row => String(row.player_name ?? row.Player ?? row.player ?? "").toLowerCase() === String(playerName).toLowerCase())
+            || rows[0];
+    }
+
+    async function loadJSON(path, fallback = null) {
+        if (!path) return fallback;
+        try {
+            const response = await fetch(path, { cache: "no-store" });
+            if (!response.ok) return fallback;
+            return await response.json();
+        } catch (error) {
+            console.warn("Failed to load", path, error);
+            return fallback;
+        }
+    }
+
+    function rootResources(tour) {
+        return {
+            meta: `${tour}/meta.json`,
+            leaderboard: `${tour}/leaderboard.json`,
+            summary: `${tour}/summary.json`,
+            tournament_summary: `${tour}/tournament_summary.json`,
+            weather_round_neutral: `${tour}/weather_round_neutral.json`,
+            weather_round_wave: `${tour}/weather_round_wave.json`,
+            course_fit_weights: `${tour}/course_fit_weights.json`,
+            schedule: `${tour}/schedule.json`
+        };
+    }
+
+    function eventYear(tourMeta, event) {
+        const candidates = [event?.r1_date, event?.start_date, tourMeta?.r1_date, tourMeta?.start_date, tourMeta?.generated_utc];
+        for (const value of candidates) {
+            if (typeof value === "string" && /^\d{4}/.test(value)) return value.slice(0, 4);
+        }
+        return String(new Date().getFullYear());
+    }
+
+    function initialSnapshotResources(tour, tourMeta, event) {
+        const id = String(event?.event_id ?? tourMeta?.event_id ?? "0");
+        const year = eventYear(tourMeta, event);
+        const base = `${tour}/initial/${year}/event_${id}`;
+        return {
+            meta: `${base}/meta.json`,
+            leaderboard: `${base}/leaderboard.json`,
+            summary: `${base}/summary.json`,
+            tournament_summary: `${base}/tournament_summary.json`,
+            weather_round_neutral: `${base}/weather_round_neutral.json`,
+            weather_round_wave: `${base}/weather_round_wave.json`,
+            course_fit_weights: `${base}/course_fit_weights.json`,
+            downloads_csv: `${base}/leaderboard.csv`,
+            downloads_html: `${base}/leaderboard.html`,
+            schedule: `${tour}/schedule.json`
+        };
+    }
+
+    function normalizeEvents(tour, meta) {
+        const active = Array.isArray(meta?.active_events) ? meta.active_events : [];
+        if (active.length) {
+            return active.map((event, index) => {
+                const eventId = String(event.event_id ?? event.id ?? index);
+                const eventDir = event.event_dir || event.resources?.primary_event_dir || `${tour}/events/event_${eventId}`;
+                return {
+                    ...event,
+                    event_id: eventId,
+                    event_name: event.event_name || `Event ${eventId}`,
+                    resources: {
+                        ...rootResources(tour),
+                        ...(event.resources || {}),
+                        meta: event.resources?.meta || `${eventDir}/meta.json`,
+                        leaderboard: event.resources?.leaderboard || `${eventDir}/leaderboard.json`,
+                        tournament_summary: event.resources?.tournament_summary || `${eventDir}/tournament_summary.json`,
+                        weather_round_neutral: event.resources?.weather_round_neutral || `${eventDir}/weather_round_neutral.json`,
+                        weather_round_wave: event.resources?.weather_round_wave || `${eventDir}/weather_round_wave.json`
+                    }
+                };
+            });
+        }
+        const eventId = String(meta?.event_id ?? "0");
+        return [{
+            event_id: eventId,
+            event_name: meta?.event_name || (eventId === "0" ? "No Event" : `Event ${eventId}`),
+            r1_date: meta?.r1_date,
+            start_date: meta?.start_date,
+            resources: {
+                ...rootResources(tour),
+                ...(meta?.resources || {})
+            }
+        }];
+    }
+
+    async function loadTour(tour) {
+        if (state.tours.has(tour)) return state.tours.get(tour);
+        const meta = await loadJSON(`${tour}/meta.json`, {});
+        const payload = { meta, events: normalizeEvents(tour, meta) };
+        state.tours.set(tour, payload);
+        return payload;
+    }
+
+    async function loadEvent(tour, tourState, event, snapshot) {
+        const key = `${tour}:${snapshot}:${event.event_id}`;
+        if (state.events.has(key)) return state.events.get(key);
+        const resources = snapshot === "initial"
+            ? initialSnapshotResources(tour, tourState.meta, event)
+            : { ...rootResources(tour), ...(event.resources || {}) };
+        const [eventMeta, leaderboard, summary, tournament, weatherNeutral, weatherWave, courseFit] = await Promise.all([
+            loadJSON(resources.meta, null),
+            loadJSON(resources.leaderboard, []),
+            loadJSON(resources.summary, null),
+            loadJSON(resources.tournament_summary, null),
+            loadJSON(resources.weather_round_neutral, []),
+            loadJSON(resources.weather_round_wave, []),
+            loadJSON(resources.course_fit_weights, null)
+        ]);
+        const meta = {
+            ...(tourState.meta || {}),
+            ...(event || {}),
+            ...(eventMeta || {}),
+            event_id: String(event.event_id),
+            event_name: event.event_name || eventMeta?.event_name || tourState.meta?.event_name
+        };
+        delete meta.active_events;
+        const payload = {
+            tour,
+            snapshot,
+            event,
+            meta,
+            resources,
+            leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
+            summary,
+            tournament,
+            weatherNeutral: Array.isArray(weatherNeutral) ? weatherNeutral : [],
+            weatherWave: Array.isArray(weatherWave) ? weatherWave : [],
+            courseFit
+        };
+        state.events.set(key, payload);
+        return payload;
+    }
+
+    function updateUrl(context) {
+        const params = new URLSearchParams();
+        params.set("tour", context.tour);
+        params.set("event_id", context.event.event_id);
+        params.set("player", context.playerName);
+        if (context.snapshot === "initial") params.set("snapshot", "initial");
+        window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+    }
+
+    function leaderboardHref(context) {
+        const params = new URLSearchParams();
+        params.set("event_id", context.event.event_id);
+        if (context.snapshot === "initial") params.set("snapshot", "initial");
+        return `${TOUR_PAGES[context.tour] || "pga.html"}?${params.toString()}`;
+    }
+
+    function populateSelect(select, items, value, labelFn, valueFn = item => item) {
+        select.innerHTML = "";
+        items.forEach(item => {
+            const option = document.createElement("option");
+            option.value = String(valueFn(item));
+            option.textContent = labelFn(item);
+            select.appendChild(option);
+        });
+        select.value = String(value);
+    }
+
+    function metricCard(label, value, sub = "") {
+        return `
+            <div class="metric-card">
+                <span class="metric-label">${escapeHtml(label)}</span>
+                <span class="metric-value">${escapeHtml(value)}</span>
+                ${sub ? `<span class="metric-sub">${escapeHtml(sub)}</span>` : ""}
+            </div>
+        `;
+    }
+
+    function detailRow(icon, label, value) {
+        return `
+            <div class="detail-row">
+                <span class="detail-icon"><i class="${icon}" aria-hidden="true"></i></span>
+                <span><span class="detail-label">${escapeHtml(label)}</span><span class="detail-value">${value}</span></span>
+            </div>
+        `;
+    }
+
+    function renderStatus(message) {
+        if (!message) {
+            els.status.hidden = true;
+            els.status.innerHTML = "";
+            return;
+        }
+        els.status.hidden = false;
+        els.status.innerHTML = `<div class="status-message">${escapeHtml(message)}</div>`;
+    }
+
+    function renderMetrics(player, eventData) {
+        const rank = Number(player.rank);
+        const fieldSize = eventData.leaderboard.length;
+        const rankSub = fieldSize && Number.isFinite(rank) ? `${rank} of ${fieldSize}` : "";
+        els.metrics.innerHTML = [
+            metricCard("Model Rank", Number.isFinite(rank) ? `#${rank}` : "-", rankSub),
+            metricCard("Win", fmtPct(player["p_win_%"])),
+            metricCard("Top 10", fmtPct(player["p_top10_%"])),
+            metricCard("Make Cut", fmtPct(player["p_mc_%"])),
+            metricCard("Course Fit", fmtNum(player.course_fit_score), "Model fit score")
+        ].join("");
+    }
+
+    function renderDetails(player, eventData, context) {
+        const tournament = eventData.tournament || {};
+        const course = tournament.course || "Unknown Course";
+        const courseLink = course !== "Unknown Course"
+            ? `<a class="text-link" href="course_details.html?course=${encodeURIComponent(course)}">${escapeHtml(course)}</a>`
+            : escapeHtml(course);
+        const startDate = tournament.start_date || eventData.meta.start_date || eventData.meta.r1_date || "-";
+        const fieldSize = tournament.field_size || eventData.leaderboard.length || "-";
+        const generated = eventData.meta.generated_utc || eventData.meta.saved_at_utc || eventData.summary?.generated_utc || "-";
+        const r1 = player.r1_teetime ? `${escapeHtml(player.r1_teetime)}${player.r1_from_10th ? " (10th tee)" : ""}` : "-";
+        const r2 = player.r2_teetime ? `${escapeHtml(player.r2_teetime)}${player.r2_from_10th ? " (10th tee)" : ""}` : "-";
+        els.details.innerHTML = [
+            detailRow("fas fa-flag", "Event", escapeHtml(eventData.meta.event_name || context.event.event_name || "-")),
+            detailRow("fas fa-map-marker-alt", "Course", courseLink),
+            detailRow("fas fa-calendar-alt", "Start Date", escapeHtml(startDate)),
+            detailRow("fas fa-users", "Field Size", escapeHtml(`${fieldSize} players`)),
+            detailRow("fas fa-clock", "Round 1 Tee", r1),
+            detailRow("fas fa-clock", "Round 2 Tee", r2),
+            detailRow("fas fa-database", "Model Snapshot", escapeHtml(context.snapshot === "initial" ? "Initial run" : "Latest")),
+            detailRow("fas fa-sync-alt", "Generated", escapeHtml(generated))
+        ].join("");
+    }
+
+    function summarizeBets(rows) {
+        const stake = rows.reduce((total, row) => total + parseMoney(row.Stake), 0);
+        const returns = rows.reduce((total, row) => total + parseMoney(row.Return), 0);
+        const explicitProfit = rows.reduce((total, row) => total + parseMoney(row["Profit/Loss"]), 0);
+        const profit = rows.some(row => row["Profit/Loss"]) ? explicitProfit : returns - stake;
+        const roi = stake > 0 ? (profit / stake) * 100 : null;
+        const pending = rows.filter(row => String(row.Outcome || row.Result || "").toLowerCase().includes("pending")).length;
+        return { stake, returns, profit, roi, pending };
+    }
+
+    async function loadBettingRows(playerName) {
+        try {
+            const rows = await BettingData.load();
+            const matched = rows.filter(row => samePlayer(row.Player, playerName));
+            matched.sort((a, b) => (parseDate(b.Date)?.valueOf() || 0) - (parseDate(a.Date)?.valueOf() || 0));
+            return matched;
+        } catch (error) {
+            console.warn("Betting data unavailable", error);
+            return [];
+        }
+    }
+
+    function renderBetting(playerName, rows) {
+        if (!rows.length) {
+            els.bettingSummary.innerHTML = `<p class="empty">No matched betting rows for ${escapeHtml(playerName)}.</p>`;
+            els.bettingRows.innerHTML = "";
+            return;
+        }
+        const summary = summarizeBets(rows);
+        els.bettingSummary.innerHTML = `
+            <div class="metric-grid">
+                ${metricCard("Bets", String(rows.length), `${summary.pending} pending`)}
+                ${metricCard("Stake", fmtCurrency(summary.stake))}
+                ${metricCard("Profit/Loss", fmtCurrency(summary.profit))}
+                ${metricCard("ROI", summary.roi == null ? "-" : `${summary.roi.toFixed(1)}%`)}
+            </div>
+        `;
+        const recent = rows.slice(0, 8).map(row => `
+            <tr>
+                <td>${escapeHtml(displayDate(row.Date))}</td>
+                <td>${escapeHtml(row.Tournament || "-")}</td>
+                <td>${escapeHtml(row.Type || "-")}</td>
+                <td>${escapeHtml(row.Price || "-")}</td>
+                <td>${escapeHtml(row.Outcome || row.Result || "-")}</td>
+                <td class="num">${escapeHtml(row["Profit/Loss"] || "-")}</td>
+            </tr>
+        `).join("");
+        els.bettingRows.innerHTML = `
+            <table>
+                <thead><tr><th>Date</th><th>Tournament</th><th>Type</th><th>Price</th><th>Outcome</th><th class="num">P/L</th></tr></thead>
+                <tbody>${recent}</tbody>
+            </table>
+        `;
+    }
+
+    async function loadArchiveIndex() {
+        if (state.archive) return state.archive;
+        const rows = await loadJSON("archive/index.json", []);
+        state.archive = Array.isArray(rows) ? rows : [];
+        return state.archive;
+    }
+
+    function archiveBase(entry) {
+        return `archive/${entry.year}/${entry.slug}`;
+    }
+
+    function resultRows(payload) {
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload?.players)) return payload.players;
+        if (Array.isArray(payload?.results)) return payload.results;
+        return [];
+    }
+
+    async function loadArchiveAppearances(playerName, tour) {
+        const index = await loadArchiveIndex();
+        const rows = index
+            .filter(entry => !tour || String(entry.tour || "").toLowerCase() === tour)
+            .filter(entry => entry.year && entry.slug)
+            .sort((a, b) => String(b.start_date || "").localeCompare(String(a.start_date || "")))
+            .slice(0, 40);
+        const appearances = [];
+        for (const entry of rows) {
+            const base = archiveBase(entry);
+            const leaderboard = await loadJSON(`${base}/leaderboard.json`, []);
+            const player = findPlayer(leaderboard, playerName);
+            if (!player || !samePlayer(player.player_name, playerName)) continue;
+            const resultsPayload = await loadJSON(`${base}/results.json`, null);
+            const result = resultRows(resultsPayload).find(row => samePlayer(row.player, playerName));
+            appearances.push({ entry, player, result });
+            if (appearances.length >= 8) break;
+        }
+        return appearances;
+    }
+
+    function renderArchiveRows(rows) {
+        if (!rows.length) {
+            els.archive.innerHTML = '<p class="empty">No archived appearances matched this player yet.</p>';
+            return;
+        }
+        els.archive.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th class="num">Win</th>
+                        <th class="num">Top 10</th>
+                        <th class="num">MC</th>
+                        <th>Finish</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map(({ entry, player, result }) => {
+                        const base = archiveBase(entry);
+                        const finish = result?.finish_text || result?.finish_pos || "Pending";
+                        return `
+                            <tr>
+                                <td><a class="text-link" href="${base}/model_page.html">${escapeHtml(entry.event_name || "-")}</a></td>
+                                <td>${escapeHtml(displayDate(entry.start_date))}</td>
+                                <td class="num">${fmtPct(player["p_win_%"])}</td>
+                                <td class="num">${fmtPct(player["p_top10_%"])}</td>
+                                <td class="num">${fmtPct(player["p_mc_%"])}</td>
+                                <td>${escapeHtml(finish)}</td>
+                            </tr>
+                        `;
+                    }).join("")}
+                </tbody>
+            </table>
+        `;
+    }
+
+    function renderQuickLinks(context, playerName) {
+        const playerParam = encodeURIComponent(playerName);
+        els.quickLinks.innerHTML = `
+            <a class="pill" href="${leaderboardHref(context)}">Leaderboard</a>
+            <a class="pill" href="spreadsheet.html?player=${playerParam}">Betting rows</a>
+            <a class="pill" href="odds_value.html?player=${playerParam}">Odds &amp; Value</a>
+            <a class="pill" href="archive.html">Archive</a>
+            <a class="pill" href="archive_accuracy.html">Accuracy</a>
+        `;
+    }
+
+    async function selectContext(next) {
+        const tour = next.tour || els.tour.value || "pga";
+        const snapshot = next.snapshot || els.snapshot.value || "latest";
+        const tourState = await loadTour(tour);
+        const event = tourState.events.find(item => String(item.event_id) === String(next.eventId))
+            || tourState.events[0];
+        if (!event) {
+            renderStatus("No event data is available for this tour.");
+            return;
+        }
+        const eventData = await loadEvent(tour, tourState, event, snapshot);
+        const candidate = findPlayer(eventData.leaderboard, next.playerName);
+        const playerName = normalizePredictionDisplayName(candidate?.player_name || next.playerName || "");
+        populateSelect(els.event, tourState.events, event.event_id, item => item.event_name || `Event ${item.event_id}`, item => item.event_id);
+        populateSelect(
+            els.player,
+            eventData.leaderboard,
+            candidate?.player_name || eventData.leaderboard[0]?.player_name || "",
+            item => normalizePredictionDisplayName(item.player_name || item.Player || ""),
+            item => item.player_name || item.Player || ""
+        );
+        els.tour.value = tour;
+        els.snapshot.value = snapshot;
+
+        const context = { tour, snapshot, event, eventData, playerName };
+        updateUrl(context);
+        els.header.classList.toggle("page-header--pga", tour === "pga");
+        els.header.classList.toggle("page-header--euro", tour === "euro");
+        els.title.textContent = playerName || "Player Drilldown";
+        els.subtitle.textContent = `${TOUR_LABELS[tour] || tour.toUpperCase()} - ${eventData.meta.event_name || event.event_name || "Current event"}`;
+        els.leaderboard.href = leaderboardHref(context);
+        els.odds.href = `odds_value.html?player=${encodeURIComponent(playerName)}`;
+
+        if (!candidate) {
+            renderStatus("Player was not found in this event leaderboard.");
+            els.metrics.innerHTML = "";
+            els.details.innerHTML = "";
+            els.archive.innerHTML = "";
+            els.bettingSummary.innerHTML = "";
+            els.bettingRows.innerHTML = "";
+            renderQuickLinks(context, playerName);
+            return;
+        }
+
+        renderStatus("");
+        renderMetrics(candidate, eventData);
+        renderDetails(candidate, eventData, context);
+        renderQuickLinks(context, playerName);
+        const [betRows, archiveRows] = await Promise.all([
+            loadBettingRows(playerName),
+            loadArchiveAppearances(playerName, tour)
+        ]);
+        renderBetting(playerName, betRows);
+        renderArchiveRows(archiveRows);
+    }
+
+    async function init() {
+        const params = new URLSearchParams(window.location.search);
+        const tour = ["pga", "euro"].includes(params.get("tour")) ? params.get("tour") : "pga";
+        const snapshot = params.get("snapshot") === "initial" ? "initial" : "latest";
+        await selectContext({
+            tour,
+            snapshot,
+            eventId: params.get("event_id"),
+            playerName: params.get("player")
+        });
+
+        els.tour.addEventListener("change", () => selectContext({ tour: els.tour.value, snapshot: els.snapshot.value }));
+        els.snapshot.addEventListener("change", () => selectContext({
+            tour: els.tour.value,
+            snapshot: els.snapshot.value,
+            eventId: els.event.value,
+            playerName: els.player.value
+        }));
+        els.event.addEventListener("change", () => selectContext({
+            tour: els.tour.value,
+            snapshot: els.snapshot.value,
+            eventId: els.event.value
+        }));
+        els.player.addEventListener("change", () => selectContext({
+            tour: els.tour.value,
+            snapshot: els.snapshot.value,
+            eventId: els.event.value,
+            playerName: els.player.value
+        }));
+    }
+
+    init().catch(error => {
+        console.error(error);
+        renderStatus(error.message || "Player drilldown failed to load.");
+    });
+
+    fetch("menu.html?v=20260417").then(response => response.text()).then(html => document.getElementById("menu").innerHTML = html);
+</script>
+</body>
+</html>

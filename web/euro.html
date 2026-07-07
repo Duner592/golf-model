@@ -170,6 +170,18 @@
             border-color: var(--gm-primary);
             background: var(--gm-primary);
         }
+        .player-link {
+            color: #003764;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 55, 100, 0.28);
+        }
+        .player-link:hover,
+        .player-link:focus-visible {
+            color: #00213d;
+            border-bottom-color: rgba(0, 55, 100, 0.72);
+            outline: none;
+        }
 
         .logo {
             position: absolute;
@@ -343,6 +355,25 @@
     const MODEL_SNAPSHOT = params.get("snapshot") === "initial" ? "initial" : "latest";
     const IS_INITIAL_SNAPSHOT = MODEL_SNAPSHOT === "initial";
 
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function playerDetailHref(playerName) {
+      const detailParams = new URLSearchParams();
+      detailParams.set("tour", "euro");
+      detailParams.set("event_id", currentEventId || "");
+      detailParams.set("player", playerName || "");
+      if (IS_INITIAL_SNAPSHOT) detailParams.set("snapshot", "initial");
+      return `player.html?${detailParams.toString()}`;
+    }
+
     function eventYear(meta){
       const candidates = [meta?.r1_date, meta?.start_date, meta?.generated_utc];
       for (const value of candidates) {
@@ -443,21 +474,23 @@
     let data = [];
     let sortKey = "rank";
     let sortAsc = true;
+    let currentEventId = null;
 
     function renderTable(rows) {
       const tbody = document.querySelector("#tbl tbody");
       tbody.innerHTML = "";
       for (const r of rows) {
+        const playerName = r.player_name ?? "";
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="num">${r.rank ?? ""}</td>
-          <td>${r.player_name ?? ""}</td>
+          <td><a class="player-link" href="${playerDetailHref(playerName)}">${escapeHtml(playerName)}</a></td>
           <td class="num">${fmtPct(r["p_win_%"])}</td>
           <td class="num">${fmtPct(r["p_top10_%"])}</td>
           <td class="num">${fmtPct(r["p_mc_%"])}</td>
           <td class="num">${fmtNum(r.course_fit_score)}</td>
-          <td>${r.r1_teetime ?? ""}${r.r1_from_10th ? "<sup>*</sup>" : ""}</td>
-          <td>${r.r2_teetime ?? ""}${r.r2_from_10th ? "<sup>*</sup>" : ""}</td>
+          <td>${escapeHtml(r.r1_teetime ?? "")}${r.r1_from_10th ? "<sup>*</sup>" : ""}</td>
+          <td>${escapeHtml(r.r2_teetime ?? "")}${r.r2_from_10th ? "<sup>*</sup>" : ""}</td>
         `;
         tbody.appendChild(tr);
       }
@@ -1038,6 +1071,7 @@
           meta = { ...liveMeta, resources: initialResources };
         }
       }
+      currentEventId = String(meta.event_id ?? liveMeta.event_id ?? "0");
       const rows = IS_INITIAL_SNAPSHOT
         ? await safeLoadJSON(meta.resources?.leaderboard, [])
         : await loadJSON(meta.resources?.leaderboard || "euro/leaderboard.json");

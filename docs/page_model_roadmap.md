@@ -55,6 +55,21 @@ Current features:
 
 Future follow-ups for this view belong under the existing `Closing-Line Value Tracking` item unless they require a separate page.
 
+### Player Drilldown Page
+
+Completed on 2026-07-07.
+
+Implemented in `web/player.html` and linked from PGA/DP World leaderboard player names.
+
+Current features:
+
+- Loads current event model data from each tour's `meta.json` and per-event resource paths.
+- Supports tour, event, model snapshot, and player selectors.
+- Shows player rank, win/top-10/make-cut probabilities, course-fit score, tee times, event context, and generated timestamp.
+- Joins matched betting rows from `web/spreadsheet_data.csv` and summarizes stake, profit/loss, ROI, and recent bets.
+- Scans archived predictions/results for recent matched player appearances.
+- Links back to leaderboards, betting rows, Odds & Value, archive, and accuracy pages.
+
 ## Do Soon
 
 ### Model Health Page
@@ -117,21 +132,6 @@ Possible splits:
 - Before and after calibration.
 
 This should help identify where the model is genuinely strong or weak.
-
-### Player Drilldown Page
-
-Make leaderboard player names clickable.
-
-Player detail could include:
-
-- Current event win, top-10, and make-cut probabilities.
-- Model rank.
-- Course-fit contribution.
-- Weather/wave adjustment.
-- Recent archive performance.
-- Betting history and ROI where available.
-
-This would make the site easier to investigate player by player.
 
 ### Course Fit Confidence
 

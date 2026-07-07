@@ -170,6 +170,18 @@
             border-color: var(--gm-primary);
             background: var(--gm-primary);
         }
+        .player-link {
+            color: #0b4c91;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(11, 76, 145, 0.28);
+        }
+        .player-link:hover,
+        .player-link:focus-visible {
+            color: #07315f;
+            border-bottom-color: rgba(11, 76, 145, 0.72);
+            outline: none;
+        }
 
         .logo {
             position: absolute;
@@ -343,6 +355,16 @@
       jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12",
     };
 
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
     function normalizeTimestamp(raw){
       if (!raw || typeof raw !== "string") return null;
       const trimmed = raw.trim();
@@ -400,16 +422,17 @@
       const tbody = document.querySelector("#tbl tbody");
       tbody.innerHTML = "";
       for (const r of rows) {
+        const playerName = r.player_name ?? "";
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="num">${r.rank ?? ""}</td>
-          <td>${r.player_name ?? ""}</td>
+          <td><a class="player-link" href="${playerDetailHref(playerName)}">${escapeHtml(playerName)}</a></td>
           <td class="num">${fmtPct(r["p_win_%"])}</td>
           <td class="num">${fmtPct(r["p_top10_%"])}</td>
           <td class="num">${fmtPct(r["p_mc_%"])}</td>
           <td class="num">${fmtNum(r.course_fit_score)}</td>
-          <td>${r.r1_teetime ?? ""}${r.r1_from_10th ? "<sup>*</sup>" : ""}</td>
-          <td>${r.r2_teetime ?? ""}${r.r2_from_10th ? "<sup>*</sup>" : ""}</td>
+          <td>${escapeHtml(r.r1_teetime ?? "")}${r.r1_from_10th ? "<sup>*</sup>" : ""}</td>
+          <td>${escapeHtml(r.r2_teetime ?? "")}${r.r2_from_10th ? "<sup>*</sup>" : ""}</td>
         `;
         tbody.appendChild(tr);
       }
@@ -977,6 +1000,15 @@
     const MODEL_SNAPSHOT = params.get("snapshot") === "initial" ? "initial" : "latest";
     const IS_INITIAL_SNAPSHOT = MODEL_SNAPSHOT === "initial";
 
+    function playerDetailHref(playerName) {
+      const detailParams = new URLSearchParams();
+      detailParams.set("tour", "pga");
+      detailParams.set("event_id", currentEventId || tourMeta?.event_id || "");
+      detailParams.set("player", playerName || "");
+      if (IS_INITIAL_SNAPSHOT) detailParams.set("snapshot", "initial");
+      return `player.html?${detailParams.toString()}`;
+    }
+
     function eventYear(eventSummary){
       const candidates = [
         eventSummary?.r1_date,
@@ -1267,7 +1299,10 @@
             },
             r1_date: tourMeta.r1_date ?? null,
           }];
-      const initialId = eventsList.length ? String(eventsList[0].event_id) : null;
+      const requestedEventId = params.get("event_id");
+      const initialId = eventsList.find(ev => String(ev.event_id) === String(requestedEventId))
+        ? String(requestedEventId)
+        : (eventsList.length ? String(eventsList[0].event_id) : null);
       populateEventSelector(initialId);
       attachSortHandlers();
       await switchEvent(initialId);
