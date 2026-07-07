@@ -70,22 +70,22 @@ Current features:
 - Scans archived predictions/results for recent matched player appearances.
 - Links back to leaderboards, betting rows, Odds & Value, archive, and accuracy pages.
 
-## Do Soon
-
 ### Model Health Page
 
-Add a small internal-facing page showing the operational state of the site.
+Completed on 2026-07-07.
 
-Useful fields:
+Implemented in `web/model_health.html` and linked from the Tournament Predictions menu.
 
-- Latest successful model run per tour.
-- Current event name, event ID, year, and tour.
-- Latest archive update time.
-- Latest actual-results update time.
-- Whether live model assets, archive assets, and status assets agree.
-- Any missing or stale files from the site integrity check.
+Current features:
 
-This page can be plain and functional. It is mainly for diagnosing workflow and publishing issues quickly.
+- Loads deployed `web/status.json`, PGA/DP World `meta.json`, PGA/DP World `schedule.json`, `web/archive/index.json`, and `web/archive/results_summary.json`.
+- Shows overall health, status snapshot age, current schedule/model coverage, archive coverage, result-file coverage, and latest archive timestamp.
+- Compares current-week deployed schedule events with published model metadata.
+- Compares status snapshot event IDs with published model metadata.
+- Checks recent archive entries for missing leaderboards and expected `results.json` files.
+- Lists recent archive file checks and open findings.
+
+## Do Soon
 
 ### Homepage Recent Improvements
 

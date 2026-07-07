@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Golf Model - Model Health</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js?v=20260515-status2"></script>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 100px 1.25rem 1.25rem;
+            color: #17251d;
+            background: var(--gm-body-gradient);
+            transition: padding-left 0.3s;
+        }
+        .logo {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            height: 80px;
+            width: auto;
+            z-index: 1002;
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(20, 50, 32, 0.12);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f4fbf7 100%);
+            box-shadow: 0 16px 34px -28px rgba(15, 62, 34, 0.55);
+        }
+        h1 {
+            margin: 0;
+            color: #254332;
+            font-size: 1.65rem;
+            line-height: 1.15;
+        }
+        .subtitle {
+            margin: 0.3rem 0 0;
+            color: #53675b;
+            font-size: 0.95rem;
+        }
+        .header-links,
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .link,
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 750;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary));
+            box-shadow: 0 8px 18px -14px rgba(29, 124, 66, 0.55);
+        }
+        .link:hover,
+        .link:focus-visible,
+        .pill:hover,
+        .pill:focus-visible {
+            background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark));
+            outline: none;
+        }
+        .status-strip,
+        .card {
+            border: 1px solid rgba(20, 50, 32, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 12px 26px -24px rgba(17, 94, 45, 0.48);
+        }
+        .status-strip {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding: 0.85rem 1rem;
+        }
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            gap: 1rem;
+            align-items: start;
+        }
+        .main-stack,
+        .side-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .card {
+            padding: 1rem;
+        }
+        .card h2,
+        .card h3 {
+            margin: 0 0 0.75rem;
+            color: #254332;
+        }
+        .card h2 {
+            font-size: 1.15rem;
+        }
+        .card h3 {
+            font-size: 1rem;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        .metric {
+            min-height: 5.2rem;
+            padding: 0.85rem;
+            border: 1px solid rgba(34, 139, 34, 0.12);
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(248, 252, 249, 0.96), rgba(240, 248, 243, 0.84));
+        }
+        .metric-label,
+        .detail-label {
+            color: #5b7062;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .metric-value {
+            display: block;
+            margin-top: 0.35rem;
+            color: #17251d;
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.15;
+            font-variant-numeric: tabular-nums;
+        }
+        .metric-note,
+        .muted {
+            color: #607066;
+            font-size: 0.86rem;
+            line-height: 1.35;
+        }
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.8rem;
+        }
+        .tour-card {
+            padding: 0.85rem;
+            border: 1px solid rgba(34, 139, 34, 0.12);
+            border-radius: 8px;
+            background: #fff;
+        }
+        .tour-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .tour-title {
+            margin: 0;
+            color: #254332;
+            font-size: 1rem;
+        }
+        .detail-list {
+            display: grid;
+            gap: 0.55rem;
+        }
+        .detail-value {
+            display: block;
+            margin-top: 0.12rem;
+            color: #17251d;
+            font-weight: 650;
+            overflow-wrap: anywhere;
+        }
+        .event-list {
+            display: grid;
+            gap: 0.25rem;
+            margin: 0.2rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .event-list li {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #edf2ef;
+        }
+        .event-list li:last-child {
+            border-bottom: 0;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.55rem;
+            padding: 0.12rem 0.55rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 0.78rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .badge--pass {
+            color: #0f5f36;
+            background: #e5f6ec;
+            border-color: #b9e4ca;
+        }
+        .badge--warn {
+            color: #795300;
+            background: #fff4d8;
+            border-color: #ead18b;
+        }
+        .badge--error {
+            color: #8d1d1d;
+            background: #fde6e6;
+            border-color: #efb6b6;
+        }
+        .badge--info {
+            color: #184f75;
+            background: #e6f2fb;
+            border-color: #b8d8ed;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        th,
+        td {
+            padding: 0.58rem 0.5rem;
+            border-bottom: 1px solid #edf2ef;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            color: #53675b;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: #f8fbf9;
+        }
+        .table-wrap {
+            overflow-x: auto;
+        }
+        .empty,
+        .loading {
+            color: #67766c;
+            font-size: 0.92rem;
+        }
+        .issue-code {
+            color: #496254;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.82rem;
+        }
+        @media (max-width: 980px) {
+            .page-header,
+            .status-strip {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            body {
+                margin: 88px 0.8rem 1rem;
+            }
+            .logo {
+                height: 60px;
+                right: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-container"></div>
+<div class="menu" id="menu"></div>
+
+<header class="page-header">
+    <div>
+        <h1>Model Health</h1>
+        <p class="subtitle">Live checks for deployed model, status, schedule, archive, and results assets.</p>
+    </div>
+    <div class="header-links">
+        <a class="link" href="archive.html">Archive</a>
+        <a class="link" href="archive_accuracy.html">Accuracy</a>
+        <a class="link" href="status.json">Raw Status</a>
+    </div>
+</header>
+
+<section class="status-strip" aria-label="Overall model health">
+    <div>
+        <span class="badge badge--info" id="overallBadge">Loading</span>
+        <span class="muted" id="overallText">Reading deployed assets...</span>
+    </div>
+    <div class="muted" id="checkedAt"></div>
+</section>
+
+<section class="card">
+    <h2>Health Snapshot</h2>
+    <div class="metric-grid" id="summaryGrid">
+        <p class="loading">Loading health metrics...</p>
+    </div>
+</section>
+
+<main class="layout">
+    <div class="main-stack">
+        <section class="card">
+            <h2>Tour Model Assets</h2>
+            <div class="tour-grid" id="tourCards"></div>
+        </section>
+        <section class="card">
+            <h2>Open Findings</h2>
+            <div class="table-wrap" id="findingsWrap"></div>
+        </section>
+        <section class="card">
+            <h2>Recent Archive Checks</h2>
+            <div class="table-wrap" id="archiveWrap"></div>
+        </section>
+    </div>
+    <aside class="side-stack" aria-label="Supporting health data">
+        <section class="card">
+            <h3>Status Snapshot</h3>
+            <div class="detail-list" id="statusDetails"></div>
+        </section>
+        <section class="card">
+            <h3>Results Coverage</h3>
+            <div class="detail-list" id="resultsDetails"></div>
+        </section>
+        <section class="card">
+            <h3>Quick Links</h3>
+            <div class="pill-row">
+                <a class="pill" href="pga.html">PGA</a>
+                <a class="pill" href="euro.html">DP World</a>
+                <a class="pill" href="player.html">Players</a>
+                <a class="pill" href="odds_value.html">Odds &amp; Value</a>
+            </div>
+        </section>
+    </aside>
+</main>
+
+<script>
+    const TOURS = [
+        { code: "pga", label: "PGA Tour", shortLabel: "PGA" },
+        { code: "euro", label: "DP World Tour", shortLabel: "DP World" }
+    ];
+    const STATUS_AGE_HOURS = 24;
+    const ARCHIVE_LOOKBACK_DAYS = 45;
+    const MONTHS = {
+        jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+        jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+    };
+
+    const state = {
+        findings: [],
+        archiveRows: [],
+        tourSummaries: []
+    };
+
+    function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#39;"
+        }[char]));
+    }
+
+    function cacheBust(path) {
+        return `${path}${path.includes("?") ? "&" : "?"}v=${Date.now()}`;
+    }
+
+    function addFinding(severity, code, message, area = "site", path = "") {
+        state.findings.push({ severity, code, message, area, path });
+    }
+
+    async function loadJSON(path, fallback) {
+        try {
+            const response = await fetch(cacheBust(path), { cache: "no-store" });
+            if (!response.ok) {
+                addFinding("error", "missing-file", `${path} returned HTTP ${response.status}`, "asset", path);
+                return fallback;
+            }
+            return await response.json();
+        } catch (error) {
+            addFinding("error", "asset-load-failed", `${path} could not be loaded`, "asset", path);
+            return fallback;
+        }
+    }
+
+    async function fileExists(path) {
+        try {
+            const response = await fetch(cacheBust(path), { method: "HEAD", cache: "no-store" });
+            if (response.ok) return true;
+            if (response.status !== 405) return false;
+        } catch (_) {
+            // Some static hosts do not support HEAD consistently; retry with GET.
+        }
+        try {
+            const response = await fetch(cacheBust(path), { cache: "no-store" });
+            return response.ok;
+        } catch (_) {
+            return false;
+        }
+    }
+
+    function parseDate(value) {
+        if (!value) return null;
+        const raw = String(value).trim();
+        let match = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (match) return new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+        match = raw.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+        if (match) return new Date(Date.UTC(Number(match[3]), Number(match[2]) - 1, Number(match[1])));
+        const parsed = new Date(raw);
+        return Number.isNaN(parsed.valueOf()) ? null : parsed;
+    }
+
+    function parseDateTime(value) {
+        if (!value) return null;
+        const raw = String(value).trim();
+        const iso = raw.endsWith("Z") ? raw : raw.replace(" UTC", "Z");
+        let parsed = new Date(iso);
+        if (!Number.isNaN(parsed.valueOf())) return parsed;
+        const match = raw.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+        if (!match) return null;
+        const month = MONTHS[match[2].toLowerCase()];
+        if (!Number.isFinite(month)) return null;
+        parsed = new Date(Date.UTC(
+            Number(match[3]),
+            month,
+            Number(match[1]),
+            Number(match[4]),
+            Number(match[5]),
+            Number(match[6] || "0")
+        ));
+        return Number.isNaN(parsed.valueOf()) ? null : parsed;
+    }
+
+    function startOfUtcDay(date = new Date()) {
+        return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    }
+
+    function addDays(date, days) {
+        return new Date(date.valueOf() + days * 86400000);
+    }
+
+    function currentWindow(today = startOfUtcDay()) {
+        const mondayOffset = (today.getUTCDay() + 6) % 7;
+        const start = addDays(today, -mondayOffset);
+        const end = addDays(start, today.getUTCDay() === 0 ? 13 : 6);
+        return { start, end };
+    }
+
+    function formatDate(value) {
+        const date = value instanceof Date ? value : parseDate(value);
+        if (!date) return "-";
+        return date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+    }
+
+    function formatDateTime(value) {
+        const date = value instanceof Date ? value : parseDateTime(value);
+        if (!date) return "-";
+        return date.toLocaleString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZoneName: "short"
+        });
+    }
+
+    function formatAge(date) {
+        if (!date) return "-";
+        const hours = Math.max(0, Math.floor((Date.now() - date.valueOf()) / 3600000));
+        const days = Math.floor(hours / 24);
+        const remaining = hours % 24;
+        return days ? `${days}d ${remaining}h` : `${hours}h`;
+    }
+
+    function normalizeName(value) {
+        return String(value || "")
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/&/g, "and")
+            .replace(/\bthe\b/gi, "")
+            .replace(/[^a-z0-9]+/gi, " ")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase();
+    }
+
+    function currentScheduleEvents(schedule) {
+        const { start, end } = currentWindow();
+        return (Array.isArray(schedule) ? schedule : [])
+            .map(event => ({ ...event, parsedDate: parseDate(event.date || event.start_date) }))
+            .filter(event => event.parsedDate && event.parsedDate >= start && event.parsedDate <= end);
+    }
+
+    function publishedEvents(meta) {
+        const active = Array.isArray(meta?.active_events) ? meta.active_events : [];
+        if (active.length) {
+            return active
+                .filter(event => event && event.event_id && String(event.event_id) !== "0")
+                .map(event => ({
+                    event_id: String(event.event_id),
+                    event_name: event.event_name || `Event ${event.event_id}`,
+                    start_date: event.start_date || event.r1_date,
+                    has_predictions: Boolean(event.has_predictions)
+                }));
+        }
+        if (meta?.event_id && String(meta.event_id) !== "0") {
+            return [{
+                event_id: String(meta.event_id),
+                event_name: meta.event_name || `Event ${meta.event_id}`,
+                start_date: meta.start_date || meta.r1_date,
+                has_predictions: Boolean(meta.resources?.leaderboard)
+            }];
+        }
+        return [];
+    }
+
+    function statusEvents(status, tour) {
+        const run = status?.model_runs?.[tour] || {};
+        const events = Array.isArray(run.events) ? run.events : [];
+        if (events.length) return events;
+        if (run.event_id || run.event_name) {
+            return [{
+                event_id: run.event_id || "",
+                event_name: run.event_name || "",
+                start_date: null,
+                generated_utc: run.artifact_generated_utc || run.last_run_utc,
+                has_predictions: true
+            }];
+        }
+        return [];
+    }
+
+    function idsFromEvents(events) {
+        return new Set((events || []).map(event => String(event.event_id || "")).filter(id => id && id !== "0"));
+    }
+
+    function namesFromEvents(events, key = "event_name") {
+        return new Set((events || []).map(event => normalizeName(event[key] || event.event)).filter(Boolean));
+    }
+
+    function setDifference(left, right) {
+        return [...left].filter(item => !right.has(item));
+    }
+
+    function eventListHtml(events, emptyText, options = {}) {
+        if (!events.length) return `<span class="muted">${escapeHtml(emptyText)}</span>`;
+        return `
+            <ul class="event-list">
+                ${events.map(event => {
+                    const name = event.event_name || event.event || "Unknown event";
+                    const id = event.event_id ? ` (${event.event_id})` : "";
+                    const date = event.start_date || event.r1_date || event.date;
+                    const prediction = options.showPrediction && event.has_predictions === false ? " - no predictions" : "";
+                    return `<li>${escapeHtml(name)}${escapeHtml(id)}<br><span class="muted">${escapeHtml(formatDate(date))}${escapeHtml(prediction)}</span></li>`;
+                }).join("")}
+            </ul>
+        `;
+    }
+
+    function evaluateTours(status, metas, schedules) {
+        const summaries = [];
+        TOURS.forEach(tour => {
+            const current = currentScheduleEvents(schedules[tour.code] || []);
+            const published = publishedEvents(metas[tour.code] || {});
+            const statusRun = statusEvents(status, tour.code);
+            const currentNames = namesFromEvents(current, "event");
+            const publishedNames = namesFromEvents(published, "event_name");
+            const statusIds = idsFromEvents(statusRun);
+            const publishedIds = idsFromEvents(published);
+            const missingNames = setDifference(currentNames, publishedNames);
+            const extraPublishedNames = setDifference(publishedNames, currentNames);
+
+            if (current.length && missingNames.length) {
+                addFinding(
+                    "error",
+                    "active-event-mismatch",
+                    `${tour.shortLabel}: deployed schedule current event(s) do not match published model metadata`,
+                    tour.code,
+                    `${tour.code}/meta.json`
+                );
+            }
+            const noPrediction = published.filter(event => currentNames.has(normalizeName(event.event_name)) && !event.has_predictions);
+            if (noPrediction.length) {
+                addFinding(
+                    "error",
+                    "active-event-no-predictions",
+                    `${tour.shortLabel}: ${noPrediction.map(event => event.event_name).join(", ")} is published without predictions`,
+                    tour.code,
+                    `${tour.code}/meta.json`
+                );
+            }
+            if (!current.length && published.length) {
+                addFinding(
+                    "warning",
+                    "published-without-current-event",
+                    `${tour.shortLabel}: published model metadata exists but deployed schedule has no current-week event`,
+                    tour.code,
+                    `${tour.code}/meta.json`
+                );
+            }
+            if (statusIds.size && publishedIds.size && setDifference(statusIds, publishedIds).length + setDifference(publishedIds, statusIds).length > 0) {
+                addFinding(
+                    "warning",
+                    "status-model-run-mismatch",
+                    `${tour.shortLabel}: status event IDs do not match published model metadata`,
+                    tour.code,
+                    "status.json"
+                );
+            }
+
+            const matchedCount = current.length
+                ? current.filter(event => publishedNames.has(normalizeName(event.event))).length
+                : 0;
+            const errors = state.findings.filter(item => item.area === tour.code && item.severity === "error").length;
+            const warnings = state.findings.filter(item => item.area === tour.code && item.severity === "warning").length;
+            summaries.push({
+                tour,
+                current,
+                published,
+                statusRun,
+                matchedCount,
+                extraPublishedNames,
+                severity: errors ? "error" : warnings ? "warn" : "pass"
+            });
+        });
+        state.tourSummaries = summaries;
+        return summaries;
+    }
+
+    function shouldExpectResult(entry) {
+        const start = parseDate(entry.start_date);
+        if (!start) return false;
+        return addDays(start, 4) < startOfUtcDay();
+    }
+
+    async function evaluateArchive(archiveIndex, resultsSummary, schedules) {
+        const entries = Array.isArray(archiveIndex) ? archiveIndex : [];
+        if (!Array.isArray(archiveIndex)) {
+            addFinding("error", "archive-index-shape", "archive/index.json must be a list", "archive", "archive/index.json");
+        }
+        const byName = new Set(entries.map(entry => normalizeName(entry.event_name)).filter(Boolean));
+        const recentScheduleEvents = TOURS.flatMap(tour => (schedules[tour.code] || []).map(event => ({ ...event, tour: tour.code })))
+            .map(event => ({ ...event, parsedDate: parseDate(event.date || event.start_date) }))
+            .filter(event => event.parsedDate && event.parsedDate >= addDays(startOfUtcDay(), -ARCHIVE_LOOKBACK_DAYS))
+            .filter(event => addDays(event.parsedDate, 4) < startOfUtcDay());
+
+        recentScheduleEvents.forEach(event => {
+            const winner = String(event.winner || "").trim().toLowerCase();
+            const isComplete = winner && winner !== "tbd";
+            if (isComplete && !byName.has(normalizeName(event.event))) {
+                addFinding(
+                    "warning",
+                    "completed-event-missing-archive",
+                    `${event.tour.toUpperCase()}: ${event.event} is completed but missing from archive/index.json`,
+                    "archive",
+                    "archive/index.json"
+                );
+            }
+            if (!isComplete) {
+                addFinding(
+                    "warning",
+                    "past-event-still-pending",
+                    `${event.tour.toUpperCase()}: ${event.event} started ${formatDate(event.parsedDate)} but schedule winner is still TBD`,
+                    "archive",
+                    `${event.tour}/schedule.json`
+                );
+            }
+        });
+
+        const checks = await Promise.all(entries.map(async entry => {
+            const year = String(entry.year || "").trim();
+            const slug = String(entry.slug || "").trim();
+            const base = year && slug ? `archive/${year}/${slug}` : "";
+            const [hasLeaderboardJson, hasLeaderboardCsv, hasResults] = base
+                ? await Promise.all([
+                    fileExists(`${base}/leaderboard.json`),
+                    fileExists(`${base}/leaderboard.csv`),
+                    fileExists(`${base}/results.json`)
+                ])
+                : [false, false, false];
+            if (!year || !slug) {
+                addFinding("error", "archive-entry-path-missing", `${entry.event_name || entry.event_id || "Archive entry"} has no year/slug`, "archive", "archive/index.json");
+            } else if (!hasLeaderboardJson && !hasLeaderboardCsv) {
+                addFinding("error", "archive-leaderboard-missing", `${entry.event_name || entry.event_id} has no archive leaderboard JSON or CSV`, "archive", base);
+            }
+            if (shouldExpectResult(entry) && !hasResults) {
+                addFinding("warning", "archive-results-missing", `${entry.event_name || entry.event_id} has no results.json`, "archive", base);
+            }
+            return { entry, base, hasLeaderboard: hasLeaderboardJson || hasLeaderboardCsv, hasResults };
+        }));
+        state.archiveRows = checks
+            .slice()
+            .sort((a, b) => String(b.entry.start_date || "").localeCompare(String(a.entry.start_date || "")))
+            .slice(0, 10);
+
+        const resultSummaryCount = resultsSummary && typeof resultsSummary === "object" ? Object.keys(resultsSummary).length : 0;
+        const resultChecks = checks.filter(row => row.hasResults).length;
+        const completedArchiveChecks = checks.filter(row => shouldExpectResult(row.entry)).length;
+        const latestArchive = entries
+            .map(entry => parseDateTime(entry.initial_snapshot_created_utc || entry.archived_at))
+            .filter(Boolean)
+            .sort((a, b) => b - a)[0] || null;
+        const latestResultEntry = checks
+            .filter(row => row.hasResults)
+            .map(row => row.entry)
+            .sort((a, b) => String(b.start_date || "").localeCompare(String(a.start_date || "")))[0] || null;
+
+        return {
+            total: entries.length,
+            resultSummaryCount,
+            resultChecks,
+            completedArchiveChecks,
+            missingLeaderboards: checks.filter(row => !row.hasLeaderboard).length,
+            missingResults: checks.filter(row => shouldExpectResult(row.entry) && !row.hasResults).length,
+            latestArchive,
+            latestResultEntry
+        };
+    }
+
+    function severityClass(severity) {
+        if (severity === "error") return "badge--error";
+        if (severity === "warning" || severity === "warn") return "badge--warn";
+        if (severity === "pass") return "badge--pass";
+        return "badge--info";
+    }
+
+    function severityLabel(severity) {
+        if (severity === "error") return "Error";
+        if (severity === "warning" || severity === "warn") return "Warning";
+        if (severity === "pass") return "Healthy";
+        return "Info";
+    }
+
+    function metric(label, value, note = "") {
+        return `
+            <div class="metric">
+                <span class="metric-label">${escapeHtml(label)}</span>
+                <span class="metric-value">${escapeHtml(value)}</span>
+                ${note ? `<span class="metric-note">${escapeHtml(note)}</span>` : ""}
+            </div>
+        `;
+    }
+
+    function renderSummary(status, archiveMetrics, tourSummaries) {
+        const errors = state.findings.filter(item => item.severity === "error").length;
+        const warnings = state.findings.filter(item => item.severity === "warning").length;
+        const overall = errors ? "error" : warnings ? "warn" : "pass";
+        const statusUpdated = parseDateTime(status?.updated_at_utc);
+        const scheduled = tourSummaries.reduce((total, item) => total + item.current.length, 0);
+        const matched = tourSummaries.reduce((total, item) => total + item.matchedCount, 0);
+
+        document.getElementById("overallBadge").className = `badge ${severityClass(overall)}`;
+        document.getElementById("overallBadge").textContent = severityLabel(overall);
+        document.getElementById("overallText").textContent = errors
+            ? `${errors} error(s), ${warnings} warning(s)`
+            : warnings
+                ? `${warnings} warning(s)`
+                : "No open findings";
+        document.getElementById("checkedAt").textContent = `Checked ${formatDateTime(new Date())}`;
+
+        document.getElementById("summaryGrid").innerHTML = [
+            metric("Status Age", formatAge(statusUpdated), statusUpdated ? `Updated ${formatDateTime(statusUpdated)}` : "No status timestamp"),
+            metric("Current Models", `${matched}/${scheduled}`, "Current schedule events matched by name"),
+            metric("Archive Entries", String(archiveMetrics.total), `${archiveMetrics.missingLeaderboards} missing leaderboards`),
+            metric("Results Files", `${archiveMetrics.resultChecks}/${archiveMetrics.completedArchiveChecks}`, `${archiveMetrics.missingResults} missing expected results`),
+            metric("Results Summary", String(archiveMetrics.resultSummaryCount), "Entries in archive/results_summary.json"),
+            metric("Latest Archive", archiveMetrics.latestArchive ? formatDate(archiveMetrics.latestArchive) : "-", archiveMetrics.latestArchive ? formatDateTime(archiveMetrics.latestArchive) : "No archive timestamp")
+        ].join("");
+    }
+
+    function renderTours(tourSummaries) {
+        document.getElementById("tourCards").innerHTML = tourSummaries.map(summary => `
+            <article class="tour-card">
+                <div class="tour-header">
+                    <h3 class="tour-title">${escapeHtml(summary.tour.label)}</h3>
+                    <span class="badge ${severityClass(summary.severity)}">${severityLabel(summary.severity)}</span>
+                </div>
+                <div class="detail-list">
+                    <div>
+                        <span class="detail-label">Current Schedule</span>
+                        <span class="detail-value">${eventListHtml(summary.current, "No current-week event")}</span>
+                    </div>
+                    <div>
+                        <span class="detail-label">Published Model</span>
+                        <span class="detail-value">${eventListHtml(summary.published, "No published model", { showPrediction: true })}</span>
+                    </div>
+                    <div>
+                        <span class="detail-label">Status Snapshot</span>
+                        <span class="detail-value">${eventListHtml(summary.statusRun, "No status model run", { showPrediction: true })}</span>
+                    </div>
+                </div>
+            </article>
+        `).join("");
+    }
+
+    function renderFindings() {
+        const wrap = document.getElementById("findingsWrap");
+        if (!state.findings.length) {
+            wrap.innerHTML = '<p class="empty">No findings.</p>';
+            return;
+        }
+        const severityRank = { error: 0, warning: 1, info: 2 };
+        const rows = state.findings.slice().sort((a, b) => (severityRank[a.severity] ?? 3) - (severityRank[b.severity] ?? 3));
+        wrap.innerHTML = `
+            <table>
+                <thead><tr><th>Status</th><th>Code</th><th>Area</th><th>Finding</th><th>Path</th></tr></thead>
+                <tbody>
+                    ${rows.map(row => `
+                        <tr>
+                            <td><span class="badge ${severityClass(row.severity)}">${escapeHtml(severityLabel(row.severity))}</span></td>
+                            <td class="issue-code">${escapeHtml(row.code)}</td>
+                            <td>${escapeHtml(row.area)}</td>
+                            <td>${escapeHtml(row.message)}</td>
+                            <td class="issue-code">${escapeHtml(row.path || "-")}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        `;
+    }
+
+    function renderArchive() {
+        const wrap = document.getElementById("archiveWrap");
+        if (!state.archiveRows.length) {
+            wrap.innerHTML = '<p class="empty">No archive entries found.</p>';
+            return;
+        }
+        wrap.innerHTML = `
+            <table>
+                <thead><tr><th>Event</th><th>Tour</th><th>Start</th><th>Leaderboard</th><th>Results</th></tr></thead>
+                <tbody>
+                    ${state.archiveRows.map(row => `
+                        <tr>
+                            <td>${row.base ? `<a href="${escapeHtml(row.base)}/model_page.html">${escapeHtml(row.entry.event_name || "-")}</a>` : escapeHtml(row.entry.event_name || "-")}</td>
+                            <td>${escapeHtml(String(row.entry.tour || "-").toUpperCase())}</td>
+                            <td>${escapeHtml(formatDate(row.entry.start_date))}</td>
+                            <td><span class="badge ${row.hasLeaderboard ? "badge--pass" : "badge--error"}">${row.hasLeaderboard ? "Found" : "Missing"}</span></td>
+                            <td><span class="badge ${row.hasResults ? "badge--pass" : shouldExpectResult(row.entry) ? "badge--warn" : "badge--info"}">${row.hasResults ? "Found" : shouldExpectResult(row.entry) ? "Missing" : "Pending"}</span></td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        `;
+    }
+
+    function detail(label, value, note = "") {
+        return `
+            <div>
+                <span class="detail-label">${escapeHtml(label)}</span>
+                <span class="detail-value">${escapeHtml(value)}</span>
+                ${note ? `<span class="muted">${escapeHtml(note)}</span>` : ""}
+            </div>
+        `;
+    }
+
+    function renderSideDetails(status, archiveMetrics) {
+        const statusUpdated = parseDateTime(status?.updated_at_utc);
+        const schedule = status?.schedule || {};
+        document.getElementById("statusDetails").innerHTML = [
+            detail("Updated", formatDateTime(statusUpdated), statusUpdated ? `${formatAge(statusUpdated)} old` : ""),
+            detail("Schedule Refresh", formatDateTime(schedule.last_refreshed_utc), schedule.event_count ? `${schedule.event_count} schedule events` : ""),
+            detail("Betting Data", formatDateTime(status?.betting_data?.last_modified), status?.betting_data?.timestamp_source || "")
+        ].join("");
+
+        document.getElementById("resultsDetails").innerHTML = [
+            detail("Result Files", `${archiveMetrics.resultChecks}/${archiveMetrics.completedArchiveChecks}`, "Completed archive entries with results.json"),
+            detail("Latest Result Event", archiveMetrics.latestResultEntry?.event_name || "-", archiveMetrics.latestResultEntry ? formatDate(archiveMetrics.latestResultEntry.start_date) : ""),
+            detail("Results Summary", `${archiveMetrics.resultSummaryCount} entries`, "archive/results_summary.json")
+        ].join("");
+    }
+
+    async function init() {
+        const [status, pgaMeta, euroMeta, pgaSchedule, euroSchedule, archiveIndex, resultsSummary] = await Promise.all([
+            loadJSON("status.json", {}),
+            loadJSON("pga/meta.json", {}),
+            loadJSON("euro/meta.json", {}),
+            loadJSON("pga/schedule.json", []),
+            loadJSON("euro/schedule.json", []),
+            loadJSON("archive/index.json", []),
+            loadJSON("archive/results_summary.json", {})
+        ]);
+
+        const statusUpdated = parseDateTime(status?.updated_at_utc);
+        if (!statusUpdated) {
+            addFinding("warning", "status-updated-missing", "status.json has no parseable updated_at_utc", "status", "status.json");
+        } else {
+            const ageHours = (Date.now() - statusUpdated.valueOf()) / 3600000;
+            if (ageHours > STATUS_AGE_HOURS) {
+                addFinding("warning", "status-stale", `status.json is ${formatAge(statusUpdated)} old`, "status", "status.json");
+            }
+        }
+
+        const metas = { pga: pgaMeta, euro: euroMeta };
+        const schedules = { pga: pgaSchedule, euro: euroSchedule };
+        const tourSummaries = evaluateTours(status, metas, schedules);
+        const archiveMetrics = await evaluateArchive(archiveIndex, resultsSummary, schedules);
+
+        renderSummary(status, archiveMetrics, tourSummaries);
+        renderTours(tourSummaries);
+        renderFindings();
+        renderArchive();
+        renderSideDetails(status, archiveMetrics);
+    }
+
+    init().catch(error => {
+        addFinding("error", "health-page-error", error.message || String(error), "page", "model_health.html");
+        renderFindings();
+        document.getElementById("overallBadge").className = "badge badge--error";
+        document.getElementById("overallBadge").textContent = "Error";
+        document.getElementById("overallText").textContent = "Model health page failed to load.";
+    });
+
+    fetch("menu.html?v=20260417").then(response => response.text()).then(html => document.getElementById("menu").innerHTML = html);
+</script>
+</body>
+</html>

@@ -19,6 +19,7 @@
                 { label: 'Player Drilldown', href: 'player.html' },
                 { label: 'Prediction Archives', href: 'archive.html' },
                 { label: 'Accuracy Dashboards', href: 'archive_accuracy.html' },
+                { label: 'Model Health', href: 'model_health.html' },
                 { label: 'Calibration Dashboard', href: 'calibration_dashboard.html' }
             ]
         },
