@@ -221,6 +221,52 @@
             padding-bottom: 0.95rem;
             border-bottom: 1px solid rgba(26, 55, 40, 0.12);
         }
+        .tour-event-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0 0 1rem;
+            padding: 0.35rem;
+            border: 1px solid rgba(26, 55, 40, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.72);
+        }
+        .tour-event-switcher__button {
+            flex: 1 1 12rem;
+            min-height: 2.55rem;
+            padding: 0.45rem 0.8rem;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            background: transparent;
+            color: #315b3f;
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 750;
+            line-height: 1.25;
+            text-align: center;
+            transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+        }
+        .tour-event-switcher__button:hover,
+        .tour-event-switcher__button:focus-visible {
+            border-color: rgba(29, 124, 66, 0.28);
+            background: rgba(29, 124, 66, 0.08);
+            color: var(--gm-primary-dark);
+            outline: none;
+        }
+        .tour-event-switcher__button[aria-selected="true"] {
+            border-color: rgba(29, 124, 66, 0.42);
+            background: linear-gradient(135deg, var(--tour-accent), var(--tour-accent-secondary));
+            color: #ffffff;
+            box-shadow: 0 12px 26px -20px var(--tour-accent);
+        }
+        .tour-preview__loading {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #5b7062;
+            min-height: 3rem;
+        }
         .tour-brand {
             display: flex;
             align-items: center;
@@ -723,6 +769,7 @@
     };
 
     let bettingRowsCache = null;
+    const homePreviewState = {};
 
     const bettingEmptyStatePlugin = {
         id: 'bettingEmptyState',
@@ -1271,66 +1318,209 @@
         return `<div class="weather-snippet-grid">${cards}${renderWaveWeatherSnippet(waveRows)}</div>`;
     }
 
-    async function loadSummary(tour) {
+    function tourRootResources(tour) {
+        return {
+            meta: `${tour}/meta.json`,
+            tournament_summary: `${tour}/tournament_summary.json`,
+            leaderboard: `${tour}/leaderboard.json`,
+            weather_round_neutral: `${tour}/weather_round_neutral.json`,
+            weather_round_wave: `${tour}/weather_round_wave.json`
+        };
+    }
+
+    function normalizeTourEvents(tour, meta) {
+        const activeEvents = Array.isArray(meta?.active_events) ? meta.active_events : [];
+        if (activeEvents.length) {
+            return activeEvents.map((event, index) => {
+                const eventId = String(event.event_id ?? event.id ?? index);
+                const eventDir = event.event_dir || event.resources?.primary_event_dir || `${tour}/events/event_${eventId}`;
+                return {
+                    ...event,
+                    event_id: eventId,
+                    event_name: event.event_name || `Event ${eventId}`,
+                    resources: {
+                        ...tourRootResources(tour),
+                        ...(event.resources || {}),
+                        meta: event.resources?.meta || `${eventDir}/meta.json`,
+                        leaderboard: event.resources?.leaderboard || `${eventDir}/leaderboard.json`,
+                        tournament_summary: event.resources?.tournament_summary || `${eventDir}/tournament_summary.json`,
+                        weather_round_neutral: event.resources?.weather_round_neutral || `${eventDir}/weather_round_neutral.json`,
+                        weather_round_wave: event.resources?.weather_round_wave || `${eventDir}/weather_round_wave.json`
+                    }
+                };
+            });
+        }
+
+        const eventId = String(meta?.event_id ?? '0');
+        return [{
+            event_id: eventId,
+            event_name: meta?.event_name || (eventId === '0' ? 'No Event' : `Event ${eventId}`),
+            resources: {
+                ...tourRootResources(tour),
+                ...(meta?.resources || {})
+            }
+        }];
+    }
+
+    async function fetchPreviewJson(path, fallback) {
+        if (!path) return fallback;
         try {
             const cacheBust = Date.now();
-            const [meta, tournament, leaderboard, weather, waveWeather] = await Promise.all([
-                fetch(`${tour}/meta.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()),
-                fetch(`${tour}/tournament_summary.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => ({})),
-                fetch(`${tour}/leaderboard.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => []),
-                fetch(`${tour}/weather_round_neutral.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => []),
-                fetch(`${tour}/weather_round_wave.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json()).catch(() => [])
-            ]);
+            const response = await fetch(`${path}?v=${cacheBust}`, { cache: 'no-store' });
+            if (!response.ok) return fallback;
+            return await response.json();
+        } catch (e) {
+            return fallback;
+        }
+    }
 
-            const eventName = meta.event_name || 'Unknown Event';
-            const startDate = tournament.start_date || 'TBD';
-            const course = tournament.course || 'Unknown Course';
-            const courseDetailsHref = course && course !== 'Unknown Course'
-                ? `course_details.html?course=${encodeURIComponent(course)}`
-                : 'course_details.html';
-            const fieldSize = tournament.field_size || 'N/A';
-            const teeTimesAvailable = formatTeeTimesAvailable(meta);
-            const winners = tournament.previous_winners || [];
-            let winnerName = winners.length ? winners[0].winner : '';
-            if (winnerName.includes(',')) {
-                const parts = winnerName.split(', ');
-                if (parts.length === 2) {
-                    winnerName = `${parts[1]} ${parts[0]}`;
-                }
-            }
-            const previousWinner = winners.length ? `${winnerName} (${winners[0].score})` : 'N/A';
-
+    function renderTourEventSwitcher(tour, events, selectedId) {
+        if (!Array.isArray(events) || events.length <= 1) {
+            return '';
+        }
+        const controlsId = `${tour}-preview-body`;
+        const buttons = events.map(event => {
+            const eventId = String(event.event_id);
+            const selected = eventId === String(selectedId);
             return `
-                <div class="tour-summary-grid">
-                    <div class="tour-summary-panel tour-summary-details">
-                        <div class="tour-summary-detail">
-                            <span class="tour-summary-detail__icon"><i class="fas fa-flag" aria-hidden="true"></i></span>
-                            <span><span class="tour-summary-detail__label">Event</span><span class="tour-summary-detail__value">${escapeHtml(eventName)}</span></span>
-                        </div>
-                        <div class="tour-summary-detail">
-                            <span class="tour-summary-detail__icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></span>
-                            <span><span class="tour-summary-detail__label">Start Date</span><span class="tour-summary-detail__value">${escapeHtml(startDate)}</span></span>
-                        </div>
-                        <div class="tour-summary-detail">
-                            <span class="tour-summary-detail__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
-                            <span><span class="tour-summary-detail__label">Course</span><span class="tour-summary-detail__value"><a class="tour-summary-detail__link" href="${courseDetailsHref}">${escapeHtml(course)}</a></span></span>
-                        </div>
-                        <div class="tour-summary-detail">
-                            <span class="tour-summary-detail__icon"><i class="fas fa-users" aria-hidden="true"></i></span>
-                            <span><span class="tour-summary-detail__label">Field / Tee Times</span><span class="tour-summary-detail__value">${escapeHtml(fieldSize)} players | ${escapeHtml(teeTimesAvailable)}</span></span>
-                        </div>
-                        <div class="tour-summary-detail">
-                            <span class="tour-summary-detail__icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>
-                            <span><span class="tour-summary-detail__label">Previous Winner</span><span class="tour-summary-detail__value">${escapeHtml(previousWinner)}</span></span>
-                        </div>
+                <button
+                    class="tour-event-switcher__button"
+                    type="button"
+                    role="tab"
+                    aria-selected="${selected ? 'true' : 'false'}"
+                    aria-controls="${controlsId}"
+                    data-tour="${escapeHtml(tour)}"
+                    data-event-id="${escapeHtml(eventId)}"
+                    title="${escapeHtml(event.event_name || `Event ${eventId}`)}"
+                >${escapeHtml(event.event_name || `Event ${eventId}`)}</button>
+            `;
+        }).join('');
+        return `<div class="tour-event-switcher" role="tablist" aria-label="${escapeHtml(tour.toUpperCase())} tournament previews">${buttons}</div>`;
+    }
+
+    function renderTourPreviewContent({ meta, tournament, leaderboard, weather, waveWeather }) {
+        const eventName = meta.event_name || tournament.event_name || 'Unknown Event';
+        const startDate = tournament.start_date || meta.start_date || meta.r1_date || 'TBD';
+        const course = tournament.course || 'Unknown Course';
+        const courseDetailsHref = course && course !== 'Unknown Course'
+            ? `course_details.html?course=${encodeURIComponent(course)}`
+            : 'course_details.html';
+        const fieldSize = tournament.field_size || 'N/A';
+        const teeTimesAvailable = formatTeeTimesAvailable(meta);
+        const winners = tournament.previous_winners || [];
+        let winnerName = winners.length ? winners[0].winner : '';
+        if (winnerName.includes(',')) {
+            const parts = winnerName.split(', ');
+            if (parts.length === 2) {
+                winnerName = `${parts[1]} ${parts[0]}`;
+            }
+        }
+        const previousWinner = winners.length ? `${winnerName} (${winners[0].score})` : 'N/A';
+
+        return `
+            <div class="tour-summary-grid">
+                <div class="tour-summary-panel tour-summary-details">
+                    <div class="tour-summary-detail">
+                        <span class="tour-summary-detail__icon"><i class="fas fa-flag" aria-hidden="true"></i></span>
+                        <span><span class="tour-summary-detail__label">Event</span><span class="tour-summary-detail__value">${escapeHtml(eventName)}</span></span>
                     </div>
-                    <div class="tour-summary-panel home-snippet model-summary-snippet">
-                        <div class="home-snippet-title"><i class="fas fa-chart-line" aria-hidden="true"></i>Model Top 5</div>
-                        ${renderModelSnippet(leaderboard)}
+                    <div class="tour-summary-detail">
+                        <span class="tour-summary-detail__icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></span>
+                        <span><span class="tour-summary-detail__label">Start Date</span><span class="tour-summary-detail__value">${escapeHtml(startDate)}</span></span>
                     </div>
-                    <div class="tour-summary-panel home-snippet weather-summary-snippet">
-                        <div class="home-snippet-title"><i class="fas fa-cloud-sun" aria-hidden="true"></i>Weather Summary</div>
-                        ${renderWeatherSnippet(weather, waveWeather)}
+                    <div class="tour-summary-detail">
+                        <span class="tour-summary-detail__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+                        <span><span class="tour-summary-detail__label">Course</span><span class="tour-summary-detail__value"><a class="tour-summary-detail__link" href="${courseDetailsHref}">${escapeHtml(course)}</a></span></span>
+                    </div>
+                    <div class="tour-summary-detail">
+                        <span class="tour-summary-detail__icon"><i class="fas fa-users" aria-hidden="true"></i></span>
+                        <span><span class="tour-summary-detail__label">Field / Tee Times</span><span class="tour-summary-detail__value">${escapeHtml(fieldSize)} players | ${escapeHtml(teeTimesAvailable)}</span></span>
+                    </div>
+                    <div class="tour-summary-detail">
+                        <span class="tour-summary-detail__icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>
+                        <span><span class="tour-summary-detail__label">Previous Winner</span><span class="tour-summary-detail__value">${escapeHtml(previousWinner)}</span></span>
+                    </div>
+                </div>
+                <div class="tour-summary-panel home-snippet model-summary-snippet">
+                    <div class="home-snippet-title"><i class="fas fa-chart-line" aria-hidden="true"></i>Model Top 5</div>
+                    ${renderModelSnippet(leaderboard)}
+                </div>
+                <div class="tour-summary-panel home-snippet weather-summary-snippet">
+                    <div class="home-snippet-title"><i class="fas fa-cloud-sun" aria-hidden="true"></i>Weather Summary</div>
+                    ${renderWeatherSnippet(weather, waveWeather)}
+                </div>
+            </div>
+        `;
+    }
+
+    async function loadTourPreviewEvent(tour, event) {
+        const state = homePreviewState[tour];
+        const eventId = String(event.event_id);
+        if (state.cache[eventId]) {
+            return state.cache[eventId];
+        }
+
+        const resources = {
+            ...tourRootResources(tour),
+            ...(event.resources || {})
+        };
+        const [eventMeta, tournament, leaderboard, weather, waveWeather] = await Promise.all([
+            fetchPreviewJson(resources.meta, null),
+            fetchPreviewJson(resources.tournament_summary, {}),
+            fetchPreviewJson(resources.leaderboard, []),
+            fetchPreviewJson(resources.weather_round_neutral, []),
+            fetchPreviewJson(resources.weather_round_wave, [])
+        ]);
+        const baseMeta = { ...(state.meta || {}) };
+        delete baseMeta.active_events;
+        const meta = {
+            ...baseMeta,
+            ...(event || {}),
+            ...(eventMeta || {}),
+            event_id: eventId,
+            event_name: event.event_name || eventMeta?.event_name || state.meta?.event_name
+        };
+        const previewData = { meta, tournament, leaderboard, weather, waveWeather };
+        state.cache[eventId] = previewData;
+        return previewData;
+    }
+
+    async function switchTourPreview(tour, eventId) {
+        const state = homePreviewState[tour];
+        if (!state) return;
+        const event = state.events.find(item => String(item.event_id) === String(eventId)) || state.events[0];
+        if (!event) return;
+
+        const body = document.getElementById(`${tour}-preview-body`);
+        if (!body) return;
+        state.selectedId = String(event.event_id);
+        document.querySelectorAll(`.tour-event-switcher__button[data-tour="${tour}"]`).forEach(button => {
+            button.setAttribute('aria-selected', String(button.dataset.eventId === state.selectedId));
+        });
+        body.innerHTML = '<div class="tour-preview__loading"><span class="spinner"></span><span>Loading...</span></div>';
+        const previewData = await loadTourPreviewEvent(tour, event);
+        body.innerHTML = renderTourPreviewContent(previewData);
+    }
+
+    async function loadSummary(tour) {
+        try {
+            const meta = await fetchPreviewJson(`${tour}/meta.json`, {});
+            const events = normalizeTourEvents(tour, meta);
+            const selected = events[0];
+            homePreviewState[tour] = {
+                meta,
+                events,
+                selectedId: selected ? String(selected.event_id) : null,
+                cache: {}
+            };
+            const previewData = selected
+                ? await loadTourPreviewEvent(tour, selected)
+                : { meta: meta || {}, tournament: {}, leaderboard: [], weather: [], waveWeather: [] };
+            return `
+                <div class="tour-preview" data-tour-preview="${escapeHtml(tour)}">
+                    ${renderTourEventSwitcher(tour, events, homePreviewState[tour].selectedId)}
+                    <div id="${escapeHtml(tour)}-preview-body" class="tour-preview__body" role="tabpanel">
+                        ${renderTourPreviewContent(previewData)}
                     </div>
                 </div>
             `;
@@ -1338,6 +1528,13 @@
             return 'Summary unavailable. Please build assets first.';
         }
     }
+
+    document.addEventListener('click', event => {
+        const target = event.target instanceof Element ? event.target : null;
+        const button = target?.closest('.tour-event-switcher__button[data-tour][data-event-id]');
+        if (!button) return;
+        switchTourPreview(button.dataset.tour, button.dataset.eventId);
+    });
 
     async function loadUpcomingEvents() {
         try {
