@@ -849,10 +849,16 @@
         return [];
     }
 
-    async function loadArchiveAppearances(playerName, tour) {
+    function displayArchiveTour(tour) {
+        const key = String(tour || "").toLowerCase();
+        if (key === "pga") return "PGA";
+        if (key === "euro") return "DP World";
+        return tour || "-";
+    }
+
+    async function loadArchiveAppearances(playerName) {
         const index = await loadArchiveIndex();
         const rows = index
-            .filter(entry => !tour || String(entry.tour || "").toLowerCase() === tour)
             .filter(entry => entry.year && entry.slug)
             .sort((a, b) => String(b.start_date || "").localeCompare(String(a.start_date || "")))
             .slice(0, 40);
@@ -880,6 +886,7 @@
                 <thead>
                     <tr>
                         <th>Event</th>
+                        <th>Tour</th>
                         <th>Date</th>
                         <th class="num">Win</th>
                         <th class="num">Top 10</th>
@@ -894,6 +901,7 @@
                         return `
                             <tr>
                                 <td><a class="text-link" href="${base}/model_page.html">${escapeHtml(entry.event_name || "-")}</a></td>
+                                <td>${escapeHtml(displayArchiveTour(entry.tour))}</td>
                                 <td>${escapeHtml(displayDate(entry.start_date))}</td>
                                 <td class="num">${fmtPct(player["p_win_%"])}</td>
                                 <td class="num">${fmtPct(player["p_top10_%"])}</td>
@@ -968,7 +976,7 @@
         renderQuickLinks(context, playerName);
         const [betRows, archiveRows] = await Promise.all([
             loadBettingRows(playerName),
-            loadArchiveAppearances(playerName, tour)
+            loadArchiveAppearances(playerName)
         ]);
         renderBetting(playerName, betRows);
         renderArchiveRows(archiveRows);
