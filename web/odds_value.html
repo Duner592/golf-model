@@ -806,6 +806,7 @@
         bets: [],
         enriched: [],
         models: {},
+        currentModels: [],
         archiveModels: [],
         filters: {
             source: 'pending',
@@ -1128,30 +1129,85 @@
         return map;
     }
 
-    function modelLooksCurrent(localModel, remoteModel) {
-        if (!remoteModel || remoteModel.error) return true;
-        if (!localModel || localModel.error) return false;
-        if (normalizeText(localModel.eventName) === normalizeText(remoteModel.eventName)) return true;
-        if (normalizeText(localModel.eventName) === 'no event') return false;
-        if (!localModel.leaderboard.length && remoteModel.leaderboard.length) return false;
-        const localDate = parseBuildTimestamp(localModel.generatedUtc);
-        const remoteDate = parseBuildTimestamp(remoteModel.generatedUtc);
+    function availableModels(models) {
+        return (Array.isArray(models) ? models : []).filter(model => model && !model.error);
+    }
+
+    function modelEventSet(models) {
+        return new Set(availableModels(models)
+            .map(model => normalizeText(model.eventName))
+            .filter(Boolean));
+    }
+
+    function latestModelTimestamp(models) {
+        const timestamps = availableModels(models)
+            .map(model => parseBuildTimestamp(model.generatedUtc))
+            .filter(Number.isFinite);
+        return timestamps.length ? Math.max(...timestamps) : NaN;
+    }
+
+    function modelsLookCurrent(localModels, remoteModels) {
+        const remoteAvailable = availableModels(remoteModels);
+        if (!remoteAvailable.length) return true;
+        const localAvailable = availableModels(localModels);
+        if (!localAvailable.length) return false;
+
+        const localEvents = modelEventSet(localAvailable);
+        const remoteEvents = modelEventSet(remoteAvailable);
+        const remoteHasRealEvent = Array.from(remoteEvents).some(name => name && name !== 'no event');
+        if (remoteHasRealEvent) {
+            if (localEvents.has('no event')) return false;
+            for (const eventName of remoteEvents) {
+                if (!localEvents.has(eventName)) return false;
+            }
+        }
+
+        const localDate = latestModelTimestamp(localAvailable);
+        const remoteDate = latestModelTimestamp(remoteAvailable);
         if (Number.isFinite(localDate) && Number.isFinite(remoteDate)) {
             return localDate >= remoteDate;
         }
         return true;
     }
 
-    async function loadModelSource(tour, options = {}) {
+    async function fetchOptionalJson(path, options = {}) {
+        if (!path) return null;
         try {
-            const meta = await fetchJson(`${tour}/meta.json`, options);
-            const leaderboardPath = meta?.resources?.leaderboard || `${tour}/leaderboard.json`;
-            const leaderboard = await fetchJson(leaderboardPath, options);
+            return await fetchJson(path, options);
+        } catch (_) {
+            return null;
+        }
+    }
+
+    function modelEventsFromMeta(meta) {
+        const activeEvents = Array.isArray(meta?.active_events)
+            ? meta.active_events.filter(event => event && event.has_predictions !== false)
+            : [];
+        if (activeEvents.length) return activeEvents;
+        return [{
+            event_id: meta?.event_id || '',
+            event_name: meta?.event_name || 'Unknown event',
+            generated_utc: meta?.generated_utc || '',
+            resources: meta?.resources || {}
+        }];
+    }
+
+    async function loadModelEventSource(tour, meta, event, options = {}) {
+        const resources = {
+            ...(meta?.resources || {}),
+            ...(event?.resources || {})
+        };
+        const leaderboardPath = resources.leaderboard || `${tour}/leaderboard.json`;
+        try {
+            const [eventMeta, leaderboard] = await Promise.all([
+                fetchOptionalJson(resources.meta, options),
+                fetchJson(leaderboardPath, options)
+            ]);
             return {
                 tour,
-                eventName: meta?.event_name || 'Unknown event',
-                eventId: meta?.event_id || '',
-                generatedUtc: meta?.generated_utc || '',
+                eventName: eventMeta?.event_name || event?.event_name || meta?.event_name || 'Unknown event',
+                eventId: eventMeta?.event_id || event?.event_id || meta?.event_id || '',
+                generatedUtc: eventMeta?.generated_utc || event?.generated_utc || meta?.generated_utc || '',
                 leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
                 playerMap: buildPlayerMap(leaderboard),
                 source: options.remote ? 'published site' : 'local files',
@@ -1160,9 +1216,9 @@
         } catch (error) {
             return {
                 tour,
-                eventName: 'Unavailable',
-                eventId: '',
-                generatedUtc: '',
+                eventName: event?.event_name || meta?.event_name || 'Unavailable',
+                eventId: event?.event_id || meta?.event_id || '',
+                generatedUtc: event?.generated_utc || meta?.generated_utc || '',
                 leaderboard: [],
                 playerMap: new Map(),
                 source: options.remote ? 'published site' : 'local files',
@@ -1172,13 +1228,33 @@
         }
     }
 
-    async function loadTourModel(tour) {
-        const localModel = await loadModelSource(tour);
-        if (!isLocalPreview()) {
-            return localModel;
+    async function loadModelSource(tour, options = {}) {
+        try {
+            const meta = await fetchJson(`${tour}/meta.json`, options);
+            const events = modelEventsFromMeta(meta);
+            return Promise.all(events.map(event => loadModelEventSource(tour, meta, event, options)));
+        } catch (error) {
+            return [{
+                tour,
+                eventName: 'Unavailable',
+                eventId: '',
+                generatedUtc: '',
+                leaderboard: [],
+                playerMap: new Map(),
+                source: options.remote ? 'published site' : 'local files',
+                remote: Boolean(options.remote),
+                error
+            }];
         }
-        const remoteModel = await loadModelSource(tour, { remote: true });
-        return modelLooksCurrent(localModel, remoteModel) ? localModel : remoteModel;
+    }
+
+    async function loadTourModels(tour) {
+        const localModels = await loadModelSource(tour);
+        if (!isLocalPreview()) {
+            return localModels;
+        }
+        const remoteModels = await loadModelSource(tour, { remote: true });
+        return modelsLookCurrent(localModels, remoteModels) ? localModels : remoteModels;
     }
 
     async function loadArchiveModels(year = '2026') {
@@ -1228,11 +1304,14 @@
         const tournament = row.Tournament || '';
         const playerKey = normalizePlayerName(row.Player);
         const candidates = [];
-        const currentModels = [];
-        if (preferredTour && state.models[preferredTour]) currentModels.push(state.models[preferredTour]);
-        Object.values(state.models).forEach((model) => {
-            if (!currentModels.includes(model)) currentModels.push(model);
-        });
+        const allCurrentModels = state.currentModels.length
+            ? state.currentModels
+            : Object.values(state.models).filter(Boolean);
+        const preferredCurrentModels = preferredTour
+            ? allCurrentModels.filter(model => String(model?.tour || '').toLowerCase() === preferredTour)
+            : [];
+        const otherCurrentModels = allCurrentModels.filter(model => !preferredCurrentModels.includes(model));
+        const currentModels = [...preferredCurrentModels, ...otherCurrentModels];
         const archiveModels = state.archiveModels
             .filter(model => !preferredTour || String(model.tour).toLowerCase() === preferredTour);
         if (getOutcomeStatus(row) === 'pending') {
@@ -1436,15 +1515,24 @@
         };
     }
 
-    function renderSourcePanel() {
-        const panel = document.getElementById('sourcePanel');
-        const modelItems = ['pga', 'euro'].map((tour) => {
-            const model = state.models[tour];
-            const title = tour === 'pga' ? 'PGA model' : 'DP World model';
+    function renderCurrentModelSources(tour) {
+        const models = state.currentModels.filter(model => String(model?.tour || '').toLowerCase() === tour);
+        const fallback = state.models[tour] ? [state.models[tour]] : [];
+        const modelRows = models.length ? models : fallback;
+        const title = tour === 'pga' ? 'PGA model' : 'DP World model';
+        if (!modelRows.length) {
+            return `
+                <div class="source-item">
+                    <span class="source-title">${title}</span>
+                    <span class="badge badge--negative">Unavailable</span>
+                </div>
+            `;
+        }
+        return modelRows.map((model, index) => {
             if (!model || model.error) {
                 return `
                     <div class="source-item">
-                        <span class="source-title">${title}</span>
+                        <span class="source-title">${title}${modelRows.length > 1 ? ` ${index + 1}` : ''}</span>
                         <span class="badge badge--negative">Unavailable</span>
                     </div>
                 `;
@@ -1453,13 +1541,18 @@
             const generated = model.generatedUtc ? `Built ${escapeHtml(model.generatedUtc)}` : 'Build time unavailable';
             return `
                 <div class="source-item">
-                    <span class="source-title">${title}</span>
+                    <span class="source-title">${title}${modelRows.length > 1 ? ` ${index + 1}` : ''}</span>
                     <span>${escapeHtml(model.eventName)}</span>
                     <span class="badge ${sourceClass}">${escapeHtml(model.source)}</span>
                     <span class="source-meta">${generated}</span>
                 </div>
             `;
         }).join('');
+    }
+
+    function renderSourcePanel() {
+        const panel = document.getElementById('sourcePanel');
+        const modelItems = ['pga', 'euro'].map(renderCurrentModelSources).join('');
         const archiveItem = `
             <div class="source-item">
                 <span class="source-title">2026 value archive</span>
@@ -1580,14 +1673,14 @@
 
     function renderWarnings() {
         const messageArea = document.getElementById('messageArea');
-        const remoteModels = Object.values(state.models).filter(model => model?.remote);
+        const remoteModels = state.currentModels.filter(model => model?.remote);
         if (!remoteModels.length) {
             messageArea.innerHTML = '';
             return;
         }
         messageArea.innerHTML = `
             <div class="error-state">
-                Local model files are older than the published site for ${remoteModels.map(model => escapeHtml(model.tour.toUpperCase())).join(', ')}.
+                Local model files are older than the published site for ${Array.from(new Set(remoteModels.map(model => model.tour.toUpperCase()))).map(escapeHtml).join(', ')}.
                 This localhost preview is using published model JSON for those tours.
             </div>
         `;
@@ -1623,14 +1716,21 @@
     async function init() {
         try {
             bindControls();
-            const [bets, pgaModel, euroModel, archiveModels] = await Promise.all([
+            const [bets, pgaModels, euroModels, archiveModels] = await Promise.all([
                 BettingData.load(),
-                loadTourModel('pga'),
-                loadTourModel('euro'),
+                loadTourModels('pga'),
+                loadTourModels('euro'),
                 loadArchiveModels('2026')
             ]);
             state.bets = Array.isArray(bets) ? bets.filter(row => row && row.Player && row.Tournament && isIncludedBet(row)) : [];
-            state.models = { pga: pgaModel, euro: euroModel };
+            state.models = {
+                pga: Array.isArray(pgaModels) ? pgaModels[0] : null,
+                euro: Array.isArray(euroModels) ? euroModels[0] : null
+            };
+            state.currentModels = [
+                ...(Array.isArray(pgaModels) ? pgaModels : []),
+                ...(Array.isArray(euroModels) ? euroModels : [])
+            ];
             state.archiveModels = archiveModels;
             state.enriched = state.bets.map(enrichBet);
             render();
