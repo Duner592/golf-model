@@ -700,6 +700,15 @@
         return `${TOUR_PAGES[context.tour] || "pga.html"}?${params.toString()}`;
     }
 
+    function courseDetailHref(context, courseName) {
+        const params = new URLSearchParams();
+        params.set("tour", context.tour);
+        params.set("event_id", context.event.event_id);
+        if (courseName) params.set("course", courseName);
+        if (context.snapshot === "initial") params.set("snapshot", "initial");
+        return `course_details.html?${params.toString()}`;
+    }
+
     function populateSelect(select, items, value, labelFn, valueFn = item => item) {
         select.innerHTML = "";
         items.forEach(item => {
@@ -757,7 +766,7 @@
         const tournament = eventData.tournament || {};
         const course = tournament.course || "Unknown Course";
         const courseLink = course !== "Unknown Course"
-            ? `<a class="text-link" href="course_details.html?course=${encodeURIComponent(course)}">${escapeHtml(course)}</a>`
+            ? `<a class="text-link" href="${courseDetailHref(context, course)}">${escapeHtml(course)}</a>`
             : escapeHtml(course);
         const startDate = tournament.start_date || eventData.meta.start_date || eventData.meta.r1_date || "-";
         const fieldSize = tournament.field_size || eventData.leaderboard.length || "-";

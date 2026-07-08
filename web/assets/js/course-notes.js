@@ -8,11 +8,20 @@
         { key: 'course_type', label: 'Course Type', aliases: ['Course type', 'Course Type'] },
         { key: 'grass_type', label: 'Grass Type', aliases: ['Grass type', 'Grass Type'] },
         { key: 'course_overview', label: 'Course Overview', aliases: ['Course Overview', 'Course overview'] },
-        { key: 'key_attribute', label: 'Key Attribute', aliases: ['Key attribute', 'Key Attribute', 'Key attributes', 'Key Attributes'] },
         { key: 'what_will_it_take_to_win', label: 'What will it take to win?', aliases: ['What will it take to win?', 'What will it take to win'] },
-        { key: 'insight', label: 'Insight', aliases: ['Insight', 'Insights'] },
     ];
-    const IGNORED_FIELD_ALIASES = ['Time difference', 'Time Difference'];
+    const IGNORED_FIELD_ALIASES = [
+        'Time difference',
+        'Time Difference',
+    ];
+    const RETIRED_SECTION_ALIASES = [
+        'Key attribute',
+        'Key Attribute',
+        'Key attributes',
+        'Key Attributes',
+        'Insight',
+        'Insights',
+    ];
 
     function escapeHtml(value) {
         if (value == null) return '';
@@ -106,8 +115,50 @@
         return matches.sort((a, b) => a.start - b.start || a.valueStart - b.valueStart);
     }
 
+    function findRetiredSectionMatches(rawText) {
+        const text = normalizeText(rawText);
+        const matches = [];
+        const seen = new Set();
+        RETIRED_SECTION_ALIASES.forEach(alias => {
+            const regex = aliasRegex(alias);
+            let match;
+            while ((match = regex.exec(text)) !== null) {
+                const prefix = match[1] || '';
+                const start = match.index + prefix.length;
+                if (!seen.has(start)) {
+                    seen.add(start);
+                    matches.push({ start });
+                }
+                if (match.index === regex.lastIndex) regex.lastIndex += 1;
+            }
+        });
+        return matches.sort((a, b) => a.start - b.start);
+    }
+
+    function stripRetiredSections(rawText) {
+        const text = normalizeText(rawText);
+        const retiredMatches = findRetiredSectionMatches(text);
+        if (!retiredMatches.length) return text;
+
+        const realMatches = findFieldMatches(text).filter(match => match.key);
+        let output = '';
+        let cursor = 0;
+
+        retiredMatches.forEach((match, index) => {
+            if (match.start < cursor) return;
+            const nextRetired = retiredMatches[index + 1]?.start ?? text.length;
+            const nextReal = realMatches.find(real => real.start > match.start)?.start ?? text.length;
+            const end = Math.min(nextRetired, nextReal);
+            output += text.slice(cursor, match.start);
+            cursor = end;
+        });
+
+        output += text.slice(cursor);
+        return output;
+    }
+
     function parseDetails(rawDetails, fallbacks = {}) {
-        const text = normalizeText(rawDetails);
+        const text = stripRetiredSections(rawDetails);
         const parsed = {};
         const matches = findFieldMatches(text);
 

@@ -374,6 +374,15 @@
       return `player.html?${detailParams.toString()}`;
     }
 
+    function courseDetailHref(courseName) {
+      const detailParams = new URLSearchParams();
+      detailParams.set("tour", "euro");
+      detailParams.set("event_id", currentEventId || "");
+      if (courseName) detailParams.set("course", courseName);
+      if (IS_INITIAL_SNAPSHOT) detailParams.set("snapshot", "initial");
+      return `course_details.html?${detailParams.toString()}`;
+    }
+
     function eventYear(meta){
       const candidates = [meta?.r1_date, meta?.start_date, meta?.generated_utc];
       for (const value of candidates) {
@@ -1029,7 +1038,7 @@
 
       const lines = [];
       if (t.event_name) lines.push(`Event: ${t.event_name}`);
-      if (t.course) lines.push(`Course: ${t.course}`);
+      if (t.course) lines.push(`Course: <a class="player-link" href="${courseDetailHref(t.course)}">${escapeHtml(t.course)}</a>`);
       if (t.total_yardage != null) lines.push(`Total yardage: ${Number(t.total_yardage).toLocaleString()}`);
       if (t.course_location) lines.push(`Location: ${t.course_location}`);
       if (t.start_date) lines.push(`Start date: ${t.start_date}`);

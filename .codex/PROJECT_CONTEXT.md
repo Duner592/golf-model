@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-07-07
+Last updated: 2026-07-08
 
 ## Purpose
 
@@ -48,6 +48,7 @@ cd web/ && python -m http.server 8000
 - `web/archive/`: generated archive pages and event result JSON.
 - `web/index.html` reads each tour's `meta.json`; when `active_events` contains more than one event, the homepage shows an event switcher and loads the selected preview from that event's `resources` paths under `web/{tour}/events/event_{event_id}/`.
 - `web/player.html` is a static player drilldown page. PGA/DP World leaderboard player names link to it with `tour`, `event_id`, `player`, and optional `snapshot=initial`; the page reads served model JSON, tour-agnostic archive appearance JSON, and `web/spreadsheet_data.csv`.
+- `web/course_details.html` is a static course drilldown page. It supports `tour`, `event_id`, `course`, and optional `snapshot=initial`; PGA/DP World tournament summaries and player drilldown course links point to it. The page combines served model assets (`tournament_summary.json`, course-fit weights, course-history summary, weather, leaderboard) with the best matching spreadsheet course note via `web/assets/js/course-notes.js`. Course notes strip the retired `Key Attribute` and `Insight` sections before rendering.
 - `web/{tour}/initial/{year}/event_{event_id}/`: frozen first successful prediction snapshot for an event/week; later scheduled runs keep live assets updated without overwriting this initial copy. Each snapshot should include `model_page.html`, a self-contained event-specific backup page with embedded leaderboard, tournament, weather, course-fit, and provenance data.
 - `web/model_health.html`: browser-rendered operational health page for deployed site assets. It reads only files served from `web/` (`status.json`, tour `meta.json`, tour `schedule.json`, `archive/index.json`, and `archive/results_summary.json`) and mirrors the main integrity concerns: stale status, current schedule vs model metadata, status vs model metadata, archive leaderboard availability, and expected result-file coverage.
 - `web/odds_value.html`: browser-rendered Odds & Value page comparing betting-sheet prices with model probabilities. It is presented as a beta initiative that started with the 2026 season; value labels should be treated as decision support while archive samples, result links, and place assumptions mature. The page has two view modes: `Pending` for current pending bets against live model files, and `2026 archive` for bets matched to archived 2026 event snapshots. Pending mode loads every `active_events` model for each tour so alternate-field/co-sanctioned weeks can match bets to the correct tournament instead of only the primary tour event.
