@@ -632,6 +632,12 @@
         return `${sign}GBP ${Math.abs(n).toFixed(2)}`;
     }
 
+    function fmtYardage(value) {
+        if (value == null || value === "") return "-";
+        const numeric = Number(String(value).replace(/,/g, ""));
+        return Number.isFinite(numeric) ? numeric.toLocaleString() : String(value);
+    }
+
     function parseMoney(value) {
         if (value == null) return 0;
         const cleaned = String(value).replace(/[^0-9.-]/g, "");
@@ -864,6 +870,19 @@
         return eventData?.meta?.event_name || eventData?.tournament?.event_name || event?.event_name || "Current event";
     }
 
+    function bestCourseNoteMatch(eventData, bettingRows, requestedCourse, context) {
+        const course = eventCourse(eventData) || requestedCourse || "";
+        const tournament = eventName(eventData, context?.event || currentContext?.event);
+        const tour = TOUR_LABELS[context?.tour || currentContext?.tour] || context?.tour || currentContext?.tour;
+        const row = CourseNotes.findBestRow(bettingRows, { course, tournament, tour });
+        return {
+            row,
+            parsed: row ? CourseNotes.parseRow(row) : CourseNotes.parseDetails("", { course }),
+            course,
+            tournament
+        };
+    }
+
     function leaderboardHref(context) {
         const params = new URLSearchParams();
         params.set("event_id", context.event.event_id);
@@ -940,13 +959,14 @@
         ].join("");
     }
 
-    function renderDetails(eventData, context) {
+    function renderDetails(eventData, context, noteMatch) {
         const tournament = eventData.tournament || {};
         const course = eventCourse(eventData) || context.requestedCourse || "Unknown Course";
         const startDate = tournament.start_date || eventData.meta.start_date || eventData.meta.r1_date || "-";
         const generated = eventData.meta.snapshot_created_utc || eventData.meta.saved_at_utc || eventData.meta.generated_utc || eventData.summary?.generated_utc || "-";
         const location = tournament.course_location || "-";
-        const yardage = tournament.total_yardage != null ? Number(tournament.total_yardage).toLocaleString() : "-";
+        const noteLength = noteMatch?.parsed?.length;
+        const yardage = noteLength && noteLength !== CourseNotes.missingValue ? noteLength : fmtYardage(tournament.total_yardage);
         els.details.innerHTML = [
             detailRow("fas fa-flag", "Event", escapeHtml(eventName(eventData, context.event))),
             detailRow("fas fa-map-marker-alt", "Course", escapeHtml(course)),
@@ -959,27 +979,20 @@
         ].join("");
     }
 
-    function renderCourseNotes(eventData, bettingRows, requestedCourse) {
-        const course = eventCourse(eventData) || requestedCourse || "";
-        const tournament = eventName(eventData, currentContext?.event);
-        const bestRow = CourseNotes.findBestRow(bettingRows, {
-            course,
-            tournament,
-            tour: TOUR_LABELS[currentContext?.tour] || currentContext?.tour
-        });
-        if (!bestRow) {
-            const parsed = CourseNotes.parseDetails("", { course });
+    function renderCourseNotes(noteMatch) {
+        const course = noteMatch?.course || "";
+        if (!noteMatch?.row) {
             els.notes.innerHTML = `
                 <p class="empty">No matching spreadsheet course notes found for ${escapeHtml(course || "this course")}.</p>
-                ${CourseNotes.render(parsed)}
+                ${CourseNotes.render(noteMatch?.parsed || CourseNotes.parseDetails("", { course }))}
             `;
             return;
         }
-        const rowCourse = bestRow.Course || course;
-        const rowTournament = bestRow.Tournament || bestRow["Tour/Majors"] || "";
+        const rowCourse = noteMatch.row.Course || course;
+        const rowTournament = noteMatch.row.Tournament || noteMatch.row["Tour/Majors"] || "";
         els.notes.innerHTML = `
             <p class="muted">Best notes match: ${escapeHtml(rowCourse)}${rowTournament ? ` - ${escapeHtml(rowTournament)}` : ""}</p>
-            ${CourseNotes.render(CourseNotes.parseRow(bestRow))}
+            ${CourseNotes.render(noteMatch.parsed)}
         `;
     }
 
@@ -1345,34 +1358,54 @@
         `;
     }
 
-    function renderHistory(courseHistory) {
+    function historyPlayerLookup(eventData) {
+        const lookup = new Map();
+        const add = (row) => {
+            const id = row?.player_id ?? row?.dg_id ?? row?.id;
+            const name = row?.player_name || row?.name || row?.Player || row?.player;
+            if (id != null && name) lookup.set(String(id), String(name));
+        };
+        (eventData?.leaderboard || []).forEach(add);
+        (eventData?.teeTimes || []).forEach(add);
+        return lookup;
+    }
+
+    function historyPlayerName(row, lookup) {
+        const direct = row?.player_name || row?.name || row?.Player || row?.player;
+        if (direct) return direct;
+        const id = row?.player_id ?? row?.dg_id ?? row?.id;
+        return id != null && lookup?.has(String(id)) ? lookup.get(String(id)) : "Unknown player";
+    }
+
+    function renderHistory(courseHistory, eventData) {
         if (!courseHistory) {
             els.history.innerHTML = '<p class="empty">No course-history summary is available for this event.</p>';
             return;
         }
         const topRows = Array.isArray(courseHistory.top_sg_course) ? courseHistory.top_sg_course.slice(0, 6) : [];
         const reliableRows = Array.isArray(courseHistory.top_rounds) ? courseHistory.top_rounds.slice(0, 6) : [];
+        const playerLookup = historyPlayerLookup(eventData);
         els.history.innerHTML = `
             <div class="metric-grid">
                 ${metricCard("Rows", Number.isFinite(Number(courseHistory.rows)) ? String(courseHistory.rows) : "-")}
                 ${metricCard("Avg Rounds", fmtNum(courseHistory.rounds_course_avg, 1))}
                 ${metricCard("Avg Shrunk SG", fmtNum(courseHistory.sg_course_mean_shrunk_avg, 2))}
             </div>
-            ${renderHistoryTable("Top Course SG IDs", topRows)}
-            ${renderHistoryTable("Most Sampled IDs", reliableRows)}
+            ${renderHistoryTable("Top Course SG", topRows, playerLookup)}
+            ${renderHistoryTable("Most Sampled", reliableRows, playerLookup)}
         `;
     }
 
-    function renderHistoryTable(title, rows) {
+    function renderHistoryTable(title, rows, playerLookup) {
         if (!rows.length) return "";
         return `
             <h3 style="margin-top:1rem;">${escapeHtml(title)}</h3>
             <div class="table-wrap">
                 <table>
-                    <thead><tr><th>Player ID</th><th class="num">Rounds</th><th class="num">Shrunk SG</th></tr></thead>
+                    <thead><tr><th>Player</th><th class="num">Rounds</th><th class="num">Shrunk SG</th></tr></thead>
                     <tbody>${rows.map(row => `
                         <tr>
-                            <td>${escapeHtml(row.player_id ?? "-")}</td>
+                            <td>${escapeHtml(historyPlayerName(row, playerLookup))}</td>
                             <td class="num">${escapeHtml(row.rounds_course ?? "-")}</td>
                             <td class="num">${fmtNum(row.sg_course_mean_shrunk, 2)}</td>
                         </tr>
@@ -1506,6 +1539,7 @@
         const course = eventCourse(eventData) || requestedCourse;
         const context = { tour, snapshot, event, eventData, requestedCourse };
         currentContext = context;
+        const noteMatch = bestCourseNoteMatch(eventData, bettingRows, requestedCourse, context);
 
         populateSelect(els.event, tourState.events, event.event_id, item => item.event_name || `Event ${item.event_id}`, item => item.event_id);
         els.tour.value = tour;
@@ -1526,13 +1560,13 @@
         }
 
         renderMetrics(eventData);
-        renderDetails(eventData, context);
-        renderCourseNotes(eventData, bettingRows, requestedCourse);
+        renderDetails(eventData, context, noteMatch);
+        renderCourseNotes(noteMatch);
         renderWeights(eventData.courseFit);
         renderFieldFit(eventData.leaderboard);
         renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
         renderWeather(eventData);
-        renderHistory(eventData.courseHistory);
+        renderHistory(eventData.courseHistory, eventData);
         renderBettingSummary(bettingRows, course, eventName(eventData, event));
         renderArchives(await loadCourseArchives(course));
         renderQuickLinks(context, course);

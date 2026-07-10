@@ -24,6 +24,19 @@ def normalize_name(s: str) -> str:
     return s0.replace(" ", "_")
 
 
+def first_nonempty(values: pd.Series):
+    cleaned = values.dropna().astype(str).str.strip()
+    cleaned = cleaned[cleaned != ""]
+    return cleaned.iloc[0] if not cleaned.empty else None
+
+
+def choose_name_col(df: pd.DataFrame) -> str | None:
+    for col in ["player_name", "name", "Player", "player"]:
+        if col in df.columns:
+            return col
+    return None
+
+
 def load_event_meta(root: Path, tour: str, event_id: str | None = None) -> dict:
     processed = root / "data" / "processed" / tour
     metas = sorted(processed.glob("event_*_meta.json"))
@@ -48,16 +61,23 @@ def build_course_history_stats(df_hist: pd.DataFrame) -> pd.DataFrame:
     if df_hist.empty:
         return pd.DataFrame()
 
+    id_col = "player_id" if "player_id" in df_hist.columns else ("dg_id" if "dg_id" in df_hist.columns else None)
+    if id_col is None:
+        return pd.DataFrame()
+    df_hist = df_hist.copy().rename(columns={id_col: "player_id"})
+    df_hist["player_id"] = df_hist["player_id"].astype(str)
+
     if "sg_total" in df_hist.columns:
-        id_col = "player_id" if "player_id" in df_hist.columns else ("dg_id" if "dg_id" in df_hist.columns else None)
-        if id_col is None:
-            return pd.DataFrame()
-        df_long = df_hist.copy().rename(columns={id_col: "player_id"})
+        df_long = df_hist.copy()
         df_long["sg_total"] = pd.to_numeric(df_long["sg_total"], errors="coerce")
-        stats = df_long.dropna(subset=["sg_total"]).groupby("player_id", as_index=False).agg(
-            sg_course_mean_shrunk=("sg_total", "mean"),
-            rounds_course=("sg_total", "count"),
-        )
+        agg = {
+            "sg_course_mean_shrunk": ("sg_total", "mean"),
+            "rounds_course": ("sg_total", "count"),
+        }
+        name_col = choose_name_col(df_long)
+        if name_col:
+            agg["player_name"] = (name_col, first_nonempty)
+        stats = df_long.dropna(subset=["sg_total"]).groupby("player_id", as_index=False).agg(**agg)
         return stats
 
     # Find all round-specific sg_total columns
@@ -70,10 +90,14 @@ def build_course_history_stats(df_hist: pd.DataFrame) -> pd.DataFrame:
     df_hist["total_sg"] = df_hist[sg_cols].sum(axis=1, skipna=True)
 
     # Aggregate per player: mean total_sg, count rounds (using number of non-null SG entries)
-    stats = df_hist.groupby("player_id", as_index=False).agg(
-        sg_course_mean_shrunk=("total_sg", "mean"),
-        rounds_course=("total_sg", lambda x: x.notna().sum()),  # Count non-null total_sg as rounds played
-    )
+    agg = {
+        "sg_course_mean_shrunk": ("total_sg", "mean"),
+        "rounds_course": ("total_sg", lambda x: x.notna().sum()),  # Count non-null total_sg as rounds played
+    }
+    name_col = choose_name_col(df_hist)
+    if name_col:
+        agg["player_name"] = (name_col, first_nonempty)
+    stats = df_hist.groupby("player_id", as_index=False).agg(**agg)
     return stats
 
 
@@ -116,8 +140,14 @@ def main():
     summary = {
         "event_id": event_id,
         "event_name": event_name,
-        "stats_rows": len(stats_df),
+        "rows": len(stats_df),
         "mean_sg_course": float(stats_df["sg_course_mean_shrunk"].mean()) if "sg_course_mean_shrunk" in stats_df.columns else None,
+        "top_rounds": stats_df.sort_values("rounds_course", ascending=False).head(10).to_dict(orient="records")
+        if "rounds_course" in stats_df
+        else [],
+        "top_sg_course": stats_df.sort_values("sg_course_mean_shrunk", ascending=False).head(10).to_dict(orient="records")
+        if "sg_course_mean_shrunk" in stats_df
+        else [],
     }
     (web_dir / "course_history_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print("Wrote web assets under web/:")

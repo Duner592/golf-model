@@ -352,7 +352,46 @@ def wave_parquet_to_json(wave_pq: Path, out_json: Path) -> bool:
 
 
 # ---------- course history summary ----------
-def build_history_summary(stats_path: Path, out_json: Path) -> bool:
+def _history_name_lookup(raw_hist_dir: Path | None, event_name: str | None) -> dict[str, str]:
+    if not raw_hist_dir or not event_name:
+        return {}
+    hist_path = raw_hist_dir / f"tournament_{_slug_event(event_name)}_rounds_combined.parquet"
+    if not hist_path.exists():
+        return {}
+    try:
+        df = pd.read_parquet(hist_path)
+    except Exception as exc:
+        print(f"Warn: failed to read history names from {hist_path}: {exc}")
+        return {}
+    id_col = next((col for col in ["player_id", "dg_id", "id"] if col in df.columns), None)
+    name_col = next((col for col in ["player_name", "name", "Player", "player"] if col in df.columns), None)
+    if not id_col or not name_col:
+        return {}
+    names = df[[id_col, name_col]].dropna(subset=[id_col, name_col]).copy()
+    names[name_col] = names[name_col].astype(str).str.strip()
+    names = names[names[name_col] != ""].drop_duplicates(subset=[id_col])
+    return {str(row[id_col]): str(row[name_col]) for _, row in names.iterrows()}
+
+
+def _attach_history_names(df: pd.DataFrame, raw_hist_dir: Path | None, event_name: str | None) -> pd.DataFrame:
+    if "player_id" not in df.columns:
+        return df
+    names = _history_name_lookup(raw_hist_dir, event_name)
+    if not names:
+        return df
+
+    out = df.copy()
+    mapped = out["player_id"].map(lambda value: names.get(str(value)))
+    if "player_name" in out.columns:
+        existing = out["player_name"].fillna("").astype(str).str.strip()
+        out["player_name"] = out["player_name"].where(existing != "", mapped)
+    else:
+        insert_at = min(list(out.columns).index("player_id") + 1, len(out.columns))
+        out.insert(insert_at, "player_name", mapped)
+    return out
+
+
+def build_history_summary(stats_path: Path, out_json: Path, raw_hist_dir: Path | None = None, event_name: str | None = None) -> bool:
     """
     Build course history summary from stats parquet.
 
@@ -366,6 +405,7 @@ def build_history_summary(stats_path: Path, out_json: Path) -> bool:
     if not stats_path.exists():
         return False
     df = pd.read_parquet(stats_path)
+    df = _attach_history_names(df, raw_hist_dir, event_name)
     payload = {
         "rows": int(len(df)),
         "rounds_course_avg": (float(df["rounds_course"].mean()) if "rounds_course" in df else None),
@@ -1974,6 +2014,8 @@ def process_event(
     build_history_summary(
         processed_dir / f"event_{event_id}_course_history_stats.parquet",
         event_dir / "course_history_summary.json",
+        raw_hist_dir=raw_hist_dir,
+        event_name=event_name,
     )
 
     tournament_summary_path = event_dir / "tournament_summary.json"
