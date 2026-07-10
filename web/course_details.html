@@ -354,6 +354,36 @@
             border-radius: 999px;
             background: linear-gradient(90deg, var(--gm-primary-light), var(--gm-primary));
         }
+        .analysis-note {
+            margin: 0 0 0.85rem;
+            color: #607066;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            align-items: start;
+            margin-top: 1rem;
+        }
+        .analysis-block h3 {
+            margin: 0 0 0.55rem;
+            color: #254332;
+            font-size: 1rem;
+        }
+        .signal-tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.45rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 999px;
+            background: rgba(29, 124, 66, 0.1);
+            color: #176336;
+            font-size: 0.78rem;
+            font-weight: 750;
+            white-space: nowrap;
+        }
         .course-notes-list {
             display: grid;
             gap: 0.55rem;
@@ -495,6 +525,10 @@
             <div id="fieldFit"></div>
         </section>
         <section class="card">
+            <h2>First Round Leader Analysis</h2>
+            <div id="frlAnalysis"></div>
+        </section>
+        <section class="card">
             <h2>Weather Profile</h2>
             <div class="table-wrap" id="weatherWrap"></div>
         </section>
@@ -562,6 +596,7 @@
         details: document.getElementById("detailGrid"),
         notes: document.getElementById("courseNotes"),
         fieldFit: document.getElementById("fieldFit"),
+        frl: document.getElementById("frlAnalysis"),
         weather: document.getElementById("weatherWrap"),
         weights: document.getElementById("courseWeights"),
         history: document.getElementById("courseHistory"),
@@ -645,6 +680,25 @@
         }
     }
 
+    async function loadCSV(path, fallback = []) {
+        if (!path || typeof Papa === "undefined") return fallback;
+        try {
+            const response = await fetch(path, { cache: "no-store" });
+            if (!response.ok) return fallback;
+            const text = await response.text();
+            const parsed = Papa.parse(text, {
+                header: true,
+                skipEmptyLines: "greedy",
+                dynamicTyping: false,
+                transformHeader: header => header.trim()
+            });
+            return Array.isArray(parsed.data) ? parsed.data : fallback;
+        } catch (error) {
+            console.warn("Failed to load", path, error);
+            return fallback;
+        }
+    }
+
     async function loadBettingRows() {
         if (state.bettingRows) return state.bettingRows;
         try {
@@ -667,6 +721,7 @@
             weather_round_wave: `${tour}/weather_round_wave.json`,
             course_fit_weights: `${tour}/course_fit_weights.json`,
             course_history_summary: `${tour}/course_history_summary.json`,
+            field_teetimes: `${tour}/field_teetimes.csv`,
             schedule: `${tour}/schedule.json`
         };
     }
@@ -692,6 +747,7 @@
             weather_round_wave: `${base}/weather_round_wave.json`,
             course_fit_weights: `${base}/course_fit_weights.json`,
             course_history_summary: `${base}/course_history_summary.json`,
+            field_teetimes: `${base}/field_teetimes.csv`,
             downloads_csv: `${base}/leaderboard.csv`,
             downloads_html: `${base}/leaderboard.html`,
             schedule: `${tour}/schedule.json`
@@ -718,7 +774,8 @@
                         weather_round_neutral: event.resources?.weather_round_neutral || `${eventDir}/weather_round_neutral.json`,
                         weather_round_wave: event.resources?.weather_round_wave || `${eventDir}/weather_round_wave.json`,
                         course_fit_weights: event.resources?.course_fit_weights || `${eventDir}/course_fit_weights.json`,
-                        course_history_summary: event.resources?.course_history_summary || `${eventDir}/course_history_summary.json`
+                        course_history_summary: event.resources?.course_history_summary || `${eventDir}/course_history_summary.json`,
+                        field_teetimes: event.resources?.field_teetimes || `${eventDir}/field_teetimes.csv`
                     }
                 };
             });
@@ -750,7 +807,7 @@
         const resources = snapshot === "initial"
             ? initialSnapshotResources(tour, tourState.meta, event)
             : { ...rootResources(tour), ...(event.resources || {}) };
-        const [eventMeta, leaderboard, summary, tournament, weatherNeutral, weatherWave, courseFit, courseHistory] = await Promise.all([
+        const [eventMeta, leaderboard, summary, tournament, weatherNeutral, weatherWave, courseFit, courseHistory, teeTimes] = await Promise.all([
             loadJSON(resources.meta, null),
             loadJSON(resources.leaderboard, []),
             loadJSON(resources.summary, null),
@@ -758,7 +815,8 @@
             loadJSON(resources.weather_round_neutral, []),
             loadJSON(resources.weather_round_wave, []),
             loadJSON(resources.course_fit_weights, null),
-            loadJSON(resources.course_history_summary, null)
+            loadJSON(resources.course_history_summary, null),
+            loadCSV(resources.field_teetimes, [])
         ]);
         const meta = {
             ...(tourState.meta || {}),
@@ -779,6 +837,7 @@
             tournament,
             weatherNeutral: Array.isArray(weatherNeutral) ? weatherNeutral : [],
             weatherWave: Array.isArray(weatherWave) ? weatherWave : [],
+            teeTimes: Array.isArray(teeTimes) ? teeTimes : [],
             courseFit,
             courseHistory
         };
@@ -981,6 +1040,273 @@
             <div class="layout" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
                 <div><h3>Best Fits</h3><div class="table-wrap">${table(best)}</div></div>
                 <div><h3>Toughest Fits</h3><div class="table-wrap">${table(worst)}</div></div>
+            </div>
+        `;
+    }
+
+    function normalizePlayerDisplayName(name) {
+        let cleaned = String(name || "").replace(/\s*\(\d+\)\s*$/, "").replace(/\s+/g, " ").trim();
+        if (cleaned.includes(",")) {
+            const [last, first] = cleaned.split(",", 2).map(part => part.trim());
+            cleaned = first ? `${first} ${last}` : last;
+        }
+        return cleaned;
+    }
+
+    function playerNameKeys(name) {
+        const display = normalizePlayerDisplayName(name);
+        const ascii = display.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+        const tokens = ascii.toLowerCase().match(/[a-z0-9]+/g) || [];
+        const keys = new Set();
+        if (tokens.length) keys.add(tokens.join(""));
+        if (tokens.length >= 2) keys.add(`${tokens[0]}${tokens[tokens.length - 1]}`);
+        return [...keys];
+    }
+
+    function samePlayerName(left, right) {
+        const leftKeys = new Set(playerNameKeys(left));
+        return playerNameKeys(right).some(key => leftKeys.has(key));
+    }
+
+    function teeTimeLookup(teeTimes) {
+        const lookup = new Map();
+        (teeTimes || []).forEach(row => {
+            const keys = playerNameKeys(row.player_name || row.Player || row.name || "");
+            keys.forEach(key => {
+                if (key && !lookup.has(key)) lookup.set(key, row);
+            });
+        });
+        return lookup;
+    }
+
+    function findTeeTimeRow(lookup, playerName) {
+        for (const key of playerNameKeys(playerName)) {
+            if (lookup.has(key)) return lookup.get(key);
+        }
+        return null;
+    }
+
+    function parseTeeTimeMinutes(value) {
+        const text = String(value || "").replace("*", "").trim();
+        const match = text.match(/^(\d{1,2}):(\d{2})/);
+        if (!match) return null;
+        const hours = Number(match[1]);
+        const minutes = Number(match[2]);
+        if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return null;
+        return hours * 60 + minutes;
+    }
+
+    function normalizeWave(value) {
+        const text = String(value || "").trim().toUpperCase();
+        if (["AM", "MORNING", "EARLY"].includes(text)) return "AM";
+        if (["PM", "AFTERNOON", "LATE"].includes(text)) return "PM";
+        if (text === "ALL" || text === "NEUTRAL") return text;
+        return "";
+    }
+
+    function inferWaveFromTeeTime(value) {
+        const minutes = parseTeeTimeMinutes(value);
+        if (minutes == null) return "";
+        return minutes < 12 * 60 ? "AM" : "PM";
+    }
+
+    function displayWave(value) {
+        const wave = normalizeWave(value);
+        if (wave === "AM") return "AM / early";
+        if (wave === "PM") return "PM / late";
+        return wave || "-";
+    }
+
+    function r1WeatherMap(eventData) {
+        const waveRows = (eventData.weatherWave || []).filter(row => Number(row.round) === 1);
+        const map = new Map();
+        waveRows.forEach(row => {
+            const wave = normalizeWave(row.wave);
+            if (wave) map.set(wave, row);
+        });
+        const neutral = (eventData.weatherNeutral || []).find(row => Number(row.round) === 1) || null;
+        if (neutral) map.set("NEUTRAL", { ...neutral, wave: "Neutral" });
+        return map;
+    }
+
+    function r1WeatherSummary(eventData) {
+        const map = r1WeatherMap(eventData);
+        const am = map.get("AM") || null;
+        const pm = map.get("PM") || null;
+        const neutral = map.get("NEUTRAL") || null;
+        if (am && pm) {
+            const amDelta = Number(am.delta_strokes);
+            const pmDelta = Number(pm.delta_strokes);
+            if (Number.isFinite(amDelta) && Number.isFinite(pmDelta)) {
+                const best = amDelta <= pmDelta ? am : pm;
+                const worst = amDelta <= pmDelta ? pm : am;
+                return {
+                    bestWave: normalizeWave(best.wave),
+                    bestDelta: Number(best.delta_strokes),
+                    edge: Math.abs(amDelta - pmDelta),
+                    summary: `${displayWave(best.wave)} currently projects ${fmtNum(Math.abs(amDelta - pmDelta), 2)} strokes easier than ${displayWave(worst.wave)}.`
+                };
+            }
+        }
+        if (neutral) {
+            return {
+                bestWave: "NEUTRAL",
+                bestDelta: Number(neutral.delta_strokes),
+                edge: 0,
+                summary: `Round 1 neutral weather delta is ${fmtNum(neutral.delta_strokes, 2)} strokes.`
+            };
+        }
+        return {
+            bestWave: "",
+            bestDelta: null,
+            edge: null,
+            summary: "No Round 1 weather split is available yet."
+        };
+    }
+
+    function scaleValue(value, min, max, fallback = 0.5) {
+        const n = Number(value);
+        if (!Number.isFinite(n) || !Number.isFinite(min) || !Number.isFinite(max) || max === min) return fallback;
+        return Math.max(0, Math.min(1, (n - min) / (max - min)));
+    }
+
+    function playerWaveData(row, teeRow, weatherMap) {
+        const teeTime = row.r1_teetime || teeRow?.r1_teetime || "";
+        const wave = normalizeWave(teeRow?.r1_wave) || inferWaveFromTeeTime(teeTime);
+        const weather = wave ? weatherMap.get(wave) : null;
+        const delta = Number(weather?.delta_strokes);
+        return {
+            teeTime,
+            wave,
+            weather,
+            delta: Number.isFinite(delta) ? delta : null
+        };
+    }
+
+    function buildFrlCandidates(eventData) {
+        const rows = (eventData.leaderboard || []).filter(row => row && (row.player_name || row.Player));
+        if (!rows.length) return [];
+        const teeLookup = teeTimeLookup(eventData.teeTimes || []);
+        const weatherMap = r1WeatherMap(eventData);
+        const wins = rows.map(row => Number(row["p_win_%"])).filter(Number.isFinite);
+        const fits = rows.map(row => Number(row.course_fit_score)).filter(Number.isFinite);
+        const waveDeltas = rows.map(row => {
+            const name = row.player_name || row.Player || "";
+            const wave = playerWaveData(row, findTeeTimeRow(teeLookup, name), weatherMap);
+            return wave.delta;
+        }).filter(Number.isFinite);
+        const winMin = wins.length ? Math.min(...wins) : 0;
+        const winMax = wins.length ? Math.max(...wins) : 0;
+        const fitMin = fits.length ? Math.min(...fits) : 0;
+        const fitMax = fits.length ? Math.max(...fits) : 0;
+        const deltaMin = waveDeltas.length ? Math.min(...waveDeltas) : null;
+        const deltaMax = waveDeltas.length ? Math.max(...waveDeltas) : null;
+
+        return rows.map(row => {
+            const player = row.player_name || row.Player || "";
+            const teeRow = findTeeTimeRow(teeLookup, player);
+            const wave = playerWaveData(row, teeRow, weatherMap);
+            const winScore = scaleValue(row["p_win_%"], winMin, winMax);
+            const fitScore = scaleValue(row.course_fit_score, fitMin, fitMax);
+            const weatherScore = wave.delta == null || deltaMin == null || deltaMax == null
+                ? 0.5
+                : scaleValue(deltaMax - wave.delta, 0, deltaMax - deltaMin);
+            const score = (winScore * 55) + (fitScore * 25) + (weatherScore * 20);
+            const signals = [];
+            if (winScore >= 0.7) signals.push("model strength");
+            if (fitScore >= 0.7) signals.push("course fit");
+            if (weatherScore >= 0.7 && wave.wave) signals.push("wave edge");
+            if (!signals.length) signals.push("balanced");
+            return {
+                player: normalizePlayerDisplayName(player),
+                rank: row.rank,
+                win: row["p_win_%"],
+                fit: Number(row.course_fit_score),
+                teeTime: wave.teeTime,
+                wave: wave.wave,
+                delta: wave.delta,
+                score,
+                signals
+            };
+        }).sort((a, b) => b.score - a.score);
+    }
+
+    function isFrlBet(row) {
+        return /first\s*round\s*leader/i.test(String(row?.Type || row?.Market || ""));
+    }
+
+    function matchedFrlBets(rows, course, tournament) {
+        return courseBetRows(rows, course, tournament)
+            .filter(isFrlBet)
+            .sort((a, b) => (parseDate(b.Date)?.valueOf() || 0) - (parseDate(a.Date)?.valueOf() || 0));
+    }
+
+    function renderFirstRoundLeader(eventData, bettingRows, course, tournament) {
+        const candidates = buildFrlCandidates(eventData).slice(0, 10);
+        const bets = matchedFrlBets(bettingRows, course, tournament);
+        const weather = r1WeatherSummary(eventData);
+        const teeCount = (eventData.teeTimes || []).filter(row => row.r1_teetime).length
+            || (eventData.leaderboard || []).filter(row => row.r1_teetime).length;
+        const bestWaveText = weather.bestWave ? displayWave(weather.bestWave) : "-";
+        const frlStake = bets.reduce((total, row) => total + parseMoney(row.Stake), 0);
+        const frlProfit = bets.reduce((total, row) => total + parseMoney(row["Profit/Loss"]), 0);
+        const frlRoi = frlStake > 0 ? frlProfit / frlStake * 100 : null;
+
+        const candidateRows = candidates.length
+            ? candidates.map(row => `
+                <tr>
+                    <td>${escapeHtml(row.player)}</td>
+                    <td class="num">${Number.isFinite(Number(row.rank)) ? `#${escapeHtml(row.rank)}` : "-"}</td>
+                    <td>${escapeHtml(row.teeTime || "-")}</td>
+                    <td>${escapeHtml(displayWave(row.wave))}</td>
+                    <td class="num">${row.delta == null ? "-" : fmtNum(row.delta, 2)}</td>
+                    <td class="num">${fmtPct(row.win)}</td>
+                    <td class="num">${fmtNum(row.fit, 3)}</td>
+                    <td>${row.signals.map(signal => `<span class="signal-tag">${escapeHtml(signal)}</span>`).join(" ")}</td>
+                </tr>
+            `).join("")
+            : '<tr><td colspan="8" class="empty">No leaderboard rows are available for FRL scoring.</td></tr>';
+
+        const betRows = bets.slice(0, 8).length
+            ? bets.slice(0, 8).map(row => `
+                <tr>
+                    <td>${escapeHtml(displayDate(row.Date))}</td>
+                    <td>${escapeHtml(row.Player || "-")}</td>
+                    <td>${escapeHtml(row.Price || "-")}</td>
+                    <td>${escapeHtml(row["Place Terms"] || "-")}</td>
+                    <td>${escapeHtml(row.Outcome || row.Result || "-")}</td>
+                    <td class="num">${escapeHtml(row["Profit/Loss"] || "-")}</td>
+                </tr>
+            `).join("")
+            : '<tr><td colspan="6" class="empty">No matched first-round-leader bets for this course or tournament.</td></tr>';
+
+        els.frl.innerHTML = `
+            <p class="analysis-note">Shortlist is a directional FRL lean, not a true first-round-leader probability. It blends model strength, course fit and Round 1 weather wave where tee-time data is available.</p>
+            <div class="metric-grid">
+                ${metricCard("Preferred R1 Wave", bestWaveText, weather.summary)}
+                ${metricCard("R1 Weather Edge", weather.edge == null ? "-" : `${fmtNum(weather.edge, 2)} st`, "lower delta is easier")}
+                ${metricCard("Tee Times", String(teeCount || 0), teeCount ? "Round 1 rows available" : "No tee-time rows yet")}
+                ${metricCard("FRL Bet ROI", frlRoi == null ? "-" : `${frlRoi.toFixed(1)}%`, `${bets.length} matched bets`)}
+            </div>
+            <div class="analysis-grid">
+                <div class="analysis-block">
+                    <h3>Current Field Shortlist</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Player</th><th class="num">Rank</th><th>R1 Tee</th><th>Wave</th><th class="num">R1 Delta</th><th class="num">Win</th><th class="num">Fit</th><th>Signals</th></tr></thead>
+                            <tbody>${candidateRows}</tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="analysis-block">
+                    <h3>Matched FRL Bet History</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Date</th><th>Player</th><th>Price</th><th>Terms</th><th>Outcome</th><th class="num">P/L</th></tr></thead>
+                            <tbody>${betRows}</tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         `;
     }
@@ -1204,6 +1530,7 @@
         renderCourseNotes(eventData, bettingRows, requestedCourse);
         renderWeights(eventData.courseFit);
         renderFieldFit(eventData.leaderboard);
+        renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
         renderWeather(eventData);
         renderHistory(eventData.courseHistory);
         renderBettingSummary(bettingRows, course, eventName(eventData, event));
