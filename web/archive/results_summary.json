@@ -1,4 +1,22 @@
 {
+  "2026_isco_championship": {
+    "event_id": "518",
+    "event_name": "ISCO Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "isco_championship"
+  },
+  "2026_genesis_scottish_open": {
+    "event_id": "541",
+    "event_name": "Genesis Scottish Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "genesis_scottish_open"
+  },
   "2026_john_deere_classic": {
     "event_id": "30",
     "event_name": "John Deere Classic",
