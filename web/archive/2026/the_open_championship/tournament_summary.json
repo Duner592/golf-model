@@ -1,0 +1,38 @@
+{
+  "event_name": "The Open Championship",
+  "event_id": "100",
+  "course": "Royal Birkdale Golf Club",
+  "total_yardage": null,
+  "course_location": "Southport, England",
+  "start_date": "16-Jul-2026",
+  "field_size": 155,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Scheffler, Scottie",
+      "score": -17
+    },
+    {
+      "year": 2024,
+      "winner": "Schauffele, Xander",
+      "score": -9
+    },
+    {
+      "year": 2023,
+      "winner": "Harman, Brian",
+      "score": -13
+    },
+    {
+      "year": 2022,
+      "winner": "Smith, Cameron",
+      "score": -16
+    },
+    {
+      "year": 2021,
+      "winner": "Morikawa, Collin",
+      "score": -19
+    }
+  ]
+}
