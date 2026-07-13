@@ -87,13 +87,68 @@
         }
     }
 
-    async function fetchAndParseCsv() {
-        if (typeof Papa === 'undefined') {
-            throw new Error('PapaParse is required before loading betting data.');
+    function parseCsvFallback(csvText) {
+        const rows = [];
+        let row = [];
+        let field = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < csvText.length; i += 1) {
+            const char = csvText[i];
+            const next = csvText[i + 1];
+            if (inQuotes) {
+                if (char === '"') {
+                    if (next === '"') {
+                        field += '"';
+                        i += 1;
+                    } else {
+                        inQuotes = false;
+                    }
+                } else {
+                    field += char;
+                }
+                continue;
+            }
+            if (char === '"') {
+                inQuotes = true;
+            } else if (char === ',') {
+                row.push(field);
+                field = '';
+            } else if (char === '\n' || char === '\r') {
+                row.push(field);
+                rows.push(row);
+                row = [];
+                field = '';
+                if (char === '\r' && next === '\n') i += 1;
+            } else {
+                field += char;
+            }
         }
+
+        if (field || row.length) {
+            row.push(field);
+            rows.push(row);
+        }
+
+        const headers = (rows.shift() || []).map(header => header.replace(/^\ufeff/, '').trim());
+        return rows
+            .filter(cells => cells.some(cell => String(cell || '').trim()))
+            .map(cells => {
+                const record = {};
+                headers.forEach((header, index) => {
+                    record[header] = cells[index] || '';
+                });
+                return record;
+            });
+    }
+
+    async function fetchAndParseCsv() {
         const response = await fetch(CSV_URL, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Failed to fetch ${CSV_URL}: ${response.status}`);
         const csvText = await response.text();
+        if (typeof Papa === 'undefined') {
+            return parseCsvFallback(csvText);
+        }
         const parsed = Papa.parse(csvText, {
             header: true,
             skipEmptyLines: 'greedy',

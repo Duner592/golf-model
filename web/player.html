@@ -353,7 +353,7 @@
     </div>
     <div class="header-links">
         <a class="link" id="leaderboardLink" href="pga.html">Leaderboard</a>
-        <a class="link" id="oddsLink" href="odds_value.html">Odds &amp; Value</a>
+        <a class="link" id="oddsLink" href="odds_value.html?v=20260713-odds-cache2">Odds &amp; Value</a>
     </div>
 </header>
 
@@ -929,7 +929,7 @@
         els.quickLinks.innerHTML = `
             <a class="pill" href="${leaderboardHref(context)}">Leaderboard</a>
             <a class="pill" href="spreadsheet.html?player=${playerParam}">Betting rows</a>
-            <a class="pill" href="odds_value.html?player=${playerParam}">Odds &amp; Value</a>
+            <a class="pill" href="odds_value.html?v=20260713-odds-cache2&player=${playerParam}">Odds &amp; Value</a>
             <a class="pill" href="archive.html">Archive</a>
             <a class="pill" href="archive_accuracy.html">Accuracy</a>
         `;
@@ -966,7 +966,7 @@
         els.title.textContent = playerName || "Player Drilldown";
         els.subtitle.textContent = `${TOUR_LABELS[tour] || tour.toUpperCase()} - ${eventData.meta.event_name || event.event_name || "Current event"}`;
         els.leaderboard.href = leaderboardHref(context);
-        els.odds.href = `odds_value.html?player=${encodeURIComponent(playerName)}`;
+        els.odds.href = `odds_value.html?v=20260713-odds-cache2&player=${encodeURIComponent(playerName)}`;
 
         if (!candidate) {
             renderStatus("Player was not found in this event leaderboard.");

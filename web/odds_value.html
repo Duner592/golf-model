@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <title>Odds &amp; Value - Golf Model Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
     <link rel="stylesheet" href="menu.css">
     <script src="menu.js?v=20260519-odds-value"></script>
     <link rel="stylesheet" href="theme.css">
@@ -649,7 +651,7 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="assets/js/betting-data.js"></script>
+    <script src="assets/js/betting-data.js?v=20260713-odds-cache2"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
@@ -988,6 +990,10 @@
     function isIncludedBet(row) {
         const timing = String(row['Pre/Mid Tournament'] || '').trim().toLowerCase();
         return timing === 'pre' && Boolean(getMarketInfo(row));
+    }
+
+    function isPendingBet(row) {
+        return getOutcomeStatus(row) === 'pending';
     }
 
     function estimatePlaceProbability(placeTerms, player, market) {
@@ -1553,6 +1559,15 @@
     function renderSourcePanel() {
         const panel = document.getElementById('sourcePanel');
         const modelItems = ['pga', 'euro'].map(renderCurrentModelSources).join('');
+        const pendingIncluded = state.bets.filter(isPendingBet).length;
+        const sheetItem = `
+            <div class="source-item">
+                <span class="source-title">Betting sheet</span>
+                <span>${state.bets.length} included bets loaded</span>
+                <span class="source-meta">${pendingIncluded} pending</span>
+                <span class="badge badge--positive">fresh CSV</span>
+            </div>
+        `;
         const archiveItem = `
             <div class="source-item">
                 <span class="source-title">2026 value archive</span>
@@ -1561,7 +1576,7 @@
                 <span class="badge badge--positive">same page</span>
             </div>
         `;
-        panel.innerHTML = modelItems + archiveItem;
+        panel.innerHTML = sheetItem + modelItems + archiveItem;
     }
 
     function renderSummary(rows) {
