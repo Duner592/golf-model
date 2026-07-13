@@ -1713,11 +1713,21 @@
         });
     }
 
+    function resetControlsToDefaults() {
+        document.getElementById('sourceFilter').value = state.filters.source;
+        document.getElementById('tourFilter').value = state.filters.tour;
+        document.getElementById('tournamentFilter').value = state.filters.tournament;
+        document.getElementById('sortFilter').value = state.filters.sort;
+        document.getElementById('searchInput').value = state.filters.search;
+        document.getElementById('matchedOnly').checked = state.filters.matchedOnly;
+    }
+
     async function init() {
         try {
+            resetControlsToDefaults();
             bindControls();
             const [bets, pgaModels, euroModels, archiveModels] = await Promise.all([
-                BettingData.load(),
+                BettingData.load({ forceRefresh: true }),
                 loadTourModels('pga'),
                 loadTourModels('euro'),
                 loadArchiveModels('2026')

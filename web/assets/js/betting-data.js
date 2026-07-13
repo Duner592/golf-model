@@ -2,7 +2,7 @@
     const CSV_URL = 'spreadsheet_data.csv';
     const STORAGE_DATA_KEY = 'golfModel:bettingData:data';
     const STORAGE_META_KEY = 'golfModel:bettingData:meta';
-    const STORAGE_VERSION = 'v1'; // bump when schema changes
+    const STORAGE_VERSION = 'v2'; // bump when cache invalidation behavior changes
 
     let dataPromise = null;
     let metaCache = null;
@@ -116,15 +116,17 @@
             if (remoteMetaKey && storedMetaKey && remoteMetaKey === storedMetaKey) {
                 return stored.data;
             }
-            if (!remoteMetaKey) {
-                return stored.data;
-            }
         }
 
-        const data = await fetchAndParseCsv();
-        const metaSnapshot = remoteMeta || { storedAt: new Date().toISOString() };
-        storeData(data, metaSnapshot);
-        return data;
+        try {
+            const data = await fetchAndParseCsv();
+            const metaSnapshot = remoteMeta || { storedAt: new Date().toISOString() };
+            storeData(data, metaSnapshot);
+            return data;
+        } catch (error) {
+            if (!forceRefresh && stored) return stored.data;
+            throw error;
+        }
     }
 
     async function load(options = {}) {
