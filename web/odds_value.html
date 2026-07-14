@@ -1438,7 +1438,7 @@
     }
 
     function sourceMatches(row, source = state.filters.source) {
-        if (source === 'pending') return row.status === 'pending' && row.sourceType === 'current';
+        if (source === 'pending') return row.status === 'pending';
         if (source === 'archive2026') return row.sourceType === 'archive' && row.betYear === '2026';
         return true;
     }
