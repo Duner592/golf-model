@@ -1309,7 +1309,6 @@
         const preferredTour = tourCodeFromRow(row);
         const tournament = row.Tournament || '';
         const playerKey = normalizePlayerName(row.Player);
-        const candidates = [];
         const allCurrentModels = state.currentModels.length
             ? state.currentModels
             : Object.values(state.models).filter(Boolean);
@@ -1320,20 +1319,25 @@
         const currentModels = [...preferredCurrentModels, ...otherCurrentModels];
         const archiveModels = state.archiveModels
             .filter(model => !preferredTour || String(model.tour).toLowerCase() === preferredTour);
-        if (getOutcomeStatus(row) === 'pending') {
-            candidates.push(...currentModels, ...archiveModels);
-        } else {
-            candidates.push(...archiveModels, ...currentModels);
-        }
 
-        let best = { score: 0, model: null };
-        for (const model of candidates) {
-            if (!model || model.error) continue;
-            const score = tournamentMatchScore(tournament, model.eventName);
-            if (score > best.score) {
-                best = { score, model };
+        const bestModel = (models) => {
+            let best = { score: 0, model: null };
+            for (const model of models) {
+                if (!model || model.error) continue;
+                const score = tournamentMatchScore(tournament, model.eventName);
+                if (score > best.score) {
+                    best = { score, model };
+                }
             }
-        }
+            return best;
+        };
+
+        const currentBest = bestModel(currentModels);
+        const archiveBest = bestModel(archiveModels);
+        const best = getOutcomeStatus(row) === 'pending' && currentBest.score >= 0.7
+            ? currentBest
+            : (getOutcomeStatus(row) === 'pending' ? archiveBest : (archiveBest.score >= 0.7 ? archiveBest : currentBest));
+
         if (best.score < 0.7 || !best.model) {
             return { model: null, player: null };
         }
@@ -1638,13 +1642,16 @@
             const pnl = profitLossDisplay(row);
             const sheetResult = String(row.raw.Result || '').trim();
             const archiveResult = String(row.actualResult?.finishText || '').trim();
-            const useArchiveResult = archiveResult && (!sheetResult || /^pending$/i.test(sheetResult));
-            const actualResult = useArchiveResult ? archiveResult : (sheetResult || row.raw.Outcome || '-');
-            const actualResultNote = useArchiveResult
-                ? 'DataGolf archive result'
-                : archiveResult && archiveResult !== sheetResult
-                    ? `Sheet result | archive: ${archiveResult}`
-                    : (row.raw.Outcome || '-');
+            const isPendingRow = row.status === 'pending';
+            const useArchiveResult = !isPendingRow && archiveResult && (!sheetResult || /^pending$/i.test(sheetResult));
+            const actualResult = isPendingRow ? 'Pending' : (useArchiveResult ? archiveResult : (sheetResult || row.raw.Outcome || '-'));
+            const actualResultNote = isPendingRow
+                ? 'Event not started'
+                : useArchiveResult
+                    ? 'DataGolf archive result'
+                    : archiveResult && archiveResult !== sheetResult
+                        ? `Sheet result | archive: ${archiveResult}`
+                        : (row.raw.Outcome || '-');
             return `
                 <tr>
                     <td data-label="Date">${formatDate(row.raw.Date)}</td>
