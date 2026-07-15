@@ -706,7 +706,7 @@
         params.set("event_id", context.event.event_id);
         if (courseName) params.set("course", courseName);
         if (context.snapshot === "initial") params.set("snapshot", "initial");
-        return `course_details.html?${params.toString()}`;
+        return `event_drilldown.html?${params.toString()}`;
     }
 
     function populateSelect(select, items, value, labelFn, valueFn = item => item) {

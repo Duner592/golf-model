@@ -1,24 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Golf Model - Course Drilldown</title>
+    <title>Eds Golf Model - Course Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
     <script src="menu.js?v=20260515-status2"></script>
+    <!-- Added theme.css for shared styles -->
     <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="assets/js/betting-data.js"></script>
-    <script src="assets/js/course-notes.js"></script>
     <style>
-        body {
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            margin: 100px 1.25rem 1.25rem;
-            color: #17251d;
-            background: var(--gm-body-gradient);
-            transition: padding-left 0.3s;
-        }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; }
+        h1 { text-align: center; color: #2e8b57; }
+        .filter-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .filter-section select, .filter-section button { margin: 0.5rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+        .filter-section button { background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary)); color: white; cursor: pointer; border: none; box-shadow: 0 8px 18px -14px rgba(29,124,66,0.55); transition: background 0.2s ease, transform 0.2s ease; }
+        .filter-section button:hover { background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark)); transform: translateY(-1px); }
+        .results { margin: 2rem 0; }
+        .course-card { margin: 1.5rem 0; padding: 1.5rem; border: 1px solid #d9d9d9; border-radius: 12px; background: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06); }
+        .course-card h3 { margin: 0; font-size: 1.35rem; color: #235e3d; }
+        .course-card p { margin: 0.5rem 0 0; color: #3a3a3a; }
+        .course-card p strong { color: #2e8b57; }
+        .course-detail-block { margin-top: 1rem; padding: 0.85rem 1rem; border: 1px solid #ececec; border-radius: 10px; background: linear-gradient(180deg, rgba(242, 249, 245, 0.6), rgba(255, 255, 255, 0.9)); line-height: 1.55; font-size: 0.98rem; color: #232323; }
+        .course-detail-block.empty { background: #f9f9f9; color: #666; font-style: italic; }
+        .loading { color: #666; font-style: italic; }
+        .error { color: #d9534f; font-weight: bold; }
+        .no-results { color: #666; font-style: italic; }
+
         .logo {
             position: absolute;
             top: 8px;
@@ -27,477 +34,21 @@
             width: auto;
             z-index: 1002;
         }
-        .page-header {
-            --tour-accent: var(--gm-primary);
-            --tour-accent-dark: var(--gm-primary-dark);
-            --tour-accent-secondary: var(--gm-primary-light);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 0.9rem;
-            padding: 1rem 1.15rem;
-            border: 1px solid rgba(20, 50, 32, 0.12);
-            border-radius: 8px;
-            background: linear-gradient(135deg, #ffffff 0%, #f4fbf7 100%);
-            box-shadow: 0 16px 34px -28px rgba(15, 62, 34, 0.55);
-        }
-        .page-header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--tour-accent), var(--tour-accent-secondary));
-        }
-        .page-header--pga {
-            --tour-accent: #0b4c91;
-            --tour-accent-dark: #07315f;
-            --tour-accent-secondary: #d21f32;
-        }
-        .page-header--euro {
-            --tour-accent: #003764;
-            --tour-accent-dark: #00213d;
-            --tour-accent-secondary: #00956d;
-        }
-        .page-title {
-            min-width: 0;
-        }
-        h1 {
-            margin: 0;
-            color: var(--tour-accent-dark);
-            font-size: 1.65rem;
-            line-height: 1.15;
-        }
-        .subtitle {
-            margin: 0.3rem 0 0;
-            color: #53675b;
-            font-size: 0.95rem;
-        }
-        .header-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: flex-end;
-        }
-        .control-panel,
-        .card {
-            border: 1px solid rgba(20, 50, 32, 0.12);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow: 0 12px 26px -24px rgba(17, 94, 45, 0.48);
-        }
-        .control-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            align-items: end;
-            margin-bottom: 1rem;
-            padding: 0.85rem 1rem;
-        }
-        label {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            color: #53675b;
-            font-size: 0.78rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-        select,
-        input[type="search"] {
-            min-width: 12rem;
-            min-height: 2.35rem;
-            padding: 0.35rem 0.55rem;
-            border: 1px solid #cfd8d0;
-            border-radius: 6px;
-            background: #fff;
-            color: #17251d;
-            font: inherit;
-            font-size: 0.92rem;
-            text-transform: none;
-            letter-spacing: 0;
-        }
-        button {
-            min-height: 2.35rem;
-            padding: 0.35rem 0.75rem;
-            border: 0;
-            border-radius: 6px;
-            background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary));
-            color: #fff;
-            font: inherit;
-            font-size: 0.92rem;
-            font-weight: 750;
-            cursor: pointer;
-            box-shadow: 0 8px 18px -14px rgba(29, 124, 66, 0.55);
-        }
-        button:hover,
-        button:focus-visible {
-            background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark));
-            outline: none;
-        }
-        #eventSelect {
-            min-width: 16rem;
-        }
-        .layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 360px;
-            gap: 1rem;
-            align-items: start;
-        }
-        .main-stack,
-        .side-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .card {
-            padding: 1rem;
-        }
-        .card h2,
-        .card h3 {
-            margin: 0 0 0.75rem;
-            color: #254332;
-        }
-        .card h2 {
-            font-size: 1.15rem;
-        }
-        .card h3 {
-            font-size: 1rem;
-        }
-        .metric-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 0.75rem;
-        }
-        .metric-card {
-            min-height: 5rem;
-            padding: 0.85rem;
-            border: 1px solid rgba(34, 139, 34, 0.12);
-            border-radius: 8px;
-            background: linear-gradient(180deg, rgba(248, 252, 249, 0.96), rgba(240, 248, 243, 0.84));
-        }
-        .metric-label {
-            color: #5b7062;
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-        .metric-value {
-            display: block;
-            margin-top: 0.35rem;
-            color: #17251d;
-            font-size: 1.35rem;
-            font-weight: 800;
-            line-height: 1.15;
-            font-variant-numeric: tabular-nums;
-        }
-        .metric-sub {
-            display: block;
-            margin-top: 0.25rem;
-            color: #607066;
-            font-size: 0.82rem;
-            line-height: 1.3;
-        }
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.65rem;
-        }
-        .detail-row {
-            display: grid;
-            grid-template-columns: 1.7rem minmax(0, 1fr);
-            gap: 0.5rem;
-            align-items: start;
-            padding: 0.55rem 0.6rem;
-            border: 1px solid rgba(34, 139, 34, 0.1);
-            border-radius: 8px;
-            background: rgba(248, 252, 249, 0.78);
-        }
-        .detail-icon {
-            color: var(--gm-primary);
-            text-align: center;
-        }
-        .detail-label {
-            display: block;
-            color: #5b7062;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-        .detail-value {
-            display: block;
-            margin-top: 0.1rem;
-            color: #17251d;
-            font-weight: 650;
-            overflow-wrap: anywhere;
-        }
-        .link,
-        .text-link {
-            color: #1d7c42;
-            font-weight: 750;
-            text-decoration: none;
-        }
-        .text-link {
-            border-bottom: 1px solid rgba(29, 124, 66, 0.35);
-        }
-        .text-link:hover,
-        .text-link:focus-visible {
-            color: #176336;
-            border-bottom-color: rgba(29, 124, 66, 0.7);
-            outline: none;
-        }
-        .link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 2.1rem;
-            padding: 0.25rem 0.7rem;
-            border-radius: 6px;
-            background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary));
-            color: #fff;
-            box-shadow: 0 8px 18px -14px rgba(29, 124, 66, 0.55);
-        }
-        .link:hover,
-        .link:focus-visible {
-            background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark));
-            outline: none;
-        }
-        .status-message {
-            padding: 1rem;
-            border: 1px solid rgba(183, 129, 0, 0.22);
-            border-radius: 8px;
-            background: rgba(255, 245, 217, 0.82);
-            color: #66501b;
-            font-weight: 650;
-        }
-        .muted,
-        .empty {
-            color: #67766c;
-        }
-        .empty {
-            font-size: 0.92rem;
-        }
-        .table-wrap {
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-        }
-        th,
-        td {
-            padding: 0.55rem 0.45rem;
-            border-bottom: 1px solid #edf2ef;
-            text-align: left;
-            vertical-align: top;
-        }
-        th {
-            color: #53675b;
-            font-size: 0.76rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            background: #f8fbf9;
-        }
-        .num {
-            text-align: right;
-            font-variant-numeric: tabular-nums;
-        }
-        .pill-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-        }
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            min-height: 1.7rem;
-            padding: 0.15rem 0.55rem;
-            border-radius: 999px;
-            background: rgba(29, 124, 66, 0.1);
-            color: #176336;
-            font-size: 0.82rem;
-            font-weight: 750;
-            text-decoration: none;
-        }
-        .weight-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-        }
-        .weight-row {
-            display: grid;
-            grid-template-columns: 6.75rem minmax(0, 1fr) 4.25rem;
-            gap: 0.6rem;
-            align-items: center;
-        }
-        .weight-label,
-        .weight-value {
-            font-size: 0.84rem;
-            font-weight: 750;
-        }
-        .weight-bar {
-            height: 0.65rem;
-            overflow: hidden;
-            border-radius: 999px;
-            background: #e8f1eb;
-        }
-        .weight-fill {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--gm-primary-light), var(--gm-primary));
-        }
-        .analysis-note {
-            margin: 0 0 0.85rem;
-            color: #607066;
-            font-size: 0.9rem;
-            line-height: 1.45;
-        }
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            align-items: start;
-            margin-top: 1rem;
-        }
-        .analysis-block h3 {
-            margin: 0 0 0.55rem;
-            color: #254332;
-            font-size: 1rem;
-        }
-        .signal-tag {
-            display: inline-flex;
-            align-items: center;
-            min-height: 1.45rem;
-            padding: 0.1rem 0.45rem;
-            border-radius: 999px;
-            background: rgba(29, 124, 66, 0.1);
-            color: #176336;
-            font-size: 0.78rem;
-            font-weight: 750;
-            white-space: nowrap;
-        }
-        .course-notes-list {
-            display: grid;
-            gap: 0.55rem;
-            margin: 0;
-        }
-        .course-note-row {
-            display: grid;
-            grid-template-columns: 11rem minmax(0, 1fr);
-            gap: 0.7rem;
-            padding: 0.45rem 0;
-            border-bottom: 1px solid #edf2ef;
-        }
-        .course-note-row:last-child {
-            border-bottom: 0;
-        }
-        .course-note-row dt,
-        .course-note-row dd {
-            margin: 0;
-        }
-        .course-note-row dt {
-            color: #53675b;
-        }
-        .course-note-value--missing {
-            color: #8a968e;
-            font-style: italic;
-        }
-        .pre-note-stack {
-            display: grid;
-            gap: 0.85rem;
-        }
-        .pre-note-item {
-            padding: 0 0 0 0.85rem;
-            border-left: 3px solid rgba(29, 124, 66, 0.45);
-        }
-        .pre-note-meta {
-            margin: 0 0 0.4rem;
-            color: #607066;
-            font-size: 0.82rem;
-            font-weight: 750;
-        }
-        .pre-note-body {
-            color: #253d2e;
-            font-size: 0.94rem;
-            line-height: 1.5;
-        }
-        .pre-note-body p {
-            margin: 0 0 0.55rem;
-        }
-        .pre-note-body p:last-child {
-            margin-bottom: 0;
-        }
-        .pre-note-body ul {
-            margin: 0;
-            padding-left: 1.15rem;
-        }
-        .pre-note-body li + li {
-            margin-top: 0.3rem;
-        }
-        .previous-winners {
-            display: grid;
-            gap: 0.4rem;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .previous-winners li {
-            display: flex;
-            justify-content: space-between;
-            gap: 0.75rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 1px solid #edf2ef;
-        }
-        .previous-winners li:last-child {
-            border-bottom: 0;
-            padding-bottom: 0;
-        }
-        @media (max-width: 980px) {
-            .page-header {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-            .header-links {
-                justify-content: flex-start;
-            }
-            .layout {
-                grid-template-columns: 1fr;
-            }
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        @media (max-width: 640px) {
-            body {
-                margin: 88px 0.8rem 1rem;
-            }
+
+        @media (max-width: 768px) {
             .logo {
                 height: 60px;
-                right: 8px;
-            }
-            select,
-            input[type="search"],
-            #eventSelect {
-                min-width: min(100%, 18rem);
-                width: 100%;
-            }
-            .control-panel label {
-                width: 100%;
-            }
-            .course-note-row,
-            .weight-row {
-                grid-template-columns: 1fr;
+                top: 5px;
+                right: 5px;
             }
         }
+
+        .link { display: inline-block; margin: 0.25rem 0; padding: 0.25rem 0.5rem; background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary)); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem; box-shadow: 0 8px 18px -14px rgba(29,124,66,0.55); transition: background 0.2s ease, transform 0.2s ease; }
+        .link:hover { background: linear-gradient(135deg, var(--gm-primary), var(--gm-primary-dark)); transform: translateY(-1px); }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/betting-data.js"></script>
+    <script src="assets/js/course-notes.js"></script>
 </head>
 <body>
 <img src="EdsGolfModelLogo.svg" alt="Eds Golf Model Logo" class="logo">
@@ -505,1257 +56,174 @@
 <div class="menu-container"></div>
 <div class="menu" id="menu"></div>
 
-<header class="page-header" id="pageHeader">
-    <div class="page-title">
-        <h1 id="courseTitle">Course Drilldown</h1>
-        <p class="subtitle" id="courseSubtitle">Loading course context...</p>
-    </div>
-    <div class="header-links">
-        <a class="link" id="leaderboardLink" href="pga.html">Leaderboard</a>
-        <a class="link" id="playerLink" href="player.html">Player Drilldown</a>
-    </div>
-</header>
+<h1>Eds Golf Model - Course Details</h1>
+<p>Filter by tournament and/or course name to view details from betting history data.</p>
 
-<section class="control-panel" aria-label="Course drilldown controls">
-    <label>
-        Tour
-        <select id="tourSelect">
-            <option value="pga">PGA Tour</option>
-            <option value="euro">DP World Tour</option>
-        </select>
-    </label>
-    <label>
-        Model
-        <select id="snapshotSelect">
-            <option value="latest">Latest</option>
-            <option value="initial">Initial run</option>
-        </select>
-    </label>
-    <label>
-        Event
-        <select id="eventSelect"></select>
-    </label>
-</section>
+<div class="filter-section">
+    <label for="tournament-filter">Tournament:</label>
+    <select id="tournament-filter">
+        <option value="">All Tournaments</option>
+    </select>
 
-<main class="layout">
-    <div class="main-stack">
-        <section class="card" id="statusCard" hidden></section>
-        <section class="card">
-            <h2>Course Snapshot</h2>
-            <div class="metric-grid" id="metricGrid"></div>
-        </section>
-        <section class="card">
-            <h2>Event Context</h2>
-            <div class="detail-grid" id="detailGrid"></div>
-        </section>
-        <section class="card">
-            <h2>Course Notes</h2>
-            <div id="courseNotes"></div>
-        </section>
-        <section class="card" id="preTournamentNotesCard" hidden>
-            <h2>Pre-Tournament Notes</h2>
-            <div id="preTournamentNotes"></div>
-        </section>
-        <section class="card">
-            <h2>Current Field Course Fit</h2>
-            <div id="fieldFit"></div>
-        </section>
-        <section class="card">
-            <h2>First Round Leader Analysis</h2>
-            <div id="frlAnalysis"></div>
-        </section>
-        <section class="card">
-            <h2>Weather Profile</h2>
-            <div class="table-wrap" id="weatherWrap"></div>
-        </section>
-    </div>
-    <aside class="side-stack" aria-label="Course supporting data">
-        <section class="card">
-            <h3>Course Fit Weights</h3>
-            <div id="courseWeights"></div>
-        </section>
-        <section class="card">
-            <h3>Course History</h3>
-            <div id="courseHistory"></div>
-        </section>
-        <section class="card">
-            <h3>Betting Summary</h3>
-            <div id="bettingSummary"></div>
-        </section>
-        <section class="card">
-            <h3>Recent Course Archives</h3>
-            <div id="archiveRows"></div>
-        </section>
-        <section class="card">
-            <h3>Quick Links</h3>
-            <div class="pill-row" id="quickLinks"></div>
-        </section>
-    </aside>
-</main>
+    <label for="course-filter">Course Name:</label>
+    <select id="course-filter">
+        <option value="">All Courses</option>
+    </select>
+
+    <button id="filter-btn">Apply Filter</button>
+</div>
+
+<div id="course-details" class="loading">Loading data...</div>
 
 <script>
-    const TOUR_LABELS = {
-        pga: "PGA Tour",
-        euro: "DP World Tour"
-    };
-    const TOUR_PAGES = {
-        pga: "pga.html",
-        euro: "euro.html"
-    };
-    const FIT_LABELS = {
-        sg_ott: "Off Tee",
-        sg_app: "Approach",
-        sg_arg: "Around Green",
-        sg_putt: "Putting",
-        da_z: "Driving Acc.",
-        dd_z: "Driving Dist."
-    };
-    const state = {
-        tours: new Map(),
-        events: new Map(),
-        archive: null,
-        bettingRows: null
-    };
-    let currentContext = null;
+    let csvData = [];  // Store parsed CSV data globally for filtering
+    const initialParams = new URLSearchParams(window.location.search);
 
-    const els = {
-        header: document.getElementById("pageHeader"),
-        title: document.getElementById("courseTitle"),
-        subtitle: document.getElementById("courseSubtitle"),
-        tour: document.getElementById("tourSelect"),
-        snapshot: document.getElementById("snapshotSelect"),
-        event: document.getElementById("eventSelect"),
-        leaderboard: document.getElementById("leaderboardLink"),
-        player: document.getElementById("playerLink"),
-        status: document.getElementById("statusCard"),
-        metrics: document.getElementById("metricGrid"),
-        details: document.getElementById("detailGrid"),
-        notes: document.getElementById("courseNotes"),
-        preNotesCard: document.getElementById("preTournamentNotesCard"),
-        preNotes: document.getElementById("preTournamentNotes"),
-        fieldFit: document.getElementById("fieldFit"),
-        frl: document.getElementById("frlAnalysis"),
-        weather: document.getElementById("weatherWrap"),
-        weights: document.getElementById("courseWeights"),
-        history: document.getElementById("courseHistory"),
-        bettingSummary: document.getElementById("bettingSummary"),
-        archives: document.getElementById("archiveRows"),
-        quickLinks: document.getElementById("quickLinks")
-    };
+    async function loadOverallROI() {
+        try {
+            const data = await BettingData.load();
+            let totalReturn = 0;
+            let totalStake = 0;
+            data.forEach(row => {
+                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
+                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
+                if (!isNaN(returnVal)) totalReturn += returnVal;
+                if (!isNaN(stakeVal)) totalStake += stakeVal;
+            });
+            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
+            return `<strong>Overall ROI: ${roi}%</strong>`;
+        } catch (e) {
+            return 'ROI unavailable.';
+        }
+    }
+
+    async function loadData() {
+        try {
+            csvData = await BettingData.load();
+
+            // Populate dropdowns with unique values
+            const tournaments = new Set();
+            const courses = new Set();  // Using "Course" field for course names
+            csvData.forEach(row => {
+                const tournament = row['Tournament'] || row['Tour/Majors'] || '';
+                const course = (row['Course'] || '').trim();
+                if (tournament) tournaments.add(tournament);
+                if (course && course.toLowerCase() !== 'n/a') courses.add(course);
+            });
+
+            const tournamentSelect = document.getElementById('tournament-filter');
+            Array.from(tournaments).sort().forEach(t => {
+                const option = document.createElement('option');
+                option.value = t;
+                option.textContent = t;
+                tournamentSelect.appendChild(option);
+            });
+
+            const courseSelect = document.getElementById('course-filter');
+            Array.from(courses).sort().forEach(c => {
+                const option = document.createElement('option');
+                option.value = c;
+                option.textContent = c;
+                courseSelect.appendChild(option);
+            });
+
+            applyInitialFilters();
+            applyFilter();
+        } catch (e) {
+            console.error('Error loading data:', e);
+            document.getElementById('course-details').innerHTML = '<div class="error">Data unavailable. Check console for errors.</div>';
+        }
+    }
 
     function escapeHtml(value) {
-        return String(value ?? "").replace(/[&<>"']/g, char => ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            "\"": "&quot;",
-            "'": "&#39;"
-        }[char]));
+        if (value == null) return '';
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
-    function fmtNum(value, digits = 1) {
-        const n = Number(value);
-        return Number.isFinite(n) ? n.toFixed(digits) : "-";
-    }
+    function displayResults(filteredData) {
+        const resultsDiv = document.getElementById('course-details');
 
-    function fmtPct(value, digits = 1) {
-        const n = Number(value);
-        return Number.isFinite(n) ? `${n.toFixed(digits)}%` : "-";
-    }
+        // Collect unique courses with their details (removes duplicates)
+        const uniqueCourses = new Map();  // Key: course name, Value: { detail, tournament, row }
+        filteredData.forEach(row => {
+            const courseName = (row['Course'] || '').trim();
+            const courseDetailRaw = (row['Course Details'] || '').trim();
+            const tournament = row['Tournament'] || row['Tour/Majors'] || '';
 
-    function fmtCurrency(value) {
-        const n = Number(value);
-        if (!Number.isFinite(n)) return "-";
-        const sign = n < 0 ? "-" : "";
-        return `${sign}GBP ${Math.abs(n).toFixed(2)}`;
-    }
-
-    function fmtYardage(value) {
-        if (value == null || value === "") return "-";
-        const numeric = Number(String(value).replace(/,/g, ""));
-        return Number.isFinite(numeric) ? numeric.toLocaleString() : String(value);
-    }
-
-    function parseMoney(value) {
-        if (value == null) return 0;
-        const cleaned = String(value).replace(/[^0-9.-]/g, "");
-        const n = Number(cleaned);
-        return Number.isFinite(n) ? n : 0;
-    }
-
-    function parseDate(value) {
-        if (!value) return null;
-        const text = String(value).trim();
-        const uk = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-        if (uk) return new Date(`${uk[3]}-${uk[2].padStart(2, "0")}-${uk[1].padStart(2, "0")}T00:00:00Z`);
-        const parsed = new Date(text);
-        return Number.isNaN(parsed.valueOf()) ? null : parsed;
-    }
-
-    function displayDate(value) {
-        const parsed = parseDate(value);
-        if (!parsed) return value || "-";
-        return parsed.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-    }
-
-    function normalizeForMatch(value) {
-        return String(value || "")
-            .toLowerCase()
-            .replace(/&/g, " and ")
-            .replace(/[^a-z0-9]+/g, " ")
-            .trim();
-    }
-
-    function sameLoose(left, right) {
-        const a = normalizeForMatch(left);
-        const b = normalizeForMatch(right);
-        return Boolean(a && b && (a === b || a.includes(b) || b.includes(a)));
-    }
-
-    async function loadJSON(path, fallback = null) {
-        if (!path) return fallback;
-        try {
-            const response = await fetch(path, { cache: "no-store" });
-            if (!response.ok) return fallback;
-            return await response.json();
-        } catch (error) {
-            console.warn("Failed to load", path, error);
-            return fallback;
-        }
-    }
-
-    async function loadCSV(path, fallback = []) {
-        if (!path || typeof Papa === "undefined") return fallback;
-        try {
-            const response = await fetch(path, { cache: "no-store" });
-            if (!response.ok) return fallback;
-            const text = await response.text();
-            const parsed = Papa.parse(text, {
-                header: true,
-                skipEmptyLines: "greedy",
-                dynamicTyping: false,
-                transformHeader: header => header.trim()
-            });
-            return Array.isArray(parsed.data) ? parsed.data : fallback;
-        } catch (error) {
-            console.warn("Failed to load", path, error);
-            return fallback;
-        }
-    }
-
-    async function loadBettingRows() {
-        if (state.bettingRows) return state.bettingRows;
-        try {
-            const rows = await BettingData.load();
-            state.bettingRows = Array.isArray(rows) ? rows : [];
-        } catch (error) {
-            console.warn("Betting data unavailable", error);
-            state.bettingRows = [];
-        }
-        return state.bettingRows;
-    }
-
-    function rootResources(tour) {
-        return {
-            meta: `${tour}/meta.json`,
-            leaderboard: `${tour}/leaderboard.json`,
-            summary: `${tour}/summary.json`,
-            tournament_summary: `${tour}/tournament_summary.json`,
-            weather_round_neutral: `${tour}/weather_round_neutral.json`,
-            weather_round_wave: `${tour}/weather_round_wave.json`,
-            course_fit_weights: `${tour}/course_fit_weights.json`,
-            course_history_summary: `${tour}/course_history_summary.json`,
-            field_teetimes: `${tour}/field_teetimes.csv`,
-            schedule: `${tour}/schedule.json`
-        };
-    }
-
-    function eventYear(tourMeta, event) {
-        const candidates = [event?.r1_date, event?.start_date, tourMeta?.r1_date, tourMeta?.start_date, tourMeta?.generated_utc];
-        for (const value of candidates) {
-            if (typeof value === "string" && /^\d{4}/.test(value)) return value.slice(0, 4);
-        }
-        return String(new Date().getFullYear());
-    }
-
-    function initialSnapshotResources(tour, tourMeta, event) {
-        const id = String(event?.event_id ?? tourMeta?.event_id ?? "0");
-        const year = eventYear(tourMeta, event);
-        const base = `${tour}/initial/${year}/event_${id}`;
-        return {
-            meta: `${base}/meta.json`,
-            leaderboard: `${base}/leaderboard.json`,
-            summary: `${base}/summary.json`,
-            tournament_summary: `${base}/tournament_summary.json`,
-            weather_round_neutral: `${base}/weather_round_neutral.json`,
-            weather_round_wave: `${base}/weather_round_wave.json`,
-            course_fit_weights: `${base}/course_fit_weights.json`,
-            course_history_summary: `${base}/course_history_summary.json`,
-            field_teetimes: `${base}/field_teetimes.csv`,
-            downloads_csv: `${base}/leaderboard.csv`,
-            downloads_html: `${base}/leaderboard.html`,
-            schedule: `${tour}/schedule.json`
-        };
-    }
-
-    function normalizeEvents(tour, meta) {
-        const active = Array.isArray(meta?.active_events) ? meta.active_events : [];
-        if (active.length) {
-            return active.map((event, index) => {
-                const eventId = String(event.event_id ?? event.id ?? index);
-                const eventDir = event.event_dir || event.resources?.primary_event_dir || `${tour}/events/event_${eventId}`;
-                return {
-                    ...event,
-                    event_id: eventId,
-                    event_name: event.event_name || `Event ${eventId}`,
-                    resources: {
-                        ...rootResources(tour),
-                        ...(event.resources || {}),
-                        meta: event.resources?.meta || `${eventDir}/meta.json`,
-                        leaderboard: event.resources?.leaderboard || `${eventDir}/leaderboard.json`,
-                        summary: event.resources?.summary || `${eventDir}/summary.json`,
-                        tournament_summary: event.resources?.tournament_summary || `${eventDir}/tournament_summary.json`,
-                        weather_round_neutral: event.resources?.weather_round_neutral || `${eventDir}/weather_round_neutral.json`,
-                        weather_round_wave: event.resources?.weather_round_wave || `${eventDir}/weather_round_wave.json`,
-                        course_fit_weights: event.resources?.course_fit_weights || `${eventDir}/course_fit_weights.json`,
-                        course_history_summary: event.resources?.course_history_summary || `${eventDir}/course_history_summary.json`,
-                        field_teetimes: event.resources?.field_teetimes || `${eventDir}/field_teetimes.csv`
-                    }
-                };
-            });
-        }
-        const eventId = String(meta?.event_id ?? "0");
-        return [{
-            event_id: eventId,
-            event_name: meta?.event_name || (eventId === "0" ? "No Event" : `Event ${eventId}`),
-            r1_date: meta?.r1_date,
-            start_date: meta?.start_date,
-            resources: {
-                ...rootResources(tour),
-                ...(meta?.resources || {})
-            }
-        }];
-    }
-
-    async function loadTour(tour) {
-        if (state.tours.has(tour)) return state.tours.get(tour);
-        const meta = await loadJSON(`${tour}/meta.json`, {});
-        const payload = { meta, events: normalizeEvents(tour, meta) };
-        state.tours.set(tour, payload);
-        return payload;
-    }
-
-    async function loadEvent(tour, tourState, event, snapshot) {
-        const key = `${tour}:${snapshot}:${event.event_id}`;
-        if (state.events.has(key)) return state.events.get(key);
-        const resources = snapshot === "initial"
-            ? initialSnapshotResources(tour, tourState.meta, event)
-            : { ...rootResources(tour), ...(event.resources || {}) };
-        const [eventMeta, leaderboard, summary, tournament, weatherNeutral, weatherWave, courseFit, courseHistory, teeTimes] = await Promise.all([
-            loadJSON(resources.meta, null),
-            loadJSON(resources.leaderboard, []),
-            loadJSON(resources.summary, null),
-            loadJSON(resources.tournament_summary, null),
-            loadJSON(resources.weather_round_neutral, []),
-            loadJSON(resources.weather_round_wave, []),
-            loadJSON(resources.course_fit_weights, null),
-            loadJSON(resources.course_history_summary, null),
-            loadCSV(resources.field_teetimes, [])
-        ]);
-        const meta = {
-            ...(tourState.meta || {}),
-            ...(event || {}),
-            ...(eventMeta || {}),
-            event_id: String(event.event_id),
-            event_name: event.event_name || eventMeta?.event_name || tourState.meta?.event_name
-        };
-        delete meta.active_events;
-        const payload = {
-            tour,
-            snapshot,
-            event,
-            meta,
-            resources,
-            leaderboard: Array.isArray(leaderboard) ? leaderboard : [],
-            summary,
-            tournament,
-            weatherNeutral: Array.isArray(weatherNeutral) ? weatherNeutral : [],
-            weatherWave: Array.isArray(weatherWave) ? weatherWave : [],
-            teeTimes: Array.isArray(teeTimes) ? teeTimes : [],
-            courseFit,
-            courseHistory
-        };
-        state.events.set(key, payload);
-        return payload;
-    }
-
-    function populateSelect(select, items, value, labelFn, valueFn = item => item) {
-        select.innerHTML = "";
-        items.forEach(item => {
-            const option = document.createElement("option");
-            option.value = String(valueFn(item));
-            option.textContent = labelFn(item);
-            select.appendChild(option);
-        });
-        select.value = String(value ?? "");
-    }
-
-    function eventCourse(eventData) {
-        return eventData?.tournament?.course || eventData?.meta?.course || "";
-    }
-
-    function eventName(eventData, event) {
-        return eventData?.meta?.event_name || eventData?.tournament?.event_name || event?.event_name || "Current event";
-    }
-
-    function bestCourseNoteMatch(eventData, bettingRows, requestedCourse, context) {
-        const course = eventCourse(eventData) || requestedCourse || "";
-        const tournament = eventName(eventData, context?.event || currentContext?.event);
-        const tour = TOUR_LABELS[context?.tour || currentContext?.tour] || context?.tour || currentContext?.tour;
-        const row = CourseNotes.findBestRow(bettingRows, { course, tournament, tour });
-        return {
-            row,
-            parsed: row ? CourseNotes.parseRow(row) : CourseNotes.parseDetails("", { course }),
-            course,
-            tournament
-        };
-    }
-
-    function leaderboardHref(context) {
-        const params = new URLSearchParams();
-        params.set("event_id", context.event.event_id);
-        if (context.snapshot === "initial") params.set("snapshot", "initial");
-        return `${TOUR_PAGES[context.tour] || "pga.html"}?${params.toString()}`;
-    }
-
-    function updateUrl(context) {
-        const params = new URLSearchParams();
-        params.set("tour", context.tour);
-        params.set("event_id", context.event.event_id);
-        const course = eventCourse(context.eventData) || context.requestedCourse;
-        if (course) params.set("course", course);
-        if (context.snapshot === "initial") params.set("snapshot", "initial");
-        window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
-    }
-
-    function metricCard(label, value, sub = "") {
-        return `
-            <div class="metric-card">
-                <span class="metric-label">${escapeHtml(label)}</span>
-                <span class="metric-value">${escapeHtml(value)}</span>
-                ${sub ? `<span class="metric-sub">${escapeHtml(sub)}</span>` : ""}
-            </div>
-        `;
-    }
-
-    function detailRow(icon, label, value) {
-        return `
-            <div class="detail-row">
-                <span class="detail-icon"><i class="${icon}" aria-hidden="true"></i></span>
-                <span><span class="detail-label">${escapeHtml(label)}</span><span class="detail-value">${value}</span></span>
-            </div>
-        `;
-    }
-
-    function renderStatus(message) {
-        if (!message) {
-            els.status.hidden = true;
-            els.status.innerHTML = "";
-            return;
-        }
-        els.status.hidden = false;
-        els.status.innerHTML = `<div class="status-message">${escapeHtml(message)}</div>`;
-    }
-
-    function topWeight(courseFit) {
-        const entries = Object.entries(courseFit?.weights || {});
-        if (!entries.length) return null;
-        entries.sort((a, b) => Math.abs(Number(b[1])) - Math.abs(Number(a[1])));
-        return { key: entries[0][0], value: Number(entries[0][1]) };
-    }
-
-    function maxWeatherDelta(eventData) {
-        const rows = [...(eventData.weatherNeutral || []), ...(eventData.weatherWave || [])];
-        const deltas = rows.map(row => Number(row?.delta_strokes)).filter(Number.isFinite);
-        return deltas.length ? Math.max(...deltas) : null;
-    }
-
-    function renderMetrics(eventData) {
-        const tournament = eventData.tournament || {};
-        const fieldSize = tournament.field_size || eventData.leaderboard.length || "-";
-        const weight = topWeight(eventData.courseFit);
-        const historyRows = Number(eventData.courseHistory?.rows);
-        const historySub = Number.isFinite(historyRows)
-            ? `${fmtNum(eventData.courseHistory?.rounds_course_avg, 1)} avg rounds/player`
-            : "";
-        const weatherMax = maxWeatherDelta(eventData);
-        els.metrics.innerHTML = [
-            metricCard("Field", String(fieldSize), "players"),
-            metricCard("Course History", Number.isFinite(historyRows) ? String(historyRows) : "-", historySub),
-            metricCard("Max Weather Hit", weatherMax == null ? "-" : `${fmtNum(weatherMax, 2)} st`, "largest round/wave delta"),
-            metricCard("Top Fit Signal", weight ? FIT_LABELS[weight.key] || weight.key : "-", weight ? `${fmtPct(Math.abs(weight.value) * 100, 1)} weight share` : "")
-        ].join("");
-    }
-
-    function renderDetails(eventData, context, noteMatch) {
-        const tournament = eventData.tournament || {};
-        const course = eventCourse(eventData) || context.requestedCourse || "Unknown Course";
-        const startDate = tournament.start_date || eventData.meta.start_date || eventData.meta.r1_date || "-";
-        const generated = eventData.meta.snapshot_created_utc || eventData.meta.saved_at_utc || eventData.meta.generated_utc || eventData.summary?.generated_utc || "-";
-        const location = tournament.course_location || "-";
-        const noteLength = noteMatch?.parsed?.length;
-        const yardage = noteLength && noteLength !== CourseNotes.missingValue ? noteLength : fmtYardage(tournament.total_yardage);
-        els.details.innerHTML = [
-            detailRow("fas fa-flag", "Event", escapeHtml(eventName(eventData, context.event))),
-            detailRow("fas fa-map-marker-alt", "Course", escapeHtml(course)),
-            detailRow("fas fa-location-dot", "Location", escapeHtml(location)),
-            detailRow("fas fa-calendar-alt", "Start Date", escapeHtml(startDate)),
-            detailRow("fas fa-ruler-horizontal", "Yardage", escapeHtml(yardage)),
-            detailRow("fas fa-database", "Model Snapshot", escapeHtml(context.snapshot === "initial" ? "Initial run" : "Latest")),
-            detailRow("fas fa-sync-alt", "Generated", escapeHtml(generated)),
-            detailRow("fas fa-link", "Event ID", escapeHtml(context.event.event_id))
-        ].join("");
-    }
-
-    function renderCourseNotes(noteMatch) {
-        const course = noteMatch?.course || "";
-        if (!noteMatch?.row) {
-            els.notes.innerHTML = `
-                <p class="empty">No matching spreadsheet course notes found for ${escapeHtml(course || "this course")}.</p>
-                ${CourseNotes.render(noteMatch?.parsed || CourseNotes.parseDetails("", { course }))}
-            `;
-            return;
-        }
-        const rowCourse = noteMatch.row.Course || course;
-        const rowTournament = noteMatch.row.Tournament || noteMatch.row["Tour/Majors"] || "";
-        els.notes.innerHTML = `
-            <p class="muted">Best notes match: ${escapeHtml(rowCourse)}${rowTournament ? ` - ${escapeHtml(rowTournament)}` : ""}</p>
-            ${CourseNotes.render(noteMatch.parsed)}
-        `;
-    }
-
-    function isUsefulPreTournamentNote(value) {
-        const text = String(value || "").trim();
-        if (!text) return false;
-        const normalized = text.toLowerCase();
-        return !["n/a", "na", "pending", "-"].includes(normalized);
-    }
-
-    function noteTextKey(value) {
-        return String(value || "")
-            .toLowerCase()
-            .replace(/\s+/g, " ")
-            .trim();
-    }
-
-    function preTournamentNoteScore(row, course, tournament) {
-        let score = 0;
-        const rowCourse = row.Course || "";
-        const rowTournament = row.Tournament || row["Tour/Majors"] || "";
-        if (course && sameLoose(rowCourse, course)) score += 2;
-        if (tournament && sameLoose(rowTournament, tournament)) score += 1;
-        return score;
-    }
-
-    function matchedPreTournamentNotes(rows, course, tournament) {
-        const candidates = (rows || [])
-            .map(row => ({
-                row,
-                note: String(row["Pre Tournament Notes"] || "").trim(),
-                score: preTournamentNoteScore(row, course, tournament),
-                dateValue: parseDate(row.Date)?.valueOf() || 0
-            }))
-            .filter(item => item.score > 0 && isUsefulPreTournamentNote(item.note))
-            .sort((a, b) => b.score - a.score || b.dateValue - a.dateValue);
-
-        if (!candidates.length) return [];
-        const bestScore = candidates[0].score;
-        const seen = new Set();
-        return candidates
-            .filter(item => item.score === bestScore)
-            .filter(item => {
-                const key = noteTextKey(item.note);
-                if (!key || seen.has(key)) return false;
-                seen.add(key);
-                return true;
-            })
-            .slice(0, 3);
-    }
-
-    function renderNoteBody(value) {
-        const lines = String(value || "")
-            .replace(/\r\n?/g, "\n")
-            .split("\n")
-            .map(line => line.trim())
-            .filter(Boolean);
-        let html = "";
-        let listOpen = false;
-        const closeList = () => {
-            if (listOpen) {
-                html += "</ul>";
-                listOpen = false;
-            }
-        };
-        lines.forEach(line => {
-            const bullet = line.match(/^[-*]\s*(.+)$/);
-            if (bullet) {
-                if (!listOpen) {
-                    html += '<ul class="pre-note-list">';
-                    listOpen = true;
-                }
-                html += `<li>${escapeHtml(bullet[1])}</li>`;
-            } else {
-                closeList();
-                html += `<p>${escapeHtml(line)}</p>`;
+            if (courseName && courseName.toLowerCase() !== 'n/a' && courseDetailRaw && !uniqueCourses.has(courseName)) {
+                uniqueCourses.set(courseName, { detail: courseDetailRaw, tournament: tournament, row });
             }
         });
-        closeList();
-        return html;
-    }
 
-    function renderPreTournamentNotes(rows, course, tournament) {
-        const notes = matchedPreTournamentNotes(rows, course, tournament);
-        if (!notes.length) {
-            els.preNotesCard.hidden = true;
-            els.preNotes.innerHTML = "";
+        if (uniqueCourses.size === 0) {
+            resultsDiv.innerHTML = '<div class="no-results">No matching course details found.</div>';
             return;
         }
-        els.preNotesCard.hidden = false;
-        els.preNotes.innerHTML = `<div class="pre-note-stack">${
-            notes.map(({ row, note }) => {
-                const meta = [
-                    row.Tournament || tournament,
-                    row.Date ? displayDate(row.Date) : "",
-                    row.Course || course
-                ].filter(Boolean).join(" - ");
-                return `
-                    <article class="pre-note-item">
-                        ${meta ? `<p class="pre-note-meta">${escapeHtml(meta)}</p>` : ""}
-                        <div class="pre-note-body">${renderNoteBody(note)}</div>
-                    </article>
-                `;
-            }).join("")
-        }</div>`;
-    }
 
-    function renderWeights(courseFit) {
-        const weights = courseFit?.weights || {};
-        const entries = Object.entries(weights)
-            .map(([key, value]) => ({ key, value: Math.abs(Number(value)) }))
-            .filter(item => Number.isFinite(item.value))
-            .sort((a, b) => b.value - a.value);
-        if (!entries.length) {
-            els.weights.innerHTML = '<p class="empty">No course-fit weights are available for this event.</p>';
-            return;
-        }
-        const total = entries.reduce((sum, item) => sum + item.value, 0) || 1;
-        els.weights.innerHTML = `<div class="weight-list">${
-            entries.map(item => {
-                const pct = item.value / total * 100;
-                return `
-                    <div class="weight-row">
-                        <span class="weight-label">${escapeHtml(FIT_LABELS[item.key] || item.key)}</span>
-                        <span class="weight-bar"><span class="weight-fill" style="width:${Math.max(2, pct).toFixed(1)}%"></span></span>
-                        <span class="weight-value">${fmtPct(pct, 1)}</span>
-                    </div>
-                `;
-            }).join("")
-        }</div>`;
-    }
+        let html = '<div class="results">';
+        uniqueCourses.forEach((data, courseName) => {
+            const safeCourseName = escapeHtml(courseName || 'Course');
+            const safeTournament = data.tournament ? escapeHtml(data.tournament) : '';
+            const rawDetail = typeof data.detail === 'string' ? data.detail : '';
+            const hasDetail = rawDetail.trim().length > 0;
+            const detailHtml = hasDetail
+                ? CourseNotes.render(CourseNotes.parseRow({ ...data.row, Course: courseName, 'Course Details': rawDetail }))
+                : CourseNotes.render(CourseNotes.parseDetails('', { course: courseName }));
+            const detailClass = hasDetail ? 'course-detail-block' : 'course-detail-block empty';
 
-    function renderFieldFit(leaderboard) {
-        const rows = (leaderboard || [])
-            .map(row => ({
-                player: row.player_name || row.Player || "",
-                rank: row.rank,
-                win: row["p_win_%"],
-                fit: Number(row.course_fit_score)
-            }))
-            .filter(row => row.player && Number.isFinite(row.fit));
-        if (!rows.length) {
-            els.fieldFit.innerHTML = '<p class="empty">No course-fit scores are available on this leaderboard.</p>';
-            return;
-        }
-        const best = [...rows].sort((a, b) => b.fit - a.fit).slice(0, 8);
-        const worst = [...rows].sort((a, b) => a.fit - b.fit).slice(0, 8);
-        const table = (items) => `
-            <table>
-                <thead><tr><th>Player</th><th class="num">Rank</th><th class="num">Win</th><th class="num">Fit</th></tr></thead>
-                <tbody>${items.map(row => `
-                    <tr>
-                        <td>${escapeHtml(row.player)}</td>
-                        <td class="num">${Number.isFinite(Number(row.rank)) ? `#${escapeHtml(row.rank)}` : "-"}</td>
-                        <td class="num">${fmtPct(row.win)}</td>
-                        <td class="num">${fmtNum(row.fit, 3)}</td>
-                    </tr>
-                `).join("")}</tbody>
-            </table>
-        `;
-        els.fieldFit.innerHTML = `
-            <div class="layout" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-                <div><h3>Best Fits</h3><div class="table-wrap">${table(best)}</div></div>
-                <div><h3>Toughest Fits</h3><div class="table-wrap">${table(worst)}</div></div>
-            </div>
-        `;
-    }
-
-    function normalizePlayerDisplayName(name) {
-        let cleaned = String(name || "").replace(/\s*\(\d+\)\s*$/, "").replace(/\s+/g, " ").trim();
-        if (cleaned.includes(",")) {
-            const [last, first] = cleaned.split(",", 2).map(part => part.trim());
-            cleaned = first ? `${first} ${last}` : last;
-        }
-        return cleaned;
-    }
-
-    function playerNameKeys(name) {
-        const display = normalizePlayerDisplayName(name);
-        const ascii = display.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
-        const tokens = ascii.toLowerCase().match(/[a-z0-9]+/g) || [];
-        const keys = new Set();
-        if (tokens.length) keys.add(tokens.join(""));
-        if (tokens.length >= 2) keys.add(`${tokens[0]}${tokens[tokens.length - 1]}`);
-        return [...keys];
-    }
-
-    function samePlayerName(left, right) {
-        const leftKeys = new Set(playerNameKeys(left));
-        return playerNameKeys(right).some(key => leftKeys.has(key));
-    }
-
-    function teeTimeLookup(teeTimes) {
-        const lookup = new Map();
-        (teeTimes || []).forEach(row => {
-            const keys = playerNameKeys(row.player_name || row.Player || row.name || "");
-            keys.forEach(key => {
-                if (key && !lookup.has(key)) lookup.set(key, row);
-            });
-        });
-        return lookup;
-    }
-
-    function findTeeTimeRow(lookup, playerName) {
-        for (const key of playerNameKeys(playerName)) {
-            if (lookup.has(key)) return lookup.get(key);
-        }
-        return null;
-    }
-
-    function parseTeeTimeMinutes(value) {
-        const text = String(value || "").replace("*", "").trim();
-        const match = text.match(/^(\d{1,2}):(\d{2})/);
-        if (!match) return null;
-        const hours = Number(match[1]);
-        const minutes = Number(match[2]);
-        if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return null;
-        return hours * 60 + minutes;
-    }
-
-    function normalizeWave(value) {
-        const text = String(value || "").trim().toUpperCase();
-        if (["AM", "MORNING", "EARLY"].includes(text)) return "AM";
-        if (["PM", "AFTERNOON", "LATE"].includes(text)) return "PM";
-        if (text === "ALL" || text === "NEUTRAL") return text;
-        return "";
-    }
-
-    function inferWaveFromTeeTime(value) {
-        const minutes = parseTeeTimeMinutes(value);
-        if (minutes == null) return "";
-        return minutes < 12 * 60 ? "AM" : "PM";
-    }
-
-    function displayWave(value) {
-        const wave = normalizeWave(value);
-        if (wave === "AM") return "AM / early";
-        if (wave === "PM") return "PM / late";
-        return wave || "-";
-    }
-
-    function r1WeatherMap(eventData) {
-        const waveRows = (eventData.weatherWave || []).filter(row => Number(row.round) === 1);
-        const map = new Map();
-        waveRows.forEach(row => {
-            const wave = normalizeWave(row.wave);
-            if (wave) map.set(wave, row);
-        });
-        const neutral = (eventData.weatherNeutral || []).find(row => Number(row.round) === 1) || null;
-        if (neutral) map.set("NEUTRAL", { ...neutral, wave: "Neutral" });
-        return map;
-    }
-
-    function r1WeatherSummary(eventData) {
-        const map = r1WeatherMap(eventData);
-        const am = map.get("AM") || null;
-        const pm = map.get("PM") || null;
-        const neutral = map.get("NEUTRAL") || null;
-        if (am && pm) {
-            const amDelta = Number(am.delta_strokes);
-            const pmDelta = Number(pm.delta_strokes);
-            if (Number.isFinite(amDelta) && Number.isFinite(pmDelta)) {
-                const best = amDelta <= pmDelta ? am : pm;
-                const worst = amDelta <= pmDelta ? pm : am;
-                return {
-                    bestWave: normalizeWave(best.wave),
-                    bestDelta: Number(best.delta_strokes),
-                    edge: Math.abs(amDelta - pmDelta),
-                    summary: `${displayWave(best.wave)} currently projects ${fmtNum(Math.abs(amDelta - pmDelta), 2)} strokes easier than ${displayWave(worst.wave)}.`
-                };
+            let courseHtml = `<div class="course-card"><h3>${safeCourseName}</h3>`;
+            if (safeTournament) {
+                courseHtml += `<p><strong>Tournament:</strong> ${safeTournament}</p>`;
             }
-        }
-        if (neutral) {
-            return {
-                bestWave: "NEUTRAL",
-                bestDelta: Number(neutral.delta_strokes),
-                edge: 0,
-                summary: `Round 1 neutral weather delta is ${fmtNum(neutral.delta_strokes, 2)} strokes.`
-            };
-        }
-        return {
-            bestWave: "",
-            bestDelta: null,
-            edge: null,
-            summary: "No Round 1 weather split is available yet."
-        };
-    }
-
-    function scaleValue(value, min, max, fallback = 0.5) {
-        const n = Number(value);
-        if (!Number.isFinite(n) || !Number.isFinite(min) || !Number.isFinite(max) || max === min) return fallback;
-        return Math.max(0, Math.min(1, (n - min) / (max - min)));
-    }
-
-    function playerWaveData(row, teeRow, weatherMap) {
-        const teeTime = row.r1_teetime || teeRow?.r1_teetime || "";
-        const wave = normalizeWave(teeRow?.r1_wave) || inferWaveFromTeeTime(teeTime);
-        const weather = wave ? weatherMap.get(wave) : null;
-        const delta = Number(weather?.delta_strokes);
-        return {
-            teeTime,
-            wave,
-            weather,
-            delta: Number.isFinite(delta) ? delta : null
-        };
-    }
-
-    function buildFrlCandidates(eventData) {
-        const rows = (eventData.leaderboard || []).filter(row => row && (row.player_name || row.Player));
-        if (!rows.length) return [];
-        const teeLookup = teeTimeLookup(eventData.teeTimes || []);
-        const weatherMap = r1WeatherMap(eventData);
-        const wins = rows.map(row => Number(row["p_win_%"])).filter(Number.isFinite);
-        const fits = rows.map(row => Number(row.course_fit_score)).filter(Number.isFinite);
-        const waveDeltas = rows.map(row => {
-            const name = row.player_name || row.Player || "";
-            const wave = playerWaveData(row, findTeeTimeRow(teeLookup, name), weatherMap);
-            return wave.delta;
-        }).filter(Number.isFinite);
-        const winMin = wins.length ? Math.min(...wins) : 0;
-        const winMax = wins.length ? Math.max(...wins) : 0;
-        const fitMin = fits.length ? Math.min(...fits) : 0;
-        const fitMax = fits.length ? Math.max(...fits) : 0;
-        const deltaMin = waveDeltas.length ? Math.min(...waveDeltas) : null;
-        const deltaMax = waveDeltas.length ? Math.max(...waveDeltas) : null;
-
-        return rows.map(row => {
-            const player = row.player_name || row.Player || "";
-            const teeRow = findTeeTimeRow(teeLookup, player);
-            const wave = playerWaveData(row, teeRow, weatherMap);
-            const winScore = scaleValue(row["p_win_%"], winMin, winMax);
-            const fitScore = scaleValue(row.course_fit_score, fitMin, fitMax);
-            const weatherScore = wave.delta == null || deltaMin == null || deltaMax == null
-                ? 0.5
-                : scaleValue(deltaMax - wave.delta, 0, deltaMax - deltaMin);
-            const score = (winScore * 55) + (fitScore * 25) + (weatherScore * 20);
-            const signals = [];
-            if (winScore >= 0.7) signals.push("model strength");
-            if (fitScore >= 0.7) signals.push("course fit");
-            if (weatherScore >= 0.7 && wave.wave) signals.push("wave edge");
-            if (!signals.length) signals.push("balanced");
-            return {
-                player: normalizePlayerDisplayName(player),
-                rank: row.rank,
-                win: row["p_win_%"],
-                fit: Number(row.course_fit_score),
-                teeTime: wave.teeTime,
-                wave: wave.wave,
-                delta: wave.delta,
-                score,
-                signals
-            };
-        }).sort((a, b) => b.score - a.score);
-    }
-
-    function isFrlBet(row) {
-        return /first\s*round\s*leader/i.test(String(row?.Type || row?.Market || ""));
-    }
-
-    function matchedFrlBets(rows, course, tournament) {
-        return courseBetRows(rows, course, tournament)
-            .filter(isFrlBet)
-            .sort((a, b) => (parseDate(b.Date)?.valueOf() || 0) - (parseDate(a.Date)?.valueOf() || 0));
-    }
-
-    function renderFirstRoundLeader(eventData, bettingRows, course, tournament) {
-        const candidates = buildFrlCandidates(eventData).slice(0, 10);
-        const bets = matchedFrlBets(bettingRows, course, tournament);
-        const weather = r1WeatherSummary(eventData);
-        const teeCount = (eventData.teeTimes || []).filter(row => row.r1_teetime).length
-            || (eventData.leaderboard || []).filter(row => row.r1_teetime).length;
-        const bestWaveText = weather.bestWave ? displayWave(weather.bestWave) : "-";
-        const frlStake = bets.reduce((total, row) => total + parseMoney(row.Stake), 0);
-        const frlProfit = bets.reduce((total, row) => total + parseMoney(row["Profit/Loss"]), 0);
-        const frlRoi = frlStake > 0 ? frlProfit / frlStake * 100 : null;
-
-        const candidateRows = candidates.length
-            ? candidates.map(row => `
-                <tr>
-                    <td>${escapeHtml(row.player)}</td>
-                    <td class="num">${Number.isFinite(Number(row.rank)) ? `#${escapeHtml(row.rank)}` : "-"}</td>
-                    <td>${escapeHtml(row.teeTime || "-")}</td>
-                    <td>${escapeHtml(displayWave(row.wave))}</td>
-                    <td class="num">${row.delta == null ? "-" : fmtNum(row.delta, 2)}</td>
-                    <td class="num">${fmtPct(row.win)}</td>
-                    <td class="num">${fmtNum(row.fit, 3)}</td>
-                    <td>${row.signals.map(signal => `<span class="signal-tag">${escapeHtml(signal)}</span>`).join(" ")}</td>
-                </tr>
-            `).join("")
-            : '<tr><td colspan="8" class="empty">No leaderboard rows are available for FRL scoring.</td></tr>';
-
-        const betRows = bets.slice(0, 8).length
-            ? bets.slice(0, 8).map(row => `
-                <tr>
-                    <td>${escapeHtml(displayDate(row.Date))}</td>
-                    <td>${escapeHtml(row.Player || "-")}</td>
-                    <td>${escapeHtml(row.Price || "-")}</td>
-                    <td>${escapeHtml(row["Place Terms"] || "-")}</td>
-                    <td>${escapeHtml(row.Outcome || row.Result || "-")}</td>
-                    <td class="num">${escapeHtml(row["Profit/Loss"] || "-")}</td>
-                </tr>
-            `).join("")
-            : '<tr><td colspan="6" class="empty">No matched first-round-leader bets for this course or tournament.</td></tr>';
-
-        els.frl.innerHTML = `
-            <p class="analysis-note">Shortlist is a directional FRL lean, not a true first-round-leader probability. It blends model strength, course fit and Round 1 weather wave where tee-time data is available.</p>
-            <div class="metric-grid">
-                ${metricCard("Preferred R1 Wave", bestWaveText, weather.summary)}
-                ${metricCard("R1 Weather Edge", weather.edge == null ? "-" : `${fmtNum(weather.edge, 2)} st`, "lower delta is easier")}
-                ${metricCard("Tee Times", String(teeCount || 0), teeCount ? "Round 1 rows available" : "No tee-time rows yet")}
-                ${metricCard("FRL Bet ROI", frlRoi == null ? "-" : `${frlRoi.toFixed(1)}%`, `${bets.length} matched bets`)}
-            </div>
-            <div class="analysis-grid">
-                <div class="analysis-block">
-                    <h3>Current Field Shortlist</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead><tr><th>Player</th><th class="num">Rank</th><th>R1 Tee</th><th>Wave</th><th class="num">R1 Delta</th><th class="num">Win</th><th class="num">Fit</th><th>Signals</th></tr></thead>
-                            <tbody>${candidateRows}</tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="analysis-block">
-                    <h3>Matched FRL Bet History</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead><tr><th>Date</th><th>Player</th><th>Price</th><th>Terms</th><th>Outcome</th><th class="num">P/L</th></tr></thead>
-                            <tbody>${betRows}</tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    function renderWeather(eventData) {
-        const neutral = Array.isArray(eventData.weatherNeutral) ? eventData.weatherNeutral : [];
-        const wave = Array.isArray(eventData.weatherWave) ? eventData.weatherWave : [];
-        const rows = [
-            ...neutral.map(row => ({ ...row, wave: row.wave || "Neutral" })),
-            ...wave
-        ].sort((a, b) => Number(a.round) - Number(b.round) || String(a.wave || "").localeCompare(String(b.wave || "")));
-        if (!rows.length) {
-            els.weather.innerHTML = '<p class="empty">No weather data is available for this event.</p>';
-            return;
-        }
-        els.weather.innerHTML = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>Round</th><th>Wave</th><th class="num">Wind</th><th class="num">Gust</th>
-                        <th class="num">Rain</th><th class="num">Temp</th><th class="num">Delta</th>
-                    </tr>
-                </thead>
-                <tbody>${rows.map(row => `
-                    <tr>
-                        <td>${escapeHtml(row.round ?? "-")}</td>
-                        <td>${escapeHtml(row.wave || "-")}</td>
-                        <td class="num">${fmtNum(row.wind_mph, 1)} mph</td>
-                        <td class="num">${fmtNum(row.gust_mph, 1)} mph</td>
-                        <td class="num">${fmtPct(row.precip_pct, 0)}</td>
-                        <td class="num">${fmtNum(row.temp_c, 1)} C</td>
-                        <td class="num">${fmtNum(row.delta_strokes, 3)}</td>
-                    </tr>
-                `).join("")}</tbody>
-            </table>
-        `;
-    }
-
-    function historyPlayerLookup(eventData) {
-        const lookup = new Map();
-        const add = (row) => {
-            const id = row?.player_id ?? row?.dg_id ?? row?.id;
-            const name = row?.player_name || row?.name || row?.Player || row?.player;
-            if (id != null && name) lookup.set(String(id), String(name));
-        };
-        (eventData?.leaderboard || []).forEach(add);
-        (eventData?.teeTimes || []).forEach(add);
-        return lookup;
-    }
-
-    function historyPlayerName(row, lookup) {
-        const direct = row?.player_name || row?.name || row?.Player || row?.player;
-        if (direct) return direct;
-        const id = row?.player_id ?? row?.dg_id ?? row?.id;
-        return id != null && lookup?.has(String(id)) ? lookup.get(String(id)) : "Unknown player";
-    }
-
-    function renderHistory(courseHistory, eventData) {
-        if (!courseHistory) {
-            els.history.innerHTML = '<p class="empty">No course-history summary is available for this event.</p>';
-            return;
-        }
-        const topRows = Array.isArray(courseHistory.top_sg_course) ? courseHistory.top_sg_course.slice(0, 6) : [];
-        const reliableRows = Array.isArray(courseHistory.top_rounds) ? courseHistory.top_rounds.slice(0, 6) : [];
-        const playerLookup = historyPlayerLookup(eventData);
-        els.history.innerHTML = `
-            <div class="metric-grid">
-                ${metricCard("Rows", Number.isFinite(Number(courseHistory.rows)) ? String(courseHistory.rows) : "-")}
-                ${metricCard("Avg Rounds", fmtNum(courseHistory.rounds_course_avg, 1))}
-                ${metricCard("Avg Shrunk SG", fmtNum(courseHistory.sg_course_mean_shrunk_avg, 2))}
-            </div>
-            ${renderHistoryTable("Top Course SG", topRows, playerLookup)}
-            ${renderHistoryTable("Most Sampled", reliableRows, playerLookup)}
-        `;
-    }
-
-    function renderHistoryTable(title, rows, playerLookup) {
-        if (!rows.length) return "";
-        return `
-            <h3 style="margin-top:1rem;">${escapeHtml(title)}</h3>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>Player</th><th class="num">Rounds</th><th class="num">Shrunk SG</th></tr></thead>
-                    <tbody>${rows.map(row => `
-                        <tr>
-                            <td>${escapeHtml(historyPlayerName(row, playerLookup))}</td>
-                            <td class="num">${escapeHtml(row.rounds_course ?? "-")}</td>
-                            <td class="num">${fmtNum(row.sg_course_mean_shrunk, 2)}</td>
-                        </tr>
-                    `).join("")}</tbody>
-                </table>
-            </div>
-        `;
-    }
-
-    function courseBetRows(rows, course, tournament) {
-        return rows.filter(row => {
-            const rowCourse = row.Course || "";
-            const rowTournament = row.Tournament || row["Tour/Majors"] || "";
-            return (course && sameLoose(rowCourse, course)) || (tournament && sameLoose(rowTournament, tournament));
+            courseHtml += `<div class="${detailClass}">${detailHtml}</div></div>`;
+            html += courseHtml;
         });
+        html += '</div>';
+        resultsDiv.innerHTML = html;
     }
 
-    function renderBettingSummary(rows, course, tournament) {
-        const matched = courseBetRows(rows, course, tournament);
-        if (!matched.length) {
-            els.bettingSummary.innerHTML = `<p class="empty">No betting rows matched ${escapeHtml(course || tournament || "this course")}.</p>`;
-            return;
+    function applyFilter() {
+        const selectedTournament = document.getElementById('tournament-filter').value;
+        const selectedCourse = document.getElementById('course-filter').value;
+
+        const filtered = csvData.filter(row => {
+            const tournamentMatch = !selectedTournament || (row['Tournament'] || row['Tour/Majors'] || '') === selectedTournament;
+            const courseMatch = !selectedCourse || (row['Course'] || '').trim() === selectedCourse;
+            return tournamentMatch && courseMatch;
+        });
+
+        displayResults(filtered);
+    }
+
+    function setSelectFromParam(selectEl, value) {
+        if (!selectEl || !value) return;
+        const target = value.trim().toLowerCase();
+        const option = Array.from(selectEl.options).find(opt => opt.value.trim().toLowerCase() === target);
+        if (option) {
+            selectEl.value = option.value;
         }
-        const stake = matched.reduce((total, row) => total + parseMoney(row.Stake), 0);
-        const returns = matched.reduce((total, row) => total + parseMoney(row.Return), 0);
-        const explicitProfit = matched.reduce((total, row) => total + parseMoney(row["Profit/Loss"]), 0);
-        const profit = matched.some(row => row["Profit/Loss"]) ? explicitProfit : returns - stake;
-        const roi = stake > 0 ? profit / stake * 100 : null;
-        els.bettingSummary.innerHTML = `
-            <div class="metric-grid">
-                ${metricCard("Rows", String(matched.length))}
-                ${metricCard("Stake", fmtCurrency(stake))}
-                ${metricCard("Profit/Loss", fmtCurrency(profit))}
-                ${metricCard("ROI", roi == null ? "-" : `${roi.toFixed(1)}%`)}
-            </div>
-        `;
     }
 
-    async function loadArchiveIndex() {
-        if (state.archive) return state.archive;
-        const rows = await loadJSON("archive/index.json", []);
-        state.archive = Array.isArray(rows) ? rows : [];
-        return state.archive;
-    }
-
-    function archiveBase(entry) {
-        return `archive/${entry.year}/${entry.slug}`;
-    }
-
-    async function loadCourseArchives(course) {
-        if (!course) return [];
-        const index = await loadArchiveIndex();
-        const candidates = index
-            .filter(entry => entry.year && entry.slug)
-            .sort((a, b) => String(b.start_date || "").localeCompare(String(a.start_date || "")))
-            .slice(0, 60);
-        const matches = [];
-        for (const entry of candidates) {
-            const base = archiveBase(entry);
-            const summary = await loadJSON(`${base}/tournament_summary.json`, null);
-            if (!summary?.course || !sameLoose(summary.course, course)) continue;
-            matches.push({ entry, summary, base });
-            if (matches.length >= 8) break;
-        }
-        return matches;
-    }
-
-    function renderArchives(rows) {
-        if (!rows.length) {
-            els.archives.innerHTML = '<p class="empty">No archived events matched this course yet.</p>';
-            return;
-        }
-        els.archives.innerHTML = `
-            <table>
-                <thead><tr><th>Event</th><th>Date</th><th>Winner</th></tr></thead>
-                <tbody>${rows.map(({ entry, summary, base }) => `
-                    <tr>
-                        <td><a class="text-link" href="${base}/model_page.html">${escapeHtml(entry.event_name || summary.event_name || "-")}</a></td>
-                        <td>${escapeHtml(displayDate(entry.start_date || summary.start_date))}</td>
-                        <td>${escapeHtml(summary.winner || "-")}</td>
-                    </tr>
-                `).join("")}</tbody>
-            </table>
-        `;
-    }
-
-    function renderPreviousWinners(tournament) {
-        const winners = Array.isArray(tournament?.previous_winners) ? tournament.previous_winners.slice(0, 6) : [];
-        if (!winners.length) return "";
-        return `
-            <ul class="previous-winners">
-                ${winners.map(winner => {
-                    let name = winner.winner || "-";
-                    if (name.includes(",")) {
-                        const parts = name.split(",").map(part => part.trim());
-                        if (parts.length === 2) name = `${parts[1]} ${parts[0]}`;
-                    }
-                    return `<li><span>${escapeHtml(winner.year || "-")}</span><strong>${escapeHtml(name)}${winner.score != null ? ` (${escapeHtml(winner.score)})` : ""}</strong></li>`;
-                }).join("")}
-            </ul>
-        `;
-    }
-
-    function renderQuickLinks(context, course) {
-        const courseParam = encodeURIComponent(course || "");
-        const eventParam = encodeURIComponent(context.event.event_id);
-        const snapshotParam = context.snapshot === "initial" ? "&snapshot=initial" : "";
-        const topPlayer = context.eventData.leaderboard[0]?.player_name || "";
-        els.quickLinks.innerHTML = `
-            <a class="pill" href="${leaderboardHref(context)}">Leaderboard</a>
-            <a class="pill" href="player.html?tour=${context.tour}&event_id=${eventParam}${topPlayer ? `&player=${encodeURIComponent(topPlayer)}` : ""}${snapshotParam}">Top Player</a>
-            <a class="pill" href="spreadsheet.html?course=${courseParam}">Betting Rows</a>
-            <a class="pill" href="archive.html">Archive</a>
-            <a class="pill" href="archive_accuracy.html">Accuracy</a>
-        `;
-    }
-
-    async function selectContext(next) {
-        const tour = next.tour || els.tour.value || "pga";
-        const snapshot = next.snapshot || els.snapshot.value || "latest";
-        const requestedCourse = next.courseName || "";
-        const tourState = await loadTour(tour);
-        const event = tourState.events.find(item => String(item.event_id) === String(next.eventId))
-            || tourState.events[0];
-        if (!event) {
-            renderStatus("No event data is available for this tour.");
-            return;
-        }
-        const eventData = await loadEvent(tour, tourState, event, snapshot);
-        const bettingRows = await loadBettingRows();
-        const course = eventCourse(eventData) || requestedCourse;
-        const context = { tour, snapshot, event, eventData, requestedCourse };
-        currentContext = context;
-        const noteMatch = bestCourseNoteMatch(eventData, bettingRows, requestedCourse, context);
-
-        populateSelect(els.event, tourState.events, event.event_id, item => item.event_name || `Event ${item.event_id}`, item => item.event_id);
-        els.tour.value = tour;
-        els.snapshot.value = snapshot;
-        updateUrl(context);
-
-        els.header.classList.toggle("page-header--pga", tour === "pga");
-        els.header.classList.toggle("page-header--euro", tour === "euro");
-        els.title.textContent = course || "Course Drilldown";
-        els.subtitle.textContent = `${TOUR_LABELS[tour] || tour.toUpperCase()} - ${eventName(eventData, event)}`;
-        els.leaderboard.href = leaderboardHref(context);
-        els.player.href = `player.html?tour=${tour}&event_id=${encodeURIComponent(event.event_id)}${snapshot === "initial" ? "&snapshot=initial" : ""}`;
-
-        if (snapshot === "initial" && !eventData.meta?.event_name && !eventData.leaderboard.length) {
-            renderStatus("Initial snapshot files were not found for this event.");
-        } else {
-            renderStatus("");
-        }
-
-        renderMetrics(eventData);
-        renderDetails(eventData, context, noteMatch);
-        renderCourseNotes(noteMatch);
-        renderPreTournamentNotes(bettingRows, course, eventName(eventData, event));
-        renderWeights(eventData.courseFit);
-        renderFieldFit(eventData.leaderboard);
-        renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
-        renderWeather(eventData);
-        renderHistory(eventData.courseHistory, eventData);
-        renderBettingSummary(bettingRows, course, eventName(eventData, event));
-        renderArchives(await loadCourseArchives(course));
-        renderQuickLinks(context, course);
-
-        const existing = document.getElementById("previousWinnersCard");
-        if (existing) existing.remove();
-        const previous = renderPreviousWinners(eventData.tournament);
-        if (previous) {
-            const winnersCard = document.createElement("section");
-            winnersCard.className = "card";
-            winnersCard.innerHTML = `<h3>Previous Winners</h3>${previous}`;
-            winnersCard.id = "previousWinnersCard";
-            document.querySelector(".side-stack").insertBefore(winnersCard, els.archives.closest(".card"));
-        }
+    function applyInitialFilters() {
+        setSelectFromParam(document.getElementById('course-filter'), initialParams.get('course'));
+        setSelectFromParam(document.getElementById('tournament-filter'), initialParams.get('tournament'));
     }
 
     async function init() {
-        const params = new URLSearchParams(window.location.search);
-        const tour = ["pga", "euro"].includes(params.get("tour")) ? params.get("tour") : "pga";
-        const snapshot = params.get("snapshot") === "initial" ? "initial" : "latest";
-        await selectContext({
-            tour,
-            snapshot,
-            eventId: params.get("event_id"),
-            courseName: params.get("course") || ""
-        });
-
-        els.tour.addEventListener("change", () => selectContext({ tour: els.tour.value, snapshot: els.snapshot.value }));
-        els.snapshot.addEventListener("change", () => selectContext({
-            tour: els.tour.value,
-            snapshot: els.snapshot.value,
-            eventId: els.event.value
-        }));
-        els.event.addEventListener("change", () => selectContext({
-            tour: els.tour.value,
-            snapshot: els.snapshot.value,
-            eventId: els.event.value
-        }));
+        await loadData();
+        document.getElementById('filter-btn').addEventListener('click', applyFilter);
     }
 
-    init().catch(error => {
-        console.error(error);
-        renderStatus(error.message || "Course drilldown failed to load.");
-    });
+    init();
 
-    fetch("menu.html?v=20260417").then(response => response.text()).then(html => document.getElementById("menu").innerHTML = html);
+    // Load menu HTML
+    fetch('menu.html?v=20260417').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
 </script>
+
 </body>
 </html>

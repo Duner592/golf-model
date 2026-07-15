@@ -380,7 +380,7 @@
       detailParams.set("event_id", currentEventId || "");
       if (courseName) detailParams.set("course", courseName);
       if (IS_INITIAL_SNAPSHOT) detailParams.set("snapshot", "initial");
-      return `course_details.html?${detailParams.toString()}`;
+      return `event_drilldown.html?${detailParams.toString()}`;
     }
 
     function eventYear(meta){

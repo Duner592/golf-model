@@ -17,6 +17,7 @@
                 { label: 'PGA Tour', href: 'pga.html' },
                 { label: 'DP World Tour', href: 'euro.html' },
                 { label: 'Player Drilldown', href: 'player.html' },
+                { label: 'Event Drilldown', href: 'event_drilldown.html' },
                 { label: 'Prediction Archives', href: 'archive.html' },
                 { label: 'Accuracy Dashboards', href: 'archive_accuracy.html' },
                 { label: 'Model Health', href: 'model_health.html' },
