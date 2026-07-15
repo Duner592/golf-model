@@ -513,7 +513,6 @@
     <div class="header-links">
         <a class="link" id="leaderboardLink" href="pga.html">Leaderboard</a>
         <a class="link" id="playerLink" href="player.html">Player Drilldown</a>
-        <a class="link" href="course_details.html">Course Details</a>
     </div>
 </header>
 
@@ -1660,7 +1659,6 @@
         els.quickLinks.innerHTML = `
             <a class="pill" href="${leaderboardHref(context)}">Leaderboard</a>
             <a class="pill" href="player.html?tour=${context.tour}&event_id=${eventParam}${topPlayer ? `&player=${encodeURIComponent(topPlayer)}` : ""}${snapshotParam}">Top Player</a>
-            <a class="pill" href="course_details.html?course=${courseParam}">Course Details</a>
             <a class="pill" href="spreadsheet.html?course=${courseParam}">Betting Rows</a>
             <a class="pill" href="archive.html">Archive</a>
             <a class="pill" href="archive_accuracy.html">Accuracy</a>
