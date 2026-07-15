@@ -410,6 +410,38 @@
             color: #8a968e;
             font-style: italic;
         }
+        .pre-note-stack {
+            display: grid;
+            gap: 0.85rem;
+        }
+        .pre-note-item {
+            padding: 0 0 0 0.85rem;
+            border-left: 3px solid rgba(29, 124, 66, 0.45);
+        }
+        .pre-note-meta {
+            margin: 0 0 0.4rem;
+            color: #607066;
+            font-size: 0.82rem;
+            font-weight: 750;
+        }
+        .pre-note-body {
+            color: #253d2e;
+            font-size: 0.94rem;
+            line-height: 1.5;
+        }
+        .pre-note-body p {
+            margin: 0 0 0.55rem;
+        }
+        .pre-note-body p:last-child {
+            margin-bottom: 0;
+        }
+        .pre-note-body ul {
+            margin: 0;
+            padding-left: 1.15rem;
+        }
+        .pre-note-body li + li {
+            margin-top: 0.3rem;
+        }
         .previous-winners {
             display: grid;
             gap: 0.4rem;
@@ -520,6 +552,10 @@
             <h2>Course Notes</h2>
             <div id="courseNotes"></div>
         </section>
+        <section class="card" id="preTournamentNotesCard" hidden>
+            <h2>Pre-Tournament Notes</h2>
+            <div id="preTournamentNotes"></div>
+        </section>
         <section class="card">
             <h2>Current Field Course Fit</h2>
             <div id="fieldFit"></div>
@@ -595,6 +631,8 @@
         metrics: document.getElementById("metricGrid"),
         details: document.getElementById("detailGrid"),
         notes: document.getElementById("courseNotes"),
+        preNotesCard: document.getElementById("preTournamentNotesCard"),
+        preNotes: document.getElementById("preTournamentNotes"),
         fieldFit: document.getElementById("fieldFit"),
         frl: document.getElementById("frlAnalysis"),
         weather: document.getElementById("weatherWrap"),
@@ -994,6 +1032,110 @@
             <p class="muted">Best notes match: ${escapeHtml(rowCourse)}${rowTournament ? ` - ${escapeHtml(rowTournament)}` : ""}</p>
             ${CourseNotes.render(noteMatch.parsed)}
         `;
+    }
+
+    function isUsefulPreTournamentNote(value) {
+        const text = String(value || "").trim();
+        if (!text) return false;
+        const normalized = text.toLowerCase();
+        return !["n/a", "na", "pending", "-"].includes(normalized);
+    }
+
+    function noteTextKey(value) {
+        return String(value || "")
+            .toLowerCase()
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    function preTournamentNoteScore(row, course, tournament) {
+        let score = 0;
+        const rowCourse = row.Course || "";
+        const rowTournament = row.Tournament || row["Tour/Majors"] || "";
+        if (course && sameLoose(rowCourse, course)) score += 2;
+        if (tournament && sameLoose(rowTournament, tournament)) score += 1;
+        return score;
+    }
+
+    function matchedPreTournamentNotes(rows, course, tournament) {
+        const candidates = (rows || [])
+            .map(row => ({
+                row,
+                note: String(row["Pre Tournament Notes"] || "").trim(),
+                score: preTournamentNoteScore(row, course, tournament),
+                dateValue: parseDate(row.Date)?.valueOf() || 0
+            }))
+            .filter(item => item.score > 0 && isUsefulPreTournamentNote(item.note))
+            .sort((a, b) => b.score - a.score || b.dateValue - a.dateValue);
+
+        if (!candidates.length) return [];
+        const bestScore = candidates[0].score;
+        const seen = new Set();
+        return candidates
+            .filter(item => item.score === bestScore)
+            .filter(item => {
+                const key = noteTextKey(item.note);
+                if (!key || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            })
+            .slice(0, 3);
+    }
+
+    function renderNoteBody(value) {
+        const lines = String(value || "")
+            .replace(/\r\n?/g, "\n")
+            .split("\n")
+            .map(line => line.trim())
+            .filter(Boolean);
+        let html = "";
+        let listOpen = false;
+        const closeList = () => {
+            if (listOpen) {
+                html += "</ul>";
+                listOpen = false;
+            }
+        };
+        lines.forEach(line => {
+            const bullet = line.match(/^[-*]\s*(.+)$/);
+            if (bullet) {
+                if (!listOpen) {
+                    html += '<ul class="pre-note-list">';
+                    listOpen = true;
+                }
+                html += `<li>${escapeHtml(bullet[1])}</li>`;
+            } else {
+                closeList();
+                html += `<p>${escapeHtml(line)}</p>`;
+            }
+        });
+        closeList();
+        return html;
+    }
+
+    function renderPreTournamentNotes(rows, course, tournament) {
+        const notes = matchedPreTournamentNotes(rows, course, tournament);
+        if (!notes.length) {
+            els.preNotesCard.hidden = true;
+            els.preNotes.innerHTML = "";
+            return;
+        }
+        els.preNotesCard.hidden = false;
+        els.preNotes.innerHTML = `<div class="pre-note-stack">${
+            notes.map(({ row, note }) => {
+                const meta = [
+                    row.Tournament || tournament,
+                    row.Date ? displayDate(row.Date) : "",
+                    row.Course || course
+                ].filter(Boolean).join(" - ");
+                return `
+                    <article class="pre-note-item">
+                        ${meta ? `<p class="pre-note-meta">${escapeHtml(meta)}</p>` : ""}
+                        <div class="pre-note-body">${renderNoteBody(note)}</div>
+                    </article>
+                `;
+            }).join("")
+        }</div>`;
     }
 
     function renderWeights(courseFit) {
@@ -1562,6 +1704,7 @@
         renderMetrics(eventData);
         renderDetails(eventData, context, noteMatch);
         renderCourseNotes(noteMatch);
+        renderPreTournamentNotes(bettingRows, course, eventName(eventData, event));
         renderWeights(eventData.courseFit);
         renderFieldFit(eventData.leaderboard);
         renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
