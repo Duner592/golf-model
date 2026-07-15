@@ -187,6 +187,15 @@
         .model-link-row .link {
             margin: 0;
         }
+        .tour-summary-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.35rem;
+        }
+        .tour-summary-actions .link {
+            margin: 0;
+        }
         #pga-section {
             --tour-accent: #0b4c91;
             --tour-accent-dark: #07315f;
@@ -1398,13 +1407,22 @@
         return `<div class="tour-event-switcher" role="tablist" aria-label="${escapeHtml(tour.toUpperCase())} tournament previews">${buttons}</div>`;
     }
 
-    function renderTourPreviewContent({ meta, tournament, leaderboard, weather, waveWeather }) {
+    function eventDrilldownHref(tour, meta, course) {
+        const params = new URLSearchParams();
+        params.set('tour', tour || 'pga');
+        if (meta?.event_id != null) params.set('event_id', String(meta.event_id));
+        if (course && course !== 'Unknown Course') params.set('course', course);
+        return `event_drilldown.html?${params.toString()}`;
+    }
+
+    function renderTourPreviewContent({ tour, meta, tournament, leaderboard, weather, waveWeather }) {
         const eventName = meta.event_name || tournament.event_name || 'Unknown Event';
         const startDate = tournament.start_date || meta.start_date || meta.r1_date || 'TBD';
         const course = tournament.course || 'Unknown Course';
         const courseDetailsHref = course && course !== 'Unknown Course'
             ? `course_details.html?course=${encodeURIComponent(course)}`
             : 'course_details.html';
+        const eventDetailsHref = eventDrilldownHref(tour, meta, course);
         const fieldSize = tournament.field_size || 'N/A';
         const teeTimesAvailable = formatTeeTimesAvailable(meta);
         const winners = tournament.previous_winners || [];
@@ -1439,6 +1457,9 @@
                     <div class="tour-summary-detail">
                         <span class="tour-summary-detail__icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>
                         <span><span class="tour-summary-detail__label">Previous Winner</span><span class="tour-summary-detail__value">${escapeHtml(previousWinner)}</span></span>
+                    </div>
+                    <div class="tour-summary-actions" aria-label="${escapeHtml(eventName)} actions">
+                        <a href="${eventDetailsHref}" class="link">Event Drilldown</a>
                     </div>
                 </div>
                 <div class="tour-summary-panel home-snippet model-summary-snippet">
@@ -1480,7 +1501,7 @@
             event_id: eventId,
             event_name: event.event_name || eventMeta?.event_name || state.meta?.event_name
         };
-        const previewData = { meta, tournament, leaderboard, weather, waveWeather };
+        const previewData = { tour, meta, tournament, leaderboard, weather, waveWeather };
         state.cache[eventId] = previewData;
         return previewData;
     }
