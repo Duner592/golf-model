@@ -1,4 +1,22 @@
 {
+  "2026_the_open_championship": {
+    "event_id": "100",
+    "event_name": "The Open Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "the_open_championship"
+  },
+  "2026_corales_puntacana_championship": {
+    "event_id": "522",
+    "event_name": "Corales Puntacana Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "corales_puntacana_championship"
+  },
   "2026_isco_championship": {
     "event_id": "518",
     "event_name": "ISCO Championship",
