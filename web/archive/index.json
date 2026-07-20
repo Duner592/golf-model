@@ -1,5 +1,18 @@
 [
   {
+    "event_id": "525",
+    "event_name": "3M Open",
+    "tour": "pga",
+    "slug": "3m_open",
+    "year": "2026",
+    "start_date": "2026-07-23",
+    "csv_available": true,
+    "archived_at": "2026-07-20 04:09:28 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-07-20T04:09:28Z",
+    "model_page": "archive/2026/3m_open/model_page.html"
+  },
+  {
     "event_id": "100",
     "event_name": "The Open Championship",
     "tour": "pga",

@@ -1,0 +1,12 @@
+{
+  "event_id": "525",
+  "event_name": "3M Open",
+  "source_csv": "data/preds/pga/event_525_3m_open_2026-07-20_leaderboard.csv",
+  "generated_utc": "20-Jul-2026 04:09:28",
+  "metrics": {
+    "field_size": 145,
+    "p_win_max": 0.3929,
+    "p_win_median": 0.00023333333333333333,
+    "p_win_sum": 1.0
+  }
+}

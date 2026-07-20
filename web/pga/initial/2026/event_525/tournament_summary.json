@@ -1,0 +1,38 @@
+{
+  "event_name": "3M Open",
+  "event_id": "525",
+  "course": "TPC Twin Cities",
+  "total_yardage": null,
+  "course_location": "Blaine, MN",
+  "start_date": "23-Jul-2026",
+  "field_size": 145,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Kitayama, Kurt",
+      "score": -23
+    },
+    {
+      "year": 2024,
+      "winner": "Vegas, Jhonattan",
+      "score": -17
+    },
+    {
+      "year": 2023,
+      "winner": "Hodges, Lee",
+      "score": -24
+    },
+    {
+      "year": 2022,
+      "winner": "Finau, Tony",
+      "score": -17
+    },
+    {
+      "year": 2021,
+      "winner": "Champ, Cameron",
+      "score": -15
+    }
+  ]
+}
