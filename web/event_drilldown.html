@@ -442,6 +442,38 @@
         .pre-note-body li + li {
             margin-top: 0.3rem;
         }
+        .pre-note-checkbox {
+            list-style: none;
+        }
+        .pre-note-checkbox-icon {
+            display: inline-block;
+            width: 1.35rem;
+        }
+        .pre-note-archive {
+            margin-top: 0.85rem;
+            border: 1px solid rgba(34, 139, 34, 0.12);
+            border-radius: 8px;
+            background: rgba(248, 252, 249, 0.78);
+        }
+        .pre-note-archive summary {
+            padding: 0.7rem 0.85rem;
+            color: #254332;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .pre-note-archive-body {
+            display: grid;
+            gap: 0.85rem;
+            padding: 0 0.85rem 0.85rem;
+        }
+        .pre-note-year-heading {
+            margin: 0 0 0.45rem;
+            color: #53675b;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
         .previous-winners {
             display: grid;
             gap: 0.4rem;
@@ -696,6 +728,13 @@
         const parsed = parseDate(value);
         if (!parsed) return value || "-";
         return parsed.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function displayYear(value) {
+        const parsed = parseDate(value);
+        if (parsed) return String(parsed.getFullYear());
+        const match = String(value || "").match(/\b(20\d{2}|19\d{2})\b/);
+        return match ? match[1] : "";
     }
 
     function normalizeForMatch(value) {
@@ -1062,6 +1101,7 @@
             .map(row => ({
                 row,
                 note: String(row["Pre Tournament Notes"] || "").trim(),
+                year: displayYear(row.Date),
                 score: preTournamentNoteScore(row, course, tournament),
                 dateValue: parseDate(row.Date)?.valueOf() || 0
             }))
@@ -1069,17 +1109,14 @@
             .sort((a, b) => b.score - a.score || b.dateValue - a.dateValue);
 
         if (!candidates.length) return [];
-        const bestScore = candidates[0].score;
         const seen = new Set();
         return candidates
-            .filter(item => item.score === bestScore)
             .filter(item => {
                 const key = noteTextKey(item.note);
                 if (!key || seen.has(key)) return false;
                 seen.add(key);
                 return true;
-            })
-            .slice(0, 3);
+            });
     }
 
     function renderNoteBody(value) {
@@ -1097,6 +1134,16 @@
             }
         };
         lines.forEach(line => {
+            const checkbox = line.match(/^(?:[-*]\s*)?\[([xX ])\]\s*(.+)$/);
+            if (checkbox) {
+                if (!listOpen) {
+                    html += '<ul class="pre-note-list">';
+                    listOpen = true;
+                }
+                const emoji = checkbox[1].toLowerCase() === "x" ? "✅" : "□";
+                html += `<li class="pre-note-checkbox"><span class="pre-note-checkbox-icon">${emoji}</span>${escapeHtml(checkbox[2])}</li>`;
+                return;
+            }
             const bullet = line.match(/^[-*]\s*(.+)$/);
             if (bullet) {
                 if (!listOpen) {
@@ -1113,29 +1160,87 @@
         return html;
     }
 
-    function renderPreTournamentNotes(rows, course, tournament) {
+    function eventNotesYear(eventData) {
+        const candidates = [
+            eventData?.tournament?.start_date,
+            eventData?.meta?.start_date,
+            eventData?.meta?.r1_date,
+            eventData?.event?.start_date,
+            eventData?.event?.r1_date
+        ];
+        for (const value of candidates) {
+            const year = displayYear(value);
+            if (year) return year;
+        }
+        return String(new Date().getFullYear());
+    }
+
+    function preNoteMeta(row, course, tournament) {
+        return [
+            row.Tournament || tournament,
+            row.Date ? displayDate(row.Date) : "",
+            row.Course || course
+        ].filter(Boolean).join(" - ");
+    }
+
+    function renderPreNoteItems(notes, course, tournament) {
+        return notes.map(({ row, note }) => {
+            const meta = preNoteMeta(row, course, tournament);
+            return `
+                <article class="pre-note-item">
+                    ${meta ? `<p class="pre-note-meta">${escapeHtml(meta)}</p>` : ""}
+                    <div class="pre-note-body">${renderNoteBody(note)}</div>
+                </article>
+            `;
+        }).join("");
+    }
+
+    function renderOlderPreNotes(notes, course, tournament) {
+        if (!notes.length) return "";
+        const byYear = new Map();
+        notes.forEach(item => {
+            const year = item.year || "Older";
+            if (!byYear.has(year)) byYear.set(year, []);
+            byYear.get(year).push(item);
+        });
+        const groups = Array.from(byYear.entries())
+            .sort((a, b) => {
+                const bYear = Number(b[0]);
+                const aYear = Number(a[0]);
+                return (Number.isFinite(bYear) ? bYear : -Infinity) - (Number.isFinite(aYear) ? aYear : -Infinity);
+            });
+        return `
+            <details class="pre-note-archive">
+                <summary>Older pre-tournament notes (${notes.length})</summary>
+                <div class="pre-note-archive-body">
+                    ${groups.map(([year, items]) => `
+                        <section class="pre-note-year-group">
+                            <h3 class="pre-note-year-heading">${escapeHtml(year)}</h3>
+                            <div class="pre-note-stack">${renderPreNoteItems(items, course, tournament)}</div>
+                        </section>
+                    `).join("")}
+                </div>
+            </details>
+        `;
+    }
+
+    function renderPreTournamentNotes(rows, course, tournament, eventData) {
         const notes = matchedPreTournamentNotes(rows, course, tournament);
         if (!notes.length) {
             els.preNotesCard.hidden = true;
             els.preNotes.innerHTML = "";
             return;
         }
+        const currentYear = eventNotesYear(eventData);
+        const currentNotes = notes.filter(item => item.year === currentYear);
+        const olderNotes = notes.filter(item => item.year !== currentYear);
         els.preNotesCard.hidden = false;
-        els.preNotes.innerHTML = `<div class="pre-note-stack">${
-            notes.map(({ row, note }) => {
-                const meta = [
-                    row.Tournament || tournament,
-                    row.Date ? displayDate(row.Date) : "",
-                    row.Course || course
-                ].filter(Boolean).join(" - ");
-                return `
-                    <article class="pre-note-item">
-                        ${meta ? `<p class="pre-note-meta">${escapeHtml(meta)}</p>` : ""}
-                        <div class="pre-note-body">${renderNoteBody(note)}</div>
-                    </article>
-                `;
-            }).join("")
-        }</div>`;
+        els.preNotes.innerHTML = `
+            ${currentNotes.length
+                ? `<div class="pre-note-stack">${renderPreNoteItems(currentNotes, course, tournament)}</div>`
+                : `<p class="empty">No ${escapeHtml(currentYear)} pre-tournament notes matched this event.</p>`}
+            ${renderOlderPreNotes(olderNotes, course, tournament)}
+        `;
     }
 
     function renderWeights(courseFit) {
@@ -1704,7 +1809,7 @@
         renderMetrics(eventData);
         renderDetails(eventData, context, noteMatch);
         renderCourseNotes(noteMatch);
-        renderPreTournamentNotes(bettingRows, course, eventName(eventData, event));
+        renderPreTournamentNotes(bettingRows, course, eventName(eventData, event), eventData);
         renderWeights(eventData.courseFit);
         renderFieldFit(eventData.leaderboard);
         renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
