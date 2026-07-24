@@ -1605,59 +1605,16 @@
         `;
     }
 
-    function historyPlayerLookup(eventData) {
-        const lookup = new Map();
-        const add = (row) => {
-            const id = row?.player_id ?? row?.dg_id ?? row?.id;
-            const name = row?.player_name || row?.name || row?.Player || row?.player;
-            if (id != null && name) lookup.set(String(id), String(name));
-        };
-        (eventData?.leaderboard || []).forEach(add);
-        (eventData?.teeTimes || []).forEach(add);
-        return lookup;
-    }
-
-    function historyPlayerName(row, lookup) {
-        const direct = row?.player_name || row?.name || row?.Player || row?.player;
-        if (direct) return direct;
-        const id = row?.player_id ?? row?.dg_id ?? row?.id;
-        return id != null && lookup?.has(String(id)) ? lookup.get(String(id)) : "Unknown player";
-    }
-
-    function renderHistory(courseHistory, eventData) {
+    function renderHistory(courseHistory) {
         if (!courseHistory) {
             els.history.innerHTML = '<p class="empty">No course-history summary is available for this event.</p>';
             return;
         }
-        const topRows = Array.isArray(courseHistory.top_sg_course) ? courseHistory.top_sg_course.slice(0, 6) : [];
-        const reliableRows = Array.isArray(courseHistory.top_rounds) ? courseHistory.top_rounds.slice(0, 6) : [];
-        const playerLookup = historyPlayerLookup(eventData);
         els.history.innerHTML = `
             <div class="metric-grid">
-                ${metricCard("Rows", Number.isFinite(Number(courseHistory.rows)) ? String(courseHistory.rows) : "-")}
+                ${metricCard("Historical Rows", Number.isFinite(Number(courseHistory.rows)) ? String(courseHistory.rows) : "-")}
                 ${metricCard("Avg Rounds", fmtNum(courseHistory.rounds_course_avg, 1))}
                 ${metricCard("Avg Shrunk SG", fmtNum(courseHistory.sg_course_mean_shrunk_avg, 2))}
-            </div>
-            ${renderHistoryTable("Top Course SG", topRows, playerLookup)}
-            ${renderHistoryTable("Most Sampled", reliableRows, playerLookup)}
-        `;
-    }
-
-    function renderHistoryTable(title, rows, playerLookup) {
-        if (!rows.length) return "";
-        return `
-            <h3 style="margin-top:1rem;">${escapeHtml(title)}</h3>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>Player</th><th class="num">Rounds</th><th class="num">Shrunk SG</th></tr></thead>
-                    <tbody>${rows.map(row => `
-                        <tr>
-                            <td>${escapeHtml(historyPlayerName(row, playerLookup))}</td>
-                            <td class="num">${escapeHtml(row.rounds_course ?? "-")}</td>
-                            <td class="num">${fmtNum(row.sg_course_mean_shrunk, 2)}</td>
-                        </tr>
-                    `).join("")}</tbody>
-                </table>
             </div>
         `;
     }
@@ -1814,7 +1771,7 @@
         renderFieldFit(eventData.leaderboard);
         renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
         renderWeather(eventData);
-        renderHistory(eventData.courseHistory, eventData);
+        renderHistory(eventData.courseHistory);
         renderBettingSummary(bettingRows, course, eventName(eventData, event));
         renderArchives(await loadCourseArchives(course));
         renderQuickLinks(context, course);
