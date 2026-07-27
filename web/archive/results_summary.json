@@ -1,4 +1,13 @@
 {
+  "2026_3m_open": {
+    "event_id": "525",
+    "event_name": "3M Open",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "3m_open"
+  },
   "2026_the_open_championship": {
     "event_id": "100",
     "event_name": "The Open Championship",
