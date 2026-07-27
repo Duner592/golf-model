@@ -1,0 +1,38 @@
+{
+  "event_name": "Rocket Classic",
+  "event_id": "524",
+  "course": "Detroit Golf Club",
+  "total_yardage": null,
+  "course_location": "Detroit, MI",
+  "start_date": "30-Jul-2026",
+  "field_size": 141,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Potgieter, Aldrich",
+      "score": -18
+    },
+    {
+      "year": 2024,
+      "winner": "Davis, Cam",
+      "score": -14
+    },
+    {
+      "year": 2023,
+      "winner": "Fowler, Rickie",
+      "score": -20
+    },
+    {
+      "year": 2022,
+      "winner": "Finau, Tony",
+      "score": -22
+    },
+    {
+      "year": 2021,
+      "winner": "Davis, Cam",
+      "score": -14
+    }
+  ]
+}

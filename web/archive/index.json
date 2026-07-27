@@ -1,5 +1,18 @@
 [
   {
+    "event_id": "524",
+    "event_name": "Rocket Classic",
+    "tour": "pga",
+    "slug": "rocket_classic",
+    "year": "2026",
+    "start_date": "2026-07-30",
+    "csv_available": true,
+    "archived_at": "2026-07-27 04:08:11 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-07-27T04:08:11Z",
+    "model_page": "archive/2026/rocket_classic/model_page.html"
+  },
+  {
     "event_id": "525",
     "event_name": "3M Open",
     "tour": "pga",

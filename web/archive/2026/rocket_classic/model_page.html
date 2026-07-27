@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rocket Classic Model Page Snapshot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1rem; color: #111; background: #f7faf8; }
+    header, section { max-width: 1180px; margin: 0 auto 1rem; }
+    header { padding: 1rem 0 0.25rem; }
+    h1 { margin: 0 0 0.35rem; font-size: clamp(1.45rem, 3vw, 2.1rem); }
+    h2 { margin: 0 0 0.55rem; font-size: 1.05rem; }
+    .muted { color: #53615a; font-size: 0.95rem; }
+    .pill { display: inline-flex; gap: 0.35rem; align-items: center; margin: 0.15rem 0.25rem 0.15rem 0; padding: 0.25rem 0.55rem; border: 1px solid #cfd9d3; border-radius: 999px; background: #fff; font-size: 0.86rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+    .card { border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; padding: 0.85rem; }
+    .links a { display: inline-block; margin: 0.2rem 0.4rem 0.2rem 0; color: #0b5a32; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+    input[type="search"] { width: min(100%, 280px); padding: 0.45rem 0.6rem; border: 1px solid #cbd8d0; border-radius: 6px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    th, td { padding: 0.45rem 0.5rem; border-bottom: 1px solid #edf2ef; text-align: left; white-space: nowrap; }
+    th { background: #f2f7f4; cursor: pointer; position: sticky; top: 0; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="muted">PGA model page backup</div>
+    <h1>Rocket Classic</h1>
+    <div id="metaLine" class="muted"></div>
+    <div id="badges"></div>
+  </header>
+  <section class="grid" id="summaryCards"></section>
+  <section class="card">
+    <div class="toolbar">
+      <h2 style="margin-right:auto;">Leaderboard</h2>
+      <label class="muted">Filter <input id="filterBox" type="search" placeholder="Search player" /></label>
+    </div>
+    <div class="table-wrap">
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th data-key="rank">Rank</th>
+            <th data-key="player_name">Player</th>
+            <th data-key="p_win_%">Win %</th>
+            <th data-key="p_top10_%">Top-10 %</th>
+            <th data-key="p_mc_%">Make Cut %</th>
+            <th data-key="course_fit_score">Course Fit</th>
+            <th data-key="r1_teetime">R1 Tee</th>
+            <th data-key="r2_teetime">R2 Tee</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="card"><h2>Tournament</h2><div id="tournament"></div></div>
+    <div class="card"><h2>Weather</h2><div id="weather"></div></div>
+    <div class="card"><h2>Course Fit</h2><div id="courseFit"></div></div>
+    <div class="card"><h2>Files</h2><div id="files" class="links"></div></div>
+  </section>
+  <script type="application/json" id="snapshotPayload">{"tour":"pga","event_id":"524","event_name":"Rocket Classic","year":"2026","snapshot_created_utc":"2026-07-27T04:08:11Z","snapshot_label":"Initial run","generated_utc":"27-Jul-2026 04:08:11","r1_date":"2026-07-30","start_date":"2026-07-30","reconstruction":null,"leaderboard":[{"rank":1,"player_name":"Cameron Young","p_win_%":20.52,"p_top10_%":75.7,"p_mc_%":97.3,"course_fit_score":0.3109764858006787},{"rank":2,"player_name":"Patrick Cantlay","p_win_%":15.14,"p_top10_%":69.4,"p_mc_%":96.1,"course_fit_score":0.178127519450374},{"rank":3,"player_name":"Russell Henley","p_win_%":11.03,"p_top10_%":61.9,"p_mc_%":95.1,"course_fit_score":0.476932956047181},{"rank":4,"player_name":"Jackson Suber","p_win_%":9.33,"p_top10_%":57.9,"p_mc_%":94.1,"course_fit_score":-0.2627787709553588},{"rank":5,"player_name":"Eric Cole","p_win_%":6.23,"p_top10_%":49.3,"p_mc_%":92.2,"course_fit_score":0.0758712523808332},{"rank":6,"player_name":"J.J. Spaun","p_win_%":3.64,"p_top10_%":38.6,"p_mc_%":88.9,"course_fit_score":0.2680695233647253},{"rank":7,"player_name":"Jake Knapp","p_win_%":3.37,"p_top10_%":36.8,"p_mc_%":88.3,"course_fit_score":0.4987795170201337},{"rank":8,"player_name":"Ben Griffin","p_win_%":2.99,"p_top10_%":34.3,"p_mc_%":87.2,"course_fit_score":0.0773707903809942},{"rank":9,"player_name":"Max Greyserman","p_win_%":2.82,"p_top10_%":32.7,"p_mc_%":86.4,"course_fit_score":0.4669996055193259},{"rank":10,"player_name":"Tony Finau","p_win_%":2.65,"p_top10_%":32.5,"p_mc_%":86.2,"course_fit_score":0.4595343382783103},{"rank":11,"player_name":"Sungjae Im","p_win_%":2.25,"p_top10_%":28.8,"p_mc_%":84.9,"course_fit_score":0.2650517672247793},{"rank":12,"player_name":"Wyndham Clark","p_win_%":1.86,"p_top10_%":27.6,"p_mc_%":84.2,"course_fit_score":0.2077580034734307},{"rank":13,"player_name":"Taylor Moore","p_win_%":1.83,"p_top10_%":27.5,"p_mc_%":83.6,"course_fit_score":0.0602642173773412},{"rank":14,"player_name":"Matt McCarty","p_win_%":1.79,"p_top10_%":27.4,"p_mc_%":84.1,"course_fit_score":0.2031089434746351},{"rank":15,"player_name":"Akshay Bhatia","p_win_%":1.57,"p_top10_%":24.9,"p_mc_%":82.5,"course_fit_score":0.4067540805394896},{"rank":16,"player_name":"Zecheng Dou","p_win_%":1.14,"p_top10_%":20.9,"p_mc_%":80.4,"course_fit_score":0.1354719202813156},{"rank":17,"player_name":"Jason Day","p_win_%":1.13,"p_top10_%":20.9,"p_mc_%":80.4,"course_fit_score":0.0682266812472753},{"rank":18,"player_name":"Jacob Bridgeman","p_win_%":1.03,"p_top10_%":18.9,"p_mc_%":79.1,"course_fit_score":-0.112132298520748},{"rank":19,"player_name":"Chris Kirk","p_win_%":0.98,"p_top10_%":18.3,"p_mc_%":78.4,"course_fit_score":0.1631656773856112},{"rank":20,"player_name":"Keegan Bradley","p_win_%":0.95,"p_top10_%":18.1,"p_mc_%":78.3,"course_fit_score":0.2119705249622034},{"rank":21,"player_name":"Nicolai Hojgaard","p_win_%":0.9,"p_top10_%":17.0,"p_mc_%":77.2,"course_fit_score":0.0731674307836527},{"rank":22,"player_name":"Taylor Pendrith","p_win_%":0.7,"p_top10_%":15.8,"p_mc_%":76.4,"course_fit_score":0.2160260253761285},{"rank":23,"player_name":"Davis Thompson","p_win_%":0.62,"p_top10_%":14.0,"p_mc_%":75.0,"course_fit_score":0.2802699380165018},{"rank":24,"player_name":"Chris Gotterup","p_win_%":0.61,"p_top10_%":14.6,"p_mc_%":75.7,"course_fit_score":0.2789723614253022},{"rank":25,"player_name":"Si Woo Kim","p_win_%":0.43,"p_top10_%":12.2,"p_mc_%":72.6,"course_fit_score":0.1699748327154617},{"rank":26,"player_name":"Michael Thorbjornsen","p_win_%":0.32,"p_top10_%":9.3,"p_mc_%":68.9,"course_fit_score":0.3341844253461264},{"rank":27,"player_name":"Hideki Matsuyama","p_win_%":0.31,"p_top10_%":9.3,"p_mc_%":68.6,"course_fit_score":-0.1809268297567421},{"rank":28,"player_name":"Ryan Gerard","p_win_%":0.31,"p_top10_%":9.1,"p_mc_%":68.2,"course_fit_score":0.2109961776427391},{"rank":29,"player_name":"Xander Schauffele","p_win_%":0.3,"p_top10_%":9.8,"p_mc_%":69.5,"course_fit_score":0.1522094999619103},{"rank":30,"player_name":"Rickie Fowler","p_win_%":0.29,"p_top10_%":9.0,"p_mc_%":68.2,"course_fit_score":0.0187798868877153},{"rank":31,"player_name":"Andrew Putnam","p_win_%":0.23,"p_top10_%":8.3,"p_mc_%":66.7,"course_fit_score":-0.0826939733573794},{"rank":32,"player_name":"William Mouw","p_win_%":0.21,"p_top10_%":7.6,"p_mc_%":65.6,"course_fit_score":0.5226243657074457},{"rank":33,"player_name":"Sam Stevens","p_win_%":0.19,"p_top10_%":6.1,"p_mc_%":63.1,"course_fit_score":0.1873183025055722},{"rank":34,"player_name":"Kevin Roy","p_win_%":0.17,"p_top10_%":6.4,"p_mc_%":63.0,"course_fit_score":0.2286018892858356},{"rank":35,"player_name":"Aldrich Potgieter","p_win_%":0.16,"p_top10_%":6.4,"p_mc_%":63.7,"course_fit_score":0.2944377080419237},{"rank":36,"player_name":"Lucas Glover","p_win_%":0.15,"p_top10_%":6.2,"p_mc_%":62.8,"course_fit_score":0.2585297186689942},{"rank":37,"player_name":"Cam Davis","p_win_%":0.14,"p_top10_%":5.3,"p_mc_%":60.5,"course_fit_score":0.1035254564112387},{"rank":38,"player_name":"Neal Shipley","p_win_%":0.14,"p_top10_%":5.5,"p_mc_%":61.5,"course_fit_score":0.1988003685901209},{"rank":39,"player_name":"Ryo Hisatsune","p_win_%":0.12,"p_top10_%":5.2,"p_mc_%":61.0,"course_fit_score":0.0042917692798568},{"rank":40,"player_name":"Harry Hall","p_win_%":0.11,"p_top10_%":4.9,"p_mc_%":59.6,"course_fit_score":0.0053488120140911},{"rank":41,"player_name":"Stephan Jaeger","p_win_%":0.11,"p_top10_%":5.4,"p_mc_%":60.6,"course_fit_score":0.0813272504832849},{"rank":42,"player_name":"Nico Echavarria","p_win_%":0.09,"p_top10_%":4.1,"p_mc_%":56.7,"course_fit_score":-0.2130482308076991},{"rank":43,"player_name":"Doug Ghim","p_win_%":0.09,"p_top10_%":4.7,"p_mc_%":59.4,"course_fit_score":0.2062624864167699},{"rank":44,"player_name":"Jordan Smith","p_win_%":0.06,"p_top10_%":2.5,"p_mc_%":51.3,"course_fit_score":0.0716965629619103},{"rank":45,"player_name":"Rico Hoey","p_win_%":0.06,"p_top10_%":3.6,"p_mc_%":56.3,"course_fit_score":0.1267894765433509},{"rank":46,"player_name":"Chandler Phillips","p_win_%":0.06,"p_top10_%":2.5,"p_mc_%":50.8,"course_fit_score":0.2146931736097498},{"rank":47,"player_name":"Corey Conners","p_win_%":0.05,"p_top10_%":2.6,"p_mc_%":51.1,"course_fit_score":0.0615370669619103},{"rank":48,"player_name":"Luke Clanton","p_win_%":0.05,"p_top10_%":2.5,"p_mc_%":51.1,"course_fit_score":0.1773559953838236},{"rank":49,"player_name":"Harris English","p_win_%":0.04,"p_top10_%":3.5,"p_mc_%":55.2,"course_fit_score":-0.0457945546843316},{"rank":50,"player_name":"Ben James","p_win_%":0.04,"p_top10_%":2.3,"p_mc_%":50.2,"course_fit_score":0.0609006421696257},{"rank":51,"player_name":"Johnny Keefer","p_win_%":0.03,"p_top10_%":1.8,"p_mc_%":47.6,"course_fit_score":0.0431035899619103},{"rank":52,"player_name":"Matt Wallace","p_win_%":0.03,"p_top10_%":2.7,"p_mc_%":51.6,"course_fit_score":-0.2391202252202693},{"rank":53,"player_name":"Mac Meissner","p_win_%":0.03,"p_top10_%":1.9,"p_mc_%":47.6,"course_fit_score":-0.3425262479043821},{"rank":54,"player_name":"Rasmus Neergaard-Petersen","p_win_%":0.03,"p_top10_%":1.8,"p_mc_%":46.4,"course_fit_score":0.0577744329619103},{"rank":55,"player_name":"Nick Taylor","p_win_%":0.03,"p_top10_%":1.9,"p_mc_%":48.3,"course_fit_score":0.2136929110173691},{"rank":56,"player_name":"Michael Brennan","p_win_%":0.02,"p_top10_%":2.1,"p_mc_%":48.0,"course_fit_score":0.0783278519619103},{"rank":57,"player_name":"Marco Penge","p_win_%":0.02,"p_top10_%":1.6,"p_mc_%":46.3,"course_fit_score":0.0602603939619103},{"rank":58,"player_name":"Dylan Wu","p_win_%":0.02,"p_top10_%":2.1,"p_mc_%":48.6,"course_fit_score":-0.2187313676923689},{"rank":59,"player_name":"Takumi Kanaya","p_win_%":0.02,"p_top10_%":1.4,"p_mc_%":45.6,"course_fit_score":0.2418719868139108},{"rank":60,"player_name":"Mark Hubbard","p_win_%":0.02,"p_top10_%":0.8,"p_mc_%":39.2,"course_fit_score":0.1645123021569671},{"rank":61,"player_name":"Seamus Power","p_win_%":0.02,"p_top10_%":1.3,"p_mc_%":44.0,"course_fit_score":-0.3934056230404256},{"rank":62,"player_name":"Vince Whaley","p_win_%":0.02,"p_top10_%":1.0,"p_mc_%":42.4,"course_fit_score":-0.0834308970622802},{"rank":63,"player_name":"Lee Hodges","p_win_%":0.02,"p_top10_%":1.5,"p_mc_%":43.6,"course_fit_score":0.2392258636327036},{"rank":64,"player_name":"Christiaan Bezuidenhout","p_win_%":0.02,"p_top10_%":0.9,"p_mc_%":41.0,"course_fit_score":-0.3061482011385192},{"rank":65,"player_name":"Pierceson Coody","p_win_%":0.02,"p_top10_%":1.6,"p_mc_%":45.0,"course_fit_score":0.0898478410947538},{"rank":66,"player_name":"Sudarshan Yellamaraju","p_win_%":0.02,"p_top10_%":1.4,"p_mc_%":43.6,"course_fit_score":0.0623929339619103},{"rank":67,"player_name":"Matti Schmid","p_win_%":0.02,"p_top10_%":1.0,"p_mc_%":40.4,"course_fit_score":-0.02558249948359},{"rank":68,"player_name":"Zach Bauchou","p_win_%":0.02,"p_top10_%":1.2,"p_mc_%":42.6,"course_fit_score":0.0399109139619103},{"rank":69,"player_name":"Brooks Koepka","p_win_%":0.02,"p_top10_%":2.1,"p_mc_%":48.4,"course_fit_score":0.0720240129619103},{"rank":70,"player_name":"Brad Dalke","p_win_%":0.02,"p_top10_%":0.7,"p_mc_%":36.7,"course_fit_score":0.0609006421696257},{"rank":71,"player_name":"Andrew Novak","p_win_%":0.02,"p_top10_%":0.8,"p_mc_%":36.3,"course_fit_score":-0.1287485223157664},{"rank":72,"player_name":"Beau Hossler","p_win_%":0.01,"p_top10_%":1.7,"p_mc_%":46.7,"course_fit_score":0.0318817768860219},{"rank":73,"player_name":"Jordan Spieth","p_win_%":0.01,"p_top10_%":1.8,"p_mc_%":47.6,"course_fit_score":0.0746003379619103},{"rank":74,"player_name":"Patrick Rodgers","p_win_%":0.01,"p_top10_%":1.1,"p_mc_%":41.3,"course_fit_score":0.1692640140955768},{"rank":75,"player_name":"Keita Nakajima","p_win_%":0.01,"p_top10_%":1.0,"p_mc_%":41.6,"course_fit_score":0.0237654769619103},{"rank":76,"player_name":"Aaron Wise","p_win_%":0.01,"p_top10_%":1.0,"p_mc_%":40.7,"course_fit_score":0.0609006421696257},{"rank":77,"player_name":"Stefano Mazzoli","p_win_%":0.01,"p_top10_%":0.3,"p_mc_%":25.3,"course_fit_score":-0.0015072230380896},{"rank":78,"player_name":"Billy Horschel","p_win_%":0.01,"p_top10_%":0.4,"p_mc_%":32.1,"course_fit_score":-0.0104665380380896},{"rank":79,"player_name":"A.J. Ewart","p_win_%":0.01,"p_top10_%":0.5,"p_mc_%":35.2,"course_fit_score":0.0188315669619103},{"rank":80,"player_name":"Michael Kim","p_win_%":0.01,"p_top10_%":1.3,"p_mc_%":44.5,"course_fit_score":-0.3139780015487871},{"rank":81,"player_name":"Haotong Li","p_win_%":0.01,"p_top10_%":0.6,"p_mc_%":34.5,"course_fit_score":-0.0149795810380896},{"rank":82,"player_name":"Chad Ramey","p_win_%":0.01,"p_top10_%":1.4,"p_mc_%":45.0,"course_fit_score":0.1228672164254258},{"rank":83,"player_name":"Adam Schenk","p_win_%":0.01,"p_top10_%":0.3,"p_mc_%":28.9,"course_fit_score":-0.0273211247593396},{"rank":84,"player_name":"Kevin Yu","p_win_%":0.01,"p_top10_%":0.9,"p_mc_%":38.1,"course_fit_score":-0.2337239053273409},{"rank":85,"player_name":"Dan Brown","p_win_%":0.01,"p_top10_%":0.6,"p_mc_%":36.0,"course_fit_score":-0.0065741760380896},{"rank":86,"player_name":"Patrick Fishburn","p_win_%":0.01,"p_top10_%":1.2,"p_mc_%":43.4,"course_fit_score":0.1360752128455302},{"rank":87,"player_name":"Patrick Wilkes-Krier","p_win_%":0.01,"p_top10_%":0.6,"p_mc_%":36.2,"course_fit_score":0.0609006421696257},{"rank":88,"player_name":"Kristoffer Ventura","p_win_%":0.0,"p_top10_%":0.7,"p_mc_%":37.4,"course_fit_score":0.0774798874393992},{"rank":89,"player_name":"Adam Svensson","p_win_%":0.0,"p_top10_%":0.3,"p_mc_%":29.5,"course_fit_score":0.0869382632644856},{"rank":90,"player_name":"Davis Chatfield","p_win_%":0.0,"p_top10_%":0.3,"p_mc_%":27.6,"course_fit_score":-0.0186802280380896},{"rank":91,"player_name":"Erik Van Rooyen","p_win_%":0.0,"p_top10_%":0.7,"p_mc_%":36.9,"course_fit_score":0.0010854757709544},{"rank":92,"player_name":"Brendon Todd","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":31.4,"course_fit_score":0.0609006421696257},{"rank":93,"player_name":"Brandt Snedeker","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":22.0,"course_fit_score":-0.1541314151422001},{"rank":94,"player_name":"Steven Fisk","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":31.2,"course_fit_score":0.2404199997604965},{"rank":95,"player_name":"Matt Kuchar","p_win_%":0.0,"p_top10_%":0.7,"p_mc_%":38.5,"course_fit_score":-0.1431879202176941},{"rank":96,"player_name":"Mackenzie Hughes","p_win_%":0.0,"p_top10_%":1.2,"p_mc_%":41.6,"course_fit_score":-0.0702130997262591},{"rank":97,"player_name":"Rasmus Hojgaard","p_win_%":0.0,"p_top10_%":0.7,"p_mc_%":37.3,"course_fit_score":0.0783228039618905},{"rank":98,"player_name":"William Jennings","p_win_%":0.0,"p_top10_%":0.7,"p_mc_%":36.5,"course_fit_score":0.0609006421696257},{"rank":99,"player_name":"Hank Lebioda","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":32.6,"course_fit_score":-0.3589356603821945},{"rank":100,"player_name":"Nick Dunlap","p_win_%":0.0,"p_top10_%":0.6,"p_mc_%":34.8,"course_fit_score":0.0765205936764588},{"rank":101,"player_name":"John VanDerLaan","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":24.1,"course_fit_score":0.0104277379619103},{"rank":102,"player_name":"John Parry","p_win_%":0.0,"p_top10_%":0.9,"p_mc_%":41.1,"course_fit_score":0.0441820909619103},{"rank":103,"player_name":"Thorbjorn Olesen","p_win_%":0.0,"p_top10_%":0.3,"p_mc_%":28.8,"course_fit_score":-0.0238618741725805},{"rank":104,"player_name":"Max McGreevy","p_win_%":0.0,"p_top10_%":0.3,"p_mc_%":29.5,"course_fit_score":0.1057084585174556},{"rank":105,"player_name":"Denny McCarthy","p_win_%":0.0,"p_top10_%":0.6,"p_mc_%":35.0,"course_fit_score":-0.2519974830272252},{"rank":106,"player_name":"Adrien Saddier","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":31.7,"course_fit_score":0.0234189929619103},{"rank":107,"player_name":"Webb Simpson","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":22.6,"course_fit_score":-0.0936937021407839},{"rank":108,"player_name":"Davis Riley","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":19.5,"course_fit_score":0.0208344486521788},{"rank":109,"player_name":"Ryan Ruffels","p_win_%":0.0,"p_top10_%":0.6,"p_mc_%":37.2,"course_fit_score":0.0609006421696257},{"rank":110,"player_name":"Ricky Castillo","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":21.7,"course_fit_score":0.343947310258106},{"rank":111,"player_name":"Rafael Campos","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":2.7,"course_fit_score":-0.4720342135006234},{"rank":112,"player_name":"Brian Campbell","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":20.7,"course_fit_score":-0.0325834110380896},{"rank":113,"player_name":"Chandler Blanchet","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":25.2,"course_fit_score":-0.0377592160380896},{"rank":114,"player_name":"Tom Hoge","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":10.1,"course_fit_score":-0.4555745421873696},{"rank":115,"player_name":"Garrick Higgo","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":29.0,"course_fit_score":0.0911536720502405},{"rank":116,"player_name":"Joe Highsmith","p_win_%":0.0,"p_top10_%":0.7,"p_mc_%":36.7,"course_fit_score":-0.1081605744519177},{"rank":117,"player_name":"Joe Hooks","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":4.0,"course_fit_score":0.0609006421696257},{"rank":118,"player_name":"Kensei Hirata","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":23.9,"course_fit_score":0.0024686279619103},{"rank":119,"player_name":"Adrien Dumont De Chassart","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":12.1,"course_fit_score":-0.1156023006282626},{"rank":120,"player_name":"Trace Crowe","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":11.6,"course_fit_score":-0.6414885425595571},{"rank":121,"player_name":"Joel Dahmen","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":26.3,"course_fit_score":0.1824763993745652},{"rank":122,"player_name":"Austin Eckroat","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":19.5,"course_fit_score":-0.2192724680515081},{"rank":123,"player_name":"Brice Garnett","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":20.8,"course_fit_score":0.1823528451339935},{"rank":124,"player_name":"Emiliano Grillo","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":27.3,"course_fit_score":0.4539171715435297},{"rank":125,"player_name":"Lanto Griffin","p_win_%":0.0,"p_top10_%":0.3,"p_mc_%":30.5,"course_fit_score":0.0716913082419516},{"rank":126,"player_name":"Christo Lamprecht","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":13.0,"course_fit_score":-0.0180771850380896},{"rank":127,"player_name":"Jackson Koivun","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":20.9,"course_fit_score":0.0609006421696257},{"rank":128,"player_name":"Patton Kizzire","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":13.1,"course_fit_score":-0.3290137013472807},{"rank":129,"player_name":"Jeffrey Kang","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":22.4,"course_fit_score":-0.0106641560380896},{"rank":130,"player_name":"Peter Malnati","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":16.0,"course_fit_score":-0.2334476486923296},{"rank":131,"player_name":"David Lipsky","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":24.1,"course_fit_score":0.2001177091327685},{"rank":132,"player_name":"Matthieu Pavon","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":31.5,"course_fit_score":0.0263271939619103},{"rank":133,"player_name":"Pontus Nyholm","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":26.5,"course_fit_score":0.0084596419619103},{"rank":134,"player_name":"Gordon Sargent","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":11.9,"course_fit_score":-0.3577927999413858},{"rank":135,"player_name":"Marcelo Rozo","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":16.3,"course_fit_score":-0.0442876210380896},{"rank":136,"player_name":"Austin Smotherman","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":27.2,"course_fit_score":-0.2373445903174636},{"rank":137,"player_name":"Kevin Streelman","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":24.1,"course_fit_score":-0.0018436283066693},{"rank":138,"player_name":"Jesper Svensson","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":30.4,"course_fit_score":0.0040257622522634},{"rank":139,"player_name":"Danny Walker","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":6.0,"course_fit_score":-0.4729874836560592},{"rank":140,"player_name":"Alejandro Tosti","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":11.3,"course_fit_score":0.1431811617615714},{"rank":141,"player_name":"Karl Vilips","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":8.0,"course_fit_score":0.3413521769966374}],"summary":{"event_id":"524","event_name":"Rocket Classic","source_csv":"data/preds/pga/event_524_rocket_classic_2026-07-27_leaderboard.csv","generated_utc":"27-Jul-2026 04:08:11","metrics":{"field_size":141,"p_win_max":0.2052,"p_win_median":0.00016666666666666666,"p_win_sum":1.0}},"tournament":{"event_name":"Rocket Classic","event_id":"524","course":"Detroit Golf Club","total_yardage":null,"course_location":"Detroit, MI","start_date":"30-Jul-2026","field_size":141,"status":"upcoming","winner":null,"previous_winners":[{"year":2025,"winner":"Potgieter, Aldrich","score":-18},{"year":2024,"winner":"Davis, Cam","score":-14},{"year":2023,"winner":"Fowler, Rickie","score":-20},{"year":2022,"winner":"Finau, Tony","score":-22},{"year":2021,"winner":"Davis, Cam","score":-14}]},"weather_meta":{"event_id":524,"event_name":"Rocket Classic","lat":42.426,"lon":-83.126,"r1_date":"2026-07-30","r2_date":"2026-07-31","r3_date":"2026-08-01","r4_date":"2026-08-02","saved_at_utc":"2026-07-27T040800Z","source":"pinned + open-meteo"},"weather_neutral":[{"wind_mph":5.47,"gust_mph":8.8,"temp_c":24.0,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":0,"round":1},{"wind_mph":3.57,"gust_mph":4.26,"temp_c":24.9,"precip_pct":11.0,"delta_strokes":0.0,"weathercode":3,"round":2},{"wind_mph":4.37,"gust_mph":6.27,"temp_c":24.7,"precip_pct":20.0,"delta_strokes":0.0,"weathercode":3,"round":3},{"wind_mph":5.14,"gust_mph":9.26,"temp_c":25.9,"precip_pct":14.0,"delta_strokes":0.0,"weathercode":0,"round":4}],"weather_wave":[{"round":1,"wave":"AM","wind_mph":3.9,"gust_mph":7.97,"temp_c":19.6,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":0},{"round":1,"wave":"PM","wind_mph":7.04,"gust_mph":9.62,"temp_c":28.5,"precip_pct":2.0,"delta_strokes":0.0,"weathercode":0},{"round":2,"wave":"AM","wind_mph":2.44,"gust_mph":3.26,"temp_c":22.7,"precip_pct":3.0,"delta_strokes":0.0,"weathercode":3},{"round":2,"wave":"PM","wind_mph":4.7,"gust_mph":5.26,"temp_c":27.1,"precip_pct":20.0,"delta_strokes":0.0,"weathercode":3},{"round":3,"wave":"ALL","wind_mph":4.37,"gust_mph":6.27,"temp_c":24.7,"precip_pct":20.0,"delta_strokes":0.0,"weathercode":3},{"round":4,"wave":"ALL","wind_mph":5.14,"gust_mph":9.26,"temp_c":25.9,"precip_pct":14.0,"delta_strokes":0.0,"weathercode":0}],"course_history":{"rows":374,"rounds_course_avg":2.0828877005347595,"sg_course_mean_shrunk_avg":-0.48739790552584666,"top_rounds":[{"player_id":"10423","sg_course_mean_shrunk":-2.9636,"rounds_course":5},{"player_id":"11049","sg_course_mean_shrunk":-1.179,"rounds_course":5},{"player_id":"10943","sg_course_mean_shrunk":0.5700000000000001,"rounds_course":5},{"player_id":"6252","sg_course_mean_shrunk":-2.3020000000000005,"rounds_course":5},{"player_id":"14926","sg_course_mean_shrunk":-0.8300000000000004,"rounds_course":5},{"player_id":"13470","sg_course_mean_shrunk":-0.7286000000000001,"rounds_course":5},{"player_id":"14509","sg_course_mean_shrunk":-1.102,"rounds_course":5},{"player_id":"15470","sg_course_mean_shrunk":0.8714000000000001,"rounds_course":5},{"player_id":"14698","sg_course_mean_shrunk":-2.5524,"rounds_course":5},{"player_id":"19477","sg_course_mean_shrunk":2.0629999999999997,"rounds_course":5}],"top_sg_course":[{"player_id":"22085","sg_course_mean_shrunk":12.5715,"rounds_course":2},{"player_id":"27600","sg_course_mean_shrunk":12.418000000000001,"rounds_course":1},{"player_id":"18079","sg_course_mean_shrunk":11.545000000000002,"rounds_course":1},{"player_id":"29279","sg_course_mean_shrunk":10.725,"rounds_course":1},{"player_id":"18554","sg_course_mean_shrunk":10.384500000000001,"rounds_course":2},{"player_id":"16841","sg_course_mean_shrunk":10.038,"rounds_course":2},{"player_id":"18105","sg_course_mean_shrunk":9.725,"rounds_course":1},{"player_id":"17646","sg_course_mean_shrunk":9.725,"rounds_course":1},{"player_id":"7334","sg_course_mean_shrunk":9.545,"rounds_course":1},{"player_id":"8825","sg_course_mean_shrunk":9.418,"rounds_course":1}]},"course_fit":{"weights":{"sg_ott":0.10507,"sg_app":0.00996,"sg_arg":0.211879,"sg_putt":0.015965,"da_z":0.440199,"dd_z":0.216926},"cats_used":["sg_ott","sg_app","sg_arg","sg_putt"],"driving_norm":{"da_field_mean":0.6553822525597269,"da_field_std":0.1445179567440357,"dd_field_mean":296.35371160409557,"dd_field_std":12.003912218103107}},"local_files":{"Leaderboard JSON":"leaderboard.json","Leaderboard CSV":"leaderboard.csv","Leaderboard HTML":"leaderboard.html","Tournament summary":"tournament_summary.json","Weather metadata":"weather_meta.json","Neutral weather":"weather_round_neutral.json","Wave weather":"weather_round_wave.json","Course-fit weights":"course_fit_weights.json","Course-history summary":"course_history_summary.json","Field tee times":"field_teetimes.csv"}}</script>
+  <script>
+    const SNAPSHOT = JSON.parse(document.getElementById("snapshotPayload").textContent);
+    const rows = Array.isArray(SNAPSHOT.leaderboard) ? SNAPSHOT.leaderboard : [];
+    let sortKey = "rank";
+    let sortAsc = true;
+    const fmt = (v, d = 2) => v === null || v === undefined || v === "" || Number.isNaN(Number(v)) ? "" : Number(v).toFixed(d);
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const get = (row, keys) => {
+      for (const key of keys) if (row[key] !== undefined && row[key] !== null && row[key] !== "") return row[key];
+      return "";
+    };
+    function sortRows(items) {
+      return [...items].sort((a, b) => {
+        const av = get(a, [sortKey]);
+        const bv = get(b, [sortKey]);
+        const an = Number(av);
+        const bn = Number(bv);
+        const result = Number.isFinite(an) && Number.isFinite(bn) ? an - bn : String(av).localeCompare(String(bv));
+        return sortAsc ? result : -result;
+      });
+    }
+    function renderTable() {
+      const q = document.getElementById("filterBox").value.trim().toLowerCase();
+      const filtered = q ? rows.filter((row) => String(get(row, ["player_name", "Player"])).toLowerCase().includes(q)) : rows;
+      document.querySelector("#leaderboardTable tbody").innerHTML = sortRows(filtered).map((row, idx) => `
+        <tr>
+          <td class="num">${escapeHtml(get(row, ["rank"]) || idx + 1)}</td>
+          <td>${escapeHtml(get(row, ["player_name", "Player"]))}</td>
+          <td class="num">${fmt(get(row, ["p_win_%", "p_win"]))}</td>
+          <td class="num">${fmt(get(row, ["p_top10_%", "p_top10"]))}</td>
+          <td class="num">${fmt(get(row, ["p_mc_%", "p_mc"]))}</td>
+          <td class="num">${fmt(get(row, ["course_fit_score"]))}</td>
+          <td>${escapeHtml(get(row, ["r1_teetime"]))}</td>
+          <td>${escapeHtml(get(row, ["r2_teetime"]))}</td>
+        </tr>`).join("");
+    }
+    function card(title, value, detail = "") {
+      return `<div class="card"><div class="muted">${escapeHtml(title)}</div><strong>${escapeHtml(value)}</strong>${detail ? `<div class="muted">${escapeHtml(detail)}</div>` : ""}</div>`;
+    }
+    function renderSummary() {
+      const metrics = SNAPSHOT.summary?.metrics || {};
+      const maxWin = rows.reduce((max, row) => Math.max(max, Number(get(row, ["p_win_%", "p_win"])) || 0), 0);
+      document.getElementById("metaLine").textContent = [
+        SNAPSHOT.snapshot_label,
+        SNAPSHOT.snapshot_created_utc ? `saved ${SNAPSHOT.snapshot_created_utc}` : "",
+        SNAPSHOT.generated_utc ? `generated ${SNAPSHOT.generated_utc}` : "",
+      ].filter(Boolean).join(" | ");
+      const badges = [`Tour: ${SNAPSHOT.tour?.toUpperCase()}`, `Event ID: ${SNAPSHOT.event_id}`, `Year: ${SNAPSHOT.year}`];
+      if (SNAPSHOT.reconstruction) badges.push("Reconstructed backfill");
+      document.getElementById("badges").innerHTML = badges.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
+      document.getElementById("summaryCards").innerHTML = [
+        card("Field", metrics.field_size || rows.length || "0", "players"),
+        card("Top Win Probability", maxWin ? `${maxWin.toFixed(2)}%` : "0.00%"),
+        card("Win Probability Sum", metrics.p_win_sum != null ? Number(metrics.p_win_sum).toFixed(3) : ""),
+        card("Prediction Source", SNAPSHOT.summary?.source_csv ? SNAPSHOT.summary.source_csv.split("/").pop() : "snapshot"),
+      ].join("");
+    }
+    function renderDetails() {
+      const t = SNAPSHOT.tournament || {};
+      document.getElementById("tournament").innerHTML = [
+        ["Event", t.event_name],
+        ["Course", t.course],
+        ["Location", t.course_location],
+        ["Start", t.start_date || SNAPSHOT.start_date || SNAPSHOT.r1_date],
+        ["Field size", t.field_size],
+        ["Winner", t.winner],
+      ].filter(([, value]) => value !== undefined && value !== null && value !== "").map(([label, value]) => `<div><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</div>`).join("") || "<span class='muted'>No tournament summary.</span>";
+      const neutral = Array.isArray(SNAPSHOT.weather_neutral) ? SNAPSHOT.weather_neutral : [];
+      const weatherMeta = SNAPSHOT.weather_meta || {};
+      const weatherLines = [];
+      if (weatherMeta.source) weatherLines.push(`<div><strong>Source:</strong> ${escapeHtml(weatherMeta.source)}</div>`);
+      neutral.forEach((row) => weatherLines.push(`<div>Round ${escapeHtml(row.round)}: wind ${fmt(row.wind_mph, 1)} mph, gust ${fmt(row.gust_mph, 1)} mph, delta ${fmt(row.delta_strokes, 2)} strokes</div>`));
+      document.getElementById("weather").innerHTML = weatherLines.join("") || "<span class='muted'>No weather snapshot.</span>";
+      const weights = SNAPSHOT.course_fit?.weights || {};
+      const weightLines = Object.entries(weights).map(([key, value]) => `<div><strong>${escapeHtml(key)}:</strong> ${fmt(value, 4)}</div>`);
+      document.getElementById("courseFit").innerHTML = weightLines.join("") || "<span class='muted'>No course-fit weights.</span>";
+      document.getElementById("files").innerHTML = Object.entries(SNAPSHOT.local_files || {}).map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("") || "<span class='muted'>No local file links.</span>";
+      if (SNAPSHOT.reconstruction) {
+        const note = document.createElement("pre");
+        note.textContent = JSON.stringify(SNAPSHOT.reconstruction, null, 2);
+        const wrap = document.createElement("section");
+        wrap.className = "card";
+        wrap.innerHTML = "<h2>Reconstruction Provenance</h2>";
+        wrap.appendChild(note);
+        document.body.appendChild(wrap);
+      }
+    }
+    document.querySelectorAll("th[data-key]").forEach((th) => th.addEventListener("click", () => {
+      const key = th.dataset.key;
+      if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
+      renderTable();
+    }));
+    document.getElementById("filterBox").addEventListener("input", renderTable);
+    renderSummary();
+    renderDetails();
+    renderTable();
+  </script>
+</body>
+</html>

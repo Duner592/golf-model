@@ -1,0 +1,12 @@
+{
+  "event_id": "524",
+  "event_name": "Rocket Classic",
+  "source_csv": "data/preds/pga/event_524_rocket_classic_2026-07-27_leaderboard.csv",
+  "generated_utc": "27-Jul-2026 04:08:11",
+  "metrics": {
+    "field_size": 141,
+    "p_win_max": 0.2052,
+    "p_win_median": 0.00016666666666666666,
+    "p_win_sum": 1.0
+  }
+}
