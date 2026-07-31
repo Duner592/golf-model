@@ -133,12 +133,143 @@
         .highlights-table th, .highlights-table td { border: 1px solid #ddd; padding: 0.25rem; text-align: left; }
         .highlights-table th { background: #f5f5f5; }
 
+        .report-panel {
+            margin: 1.25rem 0;
+            padding: 1rem;
+            border: 1px solid rgba(20, 50, 32, 0.12);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.94);
+            box-shadow: 0 8px 18px -18px rgba(17, 94, 45, 0.45);
+            text-align: left;
+        }
+        .report-panel h2 {
+            margin: 0;
+            color: #254332;
+            font-size: 1.05rem;
+        }
+        .report-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+        }
+        .report-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .report-btn {
+            min-height: 2.15rem;
+            padding: 0.35rem 0.75rem;
+            border: 0;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--gm-primary-light), var(--gm-primary));
+            color: #fff;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 750;
+            cursor: pointer;
+        }
+        .report-btn.secondary {
+            background: #eef5f0;
+            color: #254332;
+            border: 1px solid #cad8cf;
+        }
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.75rem;
+        }
+        .filter-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            color: #53675b;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .filter-field select,
+        .filter-field input {
+            min-height: 2.2rem;
+            padding: 0.35rem 0.55rem;
+            border: 1px solid #cfd8d0;
+            border-radius: 6px;
+            background: #fff;
+            color: #17251d;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.65rem;
+            margin-bottom: 0.85rem;
+        }
+        .summary-card {
+            padding: 0.7rem;
+            border: 1px solid rgba(34,139,34,0.1);
+            border-radius: 8px;
+            background: #f8fbf9;
+        }
+        .summary-label {
+            display: block;
+            color: #637268;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .summary-value {
+            display: block;
+            margin-top: 0.25rem;
+            color: #17251d;
+            font-size: 1.05rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+        .active-filter-note {
+            margin: 0 0 0.85rem;
+            color: #607066;
+            font-size: 0.9rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+        }
         table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
         th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
         th { background: #f2f2f2; font-weight: bold; position: relative; }
         tr:nth-child(even) { background: #f9f9f9; }
         #filter-input { padding: 0.4rem 0.6rem; width: 260px; border: 1px solid #ddd; border-radius: 6px; }
         .column-filter { padding: 0.25rem; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 0.8rem; }
+
+        @media print {
+            body { margin: 1rem; color: #111; background: #fff; }
+            .logo,
+            .overlay,
+            .menu-container,
+            .menu,
+            .link,
+            .report-actions,
+            .filter-grid,
+            #filter-input,
+            .column-filter {
+                display: none !important;
+            }
+            .report-panel,
+            .highlights-section,
+            .chart-container {
+                box-shadow: none;
+                border-color: #ccc;
+            }
+            table { font-size: 0.72rem; }
+            tr[style*="display: none"] { display: none !important; }
+        }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -160,17 +291,16 @@
 
 <script>
     let tableData = [];  // Store data for filtering
+    let filteredData = [];
     let headers = [];    // Store column headers
+    let filterState = {};
 
     async function loadSpreadsheet() {
         try {
             const allRows = await BettingData.load();
-
-            let data = allRows;
-
-            // Manipulate data: Remove unwanted columns
             const columnsToRemove = ['Course Details', 'Pre Tournament Notes', 'Post Tournament Notes'];
-            data = data.map(row => {
+
+            tableData = allRows.map(row => {
                 const newRow = {};
                 Object.keys(row).forEach(key => {
                     if (!columnsToRemove.includes(key)) {
@@ -179,157 +309,137 @@
                 });
                 return newRow;
             });
+            filteredData = tableData.slice();
+            headers = Object.keys(tableData[0] || {});
+            filterState = readInitialFilters();
 
-            // Filter by year if specified
-            const urlParams = new URLSearchParams(window.location.search);
-            const filterYear = urlParams.get('year');
-            const player = urlParams.get('player');
-            const tournament = urlParams.get('tournament');
-            const tourFilter = urlParams.get('tour');
-            const bookmakerFilter = urlParams.get('bookmaker');
-            const betTypeFilter = urlParams.get('betType');
-            const outcomeFilter = urlParams.get('outcome');
-
-            if (filterYear) {
-                data = data.filter(row => {
-                    const dateValue = row['Date'] || '';
-                    const year = dateValue.includes('/') ? dateValue.split('/')[2] : dateValue.split('-')[0];
-                    return year === filterYear;
-                });
-            }
-
-            // Filter by player, tournament, tour, bookmaker, or bet type if specified
-            if (player) {
-                data = data.filter(row => (row['Player'] || 'Unknown') === player);
-            }
-            if (tournament) {
-                data = data.filter(row => (row['Tournament'] || 'Unknown') === tournament);
-            }
-            if (tourFilter) {
-                data = data.filter(row => (row['Tour/Majors'] || 'Unknown') === tourFilter);
-            }
-            if (bookmakerFilter) {
-                data = data.filter(row => (row['Bookmaker'] || 'Unknown') === bookmakerFilter);
-            }
-            if (betTypeFilter) {
-                data = data.filter(row => (row['Type'] || 'Unknown') === betTypeFilter);
-            }
-            if (outcomeFilter) {
-                data = data.filter(row => (row['Outcome'] || '').trim().toLowerCase() === outcomeFilter.trim().toLowerCase());
-            }
-
-            tableData = data;
-            headers = Object.keys(data[0] || {});
-            console.log('Manipulated Data Sample:', data.slice(0, 2));
-
-            // Calculate ROI for the year (only if filtered)
-            let totalReturn = 0;
-            let totalStake = 0;
-            data.forEach(row => {
-                const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
-                const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
-                if (!isNaN(returnVal)) totalReturn += returnVal;
-                if (!isNaN(stakeVal)) totalStake += stakeVal;
-            });
-            const roi = totalStake > 0 ? ((totalReturn - totalStake) / totalStake * 100).toFixed(2) : 0;
-            const activeFilters = [];
-            if (filterYear) activeFilters.push(`Year ${filterYear}`);
-            if (player) activeFilters.push(`Player ${player}`);
-            if (tournament) activeFilters.push(`Tournament ${tournament}`);
-            if (tourFilter) activeFilters.push(`Tour ${tourFilter}`);
-            if (bookmakerFilter) activeFilters.push(`Bookmaker ${bookmakerFilter}`);
-            if (betTypeFilter) activeFilters.push(`Type ${betTypeFilter}`);
-            if (outcomeFilter) activeFilters.push(`Outcome ${outcomeFilter}`);
-            const roiLabel = activeFilters.join(' · ');
-            const roiHtml = activeFilters.length ? `<p style="text-align: left;"><strong>ROI for ${roiLabel}: ${roi}%</strong></p>` : '';
-
-            // Calculate overall ROI if not filtered by year, player, or tournament
-            let overallRoiHtml = '';
-            if (activeFilters.length === 0) {
-                let overallTotalReturn = 0;
-                let overallTotalStake = 0;
-                allRows.forEach(row => {
-                    const returnVal = parseFloat((row['Return'] || '').replace('£', '').replace(',', ''));
-                    const stakeVal = parseFloat((row['Stake'] || '').replace('£', '').replace(',', ''));
-                    if (!isNaN(returnVal)) overallTotalReturn += returnVal;
-                    if (!isNaN(stakeVal)) overallTotalStake += stakeVal;
-                });
-                const overallRoi = overallTotalStake > 0 ? ((overallTotalReturn - overallTotalStake) / overallTotalStake * 100).toFixed(2) : 0;
-                overallRoiHtml = `<p style="text-align: left;"><strong>Overall ROI: ${overallRoi}%</strong></p>`;
-            }
-
-            // Build highlights for wins with Profit/Loss > £100
-            const highlights = data.filter(row => {
-                const outcome = (row['Outcome'] || '').toLowerCase();
-                const profitLoss = parseFloat((row['Profit/Loss'] || '').replace('£', '').replace(',', ''));
-                return outcome === 'win' && profitLoss > 100;
-            });
-            let highlightsHtml = '';
-            if (highlights.length > 0) {
-                highlightsHtml = `
-                    <div class="highlights-section">
-                        <h2 onclick="toggleHighlightsSection(this)">Highlights <span class="arrow">▶</span></h2>
-                        <div class="highlights-content hidden">
-                            <table class="highlights-table">
-                                <thead>
-                                    <tr>
-                                        <th>Month-Year</th>
-                                        <th>Tour/Majors</th>
-                                        <th>Tournament</th>
-                                        <th>Player</th>
-                                        <th>Stake</th>
-                                        <th>Type</th>
-                                        <th>Price</th>
-                                        <th>Place Terms</th>
-                                        <th>Profit/Loss</th>
-                                    </tr>
-                                </thead>
-                                <tbody>`;
-                highlights.forEach(win => {
-                    highlightsHtml += `<tr>
-                        <td>${formatMonthYear(win['Date'])}</td>
-                        <td>${win['Tour/Majors'] || 'N/A'}</td>
-                        <td>${win['Tournament'] || 'N/A'}</td>
-                        <td>${win['Player'] || 'N/A'}</td>
-                        <td>${win['Stake'] || 'N/A'}</td>
-                        <td>${win['Type'] || 'N/A'}</td>
-                        <td>${win['Price'] || 'N/A'}</td>
-                        <td>${win['Place Terms'] || 'N/A'}</td>
-                        <td>${win['Profit/Loss'] || 'N/A'}</td>
-                    </tr>`;
-                });
-                highlightsHtml += `
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>`;
-            } else {
-                highlightsHtml = `
-                    <div class="highlights-section">
-                        <h2 onclick="toggleHighlightsSection(this)">Highlights <span class="arrow">▶</span></h2>
-                        <div class="highlights-content hidden">
-                            <p>No qualifying wins to highlight.</p>
-                        </div>
-                    </div>`;
-            }
-
-            // Update title and heading if filters are specified
-            if (activeFilters.length > 0) {
-                const suffix = activeFilters.join(' / ');
-                document.title = `Historical Betting Data - ${suffix}`;
-                const h1 = document.querySelector('h1');
-                if (h1) h1.textContent = `Eds Golf Model - Historical Betting Data - ${suffix}`;
-            }
-
-            return roiHtml + overallRoiHtml + highlightsHtml + '<div style="text-align: left;"><input type="text" id="filter-input" placeholder="Global search (all columns)..."></div>' + buildTable(data);
+            return `
+                ${buildReportPanel(tableData)}
+                <div id="highlights-container"></div>
+                <div style="text-align: left; margin-top: 1rem;"><input type="text" id="filter-input" placeholder="Global search (all columns)..."></div>
+                ${buildTable(tableData)}
+            `;
         } catch (e) {
             console.error('Fetch Error:', e);
             return 'Spreadsheet data unavailable. Please ensure the CSV file is exported correctly.';
         }
     }
 
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, char => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        }[char]));
+    }
+
+    function parseMoney(value) {
+        const cleaned = String(value || '').replace(/[^0-9.-]/g, '');
+        const n = Number(cleaned);
+        return Number.isFinite(n) ? n : 0;
+    }
+
+    function parseBetDate(value) {
+        const text = String(value || '').trim();
+        if (!text) return null;
+        let match = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+        if (match) {
+            const year = Number(match[3].length === 2 ? `20${match[3]}` : match[3]);
+            return new Date(year, Number(match[2]) - 1, Number(match[1]));
+        }
+        match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+        if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+        match = text.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+        if (match) return new Date(Number(match[3]), Number(match[2]) - 1, Number(match[1]));
+        const parsed = new Date(text);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function rowYear(row) {
+        const parsed = parseBetDate(row.Date || '');
+        if (parsed) return String(parsed.getFullYear());
+        const text = String(row.Date || '');
+        const match = text.match(/\b(20\d{2}|19\d{2})\b/);
+        return match ? match[1] : '';
+    }
+
+    function getUniqueValues(data, getter) {
+        return Array.from(new Set(data.map(getter).map(value => String(value || '').trim()).filter(Boolean)))
+            .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+    }
+
+    function selectOptions(values, selected = '', allLabel = 'All') {
+        const options = [`<option value="">${escapeHtml(allLabel)}</option>`];
+        const selectedKey = String(selected || '').trim().toLowerCase();
+        values.forEach(value => {
+            const valueKey = String(value || '').trim().toLowerCase();
+            const selectedAttr = selectedKey && valueKey === selectedKey ? ' selected' : '';
+            options.push(`<option value="${escapeHtml(value)}"${selectedAttr}>${escapeHtml(value)}</option>`);
+        });
+        return options.join('');
+    }
+
+    function readInitialFilters() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            year: params.get('year') || '',
+            tour: params.get('tour') || '',
+            tournament: params.get('tournament') || '',
+            course: params.get('course') || '',
+            player: params.get('player') || '',
+            bookmaker: params.get('bookmaker') || '',
+            type: params.get('betType') || params.get('type') || '',
+            outcome: params.get('outcome') || '',
+            dateFrom: params.get('dateFrom') || '',
+            dateTo: params.get('dateTo') || '',
+            minProfit: params.get('minProfit') || '',
+            maxProfit: params.get('maxProfit') || ''
+        };
+    }
+
+    function buildReportPanel(data) {
+        const years = getUniqueValues(data, rowYear).sort((a, b) => Number(b) - Number(a));
+        const tours = getUniqueValues(data, row => row['Tour/Majors']);
+        const tournaments = getUniqueValues(data, row => row.Tournament);
+        const courses = getUniqueValues(data, row => row.Course);
+        const players = getUniqueValues(data, row => row.Player);
+        const bookmakers = getUniqueValues(data, row => row.Bookmaker);
+        const types = getUniqueValues(data, row => row.Type);
+        const outcomes = getUniqueValues(data, row => row.Outcome);
+
+        return `
+            <section class="report-panel" aria-label="Betting report filters">
+                <div class="report-header">
+                    <h2>Report Filters</h2>
+                    <div class="report-actions">
+                        <button class="report-btn secondary" type="button" id="reset-filters-btn">Reset</button>
+                        <button class="report-btn" type="button" id="export-csv-btn">Export CSV</button>
+                        <button class="report-btn" type="button" id="print-report-btn">PDF Report</button>
+                    </div>
+                </div>
+                <div class="summary-grid" id="report-summary"></div>
+                <p class="active-filter-note" id="active-filter-note">No filters applied.</p>
+                <div class="filter-grid">
+                    <label class="filter-field">Year<select id="filter-year" data-report-filter="year">${selectOptions(years, filterState.year)}</select></label>
+                    <label class="filter-field">Tour<select id="filter-tour" data-report-filter="tour">${selectOptions(tours, filterState.tour)}</select></label>
+                    <label class="filter-field">Tournament<select id="filter-tournament" data-report-filter="tournament">${selectOptions(tournaments, filterState.tournament)}</select></label>
+                    <label class="filter-field">Course<select id="filter-course" data-report-filter="course">${selectOptions(courses, filterState.course)}</select></label>
+                    <label class="filter-field">Player<select id="filter-player" data-report-filter="player">${selectOptions(players, filterState.player)}</select></label>
+                    <label class="filter-field">Bookmaker<select id="filter-bookmaker" data-report-filter="bookmaker">${selectOptions(bookmakers, filterState.bookmaker)}</select></label>
+                    <label class="filter-field">Bet Type<select id="filter-type" data-report-filter="type">${selectOptions(types, filterState.type)}</select></label>
+                    <label class="filter-field">Outcome<select id="filter-outcome" data-report-filter="outcome">${selectOptions(outcomes, filterState.outcome)}</select></label>
+                    <label class="filter-field">Date From<input id="filter-date-from" data-report-filter="dateFrom" type="date" value="${escapeHtml(filterState.dateFrom)}"></label>
+                    <label class="filter-field">Date To<input id="filter-date-to" data-report-filter="dateTo" type="date" value="${escapeHtml(filterState.dateTo)}"></label>
+                    <label class="filter-field">Min P/L<input id="filter-min-profit" data-report-filter="minProfit" type="number" step="0.01" value="${escapeHtml(filterState.minProfit)}"></label>
+                    <label class="filter-field">Max P/L<input id="filter-max-profit" data-report-filter="maxProfit" type="number" step="0.01" value="${escapeHtml(filterState.maxProfit)}"></label>
+                </div>
+            </section>
+        `;
+    }
+
     function buildTable(data) {
-        // Collect unique values for each column
         const uniqueValues = {};
         headers.forEach(header => {
             uniqueValues[header] = new Set();
@@ -340,58 +450,297 @@
             });
         });
 
-        let html = '<table id="data-table"><thead><tr>';
+        let html = '<div class="table-wrap"><table id="data-table"><thead><tr>';
         headers.forEach(header => {
             const options = ['<option value="">All</option>'];
-            Array.from(uniqueValues[header]).sort().forEach(value => {
-                options.push(`<option value="${value}">${value}</option>`);
-            });
-            html += `<th>${header}<br><select class="column-filter" data-column="${header}">${options.join('')}</select></th>`;
+            Array.from(uniqueValues[header])
+                .sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' }))
+                .forEach(value => {
+                    options.push(`<option value="${escapeHtml(value)}">${escapeHtml(value || '(blank)')}</option>`);
+                });
+            html += `<th>${escapeHtml(header)}<br><select class="column-filter" data-column="${escapeHtml(header)}">${options.join('')}</select></th>`;
         });
         html += '</tr></thead><tbody>';
         data.forEach((row, index) => {
             html += `<tr data-index="${index}">`;
             headers.forEach(header => {
-                html += `<td>${row[header] || ''}</td>`;
+                html += `<td>${escapeHtml(row[header] || '')}</td>`;
             });
             html += '</tr>';
         });
-        html += '</tbody></table>';
+        html += '</tbody></table></div>';
         return html;
     }
 
+    function getReportFilters() {
+        const filters = {};
+        document.querySelectorAll('[data-report-filter]').forEach(input => {
+            filters[input.dataset.reportFilter] = input.value;
+        });
+        return {
+            year: filters.year || '',
+            tour: filters.tour || '',
+            tournament: filters.tournament || '',
+            course: filters.course || '',
+            player: filters.player || '',
+            bookmaker: filters.bookmaker || '',
+            type: filters.type || '',
+            outcome: filters.outcome || '',
+            dateFrom: filters.dateFrom || '',
+            dateTo: filters.dateTo || '',
+            minProfit: filters.minProfit || '',
+            maxProfit: filters.maxProfit || ''
+        };
+    }
+
+    function matchesTextFilter(value, filter) {
+        if (!filter) return true;
+        return String(value || '').trim().toLowerCase() === String(filter || '').trim().toLowerCase();
+    }
+
+    function rowMatchesReportFilters(row, filters) {
+        if (filters.year && rowYear(row) !== filters.year) return false;
+        if (!matchesTextFilter(row['Tour/Majors'], filters.tour)) return false;
+        if (!matchesTextFilter(row.Tournament, filters.tournament)) return false;
+        if (!matchesTextFilter(row.Course, filters.course)) return false;
+        if (!matchesTextFilter(row.Player, filters.player)) return false;
+        if (!matchesTextFilter(row.Bookmaker, filters.bookmaker)) return false;
+        if (!matchesTextFilter(row.Type, filters.type)) return false;
+        if (!matchesTextFilter(row.Outcome, filters.outcome)) return false;
+
+        const betDate = parseBetDate(row.Date || '');
+        if (filters.dateFrom) {
+            const fromDate = parseBetDate(filters.dateFrom);
+            if (!betDate || !fromDate || betDate < fromDate) return false;
+        }
+        if (filters.dateTo) {
+            const toDate = parseBetDate(filters.dateTo);
+            if (!betDate || !toDate || betDate > toDate) return false;
+        }
+
+        const profit = parseMoney(row['Profit/Loss']);
+        if (filters.minProfit !== '' && profit < Number(filters.minProfit)) return false;
+        if (filters.maxProfit !== '' && profit > Number(filters.maxProfit)) return false;
+        return true;
+    }
+
+    function formatCurrency(value) {
+        const amount = Number(value) || 0;
+        const sign = amount < 0 ? '-' : '';
+        return `${sign}£${Math.abs(amount).toFixed(2)}`;
+    }
+
+    function formatPercent(value) {
+        const amount = Number(value) || 0;
+        return `${amount.toFixed(1)}%`;
+    }
+
+    function reportMetric(label, value) {
+        return `<div class="summary-card"><span class="summary-label">${escapeHtml(label)}</span><span class="summary-value">${escapeHtml(value)}</span></div>`;
+    }
+
+    function updateReportSummary(rows) {
+        const summary = document.getElementById('report-summary');
+        if (!summary) return;
+
+        const stake = rows.reduce((sum, row) => sum + parseMoney(row.Stake), 0);
+        const returns = rows.reduce((sum, row) => sum + parseMoney(row.Return ?? row.Returns), 0);
+        const profit = rows.reduce((sum, row) => sum + parseMoney(row['Profit/Loss']), 0);
+        const settledRows = rows.filter(row => String(row.Outcome || '').toLowerCase() !== 'pending');
+        const pendingRows = rows.length - settledRows.length;
+        const wins = settledRows.filter(row => String(row.Outcome || '').toLowerCase() === 'win').length;
+        const roi = stake ? (profit / stake) * 100 : 0;
+        const strikeRate = settledRows.length ? (wins / settledRows.length) * 100 : 0;
+
+        summary.innerHTML = [
+            reportMetric('Visible Bets', rows.length),
+            reportMetric('Stake', formatCurrency(stake)),
+            reportMetric('Returns', formatCurrency(returns)),
+            reportMetric('Profit/Loss', formatCurrency(profit)),
+            reportMetric('ROI', formatPercent(roi)),
+            reportMetric('Strike Rate', formatPercent(strikeRate)),
+            reportMetric('Pending', pendingRows)
+        ].join('');
+
+        const note = document.getElementById('active-filter-note');
+        if (note) {
+            const descriptions = describeActiveFilters();
+            note.textContent = descriptions.length ? `Active filters: ${descriptions.join(', ')}` : 'No filters applied.';
+        }
+    }
+
+    function describeActiveFilters() {
+        const labels = {
+            year: 'Year',
+            tour: 'Tour',
+            tournament: 'Tournament',
+            course: 'Course',
+            player: 'Player',
+            bookmaker: 'Bookmaker',
+            type: 'Bet Type',
+            outcome: 'Outcome',
+            dateFrom: 'Date From',
+            dateTo: 'Date To',
+            minProfit: 'Min P/L',
+            maxProfit: 'Max P/L'
+        };
+        const descriptions = Object.entries(filterState)
+            .filter(([, value]) => String(value || '').trim())
+            .map(([key, value]) => `${labels[key] || key}: ${value}`);
+        const globalQuery = document.getElementById('filter-input')?.value.trim();
+        if (globalQuery) descriptions.push(`Search: ${globalQuery}`);
+        document.querySelectorAll('.column-filter').forEach(select => {
+            if (select.value) descriptions.push(`${select.dataset.column}: ${select.value}`);
+        });
+        return descriptions;
+    }
+
+    function buildHighlights(rows) {
+        const settledRows = rows.filter(row => String(row.Outcome || '').toLowerCase() !== 'pending');
+        const profitRows = settledRows
+            .filter(row => parseMoney(row['Profit/Loss']) !== 0)
+            .sort((a, b) => parseMoney(b['Profit/Loss']) - parseMoney(a['Profit/Loss']));
+        const topWins = profitRows.filter(row => parseMoney(row['Profit/Loss']) > 0).slice(0, 10);
+        const topLosses = profitRows
+            .filter(row => parseMoney(row['Profit/Loss']) < 0)
+            .sort((a, b) => parseMoney(a['Profit/Loss']) - parseMoney(b['Profit/Loss']))
+            .slice(0, 10);
+
+        const topPlayers = {};
+        settledRows.forEach(row => {
+            const player = row.Player || 'Unknown';
+            if (!topPlayers[player]) topPlayers[player] = { count: 0, profit: 0 };
+            topPlayers[player].count += 1;
+            topPlayers[player].profit += parseMoney(row['Profit/Loss']);
+        });
+        const playerRows = Object.entries(topPlayers)
+            .map(([player, stats]) => ({ player, ...stats }))
+            .filter(row => row.count >= 2)
+            .sort((a, b) => b.profit - a.profit)
+            .slice(0, 10);
+
+        const renderBetRows = list => list.length ? list.map(row => `
+            <tr>
+                <td>${escapeHtml(row.Player)}</td>
+                <td>${escapeHtml(row.Tournament)}</td>
+                <td>${escapeHtml(formatMonthYear(row.Date))}</td>
+                <td>${escapeHtml(row.Type)}</td>
+                <td>${escapeHtml(row.Bookmaker)}</td>
+                <td>${escapeHtml(formatCurrency(parseMoney(row['Profit/Loss'])))}</td>
+            </tr>
+        `).join('') : '<tr><td colspan="6">No settled bets match the current filters.</td></tr>';
+
+        const renderPlayerRows = list => list.length ? list.map(row => `
+            <tr>
+                <td>${escapeHtml(row.player)}</td>
+                <td>${escapeHtml(row.count)}</td>
+                <td>${escapeHtml(formatCurrency(row.profit))}</td>
+            </tr>
+        `).join('') : '<tr><td colspan="3">No players with 2+ settled bets match the current filters.</td></tr>';
+
+        return `
+            <section class="highlights-section">
+                <h2 onclick="toggleHighlightsSection(this)">Filtered Highlights <span class="arrow">▼</span></h2>
+                <div class="highlights-content">
+                    <h3>Top Wins</h3>
+                    <table class="highlights-table">
+                        <thead><tr><th>Player</th><th>Tournament</th><th>Date</th><th>Type</th><th>Bookmaker</th><th>P/L</th></tr></thead>
+                        <tbody>${renderBetRows(topWins)}</tbody>
+                    </table>
+                    <h3>Largest Losses</h3>
+                    <table class="highlights-table">
+                        <thead><tr><th>Player</th><th>Tournament</th><th>Date</th><th>Type</th><th>Bookmaker</th><th>P/L</th></tr></thead>
+                        <tbody>${renderBetRows(topLosses)}</tbody>
+                    </table>
+                    <h3>Best Player Returns</h3>
+                    <table class="highlights-table">
+                        <thead><tr><th>Player</th><th>Bets</th><th>P/L</th></tr></thead>
+                        <tbody>${renderPlayerRows(playerRows)}</tbody>
+                    </table>
+                </div>
+            </section>
+        `;
+    }
+
+    function updateHighlights(rows) {
+        const container = document.getElementById('highlights-container');
+        if (container) container.innerHTML = buildHighlights(rows);
+    }
+
     function applyFilters() {
-        const globalQuery = document.getElementById('filter-input').value.toLowerCase();
+        const globalQuery = document.getElementById('filter-input')?.value.toLowerCase() || '';
+        filterState = getReportFilters();
         const columnFilters = {};
         document.querySelectorAll('.column-filter').forEach(select => {
             const column = select.getAttribute('data-column');
             columnFilters[column] = select.value.toLowerCase();
         });
 
+        const visibleRows = [];
         const rows = document.querySelectorAll('#data-table tbody tr');
         rows.forEach(row => {
-            let showRow = true;
+            const record = tableData[Number(row.dataset.index)];
+            let showRow = rowMatchesReportFilters(record, filterState);
 
-            // Global search
-            if (globalQuery) {
-                const cells = row.querySelectorAll('td');
-                const matchesGlobal = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(globalQuery));
-                if (!matchesGlobal) showRow = false;
+            if (showRow && globalQuery) {
+                showRow = headers.some(header => String(record[header] || '').toLowerCase().includes(globalQuery));
             }
 
-            // Column-specific filters
-            headers.forEach((header, index) => {
+            headers.forEach(header => {
                 const filterValue = columnFilters[header];
                 if (filterValue) {
-                    const cell = row.querySelectorAll('td')[index];
-                    if (cell.textContent.toLowerCase() !== filterValue) {
+                    if (String(record[header] || '').toLowerCase() !== filterValue) {
                         showRow = false;
                     }
                 }
             });
 
             row.style.display = showRow ? '' : 'none';
+            if (showRow) visibleRows.push(record);
         });
+
+        filteredData = visibleRows;
+        updateReportSummary(filteredData);
+        updateHighlights(filteredData);
+    }
+
+    function resetReportFilters() {
+        document.querySelectorAll('[data-report-filter]').forEach(input => {
+            input.value = '';
+        });
+        document.querySelectorAll('.column-filter').forEach(select => {
+            select.value = '';
+        });
+        const globalSearch = document.getElementById('filter-input');
+        if (globalSearch) globalSearch.value = '';
+        applyFilters();
+    }
+
+    function csvCell(value) {
+        const text = String(value ?? '');
+        const protectedText = /^[=+\-@]/.test(text) ? `'${text}` : text;
+        return `"${protectedText.replace(/"/g, '""')}"`;
+    }
+
+    function exportFilteredCsv() {
+        const rows = filteredData;
+        const lines = [
+            headers.map(csvCell).join(','),
+            ...rows.map(row => headers.map(header => csvCell(row[header] || '')).join(','))
+        ];
+        const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const dateStamp = new Date().toISOString().slice(0, 10);
+        link.href = URL.createObjectURL(blob);
+        link.download = `overall-betting-report-${dateStamp}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        URL.revokeObjectURL(link.href);
+        link.remove();
+    }
+
+    function printPdfReport() {
+        window.print();
     }
 
     function formatMonthYear(dateString) {
@@ -444,15 +793,24 @@
     }
 
     async function init() {
-        document.getElementById('spreadsheet-content').innerHTML = await loadSpreadsheet();
+        const content = document.getElementById('spreadsheet-content');
+        content.innerHTML = await loadSpreadsheet();
 
-        // Add event listeners for filters
-        document.getElementById('filter-input').addEventListener('input', applyFilters);
-        document.addEventListener('change', (e) => {
-            if (e.target.classList.contains('column-filter')) {
+        document.getElementById('filter-input')?.addEventListener('input', applyFilters);
+        document.addEventListener('input', (e) => {
+            if (e.target.matches('[data-report-filter]')) {
                 applyFilters();
             }
         });
+        document.addEventListener('change', (e) => {
+            if (e.target.matches('[data-report-filter], .column-filter')) {
+                applyFilters();
+            }
+        });
+        document.getElementById('reset-filters-btn')?.addEventListener('click', resetReportFilters);
+        document.getElementById('export-csv-btn')?.addEventListener('click', exportFilteredCsv);
+        document.getElementById('print-report-btn')?.addEventListener('click', printPdfReport);
+        applyFilters();
     }
 
     init();
