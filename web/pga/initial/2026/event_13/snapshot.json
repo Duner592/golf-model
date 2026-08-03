@@ -1,0 +1,32 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-08-03T04:00:48Z",
+  "tour": "pga",
+  "event_id": "13",
+  "event_name": "Wyndham Championship",
+  "year": "2026",
+  "r1_date": "2026-08-06",
+  "start_date": "2026-08-06",
+  "source_csv": "data/preds/pga/event_13_wyndham_championship_2026-08-03_leaderboard.csv",
+  "artifact_generated_utc": "03-Aug-2026 04:00:48",
+  "resources": {
+    "model_page": "pga/initial/2026/event_13/model_page.html",
+    "leaderboard": "pga/initial/2026/event_13/leaderboard.json",
+    "summary": "pga/initial/2026/event_13/summary.json",
+    "meta": "pga/initial/2026/event_13/meta.json",
+    "downloads_csv": "pga/initial/2026/event_13/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_13/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_13/leaderboard_20260803T040048Z.csv",
+    "timestamped_html": "pga/initial/2026/event_13/leaderboard_20260803T040048Z.html",
+    "weather_meta": "pga/initial/2026/event_13/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_13/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_13/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_13/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_13/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_13/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_13/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_13/snapshot.json",
+    "schedule": "pga/schedule.json"
+  }
+}

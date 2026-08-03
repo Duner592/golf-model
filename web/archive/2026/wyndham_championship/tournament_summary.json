@@ -1,0 +1,38 @@
+{
+  "event_name": "Wyndham Championship",
+  "event_id": "13",
+  "course": "Sedgefield Country Club",
+  "total_yardage": null,
+  "course_location": "Greensboro, NC",
+  "start_date": "06-Aug-2026",
+  "field_size": 141,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Young, Cameron",
+      "score": -26
+    },
+    {
+      "year": 2024,
+      "winner": "Rai, Aaron",
+      "score": -22
+    },
+    {
+      "year": 2023,
+      "winner": "Glover, Lucas",
+      "score": -24
+    },
+    {
+      "year": 2022,
+      "winner": "Kim, Joohyung",
+      "score": -24
+    },
+    {
+      "year": 2021,
+      "winner": "Kisner, Kevin",
+      "score": -19
+    }
+  ]
+}

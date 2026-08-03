@@ -1,5 +1,18 @@
 [
   {
+    "event_id": "13",
+    "event_name": "Wyndham Championship",
+    "tour": "pga",
+    "slug": "wyndham_championship",
+    "year": "2026",
+    "start_date": "2026-08-06",
+    "csv_available": true,
+    "archived_at": "2026-08-03 04:00:48 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-08-03T04:00:48Z",
+    "model_page": "archive/2026/wyndham_championship/model_page.html"
+  },
+  {
     "event_id": "524",
     "event_name": "Rocket Classic",
     "tour": "pga",

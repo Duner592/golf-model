@@ -1,0 +1,12 @@
+{
+  "event_id": "13",
+  "event_name": "Wyndham Championship",
+  "source_csv": "data/preds/pga/event_13_wyndham_championship_2026-08-03_leaderboard.csv",
+  "generated_utc": "03-Aug-2026 04:00:48",
+  "metrics": {
+    "field_size": 141,
+    "p_win_max": 0.5529,
+    "p_win_median": 0.0001,
+    "p_win_sum": 0.9999999999999999
+  }
+}
