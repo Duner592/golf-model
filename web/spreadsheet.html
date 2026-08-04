@@ -596,66 +596,31 @@
     }
 
     function buildHighlights(rows) {
-        const settledRows = rows.filter(row => String(row.Outcome || '').toLowerCase() !== 'pending');
-        const profitRows = settledRows
-            .filter(row => parseMoney(row['Profit/Loss']) !== 0)
-            .sort((a, b) => parseMoney(b['Profit/Loss']) - parseMoney(a['Profit/Loss']));
-        const topWins = profitRows.filter(row => parseMoney(row['Profit/Loss']) > 0).slice(0, 10);
-        const topLosses = profitRows
-            .filter(row => parseMoney(row['Profit/Loss']) < 0)
-            .sort((a, b) => parseMoney(a['Profit/Loss']) - parseMoney(b['Profit/Loss']))
-            .slice(0, 10);
-
-        const topPlayers = {};
-        settledRows.forEach(row => {
-            const player = row.Player || 'Unknown';
-            if (!topPlayers[player]) topPlayers[player] = { count: 0, profit: 0 };
-            topPlayers[player].count += 1;
-            topPlayers[player].profit += parseMoney(row['Profit/Loss']);
-        });
-        const playerRows = Object.entries(topPlayers)
-            .map(([player, stats]) => ({ player, ...stats }))
-            .filter(row => row.count >= 2)
-            .sort((a, b) => b.profit - a.profit)
-            .slice(0, 10);
-
-        const renderBetRows = list => list.length ? list.map(row => `
+        const highlights = rows.filter(row => (
+            String(row.Outcome || '').toLowerCase() === 'win'
+            && parseMoney(row['Profit/Loss']) > 100
+        ));
+        const highlightRows = highlights.length ? highlights.map(row => `
             <tr>
-                <td>${escapeHtml(row.Player)}</td>
-                <td>${escapeHtml(row.Tournament)}</td>
                 <td>${escapeHtml(formatMonthYear(row.Date))}</td>
+                <td>${escapeHtml(row['Tour/Majors'] || 'N/A')}</td>
+                <td>${escapeHtml(row.Tournament)}</td>
+                <td>${escapeHtml(row.Player)}</td>
+                <td>${escapeHtml(row.Stake || 'N/A')}</td>
                 <td>${escapeHtml(row.Type)}</td>
-                <td>${escapeHtml(row.Bookmaker)}</td>
-                <td>${escapeHtml(formatCurrency(parseMoney(row['Profit/Loss'])))}</td>
+                <td>${escapeHtml(row.Price || 'N/A')}</td>
+                <td>${escapeHtml(row['Place Terms'] || 'N/A')}</td>
+                <td>${escapeHtml(row['Profit/Loss'] || 'N/A')}</td>
             </tr>
-        `).join('') : '<tr><td colspan="6">No settled bets match the current filters.</td></tr>';
-
-        const renderPlayerRows = list => list.length ? list.map(row => `
-            <tr>
-                <td>${escapeHtml(row.player)}</td>
-                <td>${escapeHtml(row.count)}</td>
-                <td>${escapeHtml(formatCurrency(row.profit))}</td>
-            </tr>
-        `).join('') : '<tr><td colspan="3">No players with 2+ settled bets match the current filters.</td></tr>';
+        `).join('') : '<tr><td colspan="9">No qualifying wins match the current filters.</td></tr>';
 
         return `
             <section class="highlights-section">
-                <h2 onclick="toggleHighlightsSection(this)">Filtered Highlights <span class="arrow">▼</span></h2>
-                <div class="highlights-content">
-                    <h3>Top Wins</h3>
+                <h2 onclick="toggleHighlightsSection(this)">Highlights <span class="arrow">▶</span></h2>
+                <div class="highlights-content hidden">
                     <table class="highlights-table">
-                        <thead><tr><th>Player</th><th>Tournament</th><th>Date</th><th>Type</th><th>Bookmaker</th><th>P/L</th></tr></thead>
-                        <tbody>${renderBetRows(topWins)}</tbody>
-                    </table>
-                    <h3>Largest Losses</h3>
-                    <table class="highlights-table">
-                        <thead><tr><th>Player</th><th>Tournament</th><th>Date</th><th>Type</th><th>Bookmaker</th><th>P/L</th></tr></thead>
-                        <tbody>${renderBetRows(topLosses)}</tbody>
-                    </table>
-                    <h3>Best Player Returns</h3>
-                    <table class="highlights-table">
-                        <thead><tr><th>Player</th><th>Bets</th><th>P/L</th></tr></thead>
-                        <tbody>${renderPlayerRows(playerRows)}</tbody>
+                        <thead><tr><th>Month-Year</th><th>Tour/Majors</th><th>Tournament</th><th>Player</th><th>Stake</th><th>Type</th><th>Price</th><th>Place Terms</th><th>Profit/Loss</th></tr></thead>
+                        <tbody>${highlightRows}</tbody>
                     </table>
                 </div>
             </section>
