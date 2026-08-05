@@ -40,11 +40,7 @@
                 { label: 'Analytics', href: 'betting_analytics.html' },
                 { label: 'Odds & Value', href: 'odds_value.html?v=20260713-odds-cache2' },
                 { label: 'Overall Data', href: 'spreadsheet.html' },
-                { label: 'ROI% Data', href: 'roi.html' },
-                { label: 'Yearly 2026', href: 'spreadsheet.html?year=2026' },
-                { label: 'Yearly 2025', href: 'spreadsheet.html?year=2025' },
-                { label: 'Yearly 2024', href: 'spreadsheet.html?year=2024' },
-                { label: 'Yearly 2023', href: 'spreadsheet.html?year=2023' }
+                { label: 'ROI% Data', href: 'roi.html' }
             ]
         },
         {
