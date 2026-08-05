@@ -206,33 +206,6 @@
             letter-spacing: 0;
             text-transform: none;
         }
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 0.65rem;
-            margin-bottom: 0.85rem;
-        }
-        .summary-card {
-            padding: 0.7rem;
-            border: 1px solid rgba(34,139,34,0.1);
-            border-radius: 8px;
-            background: #f8fbf9;
-        }
-        .summary-label {
-            display: block;
-            color: #637268;
-            font-size: 0.72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-        .summary-value {
-            display: block;
-            margin-top: 0.25rem;
-            color: #17251d;
-            font-size: 1.05rem;
-            font-weight: 800;
-            font-variant-numeric: tabular-nums;
-        }
         .active-filter-note {
             margin: 0 0 0.85rem;
             color: #607066;
@@ -419,7 +392,6 @@
                         <button class="report-btn" type="button" id="print-report-btn">PDF Report</button>
                     </div>
                 </div>
-                <div class="summary-grid" id="report-summary"></div>
                 <p class="active-filter-note" id="active-filter-note">No filters applied.</p>
                 <div class="filter-grid">
                     <label class="filter-field">Year<select id="filter-year" data-report-filter="year">${selectOptions(years, filterState.year)}</select></label>
@@ -524,44 +496,7 @@
         return true;
     }
 
-    function formatCurrency(value) {
-        const amount = Number(value) || 0;
-        const sign = amount < 0 ? '-' : '';
-        return `${sign}£${Math.abs(amount).toFixed(2)}`;
-    }
-
-    function formatPercent(value) {
-        const amount = Number(value) || 0;
-        return `${amount.toFixed(1)}%`;
-    }
-
-    function reportMetric(label, value) {
-        return `<div class="summary-card"><span class="summary-label">${escapeHtml(label)}</span><span class="summary-value">${escapeHtml(value)}</span></div>`;
-    }
-
-    function updateReportSummary(rows) {
-        const summary = document.getElementById('report-summary');
-        if (!summary) return;
-
-        const stake = rows.reduce((sum, row) => sum + parseMoney(row.Stake), 0);
-        const returns = rows.reduce((sum, row) => sum + parseMoney(row.Return ?? row.Returns), 0);
-        const profit = rows.reduce((sum, row) => sum + parseMoney(row['Profit/Loss']), 0);
-        const settledRows = rows.filter(row => String(row.Outcome || '').toLowerCase() !== 'pending');
-        const pendingRows = rows.length - settledRows.length;
-        const wins = settledRows.filter(row => String(row.Outcome || '').toLowerCase() === 'win').length;
-        const roi = stake ? (profit / stake) * 100 : 0;
-        const strikeRate = settledRows.length ? (wins / settledRows.length) * 100 : 0;
-
-        summary.innerHTML = [
-            reportMetric('Visible Bets', rows.length),
-            reportMetric('Stake', formatCurrency(stake)),
-            reportMetric('Returns', formatCurrency(returns)),
-            reportMetric('Profit/Loss', formatCurrency(profit)),
-            reportMetric('ROI', formatPercent(roi)),
-            reportMetric('Strike Rate', formatPercent(strikeRate)),
-            reportMetric('Pending', pendingRows)
-        ].join('');
-
+    function updateActiveFilterNote() {
         const note = document.getElementById('active-filter-note');
         if (note) {
             const descriptions = describeActiveFilters();
@@ -665,7 +600,7 @@
         });
 
         filteredData = visibleRows;
-        updateReportSummary(filteredData);
+        updateActiveFilterNote();
         updateHighlights(filteredData);
     }
 
