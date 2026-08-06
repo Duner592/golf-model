@@ -493,6 +493,20 @@
         };
     }
 
+    const reportSelectDefinitions = {
+        year: {
+            id: 'filter-year',
+            values: rows => getUniqueValues(rows, rowYear).sort((a, b) => Number(b) - Number(a))
+        },
+        tour: { id: 'filter-tour', values: rows => getUniqueValues(rows, row => row['Tour/Majors']) },
+        tournament: { id: 'filter-tournament', values: rows => getUniqueValues(rows, row => row.Tournament) },
+        course: { id: 'filter-course', values: rows => getUniqueValues(rows, row => row.Course) },
+        player: { id: 'filter-player', values: rows => getUniqueValues(rows, row => row.Player) },
+        bookmaker: { id: 'filter-bookmaker', values: rows => getUniqueValues(rows, row => row.Bookmaker) },
+        type: { id: 'filter-type', values: rows => getUniqueValues(rows, row => row.Type) },
+        outcome: { id: 'filter-outcome', values: rows => getUniqueValues(rows, row => row.Outcome) }
+    };
+
     function matchesTextFilter(value, filter) {
         if (!filter) return true;
         return String(value || '').trim().toLowerCase() === String(filter || '').trim().toLowerCase();
@@ -522,6 +536,23 @@
         if (filters.minProfit !== '' && profit < Number(filters.minProfit)) return false;
         if (filters.maxProfit !== '' && profit > Number(filters.maxProfit)) return false;
         return true;
+    }
+
+    function updateReportSelectOptions() {
+        const filters = getReportFilters();
+
+        Object.entries(reportSelectDefinitions).forEach(([key, definition]) => {
+            const select = document.getElementById(definition.id);
+            if (!select) return;
+
+            // Keep this field unconstrained by its own current value, while every
+            // other active report filter limits the values it can offer.
+            const rows = tableData.filter(row => rowMatchesReportFilters(row, {
+                ...filters,
+                [key]: ''
+            }));
+            select.innerHTML = selectOptions(definition.values(rows), select.value);
+        });
     }
 
     function formatCurrency(value) {
@@ -634,6 +665,8 @@
 
     function applyFilters() {
         const globalQuery = document.getElementById('filter-input')?.value.toLowerCase() || '';
+        filterState = getReportFilters();
+        updateReportSelectOptions();
         filterState = getReportFilters();
         const columnFilters = {};
         document.querySelectorAll('.column-filter').forEach(select => {
