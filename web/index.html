@@ -27,6 +27,62 @@
             color: var(--gm-primary);
             font-size: 1.45rem;
         }
+        .featured-current-bets {
+            margin: 1.25rem 0;
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(179, 122, 0, 0.28);
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fffdf6, #f8f3df);
+            box-shadow: 0 10px 28px -24px rgba(112, 77, 0, 0.55);
+        }
+        .featured-current-bets__header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+        }
+        .featured-current-bets h2 {
+            margin: 0;
+            color: #765000;
+            font-size: 1.15rem;
+        }
+        .featured-current-bets__note {
+            color: #766b48;
+            font-size: 0.82rem;
+        }
+        .featured-current-bets__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+        .featured-current-bet {
+            display: flex;
+            flex: 1 1 240px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.7rem 0.8rem;
+            border: 1px solid rgba(179, 122, 0, 0.18);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.78);
+        }
+        .featured-current-bet__event {
+            color: #4f4221;
+            font-size: 0.9rem;
+            font-weight: 800;
+        }
+        .featured-current-bet__count {
+            display: block;
+            margin-top: 0.15rem;
+            color: #7b704f;
+            font-size: 0.8rem;
+        }
+        .featured-current-bet .link {
+            flex: 0 0 auto;
+            margin: 0;
+        }
         .recent-improvements {
             width: 100%;
             margin: 1.5rem 0 0;
@@ -810,6 +866,13 @@
                 <a href="euro.html" class="link">Model Results</a>
             </div>
         </div>
+        <section class="featured-current-bets" id="featured-current-bets" aria-labelledby="featured-current-bets-title" hidden>
+            <div class="featured-current-bets__header">
+                <h2 id="featured-current-bets-title">Featured Current Bets</h2>
+                <span class="featured-current-bets__note">Pending outright and each-way bets only</span>
+            </div>
+            <div class="featured-current-bets__list" id="featured-current-bets-list"></div>
+        </section>
         <section class="betting-overview" aria-labelledby="betting-overview-title">
             <div class="betting-header">
                 <h2 id="betting-overview-title">Betting Performance Snapshot</h2>
@@ -1369,6 +1432,70 @@
         return `<a class="${classes}" href="spreadsheet.html?${param}=${encodeURIComponent(value)}">${escapeHtml(text)}</a>`;
     }
 
+    function normalizeTournamentName(value) {
+        return String(value || '')
+            .toLowerCase()
+            .replace(/\bthe\b/g, '')
+            .replace(/[^a-z0-9]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function isPendingBet(row) {
+        const outcome = String(row?.Outcome || '').toLowerCase().trim();
+        return outcome === '' || outcome === 'pending';
+    }
+
+    function isOddsValueBet(row) {
+        const type = String(row?.Type || '').toLowerCase().trim();
+        return type === 'e/w' || type === 'each way' || type === 'outright';
+    }
+
+    function oddsValueUrl(tour, tournament) {
+        const params = new URLSearchParams({ source: 'pending', tour, tournament });
+        return `odds_value.html?${params.toString()}`;
+    }
+
+    function loadFeaturedCurrentBets(rows) {
+        const section = document.getElementById('featured-current-bets');
+        const list = document.getElementById('featured-current-bets-list');
+        if (!section || !list) return;
+
+        const activeEvents = Object.entries(homePreviewState).flatMap(([tour, state]) => (
+            state?.hasCurrentEvent
+                ? (state.currentScheduleEvents?.length ? state.currentScheduleEvents : state.events || []).map(event => ({
+                    tour: tour === 'euro' ? 'DP World Tour' : 'PGA Tour',
+                    tournament: event.event_name || event.event || ''
+                }))
+                : []
+        ));
+        const groups = activeEvents.map(event => {
+            const eventKey = normalizeTournamentName(event.tournament);
+            const count = (Array.isArray(rows) ? rows : []).filter(row => (
+                isPendingBet(row)
+                && isOddsValueBet(row)
+                && normalizeTournamentName(row.Tournament) === eventKey
+            )).length;
+            return { ...event, count };
+        }).filter(group => group.count > 0);
+
+        if (!groups.length) {
+            section.hidden = true;
+            return;
+        }
+
+        list.innerHTML = groups.map(group => `
+            <div class="featured-current-bet">
+                <div>
+                    <span class="featured-current-bet__event">${escapeHtml(group.tournament)}</span>
+                    <span class="featured-current-bet__count">${group.count} pending model-value bet${group.count === 1 ? '' : 's'}</span>
+                </div>
+                <a class="link" href="${escapeHtml(oddsValueUrl(group.tour, group.tournament))}">Open Odds &amp; Value</a>
+            </div>
+        `).join('');
+        section.hidden = false;
+    }
+
     function renderModelSnippet(rows) {
         const safeRows = Array.isArray(rows) ? rows : [];
         const topRows = safeRows
@@ -1482,16 +1609,20 @@
         return { start, end };
     }
 
-    function hasCurrentScheduleEvent(scheduleRows) {
-        if (!Array.isArray(scheduleRows)) return false;
+    function currentScheduleEvents(scheduleRows) {
+        if (!Array.isArray(scheduleRows)) return [];
         const { start, end } = currentScheduleWindow();
-        return scheduleRows.some(row => {
+        return scheduleRows.filter(row => {
             if (!row || typeof row !== 'object') return false;
             const date = parseScheduleDate(row.start_date || row.date);
             if (!date || date < start || date > end) return false;
             const status = String(row.status || '').toLowerCase();
             return status !== 'completed';
         });
+    }
+
+    function hasCurrentScheduleEvent(scheduleRows) {
+        return currentScheduleEvents(scheduleRows).length > 0;
     }
 
     function hasPublishedModelEvent(events) {
@@ -1724,8 +1855,9 @@
             const meta = await fetchPreviewJson(`${tour}/meta.json`, {});
             const events = normalizeTourEvents(tour, meta);
             const schedule = await fetchPreviewJson(`${tour}/schedule.json`, []);
+            const scheduledEvents = currentScheduleEvents(schedule);
             const hasCurrentEvent = Array.isArray(schedule) && schedule.length
-                ? hasCurrentScheduleEvent(schedule)
+                ? scheduledEvents.length > 0
                 : hasPublishedModelEvent(events);
             updateTourActionLinks(tour, hasCurrentEvent);
             updateTourSectionState(tour, hasCurrentEvent);
@@ -1735,6 +1867,7 @@
                 meta,
                 events,
                 hasCurrentEvent,
+                currentScheduleEvents: scheduledEvents,
                 selectedId: selected ? String(selected.event_id) : null,
                 cache: {}
             };
@@ -1907,6 +2040,7 @@
             }
         }
 
+        loadFeaturedCurrentBets(bettingRowsCache);
         document.getElementById('pending-bets').innerHTML = await loadPendingBets(bettingRowsCache);
 
         const lastModified = await getLastModifiedTimestamp();

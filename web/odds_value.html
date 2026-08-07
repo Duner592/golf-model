@@ -804,20 +804,27 @@
 <script>
     const LIVE_BASE = 'https://duner592.github.io/golf-model/';
     const TOUR_ORDER = ['PGA Tour', 'DP World Tour', 'Majors'];
+
+    function readInitialFilters() {
+        const params = new URLSearchParams(window.location.search);
+        const source = params.get('source');
+        return {
+            source: ['pending', 'archive2026', 'all'].includes(source) ? source : 'pending',
+            tour: params.get('tour') || 'all',
+            tournament: params.get('tournament') || 'all',
+            sort: params.get('sort') || 'value',
+            search: params.get('search') || '',
+            matchedOnly: params.get('matchedOnly') === 'true'
+        };
+    }
+
     const state = {
         bets: [],
         enriched: [],
         models: {},
         currentModels: [],
         archiveModels: [],
-        filters: {
-            source: 'pending',
-            tour: 'all',
-            tournament: 'all',
-            sort: 'value',
-            search: '',
-            matchedOnly: false
-        }
+        filters: readInitialFilters()
     };
 
     function isLocalPreview() {
@@ -1409,12 +1416,12 @@
         return enriched;
     }
 
-    function populateFilters() {
+    function populateFilters(preferred = {}) {
         const tourSelect = document.getElementById('tourFilter');
         const tournamentSelect = document.getElementById('tournamentFilter');
         const sourceValue = document.getElementById('sourceFilter').value || 'pending';
-        const currentTour = tourSelect.value || 'all';
-        const currentTournament = tournamentSelect.value || 'all';
+        const currentTour = preferred.tour ?? tourSelect.value ?? 'all';
+        const currentTournament = preferred.tournament ?? tournamentSelect.value ?? 'all';
 
         const sourceFilteredRows = state.enriched.filter(row => sourceMatches(row, sourceValue));
         const tours = Array.from(new Set(sourceFilteredRows.map(row => row.tour).filter(Boolean))).sort((a, b) => {
@@ -1765,6 +1772,8 @@
             ];
             state.archiveModels = archiveModels;
             state.enriched = state.bets.map(enrichBet);
+            populateFilters(state.filters);
+            resetControlsToDefaults();
             render();
         } catch (error) {
             document.getElementById('messageArea').innerHTML = `<div class="error-state">${escapeHtml(error.message || error)}</div>`;
