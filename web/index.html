@@ -371,26 +371,33 @@
             text-align: center;
             flex: 0 0 auto;
         }
-        .model-link-row {
+        .tour-preview-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin: 0 0 0.8rem;
+            padding: 0.6rem 0.7rem;
+            border: 1px solid rgba(26, 55, 40, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .tour-preview-actions__label {
+            color: #486154;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+        .tour-preview-actions__links {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 0.75rem;
         }
-        .model-link-row .link {
+        .tour-preview-actions .link {
             margin: 0;
         }
-        .model-link-row[hidden] {
-            display: none !important;
-        }
-        .tour-summary-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.35rem;
-        }
-        .tour-summary-actions .link {
-            margin: 0;
+        .tour-preview-actions .link i {
+            margin-right: 0.35rem;
         }
         #pga-section {
             --tour-accent: #0b4c91;
@@ -849,6 +856,10 @@
                 align-items: flex-start;
                 flex-direction: column;
             }
+            .tour-preview-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
             .tour-logo-frame {
                 width: 64px;
                 height: 52px;
@@ -911,9 +922,6 @@
                 </div>
             </div>
             <div id="pga-summary" class="summary"><div class="spinner"></div>Loading...</div>
-            <div class="model-link-row" data-tour-actions="pga" aria-label="PGA model results">
-                <a href="pga.html" class="link">Model Results</a>
-            </div>
         </div>
 
         <div class="tour-section" id="euro-section">
@@ -929,9 +937,6 @@
                 </div>
             </div>
             <div id="euro-summary" class="summary"><div class="spinner"></div>Loading...</div>
-            <div class="model-link-row" data-tour-actions="euro" aria-label="DP World Tour model results">
-                <a href="euro.html" class="link">Model Results</a>
-            </div>
         </div>
         <section class="featured-current-bets" id="featured-current-bets" aria-labelledby="featured-current-bets-title" hidden>
             <div class="featured-current-bets__header">
@@ -1629,7 +1634,13 @@
                 isPendingBet(row)
                 && isOddsValueBet(row)
                 && normalizeTournamentName(row.Tournament) === eventKey
-            ));
+            )).sort((left, right) => {
+                const leftOdds = parseFractionalOdds(left.Price)?.fractional;
+                const rightOdds = parseFractionalOdds(right.Price)?.fractional;
+                if (!Number.isFinite(leftOdds)) return Number.isFinite(rightOdds) ? 1 : 0;
+                if (!Number.isFinite(rightOdds)) return -1;
+                return leftOdds - rightOdds;
+            });
             return { ...event, bets, count: bets.length };
         }).filter(group => group.count > 0);
 
@@ -1801,12 +1812,6 @@
         });
     }
 
-    function updateTourActionLinks(tour, hasCurrentEvent) {
-        document.querySelectorAll(`[data-tour-actions="${tour}"]`).forEach(row => {
-            row.hidden = !hasCurrentEvent;
-        });
-    }
-
     function updateTourSectionState(tour, hasCurrentEvent) {
         const section = document.getElementById(`${tour}-section`);
         if (section) section.classList.toggle('tour-section--off-week', !hasCurrentEvent);
@@ -1932,6 +1937,13 @@
         const previousWinner = winners.length ? `${winnerName} (${winners[0].score})` : 'N/A';
 
         return `
+            ${hasCurrentEvent ? `<div class="tour-preview-actions" aria-label="${escapeHtml(eventName)} actions">
+                <span class="tour-preview-actions__label">Explore ${escapeHtml(eventName)}</span>
+                <div class="tour-preview-actions__links">
+                    <a href="${escapeHtml(`${tour}.html`)}" class="link"><i class="fas fa-chart-line" aria-hidden="true"></i>Model Results</a>
+                    <a href="${escapeHtml(eventDetailsHref)}" class="link"><i class="fas fa-compass" aria-hidden="true"></i>Event Drilldown</a>
+                </div>
+            </div>` : ''}
             <div class="tour-summary-grid">
                 <div class="tour-summary-panel tour-summary-details">
                     <div class="tour-summary-detail">
@@ -1954,9 +1966,6 @@
                         <span class="tour-summary-detail__icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>
                         <span><span class="tour-summary-detail__label">Previous Winner</span><span class="tour-summary-detail__value">${escapeHtml(previousWinner)}</span></span>
                     </div>
-                    ${hasCurrentEvent ? `<div class="tour-summary-actions" aria-label="${escapeHtml(eventName)} actions">
-                        <a href="${eventDetailsHref}" class="link">Event Drilldown</a>
-                    </div>` : ""}
                 </div>
                 <div class="tour-summary-panel home-snippet model-summary-snippet">
                     <div class="home-snippet-title"><i class="fas fa-chart-line" aria-hidden="true"></i>Model Top 5</div>
@@ -2028,7 +2037,6 @@
             const hasCurrentEvent = Array.isArray(schedule) && schedule.length
                 ? scheduledEvents.length > 0
                 : hasPublishedModelEvent(events);
-            updateTourActionLinks(tour, hasCurrentEvent);
             updateTourSectionState(tour, hasCurrentEvent);
             if (!hasCurrentEvent) return renderOffWeekSummary(tour);
             const selected = events[0];
