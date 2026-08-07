@@ -29,7 +29,7 @@
         }
         .recent-improvements {
             width: 100%;
-            margin: -0.6rem 0 1.5rem;
+            margin: 1.5rem 0 0;
             padding: 1rem 1.15rem;
             border: 1px solid rgba(29, 124, 66, 0.18);
             border-radius: 12px;
@@ -772,13 +772,6 @@
 
 <h1>Eds Golf Model Predictions Hub </h1>
 <div class="intro-text">Weekly prediction and betting summaries for Majors, PGA Tour and DP World Tour.</div>
-<section class="recent-improvements" id="recent-improvements" aria-labelledby="recent-improvements-title" hidden>
-    <div class="recent-improvements__header">
-        <h2 id="recent-improvements-title">Recent Improvements</h2>
-        <span class="recent-improvements__hint">Latest site and model updates</span>
-    </div>
-    <div class="recent-improvements__list" id="recent-improvements-list"></div>
-</section>
 
 <div class="main-content">
     <div class="tour-container">
@@ -881,6 +874,14 @@
         </div>
     </aside>
 </div>
+
+<section class="recent-improvements" id="recent-improvements" aria-labelledby="recent-improvements-title" hidden>
+    <div class="recent-improvements__header">
+        <h2 id="recent-improvements-title">Recent Improvements</h2>
+        <span class="recent-improvements__hint">Latest site and model updates</span>
+    </div>
+    <div class="recent-improvements__list" id="recent-improvements-list"></div>
+</section>
 
 <script>
     const BETTING_TOUR_OVERRIDES = {
