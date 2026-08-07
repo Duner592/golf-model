@@ -230,6 +230,49 @@
             padding-bottom: 0.95rem;
             border-bottom: 1px solid rgba(26, 55, 40, 0.12);
         }
+        .tour-section--off-week {
+            padding-bottom: 1rem;
+        }
+        .tour-section--off-week .tour-section__header {
+            margin-bottom: 0.65rem;
+            padding-bottom: 0.65rem;
+        }
+        .tour-section--off-week .tour-brand p {
+            color: #68766d;
+        }
+        .tour-off-week {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(26, 55, 40, 0.13);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(247, 250, 248, 0.96), rgba(238, 244, 240, 0.9));
+        }
+        .tour-off-week__copy {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: #4f6356;
+            font-size: 0.92rem;
+            line-height: 1.4;
+        }
+        .tour-off-week__badge {
+            flex: 0 0 auto;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            background: var(--tour-accent-soft);
+            color: var(--tour-accent-dark);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .tour-off-week .link {
+            margin: 0;
+        }
         .tour-event-switcher {
             display: flex;
             flex-wrap: wrap;
@@ -667,7 +710,7 @@
                     </span>
                     <div class="tour-brand-copy">
                         <h2>PGA Tour</h2>
-                        <p>Latest model snapshot, field context and course weather.</p>
+                        <p data-tour-description="pga">Latest model snapshot, field context and course weather.</p>
                     </div>
                 </div>
             </div>
@@ -685,7 +728,7 @@
                     </span>
                     <div class="tour-brand-copy">
                         <h2>DP World Tour</h2>
-                        <p>Latest model snapshot, field context and course weather.</p>
+                        <p data-tour-description="euro">Latest model snapshot, field context and course weather.</p>
                     </div>
                 </div>
             </div>
@@ -1383,6 +1426,32 @@
         });
     }
 
+    function updateTourSectionState(tour, hasCurrentEvent) {
+        const section = document.getElementById(`${tour}-section`);
+        if (section) section.classList.toggle('tour-section--off-week', !hasCurrentEvent);
+
+        const description = document.querySelector(`[data-tour-description="${tour}"]`);
+        if (description) {
+            description.textContent = hasCurrentEvent
+                ? 'Latest model snapshot, field context and course weather.'
+                : 'No current-week event; prediction details will return for the next scheduled event.';
+        }
+    }
+
+    function renderOffWeekSummary(tour) {
+        const tourName = tour === 'euro' ? 'DP World Tour' : 'PGA Tour';
+        const scheduleHref = tour === 'euro' ? 'euro_schedule.html' : 'pga_schedule.html';
+        return `
+            <div class="tour-off-week" role="status">
+                <div class="tour-off-week__copy">
+                    <span class="tour-off-week__badge">Off week</span>
+                    <span>No ${escapeHtml(tourName)} event is scheduled this week.</span>
+                </div>
+                <a class="link" href="${scheduleHref}">View Schedule</a>
+            </div>
+        `;
+    }
+
     function normalizeTourEvents(tour, meta) {
         const activeEvents = Array.isArray(meta?.active_events) ? meta.active_events : [];
         if (activeEvents.length) {
@@ -1578,6 +1647,8 @@
                 ? hasCurrentScheduleEvent(schedule)
                 : hasPublishedModelEvent(events);
             updateTourActionLinks(tour, hasCurrentEvent);
+            updateTourSectionState(tour, hasCurrentEvent);
+            if (!hasCurrentEvent) return renderOffWeekSummary(tour);
             const selected = events[0];
             homePreviewState[tour] = {
                 meta,

@@ -85,6 +85,20 @@ Current features:
 - Checks recent archive entries for missing leaderboards and expected `results.json` files.
 - Lists recent archive file checks and open findings.
 
+### Calibration Dashboard
+
+Completed on 2026-07-30.
+
+Implemented in `web/calibration_dashboard.html` and linked from the Tournament Predictions menu.
+
+Current features:
+
+- Evaluates archived player-level win, top-10, and make-cut probabilities against completed results.
+- Supports PGA, DP World Tour, and combined views.
+- Shows probability-bucket calibration, Brier score, log loss, and average probability gap.
+- Explains the dashboard metrics and calibration curves in the page itself.
+- Uses archive files served from `web/`, including fallbacks for make-cut outcomes when an explicit flag is unavailable.
+
 ## Do Soon
 
 ### Homepage Recent Improvements
@@ -101,21 +115,6 @@ Useful fields:
 The section should be manually curated or generated from a small JSON file rather than inferred from every Git commit, so routine data refreshes and workflow commits do not create noise.
 
 ## Do Next
-
-### Calibration Dashboard
-
-Use `data/analytics/prediction_vs_actual.csv` to track whether model probabilities are well calibrated.
-
-Useful views:
-
-- Win probability calibration.
-- Top-10 probability calibration.
-- Make-cut probability calibration if available.
-- PGA vs DP World Tour split.
-- Brier score and log loss by tour.
-- Calibration by probability bucket.
-
-Potential implementation starting point: `scripts/eval_utils.py` already has calibration-table style utilities.
 
 ### Backtest Summary By Event Type
 
@@ -229,6 +228,5 @@ This is optional because the site integrity check and health page should cover m
 1. Add `scripts/check_site_integrity.py`.
 2. Add a basic model health page using the integrity-check output.
 3. Improve archive labels so incomplete events are visible.
-4. Add calibration and backtest dashboards.
-5. Add player drilldowns and course-fit confidence.
-6. Add weather sensitivity and variant tracking.
+4. Add backtest dashboards and course-fit confidence.
+5. Add weather sensitivity and variant tracking.
