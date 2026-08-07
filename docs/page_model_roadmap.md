@@ -99,20 +99,21 @@ Current features:
 - Explains the dashboard metrics and calibration curves in the page itself.
 - Uses archive files served from `web/`, including fallbacks for make-cut outcomes when an explicit flag is unavailable.
 
-## Do Soon
-
 ### Homepage Recent Improvements
 
-Add a compact recent-improvements section to the homepage showing the last 3-4 meaningful site/model changes.
+Completed on 2026-08-07.
 
-Useful fields:
+Implemented in `web/index.html`, with manually curated entries in `web/recent-improvements.json`.
 
-- Date.
-- Short title.
-- One-line description.
-- Optional link to the changed page or relevant dashboard.
+Current features:
 
-The section should be manually curated or generated from a small JSON file rather than inferred from every Git commit, so routine data refreshes and workflow commits do not create noise.
+- Shows the latest four meaningful site or model changes directly below the homepage introduction.
+- Each item has a date, short title, one-line description, and optional page link.
+- Keeps routine data refreshes and workflow commits out of the list.
+
+## Do Soon
+
+No currently prioritised homepage improvements.
 
 ## Do Next
 

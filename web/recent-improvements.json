@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-08-07",
+    "title": "Smarter off-week homepage",
+    "description": "Tours without a current event now use a compact status card and schedule link.",
+    "href": "index.html"
+  },
+  {
+    "date": "2026-08-06",
+    "title": "Cascading betting filters",
+    "description": "Overall Betting Data now narrows each dropdown to values compatible with active selections.",
+    "href": "spreadsheet.html"
+  },
+  {
+    "date": "2026-07-30",
+    "title": "Calibration dashboard",
+    "description": "Explore archived prediction calibration, probability buckets, Brier score and log loss.",
+    "href": "calibration_dashboard.html"
+  },
+  {
+    "date": "2026-07-07",
+    "title": "Player drilldowns",
+    "description": "Open player-level model context, matched bets and recent archived appearances.",
+    "href": "player.html"
+  }
+]
