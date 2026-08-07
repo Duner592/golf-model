@@ -53,13 +53,11 @@
             font-size: 0.82rem;
         }
         .featured-current-bets__list {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
             gap: 0.65rem;
         }
         .featured-current-bet {
             display: grid;
-            flex: 1 1 240px;
             grid-template-columns: minmax(0, 1fr) auto;
             align-items: start;
             justify-content: space-between;
@@ -81,22 +79,28 @@
             font-size: 0.8rem;
         }
         .featured-current-bet__preview {
-            display: grid;
             grid-column: 1 / -1;
-            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-            gap: 0.4rem;
             margin: 0;
             padding: 0;
             list-style: none;
+            border-top: 1px solid rgba(34, 139, 34, 0.12);
         }
         .featured-current-bet__preview-item {
-            min-width: 0;
-            padding: 0.45rem 0.55rem;
-            border-radius: 6px;
-            background: #f3f8f4;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.55rem 0.15rem;
+            border-bottom: 1px solid rgba(34, 139, 34, 0.1);
             color: #315b3f;
             font-size: 0.8rem;
             line-height: 1.35;
+        }
+        .featured-current-bet__preview-item:last-child {
+            border-bottom: 0;
+        }
+        .featured-current-bet__preview-details {
+            min-width: 0;
         }
         .featured-current-bet__preview-player {
             display: block;
@@ -108,16 +112,43 @@
             margin-top: 0.1rem;
             color: #5b7062;
         }
-        .featured-current-bet__more {
-            display: flex;
-            align-items: center;
-            color: #5b7062;
-            font-size: 0.8rem;
+        .featured-current-bet__value {
+            flex: 0 0 auto;
+            padding: 0.22rem 0.45rem;
+            border-radius: 999px;
+            font-size: 0.74rem;
             font-weight: 700;
+            white-space: nowrap;
+        }
+        .featured-current-bet__value--strong,
+        .featured-current-bet__value--positive {
+            color: #146c43;
+            background: #dff4e8;
+        }
+        .featured-current-bet__value--close {
+            color: #806000;
+            background: #fff3cc;
+        }
+        .featured-current-bet__value--negative {
+            color: #a12d2d;
+            background: #fbe1e1;
+        }
+        .featured-current-bet__value--unavailable {
+            color: #5b7062;
+            background: #edf1ee;
         }
         .featured-current-bet .link {
             flex: 0 0 auto;
             margin: 0;
+        }
+        @media (max-width: 560px) {
+            .featured-current-bet__preview-item {
+                grid-template-columns: 1fr;
+                gap: 0.35rem;
+            }
+            .featured-current-bet__value {
+                justify-self: start;
+            }
         }
         .recent-improvements {
             width: 100%;
@@ -905,7 +936,7 @@
         <section class="featured-current-bets" id="featured-current-bets" aria-labelledby="featured-current-bets-title" hidden>
             <div class="featured-current-bets__header">
                 <h2 id="featured-current-bets-title">Featured Current Bets</h2>
-                <span class="featured-current-bets__note">Pending outright and each-way bets only</span>
+                <span class="featured-current-bets__note">Pending outright and each-way bets · EV from the current model</span>
             </div>
             <div class="featured-current-bets__list" id="featured-current-bets-list"></div>
         </section>
@@ -1471,10 +1502,22 @@
     function normalizeTournamentName(value) {
         return String(value || '')
             .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
             .replace(/\bthe\b/g, '')
             .replace(/[^a-z0-9]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
+    }
+
+    function normalizePlayerName(value) {
+        const cleaned = String(value || '').replace(/\s+/g, ' ').trim();
+        if (!cleaned) return '';
+        if (cleaned.includes(',')) {
+            const [last, first] = cleaned.split(',', 2).map(part => part.trim());
+            return normalizeTournamentName(first ? `${first} ${last}` : last);
+        }
+        return normalizeTournamentName(cleaned);
     }
 
     function isPendingBet(row) {
@@ -1490,6 +1533,81 @@
     function oddsValueUrl(tour, tournament) {
         const params = new URLSearchParams({ source: 'pending', tour, tournament });
         return `odds_value.html?${params.toString()}`;
+    }
+
+    function parseFractionalOdds(value) {
+        const cleaned = String(value || '').trim().replace(/[–—]/g, '-').replace(/\s+/g, '');
+        const match = cleaned.match(/^(\d+(?:\.\d+)?)[-/](\d+(?:\.\d+)?)$/);
+        if (!match) return null;
+        const numerator = Number.parseFloat(match[1]);
+        const denominator = Number.parseFloat(match[2]);
+        if (!Number.isFinite(numerator) || !Number.isFinite(denominator) || denominator <= 0) return null;
+        const fractional = numerator / denominator;
+        return { fractional, decimal: fractional + 1 };
+    }
+
+    function parsePlaceTerms(value, odds) {
+        const raw = String(value || '').trim();
+        if (!raw || !odds) return null;
+        const fractionMatch = raw.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/i);
+        const topMatch = raw.match(/top\s*(\d+)/i);
+        if (!fractionMatch) return null;
+        const numerator = Number.parseFloat(fractionMatch[1]);
+        const denominator = Number.parseFloat(fractionMatch[2]);
+        if (!Number.isFinite(numerator) || !Number.isFinite(denominator) || denominator <= 0) return null;
+        return {
+            topPlaces: topMatch ? Number.parseInt(topMatch[1], 10) : null,
+            decimal: 1 + odds.fractional * (numerator / denominator)
+        };
+    }
+
+    function featuredModelPlayer(tour, tournament, playerName) {
+        const tourCode = tour === 'DP World Tour' ? 'euro' : 'pga';
+        const state = homePreviewState[tourCode];
+        const tournamentKey = normalizeTournamentName(tournament);
+        const preview = Object.values(state?.cache || {}).find(item => (
+            normalizeTournamentName(item?.meta?.event_name) === tournamentKey
+        ));
+        if (!preview) return null;
+        const playerKey = normalizePlayerName(playerName);
+        const player = (Array.isArray(preview.leaderboard) ? preview.leaderboard : []).find(row => (
+            normalizePlayerName(row?.player_name || row?.Player || row?.Name) === playerKey
+        ));
+        if (!player) return null;
+        const pWin = Number(player['p_win_%'] ?? player.p_win ?? player.pWin);
+        const pTop10 = Number(player['p_top10_%'] ?? player.p_top10 ?? player.pTop10);
+        return {
+            pWin: Number.isFinite(pWin) ? pWin : null,
+            pTop10: Number.isFinite(pTop10) ? pTop10 : null
+        };
+    }
+
+    function featuredBetValue(bet, group) {
+        const odds = parseFractionalOdds(bet.Price);
+        const player = featuredModelPlayer(group.tour, group.tournament, bet.Player);
+        if (!odds || !player || !Number.isFinite(player.pWin)) {
+            return { label: 'EV unavailable', tone: 'unavailable' };
+        }
+
+        const type = String(bet.Type || '').toLowerCase().trim();
+        const winEv = (odds.decimal * (player.pWin / 100)) - 1;
+        let valueEv = winEv;
+        if (type === 'e/w' || type === 'each way') {
+            const placeTerms = parsePlaceTerms(bet['Place Terms'], odds);
+            if (!placeTerms || !Number.isFinite(placeTerms.topPlaces) || !Number.isFinite(player.pTop10)) {
+                return { label: 'EV unavailable', tone: 'unavailable' };
+            }
+            if (placeTerms.topPlaces > 10) return { label: 'EV unavailable', tone: 'unavailable' };
+            const placeProbability = placeTerms.topPlaces === 10
+                ? player.pTop10
+                : Math.max(0, Math.min(player.pTop10, player.pTop10 * (placeTerms.topPlaces / 10)));
+            const placeEv = (placeTerms.decimal * (placeProbability / 100)) - 1;
+            valueEv = (winEv + placeEv) / 2;
+        }
+        if (!Number.isFinite(valueEv)) return { label: 'EV unavailable', tone: 'unavailable' };
+        const sign = valueEv >= 0 ? '+' : '';
+        const tone = valueEv >= 0.15 ? 'strong' : valueEv >= 0 ? 'positive' : valueEv >= -0.1 ? 'close' : 'negative';
+        return { label: `${sign}${(valueEv * 100).toFixed(0)}% EV`, tone };
     }
 
     function loadFeaturedCurrentBets(rows) {
@@ -1521,23 +1639,26 @@
         }
 
         list.innerHTML = groups.map(group => {
-            const preview = group.bets.slice(0, 3).map(bet => `
+            const preview = group.bets.map(bet => {
+                const value = featuredBetValue(bet, group);
+                return `
                 <li class="featured-current-bet__preview-item">
-                    <span class="featured-current-bet__preview-player">${escapeHtml(bet.Player || 'Unknown player')}</span>
-                    <span class="featured-current-bet__preview-meta">${escapeHtml(bet.Type || 'Bet')} · ${escapeHtml(bet.Price || 'Price N/A')} · ${escapeHtml(bet.Bookmaker || 'Bookmaker N/A')}</span>
+                    <span class="featured-current-bet__preview-details">
+                        <span class="featured-current-bet__preview-player">${escapeHtml(bet.Player || 'Unknown player')}</span>
+                        <span class="featured-current-bet__preview-meta">${escapeHtml(bet.Type || 'Bet')} · ${escapeHtml(bet.Price || 'Price N/A')} · ${escapeHtml(bet.Bookmaker || 'Bookmaker N/A')}</span>
+                    </span>
+                    <span class="featured-current-bet__value featured-current-bet__value--${escapeHtml(value.tone)}">${escapeHtml(value.label)}</span>
                 </li>
-            `).join('');
-            const more = group.count > 3
-                ? `<li class="featured-current-bet__preview-item featured-current-bet__more">+${group.count - 3} more bet${group.count - 3 === 1 ? '' : 's'}</li>`
-                : '';
+            `;
+            }).join('');
             return `
                 <div class="featured-current-bet">
                     <div>
                         <span class="featured-current-bet__event">${escapeHtml(group.tournament)}</span>
-                        <span class="featured-current-bet__count">${group.count} pending model-value bet${group.count === 1 ? '' : 's'}</span>
+                        <span class="featured-current-bet__count">${group.count} pending eligible bet${group.count === 1 ? '' : 's'}</span>
                     </div>
                     <a class="link" href="${escapeHtml(oddsValueUrl(group.tour, group.tournament))}">Open Odds &amp; Value</a>
-                    <ul class="featured-current-bet__preview">${preview}${more}</ul>
+                    <ul class="featured-current-bet__preview">${preview}</ul>
                 </div>
             `;
         }).join('');
