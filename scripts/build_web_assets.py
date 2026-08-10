@@ -828,7 +828,14 @@ def _pick_yardage_from_hist(df_hist: pd.DataFrame) -> int | None:
 
 
 # ---------- tournament summary (robust) ----------
-def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: str, meta_proc: dict, out_json: Path) -> None:
+def build_tournament_summary(
+    processed_dir: Path,
+    raw_hist_dir: Path,
+    event_id: str,
+    meta_proc: dict,
+    out_json: Path,
+    tour: str,
+) -> None:
     """
     Build tournament summary JSON.
 
@@ -838,6 +845,7 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
         event_id (str): Event ID.
         meta_proc (dict): Processed meta.
         out_json (Path): Output JSON path.
+        tour (str): Tour code used to disambiguate schedule event IDs.
     """
     root = Path(__file__).resolve().parent.parent
     upcoming_file = root / "upcoming-events.json"
@@ -853,7 +861,10 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
         try:
             upcoming_data = json.loads(upcoming_file.read_text(encoding="utf-8"))
             for event in upcoming_data.get("schedule", []):
-                if str(event.get("event_id")) == str(event_id):
+                if (
+                    str(event.get("event_id")) == str(event_id)
+                    and str(event.get("tour", "")).lower() == tour.lower()
+                ):
                     course_name = event.get("course")
                     location = event.get("location")
                     start_date_str = event.get("start_date")
@@ -870,11 +881,18 @@ def build_tournament_summary(processed_dir: Path, raw_hist_dir: Path, event_id: 
     if event_status == "completed" and start_date_str:
         try:
             year = start_date_str.split("-")[0]
-            response = requests.get(f"https://datagolf.ca/api/get-schedule?season={year}")
+            response = requests.get(
+                "https://datagolf.ca/api/get-schedule",
+                params={"season": year, "tour": tour},
+                timeout=30,
+            )
             if response.status_code == 200:
                 schedule_data = response.json()
                 for sched_event in schedule_data.get("schedule", []):
-                    if str(sched_event.get("event_id")) == str(event_id):
+                    if (
+                        str(sched_event.get("event_id")) == str(event_id)
+                        and str(sched_event.get("tour", "")).lower() == tour.lower()
+                    ):
                         current_winner = sched_event.get("winner")
                         break
         except Exception as e:
@@ -2019,7 +2037,7 @@ def process_event(
     )
 
     tournament_summary_path = event_dir / "tournament_summary.json"
-    build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, tournament_summary_path)
+    build_tournament_summary(processed_dir, raw_hist_dir, event_id, meta_proc, tournament_summary_path, tour)
 
     src_teetimes = processed_dir / f"event_{event_id}_field_teetimes.csv"
     if src_teetimes.exists():

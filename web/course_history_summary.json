@@ -1,6 +1,110 @@
 {
-  "event_id": "33",
-  "event_name": "PGA Championship",
-  "stats_rows": 340,
-  "mean_sg_course": -1.4910336274509803
+  "event_id": "27",
+  "event_name": "FedEx St. Jude Championship",
+  "rows": 197,
+  "mean_sg_course": -0.5219534686971234,
+  "top_rounds": [
+    {
+      "player_id": "9771",
+      "sg_course_mean_shrunk": -2.7802,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "18417",
+      "sg_course_mean_shrunk": 4.5184,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "14578",
+      "sg_course_mean_shrunk": 1.7184000000000001,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "14609",
+      "sg_course_mean_shrunk": 1.0023999999999997,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "14636",
+      "sg_course_mean_shrunk": -4.0816,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "15466",
+      "sg_course_mean_shrunk": 5.101,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "15556",
+      "sg_course_mean_shrunk": -1.8990000000000002,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "15575",
+      "sg_course_mean_shrunk": -0.8816000000000003,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "12808",
+      "sg_course_mean_shrunk": 0.0024000000000001798,
+      "rounds_course": 5
+    },
+    {
+      "player_id": "17488",
+      "sg_course_mean_shrunk": 4.101000000000001,
+      "rounds_course": 5
+    }
+  ],
+  "top_sg_course": [
+    {
+      "player_id": "15856",
+      "sg_course_mean_shrunk": 10.342,
+      "rounds_course": 2
+    },
+    {
+      "player_id": "28270",
+      "sg_course_mean_shrunk": 8.785,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "19428",
+      "sg_course_mean_shrunk": 8.3375,
+      "rounds_course": 2
+    },
+    {
+      "player_id": "18761",
+      "sg_course_mean_shrunk": 7.89,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "7452",
+      "sg_course_mean_shrunk": 7.7940000000000005,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "12294",
+      "sg_course_mean_shrunk": 7.273666666666667,
+      "rounds_course": 3
+    },
+    {
+      "player_id": "14706",
+      "sg_course_mean_shrunk": 6.7940000000000005,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "19195",
+      "sg_course_mean_shrunk": 6.742333333333334,
+      "rounds_course": 3
+    },
+    {
+      "player_id": "23475",
+      "sg_course_mean_shrunk": 6.492999999999999,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "6762",
+      "sg_course_mean_shrunk": 5.7940000000000005,
+      "rounds_course": 1
+    }
+  ]
 }

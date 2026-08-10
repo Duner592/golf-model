@@ -1,5 +1,9 @@
 [
   {
+    "event_id": "6",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-01-15",
     "date": "15-01-2026",
     "event": "Sony Open in Hawaii",
     "course": "Waialae Country Club",
@@ -7,6 +11,10 @@
     "winner": "Chris Gotterup"
   },
   {
+    "event_id": "2",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-01-22",
     "date": "22-01-2026",
     "event": "The American Express",
     "course": "Pete Dye Stadium Course;Nicklaus Tournament Course;La Quinta Country Club",
@@ -14,6 +22,10 @@
     "winner": "Scottie Scheffler"
   },
   {
+    "event_id": "4",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-01-29",
     "date": "29-01-2026",
     "event": "Farmers Insurance Open",
     "course": "Torrey Pines Golf Course (South Course);Torrey Pines Golf Course (North Course)",
@@ -21,6 +33,10 @@
     "winner": "Justin Rose"
   },
   {
+    "event_id": "3",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-02-05",
     "date": "05-02-2026",
     "event": "WM Phoenix Open",
     "course": "TPC Scottsdale (Stadium Course)",
@@ -28,6 +44,10 @@
     "winner": "Chris Gotterup"
   },
   {
+    "event_id": "5",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-02-12",
     "date": "12-02-2026",
     "event": "AT&T Pebble Beach Pro-Am",
     "course": "Pebble Beach Golf Links;Spyglass Hill Golf Course",
@@ -35,6 +55,10 @@
     "winner": "Collin Morikawa"
   },
   {
+    "event_id": "7",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-02-19",
     "date": "19-02-2026",
     "event": "The Genesis Invitational",
     "course": "The Riviera Country Club",
@@ -42,6 +66,10 @@
     "winner": "Jacob Bridgeman"
   },
   {
+    "event_id": "10",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-02-26",
     "date": "26-02-2026",
     "event": "Cognizant Classic in The Palm Beaches",
     "course": "PGA National  - Champion Course",
@@ -49,6 +77,10 @@
     "winner": "Nico Echavarria"
   },
   {
+    "event_id": "9",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-03-05",
     "date": "05-03-2026",
     "event": "Arnold Palmer Invitational",
     "course": "Arnold Palmer's Bay Hill Club & Lodge",
@@ -56,6 +88,10 @@
     "winner": "Akshay Bhatia"
   },
   {
+    "event_id": "483",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-03-05",
     "date": "05-03-2026",
     "event": "Puerto Rico Open",
     "course": "Grand Reserve Golf Club",
@@ -63,6 +99,10 @@
     "winner": "Ricky Castillo"
   },
   {
+    "event_id": "11",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-03-12",
     "date": "12-03-2026",
     "event": "THE PLAYERS Championship",
     "course": "TPC Sawgrass - THE PLAYERS Stadium Course",
@@ -70,6 +110,10 @@
     "winner": "Cameron Young"
   },
   {
+    "event_id": "475",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-03-19",
     "date": "19-03-2026",
     "event": "Valspar Championship",
     "course": "Innisbrook Resort and Golf Club - Copperhead Course",
@@ -77,6 +121,10 @@
     "winner": "Matt Fitzpatrick"
   },
   {
+    "event_id": "20",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-03-26",
     "date": "26-03-2026",
     "event": "Texas Children's Houston Open",
     "course": "Memorial Park Golf Course",
@@ -84,6 +132,10 @@
     "winner": "Gary Woodland"
   },
   {
+    "event_id": "41",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-04-02",
     "date": "02-04-2026",
     "event": "Valero Texas Open",
     "course": "TPC San Antonio - The Oaks Course",
@@ -91,6 +143,10 @@
     "winner": "J.J. Spaun"
   },
   {
+    "event_id": "14",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-04-09",
     "date": "09-04-2026",
     "event": "Masters Tournament",
     "course": "Augusta National Golf Club",
@@ -98,6 +154,10 @@
     "winner": "Rory McIlroy"
   },
   {
+    "event_id": "12",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-04-16",
     "date": "16-04-2026",
     "event": "RBC Heritage",
     "course": "Harbour Town Golf Links",
@@ -105,13 +165,21 @@
     "winner": "Matt Fitzpatrick"
   },
   {
+    "event_id": "18",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-04-23",
     "date": "23-04-2026",
     "event": "Zurich Classic of New Orleans",
     "course": "TPC Louisiana",
     "location": "Avondale, LA",
-    "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
+    "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
   },
   {
+    "event_id": "556",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-04-30",
     "date": "30-04-2026",
     "event": "Cadillac Championship",
     "course": "Trump National Doral - Blue Monster Course",
@@ -119,6 +187,10 @@
     "winner": "Cameron Young"
   },
   {
+    "event_id": "480",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-05-07",
     "date": "07-05-2026",
     "event": "Truist Championship",
     "course": "Quail Hollow Club",
@@ -126,6 +198,10 @@
     "winner": "Kristoffer Reitan"
   },
   {
+    "event_id": "553",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-05-07",
     "date": "07-05-2026",
     "event": "ONEflight Myrtle Beach Classic",
     "course": "Dunes Golf and Beach Club",
@@ -133,6 +209,10 @@
     "winner": "Brandt Snedeker"
   },
   {
+    "event_id": "33",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-05-14",
     "date": "14-05-2026",
     "event": "PGA Championship",
     "course": "Aronimink Golf Club",
@@ -140,104 +220,164 @@
     "winner": "Aaron Rai"
   },
   {
+    "event_id": "19",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-05-21",
     "date": "21-05-2026",
     "event": "THE CJ CUP Byron Nelson",
     "course": "TPC Craig Ranch",
     "location": "McKinney, TX",
-    "winner": "TBD"
+    "winner": "Wyndham Clark"
   },
   {
+    "event_id": "21",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-05-28",
     "date": "28-05-2026",
     "event": "Charles Schwab Challenge",
     "course": "Colonial Country Club",
     "location": "Fort Worth, TX",
-    "winner": "TBD"
+    "winner": "Russell Henley"
   },
   {
+    "event_id": "23",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-06-04",
     "date": "04-06-2026",
-    "event": "the Memorial Tournament presented by Workday",
+    "event": "the Memorial Tournament",
     "course": "Muirfield Village Golf Club",
     "location": "Dublin, OH",
-    "winner": "TBD"
+    "winner": "J.T. Poston"
   },
   {
+    "event_id": "32",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-06-11",
     "date": "11-06-2026",
     "event": "RBC Canadian Open",
-    "course": "TPC Toronto at Osprey Valley (North Course)",
+    "course": "TPC Toronto at Osprey Valley - North Course",
     "location": "Alton, ON",
-    "winner": "TBD"
+    "winner": "Bud Cauley"
   },
   {
+    "event_id": "26",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-06-18",
     "date": "18-06-2026",
     "event": "U.S. Open",
     "course": "Shinnecock Hills Golf Club",
     "location": "Southampton, NY",
-    "winner": "TBD"
+    "winner": "Wyndham Clark"
   },
   {
+    "event_id": "34",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-06-25",
     "date": "25-06-2026",
     "event": "Travelers Championship",
     "course": "TPC River Highlands",
     "location": "Hartford, CT",
-    "winner": "TBD"
+    "winner": "Viktor Hovland"
   },
   {
+    "event_id": "30",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-02",
     "date": "02-07-2026",
     "event": "John Deere Classic",
     "course": "TPC Deere Run",
     "location": "Silvis, IL",
-    "winner": "TBD"
+    "winner": "Chris Gotterup"
   },
   {
+    "event_id": "518",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-09",
     "date": "09-07-2026",
     "event": "ISCO Championship",
     "course": "Hurstbourne Country Club",
     "location": "Louisville, KY",
-    "winner": "TBD"
+    "winner": "Steven Fisk"
   },
   {
+    "event_id": "541",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-09",
     "date": "09-07-2026",
     "event": "Genesis Scottish Open",
     "course": "The Renaissance Club",
     "location": "North Berwick, Scotland",
-    "winner": "TBD"
+    "winner": "Tom Kim"
   },
   {
+    "event_id": "100",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-16",
     "date": "16-07-2026",
     "event": "The Open Championship",
     "course": "Royal Birkdale Golf Club",
     "location": "Southport, England",
-    "winner": "TBD"
+    "winner": "Ryan Fox"
   },
   {
+    "event_id": "522",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-16",
     "date": "16-07-2026",
     "event": "Corales Puntacana Championship",
     "course": "Puntacana Resort & Club (Corales Golf Course)",
     "location": "Punta Cana, La Altagracia, Dominican Republic",
-    "winner": "TBD"
+    "winner": "Stefano Mazzoli"
   },
   {
+    "event_id": "525",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-23",
     "date": "23-07-2026",
     "event": "3M Open",
     "course": "TPC Twin Cities",
     "location": "Blaine, MN",
-    "winner": "TBD"
+    "winner": "Jackson Koivun"
   },
   {
+    "event_id": "524",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-07-30",
     "date": "30-07-2026",
     "event": "Rocket Classic",
     "course": "Detroit Golf Club",
     "location": "Detroit, MI",
-    "winner": "TBD"
+    "winner": "Michael Thorbjornsen"
   },
   {
+    "event_id": "13",
+    "tour": "pga",
+    "status": "completed",
+    "start_date": "2026-08-06",
     "date": "06-08-2026",
     "event": "Wyndham Championship",
     "course": "Sedgefield Country Club",
     "location": "Greensboro, NC",
-    "winner": "TBD"
+    "winner": "Michael Brennan"
   },
   {
+    "event_id": "27",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-08-13",
     "date": "13-08-2026",
     "event": "FedEx St. Jude Championship",
     "course": "TPC Southwind",
@@ -245,6 +385,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "28",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-08-20",
     "date": "20-08-2026",
     "event": "BMW Championship",
     "course": "Bellerive Country Club",
@@ -252,6 +396,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "60",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-08-27",
     "date": "27-08-2026",
     "event": "TOUR Championship",
     "course": "East Lake Golf Club",
@@ -259,6 +407,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "557",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-09-17",
     "date": "17-09-2026",
     "event": "Biltmore Championship Asheville",
     "course": "The Cliffs at Walnut Cove",
@@ -266,6 +418,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "500",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-09-24",
     "date": "24-09-2026",
     "event": "Presidents Cup",
     "course": "Medinah Country Club (No. 3)",
@@ -273,6 +429,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "554",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-10-01",
     "date": "01-10-2026",
     "event": "Bank of Utah Championship",
     "course": "Black Desert Resort",
@@ -280,6 +440,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "527",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-10-08",
     "date": "08-10-2026",
     "event": "Baycurrent Classic",
     "course": "Yokohama Country Club (West Course)",
@@ -287,6 +451,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "528",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-10-22",
     "date": "22-10-2026",
     "event": "Butterfield Bermuda Championship",
     "course": "Port Royal Golf Course",
@@ -294,6 +462,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "540",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-10-29",
     "date": "29-10-2026",
     "event": "VidantaWorld Mexico Open",
     "course": "Vidanta Vallarta",
@@ -301,6 +473,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "457",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-11-05",
     "date": "05-11-2026",
     "event": "World Wide Technology Championship",
     "course": "El Cardonal at Diamante",
@@ -308,6 +484,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "558",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-11-12",
     "date": "12-11-2026",
     "event": "Good Good Championship",
     "course": "Omni Barton Creek Resort & Spa (Fazio Canyons Course)",
@@ -315,6 +495,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "493",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-11-19",
     "date": "19-11-2026",
     "event": "The RSM Classic",
     "course": "Sea Island Golf Club (Seaside Course);Sea Island Golf Club (Plantation Course)",
@@ -322,6 +506,10 @@
     "winner": "TBD"
   },
   {
+    "event_id": "478",
+    "tour": "pga",
+    "status": "upcoming",
+    "start_date": "2026-12-03",
     "date": "03-12-2026",
     "event": "Hero World Challenge",
     "course": "Albany GC",

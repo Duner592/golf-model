@@ -1,0 +1,38 @@
+{
+  "tour": "pga",
+  "event_id": "27",
+  "event_name": "FedEx St. Jude Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-08-13",
+  "start_date": "2026-08-13",
+  "generated_utc": "10-Aug-2026 11:28:51",
+  "source_csv": "data/preds/pga/event_27_fedex_st_jude_championship_2026-08-10_leaderboard.csv",
+  "has_predictions": true,
+  "tee_times_available": false,
+  "resources": {
+    "leaderboard": "pga/events/event_27/leaderboard.json",
+    "summary": "pga/events/event_27/summary.json",
+    "meta": "pga/events/event_27/meta.json",
+    "downloads_csv": "pga/downloads/event_27_fedex_st_jude_championship_2026-08-10_leaderboard.csv",
+    "downloads_html": "pga/downloads/event_27_fedex_st_jude_championship_2026-08-10_leaderboard.html",
+    "weather_meta": "pga/events/event_27/weather_meta.json",
+    "weather_round_neutral": "pga/events/event_27/weather_round_neutral.json",
+    "weather_round_wave": "pga/events/event_27/weather_round_wave.json",
+    "course_fit_weights": "pga/events/event_27/course_fit_weights.json",
+    "course_history_summary": "pga/events/event_27/course_history_summary.json",
+    "tournament_summary": "pga/events/event_27/tournament_summary.json",
+    "field_teetimes": "pga/events/event_27/field_teetimes.csv",
+    "schedule": "pga/schedule.json",
+    "initial_snapshot": "pga/initial/2026/event_27/meta.json",
+    "initial_leaderboard": "pga/initial/2026/event_27/leaderboard.json",
+    "initial_downloads_csv": "pga/initial/2026/event_27/leaderboard.csv",
+    "initial_downloads_html": "pga/initial/2026/event_27/leaderboard.html"
+  },
+  "initial_snapshot": {
+    "snapshot_type": "initial",
+    "snapshot_created_utc": "2026-08-10T02:38:22Z",
+    "meta": "pga/initial/2026/event_27/meta.json",
+    "leaderboard": "pga/initial/2026/event_27/leaderboard.json"
+  }
+}
