@@ -1,4 +1,13 @@
 {
+  "2026_wyndham_championship": {
+    "event_id": "13",
+    "event_name": "Wyndham Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "wyndham_championship"
+  },
   "2026_rocket_classic": {
     "event_id": "524",
     "event_name": "Rocket Classic",
