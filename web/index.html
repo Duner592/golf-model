@@ -443,6 +443,9 @@
         .tour-section--off-week .tour-brand p {
             color: #68766d;
         }
+        .tour-section--awaiting-model .tour-brand p {
+            color: #68766d;
+        }
         .tour-off-week {
             display: flex;
             flex-wrap: wrap;
@@ -474,6 +477,47 @@
             text-transform: uppercase;
         }
         .tour-off-week .link {
+            margin: 0;
+        }
+        .tour-model-pending {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(26, 55, 40, 0.13);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(247, 250, 248, 0.96), rgba(238, 244, 240, 0.9));
+        }
+        .tour-model-pending__copy {
+            min-width: 0;
+            color: #4f6356;
+            font-size: 0.92rem;
+            line-height: 1.4;
+        }
+        .tour-model-pending__badge {
+            display: inline-block;
+            margin-right: 0.45rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            background: var(--tour-accent-soft);
+            color: var(--tour-accent-dark);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+        .tour-model-pending__event {
+            color: #274c36;
+            font-weight: 800;
+        }
+        .tour-model-pending__meta {
+            display: block;
+            margin-top: 0.2rem;
+        }
+        .tour-model-pending .link {
             margin: 0;
         }
         .tour-event-switcher {
@@ -1812,15 +1856,20 @@
         });
     }
 
-    function updateTourSectionState(tour, hasCurrentEvent) {
+    function updateTourSectionState(tour, hasScheduledEvent, hasCurrentModel) {
         const section = document.getElementById(`${tour}-section`);
-        if (section) section.classList.toggle('tour-section--off-week', !hasCurrentEvent);
+        if (section) {
+            section.classList.toggle('tour-section--off-week', !hasScheduledEvent);
+            section.classList.toggle('tour-section--awaiting-model', hasScheduledEvent && !hasCurrentModel);
+        }
 
         const description = document.querySelector(`[data-tour-description="${tour}"]`);
         if (description) {
-            description.textContent = hasCurrentEvent
-                ? 'Latest model snapshot, field context and course weather.'
-                : 'No current-week event; prediction details will return for the next scheduled event.';
+            description.textContent = !hasScheduledEvent
+                ? 'No current-week event; prediction details will return for the next scheduled event.'
+                : hasCurrentModel
+                    ? 'Latest model snapshot, field context and course weather.'
+                    : 'Upcoming event confirmed; model results will appear after the next model run.';
         }
     }
 
@@ -1836,6 +1885,32 @@
                 <a class="link" href="${scheduleHref}">View Schedule</a>
             </div>
         `;
+    }
+
+    function renderAwaitingModelSummary(tour, scheduledEvents) {
+        const event = scheduledEvents[0] || {};
+        const tourName = tour === 'euro' ? 'DP World Tour' : 'PGA Tour';
+        const scheduleHref = tour === 'euro' ? 'euro_schedule.html' : 'pga_schedule.html';
+        const eventName = event.event_name || event.event || 'Upcoming event';
+        const venue = event.course || event.course_name || 'Venue to be confirmed';
+        const location = event.location ? ` · ${event.location}` : '';
+        const date = event.start_date || event.date || 'Date to be confirmed';
+        return `
+            <div class="tour-model-pending" role="status">
+                <div class="tour-model-pending__copy">
+                    <span class="tour-model-pending__badge">Upcoming</span>
+                    <span class="tour-model-pending__event">${escapeHtml(eventName)}</span>
+                    <span class="tour-model-pending__meta">${escapeHtml(venue)}${escapeHtml(location)} · Starts ${escapeHtml(date)}. ${escapeHtml(tourName)} model results will appear after the next run.</span>
+                </div>
+                <a class="link" href="${scheduleHref}">View Schedule</a>
+            </div>
+        `;
+    }
+
+    function scheduleMatchesModelEvent(scheduleEvent, modelEvent) {
+        const scheduledName = normalizeTournamentName(scheduleEvent?.event_name || scheduleEvent?.event);
+        const modelName = normalizeTournamentName(modelEvent?.event_name);
+        return Boolean(scheduledName && modelName && (scheduledName === modelName || scheduledName.includes(modelName) || modelName.includes(scheduledName)));
     }
 
     function normalizeTourEvents(tour, meta) {
@@ -2034,23 +2109,28 @@
             const events = normalizeTourEvents(tour, meta);
             const schedule = await fetchPreviewJson(`${tour}/schedule.json`, []);
             const scheduledEvents = currentScheduleEvents(schedule);
-            const hasCurrentEvent = Array.isArray(schedule) && schedule.length
+            const hasScheduledEvent = Array.isArray(schedule) && schedule.length
                 ? scheduledEvents.length > 0
                 : hasPublishedModelEvent(events);
-            updateTourSectionState(tour, hasCurrentEvent);
-            if (!hasCurrentEvent) return renderOffWeekSummary(tour);
-            const selected = events[0];
+            const matchingEvents = scheduledEvents.length
+                ? events.filter(event => scheduledEvents.some(scheduled => scheduleMatchesModelEvent(scheduled, event)))
+                : events;
+            const selected = matchingEvents[0];
+            const hasCurrentModel = Boolean(selected && hasPublishedModelEvent([selected]));
+            updateTourSectionState(tour, hasScheduledEvent, hasCurrentModel);
+            if (!hasScheduledEvent) return renderOffWeekSummary(tour);
             homePreviewState[tour] = {
                 meta,
-                events,
-                hasCurrentEvent,
+                events: matchingEvents,
+                hasCurrentEvent: hasScheduledEvent,
                 currentScheduleEvents: scheduledEvents,
-                selectedId: selected ? String(selected.event_id) : null,
+                selectedId: hasCurrentModel ? String(selected.event_id) : null,
                 cache: {}
             };
+            if (!hasCurrentModel) return renderAwaitingModelSummary(tour, scheduledEvents);
             const previewData = selected
                 ? await loadTourPreviewEvent(tour, selected)
-                : { tour, meta: meta || {}, tournament: {}, leaderboard: [], weather: [], waveWeather: [], hasCurrentEvent };
+                : { tour, meta: meta || {}, tournament: {}, leaderboard: [], weather: [], waveWeather: [], hasCurrentEvent: hasScheduledEvent };
             return `
                 <div class="tour-preview" data-tour-preview="${escapeHtml(tour)}">
                     ${renderTourEventSwitcher(tour, events, homePreviewState[tour].selectedId)}
