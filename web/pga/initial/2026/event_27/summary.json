@@ -1,0 +1,12 @@
+{
+  "event_id": "27",
+  "event_name": "FedEx St. Jude Championship",
+  "source_csv": "data/preds/pga/event_27_fedex_st_jude_championship_2026-08-10_leaderboard.csv",
+  "generated_utc": "10-Aug-2026 02:38:22",
+  "metrics": {
+    "field_size": 69,
+    "p_win_max": 0.22166666666666668,
+    "p_win_median": 0.0019333333333333333,
+    "p_win_sum": 1.0
+  }
+}

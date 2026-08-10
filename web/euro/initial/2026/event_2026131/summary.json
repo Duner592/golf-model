@@ -1,0 +1,12 @@
+{
+  "event_id": "2026131",
+  "event_name": "Danish Golf Championship",
+  "source_csv": "data/preds/euro/event_2026131_danish_golf_championship_2026-08-10_leaderboard.csv",
+  "generated_utc": "10-Aug-2026 02:38:58",
+  "metrics": {
+    "field_size": 144,
+    "p_win_max": 0.22316666666666668,
+    "p_win_median": 0.00013333333333333334,
+    "p_win_sum": 1.0
+  }
+}
