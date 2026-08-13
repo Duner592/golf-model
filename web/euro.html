@@ -251,6 +251,36 @@
           table { font-size: 0.9rem; }
           .weather-grid { grid-template-columns: 1fr; }
         }
+
+        /* iPhone/iPad: keep the page itself fixed to the viewport and make
+           only the full leaderboard swipe horizontally. */
+        @supports (-webkit-touch-callout: none) {
+          @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+            .layout,
+            .layout > *,
+            .card {
+              min-width: 0;
+            }
+            .table-container {
+              width: 100%;
+              max-width: 100%;
+              overflow-x: auto;
+              -webkit-overflow-scrolling: touch;
+            }
+            #tbl {
+              min-width: 627px;
+            }
+            .card[style*="display:flex"] > div:last-child,
+            .card[style*="display:flex"] > div:last-child label,
+            #filterBox {
+              width: 100%;
+              min-width: 0;
+            }
+            #filterBox {
+              box-sizing: border-box;
+            }
+          }
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
