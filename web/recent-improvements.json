@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-13",
+    "title": "Improved iPhone usability",
+    "description": "PGA and DP World leaderboards now keep wide tables inside a smooth swipe area, with larger touch targets on iPhone and iPad.",
+    "href": "pga.html"
+  },
+  {
+    "date": "2026-08-13",
+    "title": "Corrected PGA winner scores",
+    "description": "Previous FedEx St. Jude Championship winners now show the correct relative-to-par scores at TPC Southwind.",
+    "href": "pga.html"
+  },
+  {
     "date": "2026-08-07",
     "title": "Featured current bets",
     "description": "Active outright and each-way bets now link directly to their filtered Odds & Value view.",
@@ -10,17 +22,5 @@
     "title": "Smarter off-week homepage",
     "description": "Tours without a current event now use a compact status card and schedule link.",
     "href": "index.html"
-  },
-  {
-    "date": "2026-08-06",
-    "title": "Cascading betting filters",
-    "description": "Overall Betting Data now narrows each dropdown to values compatible with active selections.",
-    "href": "spreadsheet.html"
-  },
-  {
-    "date": "2026-07-30",
-    "title": "Calibration dashboard",
-    "description": "Explore archived prediction calibration, probability buckets, Brier score and log loss.",
-    "href": "calibration_dashboard.html"
   }
 ]
