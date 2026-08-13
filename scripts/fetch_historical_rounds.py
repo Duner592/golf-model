@@ -23,6 +23,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+# DataGolf's historical-rounds endpoint does not consistently include
+# ``course_par``. Keep only verified exceptions here; an unknown par must not
+# be silently presented as a real score on the site.
+HISTORICAL_EVENT_PAR_OVERRIDES = {
+    ("pga", "fedex_st_jude_championship"): 70,
+}
+
+
 def load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
@@ -36,6 +44,18 @@ def normalize_name(s: str) -> str:
     s0 = re.sub(r"[^a-z0-9]+", " ", s0)
     s0 = re.sub(r"\s+", " ", s0).strip()
     return s0.replace(" ", "_")
+
+
+def resolve_course_par(data: dict, event_name: str, tour: str) -> int | None:
+    """Return a valid course par, or None when the source cannot support it."""
+    raw_par = data.get("course_par")
+    try:
+        course_par = int(raw_par)
+    except (TypeError, ValueError):
+        course_par = None
+    if course_par is not None and 60 <= course_par <= 75:
+        return course_par
+    return HISTORICAL_EVENT_PAR_OVERRIDES.get((str(tour).lower(), normalize_name(event_name)))
 
 
 def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> tuple[pd.DataFrame, list]:
@@ -98,9 +118,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
 
             # Extract yardage and par
             yardage = data.get("course_yardage")
-            course_par = data.get("course_par")
-            if course_par is None:
-                course_par = 71  # Fallback par for Bermuda Championship (adjust if needed)
+            course_par = resolve_course_par(data, event_name, tour)
 
             # Extract winner (first in scores)
             winner_item = scores[0]
@@ -111,7 +129,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                     round_data = winner_item.get(f"round_{rnd}")
                     if round_data and "score" in round_data:
                         total_strokes += round_data["score"]
-                under_par = total_strokes - (course_par * 4)
+                under_par = total_strokes - (course_par * 4) if course_par is not None else None
                 winners_list.append({"year": year, "winner": player_name, "score": under_par, "total_score": total_strokes})
 
             # Process all players for rounds data
@@ -206,9 +224,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
 
                         # Extract yardage and par
                         yardage = data.get("course_yardage")
-                        course_par = data.get("course_par")
-                        if course_par is None:
-                            course_par = 71  # Fallback par
+                        course_par = resolve_course_par(data, event_name, tour)
 
                         # Extract winner
                         winner_item = scores[0]
@@ -219,7 +235,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                                 round_data = winner_item.get(f"round_{rnd}")
                                 if round_data and "score" in round_data:
                                     total_strokes += round_data["score"]
-                            under_par = total_strokes - (course_par * 4)
+                            under_par = total_strokes - (course_par * 4) if course_par is not None else None
                             winners_list.append({"year": year, "winner": player_name, "score": under_par, "total_score": total_strokes})
 
                         # Process all players

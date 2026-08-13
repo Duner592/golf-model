@@ -1,18 +1,5 @@
 [
   {
-    "event_id": "27",
-    "event_name": "FedEx St. Jude Championship",
-    "tour": "pga",
-    "slug": "fedex_st_jude_championship",
-    "year": "2026",
-    "start_date": "2026-08-13",
-    "csv_available": true,
-    "archived_at": "2026-08-10 02:38:22 UTC",
-    "prediction_snapshot": "initial",
-    "initial_snapshot_created_utc": "2026-08-10T02:38:22Z",
-    "model_page": "archive/2026/fedex_st_jude_championship/model_page.html"
-  },
-  {
     "event_id": "2026131",
     "event_name": "Danish Golf Championship",
     "tour": "euro",
@@ -24,6 +11,19 @@
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-10T02:38:58Z",
     "model_page": "archive/2026/danish_golf_championship/model_page.html"
+  },
+  {
+    "event_id": "27",
+    "event_name": "FedEx St. Jude Championship",
+    "tour": "pga",
+    "slug": "fedex_st_jude_championship",
+    "year": "2026",
+    "start_date": "2026-08-13",
+    "csv_available": true,
+    "archived_at": "2026-08-10 02:38:22 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-08-10T02:38:22Z",
+    "model_page": "archive/2026/fedex_st_jude_championship/model_page.html"
   },
   {
     "event_id": "13",

@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from scripts.build_prediction_accuracy import brier_score, calibration_buckets, log_loss, uniform_field_probabilities
+from scripts.fetch_historical_rounds import resolve_course_par
 
 import pandas as pd
 
@@ -22,6 +23,10 @@ class PredictionAccuracyTests(unittest.TestCase):
     def test_uniform_baseline_respects_each_event_field_size(self) -> None:
         frame = pd.DataFrame({"event_id": ["small", "small", "large", "large", "large", "large"]})
         self.assertEqual(uniform_field_probabilities(frame, target_places=1).tolist(), [50.0, 50.0, 25.0, 25.0, 25.0, 25.0])
+
+    def test_verified_historical_course_par_override_beats_placeholder(self) -> None:
+        self.assertEqual(resolve_course_par({"course_par": None}, "FedEx St. Jude Championship", "pga"), 70)
+        self.assertIsNone(resolve_course_par({"course_par": None}, "Unknown event", "pga"))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 {
   "betting_data": {
-    "last_modified": "2026-08-13T13:13:38Z",
+    "last_modified": "2026-08-13T15:03:13Z",
     "source": "web/spreadsheet_data.csv",
     "timestamp_source": "git_commit"
   },
@@ -26,7 +26,7 @@
       "workflow": "scheduled-model"
     },
     "pga": {
-      "artifact_generated_utc": "10-Aug-2026 11:28:51",
+      "artifact_generated_utc": "13-Aug-2026 15:47:59",
       "event_id": "27",
       "event_ids": [
         "27"
@@ -36,12 +36,12 @@
         {
           "event_id": "27",
           "event_name": "FedEx St. Jude Championship",
-          "generated_utc": "10-Aug-2026 11:28:51",
+          "generated_utc": "13-Aug-2026 15:47:59",
           "has_predictions": true,
           "start_date": "2026-08-13"
         }
       ],
-      "last_run_utc": "2026-08-10T11:28:51Z",
+      "last_run_utc": "2026-08-13T15:47:59Z",
       "tour": "pga",
       "workflow": "build-web-assets"
     }
@@ -54,5 +54,5 @@
     "tour": "all",
     "workflow": "scheduled-model"
   },
-  "updated_at_utc": "2026-08-13T14:51:52Z"
+  "updated_at_utc": "2026-08-13T15:48:00Z"
 }
