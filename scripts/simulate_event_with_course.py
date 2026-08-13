@@ -159,8 +159,8 @@ def load_event_rules(root: Path) -> dict:
             rules = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
             # ensure keys are strings
             return {str(k): (v or {}) for k, v in rules.items()}
-        except Exception:
-            pass
+        except (OSError, yaml.YAMLError) as exc:
+            raise ValueError(f"Could not read optional event rules from {p}: {exc}") from exc
     return {}
 
 

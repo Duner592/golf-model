@@ -2,9 +2,10 @@ name: Scheduled model run
 
 on:
   schedule:
-    # Runs every 2 hours on Monday, Tuesday, and Wednesday.
+    # Runs every 2 hours Monday through Thursday so opening-day events cannot
+    # remain on the previous week's published assets.
     # Avoiding minute 0 reduces the chance of queue delays on GitHub-hosted runners.
-    - cron: "23 */2 * * 1-3"
+    - cron: "23 */2 * * 1-4"
   workflow_dispatch:
     inputs:
       tour:

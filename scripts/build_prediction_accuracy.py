@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import subprocess
 import sys
@@ -187,6 +188,52 @@ def brier_score(probs: Iterable[float], outcomes: Iterable[float]) -> float | No
         return None
     diff = probs_series[mask] / 100.0 - outcomes_series[mask]
     return float((diff ** 2).mean())
+
+
+def log_loss(probs: Iterable[float], outcomes: Iterable[float]) -> float | None:
+    """Mean binary log loss for percentage probabilities, with safe clipping."""
+    probs_series = pd.Series(list(probs), dtype="float64")
+    outcomes_series = pd.Series(list(outcomes), dtype="float64")
+    mask = probs_series.notna() & outcomes_series.notna()
+    if not mask.any():
+        return None
+    clipped = (probs_series[mask] / 100.0).clip(lower=1e-6, upper=1 - 1e-6)
+    values = -(outcomes_series[mask] * clipped.map(math.log) + (1 - outcomes_series[mask]) * (1 - clipped).map(math.log))
+    return float(values.mean())
+
+
+def calibration_buckets(probs: Iterable[float], outcomes: Iterable[float], *, bucket_width: int = 5) -> list[dict[str, Any]]:
+    """Return player-level calibration buckets without silently dropping missing outcomes."""
+    frame = pd.DataFrame({"probability_pct": list(probs), "outcome": list(outcomes)})
+    frame["probability_pct"] = pd.to_numeric(frame["probability_pct"], errors="coerce")
+    frame["outcome"] = pd.to_numeric(frame["outcome"], errors="coerce")
+    frame = frame.dropna(subset=["probability_pct", "outcome"])
+    if frame.empty:
+        return []
+    frame["probability_pct"] = frame["probability_pct"].clip(lower=0, upper=100)
+    frame["bucket_start_pct"] = (frame["probability_pct"] // bucket_width * bucket_width).astype(int)
+    frame.loc[frame["bucket_start_pct"] == 100, "bucket_start_pct"] = 100 - bucket_width
+
+    buckets: list[dict[str, Any]] = []
+    for bucket_start, group in frame.groupby("bucket_start_pct", sort=True):
+        mean_prediction = float(group["probability_pct"].mean())
+        actual_rate = float(group["outcome"].mean() * 100)
+        buckets.append(
+            {
+                "range": f"{bucket_start}-{bucket_start + bucket_width}%",
+                "n": int(len(group)),
+                "mean_predicted_pct": mean_prediction,
+                "actual_rate_pct": actual_rate,
+                "gap_pct_points": actual_rate - mean_prediction,
+            }
+        )
+    return buckets
+
+
+def uniform_field_probabilities(group: pd.DataFrame, *, target_places: int) -> pd.Series:
+    """A transparent no-skill baseline: equal probability for every listed player."""
+    counts = group.groupby("event_id")["event_id"].transform("size").clip(lower=1)
+    return (100.0 * target_places / counts).clip(upper=100.0)
 
 
 def merge_predictions_with_actuals(pred_df: pd.DataFrame, actual_df: pd.DataFrame) -> pd.DataFrame:
@@ -366,7 +413,43 @@ def main() -> None:
         if args.verbose:
             print(f"[info] Wrote Parquet to {parquet_path}")
 
-    # Build aggregated summary by tour
+    # Build event-level scores first. These are the correct unit for a
+    # chronological out-of-sample review: an event only enters once its final
+    # results are archived, and no aggregate can hide a single bad tournament.
+    event_rows: list[dict[str, Any]] = []
+    for (tour, year, event_id, event_name), group in df.groupby(["tour", "year", "event_id", "event_name"], dropna=False):
+        record: dict[str, Any] = {
+            "tour": tour,
+            "year": year,
+            "event_id": event_id,
+            "event_name": event_name,
+            "players": int(len(group)),
+        }
+        for label, probability_col, outcome_col, target_places in (
+            ("win", "p_win_pct", "actual_win", 1),
+            ("top10", "p_top10_pct", "actual_top10", 10),
+            ("make_cut", "p_mc_pct", "actual_made_cut", 0),
+        ):
+            if {probability_col, outcome_col}.issubset(group.columns):
+                record[f"brier_{label}"] = brier_score(group[probability_col], group[outcome_col])
+                record[f"log_loss_{label}"] = log_loss(group[probability_col], group[outcome_col])
+                if target_places:
+                    baseline_probs = uniform_field_probabilities(group, target_places=target_places)
+                    baseline_brier = brier_score(baseline_probs, group[outcome_col])
+                    record[f"uniform_brier_{label}"] = baseline_brier
+                    record[f"brier_skill_{label}"] = (
+                        1 - record[f"brier_{label}"] / baseline_brier
+                        if baseline_brier not in (None, 0) and record[f"brier_{label}"] is not None
+                        else None
+                    )
+        event_rows.append(record)
+
+    event_summary = pd.DataFrame(event_rows).sort_values(["year", "tour", "event_name"], kind="stable")
+    event_summary.to_csv(out_dir / "prediction_accuracy_by_event.csv", index=False)
+
+    # Build aggregated summary by tour, including a no-skill equal-field
+    # reference. Market/odds comparisons belong in a separate input contract:
+    # do not manufacture a market baseline from untimestamped spreadsheet data.
     summary: dict[str, Any] = {}
     for tour, group in df.groupby("tour"):
         available_cols = set(group.columns)
@@ -385,21 +468,49 @@ def main() -> None:
             if {"p_mc_pct", "actual_made_cut"}.issubset(available_cols)
             else None
         )
+        win_uniform_brier = (
+            brier_score(uniform_field_probabilities(group, target_places=1), group["actual_win"])
+            if {"event_id", "actual_win"}.issubset(available_cols)
+            else None
+        )
+        top10_uniform_brier = (
+            brier_score(uniform_field_probabilities(group, target_places=10), group["actual_top10"])
+            if {"event_id", "actual_top10"}.issubset(available_cols)
+            else None
+        )
         summary[tour] = {
             "events": int(group["event_id"].nunique()),
             "rows": int(len(group)),
             "brier_win": win_brier,
             "brier_top10": top10_brier,
             "brier_mc": mc_brier,
+            "log_loss_win": log_loss(group["p_win_pct"], group["actual_win"]) if {"p_win_pct", "actual_win"}.issubset(available_cols) else None,
+            "log_loss_top10": log_loss(group["p_top10_pct"], group["actual_top10"]) if {"p_top10_pct", "actual_top10"}.issubset(available_cols) else None,
+            "log_loss_mc": log_loss(group["p_mc_pct"], group["actual_made_cut"]) if {"p_mc_pct", "actual_made_cut"}.issubset(available_cols) else None,
+            "uniform_brier_win": win_uniform_brier,
+            "uniform_brier_top10": top10_uniform_brier,
+            "brier_skill_win": 1 - win_brier / win_uniform_brier if win_brier is not None and win_uniform_brier not in (None, 0) else None,
+            "brier_skill_top10": 1 - top10_brier / top10_uniform_brier if top10_brier is not None and top10_uniform_brier not in (None, 0) else None,
             "mean_predicted_win_pct": float(group["p_win_pct"].dropna().mean()) if "p_win_pct" in available_cols else None,
             "mean_actual_win_rate": float(group["actual_win"].dropna().mean()) if "actual_win" in available_cols else None,
             "mean_predicted_top10_pct": float(group["p_top10_pct"].dropna().mean()) if "p_top10_pct" in available_cols else None,
             "mean_actual_top10_rate": float(group["actual_top10"].dropna().mean()) if "actual_top10" in available_cols else None,
         }
 
+    calibration = {
+        tour: {
+            "win": calibration_buckets(group["p_win_pct"], group["actual_win"]) if {"p_win_pct", "actual_win"}.issubset(group.columns) else [],
+            "top10": calibration_buckets(group["p_top10_pct"], group["actual_top10"]) if {"p_top10_pct", "actual_top10"}.issubset(group.columns) else [],
+            "make_cut": calibration_buckets(group["p_mc_pct"], group["actual_made_cut"]) if {"p_mc_pct", "actual_made_cut"}.issubset(group.columns) else [],
+        }
+        for tour, group in df.groupby("tour")
+    }
+
     summary_path = out_dir / "prediction_accuracy_summary.json"
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
+    with open(out_dir / "prediction_calibration_buckets.json", "w", encoding="utf-8") as f:
+        json.dump(calibration, f, indent=2)
     if args.verbose:
         print(f"[info] Wrote summary metrics to {summary_path}")
 

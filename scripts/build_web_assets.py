@@ -33,6 +33,7 @@ import requests  # Added for API calls
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from src.utils_event import current_week_event_ids, resolve_event_ids
+from src.provenance import build_snapshot_provenance
 
 MPH_PER_MPS = 2.237
 KMH_TO_MPH = 0.621371
@@ -217,8 +218,8 @@ def normalize_utc_str(s: str | None, fallback: str) -> str:
         try:
             dt = datetime.strptime(val, fmt)
             return dt.strftime("%d-%b-%Y %H:%M:%S")
-        except Exception:
-            pass
+        except ValueError:
+            continue
     return fallback
 
 
@@ -818,8 +819,8 @@ def _pick_yardage_from_hist(df_hist: pd.DataFrame) -> int | None:
             s = s[(s >= 5800) & (s <= 8200)]
             if s.notna().any():
                 vals.append(int(round(s.median())))
-        except Exception:
-            pass
+        except (TypeError, ValueError):
+            continue
     if vals:
         ser = pd.Series(vals)
         m = ser.mode()
@@ -1878,6 +1879,7 @@ def ensure_initial_snapshot(
         "source_csv": event_meta.get("source_csv"),
         "artifact_generated_utc": event_meta.get("generated_utc"),
         "resources": resources,
+        "provenance": build_snapshot_provenance(root, snapshot_dir),
     }
     if event_meta.get("reconstruction"):
         payload["snapshot_label"] = "Reconstructed backfill"
@@ -1934,8 +1936,8 @@ def process_event(
         try:
             weather_meta = json.loads(weather_meta_path.read_text(encoding="utf-8"))
             r1_date = weather_meta.get("r1_date")
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError) as exc:
+            print(f"[warn] Could not read weather metadata for event_id={event_id}: {exc}")
 
     lb_csv, lb_html = pick_latest_timestamped_leaderboard(preds_dir, event_id)
     summary_json = pick_matching_summary(preds_dir, lb_csv) if lb_csv else None
@@ -1998,8 +2000,8 @@ def process_event(
             sj = json.loads(summary_json.read_text(encoding="utf-8"))
             summary_data["metrics"] = sj.get("summary")
             summary_data["generated_utc"] = normalize_utc_str(sj.get("generated_utc"), generated_utc)
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError) as exc:
+            print(f"[warn] Could not read prediction summary for event_id={event_id}: {exc}")
     write_json(event_dir / "summary.json", summary_data)
 
     downloads_csv = None

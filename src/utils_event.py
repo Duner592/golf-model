@@ -22,8 +22,8 @@ def _parse_ts(iso: str | None) -> float:
     for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H%M%S", "%Y-%m-%d %H:%M:%S"):
         try:
             return datetime.strptime(s, fmt).timestamp()
-        except Exception:
-            pass
+        except ValueError:
+            continue
     return 0.0
 
 
@@ -162,8 +162,8 @@ def _resolve_single_event_id(cli_event_id: str | None = None, tour: str = TOUR_D
             payload_tour = data.get("tour")
             if eid is not None and (not tour or not payload_tour or str(payload_tour).lower() == str(tour).lower()):
                 return str(eid)
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError) as exc:
+            print(f"[warn] Ignoring unreadable field-updates.json while resolving {tour}: {exc}")
 
     # Fallback: most recent processed meta by saved_at_utc (or file mtime)
     processed = ROOT / "data" / "processed" / tour

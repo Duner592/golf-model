@@ -158,16 +158,16 @@ def save_outputs(data: dict, df_field: pd.DataFrame, df_tt: pd.DataFrame, tour: 
     df_field.to_csv(base_field.with_suffix(".csv"), index=False)
     try:
         df_field.to_parquet(base_field.with_suffix(".parquet"), index=False)
-    except Exception:
-        pass
+    except (ImportError, OSError, ValueError) as exc:
+        print(f"[warn] Could not write field parquet for event {event_id}: {exc}")
 
     # Save tee-time–enriched table
     base_tt = processed_dir / f"event_{event_id}_field_teetimes"
     df_tt.to_csv(base_tt.with_suffix(".csv"), index=False)
     try:
         df_tt.to_parquet(base_tt.with_suffix(".parquet"), index=False)
-    except Exception:
-        pass
+    except (ImportError, OSError, ValueError) as exc:
+        print(f"[warn] Could not write tee-time parquet for event {event_id}: {exc}")
 
     # Save/refresh meta
     meta = {
