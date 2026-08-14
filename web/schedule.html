@@ -54,6 +54,9 @@
         /* FedEx Playoffs highlight (PGA) */
         .fedex-playoffs { background-color: #d8bfd8; }  /* Light purple */
 
+        .schedule-link { color: #145f35; font-weight: 650; text-decoration: none; }
+        .schedule-link:hover, .schedule-link:focus-visible { text-decoration: underline; text-underline-offset: 0.16em; }
+
         /* Key for events */
         .event-key { margin: 1rem 0; font-size: 0.9rem; font-style: italic; color: #555; }
         .event-key p { margin: 0.25rem 0; }
@@ -147,6 +150,33 @@
         'The Open Championship'
     ]);
 
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>'"]/g, char => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        })[char]);
+    }
+
+    function isUsableValue(value) {
+        return value && !['n/a', 'tbd', 'unknown', '-'].includes(String(value).trim().toLowerCase());
+    }
+
+    function courseLink(course) {
+        if (!isUsableValue(course)) return escapeHtml(course || 'N/A');
+        return `<a class="schedule-link" href="course_details.html?course=${encodeURIComponent(course)}">${escapeHtml(course)}</a>`;
+    }
+
+    function winnerLink(winner, sourceTour) {
+        if (!isUsableValue(winner)) return escapeHtml(winner || 'N/A');
+        const params = new URLSearchParams({ tour: sourceTour || 'pga', player: winner });
+        return `<a class="schedule-link" href="player.html?${params.toString()}">${escapeHtml(winner)}</a>`;
+    }
+
+    function locationLink(location) {
+        if (!isUsableValue(location)) return escapeHtml(location || 'N/A');
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
+        return `<a class="schedule-link" href="${mapsUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(location)}</a>`;
+    }
+
     // Tour select change event
     const tourSelect = document.getElementById('tour-select');
     tourSelect.addEventListener('change', () => {
@@ -163,8 +193,9 @@
         fetch('euro/schedule.json').then(response => response.ok ? response.json() : []).catch(() => []),
         fetch('pga/schedule.json').then(response => response.ok ? response.json() : []).catch(() => [])
     ]).then(([euro, pga]) => {
-        euro.forEach(event => { event.tour = 'DP World Tour'; allData.push(event); });
+        euro.forEach(event => { event.sourceTour = 'euro'; event.tour = 'DP World Tour'; allData.push(event); });
         pga.forEach(event => {
+            event.sourceTour = 'pga';
             event.tour = majorEvents.has(event.event) ? 'Major' : 'PGA Tour';
             allData.push(event);
         });
@@ -229,7 +260,7 @@
                 if (isSignature) row.classList.add('signature-events');
                 if (isFedex) row.classList.add('fedex-playoffs');
             }
-            row.innerHTML = `<td>${event.date || 'N/A'}</td><td>${event.tour}</td><td>${event.event || 'N/A'}</td><td>${event.course || 'N/A'}</td><td>${event.location || 'N/A'}</td><td>${event.winner || 'N/A'}</td>`;
+            row.innerHTML = `<td>${escapeHtml(event.date || 'N/A')}</td><td>${escapeHtml(event.tour)}</td><td>${escapeHtml(event.event || 'N/A')}</td><td>${courseLink(event.course)}</td><td>${locationLink(event.location)}</td><td>${winnerLink(event.winner, event.sourceTour)}</td>`;
             tbody.appendChild(row);
         });
     }

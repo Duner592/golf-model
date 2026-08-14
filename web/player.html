@@ -973,10 +973,13 @@
             renderStatus("Player was not found in this event leaderboard.");
             els.metrics.innerHTML = "";
             els.details.innerHTML = "";
-            els.archive.innerHTML = "";
-            els.bettingSummary.innerHTML = "";
-            els.bettingRows.innerHTML = "";
             renderQuickLinks(context, playerName);
+            const [betRows, archiveRows] = await Promise.all([
+                loadBettingRows(playerName),
+                loadArchiveAppearances(playerName)
+            ]);
+            renderBetting(playerName, betRows);
+            renderArchiveRows(archiveRows);
             return;
         }
 
