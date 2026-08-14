@@ -8,6 +8,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import raise_for_status_safely
+
 load_dotenv()
 
 
@@ -52,7 +57,7 @@ def main():
     if resp.status_code == 404:
         print("Tee times not available yet. Try again later.")
         return
-    resp.raise_for_status()
+    raise_for_status_safely(resp)
     data = resp.json()
 
     out_dir = root / "data" / "raw" / tour

@@ -18,6 +18,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import raise_for_status_safely
+
 load_dotenv()
 
 
@@ -93,7 +98,7 @@ def main():
     if "file_format" in cfg["endpoints"]["dg_rankings"].get("optional", []):
         r_params["file_format"] = cfg["defaults"].get("file_format", "json")
     r = session.get(f"{base}/{r_path.lstrip('/')}", params=r_params, timeout=30)
-    r.raise_for_status()
+    raise_for_status_safely(r)
     rankings_raw = r.json()
     rankings_df = normalize_payload(rankings_raw)
     if id_col in rankings_df.columns:
@@ -110,7 +115,7 @@ def main():
     if "file_format" in cfg["endpoints"]["skill_ratings"].get("optional", []):
         s_params["file_format"] = cfg["defaults"].get("file_format", "json")
     s = session.get(f"{base}/{s_path.lstrip('/')}", params=s_params, timeout=45)
-    s.raise_for_status()
+    raise_for_status_safely(s)
     skills_raw = s.json()
     skills_df = normalize_payload(skills_raw)
     if id_col not in skills_df.columns:

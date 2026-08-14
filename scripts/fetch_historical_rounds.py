@@ -20,6 +20,11 @@ import requests
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import redact_sensitive_text, raise_for_status_safely
+
 load_dotenv()
 
 
@@ -95,7 +100,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
 
         try:
             response = requests.get(url, params=params, timeout=30)
-            response.raise_for_status()
+            raise_for_status_safely(response)
 
             content_type = response.headers.get("content-type", "")
             if "application/json" in content_type:
@@ -155,10 +160,10 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                                 }
                             )
         except requests.exceptions.HTTPError as e:
-            print(f"Skipping year {year}: HTTP error - {e}")
+            print(f"Skipping year {year}: HTTP error - {redact_sensitive_text(e)}")
             continue
         except Exception as e:
-            print(f"Skipping year {year}: Unexpected error - {e}")
+            print(f"Skipping year {year}: Unexpected error - {redact_sensitive_text(e)}")
             continue
 
     # Fallback: If no records found, try searching by event_name using event-list (fetch all events, then filter)
@@ -169,7 +174,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
         event_list_params = {"file_format": file_format, "key": api_key}
         try:
             event_list_response = requests.get(event_list_url, params=event_list_params, timeout=30)
-            event_list_response.raise_for_status()
+            raise_for_status_safely(event_list_response)
             event_list_data = event_list_response.json()
             if not isinstance(event_list_data, list):
                 print("Event-list response is not a list. Skipping fallback.")
@@ -201,7 +206,7 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                     params = {"tour": tour, "event_id": fallback_event_id, "year": str(year), "file_format": file_format, "key": api_key}
                     try:
                         response = requests.get(url, params=params, timeout=30)
-                        response.raise_for_status()
+                        raise_for_status_safely(response)
 
                         content_type = response.headers.get("content-type", "")
                         if "application/json" in content_type:
@@ -261,15 +266,15 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                                             }
                                         )
                     except requests.exceptions.HTTPError as e:
-                        print(f"Skipping year {year} (fallback): HTTP error - {e}")
+                        print(f"Skipping year {year} (fallback): HTTP error - {redact_sensitive_text(e)}")
                         continue
                     except Exception as e:
-                        print(f"Skipping year {year} (fallback): Unexpected error - {e}")
+                        print(f"Skipping year {year} (fallback): Unexpected error - {redact_sensitive_text(e)}")
                         continue
         except requests.exceptions.HTTPError as e:
-            print(f"Failed to fetch event-list: HTTP error - {e}")
+            print(f"Failed to fetch event-list: HTTP error - {redact_sensitive_text(e)}")
         except Exception as e:
-            print(f"Failed to fetch event-list: Unexpected error - {e}")
+            print(f"Failed to fetch event-list: Unexpected error - {redact_sensitive_text(e)}")
 
     if not records:
         raise ValueError("No historical round data found for any valid years, even with fallback.")
@@ -314,7 +319,7 @@ def main():
                 json.dump(winners_list, f, indent=2)
             print(f"Saved winners to {winners_path}")
     except Exception as e:
-        print(f"Failed to fetch/save historical data: {e}")
+        print(f"Failed to fetch/save historical data: {redact_sensitive_text(e)}")
         exit(1)
 
 

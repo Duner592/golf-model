@@ -29,6 +29,11 @@ import requests
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import raise_for_status_safely
+
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_TOURS = ("pga", "euro")
@@ -199,7 +204,7 @@ def fetch_schedule(base_url: str, path: str, key_param: str, api_key: str, tour:
     url = f"{base_url.rstrip('/')}/{path.lstrip('/')}"
     params = {key_param: api_key, "tour": tour, "year": str(season)}
     response = requests.get(url, params=params, timeout=30)
-    response.raise_for_status()
+    raise_for_status_safely(response)
     events = events_from_payload(response.json())
     if events:
         return events
@@ -208,7 +213,7 @@ def fetch_schedule(base_url: str, path: str, key_param: str, api_key: str, tour:
     # script remains compatible if the endpoint rejects/ignores "year".
     params = {key_param: api_key, "tour": tour, "season": str(season)}
     response = requests.get(url, params=params, timeout=30)
-    response.raise_for_status()
+    raise_for_status_safely(response)
     return events_from_payload(response.json())
 
 

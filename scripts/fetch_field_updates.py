@@ -9,6 +9,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import redact_sensitive_text, raise_for_status_safely
+
 load_dotenv()
 
 
@@ -49,9 +54,9 @@ def main():
 
     try:
         resp = session.get(url, params=params, timeout=20)
-        resp.raise_for_status()
+        raise_for_status_safely(resp)
     except requests.HTTPError as e:
-        print("HTTP error:", e)
+        print("HTTP error:", redact_sensitive_text(e))
         print("Status:", getattr(e.response, "status_code", "unknown"))
         print("Body:", getattr(e.response, "text", ""))
         raise

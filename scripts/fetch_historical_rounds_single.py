@@ -11,6 +11,11 @@ import requests
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import raise_for_status_safely
+
 load_dotenv()
 
 
@@ -54,7 +59,7 @@ def main():
         "file_format": "json",
     }
     r = requests.get(url, params=params, timeout=120)
-    r.raise_for_status()
+    raise_for_status_safely(r)
     data = r.json()
     out_dir = root / "data" / "raw" / "historical" / tour
     out_dir.mkdir(parents=True, exist_ok=True)

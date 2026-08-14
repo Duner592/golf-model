@@ -30,6 +30,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import raise_for_status_safely
+
 load_dotenv()
 
 TOUR = "pga"
@@ -66,7 +71,7 @@ def latest_meta(processed_dir: Path) -> dict:
 def schedule_events(base_url: str, key_param: str, api_key: str, sched_path: str, tour: str, year: int) -> list[dict]:
     url = f"{base_url}/{sched_path.lstrip('/')}"
     r = requests.get(url, params={key_param: api_key, "tour": tour, "year": str(year)}, timeout=30)
-    r.raise_for_status()
+    raise_for_status_safely(r)
     payload = r.json()
     if isinstance(payload, list):
         return payload
@@ -107,7 +112,7 @@ def ensure_rounds_json(
         r = requests.get(url, params=params, timeout=60)
         if r.status_code in (400, 404):
             return None
-        r.raise_for_status()
+        raise_for_status_safely(r)
         out.write_text(json.dumps(r.json(), indent=2), encoding="utf-8")
         return out
     except requests.HTTPError:

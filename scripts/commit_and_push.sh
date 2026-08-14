@@ -87,17 +87,11 @@ ensure_no_git_operation
 echo "Syncing $BRANCH with $REMOTE/$BRANCH before staging..."
 git pull --rebase --autostash "$REMOTE" "$BRANCH"
 
-add_paths=(
-  "."
-  ":(exclude).env"
-  ":(exclude).env.*"
-  ":(exclude)**/.env"
-  ":(exclude)**/.env.*"
-  ":(exclude)~$*"
-  ":(exclude)**/~$*"
-)
-
-git add -A -- "${add_paths[@]}"
+# .gitignore already excludes .env and Office lock files. Passing those ignored
+# paths as explicit pathspecs makes git add abort before it can stage ordinary
+# edits (such as the betting spreadsheet), so stage normally and keep the
+# defensive unstage check below.
+git add -A
 
 protected_files="$(git diff --cached --name-only -- | grep -E '(^|/)\.env($|\.)|(^|/)~\$' || true)"
 if [[ -n "$protected_files" ]]; then

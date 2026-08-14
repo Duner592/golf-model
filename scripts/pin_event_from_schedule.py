@@ -17,6 +17,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import redact_sensitive_text, raise_for_status_safely
+
 load_dotenv()
 TOUR = "pga"
 
@@ -73,9 +78,9 @@ def main():
     url = f"{base}/{sched_path.lstrip('/')}"
     resp = requests.get(url, params={keyp: api_key, "tour": tour, "year": str(args.year)}, timeout=30)
     try:
-        resp.raise_for_status()
+        raise_for_status_safely(resp)
     except requests.HTTPError as e:
-        print("HTTP error:", e)
+        print("HTTP error:", redact_sensitive_text(e))
         print("Status:", getattr(e.response, "status_code", "unknown"))
         print("Body:", getattr(e.response, "text", "")[:800])
         raise

@@ -9,6 +9,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import raise_for_status_safely
+
 load_dotenv()
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -68,7 +73,7 @@ def main():
 
     # Fetch latest field-updates
     resp = session.get(url, params=params, timeout=20)
-    resp.raise_for_status()
+    raise_for_status_safely(resp)
     data = resp.json()
 
     # Save a fresh copy next to scripts (the same place fetch_field_updates.py writes)

@@ -10,6 +10,11 @@ import requests_cache
 import yaml
 from dotenv import load_dotenv
 
+try:
+    from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
+except ImportError:  # Supports running this file directly.
+    from request_safety import redact_sensitive_text, raise_for_status_safely
+
 load_dotenv()
 TOUR = "pga"
 
@@ -39,7 +44,7 @@ def main():
     # 1) schedule for 2025
     url = f"{base_url}/{sched_path.lstrip('/')}"
     r = requests.get(url, params={keyp: api_key, "tour": tour, "year": str(args.year)}, timeout=30)
-    r.raise_for_status()
+    raise_for_status_safely(r)
     payload = r.json()
     events = []
     if isinstance(payload, list):
@@ -76,13 +81,13 @@ def main():
             if rh.status_code in (400, 404):
                 print(f"  -> skip: HTTP {rh.status_code}")
                 continue
-            rh.raise_for_status()
+            raise_for_status_safely(rh)
             data = rh.json()
             out = out_dir / f"event_{eid}_{args.year}_rounds.json"
             out.write_text(json.dumps(data, indent=2), encoding="utf-8")
             print(f"  -> saved: {out}")
         except requests.HTTPError as ex:
-            print(f"  -> error: {ex}")
+            print(f"  -> error: {redact_sensitive_text(ex)}")
 
     # Save a simple event list snapshot for convenience
     (root / "data" / "raw" / f"schedule_{tour}_{args.year}.json").write_text(json.dumps(events, indent=2), encoding="utf-8")
