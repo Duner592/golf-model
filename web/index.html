@@ -5,7 +5,7 @@
     <title>Golf Model Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
-    <script src="menu.js?v=20260515-status2"></script>
+    <script src="menu.js?v=20260814-context-nav1"></script>
     <!-- Added Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Added theme.css for shared styles -->
@@ -1996,7 +1996,7 @@
         const startDate = tournament.start_date || meta.start_date || meta.r1_date || 'TBD';
         const course = tournament.course || 'Unknown Course';
         const courseDetailsHref = course && course !== 'Unknown Course'
-            ? `course_details.html?course=${encodeURIComponent(course)}`
+            ? `course_details.html?tour=${encodeURIComponent(tour)}&event_id=${encodeURIComponent(meta.event_id || '')}&course=${encodeURIComponent(course)}`
             : 'course_details.html';
         const eventDetailsHref = eventDrilldownHref(tour, meta, course);
         const fieldSize = tournament.field_size || 'N/A';

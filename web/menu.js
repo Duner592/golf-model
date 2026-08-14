@@ -387,6 +387,139 @@
         }
     }
 
+    function pageHref(path, params = {}) {
+        const query = new URLSearchParams();
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== null && value !== undefined && value !== '') {
+                query.set(key, String(value));
+            }
+        });
+        const suffix = query.toString();
+        return suffix ? `${path}?${suffix}` : path;
+    }
+
+    function currentTour() {
+        const tour = new URLSearchParams(window.location.search).get('tour');
+        return ['pga', 'euro'].includes((tour || '').toLowerCase()) ? tour.toLowerCase() : null;
+    }
+
+    function buildContextCrumbs() {
+        const route = normalizeRoute(window.location.pathname);
+        const params = new URLSearchParams(window.location.search);
+        const tour = currentTour();
+        const eventId = params.get('event_id');
+        const snapshot = params.get('snapshot') === 'initial' ? 'initial' : '';
+        const tourName = tour === 'euro' ? 'DP World Tour' : 'PGA Tour';
+        const tourHref = pageHref(tour === 'euro' ? 'euro.html' : 'pga.html', { event_id: eventId, snapshot });
+        const eventHref = pageHref('event_drilldown.html', { tour, event_id: eventId, snapshot });
+        const crumbs = [{ label: 'Home', href: 'index.html' }];
+        const add = (label, href) => crumbs.push({ label, href });
+
+        if (route === 'index.html') return [];
+        if (route === 'pga.html') return [...crumbs, { label: 'PGA Tour' }];
+        if (route === 'euro.html') return [...crumbs, { label: 'DP World Tour' }];
+
+        if (route === 'player.html') {
+            add(tourName, tourHref);
+            add('Player Drilldown');
+            return crumbs;
+        }
+        if (route === 'event_drilldown.html') {
+            add(tourName, tourHref);
+            add('Event Context');
+            return crumbs;
+        }
+        if (route === 'course_details.html') {
+            if (tour && eventId) {
+                add(tourName, tourHref);
+                add('Event Context', eventHref);
+            } else {
+                add('Additional Data', 'course_details.html');
+            }
+            add('Course Details');
+            return crumbs;
+        }
+        if (route === 'archive.html') {
+            add('Prediction Archives');
+            return crumbs;
+        }
+        if (route === 'event_archive.html') {
+            add('Prediction Archives', 'archive.html');
+            add('Event Predictions');
+            return crumbs;
+        }
+        if (route === 'archive_accuracy.html') {
+            add('Prediction Archives', 'archive.html');
+            add('Accuracy Dashboards');
+            return crumbs;
+        }
+        if (route === 'calibration_dashboard.html') {
+            add('Calibration Dashboard');
+            return crumbs;
+        }
+        if (route === 'model_health.html') {
+            add('Model Health');
+            return crumbs;
+        }
+        if (route === 'betting_analytics.html') {
+            add('Betting History', 'betting_analytics.html');
+            add('Analytics');
+            return crumbs;
+        }
+        if (route === 'odds_value.html') {
+            add('Betting History', 'betting_analytics.html');
+            add('Odds & Value');
+            return crumbs;
+        }
+        if (route === 'spreadsheet.html') {
+            add('Betting History', 'betting_analytics.html');
+            add('Overall Data');
+            return crumbs;
+        }
+        if (route === 'roi.html') {
+            add('Betting History', 'betting_analytics.html');
+            add('ROI Data');
+            return crumbs;
+        }
+        return [];
+    }
+
+    function injectContextNavigation() {
+        const existing = document.getElementById('context-navigation');
+        if (existing) existing.remove();
+        const crumbs = buildContextCrumbs();
+        if (crumbs.length < 2) return;
+
+        const nav = document.createElement('nav');
+        nav.id = 'context-navigation';
+        nav.className = 'context-navigation';
+        nav.setAttribute('aria-label', 'Page location');
+        const list = document.createElement('ol');
+        crumbs.forEach((crumb, index) => {
+            const item = document.createElement('li');
+            if (crumb.href && index < crumbs.length - 1) {
+                const link = document.createElement('a');
+                link.href = crumb.href;
+                link.textContent = crumb.label;
+                item.appendChild(link);
+            } else {
+                const current = document.createElement('span');
+                current.textContent = crumb.label;
+                current.setAttribute('aria-current', 'page');
+                item.appendChild(current);
+            }
+            list.appendChild(item);
+        });
+        nav.appendChild(list);
+
+        const header = document.querySelector('.site-header');
+        if (header) {
+            header.insertAdjacentElement('afterend', nav);
+        } else {
+            document.body.insertBefore(nav, document.body.firstChild);
+        }
+    }
+
     function applyMenuActiveState(menu) {
         if (!menu) {
             return;
@@ -704,6 +837,7 @@
             }
             ensureHamburgerAttributes();
             injectSiteHeader();
+            injectContextNavigation();
             initializeMenuObserver();
             if (menu && menu.children.length) {
                 hydrateMenuContent(menu);
@@ -731,4 +865,6 @@
             });
         }
     });
+
+    window.addEventListener('context-navigation:refresh', injectContextNavigation);
 })();

@@ -5,7 +5,7 @@
     <title>Golf Model - Event Drilldown</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
-    <script src="menu.js?v=20260515-status2"></script>
+    <script src="menu.js?v=20260814-context-nav1"></script>
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -975,6 +975,7 @@
         if (course) params.set("course", course);
         if (context.snapshot === "initial") params.set("snapshot", "initial");
         window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+        window.dispatchEvent(new Event("context-navigation:refresh"));
     }
 
     function metricCard(label, value, sub = "") {
@@ -1721,6 +1722,7 @@
         els.quickLinks.innerHTML = `
             <a class="pill" href="${leaderboardHref(context)}">Leaderboard</a>
             <a class="pill" href="player.html?tour=${context.tour}&event_id=${eventParam}${topPlayer ? `&player=${encodeURIComponent(topPlayer)}` : ""}${snapshotParam}">Top Player</a>
+            <a class="pill" href="course_details.html?tour=${context.tour}&event_id=${eventParam}&course=${courseParam}${snapshotParam}">Course Details</a>
             <a class="pill" href="spreadsheet.html?course=${courseParam}">Betting Rows</a>
             <a class="pill" href="archive.html">Archive</a>
             <a class="pill" href="archive_accuracy.html">Accuracy</a>

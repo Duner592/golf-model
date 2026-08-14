@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-08-14",
+    "title": "Clearer page navigation",
+    "description": "Breadcrumbs now keep tournament, player, course, archive, and betting pages connected with contextual back-links.",
+    "href": "pga.html"
+  },
+  {
     "date": "2026-08-13",
     "title": "Improved iPhone usability",
     "description": "PGA and DP World leaderboards now keep wide tables inside a smooth swipe area, with larger touch targets on iPhone and iPad.",
@@ -16,11 +22,5 @@
     "title": "Featured current bets",
     "description": "Active outright and each-way bets now link directly to their filtered Odds & Value view.",
     "href": "odds_value.html?source=pending"
-  },
-  {
-    "date": "2026-08-07",
-    "title": "Smarter off-week homepage",
-    "description": "Tours without a current event now use a compact status card and schedule link.",
-    "href": "index.html"
   }
 ]

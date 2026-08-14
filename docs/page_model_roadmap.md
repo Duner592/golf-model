@@ -4,6 +4,18 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### Contextual Page Navigation
+
+Completed on 2026-08-14.
+
+Implemented in `web/menu.js` and `web/menu.css`.
+
+Current features:
+
+- Adds a shared breadcrumb below the site header across tournament, player, event, course, archive, and betting-history pages.
+- Preserves tour, event, and initial-snapshot context when moving from an event into Course Details, so visitors can return to the relevant event context.
+- Refreshes the breadcrumb when Player Drilldown or Event Drilldown changes its selected tour/event.
+
 ### Archive Page Status Labels
 
 Completed on 2026-06-26.
