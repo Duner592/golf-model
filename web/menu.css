@@ -165,11 +165,11 @@
 .context-navigation {
     display: flex;
     align-items: center;
-    width: min(1500px, calc(100% - 2.5rem));
-    margin: 0 auto 0.65rem;
+    width: 100%;
+    margin: 0 0 0.65rem;
     min-height: 1.75rem;
     color: #526158;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
 }
 
 .context-navigation ol {
@@ -191,7 +191,7 @@
 .context-navigation li + li::before {
     content: "›";
     color: #8b9a90;
-    font-size: 1rem;
+    font-size: 1.08rem;
 }
 
 .context-navigation a {

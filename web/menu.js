@@ -28,9 +28,7 @@
             label: 'Schedules',
             href: 'schedule.html',
             children: [
-                { label: 'Tour Schedule', href: 'schedule.html' },
-                { label: 'PGA Schedule', href: 'pga_schedule.html' },
-                { label: 'DP World Schedule', href: 'euro_schedule.html' }
+                { label: 'Tour Schedule', href: 'schedule.html' }
             ]
         },
         {

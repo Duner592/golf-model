@@ -5,7 +5,7 @@
     <title>2026 Golf Tour Schedules</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
-    <script src="menu.js?v=20260814-context-nav1"></script>
+    <script src="menu.js?v=20260814-schedule-nav2"></script>
     <!-- Added theme.css for shared styles -->
     <link rel="stylesheet" href="theme.css">
     <style>
@@ -104,6 +104,7 @@
     <label for="tour-select">Filter by Tour:</label>
     <select id="tour-select">
         <option value="all">All Tours</option>
+        <option value="Major">Major</option>
         <option value="DP World Tour">DP World Tour</option>
         <option value="PGA Tour">PGA Tour</option>
     </select>
@@ -139,6 +140,12 @@
     // Data variables
     let allData = [];
     let currentFilter = 'all';
+    const majorEvents = new Set([
+        'Masters Tournament',
+        'PGA Championship',
+        'U.S. Open',
+        'The Open Championship'
+    ]);
 
     // Tour select change event
     const tourSelect = document.getElementById('tour-select');
@@ -157,7 +164,10 @@
         fetch('pga/schedule.json').then(response => response.ok ? response.json() : []).catch(() => [])
     ]).then(([euro, pga]) => {
         euro.forEach(event => { event.tour = 'DP World Tour'; allData.push(event); });
-        pga.forEach(event => { event.tour = 'PGA Tour'; allData.push(event); });
+        pga.forEach(event => {
+            event.tour = majorEvents.has(event.event) ? 'Major' : 'PGA Tour';
+            allData.push(event);
+        });
         // Sort all data by date
         allData.sort((a, b) => new Date(a.date.split('-').reverse().join('-')) - new Date(b.date.split('-').reverse().join('-')));
         renderTable();
@@ -184,12 +194,6 @@
             'Abu Dhabi Championship',
             'DP World Tour Championship'
         ];
-        const majorEvents = [
-            'Masters Tournament',
-            'PGA Championship',
-            'U.S. Open',
-            'The Open Championship'
-        ];
         const signatureEvents = [
             'AT&T Pebble Beach Pro-Am',
             'The Genesis Invitational',
@@ -214,14 +218,14 @@
             }
             prevDate = event.date;
 
-            if (event.tour === 'DP World Tour') {
+            if (majorEvents.has(event.event)) {
+                row.classList.add('majors');
+            } else if (event.tour === 'DP World Tour') {
                 const isRolex = rolexEvents.includes(event.event);
                 if (isRolex) row.classList.add('rolex-series');
             } else if (event.tour === 'PGA Tour') {
-                const isMajor = majorEvents.includes(event.event);
                 const isSignature = signatureEvents.includes(event.event);
                 const isFedex = fedexEvents.includes(event.event);
-                if (isMajor) row.classList.add('majors');
                 if (isSignature) row.classList.add('signature-events');
                 if (isFedex) row.classList.add('fedex-playoffs');
             }

@@ -5,7 +5,7 @@
     <title>Golf Model Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="menu.css">
-    <script src="menu.js?v=20260814-context-nav1"></script>
+    <script src="menu.js?v=20260814-schedule-nav2"></script>
     <!-- Added Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Added theme.css for shared styles -->
@@ -1875,7 +1875,7 @@
 
     function renderOffWeekSummary(tour) {
         const tourName = tour === 'euro' ? 'DP World Tour' : 'PGA Tour';
-        const scheduleHref = tour === 'euro' ? 'euro_schedule.html' : 'pga_schedule.html';
+        const scheduleHref = 'schedule.html';
         return `
             <div class="tour-off-week" role="status">
                 <div class="tour-off-week__copy">
@@ -1890,7 +1890,7 @@
     function renderAwaitingModelSummary(tour, scheduledEvents) {
         const event = scheduledEvents[0] || {};
         const tourName = tour === 'euro' ? 'DP World Tour' : 'PGA Tour';
-        const scheduleHref = tour === 'euro' ? 'euro_schedule.html' : 'pga_schedule.html';
+        const scheduleHref = 'schedule.html';
         const eventName = event.event_name || event.event || 'Upcoming event';
         const venue = event.course || event.course_name || 'Venue to be confirmed';
         const location = event.location ? ` · ${event.location}` : '';
