@@ -5,6 +5,7 @@ import unittest
 import requests
 
 from scripts.build_prediction_accuracy import brier_score, calibration_buckets, log_loss, uniform_field_probabilities
+from scripts.build_course_fit_from_history import json_safe
 from scripts.fetch_historical_rounds import resolve_course_par, winner_scores_to_par
 from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
 
@@ -39,6 +40,9 @@ class PredictionAccuracyTests(unittest.TestCase):
             "round_4": {"score": 68, "course_par": 70},
         }
         self.assertEqual(winner_scores_to_par(winner, {"scores": [winner]}, "Example", "pga"), (275, -9))
+
+    def test_course_fit_json_replaces_non_finite_values_with_null(self) -> None:
+        self.assertEqual(json_safe({"mean": float("nan"), "std": float("inf"), "weight": 0.2}), {"mean": None, "std": None, "weight": 0.2})
 
     def test_request_errors_redact_api_credentials(self) -> None:
         message = "403 for https://feeds.datagolf.com/api?tour=pga&key=not-a-real-key"

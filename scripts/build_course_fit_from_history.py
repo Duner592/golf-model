@@ -93,6 +93,25 @@ def _choose_id_col(df: pd.DataFrame) -> str | None:
     return None
 
 
+def json_safe(value):
+    """Convert non-finite numeric values to JSON null for browser assets."""
+    if isinstance(value, dict):
+        return {key: json_safe(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [json_safe(item) for item in value]
+    if isinstance(value, (float, np.floating)):
+        number = float(value)
+        return number if np.isfinite(number) else None
+    if isinstance(value, np.integer):
+        return int(value)
+    return value
+
+
+def write_json(path: Path, payload: dict) -> None:
+    """Write strict, browser-parseable JSON."""
+    path.write_text(json.dumps(json_safe(payload), indent=2, allow_nan=False), encoding="utf-8")
+
+
 def wide_rounds_to_long(df: pd.DataFrame) -> pd.DataFrame:
     """
     Extract long rows with sg_total (and optional driving_acc/driving_dist) from 'round_N.*' wide columns.
@@ -471,7 +490,7 @@ def main():
                 "cats_used": cats_used,
                 "driving_norm": driving_norm,
             }
-            (processed / f"event_{event_id}_course_fit_weights.json").write_text(json.dumps(weights_payload, indent=2), encoding="utf-8")
+            write_json(processed / f"event_{event_id}_course_fit_weights.json", weights_payload)
 
             # Restore original id column name for downstream
             out_df = score_df.rename(columns={"player_id": id_col})
@@ -501,7 +520,7 @@ def main():
         # Robust fallback: write empty/default weights payload to avoid crashes upstream
         print("[warn] DIY course-fit unavailable or failed:", ex)
         empty_payload = {"weights": {}, "cats_used": [], "driving_norm": driving_norm}
-        (processed / f"event_{event_id}_course_fit_weights.json").write_text(json.dumps(empty_payload, indent=2), encoding="utf-8")
+        write_json(processed / f"event_{event_id}_course_fit_weights.json", empty_payload)
         # still write an empty diy parquet with minimal columns for downstream merges
         stub = pd.DataFrame(
             columns=[
