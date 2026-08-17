@@ -1084,7 +1084,8 @@
               winnerName = `${parts[1]} ${parts[0]}`;
             }
           }
-          return `• ${w.year}: ${winnerName}${w.score ? ` (${w.score})` : ""}`;
+          const score = w.score !== null && w.score !== undefined && w.score !== "" ? ` (${w.score})` : "";
+          return `• ${w.year}: ${winnerName}${score}`;
         }).join("<br/>");
         lines.push(`<div style="margin-top:0.25rem;"><strong>Previous winners</strong><br/>${list}</div>`);
       }

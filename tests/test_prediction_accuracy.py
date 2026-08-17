@@ -5,7 +5,7 @@ import unittest
 import requests
 
 from scripts.build_prediction_accuracy import brier_score, calibration_buckets, log_loss, uniform_field_probabilities
-from scripts.fetch_historical_rounds import resolve_course_par
+from scripts.fetch_historical_rounds import resolve_course_par, winner_scores_to_par
 from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
 
 import pandas as pd
@@ -30,6 +30,15 @@ class PredictionAccuracyTests(unittest.TestCase):
     def test_verified_historical_course_par_override_beats_placeholder(self) -> None:
         self.assertEqual(resolve_course_par({"course_par": None}, "FedEx St. Jude Championship", "pga"), 70)
         self.assertIsNone(resolve_course_par({"course_par": None}, "Unknown event", "pga"))
+
+    def test_historical_winner_score_uses_round_level_par(self) -> None:
+        winner = {
+            "round_1": {"score": 68, "course_par": 72},
+            "round_2": {"score": 70, "course_par": 72},
+            "round_3": {"score": 69, "course_par": 70},
+            "round_4": {"score": 68, "course_par": 70},
+        }
+        self.assertEqual(winner_scores_to_par(winner, {"scores": [winner]}, "Example", "pga"), (275, -9))
 
     def test_request_errors_redact_api_credentials(self) -> None:
         message = "403 for https://feeds.datagolf.com/api?tour=pga&key=not-a-real-key"

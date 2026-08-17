@@ -60,7 +60,47 @@ def resolve_course_par(data: dict, event_name: str, tour: str) -> int | None:
         course_par = None
     if course_par is not None and 60 <= course_par <= 75:
         return course_par
+
+    # Historical-rounds responses currently provide par on the individual round
+    # records rather than at the event level.
+    for player in data.get("scores", []):
+        for round_number in range(1, 5):
+            round_data = player.get(f"round_{round_number}") or {}
+            try:
+                course_par = int(round_data.get("course_par"))
+            except (TypeError, ValueError):
+                continue
+            if 60 <= course_par <= 75:
+                return course_par
     return HISTORICAL_EVENT_PAR_OVERRIDES.get((str(tour).lower(), normalize_name(event_name)))
+
+
+def winner_scores_to_par(winner_item: dict, event_data: dict, event_name: str, tour: str) -> tuple[int, int | None]:
+    """Return the winner's total strokes and score to par from completed rounds."""
+    total_strokes = 0
+    total_par = 0
+    has_score = False
+    fallback_par = resolve_course_par(event_data, event_name, tour)
+
+    for round_number in range(1, 5):
+        round_data = winner_item.get(f"round_{round_number}") or {}
+        raw_score = round_data.get("score")
+        try:
+            round_score = int(raw_score)
+        except (TypeError, ValueError):
+            continue
+
+        has_score = True
+        total_strokes += round_score
+        try:
+            round_par = int(round_data.get("course_par"))
+        except (TypeError, ValueError):
+            round_par = fallback_par
+        if round_par is None or not 60 <= round_par <= 75:
+            return total_strokes, None
+        total_par += round_par
+
+    return total_strokes, (total_strokes - total_par if has_score else None)
 
 
 def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> tuple[pd.DataFrame, list]:
@@ -121,20 +161,14 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                 print(f"Skipping year {year}: No scores data.")
                 continue
 
-            # Extract yardage and par
+            # Extract yardage
             yardage = data.get("course_yardage")
-            course_par = resolve_course_par(data, event_name, tour)
 
             # Extract winner (first in scores)
             winner_item = scores[0]
             player_name = winner_item.get("player_name")
             if player_name:
-                total_strokes = 0
-                for rnd in [1, 2, 3, 4]:
-                    round_data = winner_item.get(f"round_{rnd}")
-                    if round_data and "score" in round_data:
-                        total_strokes += round_data["score"]
-                under_par = total_strokes - (course_par * 4) if course_par is not None else None
+                total_strokes, under_par = winner_scores_to_par(winner_item, data, event_name, tour)
                 winners_list.append({"year": year, "winner": player_name, "score": under_par, "total_score": total_strokes})
 
             # Process all players for rounds data
@@ -227,20 +261,14 @@ def fetch_real_historical_rounds(event_name: str, event_id: str, tour: str) -> t
                             print(f"Skipping year {year} (fallback): No scores data.")
                             continue
 
-                        # Extract yardage and par
+                        # Extract yardage
                         yardage = data.get("course_yardage")
-                        course_par = resolve_course_par(data, event_name, tour)
 
                         # Extract winner
                         winner_item = scores[0]
                         player_name = winner_item.get("player_name")
                         if player_name:
-                            total_strokes = 0
-                            for rnd in [1, 2, 3, 4]:
-                                round_data = winner_item.get(f"round_{rnd}")
-                                if round_data and "score" in round_data:
-                                    total_strokes += round_data["score"]
-                            under_par = total_strokes - (course_par * 4) if course_par is not None else None
+                            total_strokes, under_par = winner_scores_to_par(winner_item, data, event_name, tour)
                             winners_list.append({"year": year, "winner": player_name, "score": under_par, "total_score": total_strokes})
 
                         # Process all players

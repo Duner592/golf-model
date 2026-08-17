@@ -257,13 +257,16 @@ def main():
             run([sys.executable, str(SCRIPT_DIR / "compute_sigma_from_sg.py")] + per_event_suffix)
             run([sys.executable, str(SCRIPT_DIR / "merge_sigma_into_features.py")] + per_event_suffix)
 
+            # Historical results also supply the previous-winner scores shown on the site.
+            # Keep this lightweight data fetch in fast runs; only the slower feature
+            # engineering steps below are optional.
+            try:
+                run([sys.executable, str(SCRIPT_DIR / "fetch_historical_rounds.py")] + per_event_suffix)
+            except subprocess.CalledProcessError:
+                print("[warn] Fetching historical rounds failed or script not found. Continuing with existing data.")
+
             # Course fit / history (optional)
             if not skip_course:
-                # Fetch historical rounds first (if available)
-                try:
-                    run([sys.executable, str(SCRIPT_DIR / "fetch_historical_rounds.py")] + per_event_suffix)
-                except subprocess.CalledProcessError:
-                    print("[warn] Fetching historical rounds failed or script not found. Continuing with existing data.")
 
                 try:
                     run([sys.executable, str(SCRIPT_DIR / "build_course_fit_from_history.py")] + per_event_suffix)
