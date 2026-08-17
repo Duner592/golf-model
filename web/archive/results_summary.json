@@ -1,4 +1,13 @@
 {
+  "2026_danish_golf_championship": {
+    "event_id": "2026131",
+    "event_name": "Danish Golf Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "danish_golf_championship"
+  },
   "2026_wyndham_championship": {
     "event_id": "13",
     "event_name": "Wyndham Championship",
