@@ -1,0 +1,12 @@
+{
+  "event_id": "2026132",
+  "event_name": "Nexo Championship",
+  "source_csv": "data/preds/euro/event_2026132_nexo_championship_2026-08-17_leaderboard.csv",
+  "generated_utc": "17-Aug-2026 01:59:07",
+  "metrics": {
+    "field_size": 138,
+    "p_win_max": 0.3796,
+    "p_win_median": 0.0002,
+    "p_win_sum": 1.0
+  }
+}

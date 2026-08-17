@@ -1,0 +1,38 @@
+[
+  {
+    "wind_mph": 11.11,
+    "gust_mph": 17.38,
+    "temp_c": 12.8,
+    "precip_pct": 40.0,
+    "delta_strokes": 0.373,
+    "weathercode": 3,
+    "round": 1
+  },
+  {
+    "wind_mph": 12.68,
+    "gust_mph": 19.97,
+    "temp_c": 12.0,
+    "precip_pct": 32.0,
+    "delta_strokes": 0.561,
+    "weathercode": 2,
+    "round": 2
+  },
+  {
+    "wind_mph": 13.4,
+    "gust_mph": 21.22,
+    "temp_c": 12.1,
+    "precip_pct": 13.0,
+    "delta_strokes": 0.648,
+    "weathercode": 3,
+    "round": 3
+  },
+  {
+    "wind_mph": 6.61,
+    "gust_mph": 14.61,
+    "temp_c": 14.3,
+    "precip_pct": 16.0,
+    "delta_strokes": 0.0,
+    "weathercode": 3,
+    "round": 4
+  }
+]

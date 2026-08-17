@@ -1,0 +1,38 @@
+{
+  "event_name": "BMW Championship",
+  "event_id": "28",
+  "course": "Bellerive Country Club",
+  "total_yardage": null,
+  "course_location": "St. Louis, MO",
+  "start_date": "20-Aug-2026",
+  "field_size": 50,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Scheffler, Scottie",
+      "score": null
+    },
+    {
+      "year": 2024,
+      "winner": "Bradley, Keegan",
+      "score": null
+    },
+    {
+      "year": 2023,
+      "winner": "Hovland, Viktor",
+      "score": null
+    },
+    {
+      "year": 2022,
+      "winner": "Cantlay, Patrick",
+      "score": null
+    },
+    {
+      "year": 2021,
+      "winner": "Cantlay, Patrick",
+      "score": null
+    }
+  ]
+}
