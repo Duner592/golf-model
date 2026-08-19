@@ -141,6 +141,186 @@
             flex: 0 0 auto;
             margin: 0;
         }
+        .last-week-betting {
+            width: 100%;
+            margin: 1.5rem 0 0;
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(29, 124, 66, 0.18);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 248, 242, 0.92));
+            box-shadow: 0 10px 28px -24px rgba(17, 94, 45, 0.52);
+            box-sizing: border-box;
+        }
+        .last-week-betting__header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.8rem;
+        }
+        .last-week-betting__title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .last-week-betting__headline {
+            display: flex;
+            width: fit-content;
+            align-items: baseline;
+            gap: 0.3rem;
+            margin-top: 0.15rem;
+        }
+        .last-week-betting__headline-label {
+            display: block;
+            color: #607066;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .last-week-betting__headline-value {
+            font-size: 0.95rem;
+            font-variant-numeric: tabular-nums;
+            font-weight: 900;
+        }
+        .last-week-betting__headline-value.positive { color: #146c43; }
+        .last-week-betting__headline-value.negative { color: #a12d2d; }
+        .last-week-betting h2 {
+            margin: 0;
+            color: var(--gm-primary);
+            font-size: 1.1rem;
+        }
+        .last-week-betting__hint {
+            color: #607066;
+            font-size: 0.82rem;
+        }
+        .last-week-betting__list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.65rem;
+        }
+        .last-week-betting__event {
+            border: 1px solid rgba(29, 124, 66, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.76);
+            overflow: hidden;
+        }
+        .last-week-betting__event-header,
+        .last-week-betting__type-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+        .last-week-betting__event-header {
+            position: relative;
+            padding: 0.8rem;
+            cursor: pointer;
+            list-style: none;
+        }
+        .last-week-betting__event-header::-webkit-details-marker {
+            display: none;
+        }
+        .last-week-betting__event-header::after {
+            content: 'Show bets';
+            flex: 0 0 auto;
+            margin-left: 0.65rem;
+            color: #5d7564;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .last-week-betting__event[open] .last-week-betting__event-header::after {
+            content: 'Hide bets';
+        }
+        .last-week-betting__event-header > .last-week-betting__pl {
+            margin-left: auto;
+        }
+        .last-week-betting__event-body {
+            padding: 0 0.8rem 0.8rem;
+            border-top: 1px solid rgba(29, 124, 66, 0.1);
+        }
+        .last-week-betting__tour {
+            display: block;
+            margin-bottom: 0.15rem;
+            color: #5d7564;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .last-week-betting__event-name {
+            color: #1f4532;
+            font-size: 0.92rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .last-week-betting__players {
+            display: grid;
+            gap: 0.35rem;
+            margin: 0.65rem 0 0;
+            padding: 0.65rem 0 0;
+            border-top: 1px solid rgba(29, 124, 66, 0.1);
+            list-style: none;
+        }
+        .last-week-betting__type + .last-week-betting__type {
+            margin-top: 0.8rem;
+        }
+        .last-week-betting__type-header {
+            padding: 0.35rem 0;
+            border-radius: 5px;
+            background: rgba(29, 124, 66, 0.07);
+        }
+        .last-week-betting__type-heading {
+            margin: 0;
+            color: #5d7564;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .last-week-betting__type .last-week-betting__players {
+            margin: 0.35rem 0 0;
+            padding-top: 0.15rem;
+            border-top: 0;
+        }
+        .last-week-betting__player {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: start;
+            gap: 0.75rem;
+        }
+        .last-week-betting__player-name {
+            min-width: 0;
+            color: #425449;
+            font-size: 0.84rem;
+        }
+        .last-week-betting__bet-meta {
+            grid-column: 1 / -1;
+            color: #6a7c70;
+            font-size: 0.74rem;
+            line-height: 1.35;
+        }
+        .last-week-betting__pl {
+            flex: 0 0 auto;
+            font-variant-numeric: tabular-nums;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .last-week-betting__pl.positive { color: #146c43; }
+        .last-week-betting__pl.negative { color: #a12d2d; }
+        @media (max-width: 560px) {
+            .last-week-betting__header,
+            .last-week-betting__event-header,
+            .last-week-betting__type-header {
+                align-items: flex-start;
+            }
+            .last-week-betting__player {
+                gap: 0.45rem;
+            }
+        }
         @media (max-width: 560px) {
             .featured-current-bet__preview-item {
                 grid-template-columns: 1fr;
@@ -989,6 +1169,22 @@
             </div>
             <div class="featured-current-bets__list" id="featured-current-bets-list"></div>
         </section>
+        <section class="last-week-betting" id="last-week-betting" aria-labelledby="last-week-betting-title" hidden>
+            <div class="last-week-betting__header">
+                <div>
+                    <div class="last-week-betting__title-row">
+                        <h2 id="last-week-betting-title">Last Week’s Betting P/L</h2>
+                    </div>
+                    <span class="last-week-betting__headline">
+                        <span class="last-week-betting__headline-label">Combined P/L</span>
+                        <span class="last-week-betting__headline-value" id="last-week-betting-combined">—</span>
+                    </span>
+                    <span class="last-week-betting__hint" id="last-week-betting-period"></span>
+                </div>
+                <a class="link" id="last-week-betting-all-link" href="spreadsheet.html">View all bets</a>
+            </div>
+            <div class="last-week-betting__list" id="last-week-betting-list"></div>
+        </section>
         <section class="betting-overview" aria-labelledby="betting-overview-title">
             <div class="betting-header">
                 <h2 id="betting-overview-title">Betting Performance Snapshot</h2>
@@ -1131,6 +1327,152 @@
         const iso = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
         const date = new Date(iso);
         return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function weekStart(date) {
+        const start = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        const offset = (start.getDay() + 6) % 7;
+        start.setDate(start.getDate() - offset);
+        start.setHours(0, 0, 0, 0);
+        return start;
+    }
+
+    function formatDateInput(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    function bettingProfitLoss(row) {
+        const explicitProfitLoss = parseCurrency(row['Profit/Loss']);
+        if (Number.isFinite(explicitProfitLoss)) return explicitProfitLoss;
+        const stake = parseCurrency(row['Stake']);
+        const returnVal = parseCurrency(row['Return']);
+        if (!Number.isFinite(stake) && !Number.isFinite(returnVal)) return null;
+        return (Number.isFinite(returnVal) ? returnVal : 0) - (Number.isFinite(stake) ? stake : 0);
+    }
+
+    function priceSortValue(value) {
+        const text = String(value || '').trim().toLowerCase();
+        const fractional = text.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/);
+        if (fractional) {
+            const denominator = Number(fractional[2]);
+            return denominator ? Number(fractional[1]) / denominator : null;
+        }
+        const decimal = text.match(/\d+(?:\.\d+)?/);
+        return decimal ? Number(decimal[0]) : null;
+    }
+
+    function renderLastSettledWeekBetting(rows) {
+        const section = document.getElementById('last-week-betting');
+        const periodEl = document.getElementById('last-week-betting-period');
+        const combinedEl = document.getElementById('last-week-betting-combined');
+        const allBetsLink = document.getElementById('last-week-betting-all-link');
+        const list = document.getElementById('last-week-betting-list');
+        if (!section || !periodEl || !combinedEl || !allBetsLink || !list) return;
+
+        const settled = (Array.isArray(rows) ? rows : [])
+            .map(row => ({ row, date: parseBettingDate(row['Date'] || '') }))
+            .filter(({ row, date }) => {
+                const outcome = String(row['Outcome'] || '').trim().toLowerCase();
+                return Boolean(date) && outcome && !outcome.includes('pending') && Number.isFinite(bettingProfitLoss(row));
+            });
+        if (!settled.length) return;
+
+        const latestDate = settled.reduce((latest, entry) => (!latest || entry.date > latest ? entry.date : latest), null);
+        const start = weekStart(latestDate);
+        const end = new Date(start);
+        end.setDate(end.getDate() + 6);
+        const events = new Map();
+
+        settled.filter(({ date }) => date >= start && date <= end).forEach(({ row }) => {
+            const tournament = String(row['Tournament'] || 'Unspecified tournament').trim() || 'Unspecified tournament';
+            const tour = normalizeTourName(row['Tour/Majors']);
+            const key = `${tour}::${tournament}`;
+            if (!events.has(key)) {
+                events.set(key, { tour, tournament, profitLoss: 0, bets: [] });
+            }
+            const event = events.get(key);
+            const player = String(row['Player'] || 'Unspecified player').trim() || 'Unspecified player';
+            const profitLoss = bettingProfitLoss(row);
+            event.profitLoss += profitLoss;
+            event.bets.push({
+                player,
+                profitLoss,
+                type: String(row['Type'] || '').trim(),
+                price: String(row['Price'] || '').trim(),
+                eachWayTerms: String(row['Place Terms'] || '').trim(),
+                result: String(row['Result'] || '').trim(),
+                outcome: String(row['Outcome'] || '').trim()
+            });
+        });
+
+        if (!events.size) return;
+        const formatWeekDate = value => value.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+        periodEl.textContent = `${formatWeekDate(start)}–${formatWeekDate(end)} · settled bets only`;
+        allBetsLink.href = `spreadsheet.html?dateFrom=${encodeURIComponent(formatDateInput(start))}&dateTo=${encodeURIComponent(formatDateInput(end))}`;
+        const plClass = value => value > 0.004 ? 'positive' : value < -0.004 ? 'negative' : '';
+        const eventRows = Array.from(events.values()).sort((a, b) => a.tournament.localeCompare(b.tournament));
+        const typeOrder = ['E/W', 'Outright', 'First Round Leader E/W', 'First Round Leader', 'Dual Forecast', 'Forecast'];
+        const combinedProfitLoss = eventRows.reduce((total, event) => total + event.profitLoss, 0);
+        combinedEl.textContent = formatSignedCurrency(combinedProfitLoss);
+        combinedEl.className = `last-week-betting__headline-value ${plClass(combinedProfitLoss)}`;
+        list.innerHTML = eventRows.map(event => {
+            const betsByType = new Map();
+            event.bets.forEach(bet => {
+                const type = bet.type || 'Other bets';
+                if (!betsByType.has(type)) betsByType.set(type, []);
+                betsByType.get(type).push(bet);
+            });
+            const typeGroups = Array.from(betsByType.entries())
+                .sort(([typeA], [typeB]) => {
+                    const orderA = typeOrder.indexOf(typeA);
+                    const orderB = typeOrder.indexOf(typeB);
+                    return (orderA === -1 ? typeOrder.length : orderA) - (orderB === -1 ? typeOrder.length : orderB)
+                        || typeA.localeCompare(typeB);
+                })
+                .map(([type, bets]) => {
+                    const typeProfitLoss = bets.reduce((total, bet) => total + bet.profitLoss, 0);
+                    const players = bets
+                        .sort((a, b) => {
+                            const priceA = priceSortValue(a.price);
+                            const priceB = priceSortValue(b.price);
+                            if (priceA != null && priceB != null && priceA !== priceB) return priceA - priceB;
+                            if (priceA != null && priceB == null) return -1;
+                            if (priceA == null && priceB != null) return 1;
+                            return a.player.localeCompare(b.player);
+                        })
+                        .map(bet => {
+                    const terms = bet.eachWayTerms && !/^n\/?a$/i.test(bet.eachWayTerms)
+                        ? bet.eachWayTerms
+                        : '';
+                    const result = bet.result && !/^n\/?a$/i.test(bet.result)
+                        ? bet.result
+                        : bet.outcome;
+                    const details = [bet.price, terms, result ? `Result: ${result}` : ''].filter(Boolean).join(' · ');
+                    return `
+                    <li class="last-week-betting__player">
+                        <span class="last-week-betting__player-name">${bettingFilterLink('player', bet.player)}</span>
+                        <span class="last-week-betting__pl ${plClass(bet.profitLoss)}">${formatSignedCurrency(bet.profitLoss)}</span>
+                        <span class="last-week-betting__bet-meta">${escapeHtml(details)}</span>
+                    </li>`;
+                        }).join('');
+                    return `<section class="last-week-betting__type"><div class="last-week-betting__type-header"><h3 class="last-week-betting__type-heading">${escapeHtml(type)}</h3><span class="last-week-betting__pl ${plClass(typeProfitLoss)}">${formatSignedCurrency(typeProfitLoss)}</span></div><ul class="last-week-betting__players">${players}</ul></section>`;
+                }).join('');
+            return `
+                <details class="last-week-betting__event">
+                    <summary class="last-week-betting__event-header">
+                        <div>
+                            <span class="last-week-betting__tour">${escapeHtml(event.tour)}</span>
+                            <span class="last-week-betting__event-name">${bettingFilterLink('tournament', event.tournament)}</span>
+                        </div>
+                        <span class="last-week-betting__pl ${plClass(event.profitLoss)}">${formatSignedCurrency(event.profitLoss)}</span>
+                    </summary>
+                    <div class="last-week-betting__event-body"><div class="last-week-betting__players">${typeGroups}</div></div>
+                </details>`;
+        }).join('');
+        section.hidden = false;
     }
 
     function createEmptyPeriod(key, label) {
@@ -2299,6 +2641,7 @@
 
         loadFeaturedCurrentBets(bettingRowsCache);
         document.getElementById('pending-bets').innerHTML = await loadPendingBets(bettingRowsCache);
+        renderLastSettledWeekBetting(bettingRowsCache);
 
         const lastModified = await getLastModifiedTimestamp();
         initBettingOverview(bettingRowsCache, lastModified);
