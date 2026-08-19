@@ -138,8 +138,21 @@ def main() -> None:
     for event in events:
         print_event(event)
         event_id = str(event.get("event_id"))
-        cmd = [sys.executable, str(ROOT / "scripts" / "update_archived_event.py"), "--event_id", event_id, "--force"]
-        print("Command:", f"python scripts/update_archived_event.py --event_id {event_id} --force", flush=True)
+        tour = str(event.get("tour"))
+        cmd = [
+            sys.executable,
+            str(ROOT / "scripts" / "update_archived_event.py"),
+            "--event_id",
+            event_id,
+            "--tour",
+            tour,
+            "--force",
+        ]
+        print(
+            "Command:",
+            f"python scripts/update_archived_event.py --event_id {event_id} --tour {tour} --force",
+            flush=True,
+        )
         if not args.dry_run:
             subprocess.run(cmd, check=True)
 

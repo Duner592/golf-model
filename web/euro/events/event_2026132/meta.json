@@ -1,0 +1,38 @@
+{
+  "tour": "euro",
+  "event_id": "2026132",
+  "event_name": "Nexo Championship",
+  "lat": null,
+  "lon": null,
+  "r1_date": "2026-08-20",
+  "start_date": "2026-08-20",
+  "generated_utc": "19-Aug-2026 07:42:46",
+  "source_csv": "data/preds/euro/event_2026132_nexo_championship_2026-08-19_leaderboard.csv",
+  "has_predictions": true,
+  "tee_times_available": true,
+  "resources": {
+    "leaderboard": "euro/events/event_2026132/leaderboard.json",
+    "summary": "euro/events/event_2026132/summary.json",
+    "meta": "euro/events/event_2026132/meta.json",
+    "downloads_csv": "euro/downloads/event_2026132_nexo_championship_2026-08-19_leaderboard.csv",
+    "downloads_html": "euro/downloads/event_2026132_nexo_championship_2026-08-19_leaderboard.html",
+    "weather_meta": "euro/events/event_2026132/weather_meta.json",
+    "weather_round_neutral": "euro/events/event_2026132/weather_round_neutral.json",
+    "weather_round_wave": "euro/events/event_2026132/weather_round_wave.json",
+    "course_fit_weights": "euro/events/event_2026132/course_fit_weights.json",
+    "course_history_summary": "euro/events/event_2026132/course_history_summary.json",
+    "tournament_summary": "euro/events/event_2026132/tournament_summary.json",
+    "field_teetimes": "euro/events/event_2026132/field_teetimes.csv",
+    "schedule": "euro/schedule.json",
+    "initial_snapshot": "euro/initial/2026/event_2026132/meta.json",
+    "initial_leaderboard": "euro/initial/2026/event_2026132/leaderboard.json",
+    "initial_downloads_csv": "euro/initial/2026/event_2026132/leaderboard.csv",
+    "initial_downloads_html": "euro/initial/2026/event_2026132/leaderboard.html"
+  },
+  "initial_snapshot": {
+    "snapshot_type": "initial",
+    "snapshot_created_utc": "2026-08-17T01:59:07Z",
+    "meta": "euro/initial/2026/event_2026132/meta.json",
+    "leaderboard": "euro/initial/2026/event_2026132/leaderboard.json"
+  }
+}

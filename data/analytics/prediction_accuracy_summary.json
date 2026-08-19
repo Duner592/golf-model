@@ -18,21 +18,21 @@
     "mean_actual_top10_rate": 0.170316301703163
   },
   "pga": {
-    "events": 34,
-    "rows": 4159,
-    "brier_win": 0.016724270964765104,
-    "brier_top10": 0.14995507760067112,
+    "events": 35,
+    "rows": 4228,
+    "brier_win": 0.01653133029771615,
+    "brier_top10": 0.14867402936378465,
     "brier_mc": null,
-    "log_loss_win": 0.1115570769594896,
-    "log_loss_top10": 0.5680513017964354,
+    "log_loss_win": 0.10939894204976226,
+    "log_loss_top10": 0.5661990467725798,
     "log_loss_mc": null,
-    "uniform_brier_win": 0.014506114329423796,
-    "uniform_brier_top10": 0.1473341983749334,
-    "brier_skill_win": -0.15291184013640802,
-    "brier_skill_top10": -0.017788668582348732,
-    "mean_predicted_win_pct": 0.8173358980524165,
-    "mean_actual_win_rate": 0.014681208053691275,
-    "mean_predicted_top10_pct": 8.17448905987016,
-    "mean_actual_top10_rate": 0.1686241610738255
+    "uniform_brier_win": 0.014505658143481058,
+    "uniform_brier_top10": 0.14701655566896424,
+    "brier_skill_win": -0.13964703526019906,
+    "brier_skill_top10": -0.011274061531903579,
+    "mean_predicted_win_pct": 0.8276371807000946,
+    "mean_actual_win_rate": 0.01468189233278956,
+    "mean_predicted_top10_pct": 8.27755439924314,
+    "mean_actual_top10_rate": 0.16843393148450245
   }
 }

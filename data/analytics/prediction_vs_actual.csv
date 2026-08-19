@@ -1,4 +1,73 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+27,FedEx St. Jude Championship,pga,2026,1,Scottie Scheffler,22.17,78.0,100.0,0.3932725641647565,1.0,1,1.0,1.0
+27,FedEx St. Jude Championship,pga,2026,2,Tommy Fleetwood,20.17,75.8,100.0,0.6233347622548291,7.0,T7,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,3,Patrick Cantlay,5.89,48.6,100.0,0.2386747673377438,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,4,Xander Schauffele,5.31,48.5,100.0,0.1072823345656897,7.0,T7,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,5,Hideki Matsuyama,4.62,43.7,100.0,0.0722587504861681,7.0,T7,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,6,Viktor Hovland,4.59,43.6,100.0,0.3519927717479907,19.0,T19,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,7,J.J. Spaun,3.63,39.2,100.0,0.2670049036238231,34.0,T34,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,8,Sam Burns,3.61,39.1,100.0,0.1615106152635738,3.0,T3,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,9,Justin Thomas,3.4,37.7,100.0,0.0500928686967707,47.0,T47,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,10,Akshay Bhatia,2.87,35.5,100.0,0.2119910520177086,68.0,68,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,11,Ludvig Aberg,2.44,31.6,100.0,0.2998141934258119,7.0,T7,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,12,Robert MacIntyre,2.28,30.9,100.0,-0.0446296271833319,,WD,,
+27,FedEx St. Jude Championship,pga,2026,13,Cameron Young,2.03,29.8,100.0,0.3778058034590648,39.0,T39,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,14,Collin Morikawa,2.02,29.3,100.0,0.3188509647719961,52.0,T52,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,15,Bud Cauley,1.5,25.7,100.0,0.1693787214359038,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,16,Maverick McNealy,1.48,24.8,100.0,0.2648837447221634,19.0,T19,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,17,Sungjae Im,1.04,20.9,100.0,0.2092289583557213,5.0,T5,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,18,Si Woo Kim,1.01,19.0,100.0,0.3726667128744301,2.0,2,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,19,Jacob Bridgeman,0.91,19.0,100.0,0.0329790353369525,30.0,T30,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,20,Rory McIlroy,0.88,18.9,100.0,0.2322728310831442,66.0,66,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,21,Matt Fitzpatrick,0.75,16.7,100.0,0.1147818409762829,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,22,Russell Henley,0.74,16.2,100.0,0.2004334051709802,30.0,T30,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,23,Keith Mitchell,0.67,16.5,100.0,0.3152743800494691,34.0,T34,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,24,Adam Scott,0.64,15.2,100.0,0.0724627596995512,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,25,Ben Griffin,0.63,14.2,100.0,-0.0908384073839239,42.0,T42,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,26,Tom Kim,0.5,12.2,100.0,0.2576421889197104,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,27,Justin Rose,0.47,13.0,100.0,0.1270006557913236,39.0,T39,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,28,Corey Conners,0.42,12.1,100.0,0.3173446005856449,47.0,T47,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,29,Sahith Theegala,0.34,11.1,100.0,0.0415571485423815,67.0,67,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,30,Aaron Rai,0.3,9.7,100.0,0.4574215478725979,63.0,T63,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,31,Michael Thorbjornsen,0.3,9.9,100.0,0.14520386391846,47.0,T47,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,32,Kurt Kitayama,0.26,8.3,100.0,-0.1395179963306053,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,33,Alex Noren,0.24,8.8,100.0,-0.3651538312086981,3.0,T3,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,34,Eric Cole,0.21,7.3,100.0,-0.0689014434291351,58.0,T58,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,35,Harry Hall,0.19,7.2,100.0,0.148381036959005,24.0,T24,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,36,Alex Fitzpatrick,0.17,7.9,100.0,0.1560829859184601,61.0,T61,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,37,Ryan Gerard,0.14,5.2,100.0,0.0438745850575982,24.0,T24,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,38,Kristoffer Reitan,0.14,6.3,100.0,0.0744882639184601,58.0,T58,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,39,Shane Lowry,0.12,5.3,100.0,-0.0257449760538079,52.0,T52,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,40,Nicolai Hojgaard,0.12,5.7,100.0,0.1032581859184601,34.0,T34,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,41,Ryo Hisatsune,0.11,4.7,100.0,0.1046518079184601,52.0,T52,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,42,Brian Harman,0.08,3.9,100.0,0.3548666587607021,30.0,T30,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,43,Rickie Fowler,0.07,4.1,100.0,0.1593689506025051,34.0,T34,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,44,Michael Brennan,0.07,3.8,100.0,0.0627794099184601,42.0,T42,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,45,Wyndham Clark,0.06,3.1,100.0,0.0435867910516024,5.0,T5,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,46,Jordan Smith,0.06,5.0,100.0,0.0926402809184601,55.0,T55,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,47,Ricky Castillo,0.05,3.2,100.0,0.03529065991846,63.0,T63,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,48,J.T. Poston,0.04,2.5,100.0,-0.1732024129944714,24.0,T24,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,49,Nico Echavarria,0.03,1.4,100.0,-0.0122738382959423,12.0,T12,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,50,Matt McCarty,0.03,2.3,100.0,0.03636645491846,63.0,T63,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,51,Sepp Straka,0.03,1.9,100.0,0.0197518450471305,34.0,T34,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,52,Pierceson Coody,0.02,2.1,100.0,0.00299311591846,19.0,T19,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,53,Sudarshan Yellamaraju,0.02,2.2,100.0,0.02189018791846,47.0,T47,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,54,Chris Gotterup,0.02,2.2,100.0,0.4840591692632949,30.0,T30,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,55,Jackson Koivun,0.02,1.3,100.0,0.0979492334184601,24.0,T24,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,56,Harris English,0.02,1.5,100.0,-0.0289704223805705,42.0,T42,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,57,Sam Stevens,0.01,0.7,100.0,0.0815886824489519,42.0,T42,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,58,Max Homa,0.01,1.0,100.0,0.0249120627802207,24.0,T24,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,59,Patrick Rodgers,0.0,0.2,100.0,-0.2138412794768787,19.0,T19,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,60,Min Woo Lee,0.0,0.8,100.0,0.2185042890232333,55.0,T55,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,61,Ryan Fox,0.0,0.6,100.0,-0.6627629555113063,58.0,T58,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,62,Nick Taylor,0.0,0.7,100.0,0.0067915494447097,39.0,T39,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,63,Michael Kim,0.0,0.1,100.0,-0.0361653402990924,55.0,T55,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,64,Jake Knapp,0.0,0.0,100.0,0.1544268444650884,7.0,T7,0.0,1.0
+27,FedEx St. Jude Championship,pga,2026,65,Aldrich Potgieter,0.0,0.0,100.0,-0.0215178441952386,61.0,T61,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,66,Jordan Spieth,0.0,0.5,100.0,0.0135141550948361,19.0,T19,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,67,Alex Smalley,0.0,0.2,100.0,-0.3935950562761609,24.0,T24,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,68,Matti Schmid,0.0,1.0,100.0,-0.0473381912918191,47.0,T47,0.0,0.0
+27,FedEx St. Jude Championship,pga,2026,69,Gary Woodland,0.0,0.4,100.0,0.1508435564322223,42.0,T42,0.0,0.0
 2026131,Danish Golf Championship,euro,2026,1,Mikael Lindberg,22.32,81.4,98.1,0.102912246,53.0,T53,0.0,0.0
 2026131,Danish Golf Championship,euro,2026,2,Oliver Lindell,14.81,74.0,97.2,0.121796753,2.0,T2,0.0,1.0
 2026131,Danish Golf Championship,euro,2026,3,Ben Schmidt,12.7,70.0,96.6,-0.037114624,61.0,T61,0.0,0.0

@@ -1,6 +1,6 @@
 # Golf Model Project Context
 
-Last updated: 2026-08-13
+Last updated: 2026-08-19
 
 ## Purpose
 
@@ -55,6 +55,7 @@ cd web/ && python -m http.server 8000
 - Course-history summaries should include `player_name` where historical source data provides it. `scripts/build_course_history_from_hist.py` carries names into `event_{event_id}_course_history_stats.parquet`, and `scripts/build_web_assets.py` can backfill names from the historical combined parquet when older stats files contain only player IDs. `web/event_drilldown.html` shows only aggregate course-history sample metrics in the side card; player-level historical tables are intentionally omitted because they are model diagnostics and can include unnamed historical IDs.
 - `web/{tour}/initial/{year}/event_{event_id}/`: frozen first successful prediction snapshot for an event/week; later scheduled runs keep live assets updated without overwriting this initial copy. Each snapshot should include `model_page.html`, a self-contained event-specific backup page with embedded leaderboard, tournament, weather, course-fit, and provenance data.
 - DataGolf event IDs are not globally unique across tours (for example, PGA and Korn Ferry can both use `27`). When `scripts/build_web_assets.py` enriches tournament details from `upcoming-events.json` or the DataGolf schedule, it must match both `tour` and `event_id`; matching the ID alone can assign another tour's venue, location, or winner.
+- Archive updates follow the same rule: `scripts/update_archived_event.py` accepts `--tour` and rejects ambiguous event IDs. `scripts/update_previous_week_archives.py` always supplies the tour, preventing PGA event `27` (FedEx St. Jude) from being mistaken for the Korn Ferry event with the same ID.
 - `web/model_health.html`: browser-rendered operational health page for deployed site assets. It reads only files served from `web/` (`status.json`, tour `meta.json`, tour `schedule.json`, `archive/index.json`, and `archive/results_summary.json`) and mirrors the main integrity concerns: stale status, current schedule vs model metadata, status vs model metadata, archive leaderboard availability, and expected result-file coverage.
 - `web/spreadsheet.html`: browser-rendered Overall Betting Data page backed by the manual `web/spreadsheet_data.csv`. It removes note/detail-only columns from the table view, offers combined report filters for year, tour, tournament, course, player, bookmaker, bet type, outcome, date range, P/L range, global search, and per-column values. The report-select dropdowns cascade, so each presents only values compatible with the other active report filters (for example, selecting 2026 limits Player to 2026 bets). It keeps its summary cards, active-filter note, legacy collapsible Highlights table (winning bets above £100), CSV export, and print-to-PDF report aligned to the same currently visible rows.
 - The shared Betting History menu retains Analytics, Odds & Value, Overall Data, and ROI% Data only; yearly Overall Data shortcuts are intentionally omitted because the page’s year filter replaces them.

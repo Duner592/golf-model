@@ -47,7 +47,7 @@ def load_upcoming_events(root: Path) -> dict:
         return json.load(f)
 
 
-def get_event_details(event_id: str, upcoming_data: dict) -> dict | None:
+def get_event_details(event_id: str, upcoming_data: dict, tour: str | None = None) -> dict | None:
     """
     Get event details from upcoming-events.json.
 
@@ -58,10 +58,24 @@ def get_event_details(event_id: str, upcoming_data: dict) -> dict | None:
     Returns:
         dict or None: Event details.
     """
-    for event in upcoming_data.get("schedule", []):
-        if str(event.get("event_id")) == str(event_id):
-            return event
-    return None
+    matches = [
+        event
+        for event in upcoming_data.get("schedule", [])
+        if str(event.get("event_id")) == str(event_id)
+    ]
+    if tour:
+        normalized_tour = str(tour).lower()
+        matches = [event for event in matches if str(event.get("tour", "")).lower() == normalized_tour]
+
+    if len(matches) == 1:
+        return matches[0]
+    if not matches:
+        return None
+
+    candidates = ", ".join(str(event.get("tour", "unknown")) for event in matches)
+    raise ValueError(
+        f"Event ID {event_id} is ambiguous across tours ({candidates}). Pass --tour explicitly."
+    )
 
 
 def _schedule_events_from_payload(payload):
@@ -334,6 +348,7 @@ def update_tournament_summary(ts_path: Path, winner: str | None) -> None:
 def main():
     ap = argparse.ArgumentParser(description="Update archived tournament_summary.json for a completed event.")
     ap.add_argument("--event_id", type=str, required=True, help="Event ID to update")
+    ap.add_argument("--tour", type=str, default=None, help="Tour for the event; required when an event ID is shared")
     ap.add_argument(
         "--force",
         action="store_true",
@@ -348,7 +363,7 @@ def main():
     upcoming_data = load_upcoming_events(root)
 
     # Get event details
-    event_details = get_event_details(event_id, upcoming_data)
+    event_details = get_event_details(event_id, upcoming_data, args.tour)
     if not event_details:
         print(f"Error: Event ID {event_id} not found in upcoming-events.json")
         return
