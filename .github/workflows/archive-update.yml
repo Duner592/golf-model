@@ -74,6 +74,10 @@ jobs:
           python scripts/fetch_actual_results.py --allow-missing
           python scripts/build_prediction_accuracy.py
 
+      - name: Refresh archived outright odds
+        if: ${{ env.DRY_RUN != 'true' }}
+        run: python scripts/fetch_archive_outright_odds.py
+
       - name: Commit archive updates
         if: ${{ env.DRY_RUN != 'true' }}
         run: |

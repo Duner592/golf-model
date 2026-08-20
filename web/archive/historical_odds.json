@@ -1,0 +1,708 @@
+{
+  "generated_utc": "2026-08-20T14:42:38Z",
+  "books": [
+    "bet365",
+    "skybet"
+  ],
+  "events": [
+    {
+      "tour": "pga",
+      "event_id": "27",
+      "year": "2026",
+      "slug": "fedex_st_jude_championship",
+      "event_name": "FedEx St. Jude Championship",
+      "players": {
+        "Scheffler, Scottie": {
+          "bet365": {
+            "open": "4.5/1",
+            "close": "4.5/1"
+          },
+          "skybet": {
+            "open": "5.5/1",
+            "close": "5/1"
+          }
+        },
+        "McIlroy, Rory": {
+          "bet365": {
+            "open": "11/1",
+            "close": "12/1"
+          },
+          "skybet": {
+            "open": "12/1",
+            "close": "14/1"
+          }
+        },
+        "Schauffele, Xander": {
+          "bet365": {
+            "open": "14/1",
+            "close": "16/1"
+          },
+          "skybet": {
+            "open": "16/1",
+            "close": "16/1"
+          }
+        },
+        "Fitzpatrick, Matt": {
+          "bet365": {
+            "open": "20/1",
+            "close": "18/1"
+          },
+          "skybet": {
+            "open": "22/1",
+            "close": "22/1"
+          }
+        },
+        "Young, Cameron": {
+          "bet365": {
+            "open": "20/1",
+            "close": "20/1"
+          },
+          "skybet": {
+            "open": "20/1",
+            "close": "18/1"
+          }
+        },
+        "Fleetwood, Tommy": {
+          "bet365": {
+            "open": "16/1",
+            "close": "20/1"
+          },
+          "skybet": {
+            "open": "18/1",
+            "close": "18/1"
+          }
+        },
+        "Burns, Sam": {
+          "bet365": {
+            "open": "20/1",
+            "close": "20/1"
+          },
+          "skybet": {
+            "open": "20/1",
+            "close": "18/1"
+          }
+        },
+        "Aberg, Ludvig": {
+          "bet365": {
+            "open": "22/1",
+            "close": "22/1"
+          },
+          "skybet": {
+            "open": "25/1",
+            "close": "22/1"
+          }
+        },
+        "Morikawa, Collin": {
+          "bet365": {
+            "open": "22/1",
+            "close": "22/1"
+          },
+          "skybet": {
+            "open": "22/1",
+            "close": "25/1"
+          }
+        },
+        "Matsuyama, Hideki": {
+          "bet365": {
+            "open": "20/1",
+            "close": "22/1"
+          },
+          "skybet": {
+            "open": "20/1",
+            "close": "25/1"
+          }
+        },
+        "Kim, Si Woo": {
+          "bet365": {
+            "open": "30/1",
+            "close": "30/1"
+          },
+          "skybet": {
+            "open": "30/1",
+            "close": "28/1"
+          }
+        },
+        "Thomas, Justin": {
+          "bet365": {
+            "open": "33/1",
+            "close": "30/1"
+          },
+          "skybet": {
+            "open": "33/1",
+            "close": "25/1"
+          }
+        },
+        "Hovland, Viktor": {
+          "bet365": {
+            "open": "33/1",
+            "close": "33/1"
+          },
+          "skybet": {
+            "open": "33/1",
+            "close": "30/1"
+          }
+        },
+        "Cantlay, Patrick": {
+          "bet365": {
+            "open": "28/1",
+            "close": "33/1"
+          },
+          "skybet": {
+            "open": "30/1",
+            "close": "30/1"
+          }
+        },
+        "Gotterup, Chris": {
+          "bet365": {
+            "open": "28/1",
+            "close": "35/1"
+          },
+          "skybet": {
+            "open": "30/1",
+            "close": "30/1"
+          }
+        },
+        "Kim, Tom": {
+          "bet365": {
+            "open": "33/1",
+            "close": "35/1"
+          },
+          "skybet": {
+            "open": "35/1",
+            "close": "40/1"
+          }
+        },
+        "Koivun, Jackson": {
+          "bet365": {
+            "open": "35/1",
+            "close": "35/1"
+          },
+          "skybet": {
+            "open": "33/1",
+            "close": "35/1"
+          }
+        },
+        "Henley, Russell": {
+          "bet365": {
+            "open": "33/1",
+            "close": "35/1"
+          },
+          "skybet": {
+            "open": "30/1",
+            "close": "33/1"
+          }
+        },
+        "Clark, Wyndham": {
+          "bet365": {
+            "open": "35/1",
+            "close": "45/1"
+          },
+          "skybet": {
+            "open": "33/1",
+            "close": "40/1"
+          }
+        },
+        "McNealy, Maverick": {
+          "bet365": {
+            "open": "45/1",
+            "close": "50/1"
+          },
+          "skybet": {
+            "open": "45/1",
+            "close": "45/1"
+          }
+        },
+        "Thorbjornsen, Michael": {
+          "bet365": {
+            "open": "50/1",
+            "close": "50/1"
+          },
+          "skybet": {
+            "open": "40/1",
+            "close": "40/1"
+          }
+        },
+        "Spaun, J.J.": {
+          "bet365": {
+            "open": "40/1",
+            "close": "50/1"
+          },
+          "skybet": {
+            "open": "40/1",
+            "close": "35/1"
+          }
+        },
+        "Griffin, Ben": {
+          "bet365": {
+            "open": "50/1",
+            "close": "50/1"
+          },
+          "skybet": {
+            "open": "40/1",
+            "close": "40/1"
+          }
+        },
+        "MacIntyre, Robert": {
+          "bet365": {
+            "open": "35/1",
+            "close": "50/1"
+          },
+          "skybet": {
+            "open": "33/1",
+            "close": "40/1"
+          }
+        },
+        "Fowler, Rickie": {
+          "bet365": {
+            "open": "50/1",
+            "close": "55/1"
+          },
+          "skybet": {
+            "open": "55/1",
+            "close": "50/1"
+          }
+        },
+        "Gerard, Ryan": {
+          "bet365": {
+            "open": "55/1",
+            "close": "55/1"
+          },
+          "skybet": {
+            "open": "50/1",
+            "close": "40/1"
+          }
+        },
+        "Lee, Min Woo": {
+          "bet365": {
+            "open": "50/1",
+            "close": "55/1"
+          },
+          "skybet": {
+            "open": "40/1",
+            "close": "45/1"
+          }
+        },
+        "Brennan, Michael": {
+          "bet365": {
+            "open": "55/1",
+            "close": "55/1"
+          },
+          "skybet": {
+            "open": "45/1",
+            "close": "40/1"
+          }
+        },
+        "Bhatia, Akshay": {
+          "bet365": {
+            "open": "60/1",
+            "close": "60/1"
+          },
+          "skybet": {
+            "open": "50/1",
+            "close": "50/1"
+          }
+        },
+        "Rose, Justin": {
+          "bet365": {
+            "open": "50/1",
+            "close": "60/1"
+          },
+          "skybet": {
+            "open": "40/1",
+            "close": "50/1"
+          }
+        },
+        "Rai, Aaron": {
+          "bet365": {
+            "open": "66/1",
+            "close": "66/1"
+          },
+          "skybet": {
+            "open": "60/1",
+            "close": "50/1"
+          }
+        },
+        "Kitayama, Kurt": {
+          "bet365": {
+            "open": "50/1",
+            "close": "66/1"
+          },
+          "skybet": {
+            "open": "45/1",
+            "close": "55/1"
+          }
+        },
+        "Noren, Alex": {
+          "bet365": {
+            "open": "60/1",
+            "close": "70/1"
+          },
+          "skybet": {
+            "open": "55/1",
+            "close": "66/1"
+          }
+        },
+        "Im, Sungjae": {
+          "bet365": {
+            "open": "70/1",
+            "close": "70/1"
+          },
+          "skybet": {
+            "open": "70/1",
+            "close": "55/1"
+          }
+        },
+        "Smalley, Alex": {
+          "bet365": {
+            "open": "70/1",
+            "close": "75/1"
+          },
+          "skybet": {
+            "open": "60/1",
+            "close": "60/1"
+          }
+        },
+        "Bridgeman, Jacob": {
+          "bet365": {
+            "open": "50/1",
+            "close": "75/1"
+          },
+          "skybet": {
+            "open": "60/1",
+            "close": "66/1"
+          }
+        },
+        "Lowry, Shane": {
+          "bet365": {
+            "open": "70/1",
+            "close": "75/1"
+          },
+          "skybet": {
+            "open": "55/1",
+            "close": "55/1"
+          }
+        },
+        "Reitan, Kristoffer": {
+          "bet365": {
+            "open": "66/1",
+            "close": "75/1"
+          },
+          "skybet": {
+            "open": "55/1",
+            "close": "70/1"
+          }
+        },
+        "Fitzpatrick, Alex": {
+          "bet365": {
+            "open": "80/1",
+            "close": "75/1"
+          },
+          "skybet": {
+            "open": "70/1",
+            "close": "50/1"
+          }
+        },
+        "Conners, Corey": {
+          "bet365": {
+            "open": "90/1",
+            "close": "80/1"
+          },
+          "skybet": {
+            "open": "80/1",
+            "close": "66/1"
+          }
+        },
+        "Cauley, Bud": {
+          "bet365": {
+            "open": "100/1",
+            "close": "80/1"
+          },
+          "skybet": {
+            "open": "100/1",
+            "close": "66/1"
+          }
+        },
+        "Mitchell, Keith": {
+          "bet365": {
+            "open": "70/1",
+            "close": "80/1"
+          },
+          "skybet": {
+            "open": "60/1",
+            "close": "66/1"
+          }
+        },
+        "Knapp, Jake": {
+          "bet365": {
+            "open": "70/1",
+            "close": "80/1"
+          },
+          "skybet": {
+            "open": "55/1",
+            "close": "60/1"
+          }
+        },
+        "English, Harris": {
+          "bet365": {
+            "open": "80/1",
+            "close": "80/1"
+          },
+          "skybet": {
+            "open": "70/1",
+            "close": "70/1"
+          }
+        },
+        "Hojgaard, Nicolai": {
+          "bet365": {
+            "open": "66/1",
+            "close": "80/1"
+          },
+          "skybet": {
+            "open": "50/1",
+            "close": "80/1"
+          }
+        },
+        "Spieth, Jordan": {
+          "bet365": {
+            "open": "80/1",
+            "close": "90/1"
+          },
+          "skybet": {
+            "open": "66/1",
+            "close": "70/1"
+          }
+        },
+        "Smith, Jordan": {
+          "bet365": {
+            "open": "90/1",
+            "close": "100/1"
+          },
+          "skybet": {
+            "open": "66/1",
+            "close": "80/1"
+          }
+        },
+        "Cole, Eric": {
+          "bet365": {
+            "open": "90/1",
+            "close": "100/1"
+          },
+          "skybet": {
+            "open": "80/1",
+            "close": "80/1"
+          }
+        },
+        "Fox, Ryan": {
+          "bet365": {
+            "open": "70/1",
+            "close": "100/1"
+          },
+          "skybet": {
+            "open": "70/1",
+            "close": "80/1"
+          }
+        },
+        "Scott, Adam": {
+          "bet365": {
+            "open": "70/1",
+            "close": "100/1"
+          },
+          "skybet": {
+            "open": "66/1",
+            "close": "70/1"
+          }
+        },
+        "Woodland, Gary": {
+          "bet365": {
+            "open": "80/1",
+            "close": "110/1"
+          },
+          "skybet": {
+            "open": "66/1",
+            "close": "110/1"
+          }
+        },
+        "Theegala, Sahith": {
+          "bet365": {
+            "open": "110/1",
+            "close": "125/1"
+          },
+          "skybet": {
+            "open": "80/1",
+            "close": "100/1"
+          }
+        },
+        "Hall, Harry": {
+          "bet365": {
+            "open": "110/1",
+            "close": "125/1"
+          },
+          "skybet": {
+            "open": "80/1",
+            "close": "100/1"
+          }
+        },
+        "Harman, Brian": {
+          "bet365": {
+            "open": "125/1",
+            "close": "125/1"
+          },
+          "skybet": {
+            "open": "100/1",
+            "close": "110/1"
+          }
+        },
+        "Kim, Michael": {
+          "bet365": {
+            "open": "125/1",
+            "close": "125/1"
+          },
+          "skybet": {
+            "open": "100/1",
+            "close": "100/1"
+          }
+        },
+        "Poston, J.T.": {
+          "bet365": {
+            "open": "150/1",
+            "close": "125/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "80/1"
+          }
+        },
+        "Hisatsune, Ryo": {
+          "bet365": {
+            "open": "160/1",
+            "close": "125/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "110/1"
+          }
+        },
+        "Echavarria, Nico": {
+          "bet365": {
+            "open": "140/1",
+            "close": "150/1"
+          },
+          "skybet": {
+            "open": "100/1",
+            "close": "110/1"
+          }
+        },
+        "Taylor, Nick": {
+          "bet365": {
+            "open": "150/1",
+            "close": "160/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "125/1"
+          }
+        },
+        "Homa, Max": {
+          "bet365": {
+            "open": "150/1",
+            "close": "175/1"
+          },
+          "skybet": {
+            "open": "110/1",
+            "close": "125/1"
+          }
+        },
+        "Straka, Sepp": {
+          "bet365": {
+            "open": "150/1",
+            "close": "200/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "125/1"
+          }
+        },
+        "Castillo, Ricky": {
+          "bet365": {
+            "open": "200/1",
+            "close": "200/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "125/1"
+          }
+        },
+        "McCarty, Matt": {
+          "bet365": {
+            "open": "150/1",
+            "close": "200/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "125/1"
+          }
+        },
+        "Schmid, Matti": {
+          "bet365": {
+            "open": "400/1",
+            "close": "275/1"
+          },
+          "skybet": {
+            "open": "250/1",
+            "close": "200/1"
+          }
+        },
+        "Stevens, Sam": {
+          "bet365": {
+            "open": "250/1",
+            "close": "275/1"
+          },
+          "skybet": {
+            "open": "150/1",
+            "close": "150/1"
+          }
+        },
+        "Yellamaraju, Sudarshan": {
+          "bet365": {
+            "open": "225/1",
+            "close": "275/1"
+          },
+          "skybet": {
+            "open": "125/1",
+            "close": "150/1"
+          }
+        },
+        "Potgieter, Aldrich": {
+          "bet365": {
+            "open": "400/1",
+            "close": "350/1"
+          },
+          "skybet": {
+            "open": "250/1",
+            "close": "250/1"
+          }
+        },
+        "Coody, Pierceson": {
+          "bet365": {
+            "open": "350/1",
+            "close": "350/1"
+          },
+          "skybet": {
+            "open": "175/1",
+            "close": "250/1"
+          }
+        },
+        "Rodgers, Patrick": {
+          "bet365": {
+            "open": "600/1",
+            "close": "600/1"
+          },
+          "skybet": {
+            "open": "350/1",
+            "close": "350/1"
+          }
+        }
+      }
+    }
+  ]
+}

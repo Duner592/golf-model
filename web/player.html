@@ -399,6 +399,7 @@
         </section>
         <section class="card">
             <h2>Recent Archive Performance</h2>
+            <p class="muted">Opening and closing outright prices from DataGolf, where available.</p>
             <div class="table-wrap" id="archiveWrap"></div>
         </section>
     </div>
@@ -427,7 +428,8 @@
     const state = {
         tours: new Map(),
         events: new Map(),
-        archive: null
+        archive: null,
+        archiveOdds: null
     };
 
     const els = {
@@ -848,6 +850,13 @@
         return state.archive;
     }
 
+    async function loadArchiveOdds() {
+        if (state.archiveOdds) return state.archiveOdds;
+        const payload = await loadJSON("archive/historical_odds.json", { events: [] });
+        state.archiveOdds = Array.isArray(payload?.events) ? payload.events : [];
+        return state.archiveOdds;
+    }
+
     function archiveBase(entry) {
         return `archive/${entry.year}/${entry.slug}`;
     }
@@ -868,6 +877,7 @@
 
     async function loadArchiveAppearances(playerName) {
         const index = await loadArchiveIndex();
+        const historicalOdds = await loadArchiveOdds();
         const rows = index
             .filter(entry => entry.year && entry.slug)
             .sort((a, b) => String(b.start_date || "").localeCompare(String(a.start_date || "")))
@@ -880,7 +890,9 @@
             if (!player || !samePlayer(player.player_name, playerName)) continue;
             const resultsPayload = await loadJSON(`${base}/results.json`, null);
             const result = resultRows(resultsPayload).find(row => samePlayer(row.player, playerName));
-            appearances.push({ entry, player, result });
+            const oddsEvent = historicalOdds.find(odds => String(odds.event_id) === String(entry.event_id) && String(odds.year) === String(entry.year) && String(odds.tour) === String(entry.tour));
+            const odds = Object.entries(oddsEvent?.players || {}).find(([name]) => samePlayer(name, playerName))?.[1] || {};
+            appearances.push({ entry, player, result, odds });
             if (appearances.length >= 8) break;
         }
         return appearances;
@@ -902,10 +914,12 @@
                         <th class="num">Top 10</th>
                         <th class="num">MC</th>
                         <th>Finish</th>
+                        <th>Bet365 O/C</th>
+                        <th>Sky Bet O/C</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${rows.map(({ entry, player, result }) => {
+                    ${rows.map(({ entry, player, result, odds }) => {
                         const base = archiveBase(entry);
                         const finish = result?.finish_text || result?.finish_pos || "Pending";
                         return `
@@ -917,6 +931,8 @@
                                 <td class="num">${fmtPct(player["p_top10_%"])}</td>
                                 <td class="num">${fmtPct(player["p_mc_%"])}</td>
                                 <td>${escapeHtml(finish)}</td>
+                                <td>${escapeHtml(odds.bet365?.open || "-")} / ${escapeHtml(odds.bet365?.close || "-")}</td>
+                                <td>${escapeHtml(odds.skybet?.open || "-")} / ${escapeHtml(odds.skybet?.close || "-")}</td>
                             </tr>
                         `;
                     }).join("")}

@@ -56,3 +56,9 @@ endpoints:
     required: [ "tour", "market", "odds_format" ]
     optional: [ "file_format" ]
     notes: "Live outright odds board for the current event. Use market=win and odds_format=fraction; filter published bookmaker prices to Bet365 and Sky Bet."
+
+  historical_outright_odds:
+    path: "historical-odds/outrights"
+    required: [ "tour", "event_id", "year", "market", "book", "odds_format" ]
+    optional: [ "file_format" ]
+    notes: "Historical outright opening and closing prices for a completed event and bookmaker."
