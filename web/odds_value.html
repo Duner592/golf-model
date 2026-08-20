@@ -379,6 +379,23 @@
             font-size: 1.15rem;
         }
 
+        .live-odds-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            gap: 0.55rem;
+        }
+
+        .live-odds-controls .control {
+            min-width: 150px;
+        }
+
+        .live-odds-controls .control select {
+            min-height: 2rem;
+            padding: 0.25rem 0.45rem;
+            font-size: 0.82rem;
+        }
+
         .table-note {
             color: #67786e;
             font-size: 0.9rem;
@@ -417,6 +434,49 @@
             white-space: normal;
             line-height: 1.2;
         }
+
+        #liveOddsTable th[draggable="true"] {
+            cursor: grab;
+        }
+
+        #liveOddsTable th[draggable="true"]:active,
+        #liveOddsTable th.is-dragging {
+            cursor: grabbing;
+            opacity: 0.55;
+        }
+
+        #liveOddsTable th.is-drop-target {
+            box-shadow: inset 3px 0 0 var(--gm-primary);
+        }
+
+        .live-sort-button {
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            font-weight: inherit;
+            text-align: inherit;
+            text-transform: inherit;
+            letter-spacing: inherit;
+            cursor: pointer;
+        }
+
+        .live-sort-button::after {
+            content: '↕';
+            display: inline-block;
+            margin-left: 0.3rem;
+            color: #829087;
+        }
+
+        .live-sort-button[data-direction="asc"]::after,
+        .live-sort-button[data-direction="desc"]::after {
+            color: var(--gm-primary-dark);
+        }
+
+        .live-sort-button[data-direction="asc"]::after { content: '↑'; }
+        .live-sort-button[data-direction="desc"]::after { content: '↓'; }
 
         .col-date { width: 7%; }
         .col-player { width: 14%; }
@@ -664,7 +724,7 @@
         <h1>Odds &amp; Value</h1>
         <span class="beta-badge">Beta</span>
     </div>
-    <p class="page-intro">Model probabilities compared with the prices recorded in the betting sheet.</p>
+    <p class="page-intro">Live Bet365 and Sky Bet prices compared with every player in the current model, plus a focused view of your recorded bets.</p>
     <nav class="related-links" aria-label="Related pages">
         <a class="related-link" href="archive_accuracy.html">Prediction Accuracy</a>
     </nav>
@@ -691,6 +751,38 @@
             </div>
         </div>
     </details>
+
+    <section class="table-panel live-odds-panel" aria-labelledby="live-odds-title">
+        <div class="table-header">
+            <div>
+                <h2 id="live-odds-title">Live Odds Board</h2>
+                <span class="table-note" id="liveOddsNote">Loading current odds…</span>
+            </div>
+            <div class="live-odds-controls" aria-label="Live odds board filters">
+                <div class="control"><label for="liveTourFilter">Tour</label><select id="liveTourFilter"></select></div>
+                <div class="control"><label for="liveTournamentFilter">Tournament</label><select id="liveTournamentFilter"></select></div>
+                <span class="badge badge--muted" id="liveOddsUpdated">DataGolf</span>
+            </div>
+        </div>
+        <div class="table-scroll">
+            <table id="liveOddsTable">
+                <thead>
+                    <tr>
+                        <th data-live-column="player" draggable="true"><button class="live-sort-button" draggable="true" type="button" data-live-sort="player">Player</button></th>
+                        <th data-live-column="bet365" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="bet365">Bet365</button></th>
+                        <th data-live-column="skybet" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="skybet">Sky Bet</button></th>
+                        <th data-live-column="modelWin" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="modelWin">Model win</button></th>
+                        <th data-live-column="implied" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="implied">Model price</button></th>
+                        <th data-live-column="edge" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="edge">Edge</button></th>
+                        <th data-live-column="ev" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="ev">Best EV</button></th>
+                    </tr>
+                </thead>
+                <tbody id="liveOddsRows">
+                    <tr><td colspan="8" class="loading-state">Loading current odds and model data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <section class="toolbar" aria-label="Odds value filters">
         <div class="control">
@@ -763,7 +855,7 @@
 
     <section class="table-panel">
         <div class="table-header">
-            <h2>Bet Value Board</h2>
+            <h2>Your Bet Value</h2>
             <span class="table-note" id="tableNote">Loading...</span>
         </div>
         <div id="messageArea"></div>
@@ -803,6 +895,8 @@
 
 <script>
     const LIVE_BASE = 'https://duner592.github.io/golf-model/';
+    const LIVE_ODDS_SOURCE = 'https://raw.githubusercontent.com/Duner592/golf-model/master/web/odds/current.json';
+    const LIVE_ODDS_COLUMNS = ['player', 'bet365', 'skybet', 'modelWin', 'implied', 'edge', 'ev'];
     const TOUR_ORDER = ['PGA Tour', 'DP World Tour', 'Majors'];
 
     function readInitialFilters() {
@@ -824,11 +918,36 @@
         models: {},
         currentModels: [],
         archiveModels: [],
+        liveOdds: null,
+        liveSort: 'ev',
+        liveSortDirection: 'desc',
+        liveFilters: { tour: '', tournament: '' },
+        liveColumnOrder: loadLiveColumnOrder(),
         filters: readInitialFilters()
     };
 
     function isLocalPreview() {
         return ['localhost', '127.0.0.1', '::1', ''].includes(window.location.hostname) || window.location.protocol === 'file:';
+    }
+
+    function loadLiveColumnOrder() {
+        try {
+            const saved = JSON.parse(window.localStorage.getItem('liveOddsColumnOrder') || '[]');
+            return Array.isArray(saved) && saved.length === LIVE_ODDS_COLUMNS.length
+                && LIVE_ODDS_COLUMNS.every(column => saved.includes(column))
+                ? saved
+                : LIVE_ODDS_COLUMNS.slice();
+        } catch (_) {
+            return LIVE_ODDS_COLUMNS.slice();
+        }
+    }
+
+    function saveLiveColumnOrder() {
+        try {
+            window.localStorage.setItem('liveOddsColumnOrder', JSON.stringify(state.liveColumnOrder));
+        } catch (_) {
+            // The table remains usable if browser storage is unavailable.
+        }
     }
 
     function withCacheBust(path) {
@@ -932,6 +1051,13 @@
         if (!Number.isFinite(value)) return '-';
         const sign = value > 0 ? '+' : '';
         return `${sign}${(value * 100).toFixed(0)}% EV`;
+    }
+
+    function formatModelPrice(probabilityPercent) {
+        if (!Number.isFinite(probabilityPercent) || probabilityPercent <= 0) return '-';
+        const fractional = (100 / probabilityPercent) - 1;
+        const rounded = Math.round(fractional * 10) / 10;
+        return `${Number.isInteger(rounded) ? rounded.toFixed(0) : rounded.toFixed(1)}/1`;
     }
 
     function parseFractionalOdds(value) {
@@ -1312,6 +1438,80 @@
         }
     }
 
+    async function loadLiveOdds() {
+        try {
+            const target = isLocalPreview() ? 'odds/current.json' : LIVE_ODDS_SOURCE;
+            const response = await fetch(withCacheBust(target), { cache: 'no-store' });
+            if (!response.ok) throw new Error(`Failed to load ${target}: ${response.status}`);
+            return response.json();
+        } catch (error) {
+            return { error, events: [] };
+        }
+    }
+
+    function bestBookPrice(prices) {
+        const entries = Object.entries(prices || {})
+            .map(([book, price]) => ({ book, price: parseFractionalOdds(price) }))
+            .filter(entry => entry.price);
+        if (!entries.length) return null;
+        return entries.sort((a, b) => b.price.decimal - a.price.decimal)[0];
+    }
+
+    function liveModelForEvent(event) {
+        const tour = String(event?.tour || '').toLowerCase();
+        return state.currentModels.find(model =>
+            model && !model.error
+            && String(model.tour || '').toLowerCase() === tour
+            && isSameTournament(model.eventName, event.event_name)
+        ) || null;
+    }
+
+    function liveOddsRows() {
+        const events = Array.isArray(state.liveOdds?.events) ? state.liveOdds.events : [];
+        const rows = [];
+        events.forEach(event => {
+            if (state.liveFilters.tour && event.tour !== state.liveFilters.tour) return;
+            if (state.liveFilters.tournament && event.event_name !== state.liveFilters.tournament) return;
+            const model = liveModelForEvent(event);
+            if (!model) return;
+            const pricesByPlayer = new Map((Array.isArray(event.odds) ? event.odds : []).map(row => [normalizePlayerName(row.player_name), row.prices || {}]));
+            model.playerMap.forEach((player, playerKey) => {
+                const prices = pricesByPlayer.get(playerKey) || {};
+                const bestPrice = bestBookPrice(prices);
+                const impliedPercent = bestPrice?.price.impliedPercent;
+                const edge = Number.isFinite(player.pWin) && Number.isFinite(impliedPercent) ? player.pWin - impliedPercent : null;
+                const ev = Number.isFinite(player.pWin) && bestPrice ? (bestPrice.price.decimal * (player.pWin / 100)) - 1 : null;
+                rows.push({ event, model, player, prices, bestPrice, impliedPercent, edge, ev });
+            });
+        });
+        const sortValue = (row, key) => {
+            if (key === 'player') return row.player.playerName || '';
+            if (key === 'tournament') return row.event.event_name || row.model.eventName || '';
+            if (key === 'bet365' || key === 'skybet') return parseFractionalOdds(row.prices[key])?.decimal;
+            if (key === 'modelWin') return row.player.pWin;
+            if (key === 'implied') return Number.isFinite(row.player.pWin) && row.player.pWin > 0
+                ? (100 / row.player.pWin) - 1
+                : null;
+            if (key === 'edge') return row.edge;
+            return row.ev;
+        };
+        return rows.sort((a, b) => {
+            const left = sortValue(a, state.liveSort);
+            const right = sortValue(b, state.liveSort);
+            const direction = state.liveSortDirection === 'asc' ? 1 : -1;
+            if (typeof left === 'string' || typeof right === 'string') {
+                return direction * String(left || '').localeCompare(String(right || ''));
+            }
+            const leftAvailable = Number.isFinite(left);
+            const rightAvailable = Number.isFinite(right);
+            if (leftAvailable !== rightAvailable) return leftAvailable ? -1 : 1;
+            const leftValue = leftAvailable ? left : 0;
+            const rightValue = rightAvailable ? right : 0;
+            if (leftValue !== rightValue) return direction * (leftValue - rightValue);
+            return (a.player.rank || 9999) - (b.player.rank || 9999);
+        });
+    }
+
     function findModelForBet(row) {
         const preferredTour = tourCodeFromRow(row);
         const tournament = row.Tournament || '';
@@ -1517,6 +1717,22 @@
         return `<a class="history-link" href="${escapeHtml(bettingHistoryUrl(filters))}" aria-label="${escapeHtml(ariaLabel || `View betting history for ${text}`)}">${escapeHtml(text)}</a>`;
     }
 
+    function playerDrilldownUrl(tour, eventId, player) {
+        const params = new URLSearchParams({
+            tour: String(tour || ''),
+            event_id: String(eventId || ''),
+            player: String(player || '')
+        });
+        return `player.html?${params.toString()}`;
+    }
+
+    function playerDrilldownLink(player, model) {
+        const text = String(player || '').trim();
+        if (!text || !model?.eventId) return escapeHtml(text || '-');
+        const href = playerDrilldownUrl(model.tour, model.eventId, text);
+        return `<a class="history-link" href="${escapeHtml(href)}" aria-label="Open player drilldown for ${escapeHtml(text)}">${escapeHtml(text)}</a>`;
+    }
+
     function profitLossDisplay(row) {
         if (row.status === 'pending') {
             return {
@@ -1588,6 +1804,95 @@
             </div>
         `;
         panel.innerHTML = sheetItem + modelItems + archiveItem;
+    }
+
+    function renderLiveOddsBoard() {
+        const tbody = document.getElementById('liveOddsRows');
+        const note = document.getElementById('liveOddsNote');
+        const updated = document.getElementById('liveOddsUpdated');
+        const events = Array.isArray(state.liveOdds?.events) ? state.liveOdds.events : [];
+        populateLiveOddsFilters(events);
+        document.querySelectorAll('.live-sort-button').forEach(button => {
+            const selected = button.dataset.liveSort === state.liveSort;
+            button.dataset.direction = selected ? state.liveSortDirection : '';
+            button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        });
+        const rows = liveOddsRows();
+        if (state.liveOdds?.error || !events.length) {
+            note.textContent = 'Live Bet365 and Sky Bet prices are not published yet.';
+            updated.textContent = 'Awaiting odds feed';
+            tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No live odds board is available for the current events.</td></tr>';
+            return;
+        }
+        const selectedEvents = events.filter(event =>
+            (!state.liveFilters.tour || event.tour === state.liveFilters.tour)
+            && (!state.liveFilters.tournament || event.event_name === state.liveFilters.tournament)
+        );
+        const updatedAt = String(state.liveOdds.generated_utc || selectedEvents.map(event => event.last_updated).filter(Boolean).join(' · ') || '').trim();
+        note.textContent = `${rows.length} modelled player${rows.length === 1 ? '' : 's'} · Best EV first`;
+        updated.textContent = updatedAt ? `Updated ${updatedAt}` : 'DataGolf live odds';
+        if (!rows.length) {
+            tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Live odds are available, but do not match the active model event.</td></tr>';
+            return;
+        }
+        tbody.innerHTML = rows.map(row => {
+            const price = book => row.prices[book] || '-';
+            const valueClass = Number.isFinite(row.ev) ? (row.ev >= 0 ? 'edge-positive' : 'edge-negative') : '';
+            return `<tr>
+                <td data-live-column="player" data-label="Player" class="player-cell"><span class="player-name">${playerDrilldownLink(row.player.playerName, row.model)}</span><span class="player-sub">Model rank #${row.player.rank || '-'}</span></td>
+                <td data-live-column="bet365" data-label="Bet365" class="num">${escapeHtml(price('bet365'))}</td>
+                <td data-live-column="skybet" data-label="Sky Bet" class="num">${escapeHtml(price('skybet'))}</td>
+                <td data-live-column="modelWin" data-label="Model win" class="num">${formatPercent(row.player.pWin)}</td>
+                <td data-live-column="implied" data-label="Model price" class="num">${formatModelPrice(row.player.pWin)}</td>
+                <td data-live-column="edge" data-label="Edge" class="num ${Number.isFinite(row.edge) ? (row.edge >= 0 ? 'edge-positive' : 'edge-negative') : ''}">${formatEdge(row.edge)}</td>
+                <td data-live-column="ev" data-label="Best EV" class="num ${valueClass}">${formatEv(row.ev)}</td>
+            </tr>`;
+        }).join('');
+        applyLiveColumnOrder();
+    }
+
+    function applyLiveColumnOrder() {
+        const table = document.getElementById('liveOddsTable');
+        if (!table) return;
+        const reorder = container => {
+            const cells = new Map(Array.from(container.children).map(cell => [cell.dataset.liveColumn, cell]));
+            state.liveColumnOrder.forEach(column => {
+                const cell = cells.get(column);
+                if (cell) container.appendChild(cell);
+            });
+        };
+        const header = table.querySelector('thead tr');
+        if (header) reorder(header);
+        table.querySelectorAll('tbody tr').forEach(reorder);
+    }
+
+    function moveLiveColumn(source, destination) {
+        if (!source || !destination || source === destination) return;
+        const order = state.liveColumnOrder.slice();
+        const sourceIndex = order.indexOf(source);
+        const destinationIndex = order.indexOf(destination);
+        if (sourceIndex < 0 || destinationIndex < 0) return;
+        order.splice(sourceIndex, 1);
+        order.splice(destinationIndex, 0, source);
+        state.liveColumnOrder = order;
+        saveLiveColumnOrder();
+        applyLiveColumnOrder();
+    }
+
+    function populateLiveOddsFilters(events) {
+        const tourSelect = document.getElementById('liveTourFilter');
+        const tournamentSelect = document.getElementById('liveTournamentFilter');
+        if (!tourSelect || !tournamentSelect || !events.length) return;
+        const tours = Array.from(new Set(events.map(event => event.tour).filter(Boolean)));
+        if (!tours.includes(state.liveFilters.tour)) state.liveFilters.tour = tours.includes('pga') ? 'pga' : tours[0];
+        tourSelect.innerHTML = tours.map(tour => `<option value="${escapeHtml(tour)}">${escapeHtml(tour === 'pga' ? 'PGA Tour' : tour === 'euro' ? 'DP World Tour' : tour.toUpperCase())}</option>`).join('');
+        tourSelect.value = state.liveFilters.tour;
+        const tournaments = events.filter(event => event.tour === state.liveFilters.tour);
+        if (!tournaments.some(event => event.event_name === state.liveFilters.tournament)) {
+            state.liveFilters.tournament = tournaments[0]?.event_name || '';
+        }
+        tournamentSelect.innerHTML = tournaments.map(event => `<option value="${escapeHtml(event.event_name)}">${escapeHtml(event.event_name)}</option>`).join('');
+        tournamentSelect.value = state.liveFilters.tournament;
     }
 
     function renderSummary(rows) {
@@ -1722,6 +2027,7 @@
         const visible = sortRows(state.enriched.filter(rowMatchesFilters));
         renderSourcePanel();
         renderWarnings();
+        renderLiveOddsBoard();
         renderSummary(visible);
         renderRows(visible);
     }
@@ -1740,6 +2046,51 @@
                 render();
             });
         });
+        document.querySelectorAll('.live-sort-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const sort = button.dataset.liveSort;
+                if (state.liveSort === sort) {
+                    state.liveSortDirection = state.liveSortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    state.liveSort = sort;
+                    state.liveSortDirection = sort === 'player' || sort === 'tournament' ? 'asc' : 'desc';
+                }
+                renderLiveOddsBoard();
+            });
+        });
+        document.querySelectorAll('#liveOddsTable th[draggable="true"]').forEach(header => {
+            header.addEventListener('dragstart', event => {
+                state.liveDraggingColumn = header.dataset.liveColumn;
+                header.classList.add('is-dragging');
+                event.dataTransfer.effectAllowed = 'move';
+                event.dataTransfer.setData('text/plain', state.liveDraggingColumn);
+            });
+            header.addEventListener('dragend', () => {
+                state.liveDraggingColumn = '';
+                document.querySelectorAll('#liveOddsTable th').forEach(cell => cell.classList.remove('is-dragging', 'is-drop-target'));
+            });
+            header.addEventListener('dragover', event => {
+                if (!state.liveDraggingColumn || state.liveDraggingColumn === header.dataset.liveColumn) return;
+                event.preventDefault();
+                event.dataTransfer.dropEffect = 'move';
+                header.classList.add('is-drop-target');
+            });
+            header.addEventListener('dragleave', () => header.classList.remove('is-drop-target'));
+            header.addEventListener('drop', event => {
+                event.preventDefault();
+                moveLiveColumn(state.liveDraggingColumn || event.dataTransfer.getData('text/plain'), header.dataset.liveColumn);
+                header.classList.remove('is-drop-target');
+            });
+        });
+        document.getElementById('liveTourFilter').addEventListener('change', event => {
+            state.liveFilters.tour = event.target.value;
+            state.liveFilters.tournament = '';
+            renderLiveOddsBoard();
+        });
+        document.getElementById('liveTournamentFilter').addEventListener('change', event => {
+            state.liveFilters.tournament = event.target.value;
+            renderLiveOddsBoard();
+        });
     }
 
     function resetControlsToDefaults() {
@@ -1755,11 +2106,12 @@
         try {
             resetControlsToDefaults();
             bindControls();
-            const [bets, pgaModels, euroModels, archiveModels] = await Promise.all([
+            const [bets, pgaModels, euroModels, archiveModels, liveOdds] = await Promise.all([
                 BettingData.load({ forceRefresh: true }),
                 loadTourModels('pga'),
                 loadTourModels('euro'),
-                loadArchiveModels('2026')
+                loadArchiveModels('2026'),
+                loadLiveOdds()
             ]);
             state.bets = Array.isArray(bets) ? bets.filter(row => row && row.Player && row.Tournament && isIncludedBet(row)) : [];
             state.models = {
@@ -1771,6 +2123,7 @@
                 ...(Array.isArray(euroModels) ? euroModels : [])
             ];
             state.archiveModels = archiveModels;
+            state.liveOdds = liveOdds;
             state.enriched = state.bets.map(enrichBet);
             populateFilters(state.filters);
             resetControlsToDefaults();

@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "web/**"
+      - "!web/odds/**"
       - "scripts/check_site_integrity.py"
       - "scripts/update_web_status.py"
       - ".github/workflows/deploy-pages.yml"

@@ -134,6 +134,8 @@ for tour in "${tours[@]}"; do
   fi
 done
 
+run_grouped "Fetch live outright odds" "$PYTHON_BIN" scripts/fetch_live_outright_odds.py --tour "$TOUR"
+
 if [[ "${#tour_successes[@]}" -eq 0 && "${#tour_skips[@]}" -eq 0 ]]; then
   echo "::error::No tour model or no-event assets were built successfully."
   exit 1
