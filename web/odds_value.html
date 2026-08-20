@@ -913,6 +913,14 @@
         };
     }
 
+    function readInitialLiveFilters() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            tour: params.get('liveTour') || '',
+            tournament: params.get('liveTournament') || ''
+        };
+    }
+
     const state = {
         bets: [],
         enriched: [],
@@ -922,7 +930,7 @@
         liveOdds: null,
         liveSort: 'rank',
         liveSortDirection: 'asc',
-        liveFilters: { tour: '', tournament: '' },
+        liveFilters: readInitialLiveFilters(),
         liveColumnOrder: loadLiveColumnOrder(),
         filters: readInitialFilters()
     };
