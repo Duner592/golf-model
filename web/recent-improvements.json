@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-08-20",
+    "title": "Live UK odds board",
+    "description": "Odds & Value now compares active model players with live Bet365 and Sky Bet prices, while Player Drilldown adds archived opening and closing odds where available.",
+    "href": "odds_value.html"
+  },
+  {
     "date": "2026-08-19",
     "title": "Last week’s betting P/L",
     "description": "The homepage now groups realised profit and loss by tournament and backed player for the latest settled week.",
@@ -16,17 +22,5 @@
     "title": "Improved iPhone usability",
     "description": "PGA and DP World leaderboards now keep wide tables inside a smooth swipe area, with larger touch targets on iPhone and iPad.",
     "href": "pga.html"
-  },
-  {
-    "date": "2026-08-13",
-    "title": "Corrected PGA winner scores",
-    "description": "Previous FedEx St. Jude Championship winners now show the correct relative-to-par scores at TPC Southwind.",
-    "href": "pga.html"
-  },
-  {
-    "date": "2026-08-07",
-    "title": "Featured current bets",
-    "description": "Active outright and each-way bets now link directly to their filtered Odds & Value view.",
-    "href": "odds_value.html?source=pending"
   }
 ]
