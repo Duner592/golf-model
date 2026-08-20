@@ -769,10 +769,10 @@
                 <thead>
                     <tr>
                         <th data-live-column="player" draggable="true"><button class="live-sort-button" draggable="true" type="button" data-live-sort="player">Player</button></th>
-                        <th data-live-column="bet365" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="bet365">Bet365</button></th>
-                        <th data-live-column="skybet" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="skybet">Sky Bet</button></th>
                         <th data-live-column="modelWin" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="modelWin">Model win</button></th>
                         <th data-live-column="implied" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="implied">Model price</button></th>
+                        <th data-live-column="bet365" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="bet365">Bet365</button></th>
+                        <th data-live-column="skybet" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="skybet">Sky Bet</button></th>
                         <th data-live-column="edge" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="edge">Edge</button></th>
                         <th data-live-column="ev" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="ev">Best EV</button></th>
                     </tr>
@@ -896,7 +896,8 @@
 <script>
     const LIVE_BASE = 'https://duner592.github.io/golf-model/';
     const LIVE_ODDS_SOURCE = 'https://raw.githubusercontent.com/Duner592/golf-model/master/web/odds/current.json';
-    const LIVE_ODDS_COLUMNS = ['player', 'bet365', 'skybet', 'modelWin', 'implied', 'edge', 'ev'];
+    const LIVE_ODDS_COLUMNS = ['player', 'modelWin', 'implied', 'bet365', 'skybet', 'edge', 'ev'];
+    const LIVE_ODDS_COLUMN_STORAGE_KEY = 'liveOddsColumnOrderV2';
     const TOUR_ORDER = ['PGA Tour', 'DP World Tour', 'Majors'];
 
     function readInitialFilters() {
@@ -919,8 +920,8 @@
         currentModels: [],
         archiveModels: [],
         liveOdds: null,
-        liveSort: 'ev',
-        liveSortDirection: 'desc',
+        liveSort: 'rank',
+        liveSortDirection: 'asc',
         liveFilters: { tour: '', tournament: '' },
         liveColumnOrder: loadLiveColumnOrder(),
         filters: readInitialFilters()
@@ -932,7 +933,7 @@
 
     function loadLiveColumnOrder() {
         try {
-            const saved = JSON.parse(window.localStorage.getItem('liveOddsColumnOrder') || '[]');
+            const saved = JSON.parse(window.localStorage.getItem(LIVE_ODDS_COLUMN_STORAGE_KEY) || '[]');
             return Array.isArray(saved) && saved.length === LIVE_ODDS_COLUMNS.length
                 && LIVE_ODDS_COLUMNS.every(column => saved.includes(column))
                 ? saved
@@ -944,7 +945,7 @@
 
     function saveLiveColumnOrder() {
         try {
-            window.localStorage.setItem('liveOddsColumnOrder', JSON.stringify(state.liveColumnOrder));
+            window.localStorage.setItem(LIVE_ODDS_COLUMN_STORAGE_KEY, JSON.stringify(state.liveColumnOrder));
         } catch (_) {
             // The table remains usable if browser storage is unavailable.
         }
@@ -1485,6 +1486,7 @@
             });
         });
         const sortValue = (row, key) => {
+            if (key === 'rank') return row.player.rank;
             if (key === 'player') return row.player.playerName || '';
             if (key === 'tournament') return row.event.event_name || row.model.eventName || '';
             if (key === 'bet365' || key === 'skybet') return parseFractionalOdds(row.prices[key])?.decimal;
@@ -1829,7 +1831,8 @@
             && (!state.liveFilters.tournament || event.event_name === state.liveFilters.tournament)
         );
         const updatedAt = String(state.liveOdds.generated_utc || selectedEvents.map(event => event.last_updated).filter(Boolean).join(' · ') || '').trim();
-        note.textContent = `${rows.length} modelled player${rows.length === 1 ? '' : 's'} · Best EV first`;
+        const sortLabel = state.liveSort === 'rank' ? 'Model rank' : state.liveSort === 'modelWin' ? 'Model win' : 'Selected column';
+        note.textContent = `${rows.length} modelled player${rows.length === 1 ? '' : 's'} · ${sortLabel} ${state.liveSortDirection === 'asc' ? 'ascending' : 'descending'}`;
         updated.textContent = updatedAt ? `Updated ${updatedAt}` : 'DataGolf live odds';
         if (!rows.length) {
             tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Live odds are available, but do not match the active model event.</td></tr>';
