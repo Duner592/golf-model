@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-08-21",
+    "title": "Workflow status on Model Health",
+    "description": "Model Health now shows the latest key GitHub Actions runs, including model refreshes, archive updates, results, odds, and Pages deployment.",
+    "href": "model_health.html"
+  },
+  {
+    "date": "2026-08-21",
     "title": "Player and field skill context",
     "description": "DataGolf reference skill components are available on Player Drilldown and as a sortable current-field table in Event Drilldown.",
     "href": "event_drilldown.html"
@@ -16,11 +22,5 @@
     "title": "Last week’s betting P/L",
     "description": "The homepage now groups realised profit and loss by tournament and backed player for the latest settled week.",
     "href": "spreadsheet.html"
-  },
-  {
-    "date": "2026-08-14",
-    "title": "Clearer page navigation",
-    "description": "Breadcrumbs now keep tournament, player, course, archive, and betting pages connected with contextual back-links.",
-    "href": "pga.html"
   }
 ]
