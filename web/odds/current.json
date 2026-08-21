@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-21T12:00:14Z",
+  "generated_utc": "2026-08-21T12:50:38Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "win",
-      "last_updated": "2026-08-21 02:59:37 UTC",
+      "last_updated": "2026-08-21 12:27:59 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -107,7 +107,8 @@
           "player_name": "Bridgeman, Jacob",
           "dg_id": 29433,
           "prices": {
-            "bet365": "35/1"
+            "bet365": "40/1",
+            "skybet": "35/1"
           }
         },
         {
@@ -121,7 +122,8 @@
           "player_name": "Henley, Russell",
           "dg_id": 14578,
           "prices": {
-            "bet365": "35/1"
+            "bet365": "35/1",
+            "skybet": "33/1"
           }
         },
         {
@@ -371,7 +373,7 @@
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "top_10",
-      "last_updated": "2026-08-21 02:59:37 UTC",
+      "last_updated": "2026-08-21 12:27:59 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -472,7 +474,8 @@
           "player_name": "Bridgeman, Jacob",
           "dg_id": 29433,
           "prices": {
-            "bet365": "2.2/1"
+            "bet365": "2.4/1",
+            "skybet": "2.75/1"
           }
         },
         {
@@ -486,7 +489,7 @@
           "player_name": "Henley, Russell",
           "dg_id": 14578,
           "prices": {
-            "bet365": "2.25/1"
+            "bet365": "2.1/1"
           }
         },
         {
@@ -605,7 +608,7 @@
           "player_name": "Gerard, Ryan",
           "dg_id": 29767,
           "prices": {
-            "bet365": "7/1"
+            "bet365": "7.5/1"
           }
         },
         {
