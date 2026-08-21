@@ -759,6 +759,7 @@
                 <span class="table-note" id="liveOddsNote">Loading current odds…</span>
             </div>
             <div class="live-odds-controls" aria-label="Live odds board filters">
+                <div class="control"><label for="liveMarketFilter">Market</label><select id="liveMarketFilter"><option value="win">Win</option><option value="top_10">Top 10</option></select></div>
                 <div class="control"><label for="liveTourFilter">Tour</label><select id="liveTourFilter"></select></div>
                 <div class="control"><label for="liveTournamentFilter">Tournament</label><select id="liveTournamentFilter"></select></div>
                 <span class="badge badge--muted" id="liveOddsUpdated">DataGolf</span>
@@ -769,7 +770,7 @@
                 <thead>
                     <tr>
                         <th data-live-column="player" draggable="true"><button class="live-sort-button" draggable="true" type="button" data-live-sort="player">Player</button></th>
-                        <th data-live-column="modelWin" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="modelWin">Model win</button></th>
+                        <th data-live-column="modelWin" draggable="true" class="num"><button id="modelProbabilityHeader" class="live-sort-button" draggable="true" type="button" data-live-sort="modelWin">Model win</button></th>
                         <th data-live-column="implied" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="implied">Model price</button></th>
                         <th data-live-column="bet365" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="bet365">Bet365</button></th>
                         <th data-live-column="skybet" draggable="true" class="num"><button class="live-sort-button" draggable="true" type="button" data-live-sort="skybet">Sky Bet</button></th>
@@ -917,7 +918,8 @@
         const params = new URLSearchParams(window.location.search);
         return {
             tour: params.get('liveTour') || '',
-            tournament: params.get('liveTournament') || ''
+            tournament: params.get('liveTournament') || '',
+            market: params.get('liveMarket') || 'win'
         };
     }
 
@@ -1479,6 +1481,7 @@
         const events = Array.isArray(state.liveOdds?.events) ? state.liveOdds.events : [];
         const rows = [];
         events.forEach(event => {
+            if (event.market !== state.liveFilters.market) return;
             if (state.liveFilters.tour && event.tour !== state.liveFilters.tour) return;
             if (state.liveFilters.tournament && event.event_name !== state.liveFilters.tournament) return;
             const model = liveModelForEvent(event);
@@ -1487,10 +1490,11 @@
             model.playerMap.forEach((player, playerKey) => {
                 const prices = pricesByPlayer.get(playerKey) || {};
                 const bestPrice = bestBookPrice(prices);
+                const modelProbability = event.market === 'top_10' ? player.pTop10 : player.pWin;
                 const impliedPercent = bestPrice?.price.impliedPercent;
-                const edge = Number.isFinite(player.pWin) && Number.isFinite(impliedPercent) ? player.pWin - impliedPercent : null;
-                const ev = Number.isFinite(player.pWin) && bestPrice ? (bestPrice.price.decimal * (player.pWin / 100)) - 1 : null;
-                rows.push({ event, model, player, prices, bestPrice, impliedPercent, edge, ev });
+                const edge = Number.isFinite(modelProbability) && Number.isFinite(impliedPercent) ? modelProbability - impliedPercent : null;
+                const ev = Number.isFinite(modelProbability) && bestPrice ? (bestPrice.price.decimal * (modelProbability / 100)) - 1 : null;
+                rows.push({ event, model, player, prices, bestPrice, impliedPercent, modelProbability, edge, ev });
             });
         });
         const sortValue = (row, key) => {
@@ -1498,9 +1502,9 @@
             if (key === 'player') return row.player.playerName || '';
             if (key === 'tournament') return row.event.event_name || row.model.eventName || '';
             if (key === 'bet365' || key === 'skybet') return parseFractionalOdds(row.prices[key])?.decimal;
-            if (key === 'modelWin') return row.player.pWin;
-            if (key === 'implied') return Number.isFinite(row.player.pWin) && row.player.pWin > 0
-                ? (100 / row.player.pWin) - 1
+            if (key === 'modelWin') return row.modelProbability;
+            if (key === 'implied') return Number.isFinite(row.modelProbability) && row.modelProbability > 0
+                ? (100 / row.modelProbability) - 1
                 : null;
             if (key === 'edge') return row.edge;
             return row.ev;
@@ -1821,6 +1825,9 @@
         const note = document.getElementById('liveOddsNote');
         const updated = document.getElementById('liveOddsUpdated');
         const events = Array.isArray(state.liveOdds?.events) ? state.liveOdds.events : [];
+        const marketSelect = document.getElementById('liveMarketFilter');
+        marketSelect.value = state.liveFilters.market === 'top_10' ? 'top_10' : 'win';
+        document.getElementById('modelProbabilityHeader').textContent = state.liveFilters.market === 'top_10' ? 'Model Top 10' : 'Model win';
         populateLiveOddsFilters(events);
         document.querySelectorAll('.live-sort-button').forEach(button => {
             const selected = button.dataset.liveSort === state.liveSort;
@@ -1835,7 +1842,8 @@
             return;
         }
         const selectedEvents = events.filter(event =>
-            (!state.liveFilters.tour || event.tour === state.liveFilters.tour)
+            event.market === state.liveFilters.market
+            && (!state.liveFilters.tour || event.tour === state.liveFilters.tour)
             && (!state.liveFilters.tournament || event.event_name === state.liveFilters.tournament)
         );
         const updatedAt = String(state.liveOdds.generated_utc || selectedEvents.map(event => event.last_updated).filter(Boolean).join(' · ') || '').trim();
@@ -1853,8 +1861,8 @@
                 <td data-live-column="player" data-label="Player" class="player-cell"><span class="player-name">${playerDrilldownLink(row.player.playerName, row.model)}</span><span class="player-sub">Model rank #${row.player.rank || '-'}</span></td>
                 <td data-live-column="bet365" data-label="Bet365" class="num">${escapeHtml(price('bet365'))}</td>
                 <td data-live-column="skybet" data-label="Sky Bet" class="num">${escapeHtml(price('skybet'))}</td>
-                <td data-live-column="modelWin" data-label="Model win" class="num">${formatPercent(row.player.pWin)}</td>
-                <td data-live-column="implied" data-label="Model price" class="num">${formatModelPrice(row.player.pWin)}</td>
+                <td data-live-column="modelWin" data-label="Model probability" class="num">${formatPercent(row.modelProbability)}</td>
+                <td data-live-column="implied" data-label="Model price" class="num">${formatModelPrice(row.modelProbability)}</td>
                 <td data-live-column="edge" data-label="Edge" class="num ${Number.isFinite(row.edge) ? (row.edge >= 0 ? 'edge-positive' : 'edge-negative') : ''}">${formatEdge(row.edge)}</td>
                 <td data-live-column="ev" data-label="Best EV" class="num ${valueClass}">${formatEv(row.ev)}</td>
             </tr>`;
@@ -1894,11 +1902,12 @@
         const tourSelect = document.getElementById('liveTourFilter');
         const tournamentSelect = document.getElementById('liveTournamentFilter');
         if (!tourSelect || !tournamentSelect || !events.length) return;
-        const tours = Array.from(new Set(events.map(event => event.tour).filter(Boolean)));
+        const marketEvents = events.filter(event => event.market === state.liveFilters.market);
+        const tours = Array.from(new Set(marketEvents.map(event => event.tour).filter(Boolean)));
         if (!tours.includes(state.liveFilters.tour)) state.liveFilters.tour = tours.includes('pga') ? 'pga' : tours[0];
         tourSelect.innerHTML = tours.map(tour => `<option value="${escapeHtml(tour)}">${escapeHtml(tour === 'pga' ? 'PGA Tour' : tour === 'euro' ? 'DP World Tour' : tour.toUpperCase())}</option>`).join('');
         tourSelect.value = state.liveFilters.tour;
-        const tournaments = events.filter(event => event.tour === state.liveFilters.tour);
+        const tournaments = marketEvents.filter(event => event.tour === state.liveFilters.tour);
         if (!tournaments.some(event => event.event_name === state.liveFilters.tournament)) {
             state.liveFilters.tournament = tournaments[0]?.event_name || '';
         }
@@ -2095,6 +2104,11 @@
         });
         document.getElementById('liveTourFilter').addEventListener('change', event => {
             state.liveFilters.tour = event.target.value;
+            state.liveFilters.tournament = '';
+            renderLiveOddsBoard();
+        });
+        document.getElementById('liveMarketFilter').addEventListener('change', event => {
+            state.liveFilters.market = event.target.value;
             state.liveFilters.tournament = '';
             renderLiveOddsBoard();
         });

@@ -31,13 +31,13 @@ def load_config() -> dict:
         return yaml.safe_load(handle)
 
 
-def fetch_tour(config: dict, tour: str, api_key: str) -> dict:
+def fetch_tour(config: dict, tour: str, market: str, api_key: str) -> dict:
     endpoint = config["endpoints"]["live_outright_odds"]["path"]
     url = f"{config['base_url'].rstrip('/')}/{endpoint}"
     params = {
         config["auth"]["key_param"]: api_key,
         "tour": tour,
-        "market": "win",
+        "market": market,
         "odds_format": "fraction",
     }
     response = requests.get(url, params=params, timeout=30)
@@ -82,7 +82,7 @@ def main() -> None:
         raise RuntimeError(f"Missing API key in environment: {config['auth']['env_var']}")
 
     tours = ("pga", "euro") if args.tour == "both" else (args.tour,)
-    events = [fetch_tour(config, tour, api_key) for tour in tours]
+    events = [fetch_tour(config, tour, market, api_key) for tour in tours for market in ("win", "top_10")]
     output = {
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": "DataGolf betting-tools/outrights",
