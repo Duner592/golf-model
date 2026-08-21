@@ -1458,8 +1458,12 @@
             });
         if (!settled.length) return;
 
-        const latestDate = settled.reduce((latest, entry) => (!latest || entry.date > latest ? entry.date : latest), null);
-        const start = weekStart(latestDate);
+        // “Last week” is always the fully completed Monday–Sunday period.  Do
+        // not infer it from the newest settled row: bets for the live event can
+        // be settled before its tournament week has finished.
+        const currentWeekStart = weekStart(new Date());
+        const start = new Date(currentWeekStart);
+        start.setDate(start.getDate() - 7);
         const end = new Date(start);
         end.setDate(end.getDate() + 6);
         const events = new Map();
