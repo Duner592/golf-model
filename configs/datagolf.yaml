@@ -39,6 +39,12 @@ endpoints:
     optional: ["display", "file_format"]
     notes: "Returns skill ratings; 'display' is per API docs; file_format for output type."
 
+  player_decompositions:
+    path: "preds/player-decompositions"
+    required: ["tour"]
+    optional: ["file_format"]
+    notes: "Current-event DataGolf projected strokes-gained decomposition. Reference context only; it must not be mixed into this project's model probabilities."
+
   historical_rounds:
     path: "historical-raw-data/rounds"
     required: [ "tour", "event_id", "year" ]

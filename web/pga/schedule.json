@@ -173,7 +173,7 @@
     "event": "Zurich Classic of New Orleans",
     "course": "TPC Louisiana",
     "location": "Avondale, LA",
-    "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
+    "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
   },
   {
     "event_id": "556",
@@ -376,13 +376,13 @@
   {
     "event_id": "27",
     "tour": "pga",
-    "status": "upcoming",
+    "status": "completed",
     "start_date": "2026-08-13",
     "date": "13-08-2026",
     "event": "FedEx St. Jude Championship",
     "course": "TPC Southwind",
     "location": "Memphis, TN",
-    "winner": "TBD"
+    "winner": "Scottie Scheffler"
   },
   {
     "event_id": "28",

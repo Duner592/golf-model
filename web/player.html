@@ -394,6 +394,11 @@
             <div class="detail-grid" id="detailGrid"></div>
         </section>
         <section class="card">
+            <h2>DataGolf Player Reference</h2>
+            <p class="muted">Projected strokes-gained components from DataGolf. These are reference data only and do not change this site's model.</p>
+            <div id="decomposition"></div>
+        </section>
+        <section class="card">
             <h2>Recent Bets</h2>
             <div class="table-wrap" id="bettingRows"></div>
         </section>
@@ -429,7 +434,8 @@
         tours: new Map(),
         events: new Map(),
         archive: null,
-        archiveOdds: null
+        archiveOdds: null,
+        decompositions: null
     };
 
     const els = {
@@ -446,6 +452,7 @@
         metrics: document.getElementById("metricGrid"),
         details: document.getElementById("detailGrid"),
         archive: document.getElementById("archiveWrap"),
+        decomposition: document.getElementById("decomposition"),
         bettingSummary: document.getElementById("bettingSummary"),
         bettingRows: document.getElementById("bettingRows"),
         quickLinks: document.getElementById("quickLinks")
@@ -469,6 +476,12 @@
     function fmtNum(value, digits = 2) {
         const n = Number(value);
         return Number.isFinite(n) ? n.toFixed(digits) : "-";
+    }
+
+    function fmtSigned(value, digits = 2) {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return "-";
+        return `${n > 0 ? "+" : ""}${n.toFixed(digits)}`;
     }
 
     function fmtCurrency(value) {
@@ -857,6 +870,56 @@
         return state.archiveOdds;
     }
 
+    async function loadDecompositions() {
+        if (state.decompositions) return state.decompositions;
+        const payload = await loadJSON("player_decompositions/current.json", { events: [] });
+        state.decompositions = Array.isArray(payload?.events) ? payload.events : [];
+        return state.decompositions;
+    }
+
+    function sameEventName(left, right) {
+        const normalize = value => String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+        return normalize(left) && normalize(left) === normalize(right);
+    }
+
+    function renderDecomposition(player, eventData, context, events) {
+        const event = events.find(item => item.tour === context.tour && sameEventName(item.event_name, eventData.meta.event_name));
+        const reference = event?.players?.find(row => String(row.dg_id || "") === String(player.dg_id || ""))
+            || event?.players?.find(row => samePlayer(row.player_name, player.player_name));
+        if (!reference) {
+            els.decomposition.innerHTML = '<p class="empty">No matching DataGolf reference data is available for this player/event.</p>';
+            return;
+        }
+        const details = [
+            ["Course history", reference.total_course_history_adjustment],
+            ["Course experience", reference.course_experience_adjustment],
+            ["Total course fit", reference.total_fit_adjustment],
+            ["Driving distance", reference.driving_distance_adjustment],
+            ["Driving accuracy", reference.driving_accuracy_adjustment],
+            ["Approach fit", reference.cf_approach_comp],
+            ["Short-game fit", reference.cf_short_comp],
+            ["Other fit", reference.other_fit_adjustment]
+        ].filter(([, value]) => Number.isFinite(Number(value)));
+        const skills = reference.skill_ratings || {};
+        const skillMetrics = [
+            ["Off the tee", skills.sg_ott],
+            ["Approach", skills.sg_app],
+            ["Around green", skills.sg_arg],
+            ["Putting", skills.sg_putt],
+            ["Driving accuracy", skills.driving_acc],
+            ["Driving distance", skills.driving_dist]
+        ].filter(([, value]) => Number.isFinite(Number(value)));
+        els.decomposition.innerHTML = `
+            <div class="metric-grid">
+                ${metricCard("Baseline SG", fmtSigned(reference.baseline_pred), "DataGolf estimate")}
+                ${metricCard("Final SG", fmtSigned(reference.final_pred), "After adjustments")}
+            </div>
+            ${details.length ? `<div class="detail-grid" style="margin-top:0.75rem">${details.map(([label, value]) => detailRow("fas fa-chart-line", label, escapeHtml(fmtSigned(value)))).join("")}</div>` : ""}
+            ${skillMetrics.length ? `<h3 style="margin-top:1rem">Underlying Skill Ratings</h3><p class="muted">DataGolf reference ratings, separate from this event's course adjustments. Eligibility requires at least 30 Shotlink rounds in the last 12 months or 50 in the last 24 months; the API does not expose a selectable rating lookback.</p><div class="metric-grid">${skillMetrics.map(([label, value]) => metricCard(label, fmtSigned(value))).join("")}</div>` : ""}
+            ${event.last_updated ? `<p class="muted" style="margin-bottom:0">DataGolf updated: ${escapeHtml(event.last_updated)}</p>` : ""}
+        `;
+    }
+
     function archiveBase(entry) {
         return `archive/${entry.year}/${entry.slug}`;
     }
@@ -990,12 +1053,14 @@
             els.metrics.innerHTML = "";
             els.details.innerHTML = "";
             renderQuickLinks(context, playerName);
-            const [betRows, archiveRows] = await Promise.all([
+            const [betRows, archiveRows, decompositionEvents] = await Promise.all([
                 loadBettingRows(playerName),
-                loadArchiveAppearances(playerName)
+                loadArchiveAppearances(playerName),
+                loadDecompositions()
             ]);
             renderBetting(playerName, betRows);
             renderArchiveRows(archiveRows);
+            renderDecomposition({}, eventData, context, decompositionEvents);
             return;
         }
 
@@ -1003,12 +1068,14 @@
         renderMetrics(candidate, eventData);
         renderDetails(candidate, eventData, context);
         renderQuickLinks(context, playerName);
-        const [betRows, archiveRows] = await Promise.all([
+        const [betRows, archiveRows, decompositionEvents] = await Promise.all([
             loadBettingRows(playerName),
-            loadArchiveAppearances(playerName)
+            loadArchiveAppearances(playerName),
+            loadDecompositions()
         ]);
         renderBetting(playerName, betRows);
         renderArchiveRows(archiveRows);
+        renderDecomposition(candidate, eventData, context, decompositionEvents);
     }
 
     async function init() {

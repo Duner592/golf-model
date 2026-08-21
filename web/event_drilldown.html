@@ -310,6 +310,48 @@
             text-align: right;
             font-variant-numeric: tabular-nums;
         }
+        .skill-sort {
+            min-height: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            color: inherit;
+            font: inherit;
+            font-weight: inherit;
+            letter-spacing: inherit;
+            text-transform: inherit;
+        }
+        .skill-sort:hover,
+        .skill-sort:focus-visible {
+            background: transparent;
+            color: var(--gm-primary-dark);
+            text-decoration: underline;
+        }
+        .skill-column-dragging {
+            opacity: 0.45;
+        }
+        .skill-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin: -2.75rem 0 0.85rem;
+        }
+        .skill-rank-toggle {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.45rem;
+            min-height: 2rem;
+            color: #53675b;
+            font-size: 0.78rem;
+            letter-spacing: 0.02em;
+            text-transform: none;
+        }
+        .skill-rank-toggle input {
+            width: 1rem;
+            height: 1rem;
+            accent-color: var(--gm-primary);
+        }
         .pill-row {
             display: flex;
             flex-wrap: wrap;
@@ -593,6 +635,12 @@
             <div id="fieldFit"></div>
         </section>
         <section class="card">
+            <h2>Current Field Skill Ratings</h2>
+            <p class="muted">DataGolf reference ratings. Eligibility requires at least 30 Shotlink rounds in the last 12 months or 50 in the last 24 months; DataGolf does not expose a selectable rating lookback. Select a column heading to sort.</p>
+            <div class="skill-toolbar"><label class="skill-rank-toggle"><input id="skillRankToggle" type="checkbox"> Show ranks</label></div>
+            <div class="table-wrap" id="skillRatings"></div>
+        </section>
+        <section class="card">
             <h2>First Round Leader Analysis</h2>
             <div id="frlAnalysis"></div>
         </section>
@@ -642,12 +690,36 @@
         da_z: "Driving Acc.",
         dd_z: "Driving Dist."
     };
+    const SKILL_COLUMNS = [
+        ["sg_putt", "Putting"],
+        ["sg_arg", "Around green"],
+        ["sg_app", "Approach"],
+        ["sg_ott", "Off tee"],
+        ["driving_acc", "Driving acc."],
+        ["driving_dist", "Driving dist."]
+    ];
     const state = {
         tours: new Map(),
         events: new Map(),
         archive: null,
-        bettingRows: null
+        bettingRows: null,
+        decompositions: null
     };
+    let skillSort = { key: "sg_total", direction: "desc" };
+    let skillValuesAsRanks = false;
+    let draggedSkillColumn = null;
+
+    function initialSkillColumnOrder() {
+        try {
+            const stored = JSON.parse(localStorage.getItem("eventDrilldownSkillColumnOrder") || "[]");
+            const valid = Array.isArray(stored) ? stored.filter(key => SKILL_COLUMNS.some(([column]) => column === key)) : [];
+            const remaining = SKILL_COLUMNS.map(([key]) => key).filter(key => !valid.includes(key));
+            return [...valid, ...remaining];
+        } catch (error) {
+            return SKILL_COLUMNS.map(([key]) => key);
+        }
+    }
+    let skillColumnOrder = initialSkillColumnOrder();
     let currentContext = null;
 
     const els = {
@@ -666,6 +738,8 @@
         preNotesCard: document.getElementById("preTournamentNotesCard"),
         preNotes: document.getElementById("preTournamentNotes"),
         fieldFit: document.getElementById("fieldFit"),
+        skillRatings: document.getElementById("skillRatings"),
+        skillRankToggle: document.getElementById("skillRankToggle"),
         frl: document.getElementById("frlAnalysis"),
         weather: document.getElementById("weatherWrap"),
         weights: document.getElementById("courseWeights"),
@@ -688,6 +762,12 @@
     function fmtNum(value, digits = 1) {
         const n = Number(value);
         return Number.isFinite(n) ? n.toFixed(digits) : "-";
+    }
+
+    function fmtSigned(value, digits = 2) {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return "-";
+        return `${n > 0 ? "+" : ""}${n.toFixed(digits)}`;
     }
 
     function fmtPct(value, digits = 1) {
@@ -792,6 +872,13 @@
             state.bettingRows = [];
         }
         return state.bettingRows;
+    }
+
+    async function loadDecompositions() {
+        if (state.decompositions) return state.decompositions;
+        const payload = await loadJSON("player_decompositions/current.json", { events: [] });
+        state.decompositions = Array.isArray(payload?.events) ? payload.events : [];
+        return state.decompositions;
     }
 
     function rootResources(tour) {
@@ -1269,7 +1356,7 @@
         }</div>`;
     }
 
-    function renderFieldFit(leaderboard) {
+    function renderFieldFit(leaderboard, context) {
         const rows = (leaderboard || [])
             .map(row => ({
                 player: row.player_name || row.Player || "",
@@ -1289,7 +1376,7 @@
                 <thead><tr><th>Player</th><th class="num">Rank</th><th class="num">Win</th><th class="num">Fit</th></tr></thead>
                 <tbody>${items.map(row => `
                     <tr>
-                        <td>${escapeHtml(row.player)}</td>
+                        <td>${eventPlayerLink(context, row.player)}</td>
                         <td class="num">${Number.isFinite(Number(row.rank)) ? `#${escapeHtml(row.rank)}` : "-"}</td>
                         <td class="num">${fmtPct(row.win)}</td>
                         <td class="num">${fmtNum(row.fit, 3)}</td>
@@ -1302,6 +1389,70 @@
                 <div><h3>Best Fits</h3><div class="table-wrap">${table(best)}</div></div>
                 <div><h3>Toughest Fits</h3><div class="table-wrap">${table(worst)}</div></div>
             </div>
+        `;
+    }
+
+    function playerHref(context, playerName) {
+        const params = new URLSearchParams({
+            tour: context.tour,
+            event_id: context.event.event_id,
+            player: playerName
+        });
+        if (context.snapshot === "initial") params.set("snapshot", "initial");
+        return `player.html?${params.toString()}`;
+    }
+
+    function renderSkillRatings(eventData, context, decompositionEvents) {
+        const referenceEvent = decompositionEvents.find(item =>
+            item.tour === context.tour && sameLoose(item.event_name, eventName(eventData, context.event))
+        );
+        const rows = Array.isArray(referenceEvent?.players)
+            ? referenceEvent.players.filter(player => player?.player_name && player.skill_ratings)
+            : [];
+        if (!rows.length) {
+            els.skillRatings.innerHTML = referenceEvent?.players?.length
+                ? '<p class="empty">DataGolf has current-event decomposition data for this field, but no eligible underlying skill ratings. Those ratings require sufficient Shotlink-measured rounds, which are not currently available for this DP World Tour field.</p>'
+                : '<p class="empty">No current DataGolf skill ratings are available for this event.</p>';
+            return;
+        }
+        const columns = skillColumnOrder.map(key => SKILL_COLUMNS.find(([column]) => column === key)).filter(Boolean);
+        const ranksByColumn = new Map(columns.map(([key]) => {
+            const sortedBySkill = [...rows]
+                .filter(row => Number.isFinite(Number(row.skill_ratings?.[key])))
+                .sort((a, b) => Number(b.skill_ratings[key]) - Number(a.skill_ratings[key]));
+            return [key, new Map(sortedBySkill.map((row, index) => [String(row.dg_id || row.player_name), index + 1]))];
+        }));
+        const sorted = [...rows].sort((left, right) => {
+            const a = Number(left.skill_ratings?.[skillSort.key]);
+            const b = Number(right.skill_ratings?.[skillSort.key]);
+            const aValid = Number.isFinite(a);
+            const bValid = Number.isFinite(b);
+            if (!aValid || !bValid) return aValid ? -1 : bValid ? 1 : left.player_name.localeCompare(right.player_name);
+            const order = skillSort.direction === "asc" ? 1 : -1;
+            return (a - b) * order || left.player_name.localeCompare(right.player_name);
+        });
+        const heading = ([key, label]) => {
+            const active = skillSort.key === key;
+            const arrow = active ? (skillSort.direction === "asc" ? " ▲" : " ▼") : "";
+            return `<th class="num" draggable="true" data-skill-column="${key}"><button class="skill-sort" type="button" data-skill-sort="${key}">${escapeHtml(label)}${arrow}</button></th>`;
+        };
+        const value = (player, key) => {
+            if (!skillValuesAsRanks) return fmtSigned(player.skill_ratings?.[key]);
+            const rank = ranksByColumn.get(key)?.get(String(player.dg_id || player.player_name));
+            return rank ? `#${rank}` : "-";
+        };
+        els.skillRankToggle.checked = skillValuesAsRanks;
+        els.skillRatings.innerHTML = `
+            <table>
+                <thead><tr><th>Player</th>${columns.map(heading).join("")}</tr></thead>
+                <tbody>${sorted.map(player => `
+                    <tr>
+                        <td><a class="text-link" href="${playerHref(context, player.player_name)}">${escapeHtml(player.player_name)}</a></td>
+                        ${columns.map(([key]) => `<td class="num">${escapeHtml(value(player, key))}</td>`).join("")}
+                    </tr>
+                `).join("")}</tbody>
+            </table>
+            ${referenceEvent.last_updated ? `<p class="muted" style="margin-bottom:0">DataGolf updated: ${escapeHtml(referenceEvent.last_updated)}</p>` : ""}
         `;
     }
 
@@ -1327,6 +1478,16 @@
     function samePlayerName(left, right) {
         const leftKeys = new Set(playerNameKeys(left));
         return playerNameKeys(right).some(key => leftKeys.has(key));
+    }
+
+    function eventPlayerLink(context, playerName) {
+        const matched = (context?.eventData?.leaderboard || []).find(row =>
+            samePlayerName(row.player_name || row.Player || "", playerName)
+        );
+        const displayName = normalizePlayerDisplayName(playerName) || "-";
+        return matched
+            ? `<a class="text-link" href="${playerHref(context, matched.player_name || matched.Player || playerName)}">${escapeHtml(displayName)}</a>`
+            : escapeHtml(displayName);
     }
 
     function teeTimeLookup(teeTimes) {
@@ -1502,7 +1663,7 @@
             .sort((a, b) => (parseDate(b.Date)?.valueOf() || 0) - (parseDate(a.Date)?.valueOf() || 0));
     }
 
-    function renderFirstRoundLeader(eventData, bettingRows, course, tournament) {
+    function renderFirstRoundLeader(eventData, bettingRows, course, tournament, context) {
         const candidates = buildFrlCandidates(eventData).slice(0, 10);
         const bets = matchedFrlBets(bettingRows, course, tournament);
         const weather = r1WeatherSummary(eventData);
@@ -1516,7 +1677,7 @@
         const candidateRows = candidates.length
             ? candidates.map(row => `
                 <tr>
-                    <td>${escapeHtml(row.player)}</td>
+                    <td>${eventPlayerLink(context, row.player)}</td>
                     <td class="num">${Number.isFinite(Number(row.rank)) ? `#${escapeHtml(row.rank)}` : "-"}</td>
                     <td>${escapeHtml(row.teeTime || "-")}</td>
                     <td>${escapeHtml(displayWave(row.wave))}</td>
@@ -1532,7 +1693,7 @@
             ? bets.slice(0, 8).map(row => `
                 <tr>
                     <td>${escapeHtml(displayDate(row.Date))}</td>
-                    <td>${escapeHtml(row.Player || "-")}</td>
+                    <td>${eventPlayerLink(context, row.Player || "-")}</td>
                     <td>${escapeHtml(row.Price || "-")}</td>
                     <td>${escapeHtml(row["Place Terms"] || "-")}</td>
                     <td>${escapeHtml(row.Outcome || row.Result || "-")}</td>
@@ -1678,7 +1839,7 @@
         return matches;
     }
 
-    function renderArchives(rows) {
+    function renderArchives(rows, context) {
         if (!rows.length) {
             els.archives.innerHTML = '<p class="empty">No archived events matched this course yet.</p>';
             return;
@@ -1690,14 +1851,14 @@
                     <tr>
                         <td><a class="text-link" href="${base}/model_page.html">${escapeHtml(entry.event_name || summary.event_name || "-")}</a></td>
                         <td>${escapeHtml(displayDate(entry.start_date || summary.start_date))}</td>
-                        <td>${escapeHtml(summary.winner || "-")}</td>
+                        <td>${eventPlayerLink(context, summary.winner || "-")}</td>
                     </tr>
                 `).join("")}</tbody>
             </table>
         `;
     }
 
-    function renderPreviousWinners(tournament) {
+    function renderPreviousWinners(tournament, context) {
         const winners = Array.isArray(tournament?.previous_winners) ? tournament.previous_winners.slice(0, 6) : [];
         if (!winners.length) return "";
         return `
@@ -1708,7 +1869,7 @@
                         const parts = name.split(",").map(part => part.trim());
                         if (parts.length === 2) name = `${parts[1]} ${parts[0]}`;
                     }
-                    return `<li><span>${escapeHtml(winner.year || "-")}</span><strong>${escapeHtml(name)}${winner.score != null ? ` (${escapeHtml(winner.score)})` : ""}</strong></li>`;
+                    return `<li><span>${escapeHtml(winner.year || "-")}</span><strong>${eventPlayerLink(context, name)}${winner.score != null ? ` (${escapeHtml(winner.score)})` : ""}</strong></li>`;
                 }).join("")}
             </ul>
         `;
@@ -1741,7 +1902,7 @@
             return;
         }
         const eventData = await loadEvent(tour, tourState, event, snapshot);
-        const bettingRows = await loadBettingRows();
+        const [bettingRows, decompositionEvents] = await Promise.all([loadBettingRows(), loadDecompositions()]);
         const course = eventCourse(eventData) || requestedCourse;
         const context = { tour, snapshot, event, eventData, requestedCourse };
         currentContext = context;
@@ -1770,17 +1931,18 @@
         renderCourseNotes(noteMatch);
         renderPreTournamentNotes(bettingRows, course, eventName(eventData, event), eventData);
         renderWeights(eventData.courseFit);
-        renderFieldFit(eventData.leaderboard);
-        renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event));
+        renderFieldFit(eventData.leaderboard, context);
+        renderSkillRatings(eventData, context, decompositionEvents);
+        renderFirstRoundLeader(eventData, bettingRows, course, eventName(eventData, event), context);
         renderWeather(eventData);
         renderHistory(eventData.courseHistory);
         renderBettingSummary(bettingRows, course, eventName(eventData, event));
-        renderArchives(await loadCourseArchives(course));
+        renderArchives(await loadCourseArchives(course), context);
         renderQuickLinks(context, course);
 
         const existing = document.getElementById("previousWinnersCard");
         if (existing) existing.remove();
-        const previous = renderPreviousWinners(eventData.tournament);
+        const previous = renderPreviousWinners(eventData.tournament, context);
         if (previous) {
             const winnersCard = document.createElement("section");
             winnersCard.className = "card";
@@ -1812,6 +1974,45 @@
             snapshot: els.snapshot.value,
             eventId: els.event.value
         }));
+        els.skillRatings.addEventListener("click", event => {
+            const button = event.target.closest("[data-skill-sort]");
+            if (!button || !currentContext) return;
+            const key = button.dataset.skillSort;
+            skillSort = {
+                key,
+                direction: skillSort.key === key && skillSort.direction === "desc" ? "asc" : "desc"
+            };
+            loadDecompositions().then(events => renderSkillRatings(currentContext.eventData, currentContext, events));
+        });
+        els.skillRankToggle.addEventListener("change", () => {
+            skillValuesAsRanks = els.skillRankToggle.checked;
+            loadDecompositions().then(events => renderSkillRatings(currentContext.eventData, currentContext, events));
+        });
+        els.skillRatings.addEventListener("dragstart", event => {
+            const column = event.target.closest("[data-skill-column]");
+            if (!column) return;
+            draggedSkillColumn = column.dataset.skillColumn;
+            event.dataTransfer.effectAllowed = "move";
+            column.classList.add("skill-column-dragging");
+        });
+        els.skillRatings.addEventListener("dragover", event => {
+            if (event.target.closest("[data-skill-column]")) event.preventDefault();
+        });
+        els.skillRatings.addEventListener("drop", event => {
+            const target = event.target.closest("[data-skill-column]");
+            if (!target || !draggedSkillColumn || target.dataset.skillColumn === draggedSkillColumn) return;
+            event.preventDefault();
+            const from = skillColumnOrder.indexOf(draggedSkillColumn);
+            const to = skillColumnOrder.indexOf(target.dataset.skillColumn);
+            skillColumnOrder.splice(from, 1);
+            skillColumnOrder.splice(to, 0, draggedSkillColumn);
+            localStorage.setItem("eventDrilldownSkillColumnOrder", JSON.stringify(skillColumnOrder));
+            loadDecompositions().then(events => renderSkillRatings(currentContext.eventData, currentContext, events));
+        });
+        els.skillRatings.addEventListener("dragend", event => {
+            draggedSkillColumn = null;
+            event.target.closest("[data-skill-column]")?.classList.remove("skill-column-dragging");
+        });
     }
 
     init().catch(error => {

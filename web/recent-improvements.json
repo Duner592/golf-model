@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-08-21",
+    "title": "Player and field skill context",
+    "description": "DataGolf reference skill components are available on Player Drilldown and as a sortable current-field table in Event Drilldown.",
+    "href": "event_drilldown.html"
+  },
+  {
     "date": "2026-08-20",
     "title": "Live UK odds board",
     "description": "Odds & Value now compares active model players with live Bet365 and Sky Bet prices, while Player Drilldown adds archived opening and closing odds where available.",
@@ -15,12 +21,6 @@
     "date": "2026-08-14",
     "title": "Clearer page navigation",
     "description": "Breadcrumbs now keep tournament, player, course, archive, and betting pages connected with contextual back-links.",
-    "href": "pga.html"
-  },
-  {
-    "date": "2026-08-13",
-    "title": "Improved iPhone usability",
-    "description": "PGA and DP World leaderboards now keep wide tables inside a smooth swipe area, with larger touch targets on iPhone and iPad.",
     "href": "pga.html"
   }
 ]

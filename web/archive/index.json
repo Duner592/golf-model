@@ -1,18 +1,5 @@
 [
   {
-    "event_id": "28",
-    "event_name": "BMW Championship",
-    "tour": "pga",
-    "slug": "bmw_championship",
-    "year": "2026",
-    "start_date": "2026-08-20",
-    "csv_available": true,
-    "archived_at": "2026-08-17 01:58:54 UTC",
-    "prediction_snapshot": "initial",
-    "initial_snapshot_created_utc": "2026-08-17T01:58:54Z",
-    "model_page": "archive/2026/bmw_championship/model_page.html"
-  },
-  {
     "event_id": "2026132",
     "event_name": "Nexo Championship",
     "tour": "euro",
@@ -24,6 +11,19 @@
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-17T01:59:07Z",
     "model_page": "archive/2026/nexo_championship/model_page.html"
+  },
+  {
+    "event_id": "28",
+    "event_name": "BMW Championship",
+    "tour": "pga",
+    "slug": "bmw_championship",
+    "year": "2026",
+    "start_date": "2026-08-20",
+    "csv_available": true,
+    "archived_at": "2026-08-17 01:58:54 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-08-17T01:58:54Z",
+    "model_page": "archive/2026/bmw_championship/model_page.html"
   },
   {
     "event_id": "27",

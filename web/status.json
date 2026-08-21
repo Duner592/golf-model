@@ -1,8 +1,8 @@
 {
   "betting_data": {
-    "last_modified": "2026-08-18T13:11:40Z",
+    "last_modified": "2026-08-21T07:45:23Z",
     "source": "web/spreadsheet_data.csv",
-    "timestamp_source": "git_commit"
+    "timestamp_source": "filesystem_mtime"
   },
   "model_runs": {
     "euro": {
@@ -26,22 +26,22 @@
       "workflow": "manual-repair"
     },
     "pga": {
-      "artifact_generated_utc": "13-Aug-2026 15:47:59",
-      "event_id": "27",
+      "artifact_generated_utc": "21-Aug-2026 07:46:20",
+      "event_id": "28",
       "event_ids": [
-        "27"
+        "28"
       ],
-      "event_name": "FedEx St. Jude Championship",
+      "event_name": "BMW Championship",
       "events": [
         {
-          "event_id": "27",
-          "event_name": "FedEx St. Jude Championship",
-          "generated_utc": "13-Aug-2026 15:47:59",
+          "event_id": "28",
+          "event_name": "BMW Championship",
+          "generated_utc": "21-Aug-2026 07:46:20",
           "has_predictions": true,
-          "start_date": "2026-08-13"
+          "start_date": "2026-08-20"
         }
       ],
-      "last_run_utc": "2026-08-13T15:47:59Z",
+      "last_run_utc": "2026-08-21T07:46:20Z",
       "tour": "pga",
       "workflow": "build-web-assets"
     }
@@ -54,5 +54,5 @@
     "tour": "all",
     "workflow": "scheduled-model"
   },
-  "updated_at_utc": "2026-08-19T07:42:47Z"
+  "updated_at_utc": "2026-08-21T07:46:20Z"
 }

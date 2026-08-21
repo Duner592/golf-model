@@ -13,7 +13,7 @@
 .site-header__inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1rem;
     padding: 0.9rem 1.5rem;
 }
@@ -25,10 +25,19 @@
     flex: 0 0 auto;
 }
 
+.site-header__actions:empty {
+    display: none;
+}
+
+/* The current header uses the quick navigation instead of the legacy drawer. */
+.site-header__actions:has(.menu-container:empty) {
+    display: none;
+}
+
 .site-header__quick-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.5rem;
     flex: 1 1 auto;
     flex-wrap: wrap;
@@ -43,7 +52,7 @@
     display: flex;
     align-items: center;
     flex: 0 0 auto;
-    margin-left: 1rem;
+    margin-left: auto;
 }
 
 .site-header__brand-link {
