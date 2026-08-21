@@ -161,6 +161,41 @@
             border-radius: 8px;
             background: #fff;
         }
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.75rem;
+        }
+        .workflow-card {
+            display: grid;
+            gap: 0.45rem;
+            min-height: 7.25rem;
+            padding: 0.85rem;
+            border: 1px solid rgba(34, 139, 34, 0.12);
+            border-radius: 8px;
+            background: #fff;
+        }
+        .workflow-card__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        .workflow-card__title {
+            color: #254332;
+            font-weight: 800;
+        }
+        .workflow-card__link {
+            color: #1b8049;
+            font-size: 0.86rem;
+            font-weight: 750;
+            text-decoration: none;
+        }
+        .workflow-card__link:hover,
+        .workflow-card__link:focus-visible {
+            color: #0f5f36;
+            text-decoration: underline;
+        }
         .tour-header {
             display: flex;
             align-items: center;
@@ -323,6 +358,11 @@
             <div class="tour-grid" id="tourCards"></div>
         </section>
         <section class="card">
+            <h2>Workflow Status</h2>
+            <p class="muted">Latest GitHub Actions run for each key workflow. This is live operational context and does not affect the asset-health checks above.</p>
+            <div class="workflow-grid" id="workflowGrid"><p class="loading">Loading workflow status...</p></div>
+        </section>
+        <section class="card">
             <h2>Open Findings</h2>
             <div class="table-wrap" id="findingsWrap"></div>
         </section>
@@ -359,6 +399,15 @@
     ];
     const STATUS_AGE_HOURS = 24;
     const ARCHIVE_LOOKBACK_DAYS = 45;
+    const GITHUB_REPOSITORY = "Duner592/golf-model";
+    const WORKFLOWS = [
+        { file: "weekly-model.yml", label: "Model refresh" },
+        { file: "archive-update.yml", label: "Archive update" },
+        { file: "actual-results.yml", label: "Actual results" },
+        { file: "backfill-historical-odds.yml", label: "Odds backfill" },
+        { file: "refresh-live-odds.yml", label: "Live odds refresh" },
+        { file: "deploy-pages.yml", label: "Pages deployment" }
+    ];
     const MONTHS = {
         jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
         jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
@@ -399,6 +448,22 @@
         } catch (error) {
             addFinding("error", "asset-load-failed", `${path} could not be loaded`, "asset", path);
             return fallback;
+        }
+    }
+
+    async function loadWorkflowRun(workflow) {
+        const url = `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${encodeURIComponent(workflow.file)}/runs?per_page=1`;
+        try {
+            const response = await fetch(url, {
+                cache: "no-store",
+                headers: { Accept: "application/vnd.github+json" }
+            });
+            if (!response.ok) return { ...workflow, unavailable: `GitHub API returned HTTP ${response.status}` };
+            const payload = await response.json();
+            const run = Array.isArray(payload.workflow_runs) ? payload.workflow_runs[0] : null;
+            return run ? { ...workflow, run } : { ...workflow, unavailable: "No runs found" };
+        } catch (_) {
+            return { ...workflow, unavailable: "GitHub Actions status is unavailable" };
         }
     }
 
@@ -837,6 +902,40 @@
         `).join("");
     }
 
+    function workflowState(run) {
+        if (!run) return { severity: "info", label: "Unavailable" };
+        if (run.status !== "completed") return { severity: "info", label: run.status === "in_progress" ? "Running" : "Queued" };
+        if (run.conclusion === "success") return { severity: "pass", label: "Successful" };
+        if (run.conclusion === "failure") return { severity: "error", label: "Failed" };
+        if (run.conclusion === "cancelled" || run.conclusion === "timed_out") return { severity: "warn", label: "Stopped" };
+        return { severity: "warn", label: run.conclusion ? String(run.conclusion).replace(/_/g, " ") : "Completed" };
+    }
+
+    function renderWorkflows(workflows) {
+        const grid = document.getElementById("workflowGrid");
+        if (!grid) return;
+        grid.innerHTML = workflows.map(workflow => {
+            const run = workflow.run;
+            const state = workflowState(run);
+            const timestamp = run?.updated_at || run?.run_started_at || run?.created_at;
+            const detail = run
+                ? `${run.event === "schedule" ? "Scheduled" : "Manual or push"} · ${formatDateTime(timestamp)}`
+                : workflow.unavailable;
+            const link = run?.html_url
+                ? `<a class="workflow-card__link" href="${escapeHtml(run.html_url)}" target="_blank" rel="noopener">View run ↗</a>`
+                : `<a class="workflow-card__link" href="https://github.com/${GITHUB_REPOSITORY}/actions/workflows/${escapeHtml(workflow.file)}" target="_blank" rel="noopener">View workflow ↗</a>`;
+            return `
+                <article class="workflow-card">
+                    <div class="workflow-card__header">
+                        <span class="workflow-card__title">${escapeHtml(workflow.label)}</span>
+                        <span class="badge ${severityClass(state.severity)}">${escapeHtml(state.label)}</span>
+                    </div>
+                    <span class="muted">${escapeHtml(detail || "-")}</span>
+                    ${link}
+                </article>`;
+        }).join("");
+    }
+
     function renderFindings() {
         const wrap = document.getElementById("findingsWrap");
         if (!state.findings.length) {
@@ -914,14 +1013,15 @@
     }
 
     async function init() {
-        const [status, pgaMeta, euroMeta, pgaSchedule, euroSchedule, archiveIndex, resultsSummary] = await Promise.all([
+        const [status, pgaMeta, euroMeta, pgaSchedule, euroSchedule, archiveIndex, resultsSummary, workflows] = await Promise.all([
             loadJSON("status.json", {}),
             loadJSON("pga/meta.json", {}),
             loadJSON("euro/meta.json", {}),
             loadJSON("pga/schedule.json", []),
             loadJSON("euro/schedule.json", []),
             loadJSON("archive/index.json", []),
-            loadJSON("archive/results_summary.json", {})
+            loadJSON("archive/results_summary.json", {}),
+            Promise.all(WORKFLOWS.map(loadWorkflowRun))
         ]);
 
         const statusUpdated = parseDateTime(status?.updated_at_utc);
@@ -941,6 +1041,7 @@
 
         renderSummary(status, archiveMetrics, tourSummaries);
         renderTours(tourSummaries);
+        renderWorkflows(workflows);
         renderFindings();
         renderArchive();
         renderSideDetails(status, archiveMetrics);

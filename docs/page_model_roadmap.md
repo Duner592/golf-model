@@ -123,6 +123,18 @@ Current features:
 - Each item has a date, short title, one-line description, and optional page link.
 - Keeps routine data refreshes and workflow commits out of the list.
 
+### Workflow Status On Model Health
+
+Completed on 2026-08-21.
+
+Implemented in `web/model_health.html`.
+
+Current features:
+
+- Shows the latest GitHub Actions run for model refresh, archive update, actual results, historical-odds backfill, live odds refresh, and Pages deployment.
+- Uses the public GitHub API in the browser, with no repository token or generated snapshot required.
+- Makes a failed, queued, running, or successful run visible without treating GitHub API availability as an asset-health finding.
+
 ## Do Soon
 
 No currently prioritised homepage improvements.
@@ -221,20 +233,6 @@ Useful course features:
 - Driving accuracy/approach/short-game emphasis.
 
 The goal is to reduce fallback course-fit cases and make course-fit scores more interpretable.
-
-### Workflow Dashboard From GitHub Actions
-
-If useful later, pull recent GitHub Actions status into the site or a local diagnostic command.
-
-Useful fields:
-
-- Last scheduled model run.
-- Last archive update.
-- Last actual-results run.
-- Last failed workflow.
-- Commit SHA deployed to Pages.
-
-This is optional because the site integrity check and health page should cover most local diagnostics first.
 
 ## Suggested Build Order
 
