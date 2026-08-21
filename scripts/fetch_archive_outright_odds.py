@@ -15,6 +15,36 @@ def write_output(path, events):
     output = {'generated_utc': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'books': list(BOOKS), 'events': list(events.values())}
     path.write_text(json.dumps(output, indent=2) + '\n')
 
+
+def historical_odds_rows(payload):
+    """Normalise DataGolf historical-odds responses to player-price rows.
+
+    The endpoint returns an ``odds`` mapping keyed by player name.  Keeping
+    support for list-shaped responses also makes this resilient to older API
+    exports and avoids a malformed item aborting an otherwise resumable batch.
+    """
+    odds = payload.get('odds', []) if isinstance(payload, dict) else []
+    if isinstance(odds, dict):
+        for name, prices in odds.items():
+            if isinstance(prices, dict):
+                yield {
+                    'player_name': name,
+                    'open_odds': prices.get('open_odds', prices.get('open')),
+                    'close_odds': prices.get('close_odds', prices.get('close')),
+                }
+            elif isinstance(prices, (list, tuple)):
+                yield {
+                    'player_name': name,
+                    'open_odds': prices[0] if prices else None,
+                    'close_odds': prices[-1] if prices else None,
+                }
+            else:
+                yield {'player_name': name, 'open_odds': None, 'close_odds': prices}
+        return
+    if isinstance(odds, list):
+        yield from (row for row in odds if isinstance(row, dict))
+
+
 def main():
     parser = argparse.ArgumentParser(description='Backfill archived outright odds without exceeding DataGolf limits.')
     parser.add_argument('--delay-seconds', type=float, default=12.0, help='Minimum wait between requests (default: 12).')
@@ -60,7 +90,7 @@ def main():
             try: raise_for_status_safely(response)
             except requests.HTTPError as error:
                 print(f"Skipping {entry['event_name']} ({book}): {error}", flush=True); continue
-            for row in response.json().get('odds', []):
+            for row in historical_odds_rows(response.json()):
                 name = str(row.get('player_name') or '').strip()
                 if name:
                     players.setdefault(name, {})[book] = {'open': row.get('open_odds'), 'close': row.get('close_odds')}
