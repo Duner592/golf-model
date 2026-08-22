@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-22T03:26:36Z",
+  "generated_utc": "2026-08-22T04:03:20Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "win",
-      "last_updated": "2026-08-22 01:15:58 UTC",
+      "last_updated": "2026-08-22 03:52:47 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -16,8 +16,8 @@
           "player_name": "Clark, Wyndham",
           "dg_id": 23604,
           "prices": {
-            "bet365": "2.1/1",
-            "skybet": "2.1/1"
+            "bet365": "2/1",
+            "skybet": "2/1"
           }
         },
         {
@@ -224,7 +224,7 @@
           "player_name": "Burns, Sam",
           "dg_id": 19483,
           "prices": {
-            "bet365": "250/1",
+            "bet365": "275/1",
             "skybet": "200/1"
           }
         },
@@ -273,7 +273,7 @@
           "dg_id": 28635,
           "prices": {
             "bet365": "1000/1",
-            "skybet": "1000/1"
+            "skybet": "1250/1"
           }
         },
         {
@@ -296,7 +296,7 @@
           "player_name": "Rai, Aaron",
           "dg_id": 18554,
           "prices": {
-            "bet365": "2000/1",
+            "bet365": "2500/1",
             "skybet": "1250/1"
           }
         },
@@ -415,7 +415,7 @@
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "top_10",
-      "last_updated": "2026-08-22 01:15:58 UTC",
+      "last_updated": "2026-08-22 03:52:47 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -433,8 +433,8 @@
           "player_name": "Woodland, Gary",
           "dg_id": 12577,
           "prices": {
-            "bet365": "0.18/1",
-            "skybet": "0.22/1"
+            "bet365": "0.2/1",
+            "skybet": "0.25/1"
           }
         },
         {
