@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-22T10:31:49Z",
+  "generated_utc": "2026-08-22T10:51:35Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "win",
-      "last_updated": "2026-08-22 03:52:47 UTC",
+      "last_updated": "2026-08-22 10:42:56 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -216,8 +216,8 @@
           "player_name": "Fitzpatrick, Matt",
           "dg_id": 17646,
           "prices": {
-            "bet365": "200/1",
-            "skybet": "150/1"
+            "bet365": "225/1",
+            "skybet": "175/1"
           }
         },
         {
@@ -273,7 +273,7 @@
           "dg_id": 28635,
           "prices": {
             "bet365": "1000/1",
-            "skybet": "1250/1"
+            "skybet": "1000/1"
           }
         },
         {
@@ -415,7 +415,7 @@
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "top_10",
-      "last_updated": "2026-08-22 03:52:47 UTC",
+      "last_updated": "2026-08-22 10:42:56 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -626,7 +626,7 @@
           "dg_id": 17646,
           "prices": {
             "bet365": "5/1",
-            "skybet": "5.5/1"
+            "skybet": "6/1"
           }
         },
         {
@@ -681,8 +681,8 @@
           "player_name": "McCarty, Matt",
           "dg_id": 28635,
           "prices": {
-            "bet365": "22/1",
-            "skybet": "28/1"
+            "bet365": "20/1",
+            "skybet": "25/1"
           }
         },
         {
@@ -737,8 +737,8 @@
           "player_name": "Kim, Tom",
           "dg_id": 24766,
           "prices": {
-            "bet365": "80/1",
-            "skybet": "125/1"
+            "bet365": "75/1",
+            "skybet": "110/1"
           }
         },
         {
@@ -783,8 +783,8 @@
           "player_name": "Griffin, Ben",
           "dg_id": 24968,
           "prices": {
-            "bet365": "75/1",
-            "skybet": "125/1"
+            "bet365": "70/1",
+            "skybet": "110/1"
           }
         },
         {
