@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-23T04:19:49Z",
+  "generated_utc": "2026-08-23T04:55:59Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "win",
-      "last_updated": "2026-08-23 01:26:08 UTC",
+      "last_updated": "2026-08-23 04:47:22 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -16,7 +16,7 @@
           "player_name": "Clark, Wyndham",
           "dg_id": 23604,
           "prices": {
-            "bet365": "0.28/1",
+            "bet365": "0.25/1",
             "skybet": "0.25/1"
           }
         },
@@ -49,7 +49,7 @@
           "dg_id": 12577,
           "prices": {
             "bet365": "33/1",
-            "skybet": "30/1"
+            "skybet": "33/1"
           }
         },
         {
@@ -418,7 +418,7 @@
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "top_10",
-      "last_updated": "2026-08-23 01:26:08 UTC",
+      "last_updated": "2026-08-23 04:47:22 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -532,8 +532,8 @@
           "player_name": "Thomas, Justin",
           "dg_id": 14139,
           "prices": {
-            "bet365": "5.5/1",
-            "skybet": "6.5/1"
+            "bet365": "5/1",
+            "skybet": "6/1"
           }
         },
         {
@@ -620,16 +620,16 @@
           "player_name": "Straka, Sepp",
           "dg_id": 17511,
           "prices": {
-            "bet365": "25/1",
-            "skybet": "30/1"
+            "bet365": "20/1",
+            "skybet": "28/1"
           }
         },
         {
           "player_name": "McCarty, Matt",
           "dg_id": 28635,
           "prices": {
-            "bet365": "50/1",
-            "skybet": "75/1"
+            "bet365": "45/1",
+            "skybet": "66/1"
           }
         },
         {
@@ -644,7 +644,7 @@
           "player_name": "Scott, Adam",
           "dg_id": 6430,
           "prices": {
-            "bet365": "22/1",
+            "bet365": "25/1",
             "skybet": "30/1"
           }
         },
@@ -660,16 +660,16 @@
           "player_name": "Kitayama, Kurt",
           "dg_id": 21891,
           "prices": {
-            "bet365": "50/1",
-            "skybet": "75/1"
+            "bet365": "45/1",
+            "skybet": "66/1"
           }
         },
         {
           "player_name": "Reitan, Kristoffer",
           "dg_id": 21407,
           "prices": {
-            "bet365": "80/1",
-            "skybet": "125/1"
+            "bet365": "90/1",
+            "skybet": "150/1"
           }
         },
         {
@@ -788,7 +788,7 @@
           "player_name": "Kim, Si Woo",
           "dg_id": 14609,
           "prices": {
-            "bet365": "80/1",
+            "bet365": "90/1",
             "skybet": "150/1"
           }
         },
