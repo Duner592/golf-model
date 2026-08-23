@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-23T10:53:52Z",
+  "generated_utc": "2026-08-23T11:09:25Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "win",
-      "last_updated": "2026-08-23 04:47:22 UTC",
+      "last_updated": "2026-08-23 11:00:38 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -418,7 +418,7 @@
       "tour": "pga",
       "event_name": "BMW Championship",
       "market": "top_10",
-      "last_updated": "2026-08-23 04:47:22 UTC",
+      "last_updated": "2026-08-23 11:00:38 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -620,7 +620,7 @@
           "player_name": "Straka, Sepp",
           "dg_id": 17511,
           "prices": {
-            "bet365": "20/1",
+            "bet365": "22/1",
             "skybet": "28/1"
           }
         },
@@ -693,7 +693,7 @@
           "dg_id": 18554,
           "prices": {
             "bet365": "20/1",
-            "skybet": "25/1"
+            "skybet": "22/1"
           }
         },
         {
