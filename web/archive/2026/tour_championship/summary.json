@@ -1,0 +1,12 @@
+{
+  "event_id": "60",
+  "event_name": "TOUR Championship",
+  "source_csv": "data/preds/pga/event_60_tour_championship_2026-08-24_leaderboard.csv",
+  "generated_utc": "24-Aug-2026 02:01:42",
+  "metrics": {
+    "field_size": 30,
+    "p_win_max": 0.22866666666666666,
+    "p_win_median": 0.006783333333333334,
+    "p_win_sum": 0.9999999999999999
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "event_name": "TOUR Championship",
+  "event_id": "60",
+  "course": "East Lake Golf Club",
+  "total_yardage": null,
+  "course_location": "Atlanta, GA",
+  "start_date": "27-Aug-2026",
+  "field_size": 30,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Fleetwood, Tommy",
+      "score": -18
+    },
+    {
+      "year": 2024,
+      "winner": "Scheffler, Scottie",
+      "score": -20
+    },
+    {
+      "year": 2023,
+      "winner": "Hovland, Viktor",
+      "score": -19
+    },
+    {
+      "year": 2022,
+      "winner": "McIlroy, Rory",
+      "score": -17
+    },
+    {
+      "year": 2021,
+      "winner": "Cantlay, Patrick",
+      "score": -11
+    }
+  ]
+}

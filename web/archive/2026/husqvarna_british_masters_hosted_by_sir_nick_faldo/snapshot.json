@@ -1,0 +1,64 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-08-24T02:02:17Z",
+  "tour": "euro",
+  "event_id": "2026133",
+  "event_name": "Husqvarna British Masters hosted by Sir Nick Faldo",
+  "year": "2026",
+  "r1_date": "2026-08-27",
+  "start_date": "2026-08-27",
+  "source_csv": "data/preds/euro/event_2026133_husqvarna_british_masters_hosted_by_sir_nick_faldo_2026-08-24_leaderboard.csv",
+  "artifact_generated_utc": "24-Aug-2026 02:02:17",
+  "resources": {
+    "model_page": "euro/initial/2026/event_2026133/model_page.html",
+    "leaderboard": "euro/initial/2026/event_2026133/leaderboard.json",
+    "summary": "euro/initial/2026/event_2026133/summary.json",
+    "meta": "euro/initial/2026/event_2026133/meta.json",
+    "downloads_csv": "euro/initial/2026/event_2026133/leaderboard.csv",
+    "downloads_html": "euro/initial/2026/event_2026133/leaderboard.html",
+    "timestamped_csv": "euro/initial/2026/event_2026133/leaderboard_20260824T020217Z.csv",
+    "timestamped_html": "euro/initial/2026/event_2026133/leaderboard_20260824T020217Z.html",
+    "weather_meta": "euro/initial/2026/event_2026133/weather_meta.json",
+    "weather_round_neutral": "euro/initial/2026/event_2026133/weather_round_neutral.json",
+    "weather_round_wave": "euro/initial/2026/event_2026133/weather_round_wave.json",
+    "course_fit_weights": "euro/initial/2026/event_2026133/course_fit_weights.json",
+    "course_history_summary": null,
+    "tournament_summary": "euro/initial/2026/event_2026133/tournament_summary.json",
+    "field_teetimes": "euro/initial/2026/event_2026133/field_teetimes.csv",
+    "snapshot": "euro/initial/2026/event_2026133/snapshot.json",
+    "schedule": "euro/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-08-24T02:02:17Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "e1707f0bf813612018c689a3cc1322f00e7cb7a2ad6cee28c1eb0ebef8709623",
+      "src/utils_event.py": "b293f1d4910ae4957fb71193abaef9811f3a684d44319c09ae597a610c84f888"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "8129b3fa0d37a4e3ee8247100c77d4fe7476b32338b192e2e012f5afd43bdafb",
+      "field_teetimes.csv": "9ded9eb370dcab1b02b334ed246de910fa43e5113a1136b90d44b92fe208f651",
+      "leaderboard.csv": "01fc976b908f526064e31fbf2188bf239018ea7b8dd3f79079dfa6ad8990c057",
+      "leaderboard.html": "3e9a922140f1fc00d5a339dd5bcb4d4a9033cc7c5fd937d6ca346394456621c3",
+      "leaderboard.json": "7d3f849fa23fcae56bcc203221f92e227e89ea4b82cafdf365e94f0a99824e21",
+      "leaderboard_20260824T020217Z.csv": "01fc976b908f526064e31fbf2188bf239018ea7b8dd3f79079dfa6ad8990c057",
+      "leaderboard_20260824T020217Z.html": "3e9a922140f1fc00d5a339dd5bcb4d4a9033cc7c5fd937d6ca346394456621c3",
+      "meta.json": "2cf807128ecd6f78a6d27a28c35d9f5afab68f3e05c233975bde6bf56bb89c2c",
+      "model_page.html": "31a0d4786043968bcfa04f9050ff994f0e522cac00ca7c60600f6e99a039860d",
+      "summary.json": "04f818e96efffff8611b5e42975e29ec490e238a98d7f3e47dda5817e72c3bd8",
+      "tournament_summary.json": "eb37f75f8ccb690d751f2c462840c608b7a7d842c437b5f48ce35201749fee37",
+      "weather_meta.json": "778f9608fa172cf8db0c973c7ee16274b520cdfb961bff112f2236aba2ae5797",
+      "weather_round_neutral.json": "27b4fccf02745088be24a8e7d9f537fd228f8a84bb0ab4258022dcfac799c8f8",
+      "weather_round_wave.json": "4c2e2d2800aa526f703b866c78f7f56dd73f124ffd2309c3d2d48878fc79aa87"
+    }
+  }
+}

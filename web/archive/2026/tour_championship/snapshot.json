@@ -1,0 +1,65 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-08-24T02:01:42Z",
+  "tour": "pga",
+  "event_id": "60",
+  "event_name": "TOUR Championship",
+  "year": "2026",
+  "r1_date": "2026-08-27",
+  "start_date": "2026-08-27",
+  "source_csv": "data/preds/pga/event_60_tour_championship_2026-08-24_leaderboard.csv",
+  "artifact_generated_utc": "24-Aug-2026 02:01:42",
+  "resources": {
+    "model_page": "pga/initial/2026/event_60/model_page.html",
+    "leaderboard": "pga/initial/2026/event_60/leaderboard.json",
+    "summary": "pga/initial/2026/event_60/summary.json",
+    "meta": "pga/initial/2026/event_60/meta.json",
+    "downloads_csv": "pga/initial/2026/event_60/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_60/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_60/leaderboard_20260824T020142Z.csv",
+    "timestamped_html": "pga/initial/2026/event_60/leaderboard_20260824T020142Z.html",
+    "weather_meta": "pga/initial/2026/event_60/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_60/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_60/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_60/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_60/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_60/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_60/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_60/snapshot.json",
+    "schedule": "pga/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-08-24T02:01:42Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "e1707f0bf813612018c689a3cc1322f00e7cb7a2ad6cee28c1eb0ebef8709623",
+      "src/utils_event.py": "b293f1d4910ae4957fb71193abaef9811f3a684d44319c09ae597a610c84f888"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "5c80f0341c8e148da49e2462d4639c1887553b9080b998946e4b126b257fa053",
+      "course_history_summary.json": "0e0d0d67b9a94c95bc420307b3d4f40b7ee52d3683b3cf74bba2c5df69c6dec9",
+      "field_teetimes.csv": "30f1f20366ee21dee1487a5c05de21fc0f6aeec05f386fd795cff5b1a75f3f87",
+      "leaderboard.csv": "59454ac2c08c71ffd474dd97fd4d5bc6cd879992ecccb981bdd1fcaf2f5e57da",
+      "leaderboard.html": "46d401326b43c9a0735cba525eb9553d989e2e027417c2b38d6a8d8bbe4faa76",
+      "leaderboard.json": "fd43d969c8034b58e023d0ca2efe1345ea1b42fa796974e5964d05e26292d495",
+      "leaderboard_20260824T020142Z.csv": "59454ac2c08c71ffd474dd97fd4d5bc6cd879992ecccb981bdd1fcaf2f5e57da",
+      "leaderboard_20260824T020142Z.html": "46d401326b43c9a0735cba525eb9553d989e2e027417c2b38d6a8d8bbe4faa76",
+      "meta.json": "d87552fc707066f8f6eac2e682272b8c39dbeaa204df88785875406f85deeb3e",
+      "model_page.html": "b53b3d2c5207feb367e7a2034e5996d7f66bae7d2261dabbead164e588a27545",
+      "summary.json": "9482af497a3034361b743efacb78723c5e611342775b373a170749aa7035f9df",
+      "tournament_summary.json": "bd876e90061752847aeabdd61bd1555b2b6124b14c11a0924762f39a1ad877f5",
+      "weather_meta.json": "79ec916f8727741332bdf05c62e1dd16e8f422b0303f1c95f0edf9e707072e33",
+      "weather_round_neutral.json": "49e51c9da53a8ebd9e3a7ca27eebeb2f5861ba99592db443b52f5e0d3f4a9497",
+      "weather_round_wave.json": "ae3cf4586fc6660cfe58bcaae396dcdf96bb6d25f3501d9947bf03367888bcac"
+    }
+  }
+}
