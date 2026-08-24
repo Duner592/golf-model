@@ -899,6 +899,10 @@
     const LIVE_ODDS_SOURCE = 'https://raw.githubusercontent.com/Duner592/golf-model/master/web/odds/current.json';
     const LIVE_ODDS_COLUMNS = ['player', 'modelWin', 'implied', 'bet365', 'skybet', 'edge', 'ev'];
     const LIVE_ODDS_COLUMN_STORAGE_KEY = 'liveOddsColumnOrderV2';
+    // `generated_utc` records the polling run, while event.last_updated is the
+    // timestamp supplied by DataGolf.  Do not allow a successfully polled but
+    // unchanged old tournament to look like a fresh live board.
+    const LIVE_ODDS_MAX_SOURCE_AGE_MS = 8 * 60 * 60 * 1000;
     const TOUR_ORDER = ['PGA Tour', 'DP World Tour', 'Majors'];
 
     function readInitialFilters() {
@@ -1244,6 +1248,32 @@
             Number.parseInt(match[5], 10),
             Number.parseInt(match[6] || '0', 10)
         );
+    }
+
+    function parseLiveOddsTimestamp(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return NaN;
+        const direct = Date.parse(raw);
+        if (Number.isFinite(direct)) return direct;
+        const match = raw.match(/^(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})\s+UTC$/i);
+        return match ? Date.parse(`${match[1]}T${match[2]}Z`) : NaN;
+    }
+
+    function liveOddsEventAgeMs(event) {
+        const updatedAt = parseLiveOddsTimestamp(event?.last_updated);
+        return Number.isFinite(updatedAt) ? Math.max(0, Date.now() - updatedAt) : Infinity;
+    }
+
+    function isFreshLiveOddsEvent(event) {
+        return liveOddsEventAgeMs(event) <= LIVE_ODDS_MAX_SOURCE_AGE_MS;
+    }
+
+    function liveOddsStaleMessage(events) {
+        const oldest = Math.max(...events.map(liveOddsEventAgeMs).filter(Number.isFinite));
+        const hours = Number.isFinite(oldest) ? Math.max(1, Math.round(oldest / (60 * 60 * 1000))) : null;
+        return hours
+            ? `DataGolf's odds feed is ${hours}h old; waiting for current-tournament prices.`
+            : 'DataGolf has not supplied a source timestamp; waiting for current-tournament prices.';
     }
 
     function buildPlayerMap(leaderboard) {
@@ -1824,7 +1854,8 @@
         const tbody = document.getElementById('liveOddsRows');
         const note = document.getElementById('liveOddsNote');
         const updated = document.getElementById('liveOddsUpdated');
-        const events = Array.isArray(state.liveOdds?.events) ? state.liveOdds.events : [];
+        const sourceEvents = Array.isArray(state.liveOdds?.events) ? state.liveOdds.events : [];
+        const events = sourceEvents.filter(isFreshLiveOddsEvent);
         const marketSelect = document.getElementById('liveMarketFilter');
         marketSelect.value = state.liveFilters.market === 'top_10' ? 'top_10' : 'win';
         document.getElementById('modelProbabilityHeader').textContent = state.liveFilters.market === 'top_10' ? 'Model Top 10' : 'Model win';
@@ -1836,8 +1867,9 @@
         });
         const rows = liveOddsRows();
         if (state.liveOdds?.error || !events.length) {
-            note.textContent = 'Live Bet365 and Sky Bet prices are not published yet.';
-            updated.textContent = 'Awaiting odds feed';
+            const feedIsStale = sourceEvents.length > 0;
+            note.textContent = feedIsStale ? liveOddsStaleMessage(sourceEvents) : 'Live Bet365 and Sky Bet prices are not published yet.';
+            updated.textContent = feedIsStale ? 'Stale DataGolf feed' : 'Awaiting odds feed';
             tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No live odds board is available for the current events.</td></tr>';
             return;
         }
@@ -1846,7 +1878,7 @@
             && (!state.liveFilters.tour || event.tour === state.liveFilters.tour)
             && (!state.liveFilters.tournament || event.event_name === state.liveFilters.tournament)
         );
-        const updatedAt = String(state.liveOdds.generated_utc || selectedEvents.map(event => event.last_updated).filter(Boolean).join(' · ') || '').trim();
+        const updatedAt = String(selectedEvents.map(event => event.last_updated).filter(Boolean).join(' · ') || '').trim();
         const sortLabel = state.liveSort === 'rank' ? 'Model rank' : state.liveSort === 'modelWin' ? 'Model win' : 'Selected column';
         note.textContent = `${rows.length} modelled player${rows.length === 1 ? '' : 's'} · ${sortLabel} ${state.liveSortDirection === 'asc' ? 'ascending' : 'descending'}`;
         updated.textContent = updatedAt ? `Updated ${updatedAt}` : 'DataGolf live odds';
