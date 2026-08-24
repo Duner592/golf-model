@@ -206,6 +206,15 @@
             letter-spacing: 0;
             text-transform: none;
         }
+        .filter-field select[multiple] {
+            min-height: 7.5rem;
+            padding: 0.25rem;
+        }
+        .filter-help {
+            margin: -0.3rem 0 0.85rem;
+            color: #607066;
+            font-size: 0.82rem;
+        }
         .summary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -370,12 +379,18 @@
             .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
     }
 
-    function selectOptions(values, selected = '', allLabel = 'All') {
-        const options = [`<option value="">${escapeHtml(allLabel)}</option>`];
-        const selectedKey = String(selected || '').trim().toLowerCase();
+    function filterValues(value) {
+        return (Array.isArray(value) ? value : [value])
+            .map(item => String(item || '').trim())
+            .filter(Boolean);
+    }
+
+    function selectOptions(values, selected = []) {
+        const selectedKeys = new Set(filterValues(selected).map(value => value.toLowerCase()));
+        const options = [];
         values.forEach(value => {
             const valueKey = String(value || '').trim().toLowerCase();
-            const selectedAttr = selectedKey && valueKey === selectedKey ? ' selected' : '';
+            const selectedAttr = selectedKeys.has(valueKey) ? ' selected' : '';
             options.push(`<option value="${escapeHtml(value)}"${selectedAttr}>${escapeHtml(value)}</option>`);
         });
         return options.join('');
@@ -384,14 +399,14 @@
     function readInitialFilters() {
         const params = new URLSearchParams(window.location.search);
         return {
-            year: params.get('year') || '',
-            tour: params.get('tour') || '',
-            tournament: params.get('tournament') || '',
-            course: params.get('course') || '',
-            player: params.get('player') || '',
-            bookmaker: params.get('bookmaker') || '',
-            type: params.get('betType') || params.get('type') || '',
-            outcome: params.get('outcome') || '',
+            year: params.getAll('year'),
+            tour: params.getAll('tour'),
+            tournament: params.getAll('tournament'),
+            course: params.getAll('course'),
+            player: params.getAll('player'),
+            bookmaker: params.getAll('bookmaker'),
+            type: params.getAll('betType').concat(params.getAll('type')),
+            outcome: params.getAll('outcome'),
             dateFrom: params.get('dateFrom') || '',
             dateTo: params.get('dateTo') || '',
             minProfit: params.get('minProfit') || '',
@@ -421,15 +436,16 @@
                 </div>
                 <div class="summary-grid" id="report-summary"></div>
                 <p class="active-filter-note" id="active-filter-note">No filters applied.</p>
+                <p class="filter-help">Choose one or more values in any list. Hold ⌘ on Mac or Ctrl on Windows to add or remove individual choices.</p>
                 <div class="filter-grid">
-                    <label class="filter-field">Year<select id="filter-year" data-report-filter="year">${selectOptions(years, filterState.year)}</select></label>
-                    <label class="filter-field">Tour<select id="filter-tour" data-report-filter="tour">${selectOptions(tours, filterState.tour)}</select></label>
-                    <label class="filter-field">Tournament<select id="filter-tournament" data-report-filter="tournament">${selectOptions(tournaments, filterState.tournament)}</select></label>
-                    <label class="filter-field">Course<select id="filter-course" data-report-filter="course">${selectOptions(courses, filterState.course)}</select></label>
-                    <label class="filter-field">Player<select id="filter-player" data-report-filter="player">${selectOptions(players, filterState.player)}</select></label>
-                    <label class="filter-field">Bookmaker<select id="filter-bookmaker" data-report-filter="bookmaker">${selectOptions(bookmakers, filterState.bookmaker)}</select></label>
-                    <label class="filter-field">Bet Type<select id="filter-type" data-report-filter="type">${selectOptions(types, filterState.type)}</select></label>
-                    <label class="filter-field">Outcome<select id="filter-outcome" data-report-filter="outcome">${selectOptions(outcomes, filterState.outcome)}</select></label>
+                    <label class="filter-field">Year<select id="filter-year" data-report-filter="year" multiple size="4">${selectOptions(years, filterState.year)}</select></label>
+                    <label class="filter-field">Tour<select id="filter-tour" data-report-filter="tour" multiple size="4">${selectOptions(tours, filterState.tour)}</select></label>
+                    <label class="filter-field">Tournament<select id="filter-tournament" data-report-filter="tournament" multiple size="4">${selectOptions(tournaments, filterState.tournament)}</select></label>
+                    <label class="filter-field">Course<select id="filter-course" data-report-filter="course" multiple size="4">${selectOptions(courses, filterState.course)}</select></label>
+                    <label class="filter-field">Player<select id="filter-player" data-report-filter="player" multiple size="4">${selectOptions(players, filterState.player)}</select></label>
+                    <label class="filter-field">Bookmaker<select id="filter-bookmaker" data-report-filter="bookmaker" multiple size="4">${selectOptions(bookmakers, filterState.bookmaker)}</select></label>
+                    <label class="filter-field">Bet Type<select id="filter-type" data-report-filter="type" multiple size="4">${selectOptions(types, filterState.type)}</select></label>
+                    <label class="filter-field">Outcome<select id="filter-outcome" data-report-filter="outcome" multiple size="4">${selectOptions(outcomes, filterState.outcome)}</select></label>
                     <label class="filter-field">Date From<input id="filter-date-from" data-report-filter="dateFrom" type="date" value="${escapeHtml(filterState.dateFrom)}"></label>
                     <label class="filter-field">Date To<input id="filter-date-to" data-report-filter="dateTo" type="date" value="${escapeHtml(filterState.dateTo)}"></label>
                     <label class="filter-field">Min P/L<input id="filter-min-profit" data-report-filter="minProfit" type="number" step="0.01" value="${escapeHtml(filterState.minProfit)}"></label>
@@ -475,17 +491,19 @@
     function getReportFilters() {
         const filters = {};
         document.querySelectorAll('[data-report-filter]').forEach(input => {
-            filters[input.dataset.reportFilter] = input.value;
+            filters[input.dataset.reportFilter] = input.multiple
+                ? Array.from(input.selectedOptions).map(option => option.value).filter(Boolean)
+                : input.value;
         });
         return {
-            year: filters.year || '',
-            tour: filters.tour || '',
-            tournament: filters.tournament || '',
-            course: filters.course || '',
-            player: filters.player || '',
-            bookmaker: filters.bookmaker || '',
-            type: filters.type || '',
-            outcome: filters.outcome || '',
+            year: filters.year || [],
+            tour: filters.tour || [],
+            tournament: filters.tournament || [],
+            course: filters.course || [],
+            player: filters.player || [],
+            bookmaker: filters.bookmaker || [],
+            type: filters.type || [],
+            outcome: filters.outcome || [],
             dateFrom: filters.dateFrom || '',
             dateTo: filters.dateTo || '',
             minProfit: filters.minProfit || '',
@@ -508,12 +526,13 @@
     };
 
     function matchesTextFilter(value, filter) {
-        if (!filter) return true;
-        return String(value || '').trim().toLowerCase() === String(filter || '').trim().toLowerCase();
+        const selected = filterValues(filter).map(item => item.toLowerCase());
+        if (!selected.length) return true;
+        return selected.includes(String(value || '').trim().toLowerCase());
     }
 
     function rowMatchesReportFilters(row, filters) {
-        if (filters.year && rowYear(row) !== filters.year) return false;
+        if (!matchesTextFilter(rowYear(row), filters.year)) return false;
         if (!matchesTextFilter(row['Tour/Majors'], filters.tour)) return false;
         if (!matchesTextFilter(row.Tournament, filters.tournament)) return false;
         if (!matchesTextFilter(row.Course, filters.course)) return false;
@@ -549,9 +568,9 @@
             // other active report filter limits the values it can offer.
             const rows = tableData.filter(row => rowMatchesReportFilters(row, {
                 ...filters,
-                [key]: ''
+                [key]: []
             }));
-            select.innerHTML = selectOptions(definition.values(rows), select.value);
+            select.innerHTML = selectOptions(definition.values(rows), filters[key]);
         });
     }
 
@@ -616,8 +635,8 @@
             maxProfit: 'Max P/L'
         };
         const descriptions = Object.entries(filterState)
-            .filter(([, value]) => String(value || '').trim())
-            .map(([key, value]) => `${labels[key] || key}: ${value}`);
+            .filter(([, value]) => filterValues(value).length)
+            .map(([key, value]) => `${labels[key] || key}: ${filterValues(value).join(' / ')}`);
         const globalQuery = document.getElementById('filter-input')?.value.trim();
         if (globalQuery) descriptions.push(`Search: ${globalQuery}`);
         document.querySelectorAll('.column-filter').forEach(select => {
@@ -704,7 +723,11 @@
 
     function resetReportFilters() {
         document.querySelectorAll('[data-report-filter]').forEach(input => {
-            input.value = '';
+            if (input.multiple) {
+                Array.from(input.options).forEach(option => { option.selected = false; });
+            } else {
+                input.value = '';
+            }
         });
         document.querySelectorAll('.column-filter').forEach(select => {
             select.value = '';
