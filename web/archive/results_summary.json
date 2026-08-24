@@ -1,4 +1,22 @@
 {
+  "2026_bmw_championship": {
+    "event_id": "28",
+    "event_name": "BMW Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "bmw_championship"
+  },
+  "2026_nexo_championship": {
+    "event_id": "2026132",
+    "event_name": "Nexo Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "nexo_championship"
+  },
   "2026_fedex_st_jude_championship": {
     "event_id": "27",
     "event_name": "FedEx St. Jude Championship",
