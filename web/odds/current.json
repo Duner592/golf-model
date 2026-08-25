@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-25T16:06:25Z",
+  "generated_utc": "2026-08-25T16:50:48Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "win",
-      "last_updated": "2026-08-25 13:57:38 UTC",
+      "last_updated": "2026-08-25 16:15:55 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -17,7 +17,7 @@
           "dg_id": 18417,
           "prices": {
             "bet365": "3.33/1",
-            "skybet": "3.5/1"
+            "skybet": "3.33/1"
           }
         },
         {
@@ -61,14 +61,6 @@
           }
         },
         {
-          "player_name": "Fleetwood, Tommy",
-          "dg_id": 12294,
-          "prices": {
-            "bet365": "20/1",
-            "skybet": "20/1"
-          }
-        },
-        {
           "player_name": "Morikawa, Collin",
           "dg_id": 22085,
           "prices": {
@@ -85,19 +77,19 @@
           }
         },
         {
+          "player_name": "Fleetwood, Tommy",
+          "dg_id": 12294,
+          "prices": {
+            "bet365": "20/1",
+            "skybet": "20/1"
+          }
+        },
+        {
           "player_name": "Clark, Wyndham",
           "dg_id": 23604,
           "prices": {
             "bet365": "16/1",
             "skybet": "16/1"
-          }
-        },
-        {
-          "player_name": "Hovland, Viktor",
-          "dg_id": 18841,
-          "prices": {
-            "bet365": "25/1",
-            "skybet": "25/1"
           }
         },
         {
@@ -109,11 +101,11 @@
           }
         },
         {
-          "player_name": "Fitzpatrick, Matt",
-          "dg_id": 17646,
+          "player_name": "Hovland, Viktor",
+          "dg_id": 18841,
           "prices": {
-            "bet365": "22/1",
-            "skybet": "18/1"
+            "bet365": "25/1",
+            "skybet": "25/1"
           }
         },
         {
@@ -122,6 +114,14 @@
           "prices": {
             "bet365": "25/1",
             "skybet": "22/1"
+          }
+        },
+        {
+          "player_name": "Fitzpatrick, Matt",
+          "dg_id": 17646,
+          "prices": {
+            "bet365": "22/1",
+            "skybet": "18/1"
           }
         },
         {
@@ -141,19 +141,19 @@
           }
         },
         {
-          "player_name": "Scott, Adam",
-          "dg_id": 6430,
-          "prices": {
-            "bet365": "50/1",
-            "skybet": "35/1"
-          }
-        },
-        {
           "player_name": "Gerard, Ryan",
           "dg_id": 29767,
           "prices": {
             "bet365": "45/1",
             "skybet": "40/1"
+          }
+        },
+        {
+          "player_name": "Scott, Adam",
+          "dg_id": 6430,
+          "prices": {
+            "bet365": "50/1",
+            "skybet": "35/1"
           }
         },
         {
@@ -165,16 +165,16 @@
           }
         },
         {
-          "player_name": "MacIntyre, Robert",
-          "dg_id": 23323,
+          "player_name": "Kim, Tom",
+          "dg_id": 24766,
           "prices": {
             "bet365": "45/1",
             "skybet": "40/1"
           }
         },
         {
-          "player_name": "Kim, Tom",
-          "dg_id": 24766,
+          "player_name": "MacIntyre, Robert",
+          "dg_id": 23323,
           "prices": {
             "bet365": "45/1",
             "skybet": "40/1"
@@ -197,19 +197,19 @@
           }
         },
         {
-          "player_name": "Woodland, Gary",
-          "dg_id": 12577,
-          "prices": {
-            "bet365": "45/1",
-            "skybet": "35/1"
-          }
-        },
-        {
           "player_name": "Smalley, Alex",
           "dg_id": 18474,
           "prices": {
             "bet365": "66/1",
             "skybet": "55/1"
+          }
+        },
+        {
+          "player_name": "Woodland, Gary",
+          "dg_id": 12577,
+          "prices": {
+            "bet365": "45/1",
+            "skybet": "35/1"
           }
         },
         {
@@ -258,7 +258,7 @@
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "top_10",
-      "last_updated": "2026-08-25 13:57:38 UTC",
+      "last_updated": "2026-08-25 16:15:55 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -313,14 +313,6 @@
           }
         },
         {
-          "player_name": "Fleetwood, Tommy",
-          "dg_id": 12294,
-          "prices": {
-            "bet365": "1.05/1",
-            "skybet": "1.38/1"
-          }
-        },
-        {
           "player_name": "Morikawa, Collin",
           "dg_id": 22085,
           "prices": {
@@ -337,19 +329,19 @@
           }
         },
         {
+          "player_name": "Fleetwood, Tommy",
+          "dg_id": 12294,
+          "prices": {
+            "bet365": "1.05/1",
+            "skybet": "1.38/1"
+          }
+        },
+        {
           "player_name": "Clark, Wyndham",
           "dg_id": 23604,
           "prices": {
             "bet365": "0.87/1",
             "skybet": "1.1/1"
-          }
-        },
-        {
-          "player_name": "Hovland, Viktor",
-          "dg_id": 18841,
-          "prices": {
-            "bet365": "1.2/1",
-            "skybet": "1.88/1"
           }
         },
         {
@@ -361,11 +353,11 @@
           }
         },
         {
-          "player_name": "Fitzpatrick, Matt",
-          "dg_id": 17646,
+          "player_name": "Hovland, Viktor",
+          "dg_id": 18841,
           "prices": {
-            "bet365": "1.1/1",
-            "skybet": "1.25/1"
+            "bet365": "1.2/1",
+            "skybet": "1.88/1"
           }
         },
         {
@@ -374,6 +366,14 @@
           "prices": {
             "bet365": "1.2/1",
             "skybet": "1.63/1"
+          }
+        },
+        {
+          "player_name": "Fitzpatrick, Matt",
+          "dg_id": 17646,
+          "prices": {
+            "bet365": "1.1/1",
+            "skybet": "1.25/1"
           }
         },
         {
@@ -393,19 +393,19 @@
           }
         },
         {
-          "player_name": "Scott, Adam",
-          "dg_id": 6430,
-          "prices": {
-            "bet365": "2/1",
-            "skybet": "2.5/1"
-          }
-        },
-        {
           "player_name": "Gerard, Ryan",
           "dg_id": 29767,
           "prices": {
             "bet365": "1.88/1",
             "skybet": "2.75/1"
+          }
+        },
+        {
+          "player_name": "Scott, Adam",
+          "dg_id": 6430,
+          "prices": {
+            "bet365": "2/1",
+            "skybet": "2.5/1"
           }
         },
         {
@@ -417,16 +417,16 @@
           }
         },
         {
-          "player_name": "MacIntyre, Robert",
-          "dg_id": 23323,
+          "player_name": "Kim, Tom",
+          "dg_id": 24766,
           "prices": {
             "bet365": "1.88/1",
             "skybet": "2.75/1"
           }
         },
         {
-          "player_name": "Kim, Tom",
-          "dg_id": 24766,
+          "player_name": "MacIntyre, Robert",
+          "dg_id": 23323,
           "prices": {
             "bet365": "1.88/1",
             "skybet": "2.75/1"
@@ -449,19 +449,19 @@
           }
         },
         {
-          "player_name": "Woodland, Gary",
-          "dg_id": 12577,
-          "prices": {
-            "bet365": "1.88/1",
-            "skybet": "2.5/1"
-          }
-        },
-        {
           "player_name": "Smalley, Alex",
           "dg_id": 18474,
           "prices": {
             "bet365": "2.4/1",
             "skybet": "3.5/1"
+          }
+        },
+        {
+          "player_name": "Woodland, Gary",
+          "dg_id": 12577,
+          "prices": {
+            "bet365": "1.88/1",
+            "skybet": "2.5/1"
           }
         },
         {
