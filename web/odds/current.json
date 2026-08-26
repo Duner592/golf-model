@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-26T02:14:23Z",
+  "generated_utc": "2026-08-26T03:18:24Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "win",
-      "last_updated": "2026-08-25 23:38:12 UTC",
+      "last_updated": "2026-08-26 02:34:04 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -258,7 +258,7 @@
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "top_10",
-      "last_updated": "2026-08-25 23:38:12 UTC",
+      "last_updated": "2026-08-26 02:34:04 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -510,7 +510,7 @@
       "tour": "euro",
       "event_name": "Husqvarna British Masters hosted by Sir Nick Faldo",
       "market": "win",
-      "last_updated": "2026-08-25 22:43:06 UTC",
+      "last_updated": "2026-08-26 02:34:44 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -569,7 +569,7 @@
           "dg_id": 22465,
           "prices": {
             "bet365": "22/1",
-            "skybet": "25/1"
+            "skybet": "22/1"
           }
         },
         {
@@ -1457,7 +1457,7 @@
           "dg_id": 13344,
           "prices": {
             "bet365": "500/1",
-            "skybet": "475/1"
+            "skybet": "325/1"
           }
         },
         {
@@ -1736,7 +1736,7 @@
       "tour": "euro",
       "event_name": "Husqvarna British Masters hosted by Sir Nick Faldo",
       "market": "top_10",
-      "last_updated": "2026-08-25 22:43:06 UTC",
+      "last_updated": "2026-08-26 02:34:44 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2635,7 +2635,7 @@
           "dg_id": 15115,
           "prices": {
             "bet365": "25/1",
-            "skybet": "35/1"
+            "skybet": "40/1"
           }
         },
         {
@@ -2683,7 +2683,7 @@
           "dg_id": 13344,
           "prices": {
             "bet365": "25/1",
-            "skybet": "55/1"
+            "skybet": "50/1"
           }
         },
         {
