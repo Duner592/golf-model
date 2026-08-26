@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-26T16:55:44Z",
+  "generated_utc": "2026-08-26T18:50:01Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "win",
-      "last_updated": "2026-08-26 14:20:06 UTC",
+      "last_updated": "2026-08-26 16:58:53 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -73,7 +73,7 @@
           "dg_id": 19483,
           "prices": {
             "bet365": "18/1",
-            "skybet": "18/1"
+            "skybet": "14/1"
           }
         },
         {
@@ -201,7 +201,7 @@
           "dg_id": 18474,
           "prices": {
             "bet365": "66/1",
-            "skybet": "50/1"
+            "skybet": "55/1"
           }
         },
         {
@@ -258,7 +258,7 @@
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "top_10",
-      "last_updated": "2026-08-26 14:20:06 UTC",
+      "last_updated": "2026-08-26 16:58:53 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -325,7 +325,7 @@
           "dg_id": 19483,
           "prices": {
             "bet365": "0.95/1",
-            "skybet": "1.25/1"
+            "skybet": "1/1"
           }
         },
         {
@@ -349,7 +349,7 @@
           "dg_id": 27774,
           "prices": {
             "bet365": "1.1/1",
-            "skybet": "1.38/1"
+            "skybet": "1.5/1"
           }
         },
         {
@@ -485,7 +485,7 @@
           "dg_id": 25362,
           "prices": {
             "bet365": "2.75/1",
-            "skybet": "4/1"
+            "skybet": "4.5/1"
           }
         },
         {
