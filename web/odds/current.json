@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-26T14:01:46Z",
+  "generated_utc": "2026-08-26T14:50:37Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "win",
-      "last_updated": "2026-08-26 11:00:55 UTC",
+      "last_updated": "2026-08-26 14:20:06 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -65,7 +65,7 @@
           "dg_id": 22085,
           "prices": {
             "bet365": "16/1",
-            "skybet": "18/1"
+            "skybet": "16/1"
           }
         },
         {
@@ -73,7 +73,7 @@
           "dg_id": 19483,
           "prices": {
             "bet365": "18/1",
-            "skybet": "16/1"
+            "skybet": "18/1"
           }
         },
         {
@@ -89,7 +89,7 @@
           "dg_id": 23604,
           "prices": {
             "bet365": "16/1",
-            "skybet": "16/1"
+            "skybet": "14/1"
           }
         },
         {
@@ -129,7 +129,7 @@
           "dg_id": 13562,
           "prices": {
             "bet365": "25/1",
-            "skybet": "28/1"
+            "skybet": "25/1"
           }
         },
         {
@@ -145,7 +145,7 @@
           "dg_id": 29767,
           "prices": {
             "bet365": "45/1",
-            "skybet": "40/1"
+            "skybet": "35/1"
           }
         },
         {
@@ -258,7 +258,7 @@
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "top_10",
-      "last_updated": "2026-08-26 11:00:55 UTC",
+      "last_updated": "2026-08-26 14:20:06 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -293,7 +293,7 @@
           "dg_id": 23950,
           "prices": {
             "bet365": "0.87/1",
-            "skybet": "1.25/1"
+            "skybet": "1.3/1"
           }
         },
         {
@@ -325,7 +325,7 @@
           "dg_id": 19483,
           "prices": {
             "bet365": "0.95/1",
-            "skybet": "1.2/1"
+            "skybet": "1.25/1"
           }
         },
         {
@@ -341,7 +341,7 @@
           "dg_id": 23604,
           "prices": {
             "bet365": "0.87/1",
-            "skybet": "1.25/1"
+            "skybet": "1.1/1"
           }
         },
         {
@@ -357,7 +357,7 @@
           "dg_id": 18841,
           "prices": {
             "bet365": "1.2/1",
-            "skybet": "1.88/1"
+            "skybet": "1.75/1"
           }
         },
         {
@@ -365,7 +365,7 @@
           "dg_id": 14609,
           "prices": {
             "bet365": "1.2/1",
-            "skybet": "1.5/1"
+            "skybet": "1.63/1"
           }
         },
         {
@@ -381,7 +381,7 @@
           "dg_id": 13562,
           "prices": {
             "bet365": "1.2/1",
-            "skybet": "1.88/1"
+            "skybet": "1.63/1"
           }
         },
         {
@@ -397,7 +397,7 @@
           "dg_id": 29767,
           "prices": {
             "bet365": "1.88/1",
-            "skybet": "2.75/1"
+            "skybet": "2.5/1"
           }
         },
         {
@@ -405,7 +405,7 @@
           "dg_id": 6430,
           "prices": {
             "bet365": "2/1",
-            "skybet": "2.5/1"
+            "skybet": "2.75/1"
           }
         },
         {
@@ -485,7 +485,7 @@
           "dg_id": 25362,
           "prices": {
             "bet365": "2.75/1",
-            "skybet": "4.5/1"
+            "skybet": "4/1"
           }
         },
         {
