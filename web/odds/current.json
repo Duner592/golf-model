@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-08-29T07:24:34Z",
+  "generated_utc": "2026-08-29T13:13:28Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "win",
-      "last_updated": "2026-08-29 03:02:58 UTC",
+      "last_updated": "2026-08-29 11:51:43 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -17,7 +17,7 @@
           "dg_id": 18417,
           "prices": {
             "bet365": "3/1",
-            "skybet": "2.75/1"
+            "skybet": "3/1"
           }
         },
         {
@@ -38,7 +38,7 @@
           "player_name": "Gotterup, Chris",
           "dg_id": 27774,
           "prices": {
-            "bet365": "6/1",
+            "bet365": "6.5/1",
             "skybet": "6.5/1"
           }
         },
@@ -53,8 +53,8 @@
           "player_name": "Young, Cameron",
           "dg_id": 26651,
           "prices": {
-            "bet365": "10/1",
-            "skybet": "10/1"
+            "bet365": "9/1",
+            "skybet": "9/1"
           }
         },
         {
@@ -94,23 +94,23 @@
           "dg_id": 6093,
           "prices": {
             "bet365": "35/1",
-            "skybet": "30/1"
+            "skybet": "33/1"
           }
         },
         {
           "player_name": "Woodland, Gary",
           "dg_id": 12577,
           "prices": {
-            "bet365": "55/1",
-            "skybet": "45/1"
+            "bet365": "50/1",
+            "skybet": "40/1"
           }
         },
         {
           "player_name": "Henley, Russell",
           "dg_id": 14578,
           "prices": {
-            "bet365": "75/1",
-            "skybet": "66/1"
+            "bet365": "66/1",
+            "skybet": "55/1"
           }
         },
         {
@@ -125,7 +125,7 @@
           "player_name": "Kim, Tom",
           "dg_id": 24766,
           "prices": {
-            "bet365": "90/1",
+            "bet365": "100/1",
             "skybet": "80/1"
           }
         },
@@ -166,7 +166,7 @@
           "dg_id": 12294,
           "prices": {
             "bet365": "100/1",
-            "skybet": "80/1"
+            "skybet": "100/1"
           }
         },
         {
@@ -189,8 +189,8 @@
           "player_name": "Schauffele, Xander",
           "dg_id": 19895,
           "prices": {
-            "bet365": "175/1",
-            "skybet": "125/1"
+            "bet365": "200/1",
+            "skybet": "150/1"
           }
         },
         {
@@ -206,7 +206,7 @@
           "dg_id": 25362,
           "prices": {
             "bet365": "300/1",
-            "skybet": "200/1"
+            "skybet": "250/1"
           }
         },
         {
@@ -221,7 +221,7 @@
           "player_name": "Matsuyama, Hideki",
           "dg_id": 13562,
           "prices": {
-            "bet365": "1000/1",
+            "bet365": "1500/1",
             "skybet": "1250/1"
           }
         },
@@ -247,7 +247,7 @@
       "tour": "pga",
       "event_name": "TOUR Championship",
       "market": "top_10",
-      "last_updated": "2026-08-29 03:02:58 UTC",
+      "last_updated": "2026-08-29 11:51:43 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -294,8 +294,8 @@
           "player_name": "Young, Cameron",
           "dg_id": 26651,
           "prices": {
-            "bet365": "0.36/1",
-            "skybet": "0.44/1"
+            "bet365": "0.33/1",
+            "skybet": "0.4/1"
           }
         },
         {
@@ -342,16 +342,16 @@
           "player_name": "Woodland, Gary",
           "dg_id": 12577,
           "prices": {
-            "bet365": "1.75/1",
-            "skybet": "2/1"
+            "bet365": "1.6/1",
+            "skybet": "1.75/1"
           }
         },
         {
           "player_name": "Henley, Russell",
           "dg_id": 14578,
           "prices": {
-            "bet365": "1.88/1",
-            "skybet": "2/1"
+            "bet365": "1.7/1",
+            "skybet": "1.88/1"
           }
         },
         {
@@ -374,7 +374,7 @@
           "player_name": "Clark, Wyndham",
           "dg_id": 23604,
           "prices": {
-            "bet365": "2.75/1",
+            "bet365": "2.8/1",
             "skybet": "3/1"
           }
         },
@@ -390,7 +390,7 @@
           "player_name": "Lee, Min Woo",
           "dg_id": 16841,
           "prices": {
-            "bet365": "2.75/1",
+            "bet365": "2.8/1",
             "skybet": "3/1"
           }
         },
@@ -422,7 +422,7 @@
           "player_name": "Fox, Ryan",
           "dg_id": 11889,
           "prices": {
-            "bet365": "2.8/1",
+            "bet365": "3/1",
             "skybet": "3/1"
           }
         },
@@ -471,14 +471,14 @@
           "dg_id": 21407,
           "prices": {
             "bet365": "28/1",
-            "skybet": "35/1"
+            "skybet": "40/1"
           }
         },
         {
           "player_name": "MacIntyre, Robert",
           "dg_id": 23323,
           "prices": {
-            "bet365": "225/1",
+            "bet365": "250/1",
             "skybet": "175/1"
           }
         }
