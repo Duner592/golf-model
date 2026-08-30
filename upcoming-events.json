@@ -642,7 +642,7 @@
       "start_date": "2026-04-23",
       "status": "completed",
       "tour": "pga",
-      "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
+      "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
     },
     {
       "country": "TUR",
@@ -1326,9 +1326,9 @@
       "location": "Sutton Coldfield, England",
       "longitude": -1.734,
       "start_date": "2026-08-27",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Dean, Joe (16497)"
     },
     {
       "country": "USA",
@@ -1340,9 +1340,9 @@
       "location": "Atlanta, GA",
       "longitude": -84.303,
       "start_date": "2026-08-27",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Scheffler, Scottie (18417)"
     },
     {
       "country": "SUI",
@@ -1362,7 +1362,7 @@
       "country": "IRL",
       "course": "Trump International Golf Links & Hotel Ireland",
       "course_key": "trump international golf links & hotel ireland",
-      "event_id": "TBD",
+      "event_id": "2026135",
       "event_name": "Amgen Irish Open",
       "latitude": 52.746,
       "location": "Doonbeg, Ireland",
