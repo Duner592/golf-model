@@ -196,21 +196,8 @@
             margin-top: 0;
         }
         @media (min-width: 769px) {
-            .home-masthead {
-                min-height: 5.25rem;
-            }
-            .home-masthead__copy {
-                padding-right: 304px;
-            }
-            .home-masthead .last-week-betting--sidebar {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 280px;
-            }
-            .sidebar {
-                /* The masthead already occupies 6.25rem above the main grid. */
-                padding-top: 17.65rem;
+            .last-week-betting--sidebar {
+                width: 100%;
             }
         }
         .last-week-betting__header {
@@ -386,9 +373,6 @@
         @media (max-width: 768px) {
             .home-masthead {
                 margin-bottom: 0;
-            }
-            .home-masthead .last-week-betting--sidebar {
-                margin-top: 1rem;
             }
             .home-masthead__copy h1,
             .home-masthead__copy .intro-text {
@@ -1207,22 +1191,6 @@
         <h1>Eds Golf Model Predictions Hub</h1>
         <div class="intro-text">Weekly prediction and betting summaries for Majors, PGA Tour and DP World Tour.</div>
     </div>
-    <section class="last-week-betting last-week-betting--sidebar" id="last-week-betting" aria-labelledby="last-week-betting-title" hidden>
-        <div class="last-week-betting__header">
-            <div>
-                <div class="last-week-betting__title-row">
-                    <h2 id="last-week-betting-title">Last Week’s Betting P/L</h2>
-                </div>
-                <span class="last-week-betting__headline">
-                    <span class="last-week-betting__headline-label">Combined P/L</span>
-                    <span class="last-week-betting__headline-value" id="last-week-betting-combined">—</span>
-                </span>
-                <span class="last-week-betting__hint" id="last-week-betting-period"></span>
-            </div>
-            <a class="link" id="last-week-betting-all-link" href="spreadsheet.html">View all bets</a>
-        </div>
-        <div class="last-week-betting__list" id="last-week-betting-list"></div>
-    </section>
 </header>
 
 <div class="main-content">
@@ -1304,6 +1272,22 @@
 
     <aside class="sidebar" role="complementary" aria-label="Sidebar">
         <div class="sidebar-sections">
+            <section class="last-week-betting last-week-betting--sidebar" id="last-week-betting" aria-labelledby="last-week-betting-title" hidden>
+                <div class="last-week-betting__header">
+                    <div>
+                        <div class="last-week-betting__title-row">
+                            <h2 id="last-week-betting-title">Last Week’s Betting P/L</h2>
+                        </div>
+                        <span class="last-week-betting__headline">
+                            <span class="last-week-betting__headline-label">Combined P/L</span>
+                            <span class="last-week-betting__headline-value" id="last-week-betting-combined">—</span>
+                        </span>
+                        <span class="last-week-betting__hint" id="last-week-betting-period"></span>
+                    </div>
+                    <a class="link" id="last-week-betting-all-link" href="spreadsheet.html">View all bets</a>
+                </div>
+                <div class="last-week-betting__list" id="last-week-betting-list"></div>
+            </section>
             <section class="sidebar-section" aria-labelledby="upcoming-events-title">
                 <h3 id="upcoming-events-title">
                     <a class="sidebar-heading-link" href="schedule.html">
