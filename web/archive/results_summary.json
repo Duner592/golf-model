@@ -1,4 +1,22 @@
 {
+  "2026_tour_championship": {
+    "event_id": "60",
+    "event_name": "TOUR Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "tour_championship"
+  },
+  "2026_husqvarna_british_masters_hosted_by_sir_nick_faldo": {
+    "event_id": "2026133",
+    "event_name": "Husqvarna British Masters hosted by Sir Nick Faldo",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "husqvarna_british_masters_hosted_by_sir_nick_faldo"
+  },
   "2026_bmw_championship": {
     "event_id": "28",
     "event_name": "BMW Championship",

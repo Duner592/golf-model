@@ -1,4 +1,190 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+60,TOUR Championship,pga,2026,1,Xander Schauffele,22.87,86.7,100.0,0.1355672508766678,14.0,T14,0.0,0.0
+60,TOUR Championship,pga,2026,2,Scottie Scheffler,18.12,83.3,100.0,0.351660499986167,1.0,1,1.0,1.0
+60,TOUR Championship,pga,2026,3,Viktor Hovland,10.1,71.8,100.0,0.2685727426475684,2.0,2,0.0,1.0
+60,TOUR Championship,pga,2026,4,Tommy Fleetwood,8.96,69.6,100.0,0.0680983284352893,11.0,T11,0.0,0.0
+60,TOUR Championship,pga,2026,5,Wyndham Clark,7.52,65.9,100.0,0.151941681382979,21.0,T21,0.0,0.0
+60,TOUR Championship,pga,2026,6,Russell Henley,5.59,60.3,100.0,0.0582107676403528,4.0,T4,0.0,1.0
+60,TOUR Championship,pga,2026,7,Chris Gotterup,5.24,58.1,100.0,0.830348423777872,4.0,T4,0.0,1.0
+60,TOUR Championship,pga,2026,8,Rory McIlroy,4.17,54.4,100.0,0.4483766722323107,4.0,T4,0.0,1.0
+60,TOUR Championship,pga,2026,9,Patrick Cantlay,3.5,50.2,100.0,0.2463073886156753,21.0,T21,0.0,0.0
+60,TOUR Championship,pga,2026,10,Cameron Young,3.41,51.0,100.0,0.352131877140083,11.0,T11,0.0,0.0
+60,TOUR Championship,pga,2026,11,Matt Fitzpatrick,1.87,38.9,100.0,0.2463656365261296,21.0,T21,0.0,0.0
+60,TOUR Championship,pga,2026,12,Collin Morikawa,1.67,36.9,100.0,0.2271792880844802,14.0,T14,0.0,0.0
+60,TOUR Championship,pga,2026,13,Sam Burns,1.59,35.8,100.0,0.0350157413134205,18.0,T18,0.0,0.0
+60,TOUR Championship,pga,2026,14,Si Woo Kim,0.82,25.4,100.0,-0.1193280561913484,14.0,T14,0.0,0.0
+60,TOUR Championship,pga,2026,15,Ludvig Aberg,0.71,23.6,100.0,0.5407738997103972,4.0,T4,0.0,1.0
+60,TOUR Championship,pga,2026,16,Ryan Gerard,0.65,22.8,100.0,0.1590967014188582,3.0,3,0.0,1.0
+60,TOUR Championship,pga,2026,17,Min Woo Lee,0.58,22.0,100.0,0.1669767594188582,4.0,T4,0.0,1.0
+60,TOUR Championship,pga,2026,18,Adam Scott,0.55,21.2,100.0,0.2202305350088838,11.0,T11,0.0,0.0
+60,TOUR Championship,pga,2026,19,Robert MacIntyre,0.38,17.5,100.0,0.3343543073249553,28.0,28,0.0,0.0
+60,TOUR Championship,pga,2026,20,Alex Smalley,0.33,16.2,100.0,0.1370312794188582,27.0,27,0.0,0.0
+60,TOUR Championship,pga,2026,21,Tom Kim,0.33,15.8,100.0,-0.2597922996003065,14.0,T14,0.0,0.0
+60,TOUR Championship,pga,2026,22,Alex Fitzpatrick,0.31,15.4,100.0,0.1457118174188582,4.0,T4,0.0,1.0
+60,TOUR Championship,pga,2026,23,Kristoffer Reitan,0.23,14.3,100.0,0.1490247554188582,25.0,25,0.0,0.0
+60,TOUR Championship,pga,2026,24,Ryan Fox,0.16,11.8,100.0,0.1363841954188582,26.0,26,0.0,0.0
+60,TOUR Championship,pga,2026,25,Hideki Matsuyama,0.1,7.1,100.0,-0.2550030512215329,21.0,T21,0.0,0.0
+60,TOUR Championship,pga,2026,26,Gary Woodland,0.1,10.0,100.0,0.1399735794188582,29.0,29,0.0,0.0
+60,TOUR Championship,pga,2026,27,Justin Rose,0.09,7.3,100.0,-0.0732936748308584,18.0,T18,0.0,0.0
+60,TOUR Championship,pga,2026,28,J.J. Spaun,0.02,3.2,100.0,-0.0754847522499026,,,,
+60,TOUR Championship,pga,2026,29,Akshay Bhatia,0.02,3.3,100.0,-0.0909229885532966,18.0,T18,0.0,0.0
+60,TOUR Championship,pga,2026,30,Jacob Bridgeman,0.0,0.2,100.0,0.0645146725777713,4.0,T4,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,1,Tyrrell Hatton,6.41,32.7,74.3,0.0,46.0,T46,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,2,Matt Wallace,4.06,25.6,69.4,0.0,15.0,T15,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,3,Patrick Reed,3.67,23.8,68.1,0.0,55.0,T55,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,4,Tom McKibbin,3.09,21.7,66.7,0.0,6.0,T6,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,5,Eugenio Chacarra,3.03,20.6,65.2,0.0,21.0,T21,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,6,Harry Hall,2.99,21.4,65.6,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,7,Oliver Lindell,2.9,20.5,65.1,0.0,15.0,T15,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,8,Marco Penge,2.6,18.7,63.4,0.0,6.0,T6,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,9,Angel Ayora,2.26,17.0,61.9,0.0,46.0,T46,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,10,Keita Nakajima,2.18,16.6,61.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,11,Casey Jarvis,2.16,17.2,61.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,12,John Parry,1.57,13.9,58.3,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,13,Daniel Hillier,1.57,14.1,58.6,0.0,2.0,T2,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,14,Jayden Schaper,1.37,12.8,57.3,0.0,15.0,T15,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,15,Hennie Du Plessis,1.34,13.0,56.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,16,Ewen Ferguson,1.32,11.8,55.9,0.0,15.0,T15,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,17,Jacob Skov Olesen,1.3,12.9,56.2,0.0,2.0,T2,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,18,Michael Mjaaseth,1.11,10.1,52.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,19,Haydn McCullen,1.1,10.5,53.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,20,Jack Buchanan,1.08,10.1,52.5,0.0,51.0,T51,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,21,Connor McKinney,1.08,10.6,52.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,22,Louis De Jager,1.07,10.5,52.8,0.0,62.0,T62,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,23,Anthony Quayle,1.07,10.6,53.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,24,Luke Donald,1.06,10.7,53.6,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,25,Jordan Loft,1.04,10.4,53.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,26,Antoine Rozner,1.04,10.7,53.4,0.0,21.0,T21,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,27,Thorbjorn Olesen,1.04,10.4,53.0,0.0,9.0,T9,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,28,Mike Toorop,1.03,10.3,53.6,0.0,51.0,T51,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,29,Daniel Van Tonder,1.02,10.6,53.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,30,Ryan Peake,1.02,10.6,53.3,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,31,Quentin Debove,1.02,10.5,53.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,32,Fred Biondi,1.02,10.3,53.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,33,Marcus Helligkilde,1.0,10.2,53.0,0.0,26.0,T26,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,34,Joshua Berry,1.0,10.1,52.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,35,Albin Bergstrom,0.99,10.6,53.3,0.0,55.0,T55,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,36,Quim Vidal,0.98,10.4,53.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,37,Yuvraj Singh Sandhu,0.98,10.3,53.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,38,Thomas Rosenmueller,0.95,10.0,52.4,0.0,,,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,39,John Gough,0.95,10.6,53.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,40,Gonzalo Fdez-Castano,0.95,10.3,52.8,0.0,71.0,71,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,41,Andres Gallegos,0.94,10.2,53.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,42,Dan Brown,0.94,9.7,51.2,0.0,,,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,43,Harley Smith,0.93,10.2,52.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,44,Julien Guerrier,0.82,8.2,49.8,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,45,Matthew Jordan,0.8,8.6,49.5,0.0,26.0,T26,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,46,Marcus Armitage,0.79,8.2,49.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,47,Calum Hill,0.76,8.2,48.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,48,Jorge Campillo,0.73,8.5,50.1,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,49,Romain Langasque,0.73,8.0,48.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,50,Kazuma Kobori,0.72,7.8,48.2,0.0,9.0,T9,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,51,Bernd Wiesberger,0.71,7.6,48.1,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,52,Mikael Lindberg,0.65,7.6,48.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,53,Kota Kaneko,0.64,7.2,47.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,54,Todd Clements,0.62,7.3,47.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,55,Oihan Guillamoundeguy,0.61,7.8,49.1,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,56,Ugo Coussaud,0.56,7.1,46.7,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,57,Matthieu Pavon,0.56,7.2,47.5,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,58,Andy Sullivan,0.55,6.9,46.6,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,59,Alejandro Del Rey,0.55,6.6,46.4,0.0,46.0,T46,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,60,JC Ritchie,0.53,6.3,45.4,0.0,55.0,T55,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,61,Manuel Elvira,0.53,6.3,45.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,62,Erik Van Rooyen,0.5,6.3,45.2,0.0,51.0,T51,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,63,Haotong Li,0.49,6.5,46.5,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,64,Yanhan Zhou,0.49,6.0,44.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,65,Tom Vaillant,0.48,6.3,45.0,0.0,21.0,T21,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,66,Dan Bradbury,0.48,6.1,44.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,67,Joe Dean,0.46,6.0,43.9,0.0,1.0,1,1.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,68,Davis Bryant,0.44,5.6,43.2,0.0,9.0,T9,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,69,Brandon Stone,0.38,4.9,42.2,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,70,Freddy Schott,0.38,5.1,42.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,71,David Ravetto,0.38,4.7,41.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,72,Francesco Laporta,0.37,5.4,43.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,73,Guido Migliozzi,0.37,5.2,42.7,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,74,Paul Waring,0.37,5.1,42.9,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,75,Shaun Norris,0.36,4.9,42.2,0.0,62.0,T62,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,76,Jeff Winther,0.36,5.8,43.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,77,Joost Luiten,0.36,5.1,43.1,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,78,Grant Forrest,0.33,4.5,40.7,0.0,,WD,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,79,Matteo Manassero,0.31,4.9,42.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,80,Ignacio Elvira Mijares,0.3,4.6,40.5,0.0,2.0,T2,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,81,Gregorio De Leo,0.29,4.5,41.2,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,82,Frederic LaCroix,0.29,4.0,39.4,0.0,15.0,T15,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,83,Sam Bairstow,0.27,4.0,39.1,0.0,21.0,T21,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,84,Eddie Pepperell,0.27,4.2,39.7,0.0,62.0,T62,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,85,Darius Van Driel,0.26,4.7,41.3,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,86,Jason Scrivener,0.26,4.4,39.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,87,Joakim Lagergren,0.26,3.8,38.4,0.0,9.0,T9,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,88,Thriston Lawrence,0.26,4.0,38.9,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,89,Dylan Frittelli,0.26,3.5,37.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,90,Niklas Norgaard,0.26,4.5,40.6,0.0,,,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,91,Andreas Halvorsen,0.25,3.7,38.5,0.0,55.0,T55,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,92,Yuto Katsuragawa,0.25,3.2,36.8,0.0,26.0,T26,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,93,Joel Girrbach,0.25,3.4,37.9,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,94,Maximilian Steinlechner,0.25,4.0,38.8,0.0,67.0,67,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,95,Filippo Celli,0.25,4.1,39.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,96,Brandon Robinson Thompson,0.24,3.9,38.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,97,MJ Daffue,0.23,3.8,39.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,98,Richard Mansell,0.23,3.8,38.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,99,Marcus Kinhult,0.23,2.9,35.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,100,Michael Hollick,0.23,3.8,39.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,101,David Law,0.22,3.3,37.0,0.0,37.0,T37,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,102,Angel Hidalgo,0.22,3.8,38.4,0.0,21.0,T21,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,103,Kiradech Aphibarnrat,0.21,3.8,38.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,104,Sebastian Soderberg,0.2,3.5,36.9,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,105,Wenyi Ding,0.19,3.2,36.5,0.0,,,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,106,Stefano Mazzoli,0.19,3.2,36.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,107,Daniel Rodrigues,0.18,3.0,36.0,0.0,9.0,T9,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,108,Danny Willett,0.17,2.4,33.2,0.0,62.0,T62,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,109,Ashun Wu,0.17,3.0,35.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,110,Sadom Kaewkanjana,0.17,2.6,34.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,111,Ben Schmidt,0.16,3.3,36.6,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,112,Felix Mory,0.16,2.6,34.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,113,Rikuya Hoshino,0.16,2.3,33.1,0.0,55.0,T55,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,114,Adrian Meronk,0.15,2.9,35.1,0.0,15.0,T15,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,115,Jens Dantorp,0.15,2.6,33.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,116,Sean Crocker,0.15,2.5,33.3,0.0,51.0,T51,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,117,Alexander Levy,0.14,2.5,33.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,118,Jordan Gumberg,0.12,2.4,32.3,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,119,Cameron Adam,0.12,1.8,30.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,120,Renato Paratore,0.11,2.0,30.8,0.0,62.0,T62,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,121,Euan Walker,0.11,2.1,32.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,122,Hugo Townsend,0.11,2.3,32.9,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,123,Niklas Lemke,0.1,2.0,31.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,124,Ross Fisher,0.09,1.9,31.4,0.0,46.0,T46,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,125,Scott Jamieson,0.09,1.4,27.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,126,Marcel Schneider,0.09,2.6,33.8,0.0,68.0,T68,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,127,Sebastian Garcia Rodriguez,0.08,1.6,29.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,128,Tobias Jonsson,0.08,1.7,28.7,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,129,Ivan Cantero Gutierrez,0.07,1.6,28.6,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,130,Rafa Cabrera Bello,0.07,2.0,31.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,131,K.H. Lee,0.07,1.9,30.8,0.0,,,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,132,Jack Senior,0.07,1.2,27.3,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,133,Zander Lombard,0.07,1.5,28.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,134,Johannes Veerman,0.06,1.2,26.5,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,135,Luke List,0.06,1.6,28.4,0.0,30.0,T30,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,136,James Morrison,0.06,1.1,24.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,137,Yurav Premlall,0.05,1.2,25.4,0.0,26.0,T26,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,138,Rocco Repetto Taylor,0.05,1.2,26.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,139,Fabrizio Zanotti,0.04,1.0,25.5,0.0,9.0,T9,0.0,1.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,140,Matthew Baldwin,0.04,1.0,24.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,141,Junghwan Lee,0.04,1.3,26.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,142,Daniel Young,0.04,1.1,25.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,143,Adri Arnaus,0.04,1.1,24.9,0.0,60.0,T60,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,144,Clement Charmasson,0.04,0.8,23.3,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,145,David Micheluzzi,0.04,0.6,19.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,146,Jeong Weon Ko,0.04,0.7,22.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,147,Connor Syme,0.03,0.6,20.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,148,Pablo Larrazabal,0.03,0.6,20.6,0.0,46.0,T46,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,149,Edoardo Molinari,0.03,0.5,20.8,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,150,Ryggs Johnston,0.03,0.7,22.1,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,151,Shubhankar Sharma,0.03,0.7,22.5,0.0,60.0,T60,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,152,Marcel Siem,0.02,1.0,24.2,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,153,Dylan Naidoo,0.01,0.4,17.4,0.0,68.0,T68,0.0,0.0
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,154,Frankie Capan III,0.0,0.4,19.0,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,155,Benjamin Follet-Smith,0.0,0.3,15.4,0.0,,CUT,,
+2026133,Husqvarna British Masters hosted by Sir Nick Faldo,euro,2026,156,Daniel Gavins,0.0,0.0,2.6,0.0,68.0,T68,0.0,0.0
 28,BMW Championship,pga,2026,1,Scottie Scheffler,31.12,92.0,100.0,0.437086203581801,12.0,T12,0.0,0.0
 28,BMW Championship,pga,2026,2,Ludvig Aberg,16.0,83.2,100.0,0.4674494807356884,16.0,T16,0.0,0.0
 28,BMW Championship,pga,2026,3,Rory McIlroy,13.7,80.1,100.0,0.2224045811782805,3.0,3,0.0,1.0
