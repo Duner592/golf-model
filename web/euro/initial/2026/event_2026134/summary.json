@@ -1,0 +1,12 @@
+{
+  "event_id": "2026134",
+  "event_name": "Omega European Masters",
+  "source_csv": "data/preds/euro/event_2026134_omega_european_masters_2026-08-31_leaderboard.csv",
+  "generated_utc": "31-Aug-2026 05:48:02",
+  "metrics": {
+    "field_size": 172,
+    "p_win_max": 0.4524,
+    "p_win_median": 0.00011666666666666667,
+    "p_win_sum": 1.0
+  }
+}

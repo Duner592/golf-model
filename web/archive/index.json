@@ -1,5 +1,18 @@
 [
   {
+    "event_id": "2026134",
+    "event_name": "Omega European Masters",
+    "tour": "euro",
+    "slug": "omega_european_masters",
+    "year": "2026",
+    "start_date": "2026-09-03",
+    "csv_available": true,
+    "archived_at": "2026-08-31 05:48:03 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-08-31T05:48:03Z",
+    "model_page": "archive/2026/omega_european_masters/model_page.html"
+  },
+  {
     "event_id": "60",
     "event_name": "TOUR Championship",
     "tour": "pga",
