@@ -2704,7 +2704,9 @@
 
         if (!Array.isArray(bettingRowsCache)) {
             try {
-                bettingRowsCache = await BettingData.load();
+                // Homepage P/L is time-sensitive; always request the current
+                // CSV instead of trusting intermediary cache metadata.
+                bettingRowsCache = await BettingData.load({ forceRefresh: true });
             } catch (e) {
                 console.error('Error loading betting data for homepage:', e);
                 bettingRowsCache = [];
