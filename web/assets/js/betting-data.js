@@ -2,7 +2,9 @@
     const CSV_URL = 'spreadsheet_data.csv';
     const STORAGE_DATA_KEY = 'golfModel:bettingData:data';
     const STORAGE_META_KEY = 'golfModel:bettingData:meta';
-    const STORAGE_VERSION = 'v2'; // bump when cache invalidation behavior changes
+    // Bump this whenever a newly published betting row must not be masked by
+    // a browser cache whose GitHub Pages metadata has not yet rolled over.
+    const STORAGE_VERSION = 'v3';
 
     let dataPromise = null;
     let metaCache = null;
