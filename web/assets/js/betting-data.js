@@ -4,13 +4,18 @@
     const STORAGE_META_KEY = 'golfModel:bettingData:meta';
     // Bump this whenever a newly published betting row must not be masked by
     // a browser cache whose GitHub Pages metadata has not yet rolled over.
-    const STORAGE_VERSION = 'v3';
+    const STORAGE_VERSION = 'v4';
 
     let dataPromise = null;
     let metaCache = null;
 
     function getStorageKey(key) {
         return `${key}:${STORAGE_VERSION}`;
+    }
+
+    function freshCsvUrl() {
+        const separator = CSV_URL.includes('?') ? '&' : '?';
+        return `${CSV_URL}${separator}v=${Date.now()}`;
     }
 
     function readFromStorage(key) {
@@ -47,7 +52,7 @@
     async function fetchMeta() {
         if (metaCache) return metaCache;
         try {
-            const response = await fetch(CSV_URL, { method: 'HEAD', cache: 'no-store' });
+            const response = await fetch(freshCsvUrl(), { method: 'HEAD', cache: 'no-store' });
             if (!response.ok) return null;
             const meta = {
                 lastModified: response.headers.get('Last-Modified'),
@@ -145,7 +150,7 @@
     }
 
     async function fetchAndParseCsv() {
-        const response = await fetch(CSV_URL, { cache: 'no-store' });
+        const response = await fetch(freshCsvUrl(), { cache: 'no-store' });
         if (!response.ok) throw new Error(`Failed to fetch ${CSV_URL}: ${response.status}`);
         const csvText = await response.text();
         if (typeof Papa === 'undefined') {
