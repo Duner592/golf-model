@@ -37,6 +37,7 @@
             children: [
                 { label: 'Analytics', href: 'betting_analytics.html' },
                 { label: 'Odds & Value', href: 'odds_value.html?v=20260713-odds-cache2' },
+                { label: 'Tournament P/L', href: 'tournament_pl.html' },
                 { label: 'Overall Data', href: 'spreadsheet.html' },
                 { label: 'ROI% Data', href: 'roi.html' }
             ]
@@ -472,6 +473,11 @@
         if (route === 'spreadsheet.html') {
             add('Betting History', 'betting_analytics.html');
             add('Overall Data');
+            return crumbs;
+        }
+        if (route === 'tournament_pl.html') {
+            add('Betting History', 'betting_analytics.html');
+            add('Tournament P/L');
             return crumbs;
         }
         if (route === 'roi.html') {
