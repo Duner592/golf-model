@@ -1386,8 +1386,14 @@
         const parts = value.split('/');
         if (parts.length !== 3) return null;
         const [day, month, year] = parts;
-        const iso = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-        const date = new Date(iso);
+        // Date-only ISO strings are interpreted as UTC.  Last-week boundaries
+        // are local calendar dates, so use the numeric constructor to avoid
+        // excluding a Sunday row while British Summer Time is in effect.
+        const date = new Date(
+            Number.parseInt(year, 10),
+            Number.parseInt(month, 10) - 1,
+            Number.parseInt(day, 10)
+        );
         return Number.isNaN(date.getTime()) ? null : date;
     }
 
