@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-09-04",
+    "title": "Tournament P/L view",
+    "description": "Betting History now includes a chronological tournament-level P/L table with stake, return, ROI, and a running P/L total.",
+    "href": "tournament_pl.html"
+  },
+  {
     "date": "2026-08-21",
     "title": "Workflow status on Model Health",
     "description": "Model Health now shows the latest key GitHub Actions runs, including model refreshes, archive updates, results, odds, and Pages deployment.",
@@ -16,11 +22,5 @@
     "title": "Live UK odds board",
     "description": "Odds & Value now compares active model players with live Bet365 and Sky Bet prices, while Player Drilldown adds archived opening and closing odds where available.",
     "href": "odds_value.html"
-  },
-  {
-    "date": "2026-08-19",
-    "title": "Last week’s betting P/L",
-    "description": "The homepage now groups realised profit and loss by tournament and backed player for the latest settled week.",
-    "href": "spreadsheet.html"
   }
 ]
