@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-05T23:04:02Z",
+  "generated_utc": "2026-09-06T00:49:38Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -486,7 +486,7 @@
       "tour": "euro",
       "event_name": "Omega European Masters",
       "market": "win",
-      "last_updated": "2026-09-05 18:46:57 UTC",
+      "last_updated": "2026-09-05 23:18:07 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -496,22 +496,23 @@
           "player_name": "Casey, Paul",
           "dg_id": 7108,
           "prices": {
-            "bet365": "1.2/1"
+            "bet365": "1.15/1"
           }
         },
         {
           "player_name": "Chacarra, Eugenio",
           "dg_id": 26745,
           "prices": {
-            "bet365": "6/1",
-            "skybet": "6.5/1"
+            "bet365": "6.5/1",
+            "skybet": "7/1"
           }
         },
         {
           "player_name": "Elvira Mijares, Ignacio",
           "dg_id": 12988,
           "prices": {
-            "bet365": "9/1"
+            "bet365": "9/1",
+            "skybet": "10/1"
           }
         },
         {
@@ -604,7 +605,7 @@
           "player_name": "Puig, David",
           "dg_id": 28984,
           "prices": {
-            "bet365": "60/1",
+            "bet365": "66/1",
             "skybet": "55/1"
           }
         },
@@ -643,7 +644,7 @@
           "player_name": "Willett, Danny",
           "dg_id": 12920,
           "prices": {
-            "bet365": "125/1",
+            "bet365": "150/1",
             "skybet": "125/1"
           }
         },
@@ -667,14 +668,14 @@
           "dg_id": 7457,
           "prices": {
             "bet365": "110/1",
-            "skybet": "100/1"
+            "skybet": "110/1"
           }
         },
         {
           "player_name": "Gerard, Ryan",
           "dg_id": 29767,
           "prices": {
-            "bet365": "200/1",
+            "bet365": "225/1",
             "skybet": "150/1"
           }
         },
@@ -722,7 +723,7 @@
           "player_name": "Paul, Jeremy",
           "dg_id": 22087,
           "prices": {
-            "bet365": "400/1",
+            "bet365": "500/1",
             "skybet": "350/1"
           }
         },
@@ -1022,7 +1023,7 @@
       "tour": "euro",
       "event_name": "Omega European Masters",
       "market": "top_10",
-      "last_updated": "2026-09-05 18:46:57 UTC",
+      "last_updated": "2026-09-05 23:18:07 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1047,7 +1048,8 @@
           "player_name": "Elvira Mijares, Ignacio",
           "dg_id": 12988,
           "prices": {
-            "bet365": "0.4/1"
+            "bet365": "0.4/1",
+            "skybet": "0.44/1"
           }
         },
         {
@@ -1501,7 +1503,7 @@
           "player_name": "Frittelli, Dylan",
           "dg_id": 11955,
           "prices": {
-            "bet365": "200/1",
+            "bet365": "225/1",
             "skybet": "175/1"
           }
         },
