@@ -1,0 +1,12 @@
+{
+  "event_id": "2026135",
+  "event_name": "Amgen Irish Open",
+  "source_csv": "data/preds/euro/event_2026135_amgen_irish_open_2026-09-07_leaderboard.csv",
+  "generated_utc": "07-Sep-2026 04:55:50",
+  "metrics": {
+    "field_size": 136,
+    "p_win_max": 0.5934333333333334,
+    "p_win_median": 0.0,
+    "p_win_sum": 1.0
+  }
+}

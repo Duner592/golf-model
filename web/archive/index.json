@@ -1,5 +1,18 @@
 [
   {
+    "event_id": "2026135",
+    "event_name": "Amgen Irish Open",
+    "tour": "euro",
+    "slug": "amgen_irish_open",
+    "year": "2026",
+    "start_date": "2026-09-10",
+    "csv_available": true,
+    "archived_at": "2026-09-07 04:55:50 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-09-07T04:55:50Z",
+    "model_page": "archive/2026/amgen_irish_open/model_page.html"
+  },
+  {
     "event_id": "2026134",
     "event_name": "Omega European Masters",
     "tour": "euro",
