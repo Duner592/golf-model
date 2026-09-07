@@ -1,4 +1,13 @@
 {
+  "2026_omega_european_masters": {
+    "event_id": "2026134",
+    "event_name": "Omega European Masters",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "omega_european_masters"
+  },
   "2026_tour_championship": {
     "event_id": "60",
     "event_name": "TOUR Championship",
