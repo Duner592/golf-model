@@ -1346,7 +1346,7 @@
     },
     {
       "country": "SUI",
-      "course": "Crans-sur-Sierre GC",
+      "course": "Crans-Sur-Sierre GC",
       "course_key": "crans-sur-sierre gc",
       "event_id": "2026134",
       "event_name": "Omega European Masters",
@@ -1354,9 +1354,9 @@
       "location": "Crans-Montana, Switzerland",
       "longitude": 7.468,
       "start_date": "2026-09-03",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Lawrence, Thriston (18105)"
     },
     {
       "country": "IRL",
@@ -1390,8 +1390,8 @@
       "country": "ENG",
       "course": "Wentworth Club",
       "course_key": "wentworth golf club",
-      "event_id": "TBD",
-      "event_name": "BMW PGA Championship",
+      "event_id": "2026136",
+      "event_name": "BMW PGA CHAMPIONSHIP",
       "latitude": 51.397,
       "location": "Virgina Water, Surrey, England",
       "longitude": -0.596,
