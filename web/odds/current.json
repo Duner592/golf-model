@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-13T05:36:44Z",
+  "generated_utc": "2026-09-13T10:35:27Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -486,7 +486,7 @@
       "tour": "euro",
       "event_name": "Amgen Irish Open",
       "market": "win",
-      "last_updated": "2026-09-13 01:57:37 UTC",
+      "last_updated": "2026-09-13 06:23:28 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -496,7 +496,7 @@
           "player_name": "Lowry, Shane",
           "dg_id": 13900,
           "prices": {
-            "bet365": "0.2/1",
+            "bet365": "0.21/1",
             "skybet": "0.14/1"
           }
         },
@@ -505,7 +505,7 @@
           "dg_id": 25611,
           "prices": {
             "bet365": "5.5/1",
-            "skybet": "6/1"
+            "skybet": "5.5/1"
           }
         },
         {
@@ -521,23 +521,23 @@
           "dg_id": 22322,
           "prices": {
             "bet365": "180/1",
-            "skybet": "150/1"
+            "skybet": "125/1"
           }
         },
         {
           "player_name": "Hojgaard, Rasmus",
           "dg_id": 23838,
           "prices": {
-            "bet365": "450/1",
-            "skybet": "275/1"
+            "bet365": "400/1",
+            "skybet": "250/1"
           }
         },
         {
           "player_name": "Reed, Patrick",
           "dg_id": 14838,
           "prices": {
-            "bet365": "600/1",
-            "skybet": "475/1"
+            "bet365": "450/1",
+            "skybet": "275/1"
           }
         },
         {
@@ -560,15 +560,15 @@
           "player_name": "Sullivan, Andy",
           "dg_id": 15326,
           "prices": {
-            "bet365": "1250/1",
-            "skybet": "1000/1"
+            "bet365": "800/1",
+            "skybet": "700/1"
           }
         },
         {
           "player_name": "Fisher, Ross",
           "dg_id": 9396,
           "prices": {
-            "bet365": "2000/1",
+            "bet365": "3000/1",
             "skybet": "1250/1"
           }
         },
@@ -616,7 +616,7 @@
           "player_name": "Neergaard-Petersen, Rasmus",
           "dg_id": 23841,
           "prices": {
-            "bet365": "5000/1",
+            "bet365": "2500/1",
             "skybet": "1250/1"
           }
         },
@@ -1050,7 +1050,7 @@
       "tour": "euro",
       "event_name": "Amgen Irish Open",
       "market": "top_10",
-      "last_updated": "2026-09-13 01:57:37 UTC",
+      "last_updated": "2026-09-13 06:23:28 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1164,7 +1164,7 @@
           "player_name": "Neergaard-Petersen, Rasmus",
           "dg_id": 23841,
           "prices": {
-            "bet365": "2.5/1",
+            "bet365": "2.4/1",
             "skybet": "2.75/1"
           }
         },
@@ -1227,8 +1227,8 @@
           "player_name": "Hillier, Daniel",
           "dg_id": 21362,
           "prices": {
-            "bet365": "90/1",
-            "skybet": "150/1"
+            "bet365": "80/1",
+            "skybet": "125/1"
           }
         },
         {
@@ -1299,7 +1299,7 @@
           "player_name": "Garcia, Sergio",
           "dg_id": 5689,
           "prices": {
-            "bet365": "40/1",
+            "bet365": "35/1",
             "skybet": "50/1"
           }
         },
@@ -1371,7 +1371,7 @@
           "player_name": "Capan III, Frankie",
           "dg_id": 21412,
           "prices": {
-            "bet365": "125/1",
+            "bet365": "110/1",
             "skybet": "175/1"
           }
         },
@@ -1404,7 +1404,7 @@
           "dg_id": 16497,
           "prices": {
             "bet365": "100/1",
-            "skybet": "175/1"
+            "skybet": "150/1"
           }
         },
         {
@@ -1427,7 +1427,7 @@
           "player_name": "Laporta, Francesco",
           "dg_id": 14987,
           "prices": {
-            "bet365": "25/1",
+            "bet365": "28/1",
             "skybet": "35/1"
           }
         },
@@ -1444,7 +1444,7 @@
           "dg_id": 14018,
           "prices": {
             "bet365": "8/1",
-            "skybet": "10/1"
+            "skybet": "9/1"
           }
         },
         {
@@ -1475,7 +1475,7 @@
           "player_name": "Paratore, Renato",
           "dg_id": 16549,
           "prices": {
-            "bet365": "20/1",
+            "bet365": "22/1",
             "skybet": "28/1"
           }
         },
@@ -1539,7 +1539,7 @@
           "player_name": "Syme, Connor",
           "dg_id": 22089,
           "prices": {
-            "bet365": "110/1",
+            "bet365": "100/1",
             "skybet": "175/1"
           }
         },
