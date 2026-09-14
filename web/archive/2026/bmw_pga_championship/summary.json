@@ -1,0 +1,12 @@
+{
+  "event_id": "2026136",
+  "event_name": "BMW PGA Championship",
+  "source_csv": "data/preds/euro/event_2026136_bmw_pga_championship_2026-09-14_leaderboard.csv",
+  "generated_utc": "14-Sep-2026 05:09:04",
+  "metrics": {
+    "field_size": 144,
+    "p_win_max": 0.2952666666666667,
+    "p_win_median": 0.0,
+    "p_win_sum": 1.0
+  }
+}

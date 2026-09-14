@@ -1,0 +1,38 @@
+{
+  "event_name": "BMW PGA Championship",
+  "event_id": "2026136",
+  "course": "Wentworth Club",
+  "total_yardage": null,
+  "course_location": "Virgina Water, Surrey, England",
+  "start_date": "17-Sep-2026",
+  "field_size": 144,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Noren, Alex",
+      "score": -19
+    },
+    {
+      "year": 2024,
+      "winner": "Horschel, Billy",
+      "score": -20
+    },
+    {
+      "year": 2023,
+      "winner": "Fox, Ryan",
+      "score": -18
+    },
+    {
+      "year": 2022,
+      "winner": "Lowry, Shane",
+      "score": -17
+    },
+    {
+      "year": 2021,
+      "winner": "Horschel, Billy",
+      "score": -19
+    }
+  ]
+}

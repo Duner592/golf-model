@@ -1,0 +1,12 @@
+{
+  "event_id": "557",
+  "event_name": "Biltmore Championship Asheville",
+  "source_csv": "data/preds/pga/event_557_biltmore_championship_asheville_2026-09-14_leaderboard.csv",
+  "generated_utc": "14-Sep-2026 05:08:29",
+  "metrics": {
+    "field_size": 128,
+    "p_win_max": 0.04583333333333333,
+    "p_win_median": 0.006066666666666666,
+    "p_win_sum": 1.0
+  }
+}

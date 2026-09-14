@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "557",
+    "event_name": "Biltmore Championship Asheville",
+    "tour": "pga",
+    "slug": "biltmore_championship_asheville",
+    "year": "2026",
+    "start_date": "2026-09-17",
+    "csv_available": true,
+    "archived_at": "2026-09-14 05:08:29 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-09-14T05:08:29Z",
+    "model_page": "archive/2026/biltmore_championship_asheville/model_page.html"
+  },
+  {
+    "event_id": "2026136",
+    "event_name": "BMW PGA Championship",
+    "tour": "euro",
+    "slug": "bmw_pga_championship",
+    "year": "2026",
+    "start_date": "2026-09-17",
+    "csv_available": true,
+    "archived_at": "2026-09-14 05:09:04 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-09-14T05:09:04Z",
+    "model_page": "archive/2026/bmw_pga_championship/model_page.html"
+  },
+  {
     "event_id": "2026135",
     "event_name": "Amgen Irish Open",
     "tour": "euro",

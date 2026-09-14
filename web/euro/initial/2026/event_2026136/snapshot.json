@@ -1,0 +1,65 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-09-14T05:09:04Z",
+  "tour": "euro",
+  "event_id": "2026136",
+  "event_name": "BMW PGA Championship",
+  "year": "2026",
+  "r1_date": "2026-09-17",
+  "start_date": "2026-09-17",
+  "source_csv": "data/preds/euro/event_2026136_bmw_pga_championship_2026-09-14_leaderboard.csv",
+  "artifact_generated_utc": "14-Sep-2026 05:09:04",
+  "resources": {
+    "model_page": "euro/initial/2026/event_2026136/model_page.html",
+    "leaderboard": "euro/initial/2026/event_2026136/leaderboard.json",
+    "summary": "euro/initial/2026/event_2026136/summary.json",
+    "meta": "euro/initial/2026/event_2026136/meta.json",
+    "downloads_csv": "euro/initial/2026/event_2026136/leaderboard.csv",
+    "downloads_html": "euro/initial/2026/event_2026136/leaderboard.html",
+    "timestamped_csv": "euro/initial/2026/event_2026136/leaderboard_20260914T050904Z.csv",
+    "timestamped_html": "euro/initial/2026/event_2026136/leaderboard_20260914T050904Z.html",
+    "weather_meta": "euro/initial/2026/event_2026136/weather_meta.json",
+    "weather_round_neutral": "euro/initial/2026/event_2026136/weather_round_neutral.json",
+    "weather_round_wave": "euro/initial/2026/event_2026136/weather_round_wave.json",
+    "course_fit_weights": "euro/initial/2026/event_2026136/course_fit_weights.json",
+    "course_history_summary": "euro/initial/2026/event_2026136/course_history_summary.json",
+    "tournament_summary": "euro/initial/2026/event_2026136/tournament_summary.json",
+    "field_teetimes": "euro/initial/2026/event_2026136/field_teetimes.csv",
+    "snapshot": "euro/initial/2026/event_2026136/snapshot.json",
+    "schedule": "euro/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-09-14T05:09:04Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "e1707f0bf813612018c689a3cc1322f00e7cb7a2ad6cee28c1eb0ebef8709623",
+      "src/utils_event.py": "b293f1d4910ae4957fb71193abaef9811f3a684d44319c09ae597a610c84f888"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "48ea66aef3bd2b53255a3ccf832b91ef8326bec9400c150d04b1944b94b90ed6",
+      "course_history_summary.json": "3647f0cafeb4a20fd25036ca5a333e88d50452028b556aaf2e68e6a127d2c0e6",
+      "field_teetimes.csv": "608c8462196b1186102d29548e224f23b488aa43dfd96705572ed38df8e42163",
+      "leaderboard.csv": "4faa3a320fb2007161a78bc6d47f6ddb2618da747b1bf975c3f7d869e36d01b9",
+      "leaderboard.html": "6b0eb7faaf032db36d40306c51b4cbe54320fd5d1394f5c7a150459457e04cc0",
+      "leaderboard.json": "dba1d25af35b2ba802d4c2f8e4e235eaf8b9c03bd8c8c1be754a81eb43fca422",
+      "leaderboard_20260914T050904Z.csv": "4faa3a320fb2007161a78bc6d47f6ddb2618da747b1bf975c3f7d869e36d01b9",
+      "leaderboard_20260914T050904Z.html": "6b0eb7faaf032db36d40306c51b4cbe54320fd5d1394f5c7a150459457e04cc0",
+      "meta.json": "b65de041182cc1ae7c3e093214dd53fdf6c73a5e5522f0d6c555d3708c1e9ffe",
+      "model_page.html": "f50558c0b60de24975382251b661f897194f1f80f7dbe8f458d19151ef685f7d",
+      "summary.json": "94f8293409e997297d1f57a2cb5537a654b04f45d80acc2d9fd808340eae6df9",
+      "tournament_summary.json": "fa871a91df37ddc1e002d865473f334058de894fbffb5d1994c5d31e3c561627",
+      "weather_meta.json": "36155a0bd158d05fe9b62095f5050592d1e37225332754181237785a22f7017a",
+      "weather_round_neutral.json": "26947db5400fff7b99a45097f71647471df91aadd380551abc30de73fc8559cb",
+      "weather_round_wave.json": "885acaa86d0f6793b9dcaac4ce959ced8a6f5aa384368809f20afcf5559377f6"
+    }
+  }
+}

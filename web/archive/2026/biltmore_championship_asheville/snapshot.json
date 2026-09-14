@@ -1,0 +1,64 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-09-14T05:08:29Z",
+  "tour": "pga",
+  "event_id": "557",
+  "event_name": "Biltmore Championship Asheville",
+  "year": "2026",
+  "r1_date": "2026-09-17",
+  "start_date": "2026-09-17",
+  "source_csv": "data/preds/pga/event_557_biltmore_championship_asheville_2026-09-14_leaderboard.csv",
+  "artifact_generated_utc": "14-Sep-2026 05:08:29",
+  "resources": {
+    "model_page": "pga/initial/2026/event_557/model_page.html",
+    "leaderboard": "pga/initial/2026/event_557/leaderboard.json",
+    "summary": "pga/initial/2026/event_557/summary.json",
+    "meta": "pga/initial/2026/event_557/meta.json",
+    "downloads_csv": "pga/initial/2026/event_557/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_557/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_557/leaderboard_20260914T050829Z.csv",
+    "timestamped_html": "pga/initial/2026/event_557/leaderboard_20260914T050829Z.html",
+    "weather_meta": "pga/initial/2026/event_557/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_557/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_557/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_557/course_fit_weights.json",
+    "course_history_summary": null,
+    "tournament_summary": "pga/initial/2026/event_557/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_557/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_557/snapshot.json",
+    "schedule": "pga/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-09-14T05:08:29Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "e1707f0bf813612018c689a3cc1322f00e7cb7a2ad6cee28c1eb0ebef8709623",
+      "src/utils_event.py": "b293f1d4910ae4957fb71193abaef9811f3a684d44319c09ae597a610c84f888"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "8129b3fa0d37a4e3ee8247100c77d4fe7476b32338b192e2e012f5afd43bdafb",
+      "field_teetimes.csv": "da7417281bf226844885259b5eb337b36518247376444a872f34db3502e13c3c",
+      "leaderboard.csv": "1dc2097ec472ec3276f1b218d83bac5fb43786000db058657dd1bcb8cdc1bb8f",
+      "leaderboard.html": "e98dde1100b4623a658e845bea121b69dd6ad8a98391db4ad342dbd8c9a84cf0",
+      "leaderboard.json": "a36ec9783cdac6dc3a68ab56bafb25b2e6ab5886924fd0c2fa91c1f0982380e3",
+      "leaderboard_20260914T050829Z.csv": "1dc2097ec472ec3276f1b218d83bac5fb43786000db058657dd1bcb8cdc1bb8f",
+      "leaderboard_20260914T050829Z.html": "e98dde1100b4623a658e845bea121b69dd6ad8a98391db4ad342dbd8c9a84cf0",
+      "meta.json": "d8b130ffd11881ee31c12ccbea527eaace2447c275369af640698bf389f7a609",
+      "model_page.html": "38fab360854206bfbaa88fa43bd7995c7ea6dbcfd848e7935d0eaf9c25cbf99b",
+      "summary.json": "89fba492f96c411e202b0f8c03bb7862820f9f564fc5b211a2ba51108a912e02",
+      "tournament_summary.json": "728e09c69de25444567546d027ca0a0b42d5872fc4d515837c43908904b95cc8",
+      "weather_meta.json": "d52068098a36faaabf45d49cdde5d00c9e596df2450c8bf73402cc7e071c56f0",
+      "weather_round_neutral.json": "7a396dfc9e479bf954f7dd34336f5545771ae08e5ef2d0259e454fa95e4d1e79",
+      "weather_round_wave.json": "87acbbe76ac41d00b3ba3c4dcb5901cd97952a979d3ce018f3db279a1c6265e3"
+    }
+  }
+}
