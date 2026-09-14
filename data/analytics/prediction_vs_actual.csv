@@ -1,4 +1,140 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+2026135,Amgen Irish Open,euro,2026,1,Rory McIlroy,59.34,99.5,100.0,0.4517835089999999,41.0,T41,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,2,Rasmus Hojgaard,13.17,92.0,99.6,0.136180967,31.0,T31,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,3,Joakim Lagergren,7.99,86.3,99.3,-0.1671724889999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,4,Angel Ayora,5.95,82.1,99.1,0.0931800749999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,5,Oliver Lindell,5.7,82.3,99.1,0.306050474,55.0,T55,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,6,Robert MacIntyre,3.26,74.1,98.4,0.266782034,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,7,Jacob Skov Olesen,2.55,68.6,97.9,0.122150813,7.0,T7,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,8,Shane Lowry,0.72,47.1,95.0,0.2571237469999999,1.0,1,1.0,1.0
+2026135,Amgen Irish Open,euro,2026,9,Shaun Norris,0.34,36.8,92.7,-0.0905293609999999,46.0,T46,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,10,Tom McKibbin,0.17,28.0,90.1,0.148787234,5.0,T5,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,11,Thorbjorn Olesen,0.13,22.6,87.7,0.025361362,,CUT,,
+2026135,Amgen Irish Open,euro,2026,12,Casey Jarvis,0.11,20.8,87.4,0.0722968289999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,13,Marcus Armitage,0.09,18.3,85.5,-0.02351363,,CUT,,
+2026135,Amgen Irish Open,euro,2026,14,Laurie Canter,0.06,12.3,81.0,0.0462908779999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,15,Tyrrell Hatton,0.05,14.6,82.9,0.238894747,,CUT,,
+2026135,Amgen Irish Open,euro,2026,16,Matteo Manassero,0.05,18.3,85.1,-0.028424412,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,17,Jordan Smith,0.05,15.0,83.3,0.1519336379999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,18,Paul Waring,0.04,10.8,79.3,-0.194976972,11.0,T11,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,19,Jon Rahm,0.02,12.4,81.0,0.324725359,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,20,Ignacio Elvira Mijares,0.02,8.5,77.0,-0.0160858799999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,21,Richard Sterne,0.02,7.0,73.9,-0.3317969269999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,22,Rafa Cabrera Bello,0.01,6.4,72.5,-0.300149255,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,23,Nicolai Hojgaard,0.01,3.2,64.3,0.200819,,CUT,,
+2026135,Amgen Irish Open,euro,2026,24,Freddy Schott,0.01,8.2,75.8,-0.221409578,,CUT,,
+2026135,Amgen Irish Open,euro,2026,25,Daniel Hillier,0.01,6.9,74.3,0.089012183,46.0,T46,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,26,Joaquin Niemann,0.01,9.4,77.5,0.327981382,2.0,T2,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,27,Ewen Ferguson,0.01,2.8,62.5,0.063947156,9.0,T9,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,28,Eugenio Chacarra,0.01,5.1,69.4,0.216748406,36.0,T36,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,29,Thomas Detry,0.01,5.1,70.8,0.125569854,,CUT,,
+2026135,Amgen Irish Open,euro,2026,30,Niklas Lemke,0.01,4.3,69.0,-0.2924565,63.0,T63,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,31,Alejandro Del Rey,0.01,1.5,55.9,-0.166920298,63.0,T63,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,32,Matt Wallace,0.01,4.8,69.3,0.276290622,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,33,Jeff Winther,0.01,5.1,70.6,-0.031355479,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,34,Angel Hidalgo,0.0,5.4,71.2,-0.1939583289999999,55.0,T55,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,35,Romain Langasque,0.0,1.9,59.3,-0.118458641,46.0,T46,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,36,David Ravetto,0.0,2.0,59.2,-0.218349855,,CUT,,
+2026135,Amgen Irish Open,euro,2026,37,Niklas Norgaard,0.0,1.3,54.5,-0.152807676,,,,
+2026135,Amgen Irish Open,euro,2026,38,Thomas Higgins,0.0,1.1,52.5,-0.143090054,,CUT,,
+2026135,Amgen Irish Open,euro,2026,39,Todd Clements,0.0,3.5,65.5,-0.085887196,,CUT,,
+2026135,Amgen Irish Open,euro,2026,40,Grant Forrest,0.0,2.5,62.6,-0.284464496,,CUT,,
+2026135,Amgen Irish Open,euro,2026,41,Erik Van Rooyen,0.0,3.3,64.9,-0.1328573309999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,42,Mikael Lindberg,0.0,4.8,68.7,-0.180809301,,CUT,,
+2026135,Amgen Irish Open,euro,2026,43,Adrian Otaegui,0.0,0.8,48.8,-0.143090054,,CUT,,
+2026135,Amgen Irish Open,euro,2026,44,Manuel Elvira,0.0,0.8,50.0,-0.152401134,,CUT,,
+2026135,Amgen Irish Open,euro,2026,45,Sepp Straka,0.0,2.0,59.5,0.116378119,63.0,T63,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,46,Seamus Power,0.0,2.3,60.7,-0.0421143609999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,47,Joost Luiten,0.0,3.9,66.9,-0.123093898,,WD,,
+2026135,Amgen Irish Open,euro,2026,48,Nicolai Von Dellingshausen,0.0,2.4,61.3,-0.239690118,,CUT,,
+2026135,Amgen Irish Open,euro,2026,49,Jorge Campillo,0.0,0.0,24.9,0.0052828779999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,50,Davis Bryant,0.0,0.0,22.4,-0.0103527569999999,46.0,T46,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,51,Dan Bradbury,0.0,0.1,30.7,-0.092270683,,CUT,,
+2026135,Amgen Irish Open,euro,2026,52,Sam Bairstow,0.0,0.0,16.3,-0.134087151,36.0,T36,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,53,Kiradech Aphibarnrat,0.0,0.0,10.8,-0.255625516,,CUT,,
+2026135,Amgen Irish Open,euro,2026,54,Joel Girrbach,0.0,0.1,27.7,-0.210665283,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,55,Ricardo Gouveia,0.0,0.0,3.2,-0.258430811,,CUT,,
+2026135,Amgen Irish Open,euro,2026,56,Julien Guerrier,0.0,0.3,38.9,-0.1141696069999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,57,Harry Hall,0.0,2.2,60.6,0.242871306,69.0,69,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,58,Jordan Gumberg,0.0,0.0,14.8,-0.432609382,,CUT,,
+2026135,Amgen Irish Open,euro,2026,59,Oihan Guillamoundeguy,0.0,0.7,48.5,-0.099576028,,CUT,,
+2026135,Amgen Irish Open,euro,2026,60,Wenyi Ding,0.0,0.2,35.2,-0.306930859,,,,
+2026135,Amgen Irish Open,euro,2026,61,Hennie Du Plessis,0.0,1.0,52.0,-0.048144272,55.0,T55,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,62,Ross Fisher,0.0,0.1,31.4,-0.378220874,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,63,Gregorio De Leo,0.0,0.4,42.3,-0.129930015,5.0,T5,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,64,Joe Dean,0.0,0.0,20.5,-0.035421646,41.0,T41,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,65,Luke Donald,0.0,0.8,47.7,-0.143090054,36.0,T36,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,66,Ugo Coussaud,0.0,0.1,32.2,-0.052068528,11.0,T11,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,67,Sean Crocker,0.0,0.1,26.0,-0.251760861,41.0,T41,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,68,Jens Dantorp,0.0,0.0,25.4,-0.18342855,9.0,T9,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,69,Martin Couvra,0.0,0.2,32.9,-0.079097965,,CUT,,
+2026135,Amgen Irish Open,euro,2026,70,Frankie Capan III,0.0,0.0,18.3,-0.429636037,36.0,T36,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,71,John Catlin,0.0,0.7,47.5,-0.37059513,,CUT,,
+2026135,Amgen Irish Open,euro,2026,72,Ivan Cantero Gutierrez,0.0,0.0,11.8,-0.450500151,,CUT,,
+2026135,Amgen Irish Open,euro,2026,73,K.H. Lee,0.0,0.1,28.1,-0.371211014,,,,
+2026135,Amgen Irish Open,euro,2026,74,Junghwan Lee,0.0,0.0,21.6,-0.459781989,,CUT,,
+2026135,Amgen Irish Open,euro,2026,75,Thriston Lawrence,0.0,0.1,33.5,-0.161211643,,CUT,,
+2026135,Amgen Irish Open,euro,2026,76,Pablo Larrazabal,0.0,0.0,11.0,-0.424758376,55.0,T55,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,77,Francesco Laporta,0.0,0.6,44.9,-0.198578905,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,78,Brooks Koepka,0.0,0.1,29.4,0.1104669889999999,55.0,T55,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,79,Jacques Kruyswijk,0.0,0.0,7.4,-0.2069554579999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,80,Frederic LaCroix,0.0,0.9,49.3,-0.170345843,,WD,,
+2026135,Amgen Irish Open,euro,2026,81,Jeong Weon Ko,0.0,0.0,24.8,-0.4273040329999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,82,Nathan Kimsey,0.0,0.0,4.0,-0.114104415,41.0,T41,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,83,Max Kennedy,0.0,0.2,35.7,-0.143090054,,CUT,,
+2026135,Amgen Irish Open,euro,2026,84,Kazuma Kobori,0.0,0.2,34.9,0.008782871,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,85,Yuto Katsuragawa,0.0,0.1,31.0,-0.249168376,,CUT,,
+2026135,Amgen Irish Open,euro,2026,86,Ryggs Johnston,0.0,0.0,11.1,-0.6504905639999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,87,Matthew Jordan,0.0,0.2,33.9,0.0207624349999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,88,Kota Kaneko,0.0,0.6,46.2,-0.0146113059999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,89,Padraig Harrington,0.0,0.0,17.7,-0.256327505,,CUT,,
+2026135,Amgen Irish Open,euro,2026,90,Rikuya Hoshino,0.0,1.6,56.9,-0.243863583,,CUT,,
+2026135,Amgen Irish Open,euro,2026,91,Marcus Helligkilde,0.0,1.0,52.7,-0.143090054,,CUT,,
+2026135,Amgen Irish Open,euro,2026,92,Scott Jamieson,0.0,0.0,19.1,-0.323971746,,CUT,,
+2026135,Amgen Irish Open,euro,2026,93,Michael Hollick,0.0,0.2,35.2,-0.162229805,,CUT,,
+2026135,Amgen Irish Open,euro,2026,94,Calum Hill,0.0,0.6,45.2,-0.016067254,31.0,T31,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,95,Alex Fitzpatrick,0.0,2.6,62.3,0.203769315,7.0,T7,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,96,Dylan Frittelli,0.0,0.0,6.8,-0.307901516,,CUT,,
+2026135,Amgen Irish Open,euro,2026,97,Sergio Garcia,0.0,1.6,56.2,-0.001247707,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,98,Daniel Gavins,0.0,0.0,2.9,-0.7623005,,CUT,,
+2026135,Amgen Irish Open,euro,2026,99,David Micheluzzi,0.0,0.0,7.0,-0.596941559,23.0,T23,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,100,Guido Migliozzi,0.0,0.0,17.3,-0.086995026,,CUT,,
+2026135,Amgen Irish Open,euro,2026,101,Richard Mansell,0.0,0.1,27.5,-0.193349904,63.0,T63,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,102,Stefano Mazzoli,0.0,0.1,32.7,-0.304120465,60.0,T60,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,103,Zander Lombard,0.0,0.1,25.3,-0.41932977,,CUT,,
+2026135,Amgen Irish Open,euro,2026,104,Adrian Meronk,0.0,0.1,25.4,-0.187604431,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,105,Yurav Premlall,0.0,0.1,28.2,-0.253914139,,CUT,,
+2026135,Amgen Irish Open,euro,2026,106,David Puig,0.0,1.8,57.2,-0.013755877,,CUT,,
+2026135,Amgen Irish Open,euro,2026,107,Eddie Pepperell,0.0,0.0,11.5,-0.143264119,,,,
+2026135,Amgen Irish Open,euro,2026,108,Mark Power,0.0,0.1,30.3,-0.143090054,,CUT,,
+2026135,Amgen Irish Open,euro,2026,109,Dylan Naidoo,0.0,0.0,3.2,-0.6104726030000001,,CUT,,
+2026135,Amgen Irish Open,euro,2026,110,Liam Nolan,0.0,1.1,51.8,-0.143090054,31.0,T31,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,111,Rasmus Neergaard-Petersen,0.0,2.2,60.0,0.0043000879999999,4.0,4,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,112,Francesco Molinari,0.0,0.0,11.5,-0.051371266,68.0,68,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,113,Haotong Li,0.0,0.2,37.0,-0.106289463,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,114,Ben Schmidt,0.0,2.4,61.6,-0.2576113189999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,115,Marcel Schneider,0.0,0.0,22.1,-0.298529058,,,,
+2026135,Amgen Irish Open,euro,2026,116,Patrick Reed,0.0,4.0,67.4,0.197089098,2.0,T2,0.0,1.0
+2026135,Amgen Irish Open,euro,2026,117,Antoine Rozner,0.0,0.9,50.9,0.0516572589999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,118,JC Ritchie,0.0,0.5,43.9,-0.158247385,60.0,T60,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,119,Brandon Robinson Thompson,0.0,0.0,17.8,-0.248646632,,CUT,,
+2026135,Amgen Irish Open,euro,2026,120,Daniel Rodrigues,0.0,0.2,37.4,-0.151195443,11.0,T11,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,121,Maximilian Steinlechner,0.0,0.2,37.0,-0.210076556,14.0,T14,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,122,Sebastian Soderberg,0.0,0.1,33.9,-0.218783491,46.0,T46,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,123,Jack Senior,0.0,3.2,64.6,-0.356556768,53.0,T53,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,124,Cormac Sharvin,0.0,1.1,52.5,-0.143090054,,CUT,,
+2026135,Amgen Irish Open,euro,2026,125,Jason Scrivener,0.0,0.2,35.4,-0.1449328289999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,126,Jayden Schaper,0.0,0.7,48.1,0.038342128,,CUT,,
+2026135,Amgen Irish Open,euro,2026,127,Andy Sullivan,0.0,0.1,31.6,-0.073069924,36.0,T36,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,128,Brandon Stone,0.0,0.3,39.0,-0.188015947,41.0,T41,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,129,Johannes Veerman,0.0,0.1,27.5,-0.310496821,31.0,T31,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,130,Darius Van Driel,0.0,0.3,40.0,-0.1064630869999999,67.0,67,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,131,Tom Vaillant,0.0,1.2,53.8,-0.039322473,46.0,T46,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,132,Connor Syme,0.0,0.4,41.2,-0.371935378,53.0,T53,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,133,Bernd Wiesberger,0.0,2.1,59.0,-0.069525844,22.0,22,0.0,0.0
+2026135,Amgen Irish Open,euro,2026,134,Danny Willett,0.0,0.0,28.3,-0.2546164329999999,,WD,,
+2026135,Amgen Irish Open,euro,2026,135,Ashun Wu,0.0,0.0,3.7,-0.2085366209999999,,CUT,,
+2026135,Amgen Irish Open,euro,2026,136,Yanhan Zhou,0.0,0.3,40.2,-0.244399173,,CUT,,
 2026134,Omega European Masters,euro,2026,1,Matt Wallace,45.24,91.6,98.6,0.278474012,9.0,T9,0.0,1.0
 2026134,Omega European Masters,euro,2026,2,Rasmus Neergaard-Petersen,11.13,65.6,93.2,0.0614300319999999,,CUT,,
 2026134,Omega European Masters,euro,2026,3,Keita Nakajima,7.97,59.0,91.3,0.214798116,23.0,T23,0.0,0.0
