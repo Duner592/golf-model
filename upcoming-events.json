@@ -642,7 +642,7 @@
       "start_date": "2026-04-23",
       "status": "completed",
       "tour": "pga",
-      "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
+      "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
     },
     {
       "country": "TUR",
@@ -1368,9 +1368,9 @@
       "location": "Doonbeg, Ireland",
       "longitude": -9.503,
       "start_date": "2026-09-10",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Lowry, Shane (13900)"
     },
     {
       "country": "USA",
@@ -1391,7 +1391,7 @@
       "course": "Wentworth Club",
       "course_key": "wentworth golf club",
       "event_id": "2026136",
-      "event_name": "BMW PGA CHAMPIONSHIP",
+      "event_name": "BMW PGA Championship",
       "latitude": 51.397,
       "location": "Virgina Water, Surrey, England",
       "longitude": -0.596,
@@ -1432,7 +1432,7 @@
       "country": "FRA",
       "course": "Le Golf National",
       "course_key": "le golf national",
-      "event_id": "TBD",
+      "event_id": "2026137",
       "event_name": "FedEx Open de France",
       "latitude": 48.753,
       "location": "Guyancourt, France",
