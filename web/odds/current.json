@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-09-20T05:10:21Z",
+  "generated_utc": "2026-09-20T09:45:56Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Biltmore Championship Asheville",
       "market": "win",
-      "last_updated": "2026-09-19 20:51:23 UTC",
+      "last_updated": "2026-09-20 05:39:12 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -120,7 +120,7 @@
           "player_name": "Dou, Zecheng",
           "dg_id": 16757,
           "prices": {
-            "bet365": "150/1",
+            "bet365": "175/1",
             "skybet": "125/1"
           }
         },
@@ -184,7 +184,7 @@
           "player_name": "Novak, Andrew",
           "dg_id": 23475,
           "prices": {
-            "bet365": "500/1",
+            "bet365": "600/1",
             "skybet": "475/1"
           }
         },
@@ -626,7 +626,7 @@
       "tour": "pga",
       "event_name": "Biltmore Championship Asheville",
       "market": "top_10",
-      "last_updated": "2026-09-19 20:51:23 UTC",
+      "last_updated": "2026-09-20 05:39:12 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -853,15 +853,15 @@
           "dg_id": 13965,
           "prices": {
             "bet365": "25/1",
-            "skybet": "30/1"
+            "skybet": "35/1"
           }
         },
         {
           "player_name": "Poston, J.T.",
           "dg_id": 21554,
           "prices": {
-            "bet365": "20/1",
-            "skybet": "25/1"
+            "bet365": "18/1",
+            "skybet": "22/1"
           }
         },
         {
@@ -893,7 +893,7 @@
           "dg_id": 17381,
           "prices": {
             "bet365": "40/1",
-            "skybet": "50/1"
+            "skybet": "55/1"
           }
         },
         {
@@ -901,7 +901,7 @@
           "dg_id": 19477,
           "prices": {
             "bet365": "75/1",
-            "skybet": "125/1"
+            "skybet": "110/1"
           }
         },
         {
@@ -924,7 +924,7 @@
           "player_name": "Eckroat, Austin",
           "dg_id": 26653,
           "prices": {
-            "bet365": "35/1",
+            "bet365": "33/1",
             "skybet": "45/1"
           }
         },
@@ -1013,7 +1013,7 @@
           "dg_id": 11451,
           "prices": {
             "bet365": "55/1",
-            "skybet": "90/1"
+            "skybet": "80/1"
           }
         },
         {
@@ -1069,7 +1069,7 @@
           "dg_id": 17723,
           "prices": {
             "bet365": "70/1",
-            "skybet": "110/1"
+            "skybet": "90/1"
           }
         },
         {
@@ -1148,8 +1148,8 @@
           "player_name": "Vilips, Karl",
           "dg_id": 24304,
           "prices": {
-            "bet365": "75/1",
-            "skybet": "125/1"
+            "bet365": "70/1",
+            "skybet": "110/1"
           }
         },
         {
@@ -1246,7 +1246,7 @@
       "tour": "euro",
       "event_name": "BMW PGA Championship",
       "market": "win",
-      "last_updated": "2026-09-19 20:24:04 UTC",
+      "last_updated": "2026-09-20 05:40:22 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1806,7 +1806,7 @@
       "tour": "euro",
       "event_name": "BMW PGA Championship",
       "market": "top_10",
-      "last_updated": "2026-09-19 20:24:04 UTC",
+      "last_updated": "2026-09-20 05:40:22 UTC",
       "books": [
         "bet365",
         "skybet"
