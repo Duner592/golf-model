@@ -1,8 +1,8 @@
 {
   "betting_data": {
-    "last_modified": "2026-08-21T07:45:23Z",
+    "last_modified": "2026-09-21T10:06:24Z",
     "source": "web/spreadsheet_data.csv",
-    "timestamp_source": "filesystem_mtime"
+    "timestamp_source": "git_commit"
   },
   "model_runs": {
     "euro": {
@@ -26,22 +26,20 @@
       "workflow": "manual-repair"
     },
     "pga": {
-      "artifact_generated_utc": "21-Aug-2026 07:46:20",
-      "event_id": "28",
-      "event_ids": [
-        "28"
-      ],
-      "event_name": "BMW Championship",
+      "artifact_generated_utc": "21-Sep-2026 18:12:29",
+      "event_id": "0",
+      "event_ids": [],
+      "event_name": "No Event",
       "events": [
         {
-          "event_id": "28",
-          "event_name": "BMW Championship",
-          "generated_utc": "21-Aug-2026 07:46:20",
-          "has_predictions": true,
-          "start_date": "2026-08-20"
+          "event_id": "0",
+          "event_name": "No Event",
+          "generated_utc": "21-Sep-2026 18:12:29",
+          "has_predictions": false,
+          "start_date": null
         }
       ],
-      "last_run_utc": "2026-08-21T07:46:20Z",
+      "last_run_utc": "2026-09-21T18:12:29Z",
       "tour": "pga",
       "workflow": "build-web-assets"
     }
@@ -54,5 +52,5 @@
     "tour": "all",
     "workflow": "scheduled-model"
   },
-  "updated_at_utc": "2026-08-21T07:46:20Z"
+  "updated_at_utc": "2026-09-21T18:12:29Z"
 }

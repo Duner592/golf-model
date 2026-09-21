@@ -387,46 +387,35 @@
   {
     "event_id": "28",
     "tour": "pga",
-    "status": "upcoming",
+    "status": "completed",
     "start_date": "2026-08-20",
     "date": "20-08-2026",
     "event": "BMW Championship",
     "course": "Bellerive Country Club",
     "location": "St. Louis, MO",
-    "winner": "TBD"
+    "winner": "Wyndham Clark"
   },
   {
     "event_id": "60",
     "tour": "pga",
-    "status": "upcoming",
+    "status": "completed",
     "start_date": "2026-08-27",
     "date": "27-08-2026",
     "event": "TOUR Championship",
     "course": "East Lake Golf Club",
     "location": "Atlanta, GA",
-    "winner": "TBD"
+    "winner": "Scottie Scheffler"
   },
   {
     "event_id": "557",
     "tour": "pga",
-    "status": "upcoming",
+    "status": "completed",
     "start_date": "2026-09-17",
     "date": "17-09-2026",
     "event": "Biltmore Championship Asheville",
     "course": "The Cliffs at Walnut Cove",
     "location": "Arden, NC",
-    "winner": "TBD"
-  },
-  {
-    "event_id": "500",
-    "tour": "pga",
-    "status": "upcoming",
-    "start_date": "2026-09-24",
-    "date": "24-09-2026",
-    "event": "Presidents Cup",
-    "course": "Medinah Country Club (No. 3)",
-    "location": "Medinah, IL",
-    "winner": "TBD"
+    "winner": "Jacob Bridgeman"
   },
   {
     "event_id": "554",
@@ -489,7 +478,7 @@
     "status": "upcoming",
     "start_date": "2026-11-12",
     "date": "12-11-2026",
-    "event": "Good Good Championship",
+    "event": "Austin Championship",
     "course": "Omni Barton Creek Resort & Spa (Fazio Canyons Course)",
     "location": "Austin, TX",
     "winner": "TBD"

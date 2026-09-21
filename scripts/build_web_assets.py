@@ -32,7 +32,7 @@ import requests  # Added for API calls
 
 # ensure repo root is importable when running scripts directly
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-from src.utils_event import current_week_event_ids, resolve_event_ids
+from src.utils_event import current_week_event_ids, is_supported_stroke_play_event, resolve_event_ids
 from src.provenance import build_snapshot_provenance
 
 MPH_PER_MPS = 2.237
@@ -1283,7 +1283,7 @@ def build_schedule_json(root: Path, tour: str, out_json: Path) -> None:
     include_prev_year = tour.lower() == "euro"
     prev_year_cutoff = datetime(current_year - 1, 11, 1) if include_prev_year else None
     for event in upcoming_data.get("schedule", []):
-        if event.get("tour", "").lower() == tour.lower():
+        if event.get("tour", "").lower() == tour.lower() and is_supported_stroke_play_event(event):
             date_str = event.get("start_date") or event.get("date")
             if date_str:
                 try:

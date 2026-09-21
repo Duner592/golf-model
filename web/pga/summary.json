@@ -1,12 +1,7 @@
 {
-  "event_id": "28",
-  "event_name": "BMW Championship",
-  "source_csv": "data/preds/pga/event_28_bmw_championship_2026-08-21_leaderboard.csv",
-  "generated_utc": "21-Aug-2026 07:46:20",
-  "metrics": {
-    "field_size": 50,
-    "p_win_max": 0.3594,
-    "p_win_median": 0.0008333333333333333,
-    "p_win_sum": 1.0
-  }
+  "event_id": "0",
+  "event_name": "No Event",
+  "source_csv": null,
+  "generated_utc": "21-Sep-2026 18:12:29",
+  "metrics": null
 }

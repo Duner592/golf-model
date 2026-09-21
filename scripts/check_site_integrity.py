@@ -14,8 +14,12 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+import sys
+
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from src.utils_event import is_supported_stroke_play_event
 TOURS = ("pga", "euro")
 UTC = timezone.utc
 
@@ -255,6 +259,8 @@ def current_events(schedule: list[Any], tour: str) -> list[ScheduleEvent]:
         if not isinstance(event, dict):
             continue
         if str(event.get("tour", "")).lower() != tour:
+            continue
+        if not is_supported_stroke_play_event(event):
             continue
         event_id = str(event.get("event_id", "")).strip()
         event_date = parse_date(event.get("start_date"))

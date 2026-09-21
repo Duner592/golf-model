@@ -12,6 +12,13 @@ from pathlib import Path
 TOUR_DEFAULT = "pga"
 ROOT = Path(__file__).resolve().parents[1]  # repo root: .../personal/golf-model
 UNRESOLVED_EVENT_IDS = {"", "tbd", "none", "null", "nan"}
+# The model simulates 72-hole individual stroke-play tournaments. Keep team and
+# match-play events in the source schedule, but never treat them as modelable.
+UNSUPPORTED_EVENT_NAME_PATTERNS = (
+    re.compile(r"\bpresidents\s+cup\b", re.IGNORECASE),
+    re.compile(r"\bryder\s+cup\b", re.IGNORECASE),
+    re.compile(r"\bwgc[-\s]+dell\s+technologies\s+match\s+play\b", re.IGNORECASE),
+)
 
 
 def _parse_ts(iso: str | None) -> float:
@@ -49,6 +56,12 @@ def is_resolved_event_id(event_id: object) -> bool:
     if event_id is None:
         return False
     return str(event_id).strip().lower() not in UNRESOLVED_EVENT_IDS
+
+
+def is_supported_stroke_play_event(event: dict) -> bool:
+    """Return whether a scheduled event is compatible with the stroke-play model."""
+    event_name = str(event.get("event_name") or event.get("name") or event.get("event") or "")
+    return not any(pattern.search(event_name) for pattern in UNSUPPORTED_EVENT_NAME_PATTERNS)
 
 
 def current_week_bounds(reference_date: date | None = None, *, include_next_week_on_sunday: bool = False) -> tuple[date, date]:
@@ -90,6 +103,8 @@ def current_week_events(
         if not isinstance(event, dict):
             continue
         if tour and str(event.get("tour", "")).lower() != str(tour).lower():
+            continue
+        if not is_supported_stroke_play_event(event):
             continue
 
         event_id = event.get("event_id")
