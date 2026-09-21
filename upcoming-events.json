@@ -642,7 +642,7 @@
       "start_date": "2026-04-23",
       "status": "completed",
       "tour": "pga",
-      "winner": "Fitzpatrick, Alex (25362);Fitzpatrick, Matt (17646)"
+      "winner": "Fitzpatrick, Matt (17646);Fitzpatrick, Alex (25362)"
     },
     {
       "country": "TUR",
@@ -1396,9 +1396,9 @@
       "location": "Virgina Water, Surrey, England",
       "longitude": -0.596,
       "start_date": "2026-09-17",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "euro",
-      "winner": "TBD"
+      "winner": "Spaun, J.J. (17536)"
     },
     {
       "country": "USA",
@@ -1424,9 +1424,9 @@
       "location": "Arden, NC",
       "longitude": -82.602,
       "start_date": "2026-09-17",
-      "status": "upcoming",
+      "status": "completed",
       "tour": "pga",
-      "winner": "TBD"
+      "winner": "Bridgeman, Jacob (29433)"
     },
     {
       "country": "FRA",
@@ -1460,7 +1460,7 @@
       "country": "SCO",
       "course": "Old Course St. Andrews;Carnoustie;Kingsbarns Golf Links",
       "course_key": "old course st andrews;carnoustie;kingsbarns golf links",
-      "event_id": "TBD",
+      "event_id": "2026144",
       "event_name": "Alfred Dunhill Links Championship",
       "latitude": 56.343,
       "location": "Fife, Scotland",
