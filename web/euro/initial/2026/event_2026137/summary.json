@@ -1,0 +1,12 @@
+{
+  "event_id": "2026137",
+  "event_name": "FedEx Open de France",
+  "source_csv": "data/preds/euro/event_2026137_fedex_open_de_france_2026-09-21_leaderboard.csv",
+  "generated_utc": "21-Sep-2026 05:09:25",
+  "metrics": {
+    "field_size": 143,
+    "p_win_max": 0.4406,
+    "p_win_median": 0.0,
+    "p_win_sum": 1.0
+  }
+}

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Presidents Cup Model Page Snapshot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1rem; color: #111; background: #f7faf8; }
+    header, section { max-width: 1180px; margin: 0 auto 1rem; }
+    header { padding: 1rem 0 0.25rem; }
+    h1 { margin: 0 0 0.35rem; font-size: clamp(1.45rem, 3vw, 2.1rem); }
+    h2 { margin: 0 0 0.55rem; font-size: 1.05rem; }
+    .muted { color: #53615a; font-size: 0.95rem; }
+    .pill { display: inline-flex; gap: 0.35rem; align-items: center; margin: 0.15rem 0.25rem 0.15rem 0; padding: 0.25rem 0.55rem; border: 1px solid #cfd9d3; border-radius: 999px; background: #fff; font-size: 0.86rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+    .card { border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; padding: 0.85rem; }
+    .links a { display: inline-block; margin: 0.2rem 0.4rem 0.2rem 0; color: #0b5a32; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+    input[type="search"] { width: min(100%, 280px); padding: 0.45rem 0.6rem; border: 1px solid #cbd8d0; border-radius: 6px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    th, td { padding: 0.45rem 0.5rem; border-bottom: 1px solid #edf2ef; text-align: left; white-space: nowrap; }
+    th { background: #f2f7f4; cursor: pointer; position: sticky; top: 0; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="muted">PGA model page backup</div>
+    <h1>Presidents Cup</h1>
+    <div id="metaLine" class="muted"></div>
+    <div id="badges"></div>
+  </header>
+  <section class="grid" id="summaryCards"></section>
+  <section class="card">
+    <div class="toolbar">
+      <h2 style="margin-right:auto;">Leaderboard</h2>
+      <label class="muted">Filter <input id="filterBox" type="search" placeholder="Search player" /></label>
+    </div>
+    <div class="table-wrap">
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th data-key="rank">Rank</th>
+            <th data-key="player_name">Player</th>
+            <th data-key="p_win_%">Win %</th>
+            <th data-key="p_top10_%">Top-10 %</th>
+            <th data-key="p_mc_%">Make Cut %</th>
+            <th data-key="course_fit_score">Course Fit</th>
+            <th data-key="r1_teetime">R1 Tee</th>
+            <th data-key="r2_teetime">R2 Tee</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="card"><h2>Tournament</h2><div id="tournament"></div></div>
+    <div class="card"><h2>Weather</h2><div id="weather"></div></div>
+    <div class="card"><h2>Course Fit</h2><div id="courseFit"></div></div>
+    <div class="card"><h2>Files</h2><div id="files" class="links"></div></div>
+  </section>
+  <script type="application/json" id="snapshotPayload">{"tour":"pga","event_id":"500","event_name":"Presidents Cup","year":"2026","snapshot_created_utc":"2026-09-21T05:08:48Z","snapshot_label":"Initial run","generated_utc":"21-Sep-2026 05:08:48","r1_date":"2026-09-24","start_date":"2026-09-24","reconstruction":null,"leaderboard":[{"rank":1,"player_name":"Scottie Scheffler","p_win_%":24.38,"p_top10_%":83.2,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":2,"player_name":"Xander Schauffele","p_win_%":7.44,"p_top10_%":59.8,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":3,"player_name":"Chris Gotterup","p_win_%":6.13,"p_top10_%":55.3,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":4,"player_name":"Cameron Young","p_win_%":6.01,"p_top10_%":55.1,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":5,"player_name":"Sam Burns","p_win_%":5.09,"p_top10_%":51.6,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":6,"player_name":"Patrick Cantlay","p_win_%":4.88,"p_top10_%":49.8,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":7,"player_name":"Si Woo Kim","p_win_%":4.74,"p_top10_%":49.9,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":8,"player_name":"Collin Morikawa","p_win_%":4.7,"p_top10_%":49.6,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":9,"player_name":"Wyndham Clark","p_win_%":4.33,"p_top10_%":48.7,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":10,"player_name":"Justin Thomas","p_win_%":3.81,"p_top10_%":45.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":11,"player_name":"Russell Henley","p_win_%":3.73,"p_top10_%":44.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":12,"player_name":"Hideki Matsuyama","p_win_%":3.34,"p_top10_%":42.2,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":13,"player_name":"Tom Kim","p_win_%":3.22,"p_top10_%":43.1,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":14,"player_name":"Min Woo Lee","p_win_%":3.01,"p_top10_%":41.3,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":15,"player_name":"Adam Scott","p_win_%":2.81,"p_top10_%":38.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":16,"player_name":"Jackson Koivun","p_win_%":2.76,"p_top10_%":39.6,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":17,"player_name":"Jacob Bridgeman","p_win_%":2.2,"p_top10_%":35.6,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":18,"player_name":"Sungjae Im","p_win_%":1.82,"p_top10_%":33.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":19,"player_name":"Corey Conners","p_win_%":1.59,"p_top10_%":29.9,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":20,"player_name":"Ryo Hisatsune","p_win_%":1.25,"p_top10_%":26.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":21,"player_name":"Ryan Fox","p_win_%":0.81,"p_top10_%":20.2,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":22,"player_name":"Nick Taylor","p_win_%":0.8,"p_top10_%":20.7,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":23,"player_name":"Christiaan Bezuidenhout","p_win_%":0.67,"p_top10_%":20.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":24,"player_name":"Nico Echavarria","p_win_%":0.49,"p_top10_%":16.1,"p_mc_%":100.0,"course_fit_score":0.0}],"summary":{"event_id":"500","event_name":"Presidents Cup","source_csv":"data/preds/pga/event_500_presidents_cup_2026-09-21_leaderboard.csv","generated_utc":"21-Sep-2026 05:08:48","metrics":{"field_size":24,"p_win_max":0.2438,"p_win_median":0.0328,"p_win_sum":1.0}},"tournament":{"event_name":"Presidents Cup","event_id":"500","course":"Medinah Country Club (No. 3)","total_yardage":null,"course_location":"Medinah, IL","start_date":"24-Sep-2026","field_size":24,"status":"upcoming","winner":null,"previous_winners":[]},"weather_meta":{"event_id":500,"event_name":"Presidents Cup","lat":41.966,"lon":-88.048,"r1_date":"2026-09-24","r2_date":"2026-09-25","r3_date":"2026-09-26","r4_date":"2026-09-27","saved_at_utc":"2026-09-21T050837Z","source":"pinned + open-meteo"},"weather_neutral":[{"wind_mph":6.29,"gust_mph":12.77,"temp_c":16.5,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":3,"round":1},{"wind_mph":5.95,"gust_mph":11.97,"temp_c":17.4,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":3,"round":2},{"wind_mph":3.05,"gust_mph":7.35,"temp_c":15.9,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":3,"round":3},{"wind_mph":3.18,"gust_mph":4.6,"temp_c":17.5,"precip_pct":6.0,"delta_strokes":0.0,"weathercode":3,"round":4}],"weather_wave":[{"round":1,"wave":"AM","wind_mph":6.81,"gust_mph":14.21,"temp_c":15.5,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":3},{"round":1,"wave":"PM","wind_mph":5.77,"gust_mph":11.32,"temp_c":17.5,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":3},{"round":2,"wave":"AM","wind_mph":5.65,"gust_mph":13.97,"temp_c":16.4,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":0},{"round":2,"wave":"PM","wind_mph":6.25,"gust_mph":9.97,"temp_c":18.4,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":3},{"round":3,"wave":"ALL","wind_mph":3.05,"gust_mph":7.35,"temp_c":15.9,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":3},{"round":4,"wave":"ALL","wind_mph":3.18,"gust_mph":4.6,"temp_c":17.5,"precip_pct":6.0,"delta_strokes":0.0,"weathercode":3}],"course_history":{},"course_fit":{"weights":{},"cats_used":[],"driving_norm":{"da_field_mean":null,"da_field_std":null,"dd_field_mean":null,"dd_field_std":null}},"local_files":{"Leaderboard JSON":"leaderboard.json","Leaderboard CSV":"leaderboard.csv","Leaderboard HTML":"leaderboard.html","Tournament summary":"tournament_summary.json","Weather metadata":"weather_meta.json","Neutral weather":"weather_round_neutral.json","Wave weather":"weather_round_wave.json","Course-fit weights":"course_fit_weights.json","Field tee times":"field_teetimes.csv"}}</script>
+  <script>
+    const SNAPSHOT = JSON.parse(document.getElementById("snapshotPayload").textContent);
+    const rows = Array.isArray(SNAPSHOT.leaderboard) ? SNAPSHOT.leaderboard : [];
+    let sortKey = "rank";
+    let sortAsc = true;
+    const fmt = (v, d = 2) => v === null || v === undefined || v === "" || Number.isNaN(Number(v)) ? "" : Number(v).toFixed(d);
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const get = (row, keys) => {
+      for (const key of keys) if (row[key] !== undefined && row[key] !== null && row[key] !== "") return row[key];
+      return "";
+    };
+    function sortRows(items) {
+      return [...items].sort((a, b) => {
+        const av = get(a, [sortKey]);
+        const bv = get(b, [sortKey]);
+        const an = Number(av);
+        const bn = Number(bv);
+        const result = Number.isFinite(an) && Number.isFinite(bn) ? an - bn : String(av).localeCompare(String(bv));
+        return sortAsc ? result : -result;
+      });
+    }
+    function renderTable() {
+      const q = document.getElementById("filterBox").value.trim().toLowerCase();
+      const filtered = q ? rows.filter((row) => String(get(row, ["player_name", "Player"])).toLowerCase().includes(q)) : rows;
+      document.querySelector("#leaderboardTable tbody").innerHTML = sortRows(filtered).map((row, idx) => `
+        <tr>
+          <td class="num">${escapeHtml(get(row, ["rank"]) || idx + 1)}</td>
+          <td>${escapeHtml(get(row, ["player_name", "Player"]))}</td>
+          <td class="num">${fmt(get(row, ["p_win_%", "p_win"]))}</td>
+          <td class="num">${fmt(get(row, ["p_top10_%", "p_top10"]))}</td>
+          <td class="num">${fmt(get(row, ["p_mc_%", "p_mc"]))}</td>
+          <td class="num">${fmt(get(row, ["course_fit_score"]))}</td>
+          <td>${escapeHtml(get(row, ["r1_teetime"]))}</td>
+          <td>${escapeHtml(get(row, ["r2_teetime"]))}</td>
+        </tr>`).join("");
+    }
+    function card(title, value, detail = "") {
+      return `<div class="card"><div class="muted">${escapeHtml(title)}</div><strong>${escapeHtml(value)}</strong>${detail ? `<div class="muted">${escapeHtml(detail)}</div>` : ""}</div>`;
+    }
+    function renderSummary() {
+      const metrics = SNAPSHOT.summary?.metrics || {};
+      const maxWin = rows.reduce((max, row) => Math.max(max, Number(get(row, ["p_win_%", "p_win"])) || 0), 0);
+      document.getElementById("metaLine").textContent = [
+        SNAPSHOT.snapshot_label,
+        SNAPSHOT.snapshot_created_utc ? `saved ${SNAPSHOT.snapshot_created_utc}` : "",
+        SNAPSHOT.generated_utc ? `generated ${SNAPSHOT.generated_utc}` : "",
+      ].filter(Boolean).join(" | ");
+      const badges = [`Tour: ${SNAPSHOT.tour?.toUpperCase()}`, `Event ID: ${SNAPSHOT.event_id}`, `Year: ${SNAPSHOT.year}`];
+      if (SNAPSHOT.reconstruction) badges.push("Reconstructed backfill");
+      document.getElementById("badges").innerHTML = badges.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
+      document.getElementById("summaryCards").innerHTML = [
+        card("Field", metrics.field_size || rows.length || "0", "players"),
+        card("Top Win Probability", maxWin ? `${maxWin.toFixed(2)}%` : "0.00%"),
+        card("Win Probability Sum", metrics.p_win_sum != null ? Number(metrics.p_win_sum).toFixed(3) : ""),
+        card("Prediction Source", SNAPSHOT.summary?.source_csv ? SNAPSHOT.summary.source_csv.split("/").pop() : "snapshot"),
+      ].join("");
+    }
+    function renderDetails() {
+      const t = SNAPSHOT.tournament || {};
+      document.getElementById("tournament").innerHTML = [
+        ["Event", t.event_name],
+        ["Course", t.course],
+        ["Location", t.course_location],
+        ["Start", t.start_date || SNAPSHOT.start_date || SNAPSHOT.r1_date],
+        ["Field size", t.field_size],
+        ["Winner", t.winner],
+      ].filter(([, value]) => value !== undefined && value !== null && value !== "").map(([label, value]) => `<div><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</div>`).join("") || "<span class='muted'>No tournament summary.</span>";
+      const neutral = Array.isArray(SNAPSHOT.weather_neutral) ? SNAPSHOT.weather_neutral : [];
+      const weatherMeta = SNAPSHOT.weather_meta || {};
+      const weatherLines = [];
+      if (weatherMeta.source) weatherLines.push(`<div><strong>Source:</strong> ${escapeHtml(weatherMeta.source)}</div>`);
+      neutral.forEach((row) => weatherLines.push(`<div>Round ${escapeHtml(row.round)}: wind ${fmt(row.wind_mph, 1)} mph, gust ${fmt(row.gust_mph, 1)} mph, delta ${fmt(row.delta_strokes, 2)} strokes</div>`));
+      document.getElementById("weather").innerHTML = weatherLines.join("") || "<span class='muted'>No weather snapshot.</span>";
+      const weights = SNAPSHOT.course_fit?.weights || {};
+      const weightLines = Object.entries(weights).map(([key, value]) => `<div><strong>${escapeHtml(key)}:</strong> ${fmt(value, 4)}</div>`);
+      document.getElementById("courseFit").innerHTML = weightLines.join("") || "<span class='muted'>No course-fit weights.</span>";
+      document.getElementById("files").innerHTML = Object.entries(SNAPSHOT.local_files || {}).map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("") || "<span class='muted'>No local file links.</span>";
+      if (SNAPSHOT.reconstruction) {
+        const note = document.createElement("pre");
+        note.textContent = JSON.stringify(SNAPSHOT.reconstruction, null, 2);
+        const wrap = document.createElement("section");
+        wrap.className = "card";
+        wrap.innerHTML = "<h2>Reconstruction Provenance</h2>";
+        wrap.appendChild(note);
+        document.body.appendChild(wrap);
+      }
+    }
+    document.querySelectorAll("th[data-key]").forEach((th) => th.addEventListener("click", () => {
+      const key = th.dataset.key;
+      if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
+      renderTable();
+    }));
+    document.getElementById("filterBox").addEventListener("input", renderTable);
+    renderSummary();
+    renderDetails();
+    renderTable();
+  </script>
+</body>
+</html>

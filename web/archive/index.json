@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "500",
+    "event_name": "Presidents Cup",
+    "tour": "pga",
+    "slug": "presidents_cup",
+    "year": "2026",
+    "start_date": "2026-09-24",
+    "csv_available": true,
+    "archived_at": "2026-09-21 05:08:48 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-09-21T05:08:48Z",
+    "model_page": "archive/2026/presidents_cup/model_page.html"
+  },
+  {
+    "event_id": "2026137",
+    "event_name": "FedEx Open de France",
+    "tour": "euro",
+    "slug": "fedex_open_de_france",
+    "year": "2026",
+    "start_date": "2026-09-24",
+    "csv_available": true,
+    "archived_at": "2026-09-21 05:09:25 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-09-21T05:09:25Z",
+    "model_page": "archive/2026/fedex_open_de_france/model_page.html"
+  },
+  {
     "event_id": "557",
     "event_name": "Biltmore Championship Asheville",
     "tour": "pga",
