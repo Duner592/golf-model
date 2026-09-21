@@ -1,4 +1,22 @@
 {
+  "2026_biltmore_championship_asheville": {
+    "event_id": "557",
+    "event_name": "Biltmore Championship Asheville",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "biltmore_championship_asheville"
+  },
+  "2026_bmw_pga_championship": {
+    "event_id": "2026136",
+    "event_name": "BMW PGA Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "bmw_pga_championship"
+  },
   "2026_amgen_irish_open": {
     "event_id": "2026135",
     "event_name": "Amgen Irish Open",
