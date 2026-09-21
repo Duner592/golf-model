@@ -141,6 +141,20 @@ No currently prioritised homepage improvements.
 
 ## Do Next
 
+### Secure GitHub-Backed Betting Editor (Shelved)
+
+Allow bets to be added and corrected through the website without exposing a write token or risking an accidental live-data overwrite.
+
+Proposed safeguards:
+
+- Keep `web/spreadsheet_data.csv` on `master` read-only until an explicit publish action.
+- Save website edits to a protected draft branch and create a reviewable pull request.
+- Use a GitHub App restricted to this repository, with authentication limited to the owner account; keep all credentials in a server-side backend.
+- Validate CSV structure, required fields, dates, amounts, duplicate entries, and the latest Git file SHA before a draft can be published.
+- Show a row-level diff and preview before publishing, retain an immutable backup/tag, and make rollback a new reviewed change rather than a history rewrite.
+
+This is intentionally shelved for now. It should not replace or automatically modify the manual CSV workflow until the security and review flow is implemented.
+
 ### Backtest Summary By Event Type
 
 Break model performance down by context.
