@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-22T05:28:14Z",
+  "generated_utc": "2026-09-22T10:10:54Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -1246,7 +1246,7 @@
       "tour": "euro",
       "event_name": "FedEx Open de France",
       "market": "win",
-      "last_updated": "2026-09-22 00:06:10 UTC",
+      "last_updated": "2026-09-22 08:15:56 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2073,7 +2073,7 @@
           "dg_id": 11061,
           "prices": {
             "bet365": "500/1",
-            "skybet": "550/1"
+            "skybet": "800/1"
           }
         },
         {
@@ -2383,7 +2383,7 @@
       "tour": "euro",
       "event_name": "FedEx Open de France",
       "market": "top_10",
-      "last_updated": "2026-09-22 00:06:10 UTC",
+      "last_updated": "2026-09-22 08:15:56 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2569,7 +2569,8 @@
           "player_name": "Langasque, Romain",
           "dg_id": 16652,
           "prices": {
-            "bet365": "6.5/1"
+            "bet365": "6.5/1",
+            "skybet": "7.5/1"
           }
         },
         {
@@ -2597,7 +2598,8 @@
           "player_name": "Rosenmueller, Thomas",
           "dg_id": 22736,
           "prices": {
-            "bet365": "6.5/1"
+            "bet365": "6.5/1",
+            "skybet": "7.5/1"
           }
         },
         {
