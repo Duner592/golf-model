@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-26T00:44:12Z",
+  "generated_utc": "2026-09-26T05:30:28Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -1246,7 +1246,7 @@
       "tour": "euro",
       "event_name": "FedEx Open de France",
       "market": "win",
-      "last_updated": "2026-09-25 20:46:57 UTC",
+      "last_updated": "2026-09-26 03:04:08 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1288,8 +1288,7 @@
           "player_name": "Vaillant, Tom",
           "dg_id": 28157,
           "prices": {
-            "bet365": "20/1",
-            "skybet": "20/1"
+            "bet365": "20/1"
           }
         },
         {
@@ -1328,16 +1327,14 @@
           "player_name": "Lawrence, Thriston",
           "dg_id": 18105,
           "prices": {
-            "bet365": "33/1",
-            "skybet": "30/1"
+            "bet365": "33/1"
           }
         },
         {
           "player_name": "Hidalgo, Angel",
           "dg_id": 24127,
           "prices": {
-            "bet365": "40/1",
-            "skybet": "35/1"
+            "bet365": "40/1"
           }
         },
         {
@@ -1368,8 +1365,7 @@
           "player_name": "Laporta, Francesco",
           "dg_id": 14987,
           "prices": {
-            "bet365": "80/1",
-            "skybet": "66/1"
+            "bet365": "80/1"
           }
         },
         {
@@ -1384,8 +1380,7 @@
           "player_name": "Pieters, Thomas",
           "dg_id": 13944,
           "prices": {
-            "bet365": "125/1",
-            "skybet": "125/1"
+            "bet365": "125/1"
           }
         },
         {
@@ -1464,7 +1459,7 @@
           "player_name": "Celli, Filippo",
           "dg_id": 23549,
           "prices": {
-            "bet365": "250/1",
+            "bet365": "225/1",
             "skybet": "175/1"
           }
         },
@@ -1488,8 +1483,7 @@
           "player_name": "Elvira Mijares, Ignacio",
           "dg_id": 12988,
           "prices": {
-            "bet365": "400/1",
-            "skybet": "350/1"
+            "bet365": "400/1"
           }
         },
         {
@@ -1561,7 +1555,7 @@
           "dg_id": 19898,
           "prices": {
             "bet365": "400/1",
-            "skybet": "275/1"
+            "skybet": "350/1"
           }
         },
         {
@@ -1624,7 +1618,7 @@
           "player_name": "Arnaus, Adri",
           "dg_id": 23236,
           "prices": {
-            "bet365": "1500/1",
+            "bet365": "2000/1",
             "skybet": "1250/1"
           }
         },
@@ -1688,8 +1682,7 @@
           "player_name": "Bergstrom, Albin",
           "dg_id": 23620,
           "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
+            "bet365": "5000/1"
           }
         },
         {
@@ -1785,7 +1778,7 @@
       "tour": "euro",
       "event_name": "FedEx Open de France",
       "market": "top_10",
-      "last_updated": "2026-09-25 20:46:57 UTC",
+      "last_updated": "2026-09-26 03:04:08 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1803,7 +1796,7 @@
           "player_name": "Winther, Jeff",
           "dg_id": 15680,
           "prices": {
-            "bet365": "0.2/1",
+            "bet365": "0.22/1",
             "skybet": "0.25/1"
           }
         },
@@ -1827,8 +1820,7 @@
           "player_name": "Vaillant, Tom",
           "dg_id": 28157,
           "prices": {
-            "bet365": "0.73/1",
-            "skybet": "0.83/1"
+            "bet365": "0.73/1"
           }
         },
         {
@@ -1843,8 +1835,7 @@
           "player_name": "Hovland, Viktor",
           "dg_id": 18841,
           "prices": {
-            "bet365": "1.05/1",
-            "skybet": "1.1/1"
+            "bet365": "1.05/1"
           }
         },
         {
@@ -1867,16 +1858,14 @@
           "player_name": "Lawrence, Thriston",
           "dg_id": 18105,
           "prices": {
-            "bet365": "1.2/1",
-            "skybet": "1.3/1"
+            "bet365": "1.2/1"
           }
         },
         {
           "player_name": "Hidalgo, Angel",
           "dg_id": 24127,
           "prices": {
-            "bet365": "1.4/1",
-            "skybet": "1.5/1"
+            "bet365": "1.4/1"
           }
         },
         {
@@ -1907,8 +1896,7 @@
           "player_name": "Laporta, Francesco",
           "dg_id": 14987,
           "prices": {
-            "bet365": "2.4/1",
-            "skybet": "2.25/1"
+            "bet365": "2.4/1"
           }
         },
         {
@@ -1923,8 +1911,7 @@
           "player_name": "Pieters, Thomas",
           "dg_id": 13944,
           "prices": {
-            "bet365": "3.6/1",
-            "skybet": "4.5/1"
+            "bet365": "3.6/1"
           }
         },
         {
@@ -1963,16 +1950,14 @@
           "player_name": "Scrivener, Jason",
           "dg_id": 12734,
           "prices": {
-            "bet365": "4.5/1",
-            "skybet": "5.5/1"
+            "bet365": "4.5/1"
           }
         },
         {
           "player_name": "Girrbach, Joel",
           "dg_id": 15592,
           "prices": {
-            "bet365": "5.5/1",
-            "skybet": "5.5/1"
+            "bet365": "5.5/1"
           }
         },
         {
@@ -2027,8 +2012,7 @@
           "player_name": "Elvira Mijares, Ignacio",
           "dg_id": 12988,
           "prices": {
-            "bet365": "8.5/1",
-            "skybet": "10/1"
+            "bet365": "8.5/1"
           }
         },
         {
@@ -2099,7 +2083,7 @@
           "player_name": "Paul, Yannik",
           "dg_id": 19898,
           "prices": {
-            "bet365": "8.5/1",
+            "bet365": "8/1",
             "skybet": "10/1"
           }
         },
@@ -2131,8 +2115,7 @@
           "player_name": "Meronk, Adrian",
           "dg_id": 14196,
           "prices": {
-            "bet365": "14/1",
-            "skybet": "18/1"
+            "bet365": "14/1"
           }
         },
         {
@@ -2227,8 +2210,7 @@
           "player_name": "Bergstrom, Albin",
           "dg_id": 23620,
           "prices": {
-            "bet365": "33/1",
-            "skybet": "45/1"
+            "bet365": "33/1"
           }
         },
         {
