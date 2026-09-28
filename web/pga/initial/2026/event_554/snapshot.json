@@ -1,0 +1,65 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-09-28T05:35:41Z",
+  "tour": "pga",
+  "event_id": "554",
+  "event_name": "Bank of Utah Championship",
+  "year": "2026",
+  "r1_date": "2026-10-01",
+  "start_date": "2026-10-01",
+  "source_csv": "data/preds/pga/event_554_bank_of_utah_championship_2026-09-28_leaderboard.csv",
+  "artifact_generated_utc": "28-Sep-2026 05:35:41",
+  "resources": {
+    "model_page": "pga/initial/2026/event_554/model_page.html",
+    "leaderboard": "pga/initial/2026/event_554/leaderboard.json",
+    "summary": "pga/initial/2026/event_554/summary.json",
+    "meta": "pga/initial/2026/event_554/meta.json",
+    "downloads_csv": "pga/initial/2026/event_554/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_554/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_554/leaderboard_20260928T053541Z.csv",
+    "timestamped_html": "pga/initial/2026/event_554/leaderboard_20260928T053541Z.html",
+    "weather_meta": "pga/initial/2026/event_554/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_554/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_554/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_554/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_554/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_554/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_554/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_554/snapshot.json",
+    "schedule": "pga/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-09-28T05:35:41Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "dbaf1387db9b25de9154bf2f9a3a10e081d093a44e95bbc1d445afffeb23545b",
+      "src/utils_event.py": "205dfeba5e3f6651b8ec82e71edd66ef85fa04fea2ffbf44193bec74b4e08b02"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "c0e369ba525de3ceb6bad67c53028fab1faf09ea28d7138cf5fc0a4883789356",
+      "course_history_summary.json": "f6813f1827f463f423d873f6e014a5cba607760d15ae248efbb2a067db4d7bc5",
+      "field_teetimes.csv": "9879f516ab584f4a49f5ff34b791cd9a35e9d7e261f10731a647d2b9aac896ca",
+      "leaderboard.csv": "5921693626fa80f481fce324a141afeb16802e5f43f2b0104da4afbfa1bf559c",
+      "leaderboard.html": "dda1f0edda6de20dda25a740a097c88e8afcd4e2f05202df88e3e24f962188b9",
+      "leaderboard.json": "6c5bc61b4f46ad1a5b2b8725b50aad7d741e9eeed78d635a24f84cf703fda5de",
+      "leaderboard_20260928T053541Z.csv": "5921693626fa80f481fce324a141afeb16802e5f43f2b0104da4afbfa1bf559c",
+      "leaderboard_20260928T053541Z.html": "dda1f0edda6de20dda25a740a097c88e8afcd4e2f05202df88e3e24f962188b9",
+      "meta.json": "f5a94e8b49ac4eb4f1c32a158f167f58595198aa4e83f911729542688e9b59c1",
+      "model_page.html": "f5e83ebdb4b18e050c3802e0629469b29844813ea1499388ab17bf2dee51ef31",
+      "summary.json": "17b160599ce0794dba3743b4c3cf56be88d232c6bc662e80817ad185aa64ac38",
+      "tournament_summary.json": "57e11f5680fd18bafb9723595c5a434daf134823cdda3077305c26fc4f353709",
+      "weather_meta.json": "01bb85c57fc535c0f9ee27b0c611463f0d8261175db79ba3a0480a395650dad8",
+      "weather_round_neutral.json": "ba2f9bff8b0e0a663172d548d289262471643a54cd2b55f1a6c9810bcb4d4b5a",
+      "weather_round_wave.json": "d7bde3fb7f4bc1e053ac131aab85af39295be2fe81c32b72beff4118693b5fc9"
+    }
+  }
+}

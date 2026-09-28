@@ -1,0 +1,12 @@
+{
+  "event_id": "2026144",
+  "event_name": "Alfred Dunhill Links Championship",
+  "source_csv": "data/preds/euro/event_2026144_alfred_dunhill_links_championship_2026-09-28_leaderboard.csv",
+  "generated_utc": "28-Sep-2026 05:36:20",
+  "metrics": {
+    "field_size": 165,
+    "p_win_max": 0.3005,
+    "p_win_median": 0.0001,
+    "p_win_sum": 1.0
+  }
+}
