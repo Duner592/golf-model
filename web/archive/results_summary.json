@@ -1,4 +1,13 @@
 {
+  "2026_fedex_open_de_france": {
+    "event_id": "2026137",
+    "event_name": "FedEx Open de France",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "fedex_open_de_france"
+  },
   "2026_biltmore_championship_asheville": {
     "event_id": "557",
     "event_name": "Biltmore Championship Asheville",

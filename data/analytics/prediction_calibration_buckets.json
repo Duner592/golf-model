@@ -3,10 +3,10 @@
     "win": [
       {
         "range": "0-5%",
-        "n": 1514,
-        "mean_predicted_pct": 0.37852047556142665,
-        "actual_rate_pct": 1.3870541611624834,
-        "gap_pct_points": 1.0085336856010567
+        "n": 1575,
+        "mean_predicted_pct": 0.36824126984126987,
+        "actual_rate_pct": 1.3333333333333335,
+        "gap_pct_points": 0.9650920634920637
       },
       {
         "range": "5-10%",
@@ -38,10 +38,10 @@
       },
       {
         "range": "25-30%",
-        "n": 1,
-        "mean_predicted_pct": 29.53,
+        "n": 2,
+        "mean_predicted_pct": 27.985,
         "actual_rate_pct": 0.0,
-        "gap_pct_points": -29.53
+        "gap_pct_points": -27.985
       },
       {
         "range": "35-40%",
@@ -52,10 +52,10 @@
       },
       {
         "range": "40-45%",
-        "n": 2,
-        "mean_predicted_pct": 40.769999999999996,
+        "n": 3,
+        "mean_predicted_pct": 41.86666666666667,
         "actual_rate_pct": 0.0,
-        "gap_pct_points": -40.769999999999996
+        "gap_pct_points": -41.86666666666667
       },
       {
         "range": "45-50%",
@@ -96,66 +96,66 @@
     "top10": [
       {
         "range": "0-5%",
-        "n": 985,
-        "mean_predicted_pct": 1.7357360406091369,
-        "actual_rate_pct": 13.19796954314721,
-        "gap_pct_points": 11.462233502538073
+        "n": 1025,
+        "mean_predicted_pct": 1.7073170731707317,
+        "actual_rate_pct": 12.878048780487806,
+        "gap_pct_points": 11.170731707317074
       },
       {
         "range": "5-10%",
-        "n": 217,
-        "mean_predicted_pct": 7.2050691244239635,
-        "actual_rate_pct": 21.19815668202765,
-        "gap_pct_points": 13.993087557603687
+        "n": 223,
+        "mean_predicted_pct": 7.195067264573991,
+        "actual_rate_pct": 21.524663677130047,
+        "gap_pct_points": 14.329596412556056
       },
       {
         "range": "10-15%",
-        "n": 152,
-        "mean_predicted_pct": 11.438157894736843,
-        "actual_rate_pct": 14.473684210526317,
-        "gap_pct_points": 3.0355263157894736
+        "n": 157,
+        "mean_predicted_pct": 11.443312101910827,
+        "actual_rate_pct": 14.012738853503185,
+        "gap_pct_points": 2.569426751592358
       },
       {
         "range": "15-20%",
-        "n": 47,
-        "mean_predicted_pct": 17.27446808510639,
-        "actual_rate_pct": 38.297872340425535,
-        "gap_pct_points": 21.023404255319146
+        "n": 50,
+        "mean_predicted_pct": 17.37,
+        "actual_rate_pct": 38.0,
+        "gap_pct_points": 20.63
       },
       {
         "range": "20-25%",
-        "n": 31,
-        "mean_predicted_pct": 22.27741935483871,
-        "actual_rate_pct": 38.70967741935484,
-        "gap_pct_points": 16.43225806451613
+        "n": 33,
+        "mean_predicted_pct": 22.27878787878788,
+        "actual_rate_pct": 36.36363636363637,
+        "gap_pct_points": 14.084848484848486
       },
       {
         "range": "25-30%",
-        "n": 26,
-        "mean_predicted_pct": 27.41923076923077,
-        "actual_rate_pct": 26.923076923076923,
-        "gap_pct_points": -0.4961538461538453
+        "n": 27,
+        "mean_predicted_pct": 27.459259259259262,
+        "actual_rate_pct": 25.925925925925924,
+        "gap_pct_points": -1.5333333333333385
       },
       {
         "range": "30-35%",
-        "n": 17,
-        "mean_predicted_pct": 32.72352941176471,
-        "actual_rate_pct": 23.52941176470588,
-        "gap_pct_points": -9.194117647058828
+        "n": 18,
+        "mean_predicted_pct": 32.67777777777778,
+        "actual_rate_pct": 22.22222222222222,
+        "gap_pct_points": -10.455555555555556
       },
       {
         "range": "35-40%",
-        "n": 19,
-        "mean_predicted_pct": 36.76842105263159,
-        "actual_rate_pct": 21.052631578947366,
-        "gap_pct_points": -15.715789473684222
+        "n": 21,
+        "mean_predicted_pct": 36.96666666666667,
+        "actual_rate_pct": 28.57142857142857,
+        "gap_pct_points": -8.3952380952381
       },
       {
         "range": "40-45%",
-        "n": 12,
-        "mean_predicted_pct": 42.041666666666664,
-        "actual_rate_pct": 33.33333333333333,
-        "gap_pct_points": -8.708333333333336
+        "n": 13,
+        "mean_predicted_pct": 42.15384615384615,
+        "actual_rate_pct": 30.76923076923077,
+        "gap_pct_points": -11.384615384615383
       },
       {
         "range": "45-50%",
@@ -222,17 +222,17 @@
       },
       {
         "range": "90-95%",
-        "n": 4,
-        "mean_predicted_pct": 92.1,
-        "actual_rate_pct": 25.0,
-        "gap_pct_points": -67.1
+        "n": 5,
+        "mean_predicted_pct": 92.28,
+        "actual_rate_pct": 40.0,
+        "gap_pct_points": -52.28
       },
       {
         "range": "95-100%",
-        "n": 6,
-        "mean_predicted_pct": 98.91666666666667,
-        "actual_rate_pct": 50.0,
-        "gap_pct_points": -48.91666666666667
+        "n": 7,
+        "mean_predicted_pct": 98.64285714285714,
+        "actual_rate_pct": 57.14285714285714,
+        "gap_pct_points": -41.5
       }
     ],
     "make_cut": []
