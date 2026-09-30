@@ -15,7 +15,7 @@ event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_
 2026137,FedEx Open de France,euro,2026,14,Dan Bradbury,0.31,23.0,84.1,-0.079856713,14.0,T14,0.0,0.0
 2026137,FedEx Open de France,euro,2026,15,Viktor Hovland,0.27,19.7,82.6,0.449618755,33.0,T33,0.0,0.0
 2026137,FedEx Open de France,euro,2026,16,Jeff Winther,0.27,19.4,82.1,-0.0377981189999999,10.0,10,0.0,1.0
-2026137,FedEx Open de France,euro,2026,17,Matt Fitzpatrick,0.26,20.0,82.4,0.42098895,,,,
+2026137,FedEx Open de France,euro,2026,17,Matt Fitzpatrick,0.26,20.0,82.4,0.42098895,1.0,1,1.0,1.0
 2026137,FedEx Open de France,euro,2026,18,Calum Hill,0.22,20.3,82.7,-0.011932259,,CUT,,
 2026137,FedEx Open de France,euro,2026,19,Ryan Gerard,0.19,17.5,80.6,0.375641856,14.0,T14,0.0,0.0
 2026137,FedEx Open de France,euro,2026,20,Nathan Kimsey,0.14,13.6,76.8,-0.087873544,44.0,T44,0.0,0.0
@@ -277,7 +277,7 @@ event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_
 2026136,BMW PGA Championship,euro,2026,5,Tommy Fleetwood,4.42,52.7,95.3,0.521580196,,CUT,,
 2026136,BMW PGA Championship,euro,2026,6,Patrick Reed,3.56,47.4,94.5,0.300668887,,WD,,
 2026136,BMW PGA Championship,euro,2026,7,Aaron Rai,3.35,46.1,94.2,0.322681885,2.0,T2,0.0,1.0
-2026136,BMW PGA Championship,euro,2026,8,Matt Fitzpatrick,3.24,46.1,94.1,0.5035089610000001,,,,
+2026136,BMW PGA Championship,euro,2026,8,Matt Fitzpatrick,3.24,46.1,94.1,0.5035089610000001,6.0,T6,0.0,1.0
 2026136,BMW PGA Championship,euro,2026,9,Joaquin Niemann,2.65,41.8,93.1,0.464642049,21.0,T21,0.0,0.0
 2026136,BMW PGA Championship,euro,2026,10,Alex Noren,2.3,39.3,92.6,0.235840579,15.0,T15,0.0,0.0
 2026136,BMW PGA Championship,euro,2026,11,Shane Lowry,2.1,37.4,92.0,0.402897646,21.0,T21,0.0,0.0

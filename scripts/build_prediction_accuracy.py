@@ -69,6 +69,13 @@ def normalize_prediction_name(name: str | None) -> str:
 
 
 PLAYER_SUFFIXES = {"jr", "sr", "ii", "iii", "iv", "v"}
+# Results feeds occasionally expand a familiar first name (for example, Matt
+# Fitzpatrick is returned as Matthew Fitzpatrick).  Canonical aliases keep the
+# archive join deterministic without weakening the surname match.
+FIRST_NAME_ALIASES = {
+    "matt": "matthew",
+    "matthew": "matthew",
+}
 
 
 def name_tokens(name: str | None) -> list[str]:
@@ -91,8 +98,11 @@ def name_key_candidates(name: str | None) -> list[str]:
     keys: list[str] = []
     if tokens:
         keys.append("".join(tokens))
+        canonical_tokens = [FIRST_NAME_ALIASES.get(tokens[0], tokens[0]), *tokens[1:]]
+        keys.append("".join(canonical_tokens))
     if len(tokens) >= 3:
         keys.append(f"{tokens[0]}{tokens[-1]}")
+        keys.append(f"{FIRST_NAME_ALIASES.get(tokens[0], tokens[0])}{tokens[-1]}")
     return list(dict.fromkeys(keys))
 
 

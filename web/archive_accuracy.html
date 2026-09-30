@@ -112,6 +112,10 @@
     }
 
     const PLAYER_SUFFIXES = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v']);
+    const FIRST_NAME_ALIASES = new Map([
+        ['matt', 'matthew'],
+        ['matthew', 'matthew']
+    ]);
 
     function normalizePredictionDisplayName(name) {
         if (!name) return null;
@@ -140,9 +144,11 @@
         const keys = new Set();
         if (tokens.length) {
             keys.add(tokens.join(''));
+            keys.add([FIRST_NAME_ALIASES.get(tokens[0]) || tokens[0], ...tokens.slice(1)].join(''));
         }
         if (tokens.length >= 3) {
             keys.add(`${tokens[0]}${tokens[tokens.length - 1]}`);
+            keys.add(`${FIRST_NAME_ALIASES.get(tokens[0]) || tokens[0]}${tokens[tokens.length - 1]}`);
         }
         return [...keys];
     }

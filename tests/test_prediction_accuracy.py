@@ -4,7 +4,14 @@ import unittest
 
 import requests
 
-from scripts.build_prediction_accuracy import brier_score, calibration_buckets, log_loss, uniform_field_probabilities
+from scripts.build_prediction_accuracy import (
+    brier_score,
+    calibration_buckets,
+    log_loss,
+    merge_predictions_with_actuals,
+    name_key_candidates,
+    uniform_field_probabilities,
+)
 from scripts.build_course_fit_from_history import json_safe
 from scripts.fetch_historical_rounds import resolve_course_par, winner_scores_to_par
 from scripts.request_safety import redact_sensitive_text, raise_for_status_safely
@@ -27,6 +34,18 @@ class PredictionAccuracyTests(unittest.TestCase):
     def test_uniform_baseline_respects_each_event_field_size(self) -> None:
         frame = pd.DataFrame({"event_id": ["small", "small", "large", "large", "large", "large"]})
         self.assertEqual(uniform_field_probabilities(frame, target_places=1).tolist(), [50.0, 50.0, 25.0, 25.0, 25.0, 25.0])
+
+    def test_first_name_alias_matches_prediction_to_actual_result(self) -> None:
+        self.assertIn("matthewfitzpatrick", name_key_candidates("Matt Fitzpatrick"))
+        predicted = pd.DataFrame(
+            [{"player": "Matt Fitzpatrick", "player_key": "mattfitzpatrick", "_match_keys": name_key_candidates("Matt Fitzpatrick")}]
+        )
+        actual = pd.DataFrame(
+            [{"player": "Matthew Fitzpatrick", "player_key": "matthewfitzpatrick", "_match_keys": name_key_candidates("Matthew Fitzpatrick"), "finish_pos": 1}]
+        )
+        merged = merge_predictions_with_actuals(predicted, actual)
+        self.assertEqual(merged.loc[0, "player_actual"], "Matthew Fitzpatrick")
+        self.assertEqual(merged.loc[0, "finish_pos"], 1)
 
     def test_verified_historical_course_par_override_beats_placeholder(self) -> None:
         self.assertEqual(resolve_course_par({"course_par": None}, "FedEx St. Jude Championship", "pga"), 70)
