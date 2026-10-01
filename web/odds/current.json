@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-01T00:28:52Z",
+  "generated_utc": "2026-10-01T06:21:47Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Bank of Utah Championship",
       "market": "win",
-      "last_updated": "2026-09-30 22:02:05 UTC",
+      "last_updated": "2026-10-01 04:31:59 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -960,7 +960,7 @@
       "tour": "pga",
       "event_name": "Bank of Utah Championship",
       "market": "top_10",
-      "last_updated": "2026-09-30 22:02:05 UTC",
+      "last_updated": "2026-10-01 04:31:59 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -971,7 +971,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "win",
-      "last_updated": "2026-09-30 22:12:17 UTC",
+      "last_updated": "2026-10-01 03:13:23 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1541,7 +1541,7 @@
           "player_name": "Smylie, Elvis",
           "dg_id": 24200,
           "prices": {
-            "bet365": "250/1",
+            "bet365": "200/1",
             "skybet": "200/1"
           }
         },
@@ -2302,7 +2302,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "top_10",
-      "last_updated": "2026-09-30 22:12:17 UTC",
+      "last_updated": "2026-10-01 03:13:23 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2584,7 +2584,7 @@
           "player_name": "Kimsey, Nathan",
           "dg_id": 18027,
           "prices": {
-            "bet365": "8/1",
+            "bet365": "8.5/1",
             "skybet": "9/1"
           }
         },
@@ -2592,7 +2592,7 @@
           "player_name": "Lindberg, Mikael",
           "dg_id": 20084,
           "prices": {
-            "bet365": "8/1",
+            "bet365": "8.5/1",
             "skybet": "9/1"
           }
         },
@@ -2600,7 +2600,7 @@
           "player_name": "Howell III, Charles",
           "dg_id": 6892,
           "prices": {
-            "bet365": "8/1",
+            "bet365": "8.5/1",
             "skybet": "9/1"
           }
         },
@@ -2640,7 +2640,7 @@
           "player_name": "Du Plessis, Hennie",
           "dg_id": 19421,
           "prices": {
-            "bet365": "8/1",
+            "bet365": "8.5/1",
             "skybet": "12/1"
           }
         },
@@ -2656,7 +2656,7 @@
           "player_name": "Norgaard, Niklas",
           "dg_id": 15676,
           "prices": {
-            "bet365": "8/1",
+            "bet365": "8.5/1",
             "skybet": "8/1"
           }
         },
@@ -2688,7 +2688,7 @@
           "player_name": "Celli, Filippo",
           "dg_id": 23549,
           "prices": {
-            "bet365": "8/1",
+            "bet365": "8.5/1",
             "skybet": "10/1"
           }
         },
@@ -2872,7 +2872,7 @@
           "player_name": "Smylie, Elvis",
           "dg_id": 24200,
           "prices": {
-            "bet365": "18/1",
+            "bet365": "14/1",
             "skybet": "20/1"
           }
         },
