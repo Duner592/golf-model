@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-02T19:33:48Z",
+  "generated_utc": "2026-10-02T23:11:48Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -1799,7 +1799,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "win",
-      "last_updated": "2026-10-02 19:01:04 UTC",
+      "last_updated": "2026-10-02 22:38:14 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2830,13 +2830,6 @@
           }
         },
         {
-          "player_name": "Truslow, Austen",
-          "dg_id": 18239,
-          "prices": {
-            "bet365": "5000/1"
-          }
-        },
-        {
           "player_name": "Grace, Branden",
           "dg_id": 11952,
           "prices": {
@@ -2858,7 +2851,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "top_10",
-      "last_updated": "2026-10-02 19:01:04 UTC",
+      "last_updated": "2026-10-02 22:38:14 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -3886,13 +3879,6 @@
           "prices": {
             "bet365": "175/1",
             "skybet": "175/1"
-          }
-        },
-        {
-          "player_name": "Truslow, Austen",
-          "dg_id": 18239,
-          "prices": {
-            "bet365": "250/1"
           }
         },
         {
