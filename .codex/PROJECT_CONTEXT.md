@@ -126,6 +126,10 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 
 ## Open Notes
 
+- Backtest Breakdowns (`web/backtest_breakdowns.html`, pure scoring in `web/assets/js/backtest-core.mjs`) reads deployed archive files in the browser; no new pipeline outputs are required. It supports season/tour filters and tour, archived field-size (<80 / 80–119 / 120+), and major/regular splits for win/top-10/make-cut probabilities.
+- Backtest eligibility is conservative: index metadata must identify an initial snapshot created before 00:00 UTC on the event start date, no reconstruction marker, and completed/finished summary. Unverified/late snapshots, incomplete events, duplicate player matches and insufficient coverage are excluded with reasons. Scoring requires at least 95% of both prediction and result rows, and every positive outcome for win/top-10. Names use accent/punctuation normalization, Matt/Matthew aliases and unique first/last fallback. Cut outcomes for WD/DQ stay unknown unless explicit; no observed missed cuts excludes the event from cut scoring.
+- Backtest scores/calibration weight events equally. Baseline assigns the full known-results outcome rate to each scored player (retrospective no-discrimination reference, not betting odds). Difference is model Brier minus baseline Brier; negative is better. Descriptive 95% intervals bootstrap whole events 1,000 times with a fixed seed; groups below 10 events are limited evidence. Tests: `node --test tests/backtest-core.test.mjs`. This feature does not change predictions, archived data or the manual betting spreadsheet.
+
 - Expand this file as we make modeling decisions, discover data quirks, or settle on recurring workflows.
 - Track any future calibration choices, feature changes, and archive publishing steps here.
 - Page/model improvement ideas are tracked in `docs/page_model_roadmap.md`, split into near-term, next, and longer-term work.

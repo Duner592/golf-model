@@ -21,7 +21,8 @@
                 { label: 'Prediction Archives', href: 'archive.html' },
                 { label: 'Accuracy Dashboards', href: 'archive_accuracy.html' },
                 { label: 'Model Health', href: 'model_health.html' },
-                { label: 'Calibration Dashboard', href: 'calibration_dashboard.html' }
+                { label: 'Calibration Dashboard', href: 'calibration_dashboard.html' },
+                { label: 'Backtest Breakdowns', href: 'backtest_breakdowns.html' }
             ]
         },
         {
@@ -450,6 +451,10 @@
         if (route === 'archive_accuracy.html') {
             add('Prediction Archives', 'archive.html');
             add('Accuracy Dashboards');
+            return crumbs;
+        }
+        if (route === 'backtest_breakdowns.html') {
+            add('Backtest Breakdowns');
             return crumbs;
         }
         if (route === 'calibration_dashboard.html') {

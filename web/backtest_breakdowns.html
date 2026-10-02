@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Golf Model – Backtest Breakdowns</title>
+  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="menu.js?v=20261002-backtests"></script>
+  <style>
+    body {font-family:system-ui,sans-serif;margin:0;padding:1.25rem;color:#173d28}
+    main {width:100%;max-width:1180px;min-width:0;margin:0 auto} h1 {margin-bottom:.4rem;font-size:1.8rem;text-align:left} h2 {font-size:1.2rem}
+    p,li {line-height:1.6} .muted {color:#52665a} .card {background:#fff;border:1px solid #d5e3da;border-radius:10px;padding:1.2rem;margin:1.2rem 0}
+    .controls,.tiles {display:flex;flex-wrap:wrap;gap:1rem} label {display:flex;flex-direction:column;gap:.4rem;flex:1;min-width:140px}
+    select {font:inherit;padding:.65rem;border:1px solid #a3b9ab;border-radius:6px;background:white;color:#173d28}
+    .tile {flex:1;min-width:130px;background:#f0f7f2;padding:1rem;border-radius:8px} .tile strong {display:block;font-size:1.6rem}
+    .scroll {overflow-x:auto} table {border-collapse:collapse;width:100%;font-size:.9rem} th,td {padding:.8rem;text-align:right;border-bottom:1px solid #e0e9e3;white-space:nowrap} th:first-child,td:first-child {text-align:left}
+    caption {text-align:left;padding:.5rem 0;color:#52665a} th {background:#f0f7f2} summary {cursor:pointer;font-weight:650} a {color:#176336}
+    .badge {font-size:.8rem;background:#fff2d2;color:#73530c;border-radius:4px;padding:.2rem .4rem} #notice {border-left:4px solid #c3942d;padding-left:1rem}
+    @media(max-width:600px) {body {padding:.75rem}.card {padding:.8rem}h1 {font-size:1.6rem}}
+  </style>
+</head>
+<body>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div><div class="menu-container"></div><div class="menu" id="menu"></div>
+<main>
+  <h1>Backtest breakdowns <span class="badge">Beta</span></h1>
+  <p class="muted">Where do the model’s probabilities hold up? Compare completed events using verified, frozen pre-tournament predictions.</p>
+  <p><a href="archive_accuracy.html">Event accuracy</a> · <a href="calibration_dashboard.html">Calibration dashboard</a> · <a href="archive.html">Prediction archives</a></p>
+  <section class="card controls" aria-label="Backtest filters">
+    <label>Season<select id="year"><option value="all">All seasons</option></select></label>
+    <label>Tour<select id="tour"><option value="all">Both tours</option><option value="pga">PGA Tour</option><option value="euro">DP World Tour</option></select></label>
+    <label>Probability<select id="metric"><option value="win">Winner</option><option value="top10">Top 10</option><option value="cut">Make cut</option></select></label>
+    <label>Break down by<select id="dimension"><option value="tour">Tour</option><option value="field">Field size</option><option value="type">Major / regular</option></select></label>
+  </section>
+  <p id="status" role="status" aria-live="polite">Loading archive index…</p>
+  <div id="tiles" class="tiles"></div>
+  <p id="notice">Results describe the available archive, not future performance or betting profit. Small samples are limited evidence.</p>
+  <section class="card"><h2>Performance by event group</h2><p class="muted">Lower Brier score and log loss are better. A negative Brier difference means the model beat the equal-probability baseline; a positive difference means it did worse.</p><div class="scroll" id="groups"></div></section>
+  <section class="card"><h2>Predicted versus observed</h2><p class="muted">Calibration across the selected events. Predicted and observed rates should be close. Empty probability bands are omitted.</p><div class="scroll" id="calibration"></div></section>
+  <details class="card"><summary>Methodology and limitations</summary>
+    <ul>
+      <li>Only completed events marked as initial snapshots, with a recorded creation time before the start date (00:00 UTC), qualify. Reconstructed, unverified and same-day snapshots are excluded conservatively.</li>
+      <li>Players are matched by normalized names and documented first-name aliases. Ambiguous matches are not guessed. Each metric requires at least 95% coverage of both predictions and results. Winner and top-10 scoring must include every observed positive outcome.</li>
+      <li>Percent probabilities are scored against binary outcomes. Top-10 ties count as top 10. Withdrawals/disqualifications count as non-wins/non-top-10s; cut outcomes remain unknown unless explicit. Events with no observed missed cut are excluded from make-cut scoring.</li>
+      <li>Each event has equal weight, including in calibration. Player counts are appearances, not unique people. Calibration gap is the weighted absolute difference in fixed 10-percentage-point bands. Brier uses exact probabilities; log loss clips at 0.000001.</li>
+      <li>The retrospective baseline assigns every player the observed outcome rate across all known results in that event (for example, one winner divided by field size). It is a no-discrimination reference, not bookmaker odds or a pre-event forecast. Both scores use the same evaluated players.</li>
+      <li>The 95% interval resamples whole events 1,000 times for the model-minus-baseline Brier difference. It is descriptive, assumes independent events, and is unavailable for one event. Repeated players and shared model versions limit that assumption. Groups with fewer than 10 events are labelled limited evidence.</li>
+      <li>Field size comes from archived tournament metadata: small &lt;80, medium 80–119, full 120+. Majors are the Masters, PGA Championship, U.S. Open and Open Championship. Other eligible events are regular events. These splits do not control for field strength, course or changing model versions.</li>
+    </ul>
+  </details>
+  <details class="card"><summary>Event coverage and exclusions</summary><p class="muted">Updates with the season, tour and probability filters. Missing files or uncertain provenance never silently enter the scores.</p><div class="scroll" id="audit"></div></details>
+</main>
+<script type="module" src="assets/js/backtest-page.mjs"></script>
+</body>
+</html>

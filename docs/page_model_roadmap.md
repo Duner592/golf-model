@@ -157,16 +157,22 @@ This is intentionally shelved for now. It should not replace or automatically mo
 
 ### Backtest Summary By Event Type
 
-Break model performance down by context.
+First version implemented on 2026-10-02 in `web/backtest_breakdowns.html`, linked from Tournament Predictions.
+
+Implemented:
+
+- Season/tour filters and tour, field-size, major/regular breakdowns.
+- Winner, top-10 and make-cut Brier/log-loss scores, retrospective equal-probability baseline, event-bootstrap intervals and event-weighted calibration.
+- Initial pre-event snapshot eligibility, reconstruction exclusions, minimum 95% scoring coverage, and per-event coverage/exclusion audit.
+- Sample sizes and limited-evidence labels; no changes to model predictions or betting inputs.
+
+Remaining extensions:
 
 Possible splits:
 
-- Tour.
 - Field strength.
-- Major vs regular event.
 - Course type.
 - Weather volatility.
-- Small vs full field.
 - Before and after calibration.
 
 This should help identify where the model is genuinely strong or weak.
