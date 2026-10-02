@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-01T23:00:18Z",
+  "generated_utc": "2026-10-02T02:03:32Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -971,7 +971,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "win",
-      "last_updated": "2026-10-01 22:00:11 UTC",
+      "last_updated": "2026-10-02 01:38:18 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1013,7 +1013,7 @@
           "player_name": "Lagergren, Joakim",
           "dg_id": 14780,
           "prices": {
-            "bet365": "16/1",
+            "bet365": "18/1",
             "skybet": "18/1"
           }
         },
@@ -1117,8 +1117,8 @@
           "player_name": "Fitzpatrick, Alex",
           "dg_id": 25362,
           "prices": {
-            "bet365": "50/1",
-            "skybet": "45/1"
+            "bet365": "45/1",
+            "skybet": "40/1"
           }
         },
         {
@@ -1165,8 +1165,8 @@
           "player_name": "Bairstow, Sam",
           "dg_id": 28615,
           "prices": {
-            "bet365": "45/1",
-            "skybet": "40/1"
+            "bet365": "50/1",
+            "skybet": "45/1"
           }
         },
         {
@@ -1293,7 +1293,7 @@
           "player_name": "Perez, Victor",
           "dg_id": 20730,
           "prices": {
-            "bet365": "70/1",
+            "bet365": "75/1",
             "skybet": "66/1"
           }
         },
@@ -1589,7 +1589,7 @@
           "player_name": "Walker, Euan",
           "dg_id": 27147,
           "prices": {
-            "bet365": "400/1",
+            "bet365": "350/1",
             "skybet": "275/1"
           }
         },
@@ -2045,7 +2045,7 @@
           "player_name": "Schaper, Jayden",
           "dg_id": 26991,
           "prices": {
-            "bet365": "2000/1",
+            "bet365": "1500/1",
             "skybet": "1250/1"
           }
         },
@@ -2303,7 +2303,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "top_10",
-      "last_updated": "2026-10-01 22:00:11 UTC",
+      "last_updated": "2026-10-02 01:38:18 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2449,8 +2449,8 @@
           "player_name": "Fitzpatrick, Alex",
           "dg_id": 25362,
           "prices": {
-            "bet365": "4/1",
-            "skybet": "5/1"
+            "bet365": "3.6/1",
+            "skybet": "4.5/1"
           }
         },
         {
@@ -2497,8 +2497,8 @@
           "player_name": "Bairstow, Sam",
           "dg_id": 28615,
           "prices": {
-            "bet365": "3.6/1",
-            "skybet": "4.5/1"
+            "bet365": "4/1",
+            "skybet": "5/1"
           }
         },
         {
@@ -2625,8 +2625,8 @@
           "player_name": "Perez, Victor",
           "dg_id": 20730,
           "prices": {
-            "bet365": "5/1",
-            "skybet": "6/1"
+            "bet365": "5.5/1",
+            "skybet": "6.5/1"
           }
         },
         {
