@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-04T00:37:19Z",
+  "generated_utc": "2026-10-04T06:17:04Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Bank of Utah Championship",
       "market": "win",
-      "last_updated": "2026-10-04 00:16:26 UTC",
+      "last_updated": "2026-10-04 02:39:55 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -40,8 +40,8 @@
           "player_name": "Crowe, Trace",
           "dg_id": 27780,
           "prices": {
-            "bet365": "35/1",
-            "skybet": "33/1"
+            "bet365": "33/1",
+            "skybet": "30/1"
           }
         },
         {
@@ -64,7 +64,7 @@
           "player_name": "Fisk, Steven",
           "dg_id": 26657,
           "prices": {
-            "bet365": "75/1",
+            "bet365": "70/1",
             "skybet": "60/1"
           }
         },
@@ -72,7 +72,7 @@
           "player_name": "Jaeger, Stephan",
           "dg_id": 16394,
           "prices": {
-            "bet365": "66/1",
+            "bet365": "70/1",
             "skybet": "60/1"
           }
         },
@@ -80,7 +80,7 @@
           "player_name": "Kirk, Chris",
           "dg_id": 12423,
           "prices": {
-            "bet365": "125/1",
+            "bet365": "150/1",
             "skybet": "125/1"
           }
         },
@@ -89,7 +89,7 @@
           "dg_id": 32055,
           "prices": {
             "bet365": "110/1",
-            "skybet": "100/1"
+            "skybet": "110/1"
           }
         },
         {
@@ -101,24 +101,24 @@
           }
         },
         {
-          "player_name": "Ventura, Kristoffer",
-          "dg_id": 15651,
-          "prices": {
-            "bet365": "300/1",
-            "skybet": "250/1"
-          }
-        },
-        {
           "player_name": "Ewart, A.J.",
           "dg_id": 21883,
           "prices": {
-            "bet365": "300/1",
+            "bet365": "275/1",
             "skybet": "200/1"
           }
         },
         {
           "player_name": "Hoey, Rico",
           "dg_id": 23504,
+          "prices": {
+            "bet365": "350/1",
+            "skybet": "250/1"
+          }
+        },
+        {
+          "player_name": "Ventura, Kristoffer",
+          "dg_id": 15651,
           "prices": {
             "bet365": "350/1",
             "skybet": "250/1"
@@ -133,14 +133,6 @@
           }
         },
         {
-          "player_name": "Kohles, Ben",
-          "dg_id": 16395,
-          "prices": {
-            "bet365": "750/1",
-            "skybet": "700/1"
-          }
-        },
-        {
           "player_name": "Roy, Kevin",
           "dg_id": 18424,
           "prices": {
@@ -149,42 +141,18 @@
           }
         },
         {
-          "player_name": "Lipsky, David",
-          "dg_id": 15980,
+          "player_name": "Kohles, Ben",
+          "dg_id": 16395,
           "prices": {
-            "bet365": "2000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Akina, Kihei",
-          "dg_id": 32652,
-          "prices": {
-            "bet365": "1500/1",
-            "skybet": "1250/1"
+            "bet365": "750/1",
+            "skybet": "700/1"
           }
         },
         {
           "player_name": "Suber, Jackson",
           "dg_id": 29279,
           "prices": {
-            "bet365": "1500/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "VanDerLaan, John",
-          "dg_id": 25319,
-          "prices": {
             "bet365": "1000/1",
-            "skybet": "1000/1"
-          }
-        },
-        {
-          "player_name": "Yellamaraju, Sudarshan",
-          "dg_id": 29925,
-          "prices": {
-            "bet365": "2500/1",
             "skybet": "1250/1"
           }
         },
@@ -197,18 +165,18 @@
           }
         },
         {
-          "player_name": "Homa, Max",
-          "dg_id": 17538,
+          "player_name": "VanDerLaan, John",
+          "dg_id": 25319,
           "prices": {
-            "bet365": "1500/1",
+            "bet365": "1000/1",
             "skybet": "1250/1"
           }
         },
         {
-          "player_name": "Power, Seamus",
-          "dg_id": 10104,
+          "player_name": "Homa, Max",
+          "dg_id": 17538,
           "prices": {
-            "bet365": "5000/1",
+            "bet365": "1500/1",
             "skybet": "1250/1"
           }
         },
@@ -221,56 +189,48 @@
           }
         },
         {
-          "player_name": "Horschel, Billy",
-          "dg_id": 11276,
+          "player_name": "Yellamaraju, Sudarshan",
+          "dg_id": 29925,
+          "prices": {
+            "bet365": "2500/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Lipsky, David",
+          "dg_id": 15980,
+          "prices": {
+            "bet365": "1500/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Akina, Kihei",
+          "dg_id": 32652,
+          "prices": {
+            "bet365": "1500/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Power, Seamus",
+          "dg_id": 10104,
+          "prices": {
+            "bet365": "2500/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Tosti, Alejandro",
+          "dg_id": 17032,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
           }
         },
         {
-          "player_name": "Walker, Danny",
-          "dg_id": 25003,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Hodges, Lee",
-          "dg_id": 25157,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Blair, Zac",
-          "dg_id": 17639,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Hubbard, Mark",
-          "dg_id": 16333,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Ramey, Chad",
-          "dg_id": 19840,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Smith, Jordan",
-          "dg_id": 18586,
+          "player_name": "McCarty, Matt",
+          "dg_id": 28635,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -285,8 +245,8 @@
           }
         },
         {
-          "player_name": "Kanaya, Takumi",
-          "dg_id": 19729,
+          "player_name": "Hall, Harry",
+          "dg_id": 27194,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -301,8 +261,32 @@
           }
         },
         {
-          "player_name": "Hall, Harry",
-          "dg_id": 27194,
+          "player_name": "McGreevy, Max",
+          "dg_id": 23505,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Horschel, Billy",
+          "dg_id": 11276,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Wu, Dylan",
+          "dg_id": 25002,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Garnett, Brice",
+          "dg_id": 11451,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -317,24 +301,48 @@
           }
         },
         {
-          "player_name": "Hossler, Beau",
-          "dg_id": 15470,
+          "player_name": "Kanaya, Takumi",
+          "dg_id": 19729,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
           }
         },
         {
-          "player_name": "Rodgers, Patrick",
-          "dg_id": 16283,
+          "player_name": "Blair, Zac",
+          "dg_id": 17639,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
           }
         },
         {
-          "player_name": "Thompson, Davis",
-          "dg_id": 27364,
+          "player_name": "Smith, Jordan",
+          "dg_id": 18586,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Walker, Danny",
+          "dg_id": 25003,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Penge, Marco",
+          "dg_id": 22465,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Lower, Justin",
+          "dg_id": 17723,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -349,8 +357,16 @@
           }
         },
         {
-          "player_name": "Koivun, Jackson",
-          "dg_id": 32319,
+          "player_name": "Svensson, Jesper",
+          "dg_id": 26850,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Yu, Kevin",
+          "dg_id": 17881,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -367,6 +383,22 @@
         {
           "player_name": "Li, Haotong",
           "dg_id": 15310,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Todd, Brendon",
+          "dg_id": 12425,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Ramey, Chad",
+          "dg_id": 19840,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -397,96 +429,8 @@
           }
         },
         {
-          "player_name": "Penge, Marco",
-          "dg_id": 22465,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Mouw, William",
-          "dg_id": 29770,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Lower, Justin",
-          "dg_id": 17723,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Todd, Brendon",
-          "dg_id": 12425,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "McGreevy, Max",
-          "dg_id": 23505,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "McCarty, Matt",
-          "dg_id": 28635,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Yu, Kevin",
-          "dg_id": 17881,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Cole, Eric",
-          "dg_id": 21756,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Fishburn, Patrick",
-          "dg_id": 25094,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Dou, Zecheng",
-          "dg_id": 16757,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Dahmen, Joel",
-          "dg_id": 14509,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Van Rooyen, Erik",
-          "dg_id": 17550,
+          "player_name": "Koivun, Jackson",
+          "dg_id": 32319,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -501,32 +445,16 @@
           }
         },
         {
-          "player_name": "Taylor, Nick",
-          "dg_id": 13126,
+          "player_name": "Fishburn, Patrick",
+          "dg_id": 25094,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
           }
         },
         {
-          "player_name": "Kizzire, Patton",
-          "dg_id": 13470,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Grillo, Emiliano",
-          "dg_id": 12808,
-          "prices": {
-            "bet365": "5000/1",
-            "skybet": "1250/1"
-          }
-        },
-        {
-          "player_name": "Garnett, Brice",
-          "dg_id": 11451,
+          "player_name": "Hubbard, Mark",
+          "dg_id": 16333,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -541,16 +469,16 @@
           }
         },
         {
-          "player_name": "Wu, Dylan",
-          "dg_id": 25002,
+          "player_name": "Grillo, Emiliano",
+          "dg_id": 12808,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
           }
         },
         {
-          "player_name": "Tosti, Alejandro",
-          "dg_id": 17032,
+          "player_name": "Kizzire, Patton",
+          "dg_id": 13470,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -565,8 +493,80 @@
           }
         },
         {
-          "player_name": "Svensson, Jesper",
-          "dg_id": 26850,
+          "player_name": "Taylor, Nick",
+          "dg_id": 13126,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Van Rooyen, Erik",
+          "dg_id": 17550,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Dahmen, Joel",
+          "dg_id": 14509,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Dou, Zecheng",
+          "dg_id": 16757,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Hossler, Beau",
+          "dg_id": 15470,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Rodgers, Patrick",
+          "dg_id": 16283,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Thompson, Davis",
+          "dg_id": 27364,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Cole, Eric",
+          "dg_id": 21756,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Hodges, Lee",
+          "dg_id": 25157,
+          "prices": {
+            "bet365": "5000/1",
+            "skybet": "1250/1"
+          }
+        },
+        {
+          "player_name": "Mouw, William",
+          "dg_id": 29770,
           "prices": {
             "bet365": "5000/1",
             "skybet": "1250/1"
@@ -578,7 +578,7 @@
       "tour": "pga",
       "event_name": "Bank of Utah Championship",
       "market": "top_10",
-      "last_updated": "2026-10-04 00:16:26 UTC",
+      "last_updated": "2026-10-04 02:39:55 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -588,7 +588,7 @@
           "player_name": "James, Ben",
           "dg_id": 29827,
           "prices": {
-            "bet365": "0.18/1"
+            "bet365": "0.17/1"
           }
         },
         {
@@ -630,14 +630,14 @@
           "player_name": "Kirk, Chris",
           "dg_id": 12423,
           "prices": {
-            "bet365": "1/1"
+            "bet365": "1.05/1"
           }
         },
         {
           "player_name": "Shipley, Neal",
           "dg_id": 32055,
           "prices": {
-            "bet365": "0.87/1"
+            "bet365": "0.91/1"
           }
         },
         {
@@ -648,24 +648,24 @@
           }
         },
         {
-          "player_name": "Ventura, Kristoffer",
-          "dg_id": 15651,
-          "prices": {
-            "bet365": "1.8/1"
-          }
-        },
-        {
           "player_name": "Ewart, A.J.",
           "dg_id": 21883,
           "prices": {
-            "bet365": "1.63/1"
+            "bet365": "1.6/1"
           }
         },
         {
           "player_name": "Hoey, Rico",
           "dg_id": 23504,
           "prices": {
-            "bet365": "1.88/1"
+            "bet365": "1.8/1"
+          }
+        },
+        {
+          "player_name": "Ventura, Kristoffer",
+          "dg_id": 15651,
+          "prices": {
+            "bet365": "1.8/1"
           }
         },
         {
@@ -676,6 +676,13 @@
           }
         },
         {
+          "player_name": "Roy, Kevin",
+          "dg_id": 18424,
+          "prices": {
+            "bet365": "3.6/1"
+          }
+        },
+        {
           "player_name": "Kohles, Ben",
           "dg_id": 16395,
           "prices": {
@@ -683,10 +690,45 @@
           }
         },
         {
-          "player_name": "Roy, Kevin",
-          "dg_id": 18424,
+          "player_name": "Suber, Jackson",
+          "dg_id": 29279,
           "prices": {
-            "bet365": "3.6/1"
+            "bet365": "5.5/1"
+          }
+        },
+        {
+          "player_name": "Bauchou, Zach",
+          "dg_id": 19846,
+          "prices": {
+            "bet365": "7.5/1"
+          }
+        },
+        {
+          "player_name": "VanDerLaan, John",
+          "dg_id": 25319,
+          "prices": {
+            "bet365": "5/1"
+          }
+        },
+        {
+          "player_name": "Homa, Max",
+          "dg_id": 17538,
+          "prices": {
+            "bet365": "6/1"
+          }
+        },
+        {
+          "player_name": "Brennan, Michael",
+          "dg_id": 29197,
+          "prices": {
+            "bet365": "8.5/1"
+          }
+        },
+        {
+          "player_name": "Yellamaraju, Sudarshan",
+          "dg_id": 29925,
+          "prices": {
+            "bet365": "8/1"
           }
         },
         {
@@ -704,41 +746,6 @@
           }
         },
         {
-          "player_name": "Suber, Jackson",
-          "dg_id": 29279,
-          "prices": {
-            "bet365": "5.5/1"
-          }
-        },
-        {
-          "player_name": "VanDerLaan, John",
-          "dg_id": 25319,
-          "prices": {
-            "bet365": "4.5/1"
-          }
-        },
-        {
-          "player_name": "Yellamaraju, Sudarshan",
-          "dg_id": 29925,
-          "prices": {
-            "bet365": "8/1"
-          }
-        },
-        {
-          "player_name": "Bauchou, Zach",
-          "dg_id": 19846,
-          "prices": {
-            "bet365": "7/1"
-          }
-        },
-        {
-          "player_name": "Homa, Max",
-          "dg_id": 17538,
-          "prices": {
-            "bet365": "6/1"
-          }
-        },
-        {
           "player_name": "Power, Seamus",
           "dg_id": 10104,
           "prices": {
@@ -746,80 +753,24 @@
           }
         },
         {
-          "player_name": "Brennan, Michael",
-          "dg_id": 29197,
-          "prices": {
-            "bet365": "8/1"
-          }
-        },
-        {
-          "player_name": "Horschel, Billy",
-          "dg_id": 11276,
-          "prices": {
-            "bet365": "14/1"
-          }
-        },
-        {
-          "player_name": "Walker, Danny",
-          "dg_id": 25003,
-          "prices": {
-            "bet365": "30/1"
-          }
-        },
-        {
-          "player_name": "Hodges, Lee",
-          "dg_id": 25157,
-          "prices": {
-            "bet365": "45/1"
-          }
-        },
-        {
-          "player_name": "Blair, Zac",
-          "dg_id": 17639,
-          "prices": {
-            "bet365": "22/1"
-          }
-        },
-        {
-          "player_name": "Hubbard, Mark",
-          "dg_id": 16333,
+          "player_name": "Tosti, Alejandro",
+          "dg_id": 17032,
           "prices": {
             "bet365": "70/1"
           }
         },
         {
-          "player_name": "Ramey, Chad",
-          "dg_id": 19840,
+          "player_name": "McCarty, Matt",
+          "dg_id": 28635,
           "prices": {
-            "bet365": "25/1"
-          }
-        },
-        {
-          "player_name": "Smith, Jordan",
-          "dg_id": 18586,
-          "prices": {
-            "bet365": "30/1"
+            "bet365": "33/1"
           }
         },
         {
           "player_name": "Clanton, Luke",
           "dg_id": 32330,
           "prices": {
-            "bet365": "22/1"
-          }
-        },
-        {
-          "player_name": "Kanaya, Takumi",
-          "dg_id": 19729,
-          "prices": {
-            "bet365": "22/1"
-          }
-        },
-        {
-          "player_name": "Bezuidenhout, Christiaan",
-          "dg_id": 18103,
-          "prices": {
-            "bet365": "16/1"
+            "bet365": "20/1"
           }
         },
         {
@@ -830,31 +781,87 @@
           }
         },
         {
+          "player_name": "Bezuidenhout, Christiaan",
+          "dg_id": 18103,
+          "prices": {
+            "bet365": "16/1"
+          }
+        },
+        {
+          "player_name": "McGreevy, Max",
+          "dg_id": 23505,
+          "prices": {
+            "bet365": "16/1"
+          }
+        },
+        {
+          "player_name": "Horschel, Billy",
+          "dg_id": 11276,
+          "prices": {
+            "bet365": "14/1"
+          }
+        },
+        {
+          "player_name": "Wu, Dylan",
+          "dg_id": 25002,
+          "prices": {
+            "bet365": "80/1"
+          }
+        },
+        {
+          "player_name": "Garnett, Brice",
+          "dg_id": 11451,
+          "prices": {
+            "bet365": "175/1"
+          }
+        },
+        {
           "player_name": "Blanchet, Chandler",
           "dg_id": 24956,
+          "prices": {
+            "bet365": "25/1"
+          }
+        },
+        {
+          "player_name": "Kanaya, Takumi",
+          "dg_id": 19729,
+          "prices": {
+            "bet365": "22/1"
+          }
+        },
+        {
+          "player_name": "Blair, Zac",
+          "dg_id": 17639,
+          "prices": {
+            "bet365": "20/1"
+          }
+        },
+        {
+          "player_name": "Smith, Jordan",
+          "dg_id": 18586,
           "prices": {
             "bet365": "28/1"
           }
         },
         {
-          "player_name": "Hossler, Beau",
-          "dg_id": 15470,
+          "player_name": "Walker, Danny",
+          "dg_id": 25003,
           "prices": {
-            "bet365": "175/1"
+            "bet365": "33/1"
           }
         },
         {
-          "player_name": "Rodgers, Patrick",
-          "dg_id": 16283,
+          "player_name": "Penge, Marco",
+          "dg_id": 22465,
           "prices": {
-            "bet365": "225/1"
+            "bet365": "250/1"
           }
         },
         {
-          "player_name": "Thompson, Davis",
-          "dg_id": 27364,
+          "player_name": "Lower, Justin",
+          "dg_id": 17723,
           "prices": {
-            "bet365": "175/1"
+            "bet365": "30/1"
           }
         },
         {
@@ -865,8 +872,15 @@
           }
         },
         {
-          "player_name": "Koivun, Jackson",
-          "dg_id": 32319,
+          "player_name": "Svensson, Jesper",
+          "dg_id": 26850,
+          "prices": {
+            "bet365": "250/1"
+          }
+        },
+        {
+          "player_name": "Yu, Kevin",
+          "dg_id": 17881,
           "prices": {
             "bet365": "250/1"
           }
@@ -883,6 +897,20 @@
           "dg_id": 15310,
           "prices": {
             "bet365": "250/1"
+          }
+        },
+        {
+          "player_name": "Todd, Brendon",
+          "dg_id": 12425,
+          "prices": {
+            "bet365": "250/1"
+          }
+        },
+        {
+          "player_name": "Ramey, Chad",
+          "dg_id": 19840,
+          "prices": {
+            "bet365": "22/1"
           }
         },
         {
@@ -907,87 +935,10 @@
           }
         },
         {
-          "player_name": "Penge, Marco",
-          "dg_id": 22465,
+          "player_name": "Koivun, Jackson",
+          "dg_id": 32319,
           "prices": {
             "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "Mouw, William",
-          "dg_id": 29770,
-          "prices": {
-            "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "Lower, Justin",
-          "dg_id": 17723,
-          "prices": {
-            "bet365": "30/1"
-          }
-        },
-        {
-          "player_name": "Todd, Brendon",
-          "dg_id": 12425,
-          "prices": {
-            "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "McGreevy, Max",
-          "dg_id": 23505,
-          "prices": {
-            "bet365": "18/1"
-          }
-        },
-        {
-          "player_name": "McCarty, Matt",
-          "dg_id": 28635,
-          "prices": {
-            "bet365": "30/1"
-          }
-        },
-        {
-          "player_name": "Yu, Kevin",
-          "dg_id": 17881,
-          "prices": {
-            "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "Cole, Eric",
-          "dg_id": 21756,
-          "prices": {
-            "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "Fishburn, Patrick",
-          "dg_id": 25094,
-          "prices": {
-            "bet365": "100/1"
-          }
-        },
-        {
-          "player_name": "Dou, Zecheng",
-          "dg_id": 16757,
-          "prices": {
-            "bet365": "200/1"
-          }
-        },
-        {
-          "player_name": "Dahmen, Joel",
-          "dg_id": 14509,
-          "prices": {
-            "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "Van Rooyen, Erik",
-          "dg_id": 17550,
-          "prices": {
-            "bet365": "125/1"
           }
         },
         {
@@ -998,31 +949,17 @@
           }
         },
         {
-          "player_name": "Taylor, Nick",
-          "dg_id": 13126,
-          "prices": {
-            "bet365": "80/1"
-          }
-        },
-        {
-          "player_name": "Kizzire, Patton",
-          "dg_id": 13470,
-          "prices": {
-            "bet365": "250/1"
-          }
-        },
-        {
-          "player_name": "Grillo, Emiliano",
-          "dg_id": 12808,
+          "player_name": "Fishburn, Patrick",
+          "dg_id": 25094,
           "prices": {
             "bet365": "90/1"
           }
         },
         {
-          "player_name": "Garnett, Brice",
-          "dg_id": 11451,
+          "player_name": "Hubbard, Mark",
+          "dg_id": 16333,
           "prices": {
-            "bet365": "175/1"
+            "bet365": "70/1"
           }
         },
         {
@@ -1033,17 +970,17 @@
           }
         },
         {
-          "player_name": "Wu, Dylan",
-          "dg_id": 25002,
+          "player_name": "Grillo, Emiliano",
+          "dg_id": 12808,
           "prices": {
-            "bet365": "110/1"
+            "bet365": "90/1"
           }
         },
         {
-          "player_name": "Tosti, Alejandro",
-          "dg_id": 17032,
+          "player_name": "Kizzire, Patton",
+          "dg_id": 13470,
           "prices": {
-            "bet365": "70/1"
+            "bet365": "200/1"
           }
         },
         {
@@ -1054,8 +991,71 @@
           }
         },
         {
-          "player_name": "Svensson, Jesper",
-          "dg_id": 26850,
+          "player_name": "Taylor, Nick",
+          "dg_id": 13126,
+          "prices": {
+            "bet365": "80/1"
+          }
+        },
+        {
+          "player_name": "Van Rooyen, Erik",
+          "dg_id": 17550,
+          "prices": {
+            "bet365": "100/1"
+          }
+        },
+        {
+          "player_name": "Dahmen, Joel",
+          "dg_id": 14509,
+          "prices": {
+            "bet365": "200/1"
+          }
+        },
+        {
+          "player_name": "Dou, Zecheng",
+          "dg_id": 16757,
+          "prices": {
+            "bet365": "150/1"
+          }
+        },
+        {
+          "player_name": "Hossler, Beau",
+          "dg_id": 15470,
+          "prices": {
+            "bet365": "200/1"
+          }
+        },
+        {
+          "player_name": "Rodgers, Patrick",
+          "dg_id": 16283,
+          "prices": {
+            "bet365": "200/1"
+          }
+        },
+        {
+          "player_name": "Thompson, Davis",
+          "dg_id": 27364,
+          "prices": {
+            "bet365": "150/1"
+          }
+        },
+        {
+          "player_name": "Cole, Eric",
+          "dg_id": 21756,
+          "prices": {
+            "bet365": "250/1"
+          }
+        },
+        {
+          "player_name": "Hodges, Lee",
+          "dg_id": 25157,
+          "prices": {
+            "bet365": "45/1"
+          }
+        },
+        {
+          "player_name": "Mouw, William",
+          "dg_id": 29770,
           "prices": {
             "bet365": "250/1"
           }
@@ -1066,7 +1066,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "win",
-      "last_updated": "2026-10-03 21:28:02 UTC",
+      "last_updated": "2026-10-04 03:48:27 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1638,7 +1638,7 @@
       "tour": "euro",
       "event_name": "Alfred Dunhill Links Championship",
       "market": "top_10",
-      "last_updated": "2026-10-03 21:28:02 UTC",
+      "last_updated": "2026-10-04 03:48:27 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1648,7 +1648,7 @@
           "player_name": "Jarvis, Casey",
           "dg_id": 26947,
           "prices": {
-            "bet365": "0.02/1",
+            "bet365": "0.03/1",
             "skybet": "0.03/1"
           }
         },
@@ -1705,7 +1705,7 @@
           "dg_id": 23323,
           "prices": {
             "bet365": "0.83/1",
-            "skybet": "0.91/1"
+            "skybet": "1/1"
           }
         },
         {
@@ -1768,7 +1768,7 @@
           "player_name": "Lindberg, Mikael",
           "dg_id": 20084,
           "prices": {
-            "bet365": "3.5/1",
+            "bet365": "3.33/1",
             "skybet": "4/1"
           }
         },
@@ -1864,7 +1864,7 @@
           "player_name": "Halvorsen, Andreas",
           "dg_id": 17747,
           "prices": {
-            "bet365": "9/1",
+            "bet365": "8.5/1",
             "skybet": "10/1"
           }
         },
@@ -2032,7 +2032,8 @@
           "player_name": "Hoffman, Charley",
           "dg_id": 5768,
           "prices": {
-            "bet365": "125/1"
+            "bet365": "125/1",
+            "skybet": "175/1"
           }
         },
         {
