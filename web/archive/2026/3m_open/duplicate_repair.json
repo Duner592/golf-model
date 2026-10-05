@@ -1,0 +1,35 @@
+{
+  "operation": "remove_duplicate_players_keep_first_saved_row",
+  "event_id": "525",
+  "tour": "pga",
+  "year": "2026",
+  "original_snapshot": "web/pga/initial/2026/event_525",
+  "original_sha256": {
+    "leaderboard.json": "4149bf1126e8c0fb0f21059167ba672d462e921b4c7db26d34d9719760d0caec",
+    "leaderboard.csv": "49ccdcdcbba250bddf31af6f79358245fc32ccd78ef6f0c63b3481ef26f2dcd2"
+  },
+  "removed_rows": [
+    {
+      "rank": 51,
+      "player_name": "Johnny Keefer",
+      "p_win_%": 0.08,
+      "p_top10_%": 3.8,
+      "p_mc_%": 51.7,
+      "course_fit_score": 0.085017941814963
+    },
+    {
+      "rank": 96,
+      "player_name": "Aldrich Potgieter",
+      "p_win_%": 0.01,
+      "p_top10_%": 2.1,
+      "p_mc_%": 45.6,
+      "course_fit_score": 0.083496214814963
+    }
+  ],
+  "probabilities_recalculated": false,
+  "limitation": "Removing rows does not undo any duplicate-field effects on the original simulation.",
+  "repaired_sha256": {
+    "leaderboard.json": "0139c4cc210e89ffc4147ea44ac4a0b18029c2b1552f31c915028c0fc34377e2",
+    "leaderboard.csv": "5c4f3dd9502398b8550915f20cb8c7c4d9d68e34b53e47b62ffed0537d01427a"
+  }
+}

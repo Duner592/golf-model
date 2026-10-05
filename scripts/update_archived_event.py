@@ -14,9 +14,11 @@
 # - Overwrites the file with updated data.
 
 import argparse
+import csv
 import json
 import os
 import shutil
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -24,6 +26,10 @@ import re
 
 import requests
 from dotenv import load_dotenv
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from src.player_integrity import _name, validate_unique_players
+from src.provenance import sha256_file
 
 
 load_dotenv()
@@ -218,6 +224,8 @@ def materialize_missing_archive(root: Path, event_details: dict, year: str, arch
         if not (source_dir / "leaderboard.json").exists() or not (source_dir / "tournament_summary.json").exists():
             continue
 
+        validate_unique_players(json.loads((source_dir / "leaderboard.json").read_text()), context=f"Archive source {tour}/{year}/{event_id}")
+
         archive_dir = archive_path.parent
         archive_dir.mkdir(parents=True, exist_ok=True)
         for file_name in (
@@ -345,10 +353,104 @@ def update_tournament_summary(ts_path: Path, winner: str | None) -> None:
 
 
 # ---------- main ----------
+def deduplicate_archive(root: Path, *, event_id: str, tour: str, year: str) -> int:
+    """Explicit repair only: retain first saved row, never average or use results.
+
+    Initial snapshots remain untouched. A machine-readable audit records the
+    removed rows and pre/post hashes without adding a website badge.
+    """
+    entries = json.loads((root / "web/archive/index.json").read_text())
+    matches = [e for e in entries if str(e.get("event_id")) == event_id and e.get("tour") == tour and str(e.get("year")) == year]
+    if len(matches) != 1:
+        raise ValueError("Repair requires one exact tour/year/event archive")
+    entry = matches[0]
+    directory = root / "web/archive" / year / entry["slug"]
+    original = root / "web" / tour / "initial" / year / f"event_{event_id}"
+    paths = [directory / "leaderboard.json", directory / "leaderboard.csv"]
+    for path in paths:
+        if sha256_file(path) is None:
+            raise ValueError(f"Missing repair input: {path}")
+    rows = json.loads(paths[0].read_text())
+    with paths[1].open(newline="") as handle:
+        reader = csv.DictReader(handle)
+        columns = reader.fieldnames
+        csv_rows = list(reader)
+    if len(rows) != len(csv_rows):
+        raise ValueError("JSON and CSV row counts differ; refusing ambiguous repair")
+    for json_row, csv_row in zip(rows, csv_rows):
+        if _name(json_row.get("player_name")) != _name(csv_row.get("player_name")):
+            raise ValueError("JSON and CSV player order differs")
+        for key in ("p_win_%", "p_top10_%", "p_mc_%"):
+            if float(json_row[key]) != float(csv_row[key]):
+                raise ValueError(f"JSON and CSV probabilities differ: {key}")
+    seen, kept, removed = set(), [], []
+    for i, row in enumerate(rows):
+        key = _name(row.get("player_name"))
+        if not key:
+            raise ValueError("Missing player name")
+        if key in seen:
+            removed.append(row)
+        else:
+            seen.add(key)
+            kept.append(i)
+    if not removed:
+        return 0
+    for path in paths:
+        if sha256_file(path) != sha256_file(original / path.name):
+            raise ValueError(f"Original snapshot does not preserve {path.name}; refusing to overwrite")
+    clean = [{**rows[i], "rank": rank} for rank, i in enumerate(kept, 1)]
+    validate_unique_players(clean, context=f"Repaired archive {tour}/{year}/{event_id}")
+    audit = {
+        "operation": "remove_duplicate_players_keep_first_saved_row",
+        "event_id": event_id, "tour": tour, "year": year,
+        "original_snapshot": str(original.relative_to(root)),
+        "original_sha256": {path.name: sha256_file(path) for path in paths},
+        "removed_rows": removed,
+        "probabilities_recalculated": False,
+        "limitation": "Removing rows does not undo any duplicate-field effects on the original simulation.",
+    }
+    write_json(paths[0], clean)
+    with paths[1].open("w", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows({**csv_rows[i], "rank": rank} for rank, i in enumerate(kept, 1))
+    # Keep archived field and derived field-size metadata consistent too.
+    field = directory / "field_teetimes.csv"
+    if field.exists():
+        with field.open(newline="") as handle:
+            reader = csv.DictReader(handle)
+            field_columns, field_rows = reader.fieldnames, list(reader)
+        unique, seen_ids = [], set()
+        for row in field_rows:
+            key = row.get("player_id") or row.get("dg_id") or _name(row.get("player_name"))
+            if key not in seen_ids:
+                unique.append(row)
+                seen_ids.add(key)
+        if len(unique) != len(field_rows):
+            with field.open("w", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=field_columns, lineterminator="\n")
+                writer.writeheader()
+                writer.writerows(unique)
+    for filename in ("summary.json", "tournament_summary.json"):
+        path = directory / filename
+        data = read_json(path)
+        if data.get("field_size") == len(rows):
+            data["field_size"] = len(clean)
+            write_json(path, data)
+    from scripts.build_web_assets import write_model_page_snapshot
+    write_model_page_snapshot(directory, tour=tour, event_name=entry["event_name"], event_id=event_id, year=year,
+                              snapshot_created_utc=entry["initial_snapshot_created_utc"], event_meta=read_json(directory / "meta.json"))
+    audit["repaired_sha256"] = {path.name: sha256_file(path) for path in paths}
+    write_json(directory / "duplicate_repair.json", audit)
+    return len(removed)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Update archived tournament_summary.json for a completed event.")
     ap.add_argument("--event_id", type=str, required=True, help="Event ID to update")
     ap.add_argument("--tour", type=str, default=None, help="Tour for the event; required when an event ID is shared")
+    ap.add_argument("--year", type=str, help="Explicit archive year for duplicate repair")
+    ap.add_argument("--deduplicate-players", action="store_true", help="Offline archive repair: retain first saved player row; preserve initial snapshots")
     ap.add_argument(
         "--force",
         action="store_true",
@@ -358,6 +460,12 @@ def main():
 
     event_id = args.event_id
     root = Path(__file__).resolve().parent.parent
+    if args.deduplicate_players:
+        if not args.tour or not args.year:
+            ap.error("--deduplicate-players requires --tour and --year")
+        count = deduplicate_archive(root, event_id=event_id, tour=args.tour, year=args.year)
+        print(f"Removed {count} duplicate prediction rows from {args.tour}/{args.year}/{event_id}; initial snapshots preserved.")
+        return
 
     # Load upcoming events
     upcoming_data = load_upcoming_events(root)

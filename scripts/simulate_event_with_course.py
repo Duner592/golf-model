@@ -21,11 +21,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import yaml
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from src.player_integrity import validate_unique_players
 
 # -----------------------
 # Globals / Defaults
@@ -86,6 +90,7 @@ def load_features_table(event_id: str, tour: str) -> pd.DataFrame:
         raise ValueError("Features must contain 'dg_id' (or 'player_id' to be renamed).")
     if "player_name" not in df.columns:
         df["player_name"] = df["dg_id"].astype(str)
+    validate_unique_players(df.to_dict(orient="records"), context=f"Simulation features {tour}/{event_id}", require_ids=True)
     return df
 
 
@@ -184,6 +189,7 @@ def simulate(
     starting_strokes: np.ndarray | None = None,
     no_cut: bool = False,
 ) -> pd.DataFrame:
+    validate_unique_players(({"dg_id": player_id, "player_name": name} for player_id, name in zip(ids, names, strict=True)), context="Simulation inputs", require_ids=True)
     rng = np.random.default_rng(int(seed))
     n = len(ids)
     wins = np.zeros(n, dtype=np.int64)

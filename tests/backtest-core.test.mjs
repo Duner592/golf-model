@@ -97,3 +97,18 @@ test('French Open archive retains the winner and name aliases', async () => {
     assert.equal(score.reason, null);
     assert.equal(score.rows.filter(r => r.y === 1).length, 1);
 });
+test('deduplicated 3M scores while Corales retains independent coverage exclusions', async () => {
+    const load = async path => JSON.parse(await readFile(new URL(`../web/${path}`, import.meta.url), 'utf8'));
+    const index = await load('archive/index.json');
+    for (const slug of ['3m_open', 'corales_puntacana_championship']) {
+        const event = index.find(e => e.year === '2026' && e.slug === slug);
+        const base = `archive/${event.year}/${slug}`;
+        const summary = await load(`${base}/tournament_summary.json`), predictions = await load(`${base}/leaderboard.json`), results = await load(`${base}/results.json`);
+        assert.equal(new Set(predictions.map(p => p.player_name)).size, predictions.length);
+        for (const metric of ['win', 'top10', 'cut']) {
+            const score = scoreEvent(event, summary, predictions, results, metric);
+            if (slug === '3m_open') assert.equal(score.reason, null);
+            else assert.match(score.reason, /95%|Positive outcome/);
+        }
+    }
+});

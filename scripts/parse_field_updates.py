@@ -3,10 +3,14 @@
 import argparse
 import json
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from src.player_integrity import validate_unique_players
 
 _time_pat = re.compile(r"^(\d{1,2}):(\d{2})")
 
@@ -45,6 +49,7 @@ def normalize_field(data: dict) -> pd.DataFrame:
         raise ValueError("Could not find a suitable player_id column")
 
     df["event_id"] = data.get("event_id")
+    validate_unique_players(df.to_dict(orient="records"), context=f"Field event {data.get('event_id')}", require_ids=True)
     return df
 
 

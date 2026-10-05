@@ -20,6 +20,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.utils_event import is_supported_stroke_play_event
+from src.player_integrity import validate_unique_players
 TOURS = ("pga", "euro")
 UTC = timezone.utc
 
@@ -198,6 +199,12 @@ class IntegrityCheck:
         leaderboard_csv = event_dir / "leaderboard.csv"
         if not leaderboard_json.exists() and not leaderboard_csv.exists():
             self.error("archive-leaderboard-missing", f"Archive event {event_id} has no leaderboard JSON or CSV")
+        if leaderboard_json.exists():
+            try:
+                rows = json.loads(leaderboard_json.read_text(encoding="utf-8"))
+                validate_unique_players(rows, context=f"Archive {entry.get('tour')}/{year}/{event_id}")
+            except (ValueError, TypeError, AttributeError) as exc:
+                self.error("archive-player-integrity", str(exc))
 
         start = parse_date(entry.get("start_date"))
         if start and start + timedelta(days=4) < date.today() and not (event_dir / "results.json").exists():

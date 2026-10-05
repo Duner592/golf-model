@@ -1,0 +1,27 @@
+{
+  "operation": "remove_duplicate_players_keep_first_saved_row",
+  "event_id": "522",
+  "tour": "pga",
+  "year": "2026",
+  "original_snapshot": "web/pga/initial/2026/event_522",
+  "original_sha256": {
+    "leaderboard.json": "687fdef43c2a9536b4497dda965ca5d9bc68dee93a374487b9492cafc414dc25",
+    "leaderboard.csv": "4942972d2bd46e77cd84a1157486f48065f76dcf1f8ec1134685933bdbd1f60f"
+  },
+  "removed_rows": [
+    {
+      "rank": 12,
+      "player_name": "Chad Ramey",
+      "p_win_%": 1.52,
+      "p_top10_%": 22.7,
+      "p_mc_%": 75.5,
+      "course_fit_score": 0.0
+    }
+  ],
+  "probabilities_recalculated": false,
+  "limitation": "Removing rows does not undo any duplicate-field effects on the original simulation.",
+  "repaired_sha256": {
+    "leaderboard.json": "f3b51442daf50b7263ea4949ad427815ac2300ee157b54a0ea79cf90abad4179",
+    "leaderboard.csv": "fbe4d34a64e0e4c4250c1a11fdd4332c95fa8d853e1f0ae5c9ea04a3c731f512"
+  }
+}

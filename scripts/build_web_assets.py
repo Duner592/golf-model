@@ -34,6 +34,7 @@ import requests  # Added for API calls
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from src.utils_event import current_week_event_ids, is_supported_stroke_play_event, resolve_event_ids
 from src.provenance import build_snapshot_provenance
+from src.player_integrity import validate_unique_players
 
 MPH_PER_MPS = 2.237
 KMH_TO_MPH = 0.621371
@@ -1947,6 +1948,7 @@ def process_event(
 
     if has_predictions:
         df_lb = pd.read_csv(lb_csv)
+        validate_unique_players(df_lb.to_dict(orient="records"), context=f"Leaderboard {tour}/{event_id} ({lb_csv.name})")
         name_col = "player_name" if "player_name" in df_lb.columns else ("Player" if "Player" in df_lb.columns else None)
         if not name_col:
             raise ValueError(f"Leaderboard CSV for event_id={event_id} missing player name column")
@@ -1984,6 +1986,7 @@ def process_event(
         if drop_cols:
             df_lb = df_lb.drop(columns=drop_cols)
 
+        validate_unique_players(df_lb.to_dict(orient="records"), context=f"Published leaderboard {tour}/{event_id}")
         write_json(event_dir / "leaderboard.json", df_lb.to_dict(orient="records"))
     else:
         write_json(event_dir / "leaderboard.json", [])
