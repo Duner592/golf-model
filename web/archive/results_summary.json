@@ -1,4 +1,22 @@
 {
+  "2026_bank_of_utah_championship": {
+    "event_id": "554",
+    "event_name": "Bank of Utah Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "bank_of_utah_championship"
+  },
+  "2026_alfred_dunhill_links_championship": {
+    "event_id": "2026144",
+    "event_name": "Alfred Dunhill Links Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "alfred_dunhill_links_championship"
+  },
   "2026_fedex_open_de_france": {
     "event_id": "2026137",
     "event_name": "FedEx Open de France",

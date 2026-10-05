@@ -3,31 +3,31 @@
     "win": [
       {
         "range": "0-5%",
-        "n": 1577,
-        "mean_predicted_pct": 0.36999365884590996,
-        "actual_rate_pct": 1.3950538998097652,
-        "gap_pct_points": 1.0250602409638554
+        "n": 1640,
+        "mean_predicted_pct": 0.36515853658536584,
+        "actual_rate_pct": 1.402439024390244,
+        "gap_pct_points": 1.0372804878048782
       },
       {
         "range": "5-10%",
-        "n": 30,
-        "mean_predicted_pct": 6.6066666666666665,
-        "actual_rate_pct": 3.3333333333333335,
-        "gap_pct_points": -3.273333333333333
+        "n": 31,
+        "mean_predicted_pct": 6.58258064516129,
+        "actual_rate_pct": 3.225806451612903,
+        "gap_pct_points": -3.356774193548387
       },
       {
         "range": "10-15%",
-        "n": 13,
-        "mean_predicted_pct": 12.27076923076923,
-        "actual_rate_pct": 7.6923076923076925,
-        "gap_pct_points": -4.578461538461538
+        "n": 15,
+        "mean_predicted_pct": 12.331999999999999,
+        "actual_rate_pct": 6.666666666666667,
+        "gap_pct_points": -5.665333333333332
       },
       {
         "range": "15-20%",
-        "n": 4,
-        "mean_predicted_pct": 17.17,
+        "n": 5,
+        "mean_predicted_pct": 16.908,
         "actual_rate_pct": 0.0,
-        "gap_pct_points": -17.17
+        "gap_pct_points": -16.908
       },
       {
         "range": "20-25%",
@@ -96,31 +96,31 @@
     "top10": [
       {
         "range": "0-5%",
-        "n": 1025,
-        "mean_predicted_pct": 1.7073170731707317,
-        "actual_rate_pct": 12.878048780487806,
-        "gap_pct_points": 11.170731707317074
+        "n": 1070,
+        "mean_predicted_pct": 1.6909345794392523,
+        "actual_rate_pct": 12.710280373831775,
+        "gap_pct_points": 11.019345794392523
       },
       {
         "range": "5-10%",
-        "n": 223,
-        "mean_predicted_pct": 7.195067264573991,
-        "actual_rate_pct": 21.524663677130047,
-        "gap_pct_points": 14.329596412556056
+        "n": 232,
+        "mean_predicted_pct": 7.194396551724139,
+        "actual_rate_pct": 20.689655172413794,
+        "gap_pct_points": 13.495258620689654
       },
       {
         "range": "10-15%",
-        "n": 157,
-        "mean_predicted_pct": 11.443312101910827,
-        "actual_rate_pct": 14.012738853503185,
-        "gap_pct_points": 2.569426751592358
+        "n": 159,
+        "mean_predicted_pct": 11.453459119496856,
+        "actual_rate_pct": 14.465408805031446,
+        "gap_pct_points": 3.0119496855345904
       },
       {
         "range": "15-20%",
-        "n": 50,
-        "mean_predicted_pct": 17.37,
-        "actual_rate_pct": 38.0,
-        "gap_pct_points": 20.63
+        "n": 53,
+        "mean_predicted_pct": 17.27358490566038,
+        "actual_rate_pct": 35.84905660377358,
+        "gap_pct_points": 18.575471698113205
       },
       {
         "range": "20-25%",
@@ -138,10 +138,10 @@
       },
       {
         "range": "30-35%",
-        "n": 18,
-        "mean_predicted_pct": 32.67777777777778,
-        "actual_rate_pct": 22.22222222222222,
-        "gap_pct_points": -10.455555555555556
+        "n": 20,
+        "mean_predicted_pct": 32.605000000000004,
+        "actual_rate_pct": 20.0,
+        "gap_pct_points": -12.605000000000004
       },
       {
         "range": "35-40%",
@@ -152,24 +152,24 @@
       },
       {
         "range": "40-45%",
-        "n": 13,
-        "mean_predicted_pct": 42.15384615384615,
-        "actual_rate_pct": 30.76923076923077,
-        "gap_pct_points": -11.384615384615383
+        "n": 14,
+        "mean_predicted_pct": 42.33571428571429,
+        "actual_rate_pct": 35.714285714285715,
+        "gap_pct_points": -6.621428571428574
       },
       {
         "range": "45-50%",
-        "n": 10,
-        "mean_predicted_pct": 46.53,
-        "actual_rate_pct": 50.0,
-        "gap_pct_points": 3.469999999999999
+        "n": 11,
+        "mean_predicted_pct": 46.77272727272727,
+        "actual_rate_pct": 45.45454545454545,
+        "gap_pct_points": -1.3181818181818201
       },
       {
         "range": "50-55%",
-        "n": 11,
-        "mean_predicted_pct": 52.60909090909092,
-        "actual_rate_pct": 18.181818181818183,
-        "gap_pct_points": -34.42727272727274
+        "n": 12,
+        "mean_predicted_pct": 52.800000000000004,
+        "actual_rate_pct": 25.0,
+        "gap_pct_points": -27.800000000000004
       },
       {
         "range": "55-60%",
@@ -194,17 +194,17 @@
       },
       {
         "range": "70-75%",
-        "n": 7,
-        "mean_predicted_pct": 72.48571428571428,
-        "actual_rate_pct": 14.285714285714285,
-        "gap_pct_points": -58.199999999999996
+        "n": 9,
+        "mean_predicted_pct": 72.36666666666667,
+        "actual_rate_pct": 22.22222222222222,
+        "gap_pct_points": -50.14444444444445
       },
       {
         "range": "75-80%",
-        "n": 3,
-        "mean_predicted_pct": 77.06666666666666,
-        "actual_rate_pct": 33.33333333333333,
-        "gap_pct_points": -43.733333333333334
+        "n": 4,
+        "mean_predicted_pct": 76.775,
+        "actual_rate_pct": 25.0,
+        "gap_pct_points": -51.775000000000006
       },
       {
         "range": "80-85%",
@@ -241,17 +241,17 @@
     "win": [
       {
         "range": "0-5%",
-        "n": 2497,
-        "mean_predicted_pct": 0.43988786543852626,
-        "actual_rate_pct": 1.2014417300760913,
-        "gap_pct_points": 0.761553864637565
+        "n": 2564,
+        "mean_predicted_pct": 0.4372113884555382,
+        "actual_rate_pct": 1.2090483619344774,
+        "gap_pct_points": 0.7718369734789392
       },
       {
         "range": "5-10%",
-        "n": 54,
-        "mean_predicted_pct": 7.101851851851853,
-        "actual_rate_pct": 11.11111111111111,
-        "gap_pct_points": 4.009259259259258
+        "n": 55,
+        "mean_predicted_pct": 7.141272727272729,
+        "actual_rate_pct": 10.909090909090908,
+        "gap_pct_points": 3.7678181818181793
       },
       {
         "range": "10-15%",
@@ -325,10 +325,10 @@
       },
       {
         "range": "60-65%",
-        "n": 2,
-        "mean_predicted_pct": 61.865,
+        "n": 3,
+        "mean_predicted_pct": 62.449999999999996,
         "actual_rate_pct": 0.0,
-        "gap_pct_points": -61.865
+        "gap_pct_points": -62.449999999999996
       },
       {
         "range": "65-70%",
@@ -355,38 +355,38 @@
     "top10": [
       {
         "range": "0-5%",
-        "n": 1400,
-        "mean_predicted_pct": 1.5932857142857142,
-        "actual_rate_pct": 10.857142857142858,
-        "gap_pct_points": 9.263857142857143
+        "n": 1441,
+        "mean_predicted_pct": 1.583414295628036,
+        "actual_rate_pct": 11.103400416377514,
+        "gap_pct_points": 9.51998612074948
       },
       {
         "range": "5-10%",
-        "n": 395,
-        "mean_predicted_pct": 7.151139240506328,
-        "actual_rate_pct": 21.012658227848103,
-        "gap_pct_points": 13.861518987341775
+        "n": 403,
+        "mean_predicted_pct": 7.150124069478908,
+        "actual_rate_pct": 21.09181141439206,
+        "gap_pct_points": 13.94168734491315
       },
       {
         "range": "10-15%",
-        "n": 246,
-        "mean_predicted_pct": 12.21219512195122,
-        "actual_rate_pct": 21.138211382113823,
-        "gap_pct_points": 8.926016260162603
+        "n": 250,
+        "mean_predicted_pct": 12.206800000000001,
+        "actual_rate_pct": 20.8,
+        "gap_pct_points": 8.5932
       },
       {
         "range": "15-20%",
-        "n": 130,
-        "mean_predicted_pct": 17.33153846153846,
-        "actual_rate_pct": 29.230769230769234,
-        "gap_pct_points": 11.899230769230773
+        "n": 134,
+        "mean_predicted_pct": 17.332089552238806,
+        "actual_rate_pct": 28.35820895522388,
+        "gap_pct_points": 11.026119402985074
       },
       {
         "range": "20-25%",
-        "n": 98,
-        "mean_predicted_pct": 22.23571428571429,
-        "actual_rate_pct": 22.448979591836736,
-        "gap_pct_points": 0.21326530612244454
+        "n": 99,
+        "mean_predicted_pct": 22.228282828282833,
+        "actual_rate_pct": 22.22222222222222,
+        "gap_pct_points": -0.006060606060611207
       },
       {
         "range": "25-30%",
@@ -397,24 +397,24 @@
       },
       {
         "range": "30-35%",
-        "n": 49,
-        "mean_predicted_pct": 32.32448979591837,
-        "actual_rate_pct": 20.408163265306122,
-        "gap_pct_points": -11.916326530612245
+        "n": 50,
+        "mean_predicted_pct": 32.278,
+        "actual_rate_pct": 20.0,
+        "gap_pct_points": -12.277999999999999
       },
       {
         "range": "35-40%",
-        "n": 61,
-        "mean_predicted_pct": 37.63770491803279,
-        "actual_rate_pct": 24.59016393442623,
-        "gap_pct_points": -13.04754098360656
+        "n": 62,
+        "mean_predicted_pct": 37.63548387096774,
+        "actual_rate_pct": 24.193548387096776,
+        "gap_pct_points": -13.441935483870964
       },
       {
         "range": "40-45%",
-        "n": 23,
-        "mean_predicted_pct": 42.50000000000001,
-        "actual_rate_pct": 26.08695652173913,
-        "gap_pct_points": -16.413043478260878
+        "n": 27,
+        "mean_predicted_pct": 42.611111111111114,
+        "actual_rate_pct": 25.925925925925924,
+        "gap_pct_points": -16.68518518518519
       },
       {
         "range": "45-50%",
@@ -425,17 +425,17 @@
       },
       {
         "range": "50-55%",
-        "n": 20,
-        "mean_predicted_pct": 52.15,
-        "actual_rate_pct": 35.0,
-        "gap_pct_points": -17.15
+        "n": 22,
+        "mean_predicted_pct": 52.16363636363637,
+        "actual_rate_pct": 36.36363636363637,
+        "gap_pct_points": -15.800000000000004
       },
       {
         "range": "55-60%",
-        "n": 19,
-        "mean_predicted_pct": 57.45789473684209,
-        "actual_rate_pct": 26.31578947368421,
-        "gap_pct_points": -31.142105263157884
+        "n": 20,
+        "mean_predicted_pct": 57.42,
+        "actual_rate_pct": 25.0,
+        "gap_pct_points": -32.42
       },
       {
         "range": "60-65%",
@@ -460,10 +460,10 @@
       },
       {
         "range": "75-80%",
-        "n": 5,
-        "mean_predicted_pct": 76.8,
-        "actual_rate_pct": 100.0,
-        "gap_pct_points": 23.200000000000003
+        "n": 6,
+        "mean_predicted_pct": 76.55,
+        "actual_rate_pct": 83.33333333333334,
+        "gap_pct_points": 6.783333333333346
       },
       {
         "range": "80-85%",
@@ -488,10 +488,10 @@
       },
       {
         "range": "95-100%",
-        "n": 7,
-        "mean_predicted_pct": 98.3,
-        "actual_rate_pct": 57.14285714285714,
-        "gap_pct_points": -41.15714285714286
+        "n": 8,
+        "mean_predicted_pct": 98.2875,
+        "actual_rate_pct": 50.0,
+        "gap_pct_points": -48.287499999999994
       }
     ],
     "make_cut": []
