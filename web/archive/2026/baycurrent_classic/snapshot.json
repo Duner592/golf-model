@@ -1,0 +1,65 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-10-05T05:55:18Z",
+  "tour": "pga",
+  "event_id": "527",
+  "event_name": "Baycurrent Classic",
+  "year": "2026",
+  "r1_date": "2026-10-08",
+  "start_date": "2026-10-08",
+  "source_csv": "data/preds/pga/event_527_baycurrent_classic_2026-10-05_leaderboard.csv",
+  "artifact_generated_utc": "05-Oct-2026 05:55:18",
+  "resources": {
+    "model_page": "pga/initial/2026/event_527/model_page.html",
+    "leaderboard": "pga/initial/2026/event_527/leaderboard.json",
+    "summary": "pga/initial/2026/event_527/summary.json",
+    "meta": "pga/initial/2026/event_527/meta.json",
+    "downloads_csv": "pga/initial/2026/event_527/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_527/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_527/leaderboard_20261005T055518Z.csv",
+    "timestamped_html": "pga/initial/2026/event_527/leaderboard_20261005T055518Z.html",
+    "weather_meta": "pga/initial/2026/event_527/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_527/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_527/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_527/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_527/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_527/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_527/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_527/snapshot.json",
+    "schedule": "pga/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-10-05T05:55:18Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "dbaf1387db9b25de9154bf2f9a3a10e081d093a44e95bbc1d445afffeb23545b",
+      "src/utils_event.py": "205dfeba5e3f6651b8ec82e71edd66ef85fa04fea2ffbf44193bec74b4e08b02"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "8129b3fa0d37a4e3ee8247100c77d4fe7476b32338b192e2e012f5afd43bdafb",
+      "course_history_summary.json": "aa592b0d0f3e7956f9b236daccdabcdf00c4b9675e947594ebc9758ad0a6b799",
+      "field_teetimes.csv": "01874085c09f2d383944deba6de7389eed7d53968ddb6707e46c917cd62ec8dc",
+      "leaderboard.csv": "96cd9392a185d3ab11f2912feab966271f3df15c2cb96b93db8a39eb7684d628",
+      "leaderboard.html": "9cbd0a2320bb94f56877179d96d94fcd6fcda74d2eda1fae0f6bfca2b58c3527",
+      "leaderboard.json": "f5feb7c7cf73fc7fcd84b42e8de136c4b72ea9e1691164f98e024f12e21d2f1c",
+      "leaderboard_20261005T055518Z.csv": "96cd9392a185d3ab11f2912feab966271f3df15c2cb96b93db8a39eb7684d628",
+      "leaderboard_20261005T055518Z.html": "9cbd0a2320bb94f56877179d96d94fcd6fcda74d2eda1fae0f6bfca2b58c3527",
+      "meta.json": "21a9f76eeb26f28ddd151ac60247ba42cbc487e686a99b027c73ebd1219ba2a3",
+      "model_page.html": "3ffab9f17f0876176f3e0c4ce9d5938a3d3d1fb1752a70ca7263e807c231df64",
+      "summary.json": "f2dc7d96fcdfe07943b0485b70e482c192fbe371b80008e3bb1f0cd48aa35db9",
+      "tournament_summary.json": "eb172f10344765f7222b07f998b8644c46008d9529a9e5b9616136b58b207c2f",
+      "weather_meta.json": "f957afbaa013c0b07efb1cd597309e9c71cdcc2d63d7f9a0f9a6cbb523f8c2f2",
+      "weather_round_neutral.json": "b1b7aab5930d8afe36fc7ebd1fe153295841e8d5a4a5c17381bfcdbb295f3e05",
+      "weather_round_wave.json": "7ec60a62e7b7c3f851e2747ddd4629d0e337e7a8737813dbd63149c6e7f47852"
+    }
+  }
+}

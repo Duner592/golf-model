@@ -1,0 +1,65 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-10-05T05:55:54Z",
+  "tour": "euro",
+  "event_id": "2026139",
+  "event_name": "Open de Espa\u00f1a presented by Madrid",
+  "year": "2026",
+  "r1_date": "2026-10-08",
+  "start_date": "2026-10-08",
+  "source_csv": "data/preds/euro/event_2026139_open_de_espa_a_presented_by_madrid_2026-10-05_leaderboard.csv",
+  "artifact_generated_utc": "05-Oct-2026 05:55:54",
+  "resources": {
+    "model_page": "euro/initial/2026/event_2026139/model_page.html",
+    "leaderboard": "euro/initial/2026/event_2026139/leaderboard.json",
+    "summary": "euro/initial/2026/event_2026139/summary.json",
+    "meta": "euro/initial/2026/event_2026139/meta.json",
+    "downloads_csv": "euro/initial/2026/event_2026139/leaderboard.csv",
+    "downloads_html": "euro/initial/2026/event_2026139/leaderboard.html",
+    "timestamped_csv": "euro/initial/2026/event_2026139/leaderboard_20261005T055554Z.csv",
+    "timestamped_html": "euro/initial/2026/event_2026139/leaderboard_20261005T055554Z.html",
+    "weather_meta": "euro/initial/2026/event_2026139/weather_meta.json",
+    "weather_round_neutral": "euro/initial/2026/event_2026139/weather_round_neutral.json",
+    "weather_round_wave": "euro/initial/2026/event_2026139/weather_round_wave.json",
+    "course_fit_weights": "euro/initial/2026/event_2026139/course_fit_weights.json",
+    "course_history_summary": "euro/initial/2026/event_2026139/course_history_summary.json",
+    "tournament_summary": "euro/initial/2026/event_2026139/tournament_summary.json",
+    "field_teetimes": "euro/initial/2026/event_2026139/field_teetimes.csv",
+    "snapshot": "euro/initial/2026/event_2026139/snapshot.json",
+    "schedule": "euro/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-10-05T05:55:54Z",
+    "python_version": "3.10.21",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "53f49c5969e2b7fd32577a6269f9eca3c5bb4f09350c08fea9126354a9668828",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "dbaf1387db9b25de9154bf2f9a3a10e081d093a44e95bbc1d445afffeb23545b",
+      "src/utils_event.py": "205dfeba5e3f6651b8ec82e71edd66ef85fa04fea2ffbf44193bec74b4e08b02"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "dbd7b1defea960525a1d3221975541948937e8ffc3c9f7379f588fa55bdb08c0",
+      "course_history_summary.json": "6be4458e96213d887a1b6d961b2525ace1cab1823bdac890e8cee48bb28f77ea",
+      "field_teetimes.csv": "9272b6e8b022210dd257fe60a026c0fc1d0366c6fbbd8dbcdcecc3b2d89b1556",
+      "leaderboard.csv": "d9234be029afcdc1ec151e71db6f265c360d48e73855f378af4f66d172916cb6",
+      "leaderboard.html": "c40ba889b0027f795a40ab7f3730ff310a4b127090c7f5cd768058cf225c516d",
+      "leaderboard.json": "92473118399fe1c3c8131acce22a212207fbce2fab81debaa8c4f3d3852b0ce6",
+      "leaderboard_20261005T055554Z.csv": "d9234be029afcdc1ec151e71db6f265c360d48e73855f378af4f66d172916cb6",
+      "leaderboard_20261005T055554Z.html": "c40ba889b0027f795a40ab7f3730ff310a4b127090c7f5cd768058cf225c516d",
+      "meta.json": "6f8a00854c21f625e94b3923bbabf884e103c380c70bcee140d76896fdd52106",
+      "model_page.html": "02981633b86afddc1fa6d7671e84521002c608eb1875bd4a88f462a5360da232",
+      "summary.json": "f21a78be7f0c6bf17b5ced32d98b5b57607413f970a91a7aeb10a4f02a81f699",
+      "tournament_summary.json": "e920dbc859339c6244df615f8337e8093ee42e101e14478cce0e9fb31bb38a20",
+      "weather_meta.json": "d54cd5b990b7698d3ecfae500fc0076c096c9cb0fb507334ca51355a44912a92",
+      "weather_round_neutral.json": "62e916c36bac00e89d5566cadd5e3b7c4e927b3059643b23c81b5912a1f157a0",
+      "weather_round_wave.json": "c831c4de2ea65e206946facb76f26fe53a6fe5ada82aca850ce95fdc8bf53e05"
+    }
+  }
+}

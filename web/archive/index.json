@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "527",
+    "event_name": "Baycurrent Classic",
+    "tour": "pga",
+    "slug": "baycurrent_classic",
+    "year": "2026",
+    "start_date": "2026-10-08",
+    "csv_available": true,
+    "archived_at": "2026-10-05 05:55:18 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-10-05T05:55:18Z",
+    "model_page": "archive/2026/baycurrent_classic/model_page.html"
+  },
+  {
+    "event_id": "2026139",
+    "event_name": "Open de Espa\u00f1a presented by Madrid",
+    "tour": "euro",
+    "slug": "open_de_espa_a_presented_by_madrid",
+    "year": "2026",
+    "start_date": "2026-10-08",
+    "csv_available": true,
+    "archived_at": "2026-10-05 05:55:54 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-10-05T05:55:54Z",
+    "model_page": "archive/2026/open_de_espa_a_presented_by_madrid/model_page.html"
+  },
+  {
     "event_id": "554",
     "event_name": "Bank of Utah Championship",
     "tour": "pga",

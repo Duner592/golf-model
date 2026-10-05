@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Baycurrent Classic Model Page Snapshot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1rem; color: #111; background: #f7faf8; }
+    header, section { max-width: 1180px; margin: 0 auto 1rem; }
+    header { padding: 1rem 0 0.25rem; }
+    h1 { margin: 0 0 0.35rem; font-size: clamp(1.45rem, 3vw, 2.1rem); }
+    h2 { margin: 0 0 0.55rem; font-size: 1.05rem; }
+    .muted { color: #53615a; font-size: 0.95rem; }
+    .pill { display: inline-flex; gap: 0.35rem; align-items: center; margin: 0.15rem 0.25rem 0.15rem 0; padding: 0.25rem 0.55rem; border: 1px solid #cfd9d3; border-radius: 999px; background: #fff; font-size: 0.86rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+    .card { border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; padding: 0.85rem; }
+    .links a { display: inline-block; margin: 0.2rem 0.4rem 0.2rem 0; color: #0b5a32; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+    input[type="search"] { width: min(100%, 280px); padding: 0.45rem 0.6rem; border: 1px solid #cbd8d0; border-radius: 6px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #dfe8e2; border-radius: 8px; background: #fff; }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    th, td { padding: 0.45rem 0.5rem; border-bottom: 1px solid #edf2ef; text-align: left; white-space: nowrap; }
+    th { background: #f2f7f4; cursor: pointer; position: sticky; top: 0; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="muted">PGA model page backup</div>
+    <h1>Baycurrent Classic</h1>
+    <div id="metaLine" class="muted"></div>
+    <div id="badges"></div>
+  </header>
+  <section class="grid" id="summaryCards"></section>
+  <section class="card">
+    <div class="toolbar">
+      <h2 style="margin-right:auto;">Leaderboard</h2>
+      <label class="muted">Filter <input id="filterBox" type="search" placeholder="Search player" /></label>
+    </div>
+    <div class="table-wrap">
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th data-key="rank">Rank</th>
+            <th data-key="player_name">Player</th>
+            <th data-key="p_win_%">Win %</th>
+            <th data-key="p_top10_%">Top-10 %</th>
+            <th data-key="p_mc_%">Make Cut %</th>
+            <th data-key="course_fit_score">Course Fit</th>
+            <th data-key="r1_teetime">R1 Tee</th>
+            <th data-key="r2_teetime">R2 Tee</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="card"><h2>Tournament</h2><div id="tournament"></div></div>
+    <div class="card"><h2>Weather</h2><div id="weather"></div></div>
+    <div class="card"><h2>Course Fit</h2><div id="courseFit"></div></div>
+    <div class="card"><h2>Files</h2><div id="files" class="links"></div></div>
+  </section>
+  <script type="application/json" id="snapshotPayload">{"tour":"pga","event_id":"527","event_name":"Baycurrent Classic","year":"2026","snapshot_created_utc":"2026-10-05T05:55:18Z","snapshot_label":"Initial run","generated_utc":"05-Oct-2026 05:55:18","r1_date":"2026-10-08","start_date":"2026-10-08","reconstruction":null,"leaderboard":[{"rank":1,"player_name":"Justin Thomas","p_win_%":37.44,"p_top10_%":94.4,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":2,"player_name":"Michael Thorbjornsen","p_win_%":19.66,"p_top10_%":86.7,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":3,"player_name":"Max Greyserman","p_win_%":15.65,"p_top10_%":83.5,"p_mc_%":100.0,"course_fit_score":0.0},{"rank":4,"player_name":"Keegan Bradley","p_win_%":6.27,"p_top10_%":65.4,"p_mc_%":99.8,"course_fit_score":0.0},{"rank":5,"player_name":"Xander Schauffele","p_win_%":5.0,"p_top10_%":62.0,"p_mc_%":99.8,"course_fit_score":0.0},{"rank":6,"player_name":"Nico Echavarria","p_win_%":3.99,"p_top10_%":56.8,"p_mc_%":99.8,"course_fit_score":0.0},{"rank":7,"player_name":"Keith Mitchell","p_win_%":1.73,"p_top10_%":41.9,"p_mc_%":99.4,"course_fit_score":0.0},{"rank":8,"player_name":"Rickie Fowler","p_win_%":1.57,"p_top10_%":41.3,"p_mc_%":99.3,"course_fit_score":0.0},{"rank":9,"player_name":"Hideki Matsuyama","p_win_%":1.26,"p_top10_%":35.7,"p_mc_%":99.1,"course_fit_score":0.0},{"rank":10,"player_name":"Min Woo Lee","p_win_%":1.22,"p_top10_%":34.9,"p_mc_%":99.2,"course_fit_score":0.0},{"rank":11,"player_name":"Alex Smalley","p_win_%":1.2,"p_top10_%":35.6,"p_mc_%":99.2,"course_fit_score":0.0},{"rank":12,"player_name":"Ryan Gerard","p_win_%":0.57,"p_top10_%":26.8,"p_mc_%":98.8,"course_fit_score":0.0},{"rank":13,"player_name":"Collin Morikawa","p_win_%":0.51,"p_top10_%":23.3,"p_mc_%":98.5,"course_fit_score":0.0},{"rank":14,"player_name":"Adam Scott","p_win_%":0.5,"p_top10_%":22.5,"p_mc_%":98.4,"course_fit_score":0.0},{"rank":15,"player_name":"Matt Wallace","p_win_%":0.43,"p_top10_%":20.6,"p_mc_%":98.3,"course_fit_score":0.0},{"rank":16,"player_name":"Sungjae Im","p_win_%":0.4,"p_top10_%":20.5,"p_mc_%":98.1,"course_fit_score":0.0},{"rank":17,"player_name":"Wyndham Clark","p_win_%":0.37,"p_top10_%":20.5,"p_mc_%":98.1,"course_fit_score":0.0},{"rank":18,"player_name":"Kurt Kitayama","p_win_%":0.36,"p_top10_%":21.2,"p_mc_%":98.2,"course_fit_score":0.0},{"rank":19,"player_name":"Matt McCarty","p_win_%":0.34,"p_top10_%":19.8,"p_mc_%":98.1,"course_fit_score":0.0},{"rank":20,"player_name":"Maverick McNealy","p_win_%":0.29,"p_top10_%":17.8,"p_mc_%":97.9,"course_fit_score":0.0},{"rank":21,"player_name":"Kevin Yu","p_win_%":0.26,"p_top10_%":18.4,"p_mc_%":98.0,"course_fit_score":0.0},{"rank":22,"player_name":"Christiaan Bezuidenhout","p_win_%":0.21,"p_top10_%":14.6,"p_mc_%":97.3,"course_fit_score":0.0},{"rank":23,"player_name":"Mac Meissner","p_win_%":0.11,"p_top10_%":10.5,"p_mc_%":96.5,"course_fit_score":0.0},{"rank":24,"player_name":"Keita Nakajima","p_win_%":0.08,"p_top10_%":9.3,"p_mc_%":95.9,"course_fit_score":0.0},{"rank":25,"player_name":"Ren Yonezawa","p_win_%":0.06,"p_top10_%":7.1,"p_mc_%":94.8,"course_fit_score":0.0},{"rank":26,"player_name":"Jacob Bridgeman","p_win_%":0.06,"p_top10_%":8.1,"p_mc_%":95.3,"course_fit_score":0.0},{"rank":27,"player_name":"Michael Brennan","p_win_%":0.04,"p_top10_%":5.9,"p_mc_%":94.0,"course_fit_score":0.0},{"rank":28,"player_name":"Sahith Theegala","p_win_%":0.04,"p_top10_%":7.4,"p_mc_%":95.0,"course_fit_score":0.0},{"rank":29,"player_name":"Max Homa","p_win_%":0.03,"p_top10_%":4.8,"p_mc_%":93.3,"course_fit_score":0.0},{"rank":30,"player_name":"Chandler Phillips","p_win_%":0.03,"p_top10_%":3.2,"p_mc_%":91.1,"course_fit_score":0.0},{"rank":31,"player_name":"Jordan Smith","p_win_%":0.03,"p_top10_%":3.1,"p_mc_%":91.1,"course_fit_score":0.0},{"rank":32,"player_name":"Nick Taylor","p_win_%":0.02,"p_top10_%":4.4,"p_mc_%":93.1,"course_fit_score":0.0},{"rank":33,"player_name":"Brian Harman","p_win_%":0.02,"p_top10_%":3.4,"p_mc_%":91.6,"course_fit_score":0.0},{"rank":34,"player_name":"Jordan Spieth","p_win_%":0.02,"p_top10_%":3.9,"p_mc_%":91.9,"course_fit_score":0.0},{"rank":35,"player_name":"Ricky Castillo","p_win_%":0.02,"p_top10_%":2.7,"p_mc_%":89.8,"course_fit_score":0.0},{"rank":36,"player_name":"Kristoffer Ventura","p_win_%":0.02,"p_top10_%":2.0,"p_mc_%":88.7,"course_fit_score":0.0},{"rank":37,"player_name":"Beau Hossler","p_win_%":0.02,"p_top10_%":4.0,"p_mc_%":92.3,"course_fit_score":0.0},{"rank":38,"player_name":"Takumi Kanaya","p_win_%":0.02,"p_top10_%":5.9,"p_mc_%":94.1,"course_fit_score":0.0},{"rank":39,"player_name":"Kevin Roy","p_win_%":0.01,"p_top10_%":2.5,"p_mc_%":89.9,"course_fit_score":0.0},{"rank":40,"player_name":"Jackson Suber","p_win_%":0.01,"p_top10_%":3.3,"p_mc_%":91.5,"course_fit_score":0.0},{"rank":41,"player_name":"Davis Thompson","p_win_%":0.01,"p_top10_%":3.2,"p_mc_%":91.4,"course_fit_score":0.0},{"rank":42,"player_name":"Johnny Keefer","p_win_%":0.01,"p_top10_%":2.5,"p_mc_%":90.1,"course_fit_score":0.0},{"rank":43,"player_name":"Doug Ghim","p_win_%":0.01,"p_top10_%":1.8,"p_mc_%":88.7,"course_fit_score":0.0},{"rank":44,"player_name":"Zach Bauchou","p_win_%":0.01,"p_top10_%":2.1,"p_mc_%":89.6,"course_fit_score":0.0},{"rank":45,"player_name":"Aldrich Potgieter","p_win_%":0.01,"p_top10_%":2.8,"p_mc_%":90.5,"course_fit_score":0.0},{"rank":46,"player_name":"Tom Hoge","p_win_%":0.01,"p_top10_%":2.9,"p_mc_%":90.7,"course_fit_score":0.0},{"rank":47,"player_name":"Pierceson Coody","p_win_%":0.01,"p_top10_%":2.0,"p_mc_%":88.7,"course_fit_score":0.0},{"rank":48,"player_name":"Taylor Pendrith","p_win_%":0.01,"p_top10_%":1.4,"p_mc_%":86.4,"course_fit_score":0.0},{"rank":49,"player_name":"Koshin Nagasaki","p_win_%":0.01,"p_top10_%":1.2,"p_mc_%":85.0,"course_fit_score":0.0},{"rank":50,"player_name":"Andrew Putnam","p_win_%":0.01,"p_top10_%":1.9,"p_mc_%":88.6,"course_fit_score":0.0},{"rank":51,"player_name":"Yoshinori Fujimoto","p_win_%":0.0,"p_top10_%":1.2,"p_mc_%":85.6,"course_fit_score":0.0},{"rank":52,"player_name":"A.J. Ewart","p_win_%":0.0,"p_top10_%":0.8,"p_mc_%":81.9,"course_fit_score":0.0},{"rank":53,"player_name":"Yusaku Hosono","p_win_%":0.0,"p_top10_%":1.1,"p_mc_%":85.7,"course_fit_score":0.0},{"rank":54,"player_name":"Ryo Hisatsune","p_win_%":0.0,"p_top10_%":0.9,"p_mc_%":84.4,"course_fit_score":0.0},{"rank":55,"player_name":"Sang-hee Lee","p_win_%":0.0,"p_top10_%":1.3,"p_mc_%":85.6,"course_fit_score":0.0},{"rank":56,"player_name":"Denny McCarthy","p_win_%":0.0,"p_top10_%":1.6,"p_mc_%":87.7,"course_fit_score":0.0},{"rank":57,"player_name":"Tomohiro Ishizaka","p_win_%":0.0,"p_top10_%":1.2,"p_mc_%":85.2,"course_fit_score":0.0},{"rank":58,"player_name":"Stephan Jaeger","p_win_%":0.0,"p_top10_%":1.1,"p_mc_%":85.0,"course_fit_score":0.0},{"rank":59,"player_name":"Tony Finau","p_win_%":0.0,"p_top10_%":0.8,"p_mc_%":83.2,"course_fit_score":0.0},{"rank":60,"player_name":"Taylor Moore","p_win_%":0.0,"p_top10_%":4.3,"p_mc_%":92.6,"course_fit_score":0.0},{"rank":61,"player_name":"Rasmus Neergaard-Petersen","p_win_%":0.0,"p_top10_%":1.9,"p_mc_%":88.4,"course_fit_score":0.0},{"rank":62,"player_name":"Kosuke Sunagawa","p_win_%":0.0,"p_top10_%":1.3,"p_mc_%":85.8,"course_fit_score":0.0},{"rank":63,"player_name":"Jinichiro Kozuma","p_win_%":0.0,"p_top10_%":0.4,"p_mc_%":79.7,"course_fit_score":0.0},{"rank":64,"player_name":"Steven Fisk","p_win_%":0.0,"p_top10_%":1.6,"p_mc_%":86.9,"course_fit_score":0.0},{"rank":65,"player_name":"David Lipsky","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":70.5,"course_fit_score":0.0},{"rank":66,"player_name":"Ben Kohles","p_win_%":0.0,"p_top10_%":0.3,"p_mc_%":76.0,"course_fit_score":0.0},{"rank":67,"player_name":"Hiroshi Iwata","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":67.8,"course_fit_score":0.0},{"rank":68,"player_name":"Michael Kim","p_win_%":0.0,"p_top10_%":0.2,"p_mc_%":73.9,"course_fit_score":0.0},{"rank":69,"player_name":"Aguri Iwasaki","p_win_%":0.0,"p_top10_%":0.0,"p_mc_%":52.8,"course_fit_score":0.0},{"rank":70,"player_name":"Billy Horschel","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":71.1,"course_fit_score":0.0},{"rank":71,"player_name":"Patrick Rodgers","p_win_%":0.0,"p_top10_%":0.1,"p_mc_%":67.2,"course_fit_score":0.0},{"rank":72,"player_name":"John Parry","p_win_%":0.0,"p_top10_%":1.9,"p_mc_%":88.4,"course_fit_score":0.0}],"summary":{"event_id":"527","event_name":"Baycurrent Classic","source_csv":"data/preds/pga/event_527_baycurrent_classic_2026-10-05_leaderboard.csv","generated_utc":"05-Oct-2026 05:55:18","metrics":{"field_size":72,"p_win_max":0.37443333333333334,"p_win_median":0.00016666666666666666,"p_win_sum":1.0}},"tournament":{"event_name":"Baycurrent Classic","event_id":"527","course":"Yokohama Country Club (West Course)","total_yardage":null,"course_location":"Yokohama, Kanagawa, Japan","start_date":"08-Oct-2026","field_size":72,"status":"upcoming","winner":null,"previous_winners":[{"year":2025,"winner":"Schauffele, Xander","score":-19},{"year":2024,"winner":"Echavarria, Nico","score":-20},{"year":2022,"winner":"Bradley, Keegan","score":-15},{"year":2021,"winner":"Matsuyama, Hideki","score":-15}]},"weather_meta":{"event_id":527,"event_name":"Baycurrent Classic","lat":35.446,"lon":139.549,"r1_date":"2026-10-08","r2_date":"2026-10-09","r3_date":"2026-10-10","r4_date":"2026-10-11","saved_at_utc":"2026-10-05T055504Z","source":"pinned + open-meteo"},"weather_neutral":[{"wind_mph":3.86,"gust_mph":12.75,"temp_c":19.0,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":0,"round":1},{"wind_mph":5.32,"gust_mph":13.16,"temp_c":18.4,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":0,"round":2},{"wind_mph":7.73,"gust_mph":19.03,"temp_c":19.0,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":0,"round":3},{"wind_mph":4.31,"gust_mph":14.31,"temp_c":20.4,"precip_pct":9.0,"delta_strokes":0.0,"weathercode":0,"round":4}],"weather_wave":[{"round":1,"wave":"AM","wind_mph":3.82,"gust_mph":13.38,"temp_c":17.8,"precip_pct":2.0,"delta_strokes":0.0,"weathercode":0},{"round":1,"wave":"PM","wind_mph":3.9,"gust_mph":12.13,"temp_c":20.2,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":0},{"round":2,"wave":"AM","wind_mph":5.24,"gust_mph":12.03,"temp_c":16.4,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":0},{"round":2,"wave":"PM","wind_mph":5.4,"gust_mph":14.3,"temp_c":20.4,"precip_pct":1.0,"delta_strokes":0.0,"weathercode":0},{"round":3,"wave":"ALL","wind_mph":7.73,"gust_mph":19.03,"temp_c":19.0,"precip_pct":0.0,"delta_strokes":0.0,"weathercode":0},{"round":4,"wave":"ALL","wind_mph":4.31,"gust_mph":14.31,"temp_c":20.4,"precip_pct":9.0,"delta_strokes":0.0,"weathercode":0}],"course_history":{"rows":187,"rounds_course_avg":1.6684491978609626,"sg_course_mean_shrunk_avg":-0.2536292335115863,"top_rounds":[{"player_id":"14609","sg_course_mean_shrunk":3.5617500000000004,"rounds_course":4},{"player_id":"13562","sg_course_mean_shrunk":4.81175,"rounds_course":4},{"player_id":"13531","sg_course_mean_shrunk":-3.6882499999999996,"rounds_course":4},{"player_id":"14704","sg_course_mean_shrunk":1.3117500000000004,"rounds_course":4},{"player_id":"22760","sg_course_mean_shrunk":-2.4382499999999996,"rounds_course":4},{"player_id":"19729","sg_course_mean_shrunk":3.81175,"rounds_course":4},{"player_id":"19895","sg_course_mean_shrunk":5.81175,"rounds_course":4},{"player_id":"22085","sg_course_mean_shrunk":2.3117500000000004,"rounds_course":4},{"player_id":"13497","sg_course_mean_shrunk":-1.3106666666666666,"rounds_course":3},{"player_id":"15470","sg_course_mean_shrunk":0.770666666666667,"rounds_course":3}],"top_sg_course":[{"player_id":"23465","sg_course_mean_shrunk":13.8615,"rounds_course":2},{"player_id":"14139","sg_course_mean_shrunk":13.543999999999999,"rounds_course":1},{"player_id":"26649","sg_course_mean_shrunk":12.179,"rounds_course":1},{"player_id":"14013","sg_course_mean_shrunk":11.934999999999999,"rounds_course":1},{"player_id":"22833","sg_course_mean_shrunk":11.8615,"rounds_course":2},{"player_id":"14459","sg_course_mean_shrunk":10.179,"rounds_course":1},{"player_id":"13872","sg_course_mean_shrunk":9.262,"rounds_course":2},{"player_id":"18841","sg_course_mean_shrunk":8.589,"rounds_course":1},{"player_id":"25363","sg_course_mean_shrunk":8.589,"rounds_course":1},{"player_id":"23542","sg_course_mean_shrunk":7.589,"rounds_course":1}]},"course_fit":{"weights":{},"cats_used":[],"driving_norm":{"da_field_mean":null,"da_field_std":null,"dd_field_mean":null,"dd_field_std":null}},"local_files":{"Leaderboard JSON":"leaderboard.json","Leaderboard CSV":"leaderboard.csv","Leaderboard HTML":"leaderboard.html","Tournament summary":"tournament_summary.json","Weather metadata":"weather_meta.json","Neutral weather":"weather_round_neutral.json","Wave weather":"weather_round_wave.json","Course-fit weights":"course_fit_weights.json","Course-history summary":"course_history_summary.json","Field tee times":"field_teetimes.csv"}}</script>
+  <script>
+    const SNAPSHOT = JSON.parse(document.getElementById("snapshotPayload").textContent);
+    const rows = Array.isArray(SNAPSHOT.leaderboard) ? SNAPSHOT.leaderboard : [];
+    let sortKey = "rank";
+    let sortAsc = true;
+    const fmt = (v, d = 2) => v === null || v === undefined || v === "" || Number.isNaN(Number(v)) ? "" : Number(v).toFixed(d);
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const get = (row, keys) => {
+      for (const key of keys) if (row[key] !== undefined && row[key] !== null && row[key] !== "") return row[key];
+      return "";
+    };
+    function sortRows(items) {
+      return [...items].sort((a, b) => {
+        const av = get(a, [sortKey]);
+        const bv = get(b, [sortKey]);
+        const an = Number(av);
+        const bn = Number(bv);
+        const result = Number.isFinite(an) && Number.isFinite(bn) ? an - bn : String(av).localeCompare(String(bv));
+        return sortAsc ? result : -result;
+      });
+    }
+    function renderTable() {
+      const q = document.getElementById("filterBox").value.trim().toLowerCase();
+      const filtered = q ? rows.filter((row) => String(get(row, ["player_name", "Player"])).toLowerCase().includes(q)) : rows;
+      document.querySelector("#leaderboardTable tbody").innerHTML = sortRows(filtered).map((row, idx) => `
+        <tr>
+          <td class="num">${escapeHtml(get(row, ["rank"]) || idx + 1)}</td>
+          <td>${escapeHtml(get(row, ["player_name", "Player"]))}</td>
+          <td class="num">${fmt(get(row, ["p_win_%", "p_win"]))}</td>
+          <td class="num">${fmt(get(row, ["p_top10_%", "p_top10"]))}</td>
+          <td class="num">${fmt(get(row, ["p_mc_%", "p_mc"]))}</td>
+          <td class="num">${fmt(get(row, ["course_fit_score"]))}</td>
+          <td>${escapeHtml(get(row, ["r1_teetime"]))}</td>
+          <td>${escapeHtml(get(row, ["r2_teetime"]))}</td>
+        </tr>`).join("");
+    }
+    function card(title, value, detail = "") {
+      return `<div class="card"><div class="muted">${escapeHtml(title)}</div><strong>${escapeHtml(value)}</strong>${detail ? `<div class="muted">${escapeHtml(detail)}</div>` : ""}</div>`;
+    }
+    function renderSummary() {
+      const metrics = SNAPSHOT.summary?.metrics || {};
+      const maxWin = rows.reduce((max, row) => Math.max(max, Number(get(row, ["p_win_%", "p_win"])) || 0), 0);
+      document.getElementById("metaLine").textContent = [
+        SNAPSHOT.snapshot_label,
+        SNAPSHOT.snapshot_created_utc ? `saved ${SNAPSHOT.snapshot_created_utc}` : "",
+        SNAPSHOT.generated_utc ? `generated ${SNAPSHOT.generated_utc}` : "",
+      ].filter(Boolean).join(" | ");
+      const badges = [`Tour: ${SNAPSHOT.tour?.toUpperCase()}`, `Event ID: ${SNAPSHOT.event_id}`, `Year: ${SNAPSHOT.year}`];
+      if (SNAPSHOT.reconstruction) badges.push("Reconstructed backfill");
+      document.getElementById("badges").innerHTML = badges.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
+      document.getElementById("summaryCards").innerHTML = [
+        card("Field", metrics.field_size || rows.length || "0", "players"),
+        card("Top Win Probability", maxWin ? `${maxWin.toFixed(2)}%` : "0.00%"),
+        card("Win Probability Sum", metrics.p_win_sum != null ? Number(metrics.p_win_sum).toFixed(3) : ""),
+        card("Prediction Source", SNAPSHOT.summary?.source_csv ? SNAPSHOT.summary.source_csv.split("/").pop() : "snapshot"),
+      ].join("");
+    }
+    function renderDetails() {
+      const t = SNAPSHOT.tournament || {};
+      document.getElementById("tournament").innerHTML = [
+        ["Event", t.event_name],
+        ["Course", t.course],
+        ["Location", t.course_location],
+        ["Start", t.start_date || SNAPSHOT.start_date || SNAPSHOT.r1_date],
+        ["Field size", t.field_size],
+        ["Winner", t.winner],
+      ].filter(([, value]) => value !== undefined && value !== null && value !== "").map(([label, value]) => `<div><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</div>`).join("") || "<span class='muted'>No tournament summary.</span>";
+      const neutral = Array.isArray(SNAPSHOT.weather_neutral) ? SNAPSHOT.weather_neutral : [];
+      const weatherMeta = SNAPSHOT.weather_meta || {};
+      const weatherLines = [];
+      if (weatherMeta.source) weatherLines.push(`<div><strong>Source:</strong> ${escapeHtml(weatherMeta.source)}</div>`);
+      neutral.forEach((row) => weatherLines.push(`<div>Round ${escapeHtml(row.round)}: wind ${fmt(row.wind_mph, 1)} mph, gust ${fmt(row.gust_mph, 1)} mph, delta ${fmt(row.delta_strokes, 2)} strokes</div>`));
+      document.getElementById("weather").innerHTML = weatherLines.join("") || "<span class='muted'>No weather snapshot.</span>";
+      const weights = SNAPSHOT.course_fit?.weights || {};
+      const weightLines = Object.entries(weights).map(([key, value]) => `<div><strong>${escapeHtml(key)}:</strong> ${fmt(value, 4)}</div>`);
+      document.getElementById("courseFit").innerHTML = weightLines.join("") || "<span class='muted'>No course-fit weights.</span>";
+      document.getElementById("files").innerHTML = Object.entries(SNAPSHOT.local_files || {}).map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("") || "<span class='muted'>No local file links.</span>";
+      if (SNAPSHOT.reconstruction) {
+        const note = document.createElement("pre");
+        note.textContent = JSON.stringify(SNAPSHOT.reconstruction, null, 2);
+        const wrap = document.createElement("section");
+        wrap.className = "card";
+        wrap.innerHTML = "<h2>Reconstruction Provenance</h2>";
+        wrap.appendChild(note);
+        document.body.appendChild(wrap);
+      }
+    }
+    document.querySelectorAll("th[data-key]").forEach((th) => th.addEventListener("click", () => {
+      const key = th.dataset.key;
+      if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
+      renderTable();
+    }));
+    document.getElementById("filterBox").addEventListener("input", renderTable);
+    renderSummary();
+    renderDetails();
+    renderTable();
+  </script>
+</body>
+</html>
