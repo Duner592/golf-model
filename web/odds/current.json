@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-06T02:15:46Z",
+  "generated_utc": "2026-10-06T09:00:29Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Baycurrent Classic",
       "market": "win",
-      "last_updated": "2026-10-05 23:32:42 UTC",
+      "last_updated": "2026-10-06 02:40:25 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -594,7 +594,7 @@
       "tour": "pga",
       "event_name": "Baycurrent Classic",
       "market": "top_10",
-      "last_updated": "2026-10-05 23:32:42 UTC",
+      "last_updated": "2026-10-06 02:40:25 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1110,7 +1110,7 @@
       "tour": "euro",
       "event_name": "Open de España presented by Madrid",
       "market": "win",
-      "last_updated": "2026-10-05 23:33:22 UTC",
+      "last_updated": "2026-10-06 02:58:11 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1241,7 +1241,7 @@
           "dg_id": 6093,
           "prices": {
             "bet365": "30/1",
-            "skybet": "35/1"
+            "skybet": "40/1"
           }
         },
         {
@@ -1321,7 +1321,7 @@
           "dg_id": 18770,
           "prices": {
             "bet365": "55/1",
-            "skybet": "55/1"
+            "skybet": "60/1"
           }
         },
         {
@@ -1513,7 +1513,7 @@
           "dg_id": 15680,
           "prices": {
             "bet365": "110/1",
-            "skybet": "100/1"
+            "skybet": "90/1"
           }
         },
         {
@@ -1801,7 +1801,14 @@
           "dg_id": 14975,
           "prices": {
             "bet365": "300/1",
-            "skybet": "200/1"
+            "skybet": "225/1"
+          }
+        },
+        {
+          "player_name": "Pepperell, Eddie",
+          "dg_id": 15113,
+          "prices": {
+            "bet365": "250/1"
           }
         },
         {
@@ -1857,7 +1864,7 @@
           "dg_id": 27258,
           "prices": {
             "bet365": "450/1",
-            "skybet": "275/1"
+            "skybet": "325/1"
           }
         },
         {
@@ -1993,7 +2000,7 @@
           "dg_id": 25890,
           "prices": {
             "bet365": "500/1",
-            "skybet": "400/1"
+            "skybet": "325/1"
           }
         },
         {
@@ -2136,7 +2143,7 @@
       "tour": "euro",
       "event_name": "Open de España presented by Madrid",
       "market": "top_10",
-      "last_updated": "2026-10-05 23:33:22 UTC",
+      "last_updated": "2026-10-06 02:58:11 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2279,7 +2286,7 @@
           "player_name": "Lindell, Oliver",
           "dg_id": 20085,
           "prices": {
-            "skybet": "5/1"
+            "skybet": "5.5/1"
           }
         },
         {
@@ -2321,7 +2328,7 @@
           "player_name": "Rozner, Antoine",
           "dg_id": 18770,
           "prices": {
-            "skybet": "6/1"
+            "skybet": "6.5/1"
           }
         },
         {
@@ -2461,7 +2468,7 @@
           "player_name": "Rosenmueller, Thomas",
           "dg_id": 22736,
           "prices": {
-            "skybet": "10/1"
+            "skybet": "11/1"
           }
         },
         {
@@ -2524,7 +2531,7 @@
           "player_name": "Ravetto, David",
           "dg_id": 23416,
           "prices": {
-            "skybet": "11/1"
+            "skybet": "12/1"
           }
         },
         {
@@ -2741,7 +2748,7 @@
           "player_name": "Otaegui, Adrian",
           "dg_id": 14975,
           "prices": {
-            "skybet": "20/1"
+            "skybet": "22/1"
           }
         },
         {
@@ -2818,7 +2825,7 @@
           "player_name": "Scrivener, Jason",
           "dg_id": 12734,
           "prices": {
-            "skybet": "35/1"
+            "skybet": "30/1"
           }
         },
         {
