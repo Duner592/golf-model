@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-07T18:33:14Z",
+  "generated_utc": "2026-10-07T23:16:29Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Baycurrent Classic",
       "market": "win",
-      "last_updated": "2026-10-07 17:52:55 UTC",
+      "last_updated": "2026-10-07 21:11:19 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -16,7 +16,7 @@
           "player_name": "Schauffele, Xander",
           "dg_id": 19895,
           "prices": {
-            "bet365": "9/1",
+            "bet365": "8.5/1",
             "skybet": "9/1"
           }
         },
@@ -40,7 +40,7 @@
           "player_name": "Thomas, Justin",
           "dg_id": 14139,
           "prices": {
-            "bet365": "18/1",
+            "bet365": "20/1",
             "skybet": "22/1"
           }
         },
@@ -64,7 +64,7 @@
           "player_name": "Ghim, Doug",
           "dg_id": 24550,
           "prices": {
-            "bet365": "22/1",
+            "bet365": "25/1",
             "skybet": "22/1"
           }
         },
@@ -72,7 +72,7 @@
           "player_name": "Lee, Min Woo",
           "dg_id": 16841,
           "prices": {
-            "bet365": "20/1",
+            "bet365": "22/1",
             "skybet": "22/1"
           }
         },
@@ -216,7 +216,7 @@
           "player_name": "Fisk, Steven",
           "dg_id": 26657,
           "prices": {
-            "bet365": "60/1",
+            "bet365": "55/1",
             "skybet": "55/1"
           }
         },
@@ -594,7 +594,7 @@
       "tour": "pga",
       "event_name": "Baycurrent Classic",
       "market": "top_10",
-      "last_updated": "2026-10-07 17:52:55 UTC",
+      "last_updated": "2026-10-07 21:11:19 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1110,7 +1110,7 @@
       "tour": "euro",
       "event_name": "Open de España presented by Madrid",
       "market": "win",
-      "last_updated": "2026-10-07 17:01:44 UTC",
+      "last_updated": "2026-10-07 20:45:12 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1289,7 +1289,7 @@
           "dg_id": 23602,
           "prices": {
             "bet365": "40/1",
-            "skybet": "40/1"
+            "skybet": "45/1"
           }
         },
         {
@@ -1393,7 +1393,7 @@
           "dg_id": 17357,
           "prices": {
             "bet365": "80/1",
-            "skybet": "80/1"
+            "skybet": "70/1"
           }
         },
         {
@@ -1680,8 +1680,8 @@
           "player_name": "LaCroix, Frederic",
           "dg_id": 23733,
           "prices": {
-            "bet365": "200/1",
-            "skybet": "175/1"
+            "bet365": "100/1",
+            "skybet": "125/1"
           }
         },
         {
@@ -1712,7 +1712,7 @@
           "player_name": "Crocker, Sean",
           "dg_id": 23610,
           "prices": {
-            "bet365": "275/1",
+            "bet365": "250/1",
             "skybet": "225/1"
           }
         },
@@ -1944,7 +1944,7 @@
           "dg_id": 12920,
           "prices": {
             "bet365": "450/1",
-            "skybet": "400/1"
+            "skybet": "325/1"
           }
         },
         {
@@ -2151,7 +2151,7 @@
       "tour": "euro",
       "event_name": "Open de España presented by Madrid",
       "market": "top_10",
-      "last_updated": "2026-10-07 17:01:44 UTC",
+      "last_updated": "2026-10-07 20:45:12 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2217,7 +2217,7 @@
           "player_name": "McKibbin, Tom",
           "dg_id": 22322,
           "prices": {
-            "skybet": "3.5/1"
+            "skybet": "4/1"
           }
         },
         {
@@ -2231,7 +2231,7 @@
           "player_name": "Hatton, Tyrrell",
           "dg_id": 14796,
           "prices": {
-            "skybet": "3.5/1"
+            "skybet": "4/1"
           }
         },
         {
@@ -2399,7 +2399,7 @@
           "player_name": "Migliozzi, Guido",
           "dg_id": 17357,
           "prices": {
-            "skybet": "9/1"
+            "skybet": "8/1"
           }
         },
         {
@@ -2651,7 +2651,7 @@
           "player_name": "LaCroix, Frederic",
           "dg_id": 23733,
           "prices": {
-            "skybet": "16/1"
+            "skybet": "14/1"
           }
         },
         {
@@ -2826,7 +2826,7 @@
           "player_name": "Hoshino, Rikuya",
           "dg_id": 19190,
           "prices": {
-            "skybet": "22/1"
+            "skybet": "25/1"
           }
         },
         {
@@ -3029,7 +3029,7 @@
           "player_name": "Salama, Juan",
           "dg_id": 20699,
           "prices": {
-            "skybet": "66/1"
+            "skybet": "75/1"
           }
         },
         {
