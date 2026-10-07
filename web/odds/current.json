@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-07T11:59:56Z",
+  "generated_utc": "2026-10-07T18:33:14Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Baycurrent Classic",
       "market": "win",
-      "last_updated": "2026-10-07 11:31:13 UTC",
+      "last_updated": "2026-10-07 17:52:55 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -25,7 +25,7 @@
           "dg_id": 23604,
           "prices": {
             "bet365": "14/1",
-            "skybet": "14/1"
+            "skybet": "12/1"
           }
         },
         {
@@ -56,7 +56,7 @@
           "player_name": "Matsuyama, Hideki",
           "dg_id": 13562,
           "prices": {
-            "bet365": "16/1",
+            "bet365": "18/1",
             "skybet": "16/1"
           }
         },
@@ -113,7 +113,7 @@
           "dg_id": 26649,
           "prices": {
             "bet365": "25/1",
-            "skybet": "25/1"
+            "skybet": "28/1"
           }
         },
         {
@@ -128,7 +128,7 @@
           "player_name": "Kitayama, Kurt",
           "dg_id": 21891,
           "prices": {
-            "bet365": "30/1",
+            "bet365": "33/1",
             "skybet": "28/1"
           }
         },
@@ -144,7 +144,7 @@
           "player_name": "Keefer, Johnny",
           "dg_id": 32457,
           "prices": {
-            "bet365": "40/1",
+            "bet365": "45/1",
             "skybet": "35/1"
           }
         },
@@ -192,7 +192,7 @@
           "player_name": "Nakajima, Keita",
           "dg_id": 21074,
           "prices": {
-            "bet365": "40/1",
+            "bet365": "45/1",
             "skybet": "40/1"
           }
         },
@@ -201,7 +201,7 @@
           "dg_id": 22760,
           "prices": {
             "bet365": "55/1",
-            "skybet": "45/1"
+            "skybet": "50/1"
           }
         },
         {
@@ -281,7 +281,7 @@
           "dg_id": 27364,
           "prices": {
             "bet365": "60/1",
-            "skybet": "60/1"
+            "skybet": "66/1"
           }
         },
         {
@@ -289,7 +289,7 @@
           "dg_id": 8825,
           "prices": {
             "bet365": "66/1",
-            "skybet": "60/1"
+            "skybet": "66/1"
           }
         },
         {
@@ -305,7 +305,7 @@
           "dg_id": 18424,
           "prices": {
             "bet365": "80/1",
-            "skybet": "70/1"
+            "skybet": "80/1"
           }
         },
         {
@@ -361,7 +361,7 @@
           "dg_id": 16395,
           "prices": {
             "bet365": "55/1",
-            "skybet": "50/1"
+            "skybet": "55/1"
           }
         },
         {
@@ -377,7 +377,7 @@
           "dg_id": 11276,
           "prices": {
             "bet365": "90/1",
-            "skybet": "80/1"
+            "skybet": "90/1"
           }
         },
         {
@@ -433,7 +433,7 @@
           "dg_id": 27900,
           "prices": {
             "bet365": "125/1",
-            "skybet": "125/1"
+            "skybet": "100/1"
           }
         },
         {
@@ -448,7 +448,7 @@
           "player_name": "Phillips, Chandler",
           "dg_id": 27164,
           "prices": {
-            "bet365": "175/1",
+            "bet365": "150/1",
             "skybet": "125/1"
           }
         },
@@ -488,7 +488,7 @@
           "player_name": "Kozuma, Jinichiro",
           "dg_id": 14209,
           "prices": {
-            "bet365": "200/1",
+            "bet365": "175/1",
             "skybet": "150/1"
           }
         },
@@ -496,7 +496,7 @@
           "player_name": "Iwata, Hiroshi",
           "dg_id": 9099,
           "prices": {
-            "bet365": "450/1",
+            "bet365": "250/1",
             "skybet": "275/1"
           }
         },
@@ -505,7 +505,7 @@
           "dg_id": 14704,
           "prices": {
             "bet365": "275/1",
-            "skybet": "200/1"
+            "skybet": "225/1"
           }
         },
         {
@@ -520,8 +520,8 @@
           "player_name": "Hosono, Yusaku",
           "dg_id": 25797,
           "prices": {
-            "bet365": "275/1",
-            "skybet": "225/1"
+            "bet365": "200/1",
+            "skybet": "175/1"
           }
         },
         {
@@ -529,7 +529,7 @@
           "dg_id": 15575,
           "prices": {
             "bet365": "275/1",
-            "skybet": "225/1"
+            "skybet": "200/1"
           }
         },
         {
@@ -544,15 +544,15 @@
           "player_name": "Iwasaki, Aguri",
           "dg_id": 28203,
           "prices": {
-            "bet365": "600/1",
-            "skybet": "400/1"
+            "bet365": "250/1",
+            "skybet": "275/1"
           }
         },
         {
           "player_name": "Sunagawa, Kosuke",
           "dg_id": 19682,
           "prices": {
-            "bet365": "1000/1",
+            "bet365": "500/1",
             "skybet": "400/1"
           }
         },
@@ -577,7 +577,7 @@
           "dg_id": 25538,
           "prices": {
             "bet365": "1000/1",
-            "skybet": "550/1"
+            "skybet": "800/1"
           }
         },
         {
@@ -594,7 +594,7 @@
       "tour": "pga",
       "event_name": "Baycurrent Classic",
       "market": "top_10",
-      "last_updated": "2026-10-07 11:31:13 UTC",
+      "last_updated": "2026-10-07 17:52:55 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -618,7 +618,7 @@
           "player_name": "Morikawa, Collin",
           "dg_id": 22085,
           "prices": {
-            "skybet": "1.88/1"
+            "skybet": "1.75/1"
           }
         },
         {
@@ -779,7 +779,7 @@
           "player_name": "Fisk, Steven",
           "dg_id": 26657,
           "prices": {
-            "skybet": "5.5/1"
+            "skybet": "6/1"
           }
         },
         {
@@ -835,7 +835,7 @@
           "player_name": "Thompson, Davis",
           "dg_id": 27364,
           "prices": {
-            "skybet": "6/1"
+            "skybet": "6.5/1"
           }
         },
         {
@@ -947,7 +947,7 @@
           "player_name": "Taylor, Nick",
           "dg_id": 13126,
           "prices": {
-            "skybet": "7.5/1"
+            "skybet": "8/1"
           }
         },
         {
@@ -968,7 +968,7 @@
           "player_name": "Potgieter, Aldrich",
           "dg_id": 27900,
           "prices": {
-            "skybet": "11/1"
+            "skybet": "10/1"
           }
         },
         {
@@ -982,7 +982,7 @@
           "player_name": "Phillips, Chandler",
           "dg_id": 27164,
           "prices": {
-            "skybet": "12/1"
+            "skybet": "11/1"
           }
         },
         {
@@ -1017,7 +1017,7 @@
           "player_name": "Kozuma, Jinichiro",
           "dg_id": 14209,
           "prices": {
-            "skybet": "14/1"
+            "skybet": "12/1"
           }
         },
         {
@@ -1045,7 +1045,7 @@
           "player_name": "Hosono, Yusaku",
           "dg_id": 25797,
           "prices": {
-            "skybet": "18/1"
+            "skybet": "16/1"
           }
         },
         {
@@ -1066,7 +1066,7 @@
           "player_name": "Iwasaki, Aguri",
           "dg_id": 28203,
           "prices": {
-            "skybet": "35/1"
+            "skybet": "28/1"
           }
         },
         {
@@ -1110,7 +1110,7 @@
       "tour": "euro",
       "event_name": "Open de España presented by Madrid",
       "market": "win",
-      "last_updated": "2026-10-07 11:31:46 UTC",
+      "last_updated": "2026-10-07 17:01:44 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1128,7 +1128,7 @@
           "player_name": "Lowry, Shane",
           "dg_id": 13900,
           "prices": {
-            "bet365": "16/1",
+            "bet365": "18/1",
             "skybet": "16/1"
           }
         },
@@ -1137,7 +1137,7 @@
           "dg_id": 26745,
           "prices": {
             "bet365": "20/1",
-            "skybet": "16/1"
+            "skybet": "20/1"
           }
         },
         {
@@ -1176,7 +1176,7 @@
           "player_name": "Ayora, Angel",
           "dg_id": 30445,
           "prices": {
-            "bet365": "22/1",
+            "bet365": "25/1",
             "skybet": "28/1"
           }
         },
@@ -1192,7 +1192,7 @@
           "player_name": "Noren, Alex",
           "dg_id": 10419,
           "prices": {
-            "bet365": "28/1",
+            "bet365": "30/1",
             "skybet": "28/1"
           }
         },
@@ -1216,7 +1216,7 @@
           "player_name": "Ballester, Jose Luis",
           "dg_id": 28473,
           "prices": {
-            "bet365": "35/1",
+            "bet365": "40/1",
             "skybet": "35/1"
           }
         },
@@ -1248,7 +1248,7 @@
           "player_name": "Rose, Justin",
           "dg_id": 6093,
           "prices": {
-            "bet365": "33/1",
+            "bet365": "35/1",
             "skybet": "35/1"
           }
         },
@@ -1824,7 +1824,7 @@
           "dg_id": 27149,
           "prices": {
             "bet365": "275/1",
-            "skybet": "225/1"
+            "skybet": "200/1"
           }
         },
         {
@@ -2151,7 +2151,7 @@
       "tour": "euro",
       "event_name": "Open de España presented by Madrid",
       "market": "top_10",
-      "last_updated": "2026-10-07 11:31:46 UTC",
+      "last_updated": "2026-10-07 17:01:44 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2196,7 +2196,7 @@
           "player_name": "Hillier, Daniel",
           "dg_id": 21362,
           "prices": {
-            "skybet": "4/1"
+            "skybet": "3.5/1"
           }
         },
         {
@@ -2273,7 +2273,7 @@
           "player_name": "Rose, Justin",
           "dg_id": 6093,
           "prices": {
-            "skybet": "4/1"
+            "skybet": "4.5/1"
           }
         },
         {
@@ -2595,7 +2595,7 @@
           "player_name": "Steinlechner, Maximilian",
           "dg_id": 21677,
           "prices": {
-            "skybet": "14/1"
+            "skybet": "12/1"
           }
         },
         {
@@ -2777,7 +2777,7 @@
           "player_name": "Rodrigues, Daniel",
           "dg_id": 27149,
           "prices": {
-            "skybet": "25/1"
+            "skybet": "22/1"
           }
         },
         {
@@ -2805,7 +2805,7 @@
           "player_name": "Von Dellingshausen, Nicolai",
           "dg_id": 22231,
           "prices": {
-            "skybet": "28/1"
+            "skybet": "30/1"
           }
         },
         {
@@ -2826,7 +2826,7 @@
           "player_name": "Hoshino, Rikuya",
           "dg_id": 19190,
           "prices": {
-            "skybet": "25/1"
+            "skybet": "22/1"
           }
         },
         {
