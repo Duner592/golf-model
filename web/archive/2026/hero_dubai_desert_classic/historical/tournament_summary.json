@@ -1,0 +1,28 @@
+{
+  "event_name": "Hero Dubai Desert Classic",
+  "event_id": "2026106",
+  "course": "Emirates GC",
+  "total_yardage": null,
+  "course_location": "Dubai, UAE",
+  "start_date": "22-Jan-2026",
+  "field_size": 126,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Hatton, Tyrrell",
+      "score": -11
+    },
+    {
+      "year": 2024,
+      "winner": "McIlroy, Rory",
+      "score": -10
+    },
+    {
+      "year": 2023,
+      "winner": "McIlroy, Rory",
+      "score": -15
+    }
+  ]
+}

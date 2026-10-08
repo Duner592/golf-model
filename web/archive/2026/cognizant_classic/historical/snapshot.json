@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "10",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-02-26",
+  "commit": "b8d8161009ecc1bd289644978177189981bad7b6",
+  "committed_utc": "2026-02-25T12:35:50Z",
+  "source_path": "web/archive/2026/cognizant_classic/leaderboard.json",
+  "leaderboard_sha256": "69af307080131b6116eebc5947a90e6b2d5d966ef03db29fac1fada4843c003d",
+  "summary_sha256": "1e85ec9ffdb2d33420e95f221522976e14c850dbd78f2834c755d830e37d0e31",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "28e40c82b10c0a28de1a51b407bb78fece0aacd00316f1c156579938917e9d36",
+  "player_ids_available": true
+}

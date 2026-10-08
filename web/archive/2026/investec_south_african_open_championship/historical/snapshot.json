@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026110",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-02-26",
+  "commit": "8a85abd43ce874577c1c7932a7411af4c75524c8",
+  "committed_utc": "2026-02-24T12:31:04Z",
+  "source_path": "web/archive/2026/investec_south_african_open_championship/leaderboard.json",
+  "leaderboard_sha256": "0eb36018fd8a7c76667ad7e4297150339e9baa443e8b91bfad712bb545652755",
+  "summary_sha256": "27df47c6bfb81e657aed5829455325a9bcd980e261149650a45ae4395b3099f0",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "829976d8f188629549227ccd66f5469e6fbce1f811ff1d171636f7b40a8038d7",
+  "player_ids_available": true
+}

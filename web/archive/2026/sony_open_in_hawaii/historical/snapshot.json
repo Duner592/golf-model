@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "6",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-01-15",
+  "commit": "d2124548611195f33cedc2788bd8680ae7ef963a",
+  "committed_utc": "2026-01-14T21:32:59Z",
+  "source_path": "web/archive/2026/sony_open_in_hawaii/leaderboard.json",
+  "leaderboard_sha256": "5c18acef411a459819b8fc003b73e9c43262e2303d9ff99251a60534e7b2b2bd",
+  "summary_sha256": "2bc9d6dd35bf235ff74ee748e9e9cf93e9156e2cc52d5e631f572b807388e41a",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "72ea0a1c4f1059a95b227c7856cb4a3748f8e71dbcead714ab72bb9fff393ea4",
+  "player_ids_available": true
+}

@@ -1,0 +1,585 @@
+{
+  "event_id": "2026145",
+  "tour": "euro",
+  "year": "2026",
+  "source": "git:148604941bf74c2fc89a7eb553e2430b80d1ccf8:web/euro/field_teetimes.csv",
+  "source_sha256": "c3f17167b52a874006549f9fd3b56af6e711e8b9fb9539b38e245f128a37b3db",
+  "players": [
+    {
+      "player_name": "Adam, Cameron",
+      "player_id": "34024"
+    },
+    {
+      "player_name": "Al Kaabi, Saleh",
+      "player_id": "17056"
+    },
+    {
+      "player_name": "Al Shahrani, Abdulrahman Abdulla",
+      "player_id": "15960"
+    },
+    {
+      "player_name": "Aphibarnrat, Kiradech",
+      "player_id": "12321"
+    },
+    {
+      "player_name": "Armitage, Marcus",
+      "player_id": "17813"
+    },
+    {
+      "player_name": "Arnaus, Adri",
+      "player_id": "23236"
+    },
+    {
+      "player_name": "Ayora, Angel",
+      "player_id": "30445"
+    },
+    {
+      "player_name": "Bairstow, Sam",
+      "player_id": "28615"
+    },
+    {
+      "player_name": "Baldwin, Matthew",
+      "player_id": "13344"
+    },
+    {
+      "player_name": "Bergstrom, Albin",
+      "player_id": "23620"
+    },
+    {
+      "player_name": "Berry, Joshua",
+      "player_id": "31520"
+    },
+    {
+      "player_name": "Biondi, Fred",
+      "player_id": "25614"
+    },
+    {
+      "player_name": "Blomme, Adam",
+      "player_id": "23784"
+    },
+    {
+      "player_name": "Bradbury, Dan",
+      "player_id": "29971"
+    },
+    {
+      "player_name": "Broomhead, Jonothan",
+      "player_id": "30210"
+    },
+    {
+      "player_name": "Bryant, Davis",
+      "player_id": "32550"
+    },
+    {
+      "player_name": "Cabrera Bello, Rafa",
+      "player_id": "7457"
+    },
+    {
+      "player_name": "Campillo, Jorge",
+      "player_id": "14016"
+    },
+    {
+      "player_name": "Cantero Gutierrez, Ivan",
+      "player_id": "19635"
+    },
+    {
+      "player_name": "Celli, Filippo",
+      "player_id": "23549"
+    },
+    {
+      "player_name": "Chacarra, Eugenio",
+      "player_id": "26745"
+    },
+    {
+      "player_name": "Charmasson, Clement",
+      "player_id": "22220"
+    },
+    {
+      "player_name": "Clements, Todd",
+      "player_id": "22608"
+    },
+    {
+      "player_name": "Cockerill, Aaron",
+      "player_id": "15596"
+    },
+    {
+      "player_name": "Coussaud, Ugo",
+      "player_id": "20727"
+    },
+    {
+      "player_name": "Couvra, Martin",
+      "player_id": "27811"
+    },
+    {
+      "player_name": "Crocker, Sean",
+      "player_id": "23610"
+    },
+    {
+      "player_name": "Da Costa Rodrigues, Daniel",
+      "player_id": "27149"
+    },
+    {
+      "player_name": "Dantorp, Jens",
+      "player_id": "14018"
+    },
+    {
+      "player_name": "De Leo, Gregorio",
+      "player_id": "26506"
+    },
+    {
+      "player_name": "Dean, Joe",
+      "player_id": "16497"
+    },
+    {
+      "player_name": "Debove, Quentin",
+      "player_id": "25325"
+    },
+    {
+      "player_name": "Del Rey, Alejandro",
+      "player_id": "22259"
+    },
+    {
+      "player_name": "Ding, Wenyi",
+      "player_id": "26193"
+    },
+    {
+      "player_name": "Du Plessis, Hennie",
+      "player_id": "19421"
+    },
+    {
+      "player_name": "El Hali, Reda",
+      "player_id": "33870"
+    },
+    {
+      "player_name": "Elvira Mijares, Ignacio",
+      "player_id": "12988"
+    },
+    {
+      "player_name": "Elvira, Manuel",
+      "player_id": "26008"
+    },
+    {
+      "player_name": "Ferguson, Ewen",
+      "player_id": "21646"
+    },
+    {
+      "player_name": "Fichardt, Darren",
+      "player_id": "5754"
+    },
+    {
+      "player_name": "Fisher, Oliver",
+      "player_id": "10863"
+    },
+    {
+      "player_name": "Fisher, Ross",
+      "player_id": "9396"
+    },
+    {
+      "player_name": "Fitzpatrick, Alex",
+      "player_id": "25362"
+    },
+    {
+      "player_name": "Follet-Smith, Benjamin",
+      "player_id": "15211"
+    },
+    {
+      "player_name": "Forrest, Grant",
+      "player_id": "16475"
+    },
+    {
+      "player_name": "Frittelli, Dylan",
+      "player_id": "11955"
+    },
+    {
+      "player_name": "Gallegos, Andres",
+      "player_id": "19296"
+    },
+    {
+      "player_name": "Garcia Rodriguez, Sebastian",
+      "player_id": "12258"
+    },
+    {
+      "player_name": "Girrbach, Joel",
+      "player_id": "15592"
+    },
+    {
+      "player_name": "Gouveia, Ricardo",
+      "player_id": "18722"
+    },
+    {
+      "player_name": "Guerrier, Julien",
+      "player_id": "10201"
+    },
+    {
+      "player_name": "Guillamoundeguy, Oihan",
+      "player_id": "28239"
+    },
+    {
+      "player_name": "Gumberg, Jordan",
+      "player_id": "23892"
+    },
+    {
+      "player_name": "Halvorsen, Andreas",
+      "player_id": "17747"
+    },
+    {
+      "player_name": "Harding, Justin",
+      "player_id": "10886"
+    },
+    {
+      "player_name": "Harrington, Padraig",
+      "player_id": "5716"
+    },
+    {
+      "player_name": "Hidalgo Portillo, Angel",
+      "player_id": "24127"
+    },
+    {
+      "player_name": "Hill, Calum",
+      "player_id": "25131"
+    },
+    {
+      "player_name": "Hillier, Daniel",
+      "player_id": "21362"
+    },
+    {
+      "player_name": "Hollick, Michael",
+      "player_id": "15993"
+    },
+    {
+      "player_name": "Hoshino, Rikuya",
+      "player_id": "19190"
+    },
+    {
+      "player_name": "Ikstrums, Andrew Charles",
+      "player_id": "20109108"
+    },
+    {
+      "player_name": "Jamieson, Scott",
+      "player_id": "11397"
+    },
+    {
+      "player_name": "Jarvis, Casey",
+      "player_id": "26947"
+    },
+    {
+      "player_name": "Johnston, Ryggs",
+      "player_id": "32449"
+    },
+    {
+      "player_name": "Jonsson, Tobias",
+      "player_id": "28686"
+    },
+    {
+      "player_name": "Jordan, Matthew",
+      "player_id": "25601"
+    },
+    {
+      "player_name": "Kaewkanjana, Sadom",
+      "player_id": "19844"
+    },
+    {
+      "player_name": "Kaneko, Kota",
+      "player_id": "28268"
+    },
+    {
+      "player_name": "Kimsey, Nathan",
+      "player_id": "18027"
+    },
+    {
+      "player_name": "Kinhult, Marcus",
+      "player_id": "18514"
+    },
+    {
+      "player_name": "Ko, Jeong Weon",
+      "player_id": "26213"
+    },
+    {
+      "player_name": "Kobori, Kazuma",
+      "player_id": "24369"
+    },
+    {
+      "player_name": "Kruyswijk, Jacques",
+      "player_id": "16896"
+    },
+    {
+      "player_name": "LaCroix, Frederic",
+      "player_id": "23733"
+    },
+    {
+      "player_name": "Lagergren, Joakim",
+      "player_id": "14780"
+    },
+    {
+      "player_name": "Langasque, Romain",
+      "player_id": "16652"
+    },
+    {
+      "player_name": "Laporta, Francesco",
+      "player_id": "14987"
+    },
+    {
+      "player_name": "Larrazabal, Pablo",
+      "player_id": "9133"
+    },
+    {
+      "player_name": "Law, David",
+      "player_id": "14784"
+    },
+    {
+      "player_name": "Lee, Junghwan",
+      "player_id": "13498"
+    },
+    {
+      "player_name": "Lemke, Niklas",
+      "player_id": "10418"
+    },
+    {
+      "player_name": "Lindberg, Mikael",
+      "player_id": "20084"
+    },
+    {
+      "player_name": "Lindell, Oliver",
+      "player_id": "20085"
+    },
+    {
+      "player_name": "List, Luke",
+      "player_id": "7960"
+    },
+    {
+      "player_name": "Logan, Hunter",
+      "player_id": "31866"
+    },
+    {
+      "player_name": "Lombard, Zander",
+      "player_id": "16897"
+    },
+    {
+      "player_name": "Mazzoli, Stefano",
+      "player_id": "20844"
+    },
+    {
+      "player_name": "McGlinchey, Dominic",
+      "player_id": "31886"
+    },
+    {
+      "player_name": "McKinney, Connor",
+      "player_id": "24172"
+    },
+    {
+      "player_name": "Micheluzzi, David",
+      "player_id": "19224"
+    },
+    {
+      "player_name": "Migliozzi, Guido",
+      "player_id": "17357"
+    },
+    {
+      "player_name": "Morrison, James",
+      "player_id": "11061"
+    },
+    {
+      "player_name": "Mory, Felix",
+      "player_id": "25089"
+    },
+    {
+      "player_name": "Naidoo, Dylan",
+      "player_id": "19429"
+    },
+    {
+      "player_name": "Norgaard, Niklas",
+      "player_id": "15676"
+    },
+    {
+      "player_name": "Ok, Taehoon",
+      "player_id": "21072"
+    },
+    {
+      "player_name": "Olesen, Jacob Skov",
+      "player_id": "25611"
+    },
+    {
+      "player_name": "Otaegui, Adrian",
+      "player_id": "14975"
+    },
+    {
+      "player_name": "Palmer, Ryan",
+      "player_id": "7820"
+    },
+    {
+      "player_name": "Paratore, Renato",
+      "player_id": "16549"
+    },
+    {
+      "player_name": "Pavan, Andrea",
+      "player_id": "12177"
+    },
+    {
+      "player_name": "Peake, Ryan",
+      "player_id": "15169"
+    },
+    {
+      "player_name": "Pepperell, Eddie",
+      "player_id": "15113"
+    },
+    {
+      "player_name": "Quayle, Anthony",
+      "player_id": "18900"
+    },
+    {
+      "player_name": "Ramsay, Richie",
+      "player_id": "11396"
+    },
+    {
+      "player_name": "Ravetto, David",
+      "player_id": "23416"
+    },
+    {
+      "player_name": "Reed, Patrick",
+      "player_id": "14838"
+    },
+    {
+      "player_name": "Repetto Taylor, Rocco Paolo",
+      "player_id": "31235"
+    },
+    {
+      "player_name": "Ritchie, JC",
+      "player_id": "18174"
+    },
+    {
+      "player_name": "Robinson Thompson, Brandon",
+      "player_id": "24497"
+    },
+    {
+      "player_name": "Rozner, Antoine",
+      "player_id": "18770"
+    },
+    {
+      "player_name": "Sandhu, Yuvraj Singh",
+      "player_id": "23060"
+    },
+    {
+      "player_name": "Schaper, Jayden",
+      "player_id": "26991"
+    },
+    {
+      "player_name": "Schneider, Marcel",
+      "player_id": "12522"
+    },
+    {
+      "player_name": "Scrivener, Jason",
+      "player_id": "12734"
+    },
+    {
+      "player_name": "Senior, Jack",
+      "player_id": "15115"
+    },
+    {
+      "player_name": "Sharma, Shubhankar",
+      "player_id": "17081"
+    },
+    {
+      "player_name": "Soderberg, Sebastian",
+      "player_id": "18517"
+    },
+    {
+      "player_name": "Sokolov, Daniil",
+      "player_id": "31827"
+    },
+    {
+      "player_name": "Steinlechner, Maximilian",
+      "player_id": "21677"
+    },
+    {
+      "player_name": "Sterne, Richard",
+      "player_id": "7049"
+    },
+    {
+      "player_name": "Stone, Brandon",
+      "player_id": "15229"
+    },
+    {
+      "player_name": "Strydom, Ockie",
+      "player_id": "13731"
+    },
+    {
+      "player_name": "Sullivan, Andy",
+      "player_id": "15326"
+    },
+    {
+      "player_name": "Svensson, Jesper",
+      "player_id": "26850"
+    },
+    {
+      "player_name": "Syme, Connor",
+      "player_id": "22089"
+    },
+    {
+      "player_name": "Toorop, Mike",
+      "player_id": "25273"
+    },
+    {
+      "player_name": "Townsend, Hugo",
+      "player_id": "31165"
+    },
+    {
+      "player_name": "Vaillant, Tom",
+      "player_id": "28157"
+    },
+    {
+      "player_name": "Van Tonder, Daniel",
+      "player_id": "15193"
+    },
+    {
+      "player_name": "Veerman, Johannes",
+      "player_id": "20522"
+    },
+    {
+      "player_name": "Vidal, Quim",
+      "player_id": "29712"
+    },
+    {
+      "player_name": "Von Dellingshausen, Nicolai",
+      "player_id": "22231"
+    },
+    {
+      "player_name": "Walker, Euan",
+      "player_id": "27147"
+    },
+    {
+      "player_name": "Wallace, Matt",
+      "player_id": "20706"
+    },
+    {
+      "player_name": "Waring, Paul",
+      "player_id": "12426"
+    },
+    {
+      "player_name": "Wiesberger, Bernd",
+      "player_id": "9531"
+    },
+    {
+      "player_name": "Winther, Jeff",
+      "player_id": "15680"
+    },
+    {
+      "player_name": "Wood, Chris",
+      "player_id": "12451"
+    },
+    {
+      "player_name": "Wu, Ashun",
+      "player_id": "11763"
+    },
+    {
+      "player_name": "Young, Daniel",
+      "player_id": "19908"
+    },
+    {
+      "player_name": "Yule, Jack",
+      "player_id": "22496"
+    },
+    {
+      "player_name": "Zhou, Yanhan",
+      "player_id": "29119"
+    }
+  ]
+}

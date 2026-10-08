@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "3",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-02-05",
+  "commit": "36517f66094030470e492f447f4c3a1870c4cf04",
+  "committed_utc": "2026-02-04T15:50:31Z",
+  "source_path": "web/archive/2026/wm_phoenix_open/leaderboard.json",
+  "leaderboard_sha256": "f658b8225c95fdd54a450dc75f47fc2be30294667d3d65b5e94f462f9be4d281",
+  "summary_sha256": "f7707d1cb722a8aba61ad910646d1585723b7746d937a333133888f15a7ce0de",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "ba57dd5635fa9ccd0248296d0c025c33f83d1fd6846c1f7978bd4606364ffd88",
+  "player_ids_available": true
+}

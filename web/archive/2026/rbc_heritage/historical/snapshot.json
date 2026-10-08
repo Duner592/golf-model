@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "12",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-04-16",
+  "commit": "3c8b0c2e134397d1b2f16680370a31d250f1605e",
+  "committed_utc": "2026-04-13T14:01:21Z",
+  "source_path": "web/archive/2026/rbc_heritage/leaderboard.json",
+  "leaderboard_sha256": "d7f5d217a9353323538e469635485cf64525052c65aff68e833835e4dd9246fa",
+  "summary_sha256": "5da12b97e2f3c510b37a3d7ce4070e8abb0389edc677ec95bb0e4acac5cabfe1",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "c80236b87515b2c09e95a656cda7584f4a6ada7c7cb960f05d500481ea6143dc",
+  "player_ids_available": true
+}

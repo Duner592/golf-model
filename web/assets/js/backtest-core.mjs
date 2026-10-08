@@ -19,6 +19,27 @@ export function nameKeys(value) {
     return [...new Set([tokens.join(''), canonical.join(''), ...(tokens.length > 2 ? [tokens[0] + tokens.at(-1), canonical[0] + canonical.at(-1)] : [])])];
 }
 const playerName = row => row.player_name ?? row.player ?? row.Player ?? row.Name;
+const playerId = row => {
+    const value = String(row.player_id ?? row.dg_id ?? '').trim();
+    return /^\d+(?:\.0+)?$/.test(value) && Number(value) > 0 ? value.replace(/\.0+$/, '') : null;
+};
+export function attachPlayerIds(predictions, identity, event) {
+    if (!identity) return predictions;
+    if (['event_id','tour','year'].some(key => String(identity[key]) !== String(event[key]))) throw new Error('Player identity file belongs to another event');
+    const map = new Map();
+    for (const row of identity.players ?? []) {
+        const name = nameKeys(playerName(row))[0], id = playerId(row);
+        if (!name || !id) continue;
+        if (!map.has(name)) map.set(name, new Set());
+        map.get(name).add(id);
+    }
+    return predictions.map(row => {
+        if (playerId(row)) return row;
+        const ids = map.get(nameKeys(playerName(row))[0]);
+        if (ids?.size > 1) return {...row, identity_ambiguous:true};
+        return ids?.size === 1 ? {...row, player_id:[...ids][0]} : row;
+    });
+}
 export function outcome(row, metric) {
     const text = String(row.finish_text ?? '').toUpperCase().trim();
     const finish = number(row.finish_pos) ?? (/^T?\d+$/.test(text) ? Number(text.replace('T', '')) : null);
@@ -32,13 +53,21 @@ export function outcome(row, metric) {
     return ['CUT', 'MC', 'WD', 'DQ', 'W/D'].includes(text) ? 0 : null;
 }
 export function selectSnapshot(event, mode = 'preferred') {
+    if (mode === 'historical') return {...event, selected_snapshot:event.historical_snapshot ? 'historical' : 'missing-historical'};
     if (mode !== 'initial' && event.final_snapshot) return {...event, selected_snapshot: 'final'};
+    if (mode === 'preferred' && event.prediction_snapshot !== 'initial' && event.historical_snapshot) return {...event, selected_snapshot:'historical'};
     return {...event, selected_snapshot: mode === 'final' ? 'missing-final' : 'initial'};
 }
 export function eligibility(event, summary) {
     if (event.reconstruction || event.reconstructed || event.prediction_source === 'reconstructed') return 'Reconstructed predictions';
+    if (/presidents cup|ryder cup|match play|matchplay|zurich classic/i.test(event.event_name)) return 'Unsupported event format';
+    if (event.selected_snapshot === 'missing-historical') return 'No Git-recovered pre-event snapshot';
     if (event.selected_snapshot === 'missing-final') return 'No saved final pre-event snapshot';
-    if (event.selected_snapshot === 'final') {
+    if (event.selected_snapshot === 'historical') {
+        const history = event.historical_snapshot;
+        if (['event_id','tour','year','start_date'].some(key => String(history?.[key]) !== String(event[key])) || history?.snapshot_type !== 'historical') return 'Historical snapshot identity mismatch';
+        if (!/^[a-f0-9]{40}$/.test(history.commit) || !/^[a-f0-9]{64}$/.test(history.leaderboard_sha256) || !/^[a-f0-9]{64}$/.test(history.summary_sha256) || !(Date.parse(history.committed_utc) < Date.parse(`${event.start_date}T00:00:00Z`))) return 'Historical snapshot lacks pre-event Git evidence';
+    } else if (event.selected_snapshot === 'final') {
         const final = event.final_snapshot;
         const generated = Date.parse(final?.prediction_generated_utc), created = Date.parse(final?.snapshot_created_utc);
         const opening = Date.parse(final?.capture_window_open_utc), cutoff = Date.parse(final?.cutoff_utc);
@@ -72,17 +101,31 @@ export function scoreEvent(event, summary, predictions, results, metric) {
     for (const key of ['event_id', 'tour', 'year']) {
         if (results.event?.[key] !== undefined && String(results.event[key]) !== String(event[key])) return {...record, reason: 'Results event identity mismatch'};
     }
-    const indexed = new Map();
+    const indexed = new Map(), indexedIds = new Map();
+    for (const [i, row] of players.entries()) {
+        const id = playerId(row);
+        if (!id) continue;
+        if (indexedIds.has(id)) return {...record, reason:'Duplicate result player ID'};
+        indexedIds.set(id, i);
+    }
     players.forEach((row, i) => nameKeys(playerName(row)).forEach(key => {
         if (!indexed.has(key)) indexed.set(key, new Set());
         indexed.get(key).add(i);
     }));
     const used = new Set();
+    record.idMatches = 0;
     for (const pred of predictions) {
+        if (pred.identity_ambiguous) {record.unmatched++; continue;}
         let match;
+        const id = playerId(pred);
+        if (id) {
+            match = indexedIds.get(id);
+            if (match !== undefined) record.idMatches++;
+        } else {
         for (const key of nameKeys(playerName(pred))) {
             const candidates = indexed.get(key);
             if (candidates?.size === 1) { match = [...candidates][0]; break; }
+        }
         }
         if (match === undefined) { record.unmatched++; continue; }
         if (used.has(match)) return {...record, rows: [], reason: 'Duplicate player match'};

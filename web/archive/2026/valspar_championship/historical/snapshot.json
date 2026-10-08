@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "475",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-03-19",
+  "commit": "406f16605efe4a3529cd92eb7cc324c98e1eb100",
+  "committed_utc": "2026-03-16T08:59:39Z",
+  "source_path": "web/archive/2026/valspar_championship/leaderboard.json",
+  "leaderboard_sha256": "7102f86800b9fd87b45ac9816d9426f99ce4869dadc2c5206a0ca7fdda300ebe",
+  "summary_sha256": "3b20eff88382da9285bc2913f440b4f3b933c4ceadaf1eb44c3a0f2b2dbf78f9",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "87efadf89cb235a15d353e4b7235d3b0a32c90503265313168a479735d6741b6",
+  "player_ids_available": true
+}

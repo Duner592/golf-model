@@ -1,0 +1,33 @@
+{
+  "event_name": "Masters Tournament",
+  "event_id": "14",
+  "course": "Augusta National Golf Club",
+  "total_yardage": null,
+  "course_location": "Augusta, GA",
+  "start_date": "09-Apr-2026",
+  "field_size": 91,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "McIlroy, Rory",
+      "score": -7
+    },
+    {
+      "year": 2024,
+      "winner": "Scheffler, Scottie",
+      "score": -7
+    },
+    {
+      "year": 2023,
+      "winner": "Rahm, Jon",
+      "score": -8
+    },
+    {
+      "year": 2022,
+      "winner": "Scheffler, Scottie",
+      "score": -6
+    }
+  ]
+}

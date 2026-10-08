@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026117",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-05-07",
+  "commit": "6ad54dd91258f79431c1601a8b95c392e13aedfc",
+  "committed_utc": "2026-05-04T10:33:14Z",
+  "source_path": "web/archive/2026/estrella_damm_catalunya_championship/leaderboard.json",
+  "leaderboard_sha256": "7ea09d917be094e3da15df88642e4e5386ef9a2df067dfb554a7224601e717bc",
+  "summary_sha256": "f61518f13e63c987d84b3a014d6666a197f38d1162b089741d41942f7c8b8513",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "9eed86976fe51ff6f89beda855c3bd02d8b2fd447a17b89731420e6ee4e56aaf",
+  "player_ids_available": true
+}

@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "4",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-01-29",
+  "commit": "fbe41441aa498a3a85d74522dee341b2f2d2c7f8",
+  "committed_utc": "2026-01-27T11:04:06Z",
+  "source_path": "web/archive/2026/farmers_insurance_open/leaderboard.json",
+  "leaderboard_sha256": "c18d98318f97dccb7b110fec623f91481b19896aef5b34aa965f6de8152c48ab",
+  "summary_sha256": "ebbf8412e3a80304a8351356dc728cd143503ec0c12418de9e0579077964a326",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "71f0eb17d2a562993dd9a15a72858fd45b76e1560723673c8c829c7a6594aaae",
+  "player_ids_available": true
+}

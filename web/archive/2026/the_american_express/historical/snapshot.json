@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-01-22",
+  "commit": "ca6b2e93cd775894620132911282e9238b7e0604",
+  "committed_utc": "2026-01-21T10:53:45Z",
+  "source_path": "web/archive/2026/the_american_express/leaderboard.json",
+  "leaderboard_sha256": "7d69b671bbd2afaf702dc3b94584d70bee81636f9c181787d1a28c8bcd5b1275",
+  "summary_sha256": "d2a69ea027e81452644d9b2310f81d2f162b4ee7fc405fa8006e7c99275a856b",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "af294f1ed0542e7f59e7ea89fbc03296e86d3f530796895702b7bd6312ae1191",
+  "player_ids_available": true
+}

@@ -1443,6 +1443,9 @@ def archive_event_predictions(
                            and e.get("tour") == tour and str(e.get("year")) == str(year)), {})
     if previous_entry.get("final_snapshot"):
         event_entry["final_snapshot"] = previous_entry["final_snapshot"]
+    for key in ("historical_snapshot", "player_ids_available", "player_ids_sha256"):
+        if previous_entry.get(key):
+            event_entry[key] = previous_entry[key]
     # Remove existing entry for this event
     index_data = [
         e

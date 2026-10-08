@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "20",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-03-26",
+  "commit": "edcddcba3577838c38c063a805b783b5d3af9d53",
+  "committed_utc": "2026-03-24T09:10:06Z",
+  "source_path": "web/archive/2026/texas_children_s_houston_open/leaderboard.json",
+  "leaderboard_sha256": "182b6b9ac64386cccefdb37ab3a2dc3f66337be2d4b31dbe46be6ba060818250",
+  "summary_sha256": "2fbb7710282efbfe18ec5a4e5007a4c4cf8a96076fb9a0ebb05c396043a2426e",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "503f2769fca64548deb0aacb02c143ca95c867243704d07229a71f0c1fbe08f9",
+  "player_ids_available": true
+}

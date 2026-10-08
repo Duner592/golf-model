@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026106",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-01-22",
+  "commit": "ca6b2e93cd775894620132911282e9238b7e0604",
+  "committed_utc": "2026-01-21T10:53:45Z",
+  "source_path": "web/archive/2026/hero_dubai_desert_classic/leaderboard.json",
+  "leaderboard_sha256": "7c0fadc87a870850f5db018798aaa104d55e296ea124c21223516f21d3d7b732",
+  "summary_sha256": "106af4a9c9036e8e3c44d4c60708611a8ab03905db5a014a3b68530e754ab9dd",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "6e52e143dafbbfa3d539c05ffcd54f3ff57dad1c05d63fd129f41b49980449aa",
+  "player_ids_available": true
+}

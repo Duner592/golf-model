@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "14",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-04-09",
+  "commit": "998b3f05cc6d07b2e2f4fd4955872eb772237ef8",
+  "committed_utc": "2026-04-07T09:12:15Z",
+  "source_path": "web/archive/2026/masters_tournament/leaderboard.json",
+  "leaderboard_sha256": "7b35a6b200f4405af1fcc8c4562de3b3d7311840897831179ee7c53f8e242f76",
+  "summary_sha256": "0320475a223efd2d96484ce2694a5f1349e709d01615444fd17e7edc3fe44269",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "a70a0488fd9c60e508a89731bd093928a0f7cb66b396233d18d374ef8c42350b",
+  "player_ids_available": true
+}

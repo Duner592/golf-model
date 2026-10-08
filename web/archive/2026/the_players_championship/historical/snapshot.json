@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "11",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-03-12",
+  "commit": "7f9d345898f7d480a9e8a5a7e030d7fdc57a87ed",
+  "committed_utc": "2026-03-11T13:42:34Z",
+  "source_path": "web/archive/2026/the_players_championship/leaderboard.json",
+  "leaderboard_sha256": "8d4fe3ad8844c9bd45d2d5eac3e7d1c4b38d1cdbf65aa5bbf3ca73705c61c888",
+  "summary_sha256": "bbc10e783e57b6939634624b412d8c65cfb6cd3223d32f64421dc28178b46382",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "82b69773fe9f105c20d61990a6e9ecfd65c407c7a0adaf944a10f2a493cd1672",
+  "player_ids_available": true
+}

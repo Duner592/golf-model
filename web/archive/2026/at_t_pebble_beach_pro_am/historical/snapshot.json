@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "5",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-02-12",
+  "commit": "d9299662517302611b4c9d09e8c0f18bdab19d0f",
+  "committed_utc": "2026-02-11T09:06:08Z",
+  "source_path": "web/archive/2026/at_t_pebble_beach_pro_am/leaderboard.json",
+  "leaderboard_sha256": "9a75a9be806aec9991cd7fc34765c538256ae7fddf9a5498ed9dc3427bc403cd",
+  "summary_sha256": "92d92c60759f3455b50cd84c59f5cefb346e88dc4d9765f808a110b53d9888dc",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "3e090ad90ac6d0c906dbba809c729618536142899b0add8626d2deaaf08e9d86",
+  "player_ids_available": true
+}

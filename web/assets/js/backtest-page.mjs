@@ -1,4 +1,4 @@
-import {aggregate, eligibility, groupName, scoreEvent, selectSnapshot} from './backtest-core.mjs';
+import {aggregate, eligibility, groupName, scoreEvent, selectSnapshot, attachPlayerIds} from './backtest-core.mjs';
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const format = n => Number.isFinite(n) ? n.toFixed(4) : '—';
@@ -6,10 +6,16 @@ const percent = n => Number.isFinite(n) ? `${(n * 100).toFixed(1)}%` : '—';
 function table(headers, rows, caption) {
     return `<table><caption>${escape(caption)}</caption><thead><tr>${headers.map(h => `<th scope="col">${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${escape(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 }
-async function json(path) {
+async function json(path, expectedHash) {
     const response = await fetch(path, {cache: 'no-cache', signal: AbortSignal.timeout(15000)});
     if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
-    return response.json();
+    const body = await response.text();
+    if (expectedHash) {
+        const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(body));
+        const actual = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2,'0')).join('');
+        if (actual !== expectedHash) throw new Error(`Historical file hash mismatch: ${path}`);
+    }
+    return JSON.parse(body);
 }
 let loaded = [];
 function render() {
@@ -18,9 +24,11 @@ function render() {
     const records = selected.map(item => {
         const event = selectSnapshot(item.event, $('snapshot').value);
         const final = event.selected_snapshot === 'final';
-        const reason = eligibility(event, item.summary) || item.error || (final ? item.finalError : item.initialError);
-        const summary = final ? {...item.summary, field_size:item.finalSummary?.field_size ?? null} : item.summary;
-        return reason ? {...item, event, reason} : scoreEvent(event, summary, final ? item.finalPredictions : item.predictions, item.results, metric);
+        const history = event.selected_snapshot === 'historical';
+        const reason = eligibility(event, item.summary) || item.error || (final ? item.finalError : history ? item.historyError : item.initialError);
+        const snapshotSummary = final ? item.finalSummary : history ? item.historySummary : item.summary;
+        const summary = {...item.summary, field_size:snapshotSummary?.field_size ?? null};
+        return reason ? {...item, event, reason} : scoreEvent(event, summary, final ? item.finalPredictions : history ? item.historyPredictions : item.predictions, item.results, metric);
     });
     const included = records.filter(row => !row.reason), total = aggregate(records);
     $('status').textContent = `${included.length} of ${records.length} selected archive events included. ${records.length - included.length} excluded; see coverage below.`;
@@ -34,7 +42,7 @@ function render() {
     });
     $('groups').innerHTML = groupRows.length ? table(['Group', 'Events', 'Appearances', 'Brier', 'Baseline Brier', 'Difference', '95% difference interval', 'Log loss', 'Calibration gap', 'Evidence'], groupRows, 'Event-weighted scores; lower is better.') : '<p>No eligible events for these filters. Check the exclusions below.</p>';
     $('calibration').innerHTML = total ? table(['Probability band', 'Appearances', 'Mean predicted', 'Observed rate'], total.bins.filter(b => b.n).map(b => [b.label, b.n, percent(b.predicted), percent(b.observed)]), 'Event-weighted rates; counts are unweighted appearances.') : '<p>No calibration data available.</p>';
-    $('audit').innerHTML = table(['Event', 'Tour', 'Start', 'Snapshot', 'Prediction time (UTC)', 'Status / reason', 'Scored', 'Unmatched predictions', 'Unmatched results', 'Missing probability / outcome'], records.map(r => [r.event.event_name, r.event.tour, r.event.start_date, r.event.selected_snapshot === 'final' ? 'Final pre-event' : r.event.selected_snapshot === 'missing-final' ? 'Unavailable' : 'Initial', r.event.selected_snapshot === 'final' ? r.event.final_snapshot.prediction_generated_utc : r.event.initial_snapshot_created_utc ?? 'Unknown', r.reason ?? 'Included', r.reason ? '—' : r.rows.length, r.unmatched ?? '—', r.unmatchedResults ?? '—', r.missing ?? '—']), 'Excluded events do not contribute to any metric. Preferred mode uses the initial archive only when no final snapshot was saved.');
+    $('audit').innerHTML = table(['Event', 'Tour', 'Start', 'Snapshot', 'Saved / prediction time (UTC)', 'Status / reason', 'Scored', 'ID matches', 'Unmatched predictions', 'Unmatched results', 'Missing probability / outcome'], records.map(r => [r.event.event_name, r.event.tour, r.event.start_date, r.event.selected_snapshot === 'historical' ? 'Git-recovered pre-event' : r.event.selected_snapshot === 'final' ? 'Final pre-event' : r.event.selected_snapshot.startsWith('missing-') ? 'Unavailable' : 'Initial', r.event.selected_snapshot === 'historical' ? r.event.historical_snapshot.committed_utc : r.event.selected_snapshot === 'final' ? r.event.final_snapshot.prediction_generated_utc : r.event.initial_snapshot_created_utc ?? 'Unknown', r.reason ?? 'Included', r.reason ? '—' : r.rows.length, r.idMatches ?? '—', r.unmatched ?? '—', r.unmatchedResults ?? '—', r.missing ?? '—']), 'Preferred: final snapshot, otherwise verified initial or Git-recovered pre-event history. Git times are save/commit times, not inferred model generation times.');
 }
 async function main() {
     for (const id of ['year', 'tour', 'metric', 'dimension', 'snapshot']) $(id).disabled = true;
@@ -50,16 +58,28 @@ async function main() {
             let item = {event};
             try {
                 // Inspect provenance before requesting files for old/unverified events.
-                const reason = eligibility(event, {status:'completed'}) && eligibility(selectSnapshot(event), {status:'completed'});
+                const reason = eligibility(event, {status:'completed'}) && eligibility(selectSnapshot(event), {status:'completed'}) && eligibility(selectSnapshot(event, 'historical'), {status:'completed'});
                 if (reason) item.error = reason;
                 else {
                     if (!/^\d{4}$/.test(String(event.year)) || !/^[a-zA-Z0-9_-]+$/.test(event.slug)) throw new Error('Invalid archive path');
                     const base = `archive/${event.year}/${event.slug}`;
                     item.summary = await json(`${base}/tournament_summary.json`);
-                    if (!eligibility(event, item.summary) || !eligibility(selectSnapshot(event), item.summary)) {
+                    if (!eligibility(event, item.summary) || !eligibility(selectSnapshot(event), item.summary) || !eligibility(selectSnapshot(event, 'historical'), item.summary)) {
                         item.results = await json(`${base}/results.json`);
-                        try { item.predictions = await json(`${base}/leaderboard.json`); }
+                        try {
+                            item.predictions = await json(`${base}/leaderboard.json`);
+                            if (event.player_ids_available) item.predictions = attachPlayerIds(item.predictions, await json(`${base}/player_ids.json`, event.player_ids_sha256), event);
+                        }
                         catch (error) {item.initialError = `Initial data unavailable: ${error.message}`;}
+                        if (event.historical_snapshot) {
+                            try {
+                                const proof = event.historical_snapshot;
+                                [item.historyPredictions, item.historySummary] = await Promise.all([
+                                    json(`${base}/historical/leaderboard.json`, proof.leaderboard_sha256),
+                                    json(`${base}/historical/tournament_summary.json`, proof.summary_sha256)]);
+                                if (proof.player_ids_available) item.historyPredictions = attachPlayerIds(item.historyPredictions, await json(`${base}/historical/player_ids.json`, proof.player_ids_sha256), event);
+                            } catch (error) {item.historyError = `Historical data unavailable: ${error.message}`;}
+                        }
                         if (event.final_snapshot) {
                             try {
                                 const meta = await json(`${base}/final/snapshot.json`);

@@ -1,0 +1,38 @@
+{
+  "event_name": "Farmers Insurance Open",
+  "event_id": "4",
+  "course": "Torrey Pines Golf Course (South Course);Torrey Pines Golf Course (North Course)",
+  "total_yardage": null,
+  "course_location": "San Diego, CA",
+  "start_date": "29-Jan-2026",
+  "field_size": 147,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "English, Harris",
+      "score": -4
+    },
+    {
+      "year": 2024,
+      "winner": "Pavon, Matthieu",
+      "score": -9
+    },
+    {
+      "year": 2023,
+      "winner": "Homa, Max",
+      "score": -9
+    },
+    {
+      "year": 2022,
+      "winner": "List, Luke",
+      "score": -11
+    },
+    {
+      "year": 2021,
+      "winner": "Reed, Patrick",
+      "score": -10
+    }
+  ]
+}

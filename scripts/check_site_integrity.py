@@ -208,6 +208,26 @@ class IntegrityCheck:
             except (ValueError, TypeError, AttributeError) as exc:
                 self.error("archive-player-integrity", str(exc))
 
+        if entry.get("player_ids_available"):
+            if sha256_file(event_dir / "player_ids.json") != entry.get("player_ids_sha256"):
+                self.error("archive-player-ids-invalid", f"{event_id}: identity file hash mismatch")
+        if entry.get("historical_snapshot"):
+            try:
+                proof = entry["historical_snapshot"]
+                for key in ("event_id", "tour", "year", "start_date"):
+                    if str(proof[key]) != str(entry[key]):
+                        raise ValueError(f"Historical {key} mismatch")
+                if not prediction_time(proof["committed_utc"]) < datetime.fromisoformat(entry["start_date"]).replace(tzinfo=UTC):
+                    raise ValueError("Historical commit is not pre-event")
+                historical = event_dir / "historical"
+                for name, key in (("leaderboard.json", "leaderboard_sha256"), ("tournament_summary.json", "summary_sha256")):
+                    if not proof.get(key) or sha256_file(historical / name) != proof[key]:
+                        raise ValueError(f"Historical file hash mismatch: {name}")
+                if proof.get("player_ids_available") and sha256_file(historical / "player_ids.json") != proof.get("player_ids_sha256"):
+                    raise ValueError("Historical identity file hash mismatch")
+                validate_unique_players(json.loads((historical / "leaderboard.json").read_text()), context="Recovered predictions")
+            except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+                self.error("archive-historical-invalid", f"{event_id}: {exc}")
         if entry.get("final_snapshot"):
             try:
                 final_dir = event_dir / "final"

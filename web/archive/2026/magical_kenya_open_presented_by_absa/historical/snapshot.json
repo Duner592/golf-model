@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026109",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-02-19",
+  "commit": "fcf28c3d3a28151f1ea0ff4d5deff319d7daa45b",
+  "committed_utc": "2026-02-16T14:14:06Z",
+  "source_path": "web/archive/2026/magical_kenya_open_presented_by_absa/leaderboard.json",
+  "leaderboard_sha256": "dc0b9e68568dbed0765c4c26474c937be1286aac150ebf24762b2ce1c1f8329d",
+  "summary_sha256": "bbee5981b38d587698733030dc73aa8a5612a5443401a422dbaebe882f9f822d",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "cd08a41d7731802100647e9597f46c12d2cc243019f8bde2d22dbf768da9fe8c",
+  "player_ids_available": true
+}

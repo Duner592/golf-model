@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026112",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-03-19",
+  "commit": "406f16605efe4a3529cd92eb7cc324c98e1eb100",
+  "committed_utc": "2026-03-16T08:59:39Z",
+  "source_path": "web/archive/2026/hainan_classic_presented_by_maextro/leaderboard.json",
+  "leaderboard_sha256": "f01e0215e67a91bed42fe1078029c1d15c9d4210ac6c8cf6c887305fd3f4855a",
+  "summary_sha256": "0eeb4da7c96aa04eef3821644a255dd9b7aade7bb11b02e37c09eec788f4bf53",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "a7e54154e77d34b677b3fd94ae0cc9b74dad5c0b90e4a297bd7829ceef7409cd",
+  "player_ids_available": true
+}

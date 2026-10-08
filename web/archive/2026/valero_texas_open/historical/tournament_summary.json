@@ -1,0 +1,38 @@
+{
+  "event_name": "Valero Texas Open",
+  "event_id": "41",
+  "course": "TPC San Antonio (Oaks Course)",
+  "total_yardage": null,
+  "course_location": "San Antonio, TX",
+  "start_date": "02-Apr-2026",
+  "field_size": 130,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Harman, Brian",
+      "score": -5
+    },
+    {
+      "year": 2024,
+      "winner": "Bhatia, Akshay",
+      "score": -16
+    },
+    {
+      "year": 2023,
+      "winner": "Conners, Corey",
+      "score": -11
+    },
+    {
+      "year": 2022,
+      "winner": "Spaun, J.J.",
+      "score": -9
+    },
+    {
+      "year": 2021,
+      "winner": "Spieth, Jordan",
+      "score": -14
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "556",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-04-30",
+  "commit": "3498aefdf5f9e01b1418b0531322cb6582ce4e56",
+  "committed_utc": "2026-04-27T09:01:16Z",
+  "source_path": "web/archive/2026/cadillac_championship/leaderboard.json",
+  "leaderboard_sha256": "c3595b01e194439d6af2ad47bb197d396ff6387b438b4414a74deed9eeb10c28",
+  "summary_sha256": "2c58d5e78b9f638953a7e8858e56a35e8355c14becb48cb201877a62ee4868ad",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "c70cb0e213aa6f1eea4368a505e0188b400190df18edad5bba9ed2d983b37312",
+  "player_ids_available": true
+}

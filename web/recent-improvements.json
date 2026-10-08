@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-08",
+    "title": "Expanded backtest history",
+    "description": "Recovered genuine pre-event prediction files from Git history and added DataGolf ID matching. Coverage checks stay strict, original archives remain unchanged, and recovered sources are identified in the audit.",
+    "href": "backtest_breakdowns.html"
+  },
+  {
+    "date": "2026-10-08",
     "title": "Final pre-tournament backtests",
     "description": "Future backtests prefer the latest saved evening-before prediction to better reflect field changes. Initial runs remain available, with local-time capture cutoffs and an initial-snapshot fallback.",
     "href": "backtest_breakdowns.html"
@@ -16,11 +22,5 @@
     "title": "Backtest breakdowns",
     "description": "Compare archived prediction performance by tour, field size and major versus regular events, with winner, top-10 and make-cut scores, baseline comparisons, sample sizes and exclusion explanations.",
     "href": "backtest_breakdowns.html"
-  },
-  {
-    "date": "2026-09-04",
-    "title": "Tournament P/L view",
-    "description": "Betting History now includes a chronological tournament-level P/L table with stake, return, ROI, and a running P/L total.",
-    "href": "tournament_pl.html"
   }
 ]

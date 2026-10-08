@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026145",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-02-05",
+  "commit": "148604941bf74c2fc89a7eb553e2430b80d1ccf8",
+  "committed_utc": "2026-02-04T20:42:48Z",
+  "source_path": "web/archive/2026/qatar_masters/leaderboard.json",
+  "leaderboard_sha256": "06f407c6fe47521d8570a87a19ac8f00bac54f3440dfabe05e5d7b8c5de47907",
+  "summary_sha256": "ddac0f4c5c19ce6ddbc16874c643abd039bae0727df57975334b4f117f240905",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "73139213be57498a8f858918deee64524d196fd75633168a897663b75772f460",
+  "player_ids_available": true
+}

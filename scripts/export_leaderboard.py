@@ -156,6 +156,10 @@ def build_display_table(preds: pd.DataFrame, feats: pd.DataFrame | None) -> pd.D
 
     # Final columns
     cols = ["rank", "player_name", "p_win_%", "p_top10_%", "p_mc_%"]
+    # Keep the provider identifier in every future CSV/JSON export.
+    id_col = next((key for key in ("dg_id", "player_id") if key in df.columns), None)
+    if id_col:
+        cols.insert(2, id_col)
     for tcol in ["r1_teetime", "r2_teetime"]:
         if tcol in df.columns and df[tcol].notna().any():
             cols.append(tcol)

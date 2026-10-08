@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026115",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-04-23",
+  "commit": "795d1d8a8ea0598e744f42266a9a8d5e5fe1a10f",
+  "committed_utc": "2026-04-20T10:00:14Z",
+  "source_path": "web/archive/2026/volvo_china_open/leaderboard.json",
+  "leaderboard_sha256": "d146a1d02badb192b6a6b926e9b1992897cb2e56e7fd1339522e193ca4d6014b",
+  "summary_sha256": "25a56902491f9d9438900c535cc57df3d57ea6da3da82b241a09844ccd634adb",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "a55e426847ed93d053c70ab1fc4488f18f4001fcc934f559e13d057eb901c61a",
+  "player_ids_available": true
+}

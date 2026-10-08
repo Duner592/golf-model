@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "9",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-03-05",
+  "commit": "b13217866cf10872be74f811331297ea8ca4b646",
+  "committed_utc": "2026-03-04T19:54:14Z",
+  "source_path": "web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/leaderboard.json",
+  "leaderboard_sha256": "ae069308b1336d520d28e2a0f0a95431b0787526c4be640b33cd4f63875eabcf",
+  "summary_sha256": "a3be50540541ab78c8daf93770944713de34f3d04879d9f5dfbc6dca6986ce5d",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "1a3ba276bc8244dd7ad3b97663728b9bec64b4472938a0296679079276a5f963",
+  "player_ids_available": true
+}

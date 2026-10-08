@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026105",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-01-15",
+  "commit": "532ea0e186b3285ce0b3c5760aefac5bb413a2cf",
+  "committed_utc": "2026-01-14T09:34:48Z",
+  "source_path": "web/archive/2026/dubai_invitational/leaderboard.json",
+  "leaderboard_sha256": "5e28a4ec535d73999839476d3e19abfac2cc6397ecf3b5c78cf68657fe5d1bb2",
+  "summary_sha256": "958a9421354ac8ba4ddf497d2f4a1588afc0bd16684dce7575f77a0752cc4a4b",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "f8c62001d5f674b882f2610b4346929aa17e8e4a2e4e7a2647c139348fd40887",
+  "player_ids_available": true
+}

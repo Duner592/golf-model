@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026113",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-03-26",
+  "commit": "edcddcba3577838c38c063a805b783b5d3af9d53",
+  "committed_utc": "2026-03-24T09:10:06Z",
+  "source_path": "web/archive/2026/hero_indian_open/leaderboard.json",
+  "leaderboard_sha256": "6bc2c855eaf3ff58ed5940cfd8d1cff315ed8550e39dcad277fddf698c36a4ed",
+  "summary_sha256": "66d26f6633081b64afb79abc94d024cff8f5adc219af2bd1750814168f3651a0",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "49230da3171699fe284df48c960eb5642d51b46ee064eaf2805f06d3495109b6",
+  "player_ids_available": true
+}

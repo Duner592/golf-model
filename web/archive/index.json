@@ -10,11 +10,13 @@
     "archived_at": "2026-10-05 05:55:18 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-10-05T05:55:18Z",
-    "model_page": "archive/2026/baycurrent_classic/model_page.html"
+    "model_page": "archive/2026/baycurrent_classic/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "e3d392f8fa80f31c35c4addabb7b79243240c4e0412d4163cc0b500f0d9d329c"
   },
   {
     "event_id": "2026139",
-    "event_name": "Open de Espa\u00f1a presented by Madrid",
+    "event_name": "Open de España presented by Madrid",
     "tour": "euro",
     "slug": "open_de_espa_a_presented_by_madrid",
     "year": "2026",
@@ -23,7 +25,9 @@
     "archived_at": "2026-10-05 05:55:54 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-10-05T05:55:54Z",
-    "model_page": "archive/2026/open_de_espa_a_presented_by_madrid/model_page.html"
+    "model_page": "archive/2026/open_de_espa_a_presented_by_madrid/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "e69a347626f667b07682c575e289986da41129de4d74939755a3896e1ad21602"
   },
   {
     "event_id": "554",
@@ -36,7 +40,9 @@
     "archived_at": "2026-09-28 05:35:41 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-09-28T05:35:41Z",
-    "model_page": "archive/2026/bank_of_utah_championship/model_page.html"
+    "model_page": "archive/2026/bank_of_utah_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "30dfce1ab7746dc8ce6ce7d43c73d0ba3bb3122008a99280e3727437bdd6303d"
   },
   {
     "event_id": "2026144",
@@ -49,7 +55,9 @@
     "archived_at": "2026-09-28 05:36:20 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-09-28T05:36:20Z",
-    "model_page": "archive/2026/alfred_dunhill_links_championship/model_page.html"
+    "model_page": "archive/2026/alfred_dunhill_links_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "7c4f3f0fa12ac78267a56052fae6ebf256658d23e75d504d70d6bfb2cba8b1f1"
   },
   {
     "event_id": "2026137",
@@ -62,7 +70,9 @@
     "archived_at": "2026-09-21 05:09:25 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-09-21T05:09:25Z",
-    "model_page": "archive/2026/fedex_open_de_france/model_page.html"
+    "model_page": "archive/2026/fedex_open_de_france/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "16ab31f245f1061f56492e00b88f3ea1c06e4808ad3021be26e59fa2720b07dd"
   },
   {
     "event_id": "557",
@@ -75,7 +85,9 @@
     "archived_at": "2026-09-14 05:08:29 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-09-14T05:08:29Z",
-    "model_page": "archive/2026/biltmore_championship_asheville/model_page.html"
+    "model_page": "archive/2026/biltmore_championship_asheville/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "6ca1eea1711e66357af30cf4ec40166a097c2d9062ea2bd9181a13d0e39f1453"
   },
   {
     "event_id": "2026136",
@@ -88,7 +100,9 @@
     "archived_at": "2026-09-14 05:09:04 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-09-14T05:09:04Z",
-    "model_page": "archive/2026/bmw_pga_championship/model_page.html"
+    "model_page": "archive/2026/bmw_pga_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "8e07c7dded4eaddb89f6dce22ccc22e3ed332fd1246bf4a1a9e97e1250aa7e09"
   },
   {
     "event_id": "2026135",
@@ -101,7 +115,9 @@
     "archived_at": "2026-09-07 04:55:50 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-09-07T04:55:50Z",
-    "model_page": "archive/2026/amgen_irish_open/model_page.html"
+    "model_page": "archive/2026/amgen_irish_open/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "5a9c616b1cfe10274bec7797637003b17cadb41d29aa86f6f9d013717b54883a"
   },
   {
     "event_id": "2026134",
@@ -114,7 +130,9 @@
     "archived_at": "2026-08-31 05:48:03 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-31T05:48:03Z",
-    "model_page": "archive/2026/omega_european_masters/model_page.html"
+    "model_page": "archive/2026/omega_european_masters/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "457096f47468b0a4cacf926e98bbcfa739d29f76c3e77fd23486eccc3a2f49d3"
   },
   {
     "event_id": "60",
@@ -127,7 +145,9 @@
     "archived_at": "2026-08-24 02:01:42 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-24T02:01:42Z",
-    "model_page": "archive/2026/tour_championship/model_page.html"
+    "model_page": "archive/2026/tour_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "4364ec59644076439983eb0cc0ef1dc119bea2f13e0a9b6ec1b4a8ffe3fdbcae"
   },
   {
     "event_id": "2026133",
@@ -140,7 +160,9 @@
     "archived_at": "2026-08-24 02:02:17 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-24T02:02:17Z",
-    "model_page": "archive/2026/husqvarna_british_masters_hosted_by_sir_nick_faldo/model_page.html"
+    "model_page": "archive/2026/husqvarna_british_masters_hosted_by_sir_nick_faldo/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "8499e8131d5a5ca5e03d4d75ef60faa5ea3b4c26c9254066f6177e1c98405537"
   },
   {
     "event_id": "28",
@@ -153,7 +175,9 @@
     "archived_at": "2026-08-17 01:58:54 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-17T01:58:54Z",
-    "model_page": "archive/2026/bmw_championship/model_page.html"
+    "model_page": "archive/2026/bmw_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "fbddb783737ee65deb948e3b84f838c3840e2b066f474a14230a8d4c355ca743"
   },
   {
     "event_id": "2026132",
@@ -166,7 +190,9 @@
     "archived_at": "2026-08-17 01:59:07 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-17T01:59:07Z",
-    "model_page": "archive/2026/nexo_championship/model_page.html"
+    "model_page": "archive/2026/nexo_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "a5599b399b490f12a252ef9c672a23127730378594af44ad15923aed09b9553d"
   },
   {
     "event_id": "27",
@@ -179,7 +205,9 @@
     "archived_at": "2026-08-10 02:38:22 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-10T02:38:22Z",
-    "model_page": "archive/2026/fedex_st_jude_championship/model_page.html"
+    "model_page": "archive/2026/fedex_st_jude_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "8ed78e33e164093b9272523ebf47dee9395db1f047b6c15879929940baa21891"
   },
   {
     "event_id": "2026131",
@@ -192,7 +220,9 @@
     "archived_at": "2026-08-10 02:38:58 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-10T02:38:58Z",
-    "model_page": "archive/2026/danish_golf_championship/model_page.html"
+    "model_page": "archive/2026/danish_golf_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "d561f5ca7c5c182b34de1381eb6e552463b2cb094867e65be20f2c1cf694d089"
   },
   {
     "event_id": "13",
@@ -205,7 +235,9 @@
     "archived_at": "2026-08-03 04:00:48 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-08-03T04:00:48Z",
-    "model_page": "archive/2026/wyndham_championship/model_page.html"
+    "model_page": "archive/2026/wyndham_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "de2e14097423f5d6067fab55617e9c53b903c9940ca0f27a64866487ba0ec126"
   },
   {
     "event_id": "524",
@@ -218,7 +250,9 @@
     "archived_at": "2026-07-27 04:08:11 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-07-27T04:08:11Z",
-    "model_page": "archive/2026/rocket_classic/model_page.html"
+    "model_page": "archive/2026/rocket_classic/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "262bc1e699e6a82b02a9086c37167e0f73a1523d6bfcce7e5f2a1a0a6202467b"
   },
   {
     "event_id": "525",
@@ -231,7 +265,9 @@
     "archived_at": "2026-07-20 04:09:28 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-07-20T04:09:28Z",
-    "model_page": "archive/2026/3m_open/model_page.html"
+    "model_page": "archive/2026/3m_open/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "1304596b3998141ed474a69fda99384bfcc1eeb783efbaf7557bdb8c372f9fbe"
   },
   {
     "event_id": "100",
@@ -244,7 +280,9 @@
     "archived_at": "2026-07-13 04:05:47 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-07-13T04:05:47Z",
-    "model_page": "archive/2026/the_open_championship/model_page.html"
+    "model_page": "archive/2026/the_open_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "6715f50962f90ba0df34d05b77568a5967764d9d87ad139fd088dc7d174f56b4"
   },
   {
     "event_id": "522",
@@ -257,7 +295,9 @@
     "archived_at": "2026-07-13 04:05:47 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-07-13T04:05:47Z",
-    "model_page": "archive/2026/corales_puntacana_championship/model_page.html"
+    "model_page": "archive/2026/corales_puntacana_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "28368c7247af004ef520d77bf84270c689615244fa126140fa0d9904d945c682"
   },
   {
     "event_id": "518",
@@ -270,7 +310,9 @@
     "archived_at": "2026-07-06 10:46:21 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-07-06T10:46:21Z",
-    "model_page": "archive/2026/isco_championship/model_page.html"
+    "model_page": "archive/2026/isco_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "4a54d14310a917027a3f42bfa5939bab273b437c9e0c938e480bd1a196f3b5ce"
   },
   {
     "event_id": "541",
@@ -283,7 +325,9 @@
     "archived_at": "2026-07-06 10:46:21 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-07-06T10:46:21Z",
-    "model_page": "archive/2026/genesis_scottish_open/model_page.html"
+    "model_page": "archive/2026/genesis_scottish_open/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "232a9e7931969fbf02fb6efb43fefe986605ffbcb203d175ccb1ede3e2fadb4c"
   },
   {
     "event_id": "30",
@@ -296,7 +340,9 @@
     "archived_at": "2026-06-29 13:44:56 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-06-29T13:44:56Z",
-    "model_page": "archive/2026/john_deere_classic/model_page.html"
+    "model_page": "archive/2026/john_deere_classic/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "c6f79097ed0a344edb5e3edac3cab631cdd30e1d66b8f691a5c9a29ceb865b93"
   },
   {
     "event_id": "2026124",
@@ -309,7 +355,9 @@
     "archived_at": "2026-06-29 13:45:35 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-06-29T13:45:35Z",
-    "model_page": "archive/2026/bmw_international_open/model_page.html"
+    "model_page": "archive/2026/bmw_international_open/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "9f27b89fcea165a80dbfbb7c4877c2795f37dca3e6c56fe9d4e923f7841f6dd4"
   },
   {
     "event_id": "34",
@@ -322,11 +370,13 @@
     "archived_at": "2026-06-22 05:34:47 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-06-22T05:34:47Z",
-    "model_page": "archive/2026/travelers_championship/model_page.html"
+    "model_page": "archive/2026/travelers_championship/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "d43a0e43c2f1df468aad0eac452aa049adf6b866a31d130394344a34de9427e2"
   },
   {
     "event_id": "2026123",
-    "event_name": "DS Automobiles 83\u00b0 Open d\u2019Italia",
+    "event_name": "DS Automobiles 83° Open d’Italia",
     "tour": "euro",
     "slug": "ds_automobiles_83_open_d_italia",
     "year": "2026",
@@ -335,7 +385,9 @@
     "archived_at": "2026-06-22 05:35:22 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-06-22T05:35:22Z",
-    "model_page": "archive/2026/ds_automobiles_83_open_d_italia/model_page.html"
+    "model_page": "archive/2026/ds_automobiles_83_open_d_italia/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "cb2a0499712d2dba2236acec01cb4b388cfa27eb244b41d4d69ac92e872eb00e"
   },
   {
     "event_id": "26",
@@ -348,7 +400,9 @@
     "archived_at": "2026-06-15 05:31:49 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-06-15T05:31:49Z",
-    "model_page": "archive/2026/u_s_open/model_page.html"
+    "model_page": "archive/2026/u_s_open/model_page.html",
+    "player_ids_available": true,
+    "player_ids_sha256": "65c52d329ab3c620a3f53f1ed816b32960aac774395e6cd90ed5ca698c6b2b9c"
   },
   {
     "event_id": "32",
@@ -460,7 +514,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-05-04 10:41:06 UTC",
-    "start_date": "2026-05-07"
+    "start_date": "2026-05-07",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "480",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-05-07",
+      "commit": "6ad54dd91258f79431c1601a8b95c392e13aedfc",
+      "committed_utc": "2026-05-04T10:33:14Z",
+      "source_path": "web/archive/2026/truist_championship/leaderboard.json",
+      "leaderboard_sha256": "eb75e3d7a9573ed7607378c9e6e7c527008c192357ede5556b0210b69831d608",
+      "summary_sha256": "3f0ef334f0a26f32aa05cea328b5dc7db5d37a8ad8da9d3ecee2a70ab391ad53",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "8276c7d6f2fd0a9f501501308f91857c23ea25011aca4c36b412969fe8f4bc60",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "553",
@@ -470,7 +539,21 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-05-04 10:41:06 UTC",
-    "start_date": "2026-05-07"
+    "start_date": "2026-05-07",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "553",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-05-07",
+      "commit": "6ad54dd91258f79431c1601a8b95c392e13aedfc",
+      "committed_utc": "2026-05-04T10:33:14Z",
+      "source_path": "web/archive/2026/oneflight_myrtle_beach_classic/leaderboard.json",
+      "leaderboard_sha256": "ba3c1d668187bf92b8075f2116de91606317deef16a067020a130392734f6032",
+      "summary_sha256": "7e9b9c1f7525c55b5bdb43bf2ea8126896ff7d28cf3e2030314c7a7c8b66dde6",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_available": false
+    }
   },
   {
     "event_id": "2026117",
@@ -480,7 +563,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-05-04 10:41:02 UTC",
-    "start_date": "2026-05-07"
+    "start_date": "2026-05-07",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026117",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-05-07",
+      "commit": "6ad54dd91258f79431c1601a8b95c392e13aedfc",
+      "committed_utc": "2026-05-04T10:33:14Z",
+      "source_path": "web/archive/2026/estrella_damm_catalunya_championship/leaderboard.json",
+      "leaderboard_sha256": "7ea09d917be094e3da15df88642e4e5386ef9a2df067dfb554a7224601e717bc",
+      "summary_sha256": "f61518f13e63c987d84b3a014d6666a197f38d1162b089741d41942f7c8b8513",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "9eed86976fe51ff6f89beda855c3bd02d8b2fd447a17b89731420e6ee4e56aaf",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026116",
@@ -490,7 +588,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-04-27 08:55:39 UTC",
-    "start_date": "2026-04-30"
+    "start_date": "2026-04-30",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026116",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-04-30",
+      "commit": "3498aefdf5f9e01b1418b0531322cb6582ce4e56",
+      "committed_utc": "2026-04-27T09:01:16Z",
+      "source_path": "web/archive/2026/turkish_airlines_open/leaderboard.json",
+      "leaderboard_sha256": "eedaaba029f602ddfaa9b4ea8a159df3ad564c8e96d51a4657a7746e8af6b8e9",
+      "summary_sha256": "3a55e295f7533e130c2fc66a0d98d454a2c87c6b2f1bb93b9a231fe09fe0cd0d",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "8a069f87de08ad884c82e6eead2e96cfa166747acc2f0563b0bd6cb21612a39a",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "556",
@@ -500,7 +613,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-04-27 08:55:34 UTC",
-    "start_date": "2026-04-30"
+    "start_date": "2026-04-30",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "556",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-04-30",
+      "commit": "3498aefdf5f9e01b1418b0531322cb6582ce4e56",
+      "committed_utc": "2026-04-27T09:01:16Z",
+      "source_path": "web/archive/2026/cadillac_championship/leaderboard.json",
+      "leaderboard_sha256": "c3595b01e194439d6af2ad47bb197d396ff6387b438b4414a74deed9eeb10c28",
+      "summary_sha256": "2c58d5e78b9f638953a7e8858e56a35e8355c14becb48cb201877a62ee4868ad",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "c70cb0e213aa6f1eea4368a505e0188b400190df18edad5bba9ed2d983b37312",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026115",
@@ -510,7 +638,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-04-20 09:59:25 UTC",
-    "start_date": "2026-04-23"
+    "start_date": "2026-04-23",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026115",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-04-23",
+      "commit": "795d1d8a8ea0598e744f42266a9a8d5e5fe1a10f",
+      "committed_utc": "2026-04-20T10:00:14Z",
+      "source_path": "web/archive/2026/volvo_china_open/leaderboard.json",
+      "leaderboard_sha256": "d146a1d02badb192b6a6b926e9b1992897cb2e56e7fd1339522e193ca4d6014b",
+      "summary_sha256": "25a56902491f9d9438900c535cc57df3d57ea6da3da82b241a09844ccd634adb",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "a55e426847ed93d053c70ab1fc4488f18f4001fcc934f559e13d057eb901c61a",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "18",
@@ -530,7 +673,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-04-13 14:00:47 UTC",
-    "start_date": "2026-04-16"
+    "start_date": "2026-04-16",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "12",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-04-16",
+      "commit": "3c8b0c2e134397d1b2f16680370a31d250f1605e",
+      "committed_utc": "2026-04-13T14:01:21Z",
+      "source_path": "web/archive/2026/rbc_heritage/leaderboard.json",
+      "leaderboard_sha256": "d7f5d217a9353323538e469635485cf64525052c65aff68e833835e4dd9246fa",
+      "summary_sha256": "5da12b97e2f3c510b37a3d7ce4070e8abb0389edc677ec95bb0e4acac5cabfe1",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "c80236b87515b2c09e95a656cda7584f4a6ada7c7cb960f05d500481ea6143dc",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "14",
@@ -540,7 +698,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-04-07 09:11:46 UTC",
-    "start_date": "2026-04-09"
+    "start_date": "2026-04-09",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "14",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-04-09",
+      "commit": "998b3f05cc6d07b2e2f4fd4955872eb772237ef8",
+      "committed_utc": "2026-04-07T09:12:15Z",
+      "source_path": "web/archive/2026/masters_tournament/leaderboard.json",
+      "leaderboard_sha256": "7b35a6b200f4405af1fcc8c4562de3b3d7311840897831179ee7c53f8e242f76",
+      "summary_sha256": "0320475a223efd2d96484ce2694a5f1349e709d01615444fd17e7edc3fe44269",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "a70a0488fd9c60e508a89731bd093928a0f7cb66b396233d18d374ef8c42350b",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "41",
@@ -550,7 +723,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-30 13:38:40 UTC",
-    "start_date": "2026-04-02"
+    "start_date": "2026-04-02",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "41",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-04-02",
+      "commit": "1f48be8a388002d9a284870d57e3e39b35ba7bf0",
+      "committed_utc": "2026-03-30T13:39:12Z",
+      "source_path": "web/archive/2026/valero_texas_open/leaderboard.json",
+      "leaderboard_sha256": "bce5a39889353b67f3f94a55ab24e7669cae3271dbd613f7d5a99256aa6b6d69",
+      "summary_sha256": "123b8192a5fa74204bb5f5d910871ba98e373140981f836266d2564aa1f7a3f6",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "dc74e5b870010fd8213c2a15fb307f8d41c72efde540b1b6edacb84025a06000",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026113",
@@ -560,7 +748,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-24 09:09:20 UTC",
-    "start_date": "2026-03-26"
+    "start_date": "2026-03-26",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026113",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-03-26",
+      "commit": "edcddcba3577838c38c063a805b783b5d3af9d53",
+      "committed_utc": "2026-03-24T09:10:06Z",
+      "source_path": "web/archive/2026/hero_indian_open/leaderboard.json",
+      "leaderboard_sha256": "6bc2c855eaf3ff58ed5940cfd8d1cff315ed8550e39dcad277fddf698c36a4ed",
+      "summary_sha256": "66d26f6633081b64afb79abc94d024cff8f5adc219af2bd1750814168f3651a0",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "49230da3171699fe284df48c960eb5642d51b46ee064eaf2805f06d3495109b6",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "20",
@@ -570,7 +773,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-24 09:09:05 UTC",
-    "start_date": "2026-03-26"
+    "start_date": "2026-03-26",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "20",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-03-26",
+      "commit": "edcddcba3577838c38c063a805b783b5d3af9d53",
+      "committed_utc": "2026-03-24T09:10:06Z",
+      "source_path": "web/archive/2026/texas_children_s_houston_open/leaderboard.json",
+      "leaderboard_sha256": "182b6b9ac64386cccefdb37ab3a2dc3f66337be2d4b31dbe46be6ba060818250",
+      "summary_sha256": "2fbb7710282efbfe18ec5a4e5007a4c4cf8a96076fb9a0ebb05c396043a2426e",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "503f2769fca64548deb0aacb02c143ca95c867243704d07229a71f0c1fbe08f9",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026112",
@@ -580,7 +798,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-20 11:04:55 UTC",
-    "start_date": "2026-03-19"
+    "start_date": "2026-03-19",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026112",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-03-19",
+      "commit": "406f16605efe4a3529cd92eb7cc324c98e1eb100",
+      "committed_utc": "2026-03-16T08:59:39Z",
+      "source_path": "web/archive/2026/hainan_classic_presented_by_maextro/leaderboard.json",
+      "leaderboard_sha256": "f01e0215e67a91bed42fe1078029c1d15c9d4210ac6c8cf6c887305fd3f4855a",
+      "summary_sha256": "0eeb4da7c96aa04eef3821644a255dd9b7aade7bb11b02e37c09eec788f4bf53",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "a7e54154e77d34b677b3fd94ae0cc9b74dad5c0b90e4a297bd7829ceef7409cd",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "475",
@@ -590,7 +823,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-20 11:04:50 UTC",
-    "start_date": "2026-03-19"
+    "start_date": "2026-03-19",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "475",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-03-19",
+      "commit": "406f16605efe4a3529cd92eb7cc324c98e1eb100",
+      "committed_utc": "2026-03-16T08:59:39Z",
+      "source_path": "web/archive/2026/valspar_championship/leaderboard.json",
+      "leaderboard_sha256": "7102f86800b9fd87b45ac9816d9426f99ce4869dadc2c5206a0ca7fdda300ebe",
+      "summary_sha256": "3b20eff88382da9285bc2913f440b4f3b933c4ceadaf1eb44c3a0f2b2dbf78f9",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "87efadf89cb235a15d353e4b7235d3b0a32c90503265313168a479735d6741b6",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "11",
@@ -600,7 +848,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-13 09:31:02 UTC",
-    "start_date": "2026-03-12"
+    "start_date": "2026-03-12",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "11",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-03-12",
+      "commit": "7f9d345898f7d480a9e8a5a7e030d7fdc57a87ed",
+      "committed_utc": "2026-03-11T13:42:34Z",
+      "source_path": "web/archive/2026/the_players_championship/leaderboard.json",
+      "leaderboard_sha256": "8d4fe3ad8844c9bd45d2d5eac3e7d1c4b38d1cdbf65aa5bbf3ca73705c61c888",
+      "summary_sha256": "bbc10e783e57b6939634624b412d8c65cfb6cd3223d32f64421dc28178b46382",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "82b69773fe9f105c20d61990a6e9ecfd65c407c7a0adaf944a10f2a493cd1672",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026111",
@@ -610,7 +873,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-06 16:07:40 UTC",
-    "start_date": "2026-03-05"
+    "start_date": "2026-03-05",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026111",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-03-05",
+      "commit": "b13217866cf10872be74f811331297ea8ca4b646",
+      "committed_utc": "2026-03-04T19:54:14Z",
+      "source_path": "web/archive/2026/joburg_open/leaderboard.json",
+      "leaderboard_sha256": "aac17338107ac41bba1f560a441c95b32f7254aaadbd28578a709205dbfd2915",
+      "summary_sha256": "d73f85bf74312e2c1f5b361ba1baa1c7f86807cb95099ea988d21ff4d997d089",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "1a3bf599382a28365a6af04993c19eb0c5bf9159ca84b0ce1fa633087cb79a0b",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "9",
@@ -620,7 +898,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-06 16:06:19 UTC",
-    "start_date": "2026-03-05"
+    "start_date": "2026-03-05",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "9",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-03-05",
+      "commit": "b13217866cf10872be74f811331297ea8ca4b646",
+      "committed_utc": "2026-03-04T19:54:14Z",
+      "source_path": "web/archive/2026/arnold_palmer_invitational_presented_by_mastercard/leaderboard.json",
+      "leaderboard_sha256": "ae069308b1336d520d28e2a0f0a95431b0787526c4be640b33cd4f63875eabcf",
+      "summary_sha256": "a3be50540541ab78c8daf93770944713de34f3d04879d9f5dfbc6dca6986ce5d",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "1a3ba276bc8244dd7ad3b97663728b9bec64b4472938a0296679079276a5f963",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "483",
@@ -630,7 +923,21 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-03-06 16:06:19 UTC",
-    "start_date": "2026-03-05"
+    "start_date": "2026-03-05",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "483",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-03-05",
+      "commit": "b13217866cf10872be74f811331297ea8ca4b646",
+      "committed_utc": "2026-03-04T19:54:14Z",
+      "source_path": "web/archive/2026/puerto_rico_open/leaderboard.json",
+      "leaderboard_sha256": "e7674b88b8d93b1ea77974c6668310c8921add2374d9f3a5e28f17b08d8827e2",
+      "summary_sha256": "95699b35770395ccf9f4f979907a047263007fdc2786f8417ba9950bd9f07eca",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_available": false
+    }
   },
   {
     "event_id": "10",
@@ -640,7 +947,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-25 12:35:43 UTC",
-    "start_date": "2026-02-26"
+    "start_date": "2026-02-26",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "10",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-02-26",
+      "commit": "b8d8161009ecc1bd289644978177189981bad7b6",
+      "committed_utc": "2026-02-25T12:35:50Z",
+      "source_path": "web/archive/2026/cognizant_classic/leaderboard.json",
+      "leaderboard_sha256": "69af307080131b6116eebc5947a90e6b2d5d966ef03db29fac1fada4843c003d",
+      "summary_sha256": "1e85ec9ffdb2d33420e95f221522976e14c850dbd78f2834c755d830e37d0e31",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "28e40c82b10c0a28de1a51b407bb78fece0aacd00316f1c156579938917e9d36",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026110",
@@ -650,7 +972,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-24 12:30:39 UTC",
-    "start_date": "2026-02-26"
+    "start_date": "2026-02-26",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026110",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-02-26",
+      "commit": "8a85abd43ce874577c1c7932a7411af4c75524c8",
+      "committed_utc": "2026-02-24T12:31:04Z",
+      "source_path": "web/archive/2026/investec_south_african_open_championship/leaderboard.json",
+      "leaderboard_sha256": "0eb36018fd8a7c76667ad7e4297150339e9baa443e8b91bfad712bb545652755",
+      "summary_sha256": "27df47c6bfb81e657aed5829455325a9bcd980e261149650a45ae4395b3099f0",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "829976d8f188629549227ccd66f5469e6fbce1f811ff1d171636f7b40a8038d7",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026109",
@@ -660,7 +997,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-16 14:13:22 UTC",
-    "start_date": "2026-02-19"
+    "start_date": "2026-02-19",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026109",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-02-19",
+      "commit": "fcf28c3d3a28151f1ea0ff4d5deff319d7daa45b",
+      "committed_utc": "2026-02-16T14:14:06Z",
+      "source_path": "web/archive/2026/magical_kenya_open_presented_by_absa/leaderboard.json",
+      "leaderboard_sha256": "dc0b9e68568dbed0765c4c26474c937be1286aac150ebf24762b2ce1c1f8329d",
+      "summary_sha256": "bbee5981b38d587698733030dc73aa8a5612a5443401a422dbaebe882f9f822d",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "cd08a41d7731802100647e9597f46c12d2cc243019f8bde2d22dbf768da9fe8c",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "7",
@@ -670,7 +1022,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-16 14:13:14 UTC",
-    "start_date": "2026-02-19"
+    "start_date": "2026-02-19",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "7",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-02-19",
+      "commit": "fcf28c3d3a28151f1ea0ff4d5deff319d7daa45b",
+      "committed_utc": "2026-02-16T14:14:06Z",
+      "source_path": "web/archive/2026/the_genesis_invitational/leaderboard.json",
+      "leaderboard_sha256": "69a9d403cdff4bd2c0b0b391a9a66162fe5dc86f59d292471bffd513ba9ed4dd",
+      "summary_sha256": "3def745c2232c77c9c2c150bc99cde4ffce9da08e4c473583c322556183e885b",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "bb6e5cef8bdbc5344efc8b5117da04abc15962185734fe88f39884200ee1f895",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "5",
@@ -680,7 +1047,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-13 15:58:23 UTC",
-    "start_date": "2026-02-12"
+    "start_date": "2026-02-12",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "5",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-02-12",
+      "commit": "d9299662517302611b4c9d09e8c0f18bdab19d0f",
+      "committed_utc": "2026-02-11T09:06:08Z",
+      "source_path": "web/archive/2026/at_t_pebble_beach_pro_am/leaderboard.json",
+      "leaderboard_sha256": "9a75a9be806aec9991cd7fc34765c538256ae7fddf9a5498ed9dc3427bc403cd",
+      "summary_sha256": "92d92c60759f3455b50cd84c59f5cefb346e88dc4d9765f808a110b53d9888dc",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "3e090ad90ac6d0c906dbba809c729618536142899b0add8626d2deaaf08e9d86",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026145",
@@ -690,7 +1072,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-04 20:41:59 UTC",
-    "start_date": "2026-02-05"
+    "start_date": "2026-02-05",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026145",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-02-05",
+      "commit": "148604941bf74c2fc89a7eb553e2430b80d1ccf8",
+      "committed_utc": "2026-02-04T20:42:48Z",
+      "source_path": "web/archive/2026/qatar_masters/leaderboard.json",
+      "leaderboard_sha256": "06f407c6fe47521d8570a87a19ac8f00bac54f3440dfabe05e5d7b8c5de47907",
+      "summary_sha256": "ddac0f4c5c19ce6ddbc16874c643abd039bae0727df57975334b4f117f240905",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "73139213be57498a8f858918deee64524d196fd75633168a897663b75772f460",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "3",
@@ -700,7 +1097,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-02-04 15:50:17 UTC",
-    "start_date": "2026-02-05"
+    "start_date": "2026-02-05",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "3",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-02-05",
+      "commit": "36517f66094030470e492f447f4c3a1870c4cf04",
+      "committed_utc": "2026-02-04T15:50:31Z",
+      "source_path": "web/archive/2026/wm_phoenix_open/leaderboard.json",
+      "leaderboard_sha256": "f658b8225c95fdd54a450dc75f47fc2be30294667d3d65b5e94f462f9be4d281",
+      "summary_sha256": "f7707d1cb722a8aba61ad910646d1585723b7746d937a333133888f15a7ce0de",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "ba57dd5635fa9ccd0248296d0c025c33f83d1fd6846c1f7978bd4606364ffd88",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026107",
@@ -710,7 +1122,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-01-27 11:03:44 UTC",
-    "start_date": "2026-01-29"
+    "start_date": "2026-01-29",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026107",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-01-29",
+      "commit": "fbe41441aa498a3a85d74522dee341b2f2d2c7f8",
+      "committed_utc": "2026-01-27T11:04:06Z",
+      "source_path": "web/archive/2026/bapco_energies_bahrain_championship/leaderboard.json",
+      "leaderboard_sha256": "af610b37f5ad4d5e48eb1aa8a11f4d4673cf23eb085371b06713bc4afe347a6f",
+      "summary_sha256": "c42e111203984d6166e26951c94d990bababcd957182da8f6810b1738259f56f",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "e38fc5b8d44d4ac64ec9a9ca459105060876223063f18a50ec1c0f75318074a6",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "4",
@@ -720,7 +1147,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-01-27 11:03:38 UTC",
-    "start_date": "2026-01-29"
+    "start_date": "2026-01-29",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "4",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-01-29",
+      "commit": "fbe41441aa498a3a85d74522dee341b2f2d2c7f8",
+      "committed_utc": "2026-01-27T11:04:06Z",
+      "source_path": "web/archive/2026/farmers_insurance_open/leaderboard.json",
+      "leaderboard_sha256": "c18d98318f97dccb7b110fec623f91481b19896aef5b34aa965f6de8152c48ab",
+      "summary_sha256": "ebbf8412e3a80304a8351356dc728cd143503ec0c12418de9e0579077964a326",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "71f0eb17d2a562993dd9a15a72858fd45b76e1560723673c8c829c7a6594aaae",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026106",
@@ -730,7 +1172,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-01-21 12:59:10 UTC",
-    "start_date": "2026-01-22"
+    "start_date": "2026-01-22",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026106",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-01-22",
+      "commit": "ca6b2e93cd775894620132911282e9238b7e0604",
+      "committed_utc": "2026-01-21T10:53:45Z",
+      "source_path": "web/archive/2026/hero_dubai_desert_classic/leaderboard.json",
+      "leaderboard_sha256": "7c0fadc87a870850f5db018798aaa104d55e296ea124c21223516f21d3d7b732",
+      "summary_sha256": "106af4a9c9036e8e3c44d4c60708611a8ab03905db5a014a3b68530e754ab9dd",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "6e52e143dafbbfa3d539c05ffcd54f3ff57dad1c05d63fd129f41b49980449aa",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2",
@@ -740,7 +1197,22 @@
     "year": "2026",
     "csv_available": true,
     "archived_at": "2026-01-21 12:59:00 UTC",
-    "start_date": "2026-01-22"
+    "start_date": "2026-01-22",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-01-22",
+      "commit": "ca6b2e93cd775894620132911282e9238b7e0604",
+      "committed_utc": "2026-01-21T10:53:45Z",
+      "source_path": "web/archive/2026/the_american_express/leaderboard.json",
+      "leaderboard_sha256": "7d69b671bbd2afaf702dc3b94584d70bee81636f9c181787d1a28c8bcd5b1275",
+      "summary_sha256": "d2a69ea027e81452644d9b2310f81d2f162b4ee7fc405fa8006e7c99275a856b",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "af294f1ed0542e7f59e7ea89fbc03296e86d3f530796895702b7bd6312ae1191",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "2026105",
@@ -750,7 +1222,22 @@
     "year": "2026",
     "csv_available": false,
     "archived_at": "2026-01-19 22:55:41 UTC",
-    "start_date": "2026-01-15"
+    "start_date": "2026-01-15",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "2026105",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-01-15",
+      "commit": "532ea0e186b3285ce0b3c5760aefac5bb413a2cf",
+      "committed_utc": "2026-01-14T09:34:48Z",
+      "source_path": "web/archive/2026/dubai_invitational/leaderboard.json",
+      "leaderboard_sha256": "5e28a4ec535d73999839476d3e19abfac2cc6397ecf3b5c78cf68657fe5d1bb2",
+      "summary_sha256": "958a9421354ac8ba4ddf497d2f4a1588afc0bd16684dce7575f77a0752cc4a4b",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "f8c62001d5f674b882f2610b4346929aa17e8e4a2e4e7a2647c139348fd40887",
+      "player_ids_available": true
+    }
   },
   {
     "event_id": "6",
@@ -760,6 +1247,21 @@
     "year": "2026",
     "csv_available": false,
     "archived_at": "2026-01-19 22:55:33 UTC",
-    "start_date": "2026-01-15"
+    "start_date": "2026-01-15",
+    "historical_snapshot": {
+      "snapshot_type": "historical",
+      "event_id": "6",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-01-15",
+      "commit": "d2124548611195f33cedc2788bd8680ae7ef963a",
+      "committed_utc": "2026-01-14T21:32:59Z",
+      "source_path": "web/archive/2026/sony_open_in_hawaii/leaderboard.json",
+      "leaderboard_sha256": "5c18acef411a459819b8fc003b73e9c43262e2303d9ff99251a60534e7b2b2bd",
+      "summary_sha256": "2bc9d6dd35bf235ff74ee748e9e9cf93e9156e2cc52d5e631f572b807388e41a",
+      "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+      "player_ids_sha256": "72ea0a1c4f1059a95b227c7856cb4a3748f8e71dbcead714ab72bb9fff393ea4",
+      "player_ids_available": true
+    }
   }
 ]

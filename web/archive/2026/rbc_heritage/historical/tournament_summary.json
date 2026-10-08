@@ -1,0 +1,38 @@
+{
+  "event_name": "RBC Heritage",
+  "event_id": "12",
+  "course": "Harbour Town Golf Links",
+  "total_yardage": null,
+  "course_location": "Hilton Head Island, SC",
+  "start_date": "16-Apr-2026",
+  "field_size": 82,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Thomas, Justin",
+      "score": -17
+    },
+    {
+      "year": 2024,
+      "winner": "Scheffler, Scottie",
+      "score": -19
+    },
+    {
+      "year": 2023,
+      "winner": "Fitzpatrick, Matt",
+      "score": -17
+    },
+    {
+      "year": 2022,
+      "winner": "Spieth, Jordan",
+      "score": -13
+    },
+    {
+      "year": 2021,
+      "winner": "Cink, Stewart",
+      "score": -19
+    }
+  ]
+}

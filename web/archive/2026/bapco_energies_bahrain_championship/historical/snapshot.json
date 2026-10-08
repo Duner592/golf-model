@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026107",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-01-29",
+  "commit": "fbe41441aa498a3a85d74522dee341b2f2d2c7f8",
+  "committed_utc": "2026-01-27T11:04:06Z",
+  "source_path": "web/archive/2026/bapco_energies_bahrain_championship/leaderboard.json",
+  "leaderboard_sha256": "af610b37f5ad4d5e48eb1aa8a11f4d4673cf23eb085371b06713bc4afe347a6f",
+  "summary_sha256": "c42e111203984d6166e26951c94d990bababcd957182da8f6810b1738259f56f",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "e38fc5b8d44d4ac64ec9a9ca459105060876223063f18a50ec1c0f75318074a6",
+  "player_ids_available": true
+}

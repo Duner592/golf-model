@@ -1,12 +1,40 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {aggregate, eligibility, groupName, interval, nameKeys, number, outcome, probability, scoreEvent, selectSnapshot} from '../web/assets/js/backtest-core.mjs';
+import {aggregate, eligibility, groupName, interval, nameKeys, number, outcome, probability, scoreEvent, selectSnapshot, attachPlayerIds} from '../web/assets/js/backtest-core.mjs';
 
 const event = {event_id:'1', year:'2026', tour:'pga', event_name:'Test Open', prediction_snapshot:'initial', start_date:'2026-06-04', initial_snapshot_created_utc:'2026-06-01T12:00:00Z'};
 const summary = {status:'completed', field_size:2};
 const predictions = [{player_name:'Smith, Matt', 'p_win_%':75}, {player_name:'Alex Brown', 'p_win_%':25}];
 const results = {players:[{player:'Matthew Smith', finish_pos:1}, {player:'Alex Brown', finish_pos:2}]};
+
+test('provider IDs match changed names but never override conflicting known IDs', () => {
+    const p = [{player_name:'Original Name', dg_id:1, p_win:75}, {player_name:'Other Name', dg_id:2, p_win:25}];
+    const r = {players:[{player:'Completely Different', player_id:1, finish_pos:1}, {player:'Renamed Player', player_id:2, finish_pos:2}]};
+    const score = scoreEvent(event, summary, p, r, 'win');
+    assert.equal(score.reason, null);
+    assert.equal(score.idMatches, 2);
+    assert.equal(score.brier, .0625);
+    const conflicting = [{...p[0], dg_id:3, player_name:'Completely Different'}, p[1]];
+    assert.match(scoreEvent(event, summary, conflicting, r, 'win').reason, /Positive outcome/);
+    assert.match(scoreEvent(event, summary, p, {players:[r.players[0], r.players[0]]}, 'win').reason, /Duplicate result player ID/);
+});
+test('identity enrichment is event-bound, exact-name-only and refuses ambiguous IDs', () => {
+    const identity = {event_id:'1', tour:'pga', year:'2026', players:[{player_name:'Smith, Matt', player_id:1}]};
+    assert.equal(attachPlayerIds(predictions, identity, event)[0].player_id, '1');
+    assert.throws(() => attachPlayerIds(predictions, {...identity, tour:'euro'}, event), /another event/);
+    const ambiguous = {...identity, players:[...identity.players, {player_name:'Matt Smith', player_id:2}]};
+    assert.equal(attachPlayerIds(predictions, ambiguous, event)[0].identity_ambiguous, true);
+    assert.equal(attachPlayerIds([{player_name:'Matthew Smith'}], identity, event)[0].player_id, undefined);
+});
+test('historical eligibility requires verifiable pre-event commit metadata and excludes team events', () => {
+    const history = {snapshot_type:'historical', event_id:'1', tour:'pga', year:'2026', start_date:event.start_date, commit:'a'.repeat(40), leaderboard_sha256:'b'.repeat(64), summary_sha256:'c'.repeat(64), committed_utc:'2026-06-03T20:00:00Z'};
+    const e = {...event, prediction_snapshot:null, historical_snapshot:history};
+    assert.equal(selectSnapshot(e).selected_snapshot, 'historical');
+    assert.equal(eligibility(selectSnapshot(e), summary), null);
+    assert.ok(eligibility(selectSnapshot({...e, historical_snapshot:{...history, committed_utc:'2026-06-04T01:00:00Z'}}), summary));
+    assert.match(eligibility(selectSnapshot({...e, event_name:'Zurich Classic of New Orleans'}), summary), /Unsupported/);
+});
 
 test('final preferred uses saved evening run, initial remains selectable, absent final falls back', () => {
     const final = {snapshot_type:'final', event_id:'1', tour:'pga', year:'2026', start_date:'2026-06-04', timezone:'America/Denver', capture_window_open_utc:'2026-06-04T00:00:00Z', cutoff_utc:'2026-06-04T06:00:00Z', prediction_generated_utc:'2026-06-04T02:00:00Z', snapshot_created_utc:'2026-06-04T02:10:00Z'};

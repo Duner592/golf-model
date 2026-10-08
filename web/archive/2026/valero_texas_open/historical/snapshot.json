@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "41",
+  "tour": "pga",
+  "year": "2026",
+  "start_date": "2026-04-02",
+  "commit": "1f48be8a388002d9a284870d57e3e39b35ba7bf0",
+  "committed_utc": "2026-03-30T13:39:12Z",
+  "source_path": "web/archive/2026/valero_texas_open/leaderboard.json",
+  "leaderboard_sha256": "bce5a39889353b67f3f94a55ab24e7669cae3271dbd613f7d5a99256aa6b6d69",
+  "summary_sha256": "123b8192a5fa74204bb5f5d910871ba98e373140981f836266d2564aa1f7a3f6",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "dc74e5b870010fd8213c2a15fb307f8d41c72efde540b1b6edacb84025a06000",
+  "player_ids_available": true
+}

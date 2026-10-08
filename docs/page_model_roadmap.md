@@ -166,6 +166,7 @@ Implemented:
 - Initial pre-event snapshot eligibility, reconstruction exclusions, minimum 95% scoring coverage, and per-event coverage/exclusion audit.
 - Sample sizes and limited-evidence labels; no changes to model predictions or betting inputs.
 - Final-pre-event snapshot capture added on 2026-10-08: latest successful evening-before run in course-local time, default final-preferred backtests, initial-only/final-only selection, and visible source/timestamp audit. Existing initial archives remain intact; missing finals fall back to initial runs.
+- Coverage expanded on 2026-10-08 with 30 separate Git-recovered pre-event snapshots, source commit/hash evidence, ID-first matching from event-bound archived field files, and preserved IDs in future exports. Existing coverage thresholds remain unchanged. Investigating unresolved provisional/result-ID crosswalks and missing field entrants remains a follow-up.
 
 Remaining extensions:
 

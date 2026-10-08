@@ -1,0 +1,38 @@
+{
+  "event_name": "Valspar Championship",
+  "event_id": "475",
+  "course": "Innisbrook Resort (Copperhead Course)",
+  "total_yardage": null,
+  "course_location": "Palm Harbor, FL",
+  "start_date": "19-Mar-2026",
+  "field_size": 131,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Hovland, Viktor",
+      "score": -11
+    },
+    {
+      "year": 2024,
+      "winner": "Malnati, Peter",
+      "score": -12
+    },
+    {
+      "year": 2023,
+      "winner": "Moore, Taylor",
+      "score": -10
+    },
+    {
+      "year": 2022,
+      "winner": "Burns, Sam",
+      "score": -17
+    },
+    {
+      "year": 2021,
+      "winner": "Burns, Sam",
+      "score": -17
+    }
+  ]
+}

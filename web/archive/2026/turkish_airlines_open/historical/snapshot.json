@@ -1,0 +1,15 @@
+{
+  "snapshot_type": "historical",
+  "event_id": "2026116",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-04-30",
+  "commit": "3498aefdf5f9e01b1418b0531322cb6582ce4e56",
+  "committed_utc": "2026-04-27T09:01:16Z",
+  "source_path": "web/archive/2026/turkish_airlines_open/leaderboard.json",
+  "leaderboard_sha256": "eedaaba029f602ddfaa9b4ea8a159df3ad564c8e96d51a4657a7746e8af6b8e9",
+  "summary_sha256": "3a55e295f7533e130c2fc66a0d98d454a2c87c6b2f1bb93b9a231fe09fe0cd0d",
+  "evidence": "Prediction file present in a pre-event Git commit; not a reconstructed model run.",
+  "player_ids_sha256": "8a069f87de08ad884c82e6eead2e96cfa166747acc2f0563b0bd6cb21612a39a",
+  "player_ids_available": true
+}
