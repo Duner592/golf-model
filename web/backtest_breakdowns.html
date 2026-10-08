@@ -31,6 +31,7 @@
     <label>Tour<select id="tour"><option value="all">Both tours</option><option value="pga">PGA Tour</option><option value="euro">DP World Tour</option></select></label>
     <label>Probability<select id="metric"><option value="win">Winner</option><option value="top10">Top 10</option><option value="cut">Make cut</option></select></label>
     <label>Break down by<select id="dimension"><option value="tour">Tour</option><option value="field">Field size</option><option value="type">Major / regular</option></select></label>
+    <label>Prediction snapshot<select id="snapshot"><option value="preferred">Final preferred (initial fallback)</option><option value="initial">Initial run only</option><option value="final">Final pre-event only</option></select></label>
   </section>
   <p id="status" role="status" aria-live="polite">Loading archive index…</p>
   <div id="tiles" class="tiles"></div>
@@ -39,7 +40,9 @@
   <section class="card"><h2>Predicted versus observed</h2><p class="muted">Calibration across the selected events. Predicted and observed rates should be close. Empty probability bands are omitted.</p><div class="scroll" id="calibration"></div></section>
   <details class="card"><summary>Methodology and limitations</summary>
     <ul>
-      <li>Only completed events marked as initial snapshots, with a recorded creation time before the start date (00:00 UTC), qualify. Reconstructed, unverified and same-day snapshots are excluded conservatively.</li>
+      <li>Final preferred uses the latest saved prediction from 6pm to midnight in the course’s local time on the day before the event starts. The local-midnight cutoff is deliberately earlier than the first tee time; no opening-day runs qualify. Capture requires a known timezone and a fresh prediction timestamp, and scheduled runs can be delayed or fail.</li>
+      <li>If no final snapshot exists, preferred mode falls back to the initial archive. Use the snapshot selector to compare initial-only and final-only samples; these may contain different events. The coverage table identifies the source and timestamp. Final snapshots evaluate near-start accuracy, not necessarily the predictions available when an earlier bet was placed.</li>
+      <li>Only completed events qualify. Initial snapshots require a recorded creation time before the start date (00:00 UTC). Reconstructed or unverified predictions are excluded. Older events are not recreated as final snapshots after play, and late field changes can still cause coverage exclusions.</li>
       <li>Players are matched by normalized names and documented first-name aliases. Ambiguous matches are not guessed. Each metric requires at least 95% coverage of both predictions and results. Winner and top-10 scoring must include every observed positive outcome.</li>
       <li>Percent probabilities are scored against binary outcomes. Top-10 ties count as top 10. Withdrawals/disqualifications count as non-wins/non-top-10s; cut outcomes remain unknown unless explicit. Events with no observed missed cut are excluded from make-cut scoring.</li>
       <li>Each event has equal weight, including in calibration. Player counts are appearances, not unique people. Calibration gap is the weighted absolute difference in fixed 10-percentage-point bands. Brier uses exact probabilities; log loss clips at 0.000001.</li>

@@ -165,6 +165,7 @@ Implemented:
 - Winner, top-10 and make-cut Brier/log-loss scores, retrospective equal-probability baseline, event-bootstrap intervals and event-weighted calibration.
 - Initial pre-event snapshot eligibility, reconstruction exclusions, minimum 95% scoring coverage, and per-event coverage/exclusion audit.
 - Sample sizes and limited-evidence labels; no changes to model predictions or betting inputs.
+- Final-pre-event snapshot capture added on 2026-10-08: latest successful evening-before run in course-local time, default final-preferred backtests, initial-only/final-only selection, and visible source/timestamp audit. Existing initial archives remain intact; missing finals fall back to initial runs.
 
 Remaining extensions:
 

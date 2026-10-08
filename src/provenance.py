@@ -25,6 +25,8 @@ def build_snapshot_provenance(root: Path, snapshot_dir: Path) -> dict[str, objec
         root / "scripts" / "build_course_fit_from_history.py",
         root / "scripts" / "build_web_assets.py",
         root / "src" / "utils_event.py",
+        root / "src" / "final_snapshot.py",
+        root / "src" / "player_integrity.py",
     ]
     config_paths = [root / "pyproject.toml", root / "configs" / "datagolf.yaml", root / "configs" / "event_rules.yaml"]
     artifact_hashes = {

@@ -31,11 +31,29 @@ export function outcome(row, metric) {
     if (finish !== null && finish > 0) return Number(finish <= (metric === 'win' ? 1 : 10));
     return ['CUT', 'MC', 'WD', 'DQ', 'W/D'].includes(text) ? 0 : null;
 }
+export function selectSnapshot(event, mode = 'preferred') {
+    if (mode !== 'initial' && event.final_snapshot) return {...event, selected_snapshot: 'final'};
+    return {...event, selected_snapshot: mode === 'final' ? 'missing-final' : 'initial'};
+}
 export function eligibility(event, summary) {
     if (event.reconstruction || event.reconstructed || event.prediction_source === 'reconstructed') return 'Reconstructed predictions';
+    if (event.selected_snapshot === 'missing-final') return 'No saved final pre-event snapshot';
+    if (event.selected_snapshot === 'final') {
+        const final = event.final_snapshot;
+        const generated = Date.parse(final?.prediction_generated_utc), created = Date.parse(final?.snapshot_created_utc);
+        const opening = Date.parse(final?.capture_window_open_utc), cutoff = Date.parse(final?.cutoff_utc);
+        if (['event_id', 'tour', 'year', 'start_date'].some(key => String(final?.[key]) !== String(event[key])) || final?.snapshot_type !== 'final') return 'Final snapshot identity mismatch';
+        if (![generated, created, opening, cutoff].every(Number.isFinite) || !(opening <= generated && generated <= created && created < cutoff) || created - generated > 4 * 3600000 || cutoff - opening !== 6 * 3600000) return 'Final snapshot outside pre-event capture window';
+        try {
+            if (!final.timezone) return 'Unknown final snapshot timezone';
+            const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {timeZone:final.timezone, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23'}).formatToParts(new Date(cutoff)).map(p => [p.type,p.value]));
+            if (`${parts.year}-${parts.month}-${parts.day}` !== event.start_date || parts.hour !== '00' || parts.minute !== '00') return 'Invalid local start-date cutoff';
+        } catch { return 'Unknown final snapshot timezone'; }
+    } else {
     if (event.prediction_snapshot !== 'initial') return 'No verified initial snapshot';
     const start = Date.parse(`${event.start_date}T00:00:00Z`), created = Date.parse(event.initial_snapshot_created_utc);
     if (!Number.isFinite(start) || !Number.isFinite(created) || created >= start) return 'Snapshot not verified before start date';
+    }
     if (!['completed', 'finished'].includes(String(summary?.status).toLowerCase())) return 'Not completed / summary unavailable';
     if (/presidents cup|ryder cup|match play|matchplay/i.test(event.event_name)) return 'Unsupported event format';
     return null;

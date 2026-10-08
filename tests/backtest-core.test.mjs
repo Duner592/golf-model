@@ -1,12 +1,25 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {aggregate, eligibility, groupName, interval, nameKeys, number, outcome, probability, scoreEvent} from '../web/assets/js/backtest-core.mjs';
+import {aggregate, eligibility, groupName, interval, nameKeys, number, outcome, probability, scoreEvent, selectSnapshot} from '../web/assets/js/backtest-core.mjs';
 
 const event = {event_id:'1', year:'2026', tour:'pga', event_name:'Test Open', prediction_snapshot:'initial', start_date:'2026-06-04', initial_snapshot_created_utc:'2026-06-01T12:00:00Z'};
 const summary = {status:'completed', field_size:2};
 const predictions = [{player_name:'Smith, Matt', 'p_win_%':75}, {player_name:'Alex Brown', 'p_win_%':25}];
 const results = {players:[{player:'Matthew Smith', finish_pos:1}, {player:'Alex Brown', finish_pos:2}]};
+
+test('final preferred uses saved evening run, initial remains selectable, absent final falls back', () => {
+    const final = {snapshot_type:'final', event_id:'1', tour:'pga', year:'2026', start_date:'2026-06-04', timezone:'America/Denver', capture_window_open_utc:'2026-06-04T00:00:00Z', cutoff_utc:'2026-06-04T06:00:00Z', prediction_generated_utc:'2026-06-04T02:00:00Z', snapshot_created_utc:'2026-06-04T02:10:00Z'};
+    const withFinal = {...event, final_snapshot:final};
+    assert.equal(selectSnapshot(withFinal).selected_snapshot, 'final');
+    assert.equal(eligibility(selectSnapshot(withFinal), summary), null);
+    assert.equal(selectSnapshot(withFinal, 'initial').selected_snapshot, 'initial');
+    assert.equal(selectSnapshot(event).selected_snapshot, 'initial');
+    assert.match(eligibility(selectSnapshot(event, 'final'), summary), /No saved final/);
+    for (const patch of [{snapshot_created_utc:final.cutoff_utc}, {tour:'euro'}, {timezone:''}, {cutoff_utc:'2026-06-05T06:00:00Z'}]) {
+        assert.ok(eligibility(selectSnapshot({...event, final_snapshot:{...final, ...patch}}), summary));
+    }
+});
 
 test('null and blank probabilities are not zero; percentages are bounded', () => {
     for (const value of [null, undefined, '', ' ', false, 'NaN']) assert.equal(number(value), null);

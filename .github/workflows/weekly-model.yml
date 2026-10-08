@@ -5,6 +5,8 @@ on:
     # Runs every 2 hours Monday through Thursday so opening-day events cannot
     # remain on the previous week's published assets.
     # Avoiding minute 0 reduces the chance of queue delays on GitHub-hosted runners.
+    # Full runs also refresh archive/<year>/<event>/final during 18:00–24:00
+    # course-local time the day before play. The capture code rejects late runs.
     - cron: "23 */2 * * 1-4"
   workflow_dispatch:
     inputs:

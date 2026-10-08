@@ -35,6 +35,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from src.utils_event import current_week_event_ids, is_supported_stroke_play_event, resolve_event_ids
 from src.provenance import build_snapshot_provenance
 from src.player_integrity import validate_unique_players
+from src.final_snapshot import capture_final_snapshot
 
 MPH_PER_MPS = 2.237
 KMH_TO_MPH = 0.621371
@@ -1437,6 +1438,11 @@ def archive_event_predictions(
     if reconstruction_meta:
         event_entry["reconstruction"] = True
         event_entry["snapshot_label"] = "Reconstructed backfill"
+    # A refreshed initial archive index must not erase a separately saved final run.
+    previous_entry = next((e for e in index_data if str(e.get("event_id")) == str(event_id)
+                           and e.get("tour") == tour and str(e.get("year")) == str(year)), {})
+    if previous_entry.get("final_snapshot"):
+        event_entry["final_snapshot"] = previous_entry["final_snapshot"]
     # Remove existing entry for this event
     index_data = [
         e
@@ -2124,6 +2130,24 @@ def process_event(
             snapshot_type="initial",
             overwrite=bool(initial_snapshot.get("created")),
         )
+
+    # Only timestamped prediction summaries qualify; never relabel an old CSV
+    # using the web build's current timestamp.
+    actual_generated = None
+    if summary_json and summary_json.exists():
+        raw_generated = json.loads(summary_json.read_text()).get("generated_utc")
+        if raw_generated:
+            actual_generated = raw_generated
+    index_path = root / "web/archive/index.json"
+    if initial_snapshot and index_path.exists():
+        entries = json.loads(index_path.read_text())
+        entry = next(e for e in entries if str(e.get("event_id")) == str(event_id)
+                     and e.get("tour") == tour and str(e.get("year")) == initial_snapshot["year"])
+        final = capture_final_snapshot(root, event=entry, source_dir=event_dir,
+                                       leaderboard_csv=lb_csv, generated_utc=actual_generated)
+        if final:
+            entry["final_snapshot"] = {key: value for key, value in final.items() if key != "provenance"}
+            write_json(index_path, entries)
 
     return {
         "event_id": event_id,

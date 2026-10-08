@@ -1,26 +1,26 @@
 [
   {
+    "date": "2026-10-08",
+    "title": "Final pre-tournament backtests",
+    "description": "Future backtests prefer the latest saved evening-before prediction to better reflect field changes. Initial runs remain available, with local-time capture cutoffs and an initial-snapshot fallback.",
+    "href": "backtest_breakdowns.html"
+  },
+  {
+    "date": "2026-10-05",
+    "title": "Duplicate-player safeguards",
+    "description": "New checks stop duplicate golfers entering simulations or published archives. Duplicate rows were removed from the 3M Open and Corales archives, allowing the 3M Open to qualify for backtest scoring.",
+    "href": "backtest_breakdowns.html"
+  },
+  {
+    "date": "2026-10-02",
+    "title": "Backtest breakdowns",
+    "description": "Compare archived prediction performance by tour, field size and major versus regular events, with winner, top-10 and make-cut scores, baseline comparisons, sample sizes and exclusion explanations.",
+    "href": "backtest_breakdowns.html"
+  },
+  {
     "date": "2026-09-04",
     "title": "Tournament P/L view",
     "description": "Betting History now includes a chronological tournament-level P/L table with stake, return, ROI, and a running P/L total.",
     "href": "tournament_pl.html"
-  },
-  {
-    "date": "2026-08-21",
-    "title": "Workflow status on Model Health",
-    "description": "Model Health now shows the latest key GitHub Actions runs, including model refreshes, archive updates, results, odds, and Pages deployment.",
-    "href": "model_health.html"
-  },
-  {
-    "date": "2026-08-21",
-    "title": "Player and field skill context",
-    "description": "DataGolf reference skill components are available on Player Drilldown and as a sortable current-field table in Event Drilldown.",
-    "href": "event_drilldown.html"
-  },
-  {
-    "date": "2026-08-20",
-    "title": "Live UK odds board",
-    "description": "Odds & Value now compares active model players with live Bet365 and Sky Bet prices, while Player Drilldown adds archived opening and closing odds where available.",
-    "href": "odds_value.html"
   }
 ]

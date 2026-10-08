@@ -50,6 +50,7 @@ jobs:
 
       - name: Commit durable prediction snapshots
         run: |
+          # web/archive includes the separately captured final pre-event snapshots.
           snapshot_paths=(web/archive web/pga/initial web/euro/initial)
 
           existing_paths=()

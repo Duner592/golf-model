@@ -21,6 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.utils_event import is_supported_stroke_play_event
 from src.player_integrity import validate_unique_players
+from src.final_snapshot import capture_window, prediction_time
+from src.provenance import sha256_file
 TOURS = ("pga", "euro")
 UTC = timezone.utc
 
@@ -205,6 +207,30 @@ class IntegrityCheck:
                 validate_unique_players(rows, context=f"Archive {entry.get('tour')}/{year}/{event_id}")
             except (ValueError, TypeError, AttributeError) as exc:
                 self.error("archive-player-integrity", str(exc))
+
+        if entry.get("final_snapshot"):
+            try:
+                final_dir = event_dir / "final"
+                metadata = json.loads((final_dir / "snapshot.json").read_text())
+                if {key: value for key, value in metadata.items() if key != "provenance"} != entry["final_snapshot"]:
+                    raise ValueError("Final snapshot index and metadata disagree")
+                for key in ("tour", "year", "event_id", "start_date"):
+                    if str(metadata[key]) != str(entry[key]):
+                        raise ValueError(f"Final snapshot {key} mismatch")
+                opening, cutoff = capture_window(entry["start_date"], metadata["timezone"])
+                generated = prediction_time(metadata["prediction_generated_utc"])
+                captured = prediction_time(metadata["snapshot_created_utc"])
+                if not opening <= generated <= captured < cutoff or captured - generated > timedelta(hours=4):
+                    raise ValueError("Final snapshot was not captured fresh in the pre-event window")
+                if prediction_time(metadata["cutoff_utc"]) != cutoff or prediction_time(metadata["capture_window_open_utc"]) != opening:
+                    raise ValueError("Final snapshot capture window mismatch")
+                for name in ("leaderboard.json", "leaderboard.csv", "tournament_summary.json"):
+                    expected = metadata["provenance"]["artifact_sha256"].get(name)
+                    if not expected or sha256_file(final_dir / name) != expected:
+                        raise ValueError(f"Final snapshot missing or altered: {name}")
+                validate_unique_players(json.loads((final_dir / "leaderboard.json").read_text()), context="Final archive")
+            except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+                self.error("archive-final-snapshot-invalid", f"{event_id}: {exc}")
 
         start = parse_date(entry.get("start_date"))
         if start and start + timedelta(days=4) < date.today() and not (event_dir / "results.json").exists():

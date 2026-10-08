@@ -280,6 +280,7 @@ def main():
             "r4_date": round_dates[4],
             "saved_at_utc": now_utc().strftime("%Y-%m-%dT%H%M%SZ"),
             "source": "pinned + open-meteo",
+            "timezone": weather.get("timezone"),
         }
         (out_dir / f"event_{args.event_id}_weather_meta.json").write_text(
             json.dumps(pinned_weather_meta, indent=2, ensure_ascii=False),
@@ -373,6 +374,7 @@ def main():
         "r4_date": round_dates[4],
         "saved_at_utc": now_utc().strftime("%Y-%m-%dT%H%M%SZ"),
         "source": "schedule + open-meteo",
+        "timezone": weather.get("timezone"),
     }
     (out_dir / f"event_{event_id}_weather_meta.json").write_text(json.dumps(weather_meta, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Saved hourly weather: {weather_path}")
