@@ -1,5 +1,18 @@
 [
   {
+    "event_id": "2026140",
+    "event_name": "DP World India Championship",
+    "tour": "euro",
+    "slug": "dp_world_india_championship",
+    "year": "2026",
+    "start_date": "2026-10-15",
+    "csv_available": true,
+    "archived_at": "2026-10-12 06:11:44 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-10-12T06:11:44Z",
+    "model_page": "archive/2026/dp_world_india_championship/model_page.html"
+  },
+  {
     "event_id": "527",
     "event_name": "Baycurrent Classic",
     "tour": "pga",

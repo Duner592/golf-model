@@ -1,0 +1,12 @@
+{
+  "event_id": "2026140",
+  "event_name": "DP World India Championship",
+  "source_csv": "data/preds/euro/event_2026140_dp_world_india_championship_2026-10-12_leaderboard.csv",
+  "generated_utc": "12-Oct-2026 06:11:44",
+  "metrics": {
+    "field_size": 144,
+    "p_win_max": 0.6663333333333333,
+    "p_win_median": 0.0,
+    "p_win_sum": 1.0
+  }
+}
