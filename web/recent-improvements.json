@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-10-12",
+    "title": "Clearer site navigation",
+    "description": "Separate Predictions, Performance and Betting menus, a direct Schedule link and clearer Explorer labels make pages easier to find.",
+    "href": "index.html"
+  },
+  {
+    "date": "2026-10-12",
+    "title": "Easier backtest exploration",
+    "description": "Clearer summary cards and a searchable All/Included/Excluded event list make coverage easier to explore, with compact expandable player details and unchanged scoring.",
+    "href": "backtest_breakdowns.html"
+  },
+  {
+    "date": "2026-10-12",
     "title": "Backtest exclusion details",
     "description": "Expand events to distinguish possible withdrawal/replacement field differences from ID conflicts and missing scoring data, with exact coverage percentages. Strict scoring checks remain unchanged.",
     "href": "backtest_breakdowns.html"
@@ -9,18 +21,6 @@
     "date": "2026-10-08",
     "title": "Expanded backtest history",
     "description": "Recovered genuine pre-event prediction files from Git history and added DataGolf ID matching. Coverage checks stay strict, original archives remain unchanged, and recovered sources are identified in the audit.",
-    "href": "backtest_breakdowns.html"
-  },
-  {
-    "date": "2026-10-08",
-    "title": "Final pre-tournament backtests",
-    "description": "Future backtests prefer the latest saved evening-before prediction to better reflect field changes. Initial runs remain available, with local-time capture cutoffs and an initial-snapshot fallback.",
-    "href": "backtest_breakdowns.html"
-  },
-  {
-    "date": "2026-10-05",
-    "title": "Duplicate-player safeguards",
-    "description": "New checks stop duplicate golfers entering simulations or published archives. Duplicate rows were removed from the 3M Open and Corales archives, allowing the 3M Open to qualify for backtest scoring.",
     "href": "backtest_breakdowns.html"
   }
 ]

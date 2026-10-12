@@ -17,7 +17,11 @@
     .scroll {overflow-x:auto} table {border-collapse:collapse;width:100%;font-size:.9rem} th,td {padding:.8rem;text-align:right;border-bottom:1px solid #e0e9e3;white-space:nowrap} th:first-child,td:first-child {text-align:left}
     caption {text-align:left;padding:.5rem 0;color:#52665a} th {background:#f0f7f2} summary {cursor:pointer;font-weight:650} a {color:#176336}
     .badge {font-size:.8rem;background:#fff2d2;color:#73530c;border-radius:4px;padding:.2rem .4rem} #notice {border-left:4px solid #c3942d;padding-left:1rem}
-    @media(max-width:600px) {body {padding:.75rem}.card {padding:.8rem}h1 {font-size:1.6rem}}
+    .tile small {display:block;color:#52665a;line-height:1.45;margin-top:.4rem}
+    .event-row {border-bottom:1px solid #d5e3da;padding:.9rem 0} .event-row summary {display:flex;align-items:center;gap:.75rem;list-style:none} .event-row summary::before {content:'+';font-size:1.2rem;width:1rem;flex-shrink:0} .event-row[open] summary::before {content:'−'}
+    .event-title {flex:1;min-width:0} .event-title small {display:block;font-weight:400;color:#52665a;margin-top:.3rem} .event-badge {font-size:.8rem;padding:.25rem .5rem;border-radius:20px} .included {background:#e5f3e9;color:#235c35} .excluded {background:#fff2d2;color:#73530c} .event-body {padding:.5rem 0 .5rem 1.75rem;min-width:0} .event-body h3 {font-size:1rem}
+    input[type=search] {font:inherit;padding:.65rem;border:1px solid #a3b9ab;border-radius:6px;width:100%;box-sizing:border-box} summary:focus-visible,input:focus-visible,select:focus-visible {outline:3px solid #357852;outline-offset:3px}
+    @media(max-width:600px) {body {padding:.75rem}.card {padding:.8rem}h1 {font-size:1.6rem}.tiles {display:grid;grid-template-columns:1fr 1fr}.tile {min-width:0}.event-body {padding-left:0}.event-row summary {align-items:flex-start}}
   </style>
 </head>
 <body>
@@ -53,7 +57,7 @@
     </ul>
   </details>
   <details class="card"><summary>Event coverage and exclusions</summary><p class="muted">Updates with the season, tour and probability filters. Missing files or uncertain provenance never silently enter the scores.</p><div class="scroll" id="audit"></div></details>
-  <section class="card"><h2>Player-level coverage details</h2><p class="muted">Expand an event to see missing players, conflicting IDs and unavailable probabilities or outcomes for the selected metric and snapshot. A missing match does not by itself prove a withdrawal or late entry. Required winner/top-10 outcomes must all be scored, even when coverage reaches 95%.</p><div id="diagnostics"></div></section>
+  <section class="card"><h2>Explore events</h2><p class="muted">Expand any event for its inclusion decision and player-level details. Possible withdrawals/replacements are kept separate from identity issues.</p><div class="controls"><label>Search tournaments<input id="event-search" type="search" placeholder="e.g. Bank of Utah"></label><label>Show events<select id="event-status"><option value="all">All</option><option value="included">Included</option><option value="excluded">Excluded</option></select></label></div><p id="event-count" class="muted" role="status" aria-live="polite"></p><div id="diagnostics"></div></section>
 </main>
 <script type="module" src="assets/js/backtest-page.mjs"></script>
 </body>

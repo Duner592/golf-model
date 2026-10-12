@@ -11,45 +11,45 @@
     const quickLinks = [
         { label: 'Home', href: 'index.html' },
         {
-            label: 'Tournament Predictions',
+            label: 'Predictions',
             href: 'pga.html',
             children: [
                 { label: 'PGA Tour', href: 'pga.html' },
                 { label: 'DP World Tour', href: 'euro.html' },
-                { label: 'Player Drilldown', href: 'player.html' },
-                { label: 'Event Drilldown', href: 'event_drilldown.html' },
-                { label: 'Prediction Archives', href: 'archive.html' },
-                { label: 'Accuracy Dashboards', href: 'archive_accuracy.html' },
-                { label: 'Model Health', href: 'model_health.html' },
-                { label: 'Calibration Dashboard', href: 'calibration_dashboard.html' },
-                { label: 'Backtest Breakdowns', href: 'backtest_breakdowns.html' }
+                { label: 'Player Explorer', href: 'player.html' },
+                { label: 'Event Explorer', href: 'event_drilldown.html' }
             ]
         },
         {
-            label: 'Schedules',
-            href: 'schedule.html',
+            label: 'Performance',
+            href: 'backtest_breakdowns.html',
             children: [
-                { label: 'Tour Schedule', href: 'schedule.html' }
+                { label: 'Backtest Breakdowns', href: 'backtest_breakdowns.html' },
+                { label: 'Prediction Accuracy', href: 'archive_accuracy.html' },
+                { label: 'Calibration', href: 'calibration_dashboard.html' },
+                { label: 'Prediction Archives', href: 'archive.html' }
             ]
         },
         {
-            label: 'Betting History',
+            label: 'Betting',
             href: 'betting_analytics.html',
             children: [
-                { label: 'Analytics', href: 'betting_analytics.html' },
                 { label: 'Odds & Value', href: 'odds_value.html?v=20260713-odds-cache2' },
+                { label: 'Betting Analytics', href: 'betting_analytics.html' },
                 { label: 'Tournament P/L', href: 'tournament_pl.html' },
-                { label: 'Overall Data', href: 'spreadsheet.html' },
-                { label: 'ROI% Data', href: 'roi.html' }
+                { label: 'Betting Data', href: 'spreadsheet.html' },
+                { label: 'ROI', href: 'roi.html' }
             ]
         },
+        { label: 'Schedule', href: 'schedule.html' },
         {
-            label: 'Additional Data',
+            label: 'More',
             href: 'course_details.html',
             children: [
                 { label: 'Course Details', href: 'course_details.html' },
                 { label: 'Notes', href: 'notes.html' },
-                { label: 'Links & Tools', href: 'links.html' }
+                { label: 'Links & Tools', href: 'links.html' },
+                { label: 'Model Health', href: 'model_health.html' }
             ]
         }
     ];
@@ -421,20 +421,20 @@
 
         if (route === 'player.html') {
             add(tourName, tourHref);
-            add('Player Drilldown');
+            add('Player Explorer');
             return crumbs;
         }
         if (route === 'event_drilldown.html') {
             add(tourName, tourHref);
-            add('Event Context');
+            add('Event Explorer');
             return crumbs;
         }
         if (route === 'course_details.html') {
             if (tour && eventId) {
                 add(tourName, tourHref);
-                add('Event Context', eventHref);
+                add('Event Explorer', eventHref);
             } else {
-                add('Additional Data', 'course_details.html');
+                add('More');
             }
             add('Course Details');
             return crumbs;
@@ -450,7 +450,7 @@
         }
         if (route === 'archive_accuracy.html') {
             add('Prediction Archives', 'archive.html');
-            add('Accuracy Dashboards');
+            add('Prediction Accuracy');
             return crumbs;
         }
         if (route === 'backtest_breakdowns.html') {

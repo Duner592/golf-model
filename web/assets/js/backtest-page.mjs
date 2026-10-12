@@ -8,7 +8,6 @@ function table(headers, rows, caption) {
 }
 function diagnosticDetails(record) {
     const issues = record.diagnostics ?? [];
-    if (!issues.length) return '';
     const player = p => p ? `${p.name} (ID: ${p.id ?? 'unavailable'})` : '—';
     const count = record.rows?.length ?? 0;
     const groups = diagnosticGroups(issues);
@@ -17,10 +16,12 @@ function diagnosticDetails(record) {
         ['identity', 'ID conflicts and ambiguous matches', 'These are matching issues, not evidence of a field change. Similar names do not establish that conflicting IDs belong to the same player; candidates remain unverified.'],
         ['data', 'Probability and outcome issues', 'Missing values or unscored required outcomes can independently prevent scoring.']
     ].filter(([key]) => groups[key].length).map(([key, title, note]) => `<h3>${escape(title)}</h3><p class="muted">${escape(note)}</p><div class="scroll">${table(['Issue', 'Saved prediction player', 'Result player / unverified name candidates'], groups[key].map(issue => [issue.kind, player(issue.prediction), issue.results.map(player).join('; ') || '—']), 'Diagnostic entries can overlap; counts are not additive.')}</div>`).join('');
-    return `<details class="card"><summary>${escape(record.event.event_name)} — ${escape(record.reason ?? 'Included with unscored players')}</summary>
-        <p>${count} scored out of ${record.predictionCount ?? '—'} predictions and ${record.resultCount ?? '—'} results.
-        Prediction coverage: ${percent(count / record.predictionCount)}; result coverage: ${percent(count / record.resultCount)}. Both must reach 95%.</p>
-        ${sections}</details>`;
+    return `<details class="event-row"><summary><span class="event-title">${escape(record.event.event_name)}<small>${escape(record.event.start_date)} · ${escape(record.event.tour === 'pga' ? 'PGA Tour' : 'DP World Tour')} · ${escape(record.event.selected_snapshot)}</small></span><span class="event-badge ${record.reason ? 'excluded' : 'included'}">${record.reason ? 'Excluded' : 'Included'}</span></summary>
+        <div class="event-body"><p>${escape(record.reason ?? 'Included in the analysis')}</p>
+        ${record.predictionCount ? `<p>${count} scored out of ${record.predictionCount} predictions and ${record.resultCount} results.
+        Prediction coverage: ${percent(count / record.predictionCount)}; result coverage: ${percent(count / record.resultCount)}. Both must reach 95%.</p>` : '<p>Player coverage was not calculated because the event failed an earlier eligibility or data check.</p>'}
+        ${!issues.length && !record.reason ? '<p>No player-level issues found.</p>' : ''}
+        ${sections}</div></details>`;
 }
 async function json(path, expectedHash) {
     const response = await fetch(path, {cache: 'no-cache', signal: AbortSignal.timeout(15000)});
@@ -34,6 +35,14 @@ async function json(path, expectedHash) {
     return JSON.parse(body);
 }
 let loaded = [];
+let currentRecords = [];
+function renderEvents() {
+    const query = $('event-search').value.trim().toLocaleLowerCase();
+    const state = $('event-status').value;
+    const visible = currentRecords.filter(r => r.event.event_name.toLocaleLowerCase().includes(query) && (state === 'all' || (state === 'excluded' ? !!r.reason : !r.reason)));
+    $('event-count').textContent = `${visible.length} of ${currentRecords.length} events shown. List filters do not change the scores above.`;
+    $('diagnostics').innerHTML = visible.map(diagnosticDetails).join('') || '<p>No events match. Try another tournament name or choose All.</p>';
+}
 function render() {
     const metric = $('metric').value, dimension = $('dimension').value;
     const selected = loaded.filter(({event}) => ($('year').value === 'all' || String(event.year) === $('year').value) && ($('tour').value === 'all' || event.tour === $('tour').value));
@@ -46,11 +55,12 @@ function render() {
         const summary = {...item.summary, field_size:snapshotSummary?.field_size ?? null};
         return reason ? {...item, event, reason} : scoreEvent(event, summary, final ? item.finalPredictions : history ? item.historyPredictions : item.predictions, item.results, metric);
     });
-    $('diagnostics').innerHTML = records.map(diagnosticDetails).join('') || '<p>No player-level issues available for these filters. Events rejected before matching have their reason in the coverage table.</p>';
+    currentRecords = records;
+    renderEvents();
     const included = records.filter(row => !row.reason), total = aggregate(records);
     $('status').textContent = `${included.length} of ${records.length} selected archive events included. ${records.length - included.length} excluded; see coverage below.`;
-    const tiles = [['Scored events', included.length], ['Player appearances', total?.players ?? 0], ['Excluded events', records.length - included.length], ['Calibration gap', total ? `${(total.gap * 100).toFixed(1)} pp` : '—']];
-    $('tiles').innerHTML = tiles.map(([label, value]) => `<div class="tile">${escape(label)}<strong>${escape(value)}</strong></div>`).join('');
+    const tiles = [['Events analysed', included.length, `${total?.players ?? 0} scored player appearances`], ['Events excluded', records.length - included.length, 'Expand an event below to see why'], ['Event coverage', records.length ? percent(included.length / records.length) : '—', 'Share of selected events eligible for scoring—not player coverage'], ['Calibration gap', total ? `${(total.gap * 100).toFixed(1)} pp` : '—', 'Average probability gap; lower is better']];
+    $('tiles').innerHTML = tiles.map(([label, value, help]) => `<div class="tile">${escape(label)}<strong>${escape(value)}</strong><small>${escape(help)}</small></div>`).join('');
     const groups = new Map();
     included.forEach(row => {const key = groupName(row.event, row.summary, dimension); if (!groups.has(key)) groups.set(key, []); groups.get(key).push(row);});
     const groupRows = [...groups].sort(([a], [b]) => a.localeCompare(b)).map(([label, events]) => {
@@ -116,5 +126,7 @@ async function main() {
     loaded.sort((a, b) => String(b.event.start_date).localeCompare(String(a.event.start_date)) || a.event.event_name.localeCompare(b.event.event_name));
     for (const id of ['year', 'tour', 'metric', 'dimension', 'snapshot']) {$(id).disabled = false; $(id).addEventListener('change', render);}
     render();
+    $('event-search').addEventListener('input', renderEvents);
+    $('event-status').addEventListener('change', renderEvents);
 }
 main().catch(error => {$('status').textContent = `Unable to load backtests: ${error.message}. Please reload to retry.`;});

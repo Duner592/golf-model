@@ -4,6 +4,10 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### Navigation Grouping
+
+Updated 2026-10-12 with separate Predictions, Performance and Betting menus, direct Schedule link, More for supporting pages and clearer Explorer/Betting Data labels. Existing routes preserved. A compact mobile drawer remains a possible follow-up.
+
 ### Contextual Page Navigation
 
 Completed on 2026-08-14.
@@ -169,6 +173,8 @@ Implemented:
 - Coverage expanded on 2026-10-08 with 30 separate Git-recovered pre-event snapshots, source commit/hash evidence, ID-first matching from event-bound archived field files, and preserved IDs in future exports. Existing coverage thresholds remain unchanged. Investigating unresolved provisional/result-ID crosswalks and missing field entrants remains a follow-up.
 
 Remaining extensions:
+
+- UI refreshed 2026-10-12 with explained summary cards, event coverage percentage, tournament search, All/Included/Excluded list filters and compact expandable details. List filtering leaves aggregate scores unchanged.
 
 - Player-level exclusion details added 2026-10-12: saved/result IDs, unverified name candidates, missing predictions/results, missing probabilities/outcomes, required positives and both coverage denominators. Investigation found no independently verified ID crosswalk; conflicting IDs remain excluded. Further recovery remains open.
 

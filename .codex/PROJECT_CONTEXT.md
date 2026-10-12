@@ -127,6 +127,10 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 
 ## Open Notes
 
+- Navigation regrouped 2026-10-12: Home, Predictions (current tours/player/event), Performance (backtests/accuracy/calibration/archives), Betting, direct Schedule and More (courses/notes/tools/health). URLs and contextual parameters remain unchanged. Existing mobile/dropdown interactions retained; a dedicated mobile drawer is not part of this pass.
+
+- Backtest UI (2026-10-12): Explore events shows all selected records, including early eligibility failures and clean included events, in compact native disclosure rows. Tournament search and All/Included/Excluded filter affect only the list, not scoring or summary totals, and render from cached scored records without rerunning bootstrap calculations on typing. Summary event coverage is included events / selected archive events, explicitly distinct from the 95% player coverage rule. No scoring changes.
+
 - Player diagnostics separate possible withdrawal/replacement field differences from identity conflicts and scoring-data issues. Result rows already identified as unverified identity candidates stay in the identity section, not the field-difference section. Field changes are not confirmed without independent evidence; no scoring or archive changes accompany these labels.
 
 - Backtest diagnostics (2026-10-12): per-event expandable player details follow the active metric and snapshot and show both coverage denominators. Unmatched predictions/results, ambiguous identity, conflicting ID name candidates, missing probabilities/outcomes and unscored positive outcomes are separate diagnostic records (records can overlap, not additive counts). Names/IDs are HTML-escaped; candidates never override known IDs. Synced archives through a005f9a. Saved fields/results show unresolved Boston Bracken, Tyler Jones and multiple U.S. Open IDs; KLM's archived prediction has no event field sidecar or saved archive field history. No independently verified crosswalk was found; no predictions or scoring thresholds were changed and no extra qualifying events are claimed.
