@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-12",
+    "title": "Simpler ROI navigation",
+    "description": "Always-visible totals, a year selector and direct period/player/tournament views replace nested navigation while retaining existing figures and searchable, sortable tables.",
+    "href": "roi.html"
+  },
+  {
+    "date": "2026-10-12",
     "title": "Clearer site navigation",
     "description": "Separate Predictions, Performance and Betting menus, a direct Schedule link and clearer Explorer labels make pages easier to find.",
     "href": "index.html"
@@ -15,12 +21,6 @@
     "date": "2026-10-12",
     "title": "Backtest exclusion details",
     "description": "Expand events to distinguish possible withdrawal/replacement field differences from ID conflicts and missing scoring data, with exact coverage percentages. Strict scoring checks remain unchanged.",
-    "href": "backtest_breakdowns.html"
-  },
-  {
-    "date": "2026-10-08",
-    "title": "Expanded backtest history",
-    "description": "Recovered genuine pre-event prediction files from Git history and added DataGolf ID matching. Coverage checks stay strict, original archives remain unchanged, and recovered sources are identified in the audit.",
     "href": "backtest_breakdowns.html"
   }
 ]

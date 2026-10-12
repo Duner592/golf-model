@@ -127,6 +127,8 @@ Generated artifacts should usually be regenerated through scripts rather than ma
 
 ## Open Notes
 
+- ROI navigation refreshed 2026-10-12: always-visible ROI/P&L/stake/return cards, all-years/year selector, direct yearly/monthly/weekly/player/tournament views and searchable sortable single table. Existing aggregation and pending-bet handling preserved. The legacy generated tables remain hidden as calculation/render sources; visible tables clone every row and column, append years to month labels and retain player/tournament links with selected year. Search affects table only; years filter all summary/group totals. Undated rows stay in All years overall/player/tournament totals. Original calendar-year/ISO-week grouping retained, not silently corrected.
+
 - Navigation regrouped 2026-10-12: Home, Predictions (current tours/player/event), Performance (backtests/accuracy/calibration/archives), Betting, direct Schedule and More (courses/notes/tools/health). URLs and contextual parameters remain unchanged. Existing mobile/dropdown interactions retained; a dedicated mobile drawer is not part of this pass.
 
 - Backtest UI (2026-10-12): Explore events shows all selected records, including early eligibility failures and clean included events, in compact native disclosure rows. Tournament search and All/Included/Excluded filter affect only the list, not scoring or summary totals, and render from cached scored records without rerunning bootstrap calculations on typing. Summary event coverage is included events / selected archive events, explicitly distinct from the 95% player coverage rule. No scoring changes.

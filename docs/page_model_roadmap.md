@@ -4,6 +4,10 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### ROI Navigation Refresh
+
+Implemented 2026-10-12: visible summary cards, year selector with All years, direct period/player/tournament views, searchable sortable tables and scroll-contained mobile results. Existing totals, columns and pending-bet conventions preserved.
+
 ### Navigation Grouping
 
 Updated 2026-10-12 with separate Predictions, Performance and Betting menus, direct Schedule link, More for supporting pages and clearer Explorer/Betting Data labels. Existing routes preserved. A compact mobile drawer remains a possible follow-up.

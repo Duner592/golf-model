@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="theme.css">
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 100px 1.25rem 1.25rem 1.25rem; color: #111; transition: padding-left 0.3s; display: flex; flex-direction: column; }
-        .main-content { width: 100%; }
+        .main-content { display:none; }
+        .roi-toolbar{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}.roi-toolbar label{display:flex;flex-direction:column;gap:.4rem}.roi-toolbar select,.roi-toolbar input{font:inherit;padding:.7rem;border:1px solid #a3b9ab;border-radius:6px;background:white}.roi-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.roi-cards>div{background:#f0f7f2;border:1px solid #d5e3da;border-radius:12px;padding:1.2rem}.roi-cards strong{display:block;font-size:1.7rem;margin-top:.5rem}.roi-scroll{overflow:auto;max-height:65vh;border-radius:8px}.roi-scroll th{position:sticky;top:0;white-space:nowrap}.roi-scroll td{white-space:nowrap}.roi-scroll .roi-table{margin-top:0} :focus-visible{outline:3px solid #b88525;outline-offset:2px}@media(max-width:650px){.roi-cards{grid-template-columns:1fr 1fr;gap:.5rem}.roi-cards strong{font-size:1.3rem}.roi-toolbar label{flex:1;min-width:140px}.roi-toolbar input{min-width:0}}
         .roi-container { width: 100%; }
         h1 { text-align: center; color: #2e8b57; width: 100%; }
         .roi-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
@@ -69,7 +70,12 @@
 </div>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <h1>Eds Golf Model - ROI Data</h1>
-<div>Detailed ROI percentages for betting data.</div>
+<p>Explore your betting returns by period, player or tournament. All existing figures remain available.</p>
+<div class="roi-toolbar"><label>Year <select id="roi-year"><option value="all">All years</option></select></label><label>View <select id="roi-view"><option value="yearly">By Period — Yearly</option><option value="monthly">By Period — Monthly</option><option value="weekly">By Period — Weekly</option><option value="player">By Player</option><option value="tournament">By Tournament</option></select></label><label>Search current view <input id="roi-search" type="search" placeholder="Search…"></label></div>
+<div id="roi-cards" class="roi-cards"></div>
+<p>ROI = (return − stake) ÷ stake. Pending bets remain included using their recorded values, as before.</p>
+<p id="roi-status" role="status" aria-live="polite">Loading…</p><div id="roi-results" class="roi-scroll" tabindex="0" role="region" aria-label="ROI breakdown"></div>
+<p>Search filters the table only; summary figures show the selected year. Click a column heading to sort. Weekly labels retain the existing calendar-year / ISO-week convention.</p>
 
 <div class="menu-container"></div>
 
@@ -217,9 +223,18 @@
         return (totalReturn - totalStake).toFixed(2);
     }
 
+    let roiSource;
+    let roiRequest = 0;
     async function loadROIData() {
+        const request = ++roiRequest;
         try {
-            const rows = await BettingData.load();
+            const sourceRows = await (roiSource ||= BettingData.load());
+            if (request !== roiRequest) return;
+            const selector = document.getElementById('roi-year');
+            if (selector.options.length === 1) {
+                [...new Set(sourceRows.map(row => parseDate(row.Date)?.getFullYear()).filter(Number.isFinite))].sort((a,b)=>b-a).forEach(year=>selector.add(new Option(year,year)));
+            }
+            const rows = sourceRows.filter(row=>selector.value === 'all' || String(parseDate(row.Date)?.getFullYear()) === selector.value);
             let overallReturn = 0, overallStake = 0;
             const yearlyData = {};
             const monthlyData = {};
@@ -274,6 +289,7 @@
             // Overall ROI
             const overallROI = calculateROI(overallReturn, overallStake);
             const overallProfitLoss = calculateProfitLoss(overallReturn, overallStake);
+            document.getElementById('roi-cards').innerHTML = [['ROI',`${overallROI}%`],['Profit / loss',`£${overallProfitLoss}`],['Total stake',`£${overallStake.toFixed(2)}`],['Total return',`£${overallReturn.toFixed(2)}`]].map(([label,value])=>`<div>${label}<strong>${value}</strong></div>`).join('');
             document.getElementById('overall-roi').innerHTML = `<strong>Overall ROI: ${overallROI}%</strong> (Total Return: £${overallReturn.toFixed(2)}, Total Stake: £${overallStake.toFixed(2)}, P/L: £${overallProfitLoss})`;
 
             // Detailed ROI - Grouped by Year with Yearly, Monthly, and Weekly sub-sections
@@ -413,9 +429,11 @@
             const tournamentSearch = document.getElementById('tournament-search');
             playerSearch.addEventListener('input', () => filterTable(playerSearch, 'player-table'));
             tournamentSearch.addEventListener('input', () => filterTable(tournamentSearch, 'tournament-table'));
+            refreshROIView();
 
         } catch (e) {
             console.error('Error loading ROI data:', e);
+            document.getElementById('roi-status').textContent = 'ROI data unavailable. Please reload to retry.';
             document.getElementById('overall-roi').innerHTML = 'ROI data unavailable.';
             document.getElementById('detailed-roi').innerHTML = 'Detailed ROI unavailable.';
             document.getElementById('player-roi').innerHTML = 'Player ROI unavailable.';
@@ -423,10 +441,45 @@
         }
     }
 
+    function refreshROIView() {
+        const view = document.getElementById('roi-view').value;
+        let tables;
+        if (view === 'player' || view === 'tournament') tables = [document.getElementById(`${view}-table`)];
+        else {
+            const title = {yearly:'Yearly ROI',monthly:'Monthly ROI',weekly:'Weekly ROI'}[view];
+            tables = [...document.querySelectorAll('#detailed-roi .period-section')].filter(section=>section.querySelector('h4').textContent.includes(title)).flatMap(section=>[...section.querySelectorAll('table')]);
+        }
+        tables = tables.filter(Boolean);
+        const host = document.getElementById('roi-results');
+        host.replaceChildren();
+        if (!tables.length) {document.getElementById('roi-status').textContent='No data for this selection.';return;}
+        const table = tables[0].cloneNode(true);
+        table.id='roi-visible';
+        const body=table.querySelector('tbody');body.replaceChildren();
+        for (const source of tables) {
+            const year = source.closest('.year-section')?.querySelector('h3').textContent.match(/\d{4}/)?.[0];
+            for (const row of source.querySelectorAll('tbody tr')) {
+                const copy=row.cloneNode(true);
+                const link=copy.querySelector('a');
+                if(link && document.getElementById('roi-year').value!=='all') {
+                    const url=new URL(link.href);url.searchParams.set('year',document.getElementById('roi-year').value);link.href=url.href;
+                }
+                if(view==='monthly') copy.cells[0].textContent += ` ${year}`;
+                body.appendChild(copy);
+            }
+        }
+        table.querySelectorAll('th').forEach((th,i)=>{th.tabIndex=0;th.setAttribute('role','button');th.addEventListener('click',()=>sortTable(table,i));th.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();sortTable(table,i);}});});
+        host.appendChild(table);
+        filterTable(document.getElementById('roi-search'),'roi-visible');
+        const count=[...body.rows].filter(row=>row.style.display!=='none').length;
+        document.getElementById('roi-status').textContent=`${count} of ${body.rows.length} rows shown · ${document.getElementById('roi-year').selectedOptions[0].textContent}`;
+    }
+    document.getElementById('roi-view').addEventListener('change',()=>{document.getElementById('roi-search').value='';refreshROIView();});
+    document.getElementById('roi-search').addEventListener('input',refreshROIView);
+    document.getElementById('roi-year').addEventListener('change',loadROIData);
     loadROIData();
 
-    // Load menu HTML
-    fetch('menu.html?v=20260417').then(response => response.text()).then(html => document.getElementById('menu').innerHTML = html);
+    // Shared navigation is provided by menu.js; no legacy drawer is needed.
 </script>
 </body>
 </html>
