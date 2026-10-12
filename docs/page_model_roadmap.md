@@ -170,6 +170,8 @@ Implemented:
 
 Remaining extensions:
 
+- Player-level exclusion details added 2026-10-12: saved/result IDs, unverified name candidates, missing predictions/results, missing probabilities/outcomes, required positives and both coverage denominators. Investigation found no independently verified ID crosswalk; conflicting IDs remain excluded. Further recovery remains open.
+
 Possible splits:
 
 - Field strength.

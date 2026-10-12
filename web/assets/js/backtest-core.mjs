@@ -94,7 +94,7 @@ export function groupName(event, summary, dimension) {
     return size === null || size <= 0 ? 'Unknown field size' : size < 80 ? 'Small field (<80)' : size < 120 ? 'Medium field (80–119)' : 'Full field (120+)';
 }
 export function scoreEvent(event, summary, predictions, results, metric) {
-    const record = {event, summary, reason: eligibility(event, summary), rows: [], unmatched: 0, missing: 0};
+    const record = {event, summary, reason: eligibility(event, summary), rows: [], unmatched: 0, missing: 0, diagnostics: []};
     if (record.reason) return record;
     const players = results?.players;
     if (!Array.isArray(predictions) || !predictions.length || !Array.isArray(players) || !players.length) return {...record, reason: 'Predictions or results unavailable'};
@@ -113,9 +113,11 @@ export function scoreEvent(event, summary, predictions, results, metric) {
         indexed.get(key).add(i);
     }));
     const used = new Set();
+    const describe = row => ({name: playerName(row) ?? 'Unnamed player', id: playerId(row)});
+    const issue = (kind, pred, candidates = []) => record.diagnostics.push({kind, prediction: pred ? describe(pred) : null, results: candidates.map(describe)});
     record.idMatches = 0;
     for (const pred of predictions) {
-        if (pred.identity_ambiguous) {record.unmatched++; continue;}
+        if (pred.identity_ambiguous) {record.unmatched++; issue('Ambiguous saved field identity', pred); continue;}
         let match;
         const id = playerId(pred);
         if (id) {
@@ -127,16 +129,25 @@ export function scoreEvent(event, summary, predictions, results, metric) {
             if (candidates?.size === 1) { match = [...candidates][0]; break; }
         }
         }
-        if (match === undefined) { record.unmatched++; continue; }
-        if (used.has(match)) return {...record, rows: [], reason: 'Duplicate player match'};
+        if (match === undefined) {
+            record.unmatched++;
+            const candidates = [...new Set(nameKeys(playerName(pred)).flatMap(key => [...(indexed.get(key) ?? [])]))].map(i => players[i]);
+            issue(id && candidates.length ? 'ID not found; name candidates are not verified matches' : candidates.length ? 'Ambiguous result name' : 'Prediction without a matching result', pred, candidates);
+            continue;
+        }
+        if (used.has(match)) { issue('Duplicate player match', pred, [players[match]]); return {...record, rows: [], reason: 'Duplicate player match'}; }
         used.add(match);
         const p = probability(pred, metric), y = outcome(players[match], metric);
-        if (p === null || y === null) { record.missing++; continue; }
+        if (p === null || y === null) { record.missing++; issue(p === null && y === null ? 'Missing probability and outcome' : p === null ? 'Missing or invalid probability' : 'Unknown outcome', pred, [players[match]]); continue; }
         record.rows.push({p, y, resultIndex: match});
     }
     record.resultCount = players.length;
     record.predictionCount = predictions.length;
     record.unmatchedResults = players.length - used.size;
+    players.forEach((row, i) => {
+        if (!used.has(i)) issue('Result without a matching prediction', null, [row]);
+        if (metric !== 'cut' && outcome(row, metric) === 1 && !record.rows.some(scored => scored.resultIndex === i)) issue('Required positive outcome not scored', null, [row]);
+    });
     const known = players.map(row => outcome(row, metric)).filter(y => y !== null);
     const positives = known.filter(y => y === 1).length;
     if (metric === 'win' && positives !== 1) record.reason = 'Missing or ambiguous winner';
@@ -153,6 +164,17 @@ export function scoreEvent(event, summary, predictions, results, metric) {
     record.baseline = mean(record.rows.map(({y}) => (baseline - y) ** 2));
     record.delta = record.brier - record.baseline;
     return record;
+}
+export function diagnosticGroups(issues) {
+    const identity = issues.filter(d => /ID not found|Ambiguous|Duplicate/.test(d.kind));
+    const candidate = row => identity.some(d => d.results.some(r => r.id && row.id ? r.id === row.id : r.name === row.name));
+    const groups = {field: [], identity: [], data: []};
+    for (const issue of issues) {
+        if (identity.includes(issue) || (issue.kind === 'Result without a matching prediction' && issue.results.some(candidate))) groups.identity.push(issue);
+        else if (['Prediction without a matching result', 'Result without a matching prediction'].includes(issue.kind)) groups.field.push(issue);
+        else groups.data.push(issue);
+    }
+    return groups;
 }
 export function interval(values) {
     if (values.length < 2) return null;

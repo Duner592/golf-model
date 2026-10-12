@@ -1,10 +1,26 @@
-import {aggregate, eligibility, groupName, scoreEvent, selectSnapshot, attachPlayerIds} from './backtest-core.mjs';
+import {aggregate, eligibility, groupName, scoreEvent, selectSnapshot, attachPlayerIds, diagnosticGroups} from './backtest-core.mjs';
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const format = n => Number.isFinite(n) ? n.toFixed(4) : '—';
 const percent = n => Number.isFinite(n) ? `${(n * 100).toFixed(1)}%` : '—';
 function table(headers, rows, caption) {
     return `<table><caption>${escape(caption)}</caption><thead><tr>${headers.map(h => `<th scope="col">${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${escape(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function diagnosticDetails(record) {
+    const issues = record.diagnostics ?? [];
+    if (!issues.length) return '';
+    const player = p => p ? `${p.name} (ID: ${p.id ?? 'unavailable'})` : '—';
+    const count = record.rows?.length ?? 0;
+    const groups = diagnosticGroups(issues);
+    const sections = [
+        ['field', 'Field differences — possible withdrawals / replacements', 'Players present on only one side may reflect withdrawals or replacements after the saved run, especially during Monday–Wednesday. Missing records or unresolved name differences can also cause this; individual changes are not confirmed. Evening-before snapshots should reduce this for future events.'],
+        ['identity', 'ID conflicts and ambiguous matches', 'These are matching issues, not evidence of a field change. Similar names do not establish that conflicting IDs belong to the same player; candidates remain unverified.'],
+        ['data', 'Probability and outcome issues', 'Missing values or unscored required outcomes can independently prevent scoring.']
+    ].filter(([key]) => groups[key].length).map(([key, title, note]) => `<h3>${escape(title)}</h3><p class="muted">${escape(note)}</p><div class="scroll">${table(['Issue', 'Saved prediction player', 'Result player / unverified name candidates'], groups[key].map(issue => [issue.kind, player(issue.prediction), issue.results.map(player).join('; ') || '—']), 'Diagnostic entries can overlap; counts are not additive.')}</div>`).join('');
+    return `<details class="card"><summary>${escape(record.event.event_name)} — ${escape(record.reason ?? 'Included with unscored players')}</summary>
+        <p>${count} scored out of ${record.predictionCount ?? '—'} predictions and ${record.resultCount ?? '—'} results.
+        Prediction coverage: ${percent(count / record.predictionCount)}; result coverage: ${percent(count / record.resultCount)}. Both must reach 95%.</p>
+        ${sections}</details>`;
 }
 async function json(path, expectedHash) {
     const response = await fetch(path, {cache: 'no-cache', signal: AbortSignal.timeout(15000)});
@@ -30,6 +46,7 @@ function render() {
         const summary = {...item.summary, field_size:snapshotSummary?.field_size ?? null};
         return reason ? {...item, event, reason} : scoreEvent(event, summary, final ? item.finalPredictions : history ? item.historyPredictions : item.predictions, item.results, metric);
     });
+    $('diagnostics').innerHTML = records.map(diagnosticDetails).join('') || '<p>No player-level issues available for these filters. Events rejected before matching have their reason in the coverage table.</p>';
     const included = records.filter(row => !row.reason), total = aggregate(records);
     $('status').textContent = `${included.length} of ${records.length} selected archive events included. ${records.length - included.length} excluded; see coverage below.`;
     const tiles = [['Scored events', included.length], ['Player appearances', total?.players ?? 0], ['Excluded events', records.length - included.length], ['Calibration gap', total ? `${(total.gap * 100).toFixed(1)} pp` : '—']];

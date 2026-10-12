@@ -1,12 +1,51 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {diagnosticGroups} from '../web/assets/js/backtest-core.mjs';
 import {aggregate, eligibility, groupName, interval, nameKeys, number, outcome, probability, scoreEvent, selectSnapshot, attachPlayerIds} from '../web/assets/js/backtest-core.mjs';
 
 const event = {event_id:'1', year:'2026', tour:'pga', event_name:'Test Open', prediction_snapshot:'initial', start_date:'2026-06-04', initial_snapshot_created_utc:'2026-06-01T12:00:00Z'};
 const summary = {status:'completed', field_size:2};
 const predictions = [{player_name:'Smith, Matt', 'p_win_%':75}, {player_name:'Alex Brown', 'p_win_%':25}];
 const results = {players:[{player:'Matthew Smith', finish_pos:1}, {player:'Alex Brown', finish_pos:2}]};
+
+test('identity candidates are not presented as possible field replacements', () => {
+    const candidate = {name:'Boston Bracken', id:'36025'};
+    const issues = [
+        {kind:'ID not found; name candidates are not verified matches', results:[candidate]},
+        {kind:'Result without a matching prediction', results:[candidate]},
+        {kind:'Result without a matching prediction', results:[{name:'New Player', id:'2'}]},
+        {kind:'Prediction without a matching result', results:[]},
+        {kind:'Missing or invalid probability', results:[]}
+    ];
+    const groups = diagnosticGroups(issues);
+    assert.deepEqual(groups.identity, issues.slice(0, 2));
+    assert.deepEqual(groups.field, issues.slice(2, 4));
+    assert.deepEqual(groups.data, issues.slice(4));
+});
+
+test('coverage diagnostics expose conflicting IDs without accepting name candidates', () => {
+    const p = [{player_name:'Matthew Smith', player_id:3, p_win:75}, {player_name:'Alex Brown', player_id:2, p_win:25}];
+    const r = {players:[{player:'Matthew Smith', player_id:1, finish_pos:1}, {player:'Alex Brown', player_id:2, finish_pos:2}]};
+    const score = scoreEvent(event, summary, p, r, 'win');
+    assert.equal(score.rows.length, 1);
+    assert.equal(score.unmatched, 1);
+    assert.equal(score.unmatchedResults, 1);
+    const conflict = score.diagnostics.find(d => d.kind.startsWith('ID not found'));
+    assert.equal(conflict.prediction.id, '3');
+    assert.equal(conflict.results[0].id, '1');
+    assert.ok(score.diagnostics.some(d => d.kind === 'Required positive outcome not scored'));
+    assert.deepEqual(p[0], {player_name:'Matthew Smith', player_id:3, p_win:75});
+});
+test('coverage diagnostics distinguish missing predictions, probabilities and unknown outcomes', () => {
+    const score = scoreEvent(event, summary, [{player_name:'Matthew Smith', p_win:null}], results, 'win');
+    assert.equal(score.missing, 1);
+    assert.ok(score.diagnostics.some(d => d.kind === 'Missing or invalid probability'));
+    assert.ok(score.diagnostics.some(d => d.kind === 'Result without a matching prediction' && d.results[0].name === 'Alex Brown'));
+    const cut = scoreEvent(event, summary, [{player_name:'Matthew Smith', p_mc:50}], {players:[{player:'Matthew Smith', finish_text:'WD'}]}, 'cut');
+    assert.equal(cut.diagnostics[0].kind, 'Unknown outcome');
+    assert.equal(cut.unmatched, 0);
+});
 
 test('provider IDs match changed names but never override conflicting known IDs', () => {
     const p = [{player_name:'Original Name', dg_id:1, p_win:75}, {player_name:'Other Name', dg_id:2, p_win:25}];
