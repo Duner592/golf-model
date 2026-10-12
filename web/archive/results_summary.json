@@ -1,4 +1,22 @@
 {
+  "2026_baycurrent_classic": {
+    "event_id": "527",
+    "event_name": "Baycurrent Classic",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "baycurrent_classic"
+  },
+  "2026_open_de_espa_a_presented_by_madrid": {
+    "event_id": "2026139",
+    "event_name": "Open de Espa\u00f1a presented by Madrid",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "open_de_espa_a_presented_by_madrid"
+  },
   "2026_bank_of_utah_championship": {
     "event_id": "554",
     "event_name": "Bank of Utah Championship",

@@ -1,4 +1,206 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+527,Baycurrent Classic,pga,2026,1,Justin Thomas,37.44,94.4,100.0,0.0,23.0,T23,0.0,0.0
+527,Baycurrent Classic,pga,2026,2,Michael Thorbjornsen,19.66,86.7,100.0,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,3,Max Greyserman,15.65,83.5,100.0,0.0,61.0,T61,0.0,0.0
+527,Baycurrent Classic,pga,2026,4,Keegan Bradley,6.27,65.4,99.8,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,5,Xander Schauffele,5.0,62.0,99.8,0.0,4.0,T4,0.0,1.0
+527,Baycurrent Classic,pga,2026,6,Nico Echavarria,3.99,56.8,99.8,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,7,Keith Mitchell,1.73,41.9,99.4,0.0,2.0,T2,0.0,1.0
+527,Baycurrent Classic,pga,2026,8,Rickie Fowler,1.57,41.3,99.3,0.0,71.0,71,0.0,0.0
+527,Baycurrent Classic,pga,2026,9,Hideki Matsuyama,1.26,35.7,99.1,0.0,21.0,T21,0.0,0.0
+527,Baycurrent Classic,pga,2026,10,Min Woo Lee,1.22,34.9,99.2,0.0,9.0,T9,0.0,1.0
+527,Baycurrent Classic,pga,2026,11,Alex Smalley,1.2,35.6,99.2,0.0,63.0,T63,0.0,0.0
+527,Baycurrent Classic,pga,2026,12,Ryan Gerard,0.57,26.8,98.8,0.0,4.0,T4,0.0,1.0
+527,Baycurrent Classic,pga,2026,13,Collin Morikawa,0.51,23.3,98.5,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,14,Adam Scott,0.5,22.5,98.4,0.0,13.0,T13,0.0,0.0
+527,Baycurrent Classic,pga,2026,15,Matt Wallace,0.43,20.6,98.3,0.0,50.0,T50,0.0,0.0
+527,Baycurrent Classic,pga,2026,16,Sungjae Im,0.4,20.5,98.1,0.0,9.0,T9,0.0,1.0
+527,Baycurrent Classic,pga,2026,17,Wyndham Clark,0.37,20.5,98.1,0.0,63.0,T63,0.0,0.0
+527,Baycurrent Classic,pga,2026,18,Kurt Kitayama,0.36,21.2,98.2,0.0,61.0,T61,0.0,0.0
+527,Baycurrent Classic,pga,2026,19,Matt McCarty,0.34,19.8,98.1,0.0,50.0,T50,0.0,0.0
+527,Baycurrent Classic,pga,2026,20,Maverick McNealy,0.29,17.8,97.9,0.0,59.0,T59,0.0,0.0
+527,Baycurrent Classic,pga,2026,21,Kevin Yu,0.26,18.4,98.0,0.0,59.0,T59,0.0,0.0
+527,Baycurrent Classic,pga,2026,22,Christiaan Bezuidenhout,0.21,14.6,97.3,0.0,17.0,T17,0.0,0.0
+527,Baycurrent Classic,pga,2026,23,Mac Meissner,0.11,10.5,96.5,0.0,23.0,T23,0.0,0.0
+527,Baycurrent Classic,pga,2026,24,Keita Nakajima,0.08,9.3,95.9,0.0,50.0,T50,0.0,0.0
+527,Baycurrent Classic,pga,2026,25,Ren Yonezawa,0.06,7.1,94.8,0.0,9.0,T9,0.0,1.0
+527,Baycurrent Classic,pga,2026,26,Jacob Bridgeman,0.06,8.1,95.3,0.0,2.0,T2,0.0,1.0
+527,Baycurrent Classic,pga,2026,27,Michael Brennan,0.04,5.9,94.0,0.0,1.0,1,1.0,1.0
+527,Baycurrent Classic,pga,2026,28,Sahith Theegala,0.04,7.4,95.0,0.0,68.0,68,0.0,0.0
+527,Baycurrent Classic,pga,2026,29,Max Homa,0.03,4.8,93.3,0.0,13.0,T13,0.0,0.0
+527,Baycurrent Classic,pga,2026,30,Chandler Phillips,0.03,3.2,91.1,0.0,54.0,T54,0.0,0.0
+527,Baycurrent Classic,pga,2026,31,Jordan Smith,0.03,3.1,91.1,0.0,4.0,T4,0.0,1.0
+527,Baycurrent Classic,pga,2026,32,Nick Taylor,0.02,4.4,93.1,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,33,Brian Harman,0.02,3.4,91.6,0.0,4.0,T4,0.0,1.0
+527,Baycurrent Classic,pga,2026,34,Jordan Spieth,0.02,3.9,91.9,0.0,13.0,T13,0.0,0.0
+527,Baycurrent Classic,pga,2026,35,Ricky Castillo,0.02,2.7,89.8,0.0,29.0,T29,0.0,0.0
+527,Baycurrent Classic,pga,2026,36,Kristoffer Ventura,0.02,2.0,88.7,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,37,Beau Hossler,0.02,4.0,92.3,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,38,Takumi Kanaya,0.02,5.9,94.1,0.0,23.0,T23,0.0,0.0
+527,Baycurrent Classic,pga,2026,39,Kevin Roy,0.01,2.5,89.9,0.0,13.0,T13,0.0,0.0
+527,Baycurrent Classic,pga,2026,40,Jackson Suber,0.01,3.3,91.5,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,41,Davis Thompson,0.01,3.2,91.4,0.0,54.0,T54,0.0,0.0
+527,Baycurrent Classic,pga,2026,42,Johnny Keefer,0.01,2.5,90.1,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,43,Doug Ghim,0.01,1.8,88.7,0.0,17.0,T17,0.0,0.0
+527,Baycurrent Classic,pga,2026,44,Zach Bauchou,0.01,2.1,89.6,0.0,9.0,T9,0.0,1.0
+527,Baycurrent Classic,pga,2026,45,Aldrich Potgieter,0.01,2.8,90.5,0.0,72.0,72,0.0,0.0
+527,Baycurrent Classic,pga,2026,46,Tom Hoge,0.01,2.9,90.7,0.0,70.0,70,0.0,0.0
+527,Baycurrent Classic,pga,2026,47,Pierceson Coody,0.01,2.0,88.7,0.0,50.0,T50,0.0,0.0
+527,Baycurrent Classic,pga,2026,48,Taylor Pendrith,0.01,1.4,86.4,0.0,54.0,T54,0.0,0.0
+527,Baycurrent Classic,pga,2026,49,Koshin Nagasaki,0.01,1.2,85.0,0.0,69.0,69,0.0,0.0
+527,Baycurrent Classic,pga,2026,50,Andrew Putnam,0.01,1.9,88.6,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,51,Yoshinori Fujimoto,0.0,1.2,85.6,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,52,A.J. Ewart,0.0,0.8,81.9,0.0,,,,
+527,Baycurrent Classic,pga,2026,53,Yusaku Hosono,0.0,1.1,85.7,0.0,33.0,T33,0.0,0.0
+527,Baycurrent Classic,pga,2026,54,Ryo Hisatsune,0.0,0.9,84.4,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,55,Sang-hee Lee,0.0,1.3,85.6,0.0,65.0,65,0.0,0.0
+527,Baycurrent Classic,pga,2026,56,Denny McCarthy,0.0,1.6,87.7,0.0,29.0,T29,0.0,0.0
+527,Baycurrent Classic,pga,2026,57,Tomohiro Ishizaka,0.0,1.2,85.2,0.0,29.0,T29,0.0,0.0
+527,Baycurrent Classic,pga,2026,58,Stephan Jaeger,0.0,1.1,85.0,0.0,4.0,T4,0.0,1.0
+527,Baycurrent Classic,pga,2026,59,Tony Finau,0.0,0.8,83.2,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,60,Taylor Moore,0.0,4.3,92.6,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,61,Rasmus Neergaard-Petersen,0.0,1.9,88.4,0.0,23.0,T23,0.0,0.0
+527,Baycurrent Classic,pga,2026,62,Kosuke Sunagawa,0.0,1.3,85.8,0.0,23.0,T23,0.0,0.0
+527,Baycurrent Classic,pga,2026,63,Jinichiro Kozuma,0.0,0.4,79.7,0.0,41.0,T41,0.0,0.0
+527,Baycurrent Classic,pga,2026,64,Steven Fisk,0.0,1.6,86.9,0.0,66.0,66,0.0,0.0
+527,Baycurrent Classic,pga,2026,65,David Lipsky,0.0,0.1,70.5,0.0,54.0,T54,0.0,0.0
+527,Baycurrent Classic,pga,2026,66,Ben Kohles,0.0,0.3,76.0,0.0,17.0,T17,0.0,0.0
+527,Baycurrent Classic,pga,2026,67,Hiroshi Iwata,0.0,0.1,67.8,0.0,67.0,67,0.0,0.0
+527,Baycurrent Classic,pga,2026,68,Michael Kim,0.0,0.2,73.9,0.0,17.0,T17,0.0,0.0
+527,Baycurrent Classic,pga,2026,69,Aguri Iwasaki,0.0,0.0,52.8,0.0,54.0,T54,0.0,0.0
+527,Baycurrent Classic,pga,2026,70,Billy Horschel,0.0,0.1,71.1,0.0,21.0,T21,0.0,0.0
+527,Baycurrent Classic,pga,2026,71,Patrick Rodgers,0.0,0.1,67.2,0.0,29.0,T29,0.0,0.0
+527,Baycurrent Classic,pga,2026,72,John Parry,0.0,1.9,88.4,0.0,23.0,T23,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,1,Marco Penge,29.04,88.8,99.6,0.134529947,20.0,T20,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,2,Dan Brown,14.52,77.9,98.9,0.0918700439999999,,,,
+2026139,Open de España presented by Madrid,euro,2026,3,Tom McKibbin,12.91,75.9,98.8,0.2032157819999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,4,Jon Rahm,8.62,67.5,98.3,0.2453156509999999,,,,
+2026139,Open de España presented by Madrid,euro,2026,5,Joel Girrbach,6.65,62.0,97.7,-0.056780647,7.0,T7,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,6,Patrick Reed,4.54,53.8,96.9,0.3136732529999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,7,Jayden Schaper,4.28,52.8,96.7,-0.0120591379999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,8,Angel Ayora,3.27,47.8,95.9,0.1283275699999999,26.0,T26,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,9,David Puig,2.86,45.5,95.6,0.023586772,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,10,Joakim Lagergren,2.49,43.6,95.2,-0.0693688819999999,11.0,T11,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,11,Ugo Coussaud,2.44,41.6,94.9,-0.0124383179999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,12,Calum Hill,1.46,32.7,93.0,-0.0558880899999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,13,Bernd Wiesberger,1.41,33.0,93.0,0.0424501249999999,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,14,Joost Luiten,0.74,24.3,90.2,-0.047461066,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,15,Daniel Hillier,0.73,22.9,90.0,0.118913834,26.0,T26,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,16,Julien Guerrier,0.71,23.8,90.3,-0.138264529,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,17,Todd Clements,0.63,21.4,89.0,-0.067462395,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,18,Oliver Lindell,0.55,19.1,87.9,0.241346738,7.0,T7,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,19,Jeff Winther,0.47,19.4,87.8,0.040095184,26.0,T26,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,20,Ludvig Aberg,0.33,16.0,86.3,0.533540867,7.0,T7,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,21,Ewen Ferguson,0.2,11.0,82.5,0.155126153,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,22,Thriston Lawrence,0.19,11.5,82.6,-0.088459379,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,23,Grant Forrest,0.12,7.5,78.4,-0.3987809229999999,1.0,1,1.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,24,Thomas Detry,0.09,7.4,78.2,0.070184041,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,25,Dan Bradbury,0.08,5.3,74.1,-0.0457665109999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,26,Shane Lowry,0.07,5.5,74.5,0.3941073499999999,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,27,Sergio Garcia,0.06,5.3,74.1,0.0620142289999999,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,28,Frederic LaCroix,0.06,6.5,76.7,-0.13628878,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,29,Darius Van Driel,0.05,5.7,74.9,-0.1240126279999999,46.0,T46,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,30,Ben Schmidt,0.04,3.8,70.7,-0.2928167299999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,31,Alex Noren,0.04,4.4,72.1,0.212086461,64.0,T64,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,32,Justin Rose,0.03,4.1,70.9,0.2669143079999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,33,Tyrrell Hatton,0.03,3.3,69.6,0.210146652,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,34,Tom Vaillant,0.03,4.1,70.8,0.0163749,20.0,T20,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,35,Ignacio Elvira Mijares,0.02,3.3,68.2,-0.0754177769999999,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,36,Victor Perez,0.02,2.2,63.6,0.0459953789999999,2.0,T2,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,37,Antoine Rozner,0.02,2.0,63.5,0.100585907,20.0,T20,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,38,Eugenio Chacarra,0.02,1.6,59.0,0.268631242,2.0,T2,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,39,Nicolai Hojgaard,0.01,1.7,60.9,0.0838179259999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,40,MJ Daffue,0.01,1.2,57.2,-0.1327008785,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,41,Sam Bairstow,0.01,0.9,54.9,-0.051583535,46.0,T46,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,42,Jens Dantorp,0.01,2.1,64.1,-0.227263274,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,43,Jacob Skov Olesen,0.01,1.9,63.0,0.062766195,4.0,4,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,44,Gregorio De Leo,0.01,0.8,53.1,-0.0704364339999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,45,Francesco Laporta,0.01,1.5,59.3,-0.069784552,32.0,T32,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,46,Alejandro Rodriguez Andreu,0.01,1.2,57.0,-0.1327008785,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,47,Matthew Jordan,0.01,1.9,61.8,0.0426402539999999,26.0,T26,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,48,Niklas Norgaard,0.01,0.5,48.3,-0.1954995749999999,,,,
+2026139,Open de España presented by Madrid,euro,2026,49,Mikael Lindberg,0.0,0.4,48.7,-0.199391049,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,50,Jeremy Paul,0.0,0.1,36.7,-0.305297455,67.0,67,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,51,Sergio Jimenez Romero,0.0,1.3,57.8,-0.1327008785,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,52,Nathan Kimsey,0.0,0.7,50.1,-0.125574996,46.0,T46,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,53,Oihan Guillamoundeguy,0.0,0.5,48.1,-0.1516059119999999,69.0,T69,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,54,Paul Waring,0.0,0.6,48.9,-0.086205887,,,,
+2026139,Open de España presented by Madrid,euro,2026,55,Maximilian Steinlechner,0.0,0.6,50.3,-0.0845456279999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,56,Marcel Schneider,0.0,0.4,46.7,-0.380249742,,,,
+2026139,Open de España presented by Madrid,euro,2026,57,Brandon Robinson Thompson,0.0,0.4,45.8,-0.300215049,54.0,54,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,58,Thomas Rosenmueller,0.0,1.0,55.2,-0.005380505,,,,
+2026139,Open de España presented by Madrid,euro,2026,59,Juan Salama,0.0,0.1,28.2,-0.1327008785,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,60,Sami Valimaki,0.0,1.5,59.3,0.066360298,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,61,Martin Couvra,0.0,0.5,49.2,-0.082123658,11.0,T11,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,62,Hennie Du Plessis,0.0,0.7,50.5,-0.1376930579999999,26.0,T26,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,63,Rafa Cabrera Bello,0.0,0.1,37.1,-0.224959745,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,64,Marcus Armitage,0.0,0.8,52.9,-0.0685557959999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,65,Filippo Celli,0.0,0.7,50.7,-0.07419788,68.0,68,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,66,Jose Luis Ballester,0.0,0.8,53.2,-0.021436978,32.0,T32,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,67,Adrian Meronk,0.0,0.4,44.8,-0.1721500249999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,68,Yanhan Zhou,0.0,0.3,43.8,-0.3105722969999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,69,Kiradech Aphibarnrat,0.0,0.1,30.2,-0.32144109,32.0,T32,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,70,David Law,0.0,0.4,46.8,-0.2423383049999999,69.0,T69,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,71,Ryggs Johnston,0.0,0.0,11.9,-0.714035934,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,72,Pablo Larrazabal,0.0,0.0,7.1,-0.4566430589999999,46.0,T46,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,73,Jacques Kruyswijk,0.0,0.6,49.6,-0.2905466359999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,74,Romain Langasque,0.0,0.2,41.7,-0.169256207,52.0,T52,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,75,Rikuya Hoshino,0.0,0.0,21.5,-0.29677744,64.0,T64,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,76,Sebastian Garcia Rodriguez,0.0,0.1,30.4,-0.4187950059999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,77,Alfredo Garcia-Heredia,0.0,0.0,23.0,-0.4448268589999999,32.0,T32,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,78,Daniel Gavins,0.0,0.0,4.6,-0.942796399,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,79,Angel Hidalgo,0.0,0.1,34.2,-0.0893013449999999,32.0,T32,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,80,Yuto Katsuragawa,0.0,0.5,47.2,-0.195102898,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,81,Jeong Weon Ko,0.0,0.0,5.1,-0.704070655,73.0,73,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,82,Kazuma Kobori,0.0,0.0,17.0,-0.0184115029999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,83,Ricardo Gouveia,0.0,0.1,28.8,-0.2997799719999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,84,Alejandro Del Rey,0.0,0.2,41.7,-0.1220805579999999,26.0,T26,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,85,Joe Dean,0.0,0.0,25.6,-0.03378985,5.0,T5,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,86,Sean Crocker,0.0,0.2,38.0,-0.1515940009999999,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,87,Jorge Campillo,0.0,0.2,38.6,-0.09487873,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,88,Ivan Cantero Gutierrez,0.0,0.0,27.1,-0.452838071,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,89,Gonzalo Banos Ramos,0.0,1.1,57.6,-0.1327008785,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,90,Davis Bryant,0.0,0.9,54.7,0.004251433,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,91,Sebastian Desoisa,0.0,0.0,9.2,-0.1327008785,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,92,Wenyi Ding,0.0,0.0,23.6,-0.4257586829999999,,,,
+2026139,Open de España presented by Madrid,euro,2026,93,Ross Fisher,0.0,0.1,28.6,-0.205783767,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,94,Dylan Frittelli,0.0,0.1,34.5,-0.336875477,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,95,Manuel Elvira,0.0,0.0,17.7,-0.1150837419999999,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,96,Marcus Helligkilde,0.0,0.6,49.8,-0.095287327,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,97,Jordan Gumberg,0.0,0.0,22.8,-0.435690678,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,98,Michael Hollick,0.0,0.2,38.7,-0.2472603049999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,99,Daniel Rodrigues,0.0,0.2,39.7,-0.220757801,72.0,72,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,100,JC Ritchie,0.0,0.3,43.9,-0.2694359169999999,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,101,David Ravetto,0.0,0.0,17.8,-0.2216044139999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,102,Yurav Premlall,0.0,0.1,36.0,-0.290054617,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,103,Adrian Otaegui,0.0,0.0,26.7,-0.190647675,7.0,T7,0.0,1.0
+2026139,Open de España presented by Madrid,euro,2026,104,Guido Migliozzi,0.0,0.4,46.5,0.0500113939999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,105,Francesco Molinari,0.0,0.4,45.6,-0.129112977,20.0,T20,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,106,Luke List,0.0,0.1,32.2,-0.4082367899999999,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,107,Richard Mansell,0.0,0.0,8.7,-0.264394263,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,108,Matteo Manassero,0.0,0.7,51.0,0.0194312649999999,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,109,Niklas Lemke,0.0,0.0,22.9,-0.253397209,20.0,T20,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,110,Stefano Mazzoli,0.0,0.1,34.6,-0.392644832,13.0,T13,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,111,David Micheluzzi,0.0,0.0,12.0,-0.6218817789999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,112,Dylan Naidoo,0.0,0.0,7.9,-0.7261085589999998,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,113,Jason Scrivener,0.0,0.0,4.1,-0.1919975709999999,55.0,T55,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,114,Freddy Schott,0.0,0.0,18.9,-0.2648504499999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,115,Ockie Strydom,0.0,0.0,19.0,-0.60047517,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,116,Brandon Stone,0.0,0.2,35.5,-0.054154343,69.0,T69,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,117,Richard Sterne,0.0,0.0,13.9,-0.4155451419999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,118,Sebastian Soderberg,0.0,0.0,24.1,-0.286052579,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,119,Marcel Siem,0.0,0.1,35.3,-0.430943207,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,120,Elvis Smylie,0.0,0.3,41.3,-0.205951685,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,121,Jack Senior,0.0,0.0,11.9,-0.465203486,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,122,Connor Syme,0.0,0.0,9.8,-0.36260416,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,123,Quim Vidal,0.0,0.1,31.7,-0.396394617,37.0,T37,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,124,Johannes Veerman,0.0,0.0,9.5,-0.2009044789999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,125,Erik Van Rooyen,0.0,0.5,46.9,-0.192081384,,,,
+2026139,Open de España presented by Madrid,euro,2026,126,Andy Sullivan,0.0,0.1,33.5,-0.007168273,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,127,Bubba Watson,0.0,0.7,51.0,-0.139936563,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,128,Nicolai Von Dellingshausen,0.0,0.0,7.3,-0.2964593949999999,46.0,T46,0.0,0.0
+2026139,Open de España presented by Madrid,euro,2026,129,Danny Willett,0.0,0.0,26.3,-0.2687783749999999,,CUT,,
+2026139,Open de España presented by Madrid,euro,2026,130,Ashun Wu,0.0,0.1,29.3,-0.2661565099999999,46.0,T46,0.0,0.0
 554,Bank of Utah Championship,pga,2026,1,Michael Brennan,63.62,98.2,99.9,0.6191051376660343,13.0,T13,0.0,0.0
 554,Bank of Utah Championship,pga,2026,2,Matt McCarty,9.27,75.3,98.2,0.0563012360516413,53.0,T53,0.0,0.0
 554,Bank of Utah Championship,pga,2026,3,Max Homa,3.89,56.7,96.0,0.3418871760163277,26.0,T26,0.0,0.0
