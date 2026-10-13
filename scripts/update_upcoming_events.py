@@ -202,27 +202,24 @@ def normalize_event(raw: dict[str, Any], tour: str, existing: dict[str, Any] | N
 
 def fetch_schedule(base_url: str, path: str, key_param: str, api_key: str, tour: str, season: int) -> list[dict[str, Any]]:
     url = f"{base_url.rstrip('/')}/{path.lstrip('/')}"
-    params = {key_param: api_key, "tour": tour, "year": str(season)}
+    params = {key_param: api_key, "tour": tour, "season": str(season), "upcoming_only": "no"}
     response = requests.get(url, params=params, timeout=30)
     raise_for_status_safely(response)
-    events = events_from_payload(response.json())
-    if events:
-        return events
-
-    # Some DataGolf schedule examples use "season"; keep a fallback so this
-    # script remains compatible if the endpoint rejects/ignores "year".
-    params = {key_param: api_key, "tour": tour, "season": str(season)}
-    response = requests.get(url, params=params, timeout=30)
-    raise_for_status_safely(response)
-    return events_from_payload(response.json())
+    payload = response.json()
+    if isinstance(payload, dict) and str(payload.get("season", season)) != str(season):
+        raise ValueError("Schedule response season does not match request")
+    events = events_from_payload(payload)
+    if not events:
+        raise ValueError("Schedule response has no events; preserving saved schedule")
+    return events
 
 
-def sort_key(event: dict[str, Any]) -> tuple[str, str, int | str, str]:
+def sort_key(event: dict[str, Any]) -> tuple[str, str, tuple[int, int | str], str]:
     event_id = str(event.get("event_id", ""))
     try:
-        event_id_key: int | str = int(event_id)
+        event_id_key = (0, int(event_id))
     except ValueError:
-        event_id_key = event_id
+        event_id_key = (1, event_id)
     return str(event.get("start_date", "")), str(event.get("tour", "")), event_id_key, str(event.get("event_name", ""))
 
 
@@ -294,6 +291,7 @@ def main() -> None:
         "tour": "all",
         "upcoming_only": "no",
     }
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {len(schedule)} events to {out_path.relative_to(ROOT)}")
 

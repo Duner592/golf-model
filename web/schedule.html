@@ -30,8 +30,14 @@
         }
 
         /* Tour filter dropdown (always visible) */
-        #tour-filter { margin: 0.5rem 0; }
-        #tour-filter select { padding: 0.5rem; font-size: 1rem; }
+        .schedule-filters {display:flex;flex-wrap:wrap;gap:1.25rem;padding:1.1rem 1.25rem;border:1px solid #d5e3da;border-radius:12px;background:#f0f7f2;align-self:flex-start;box-sizing:border-box;max-width:100%}
+        .schedule-filter {display:flex;flex-direction:column;gap:.45rem;min-width:160px;flex:1}
+        .schedule-filter label {font-size:.85rem;font-weight:650;color:#355942}
+        .schedule-filter select {font:inherit;font-weight:600;color:#173d28;background:#fff;border:1px solid #a3b9ab;border-radius:8px;padding:.7rem 2rem .7rem .85rem;min-height:44px;cursor:pointer;width:100%}
+        .schedule-filter select:hover {border-color:#357852}
+        .schedule-filter select:focus-visible {outline:3px solid #357852;outline-offset:3px}
+        #season-note {color:#52665a;line-height:1.5;font-size:.9rem}
+        @media(max-width:480px){.schedule-filters{align-self:stretch;gap:.8rem}.schedule-filter{min-width:120px}}
 
         /* Table area */
         .table-container { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
@@ -58,7 +64,8 @@
         .schedule-link:hover, .schedule-link:focus-visible { text-decoration: underline; text-underline-offset: 0.16em; }
 
         /* Key for events */
-        .event-key { margin: 1rem 0; font-size: 0.9rem; font-style: italic; color: #555; }
+        .event-key {display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0;font-size:.9rem;color:#333}
+        .event-key span {display:inline-block;border-radius:5px}
         .event-key p { margin: 0.25rem 0; }
 
         /* Link button (same as index) */
@@ -100,11 +107,16 @@
 <!-- Same placement as index.html -->
 <div class="menu-container"></div>
 
-<h1>2026 Golf Tour Schedules</h1>
+<h1 id="schedule-title">2026 Golf Tour Schedules</h1>
+<div class="schedule-filters" role="group" aria-label="Schedule filters">
+<div class="schedule-filter">
+<label for="season-select">Season</label>
+<select id="season-select"><option value="2026">2026</option><option value="2027">2027</option></select>
+</div>
 
 <!-- Tour filter dropdown (always visible) -->
-<div id="tour-filter">
-    <label for="tour-select">Filter by Tour:</label>
+<div id="tour-filter" class="schedule-filter">
+    <label for="tour-select">Tour</label>
     <select id="tour-select">
         <option value="all">All Tours</option>
         <option value="Major">Major</option>
@@ -112,6 +124,8 @@
         <option value="PGA Tour">PGA Tour</option>
     </select>
 </div>
+</div>
+<p id="season-note" role="status"></p>
 
 <!-- Key for events -->
 <div class="event-key">
@@ -188,23 +202,45 @@
     const tbody = document.querySelector('#schedule-table tbody');
     tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Loading schedule...</td></tr>';
 
-    // Fetch both schedules and combine
-    Promise.all([
+    let loadRequest = 0;
+    async function loadSeason() {
+      const request = ++loadRequest;
+      const season = document.getElementById('season-select').value;
+      document.getElementById('schedule-title').textContent = `${season} Golf Tour Schedules`;
+      document.getElementById('season-note').textContent = season === '2027' ? 'Provisional DataGolf season schedule: dates, names, venues and event IDs may change. The DP World Tour season starts in late 2026. Colours use the site’s existing event-name categories and are provisional, not confirmation of 2027 designations.' : '';
+      allData = [];
+      tbody.innerHTML = '<tr><td colspan="6">Loading schedule…</td></tr>';
+      try {
+      if (season === '2027') {
+        const response = await fetch('schedules/2027.json', {cache:'no-cache'});
+        if (!response.ok) throw new Error('Schedule unavailable');
+        const payload = await response.json();
+        if (payload.season !== 2027 || !Array.isArray(payload.schedule)) throw new Error('Invalid season');
+        if (request !== loadRequest) return;
+        allData = payload.schedule.map(e => ({...e, sourceTour:e.tour, event:e.event_name, date:/^\d{4}-\d{2}-\d{2}$/.test(e.start_date) ? e.start_date.split('-').reverse().join('-') : 'TBD', tour:e.tour === 'euro' ? 'DP World Tour' : majorEvents.has(e.event_name) ? 'Major' : 'PGA Tour'}));
+      } else {
+      const [euro,pga] = await Promise.all([
         fetch('euro/schedule.json').then(response => response.ok ? response.json() : []).catch(() => []),
         fetch('pga/schedule.json').then(response => response.ok ? response.json() : []).catch(() => [])
-    ]).then(([euro, pga]) => {
+      ]);
+        if (request !== loadRequest) return;
         euro.forEach(event => { event.sourceTour = 'euro'; event.tour = 'DP World Tour'; allData.push(event); });
         pga.forEach(event => {
             event.sourceTour = 'pga';
             event.tour = majorEvents.has(event.event) ? 'Major' : 'PGA Tour';
             allData.push(event);
         });
+      }
         // Sort all data by date
         allData.sort((a, b) => new Date(a.date.split('-').reverse().join('-')) - new Date(b.date.split('-').reverse().join('-')));
         renderTable();
-    }).catch(() => {
+      } catch {
+        if (request !== loadRequest) return;
         tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">Error loading schedule data. Please try again later.</td></tr>';
-    });
+      }
+    }
+    document.getElementById('season-select').addEventListener('change', loadSeason);
+    loadSeason();
 
     // Render table function
     function renderTable() {

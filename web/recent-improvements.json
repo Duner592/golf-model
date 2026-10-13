@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-13",
+    "title": "2027 schedule preview",
+    "description": "Styled season and tour filters let you explore 2026 and provisional 2027 schedules, retaining Rolex, Major, Signature and Playoff colour highlights. Future-season data stays separate from current model inputs.",
+    "href": "schedule.html"
+  },
+  {
     "date": "2026-10-12",
     "title": "Simpler ROI navigation",
     "description": "Always-visible totals, a year selector and direct period/player/tournament views replace nested navigation while retaining existing figures and searchable, sortable tables.",
@@ -15,12 +21,6 @@
     "date": "2026-10-12",
     "title": "Easier backtest exploration",
     "description": "Clearer summary cards and a searchable All/Included/Excluded event list make coverage easier to explore, with compact expandable player details and unchanged scoring.",
-    "href": "backtest_breakdowns.html"
-  },
-  {
-    "date": "2026-10-12",
-    "title": "Backtest exclusion details",
-    "description": "Expand events to distinguish possible withdrawal/replacement field differences from ID conflicts and missing scoring data, with exact coverage percentages. Strict scoring checks remain unchanged.",
     "href": "backtest_breakdowns.html"
   }
 ]

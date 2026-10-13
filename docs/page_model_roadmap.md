@@ -4,6 +4,10 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### Schedule Season Selector
+
+Added 2026-10-13: 2026/2027 dropdown, separate generated 2027 PGA/DPWT season file and provisional-data notice. Preview data does not change current model event selection.
+
 ### ROI Navigation Refresh
 
 Implemented 2026-10-12: visible summary cards, year selector with All years, direct period/player/tournament views, searchable sortable tables and scroll-contained mobile results. Existing totals, columns and pending-bet conventions preserved.
