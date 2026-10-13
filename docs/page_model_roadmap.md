@@ -4,6 +4,10 @@ This is a backlog for improvements to the golf model site and prediction pipelin
 
 ## Completed
 
+### Unified Betting Performance
+
+Implemented 2026-10-13: ROI and Tournament P/L merged into `betting_performance.html`, with shared year/tour filters, overview/period/player/tournament views, sorting/search and tournament running P/L. Settled mode preserves recorded Profit/Loss; include-pending mode preserves legacy return-minus-stake ROI. Old URLs redirect with their original accounting defaults. Search hides rows without changing summary or cumulative totals.
+
 ### Schedule Season Selector
 
 Added 2026-10-13: 2026/2027 dropdown, separate generated 2027 PGA/DPWT season file and provisional-data notice. Preview data does not change current model event selection.

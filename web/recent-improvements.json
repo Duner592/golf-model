@@ -1,15 +1,15 @@
 [
   {
     "date": "2026-10-13",
+    "title": "Unified betting performance",
+    "description": "ROI and Tournament P/L now share year/tour filters, period/player/tournament views and running P/L. Explicit settled-only and include-pending modes preserve the previous calculation conventions.",
+    "href": "betting_performance.html"
+  },
+  {
+    "date": "2026-10-13",
     "title": "2027 schedule preview",
     "description": "Styled season and tour filters let you explore 2026 and provisional 2027 schedules, retaining Rolex, Major, Signature and Playoff colour highlights. Future-season data stays separate from current model inputs.",
     "href": "schedule.html"
-  },
-  {
-    "date": "2026-10-12",
-    "title": "Simpler ROI navigation",
-    "description": "Always-visible totals, a year selector and direct period/player/tournament views replace nested navigation while retaining existing figures and searchable, sortable tables.",
-    "href": "roi.html"
   },
   {
     "date": "2026-10-12",

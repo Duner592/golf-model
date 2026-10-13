@@ -36,9 +36,8 @@
             children: [
                 { label: 'Odds & Value', href: 'odds_value.html?v=20260713-odds-cache2' },
                 { label: 'Betting Analytics', href: 'betting_analytics.html' },
-                { label: 'Tournament P/L', href: 'tournament_pl.html' },
-                { label: 'Betting Data', href: 'spreadsheet.html' },
-                { label: 'ROI', href: 'roi.html' }
+                { label: 'Betting Performance', href: 'betting_performance.html' },
+                { label: 'Betting Data', href: 'spreadsheet.html' }
             ]
         },
         { label: 'Schedule', href: 'schedule.html' },
@@ -480,9 +479,9 @@
             add('Overall Data');
             return crumbs;
         }
-        if (route === 'tournament_pl.html') {
+        if (route === 'betting_performance.html') {
             add('Betting History', 'betting_analytics.html');
-            add('Tournament P/L');
+            add('Betting Performance');
             return crumbs;
         }
         if (route === 'roi.html') {
