@@ -10,7 +10,20 @@
     "archived_at": "2026-10-12 06:11:44 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-10-12T06:11:44Z",
-    "model_page": "archive/2026/dp_world_india_championship/model_page.html"
+    "model_page": "archive/2026/dp_world_india_championship/model_page.html",
+    "final_snapshot": {
+      "snapshot_type": "final",
+      "event_id": "2026140",
+      "tour": "euro",
+      "year": "2026",
+      "start_date": "2026-10-15",
+      "timezone": "Asia/Kolkata",
+      "snapshot_created_utc": "2026-10-14T13:51:42Z",
+      "prediction_generated_utc": "2026-10-14T13:51:41Z",
+      "capture_window_open_utc": "2026-10-14T12:30:00Z",
+      "cutoff_utc": "2026-10-14T18:30:00Z",
+      "cutoff_basis": "midnight before local event start date"
+    }
   },
   {
     "event_id": "527",
