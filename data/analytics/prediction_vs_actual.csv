@@ -1,4 +1,148 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+2026140,DP World India Championship,euro,2026,1,Tommy Fleetwood,66.63,99.4,99.9,0.533373885,5.0,T5,0.0,1.0
+2026140,DP World India Championship,euro,2026,2,Shane Lowry,17.22,92.6,99.4,0.5455227460000001,15.0,T15,0.0,0.0
+2026140,DP World India Championship,euro,2026,3,Daniel Hillier,3.5,68.4,96.8,0.248943868,2.0,2,0.0,1.0
+2026140,DP World India Championship,euro,2026,4,Rory McIlroy,3.03,67.0,96.6,0.6662306680000001,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,5,Jayden Schaper,2.95,66.7,96.6,-0.1089036409999999,15.0,T15,0.0,0.0
+2026140,DP World India Championship,euro,2026,6,Joost Luiten,1.85,58.8,95.3,0.001223068,5.0,T5,0.0,1.0
+2026140,DP World India Championship,euro,2026,7,Thriston Lawrence,0.99,46.1,92.4,-0.270033363,54.0,54,0.0,0.0
+2026140,DP World India Championship,euro,2026,8,Eugenio Chacarra,0.72,40.2,91.2,0.361425536,1.0,1,1.0,1.0
+2026140,DP World India Championship,euro,2026,9,Casey Jarvis,0.62,38.4,90.3,0.3438096209999999,32.0,T32,0.0,0.0
+2026140,DP World India Championship,euro,2026,10,Tom Vaillant,0.39,31.6,88.2,-0.118726393,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,11,Dan Bradbury,0.36,29.9,87.6,0.107890262,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,12,Andy Sullivan,0.32,30.0,87.6,-0.002951558,,WD,,
+2026140,DP World India Championship,euro,2026,13,Jorge Campillo,0.26,25.8,85.7,-0.113903338,,CUT,,
+2026140,DP World India Championship,euro,2026,14,Bernd Wiesberger,0.2,26.4,85.8,0.110669486,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,15,Ben Schmidt,0.15,19.9,82.5,-0.288996863,55.0,T55,0.0,0.0
+2026140,DP World India Championship,euro,2026,16,Martin Couvra,0.14,20.5,82.5,-0.0885523529999999,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,17,David Ravetto,0.09,16.8,80.2,-0.170578443,,CUT,,
+2026140,DP World India Championship,euro,2026,18,Freddy Schott,0.08,14.7,78.5,-0.32899787,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,19,Brandon Robinson Thompson,0.07,14.1,77.6,-0.3760128,63.0,T63,0.0,0.0
+2026140,DP World India Championship,euro,2026,20,Frederic LaCroix,0.04,10.5,74.3,-0.098115636,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,21,Robert MacIntyre,0.04,10.3,73.6,0.253549812,9.0,T9,0.0,1.0
+2026140,DP World India Championship,euro,2026,22,Andreas Halvorsen,0.04,8.7,71.0,-0.444004193,,CUT,,
+2026140,DP World India Championship,euro,2026,23,Min Woo Lee,0.03,11.0,74.5,0.301190316,,WD,,
+2026140,DP World India Championship,euro,2026,24,Aaron Rai,0.02,7.5,69.0,0.380539286,20.0,T20,0.0,0.0
+2026140,DP World India Championship,euro,2026,25,Marcus Armitage,0.02,6.9,68.5,-0.152199584,30.0,T30,0.0,0.0
+2026140,DP World India Championship,euro,2026,26,Jens Dantorp,0.02,5.9,65.9,-0.412145314,69.0,T69,0.0,0.0
+2026140,DP World India Championship,euro,2026,27,Shiv Kapur,0.02,8.1,70.7,-0.218572204,69.0,T69,0.0,0.0
+2026140,DP World India Championship,euro,2026,28,Patrick Reed,0.02,6.7,68.2,0.4095205189999999,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,29,Tom McKibbin,0.01,6.0,66.8,0.2717490429999999,9.0,T9,0.0,1.0
+2026140,DP World India Championship,euro,2026,30,Dhruv Sheoran,0.01,5.4,65.3,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,31,JC Ritchie,0.01,1.2,45.8,-0.240631119,5.0,T5,0.0,1.0
+2026140,DP World India Championship,euro,2026,32,Ewen Ferguson,0.01,4.2,61.8,0.2551558889999999,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,33,Niklas Norgaard,0.01,1.7,50.1,-0.1085351689999999,,,,
+2026140,DP World India Championship,euro,2026,34,Adrian Meronk,0.01,1.6,49.7,-0.14428008,3.0,T3,0.0,1.0
+2026140,DP World India Championship,euro,2026,35,Jacob Skov Olesen,0.01,3.5,59.3,0.056728205,20.0,T20,0.0,0.0
+2026140,DP World India Championship,euro,2026,36,Viraj Madappa,0.01,1.5,50.9,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,37,Antoine Rozner,0.01,2.8,57.2,0.2413845439999999,,CUT,,
+2026140,DP World India Championship,euro,2026,38,Byeong Hun An,0.01,2.4,55.1,0.013283052,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,39,Gregorio De Leo,0.01,1.0,43.6,-0.0755820859999999,5.0,T5,0.0,1.0
+2026140,DP World India Championship,euro,2026,40,Rashid Khan,0.01,1.7,50.3,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,41,Veer Ahlawat,0.01,1.8,51.0,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,42,Mohd Azhar,0.0,1.6,50.3,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,43,Davis Bryant,0.0,1.4,47.8,-0.039065202,49.0,T49,0.0,0.0
+2026140,DP World India Championship,euro,2026,44,Honey Baisoya,0.0,1.7,50.5,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,45,Darius Van Driel,0.0,2.6,55.1,-0.119169233,74.0,T74,0.0,0.0
+2026140,DP World India Championship,euro,2026,46,Shubham Jaglan,0.0,1.6,50.6,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,47,Oliver Lindell,0.0,3.4,58.5,0.392941649,,CUT,,
+2026140,DP World India Championship,euro,2026,48,Justin Rose,0.0,3.4,59.3,0.262657999,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,49,Manuel Elvira,0.0,1.8,51.3,-0.093433638,69.0,T69,0.0,0.0
+2026140,DP World India Championship,euro,2026,50,Laurie Canter,0.0,2.1,52.2,0.160134492,13.0,T13,0.0,0.0
+2026140,DP World India Championship,euro,2026,51,Khalin H Joshi,0.0,1.7,50.7,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,52,Karandeep Kochhar,0.0,1.8,50.6,-0.218572204,49.0,T49,0.0,0.0
+2026140,DP World India Championship,euro,2026,53,Nathan Kimsey,0.0,0.4,36.6,-0.127898022,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,54,Jamal Hossain,0.0,1.8,51.1,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,55,Stepan Danek,0.0,1.7,50.2,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,56,Ugo Coussaud,0.0,2.9,57.0,0.0272227089999999,,CUT,,
+2026140,DP World India Championship,euro,2026,57,Filippo Celli,0.0,0.8,41.8,-0.123083063,,CUT,,
+2026140,DP World India Championship,euro,2026,58,Ryan Fox,0.0,4.1,61.3,0.212835845,,CUT,,
+2026140,DP World India Championship,euro,2026,59,Oihan Guillamoundeguy,0.0,0.8,41.0,-0.203853829,60.0,T60,0.0,0.0
+2026140,DP World India Championship,euro,2026,60,Kiradech Aphibarnrat,0.0,0.0,6.6,-0.6085335,,CUT,,
+2026140,DP World India Championship,euro,2026,61,Albin Bergstrom,0.0,0.1,26.6,-0.570626211,67.0,T67,0.0,0.0
+2026140,DP World India Championship,euro,2026,62,Cameron Adam,0.0,0.2,30.6,-0.2871350939999999,69.0,T69,0.0,0.0
+2026140,DP World India Championship,euro,2026,63,Angel Ayora,0.0,3.6,59.3,0.171333381,,CUT,,
+2026140,DP World India Championship,euro,2026,64,Sam Bairstow,0.0,2.0,53.5,-0.0192394509999999,,,,
+2026140,DP World India Championship,euro,2026,65,Rafa Cabrera Bello,0.0,0.0,11.1,-0.5752276699999999,,CUT,,
+2026140,DP World India Championship,euro,2026,66,Gaganjeet Bhullar,0.0,1.9,50.4,-0.218572204,,,,
+2026140,DP World India Championship,euro,2026,67,Joshua Berry,0.0,0.0,10.5,-1.063257569,,CUT,,
+2026140,DP World India Championship,euro,2026,68,Shaurya Bhattacharya,0.0,1.9,51.3,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,69,Manu Gandas,0.0,0.6,39.4,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,70,Sebastian Garcia Rodriguez,0.0,0.1,21.8,-0.582744234,,CUT,,
+2026140,DP World India Championship,euro,2026,71,Ricardo Gouveia,0.0,0.2,28.7,-0.39618011,,CUT,,
+2026140,DP World India Championship,euro,2026,72,Joel Girrbach,0.0,0.1,27.5,-0.017280228,13.0,T13,0.0,0.0
+2026140,DP World India Championship,euro,2026,73,Jordan Gumberg,0.0,0.0,6.2,-0.534497025,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,74,Julien Guerrier,0.0,0.9,43.1,-0.21715569,,CUT,,
+2026140,DP World India Championship,euro,2026,75,Todd Clements,0.0,0.9,43.7,0.006949866,32.0,T32,0.0,0.0
+2026140,DP World India Championship,euro,2026,76,Om Prakash Chouhan,0.0,0.0,15.0,-0.218572204,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,77,Thomas Detry,0.0,3.7,60.0,0.071872363,9.0,T9,0.0,1.0
+2026140,DP World India Championship,euro,2026,78,Sean Crocker,0.0,0.5,37.0,-0.16356842,15.0,T15,0.0,0.0
+2026140,DP World India Championship,euro,2026,79,Clement Charmasson,0.0,0.0,19.6,-0.777267084,,,,
+2026140,DP World India Championship,euro,2026,80,Angad Cheema,0.0,0.0,15.1,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,81,Junghwan Lee,0.0,0.1,24.6,-0.636426695,,CUT,,
+2026140,DP World India Championship,euro,2026,82,David Law,0.0,0.9,43.6,-0.227010075,49.0,T49,0.0,0.0
+2026140,DP World India Championship,euro,2026,83,Pablo Larrazabal,0.0,0.6,37.8,-0.4941947809999999,,CUT,,
+2026140,DP World India Championship,euro,2026,84,Francesco Laporta,0.0,2.1,52.5,-0.073623306,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,85,Anirban Lahiri,0.0,0.1,19.8,-0.2627914959999999,23.0,T23,0.0,0.0
+2026140,DP World India Championship,euro,2026,86,Romain Langasque,0.0,0.1,24.3,-0.329365805,63.0,T63,0.0,0.0
+2026140,DP World India Championship,euro,2026,87,Joakim Lagergren,0.0,1.7,49.5,-0.160866383,,CUT,,
+2026140,DP World India Championship,euro,2026,88,Marcus Kinhult,0.0,0.5,36.8,-0.343807845,,CUT,,
+2026140,DP World India Championship,euro,2026,89,Kshitij Naveed Kaul,0.0,0.0,15.0,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,90,Jeong Weon Ko,0.0,0.0,0.9,-0.940790095,,CUT,,
+2026140,DP World India Championship,euro,2026,91,Yuto Katsuragawa,0.0,0.7,40.7,-0.285911007,60.0,T60,0.0,0.0
+2026140,DP World India Championship,euro,2026,92,Ryggs Johnston,0.0,0.0,0.4,-0.8525033049999999,,CUT,,
+2026140,DP World India Championship,euro,2026,93,Matthew Jordan,0.0,0.4,34.5,0.15162021,,,,
+2026140,DP World India Championship,euro,2026,94,Tobias Jonsson,0.0,0.2,27.5,-0.498796724,,CUT,,
+2026140,DP World India Championship,euro,2026,95,Anshul Kabthiyal,0.0,1.8,50.0,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,96,Kota Kaneko,0.0,1.0,43.6,-0.08538886,30.0,T30,0.0,0.0
+2026140,DP World India Championship,euro,2026,97,Michael Hollick,0.0,0.4,35.7,-0.127504423,,CUT,,
+2026140,DP World India Championship,euro,2026,98,Angel Hidalgo,0.0,0.0,15.5,-0.1185521909999999,3.0,T3,0.0,1.0
+2026140,DP World India Championship,euro,2026,99,Rikuya Hoshino,0.0,0.3,31.7,-0.426593998,,CUT,,
+2026140,DP World India Championship,euro,2026,100,Scott Jamieson,0.0,0.0,19.3,-0.373378039,15.0,T15,0.0,0.0
+2026140,DP World India Championship,euro,2026,101,Ivan Cantero Gutierrez,0.0,0.2,30.3,-0.473099531,76.0,T76,0.0,0.0
+2026140,DP World India Championship,euro,2026,102,Luke Donald,0.0,2.1,53.2,-0.218572204,69.0,T69,0.0,0.0
+2026140,DP World India Championship,euro,2026,103,Ross Fisher,0.0,0.6,39.1,-0.258518317,,CUT,,
+2026140,DP World India Championship,euro,2026,104,Ignacio Elvira Mijares,0.0,0.2,30.0,-0.130270516,15.0,T15,0.0,0.0
+2026140,DP World India Championship,euro,2026,105,Grant Forrest,0.0,0.0,16.2,-0.578194223,,WD,,
+2026140,DP World India Championship,euro,2026,106,Dylan Frittelli,0.0,0.1,26.4,-0.468242025,,CUT,,
+2026140,DP World India Championship,euro,2026,107,Guido Migliozzi,0.0,0.6,40.0,0.101347408,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,108,Felix Mory,0.0,0.4,34.1,-0.2237865859999999,,CUT,,
+2026140,DP World India Championship,euro,2026,109,Stefano Mazzoli,0.0,0.2,28.3,-0.57879328,55.0,T55,0.0,0.0
+2026140,DP World India Championship,euro,2026,110,Amardip Malik,0.0,0.4,33.7,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,111,Niklas Lemke,0.0,0.2,26.7,-0.270780929,,CUT,,
+2026140,DP World India Championship,euro,2026,112,James Morrison,0.0,0.1,19.9,-0.7164734360000001,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,113,Daniel Rodrigues,0.0,0.3,34.5,-0.219988718,,CUT,,
+2026140,DP World India Championship,euro,2026,114,Rocco Repetto Taylor,0.0,0.3,33.4,-0.469457503,,CUT,,
+2026140,DP World India Championship,euro,2026,115,Dylan Naidoo,0.0,0.0,2.2,-0.900787877,,CUT,,
+2026140,DP World India Championship,euro,2026,116,Adrian Otaegui,0.0,1.1,45.6,-0.240982923,9.0,T9,0.0,1.0
+2026140,DP World India Championship,euro,2026,117,Renato Paratore,0.0,0.2,28.9,-0.482305432,,CUT,,
+2026140,DP World India Championship,euro,2026,118,Ryan Peake,0.0,0.0,17.0,-0.622445276,63.0,T63,0.0,0.0
+2026140,DP World India Championship,euro,2026,119,Eddie Pepperell,0.0,0.1,24.4,-0.232537063,49.0,T49,0.0,0.0
+2026140,DP World India Championship,euro,2026,120,Yurav Premlall,0.0,0.2,30.2,-0.428076244,,CUT,,
+2026140,DP World India Championship,euro,2026,121,Matteo Manassero,0.0,0.8,42.2,0.083966401,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,122,Jack Senior,0.0,0.2,30.4,-0.533814609,55.0,T55,0.0,0.0
+2026140,DP World India Championship,euro,2026,123,Shubhankar Sharma,0.0,0.0,6.3,-0.8050223009999998,,CUT,,
+2026140,DP World India Championship,euro,2026,124,Akshay Sharma,0.0,0.0,3.7,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,125,Jason Scrivener,0.0,0.0,13.6,-0.257194646,,CUT,,
+2026140,DP World India Championship,euro,2026,126,Yuvraj Singh Sandhu,0.0,0.0,14.2,-0.670373672,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,127,Manoj S,0.0,1.7,50.4,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,128,Ajeetesh Sandhu,0.0,0.5,38.4,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,129,Elvis Smylie,0.0,0.3,34.2,-0.2631019609999999,,CUT,,
+2026140,DP World India Championship,euro,2026,130,Kartik Singh,0.0,1.7,50.9,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,131,Marcel Siem,0.0,0.0,6.8,-0.610423931,49.0,T49,0.0,0.0
+2026140,DP World India Championship,euro,2026,132,Vishesh Sharma,0.0,1.7,50.7,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,133,Richard Sterne,0.0,0.2,26.2,-0.5236921330000001,,CUT,,
+2026140,DP World India Championship,euro,2026,134,Saptak Talwar,0.0,0.0,14.6,-0.218572204,55.0,T55,0.0,0.0
+2026140,DP World India Championship,euro,2026,135,Maximilian Steinlechner,0.0,0.9,43.8,-0.070126421,76.0,T76,0.0,0.0
+2026140,DP World India Championship,euro,2026,136,Sebastian Soderberg,0.0,0.0,10.2,-0.165951631,55.0,T55,0.0,0.0
+2026140,DP World India Championship,euro,2026,137,Hugo Townsend,0.0,0.1,25.0,-0.618214098,74.0,T74,0.0,0.0
+2026140,DP World India Championship,euro,2026,138,Subash Tamang,0.0,1.7,50.7,-0.218572204,,CUT,,
+2026140,DP World India Championship,euro,2026,139,Quim Vidal,0.0,0.1,24.9,-0.556970096,,CUT,,
+2026140,DP World India Championship,euro,2026,140,Johannes Veerman,0.0,0.3,33.5,-0.341562902,42.0,T42,0.0,0.0
+2026140,DP World India Championship,euro,2026,141,Nicolai Von Dellingshausen,0.0,0.2,30.6,-0.3868751279999999,34.0,T34,0.0,0.0
+2026140,DP World India Championship,euro,2026,142,Euan Walker,0.0,0.4,34.5,-0.229572757,60.0,T60,0.0,0.0
+2026140,DP World India Championship,euro,2026,143,Danny Willett,0.0,0.2,30.4,-0.400883508,,WD,,
+2026140,DP World India Championship,euro,2026,144,Daniel Young,0.0,0.1,26.5,-0.4795539349999999,67.0,T67,0.0,0.0
 527,Baycurrent Classic,pga,2026,1,Justin Thomas,37.44,94.4,100.0,0.0,23.0,T23,0.0,0.0
 527,Baycurrent Classic,pga,2026,2,Michael Thorbjornsen,19.66,86.7,100.0,0.0,33.0,T33,0.0,0.0
 527,Baycurrent Classic,pga,2026,3,Max Greyserman,15.65,83.5,100.0,0.0,61.0,T61,0.0,0.0

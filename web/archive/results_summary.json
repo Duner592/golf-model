@@ -1,4 +1,13 @@
 {
+  "2026_dp_world_india_championship": {
+    "event_id": "2026140",
+    "event_name": "DP World India Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "dp_world_india_championship"
+  },
   "2026_baycurrent_classic": {
     "event_id": "527",
     "event_name": "Baycurrent Classic",
