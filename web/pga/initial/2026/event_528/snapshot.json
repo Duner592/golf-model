@@ -1,0 +1,67 @@
+{
+  "snapshot_type": "initial",
+  "snapshot_label": "Initial run",
+  "snapshot_created_utc": "2026-10-19T04:55:32Z",
+  "tour": "pga",
+  "event_id": "528",
+  "event_name": "Butterfield Bermuda Championship",
+  "year": "2026",
+  "r1_date": "2026-10-22",
+  "start_date": "2026-10-22",
+  "source_csv": "data/preds/pga/event_528_butterfield_bermuda_championship_2026-10-19_leaderboard.csv",
+  "artifact_generated_utc": "19-Oct-2026 04:55:32",
+  "resources": {
+    "model_page": "pga/initial/2026/event_528/model_page.html",
+    "leaderboard": "pga/initial/2026/event_528/leaderboard.json",
+    "summary": "pga/initial/2026/event_528/summary.json",
+    "meta": "pga/initial/2026/event_528/meta.json",
+    "downloads_csv": "pga/initial/2026/event_528/leaderboard.csv",
+    "downloads_html": "pga/initial/2026/event_528/leaderboard.html",
+    "timestamped_csv": "pga/initial/2026/event_528/leaderboard_20261019T045532Z.csv",
+    "timestamped_html": "pga/initial/2026/event_528/leaderboard_20261019T045532Z.html",
+    "weather_meta": "pga/initial/2026/event_528/weather_meta.json",
+    "weather_round_neutral": "pga/initial/2026/event_528/weather_round_neutral.json",
+    "weather_round_wave": "pga/initial/2026/event_528/weather_round_wave.json",
+    "course_fit_weights": "pga/initial/2026/event_528/course_fit_weights.json",
+    "course_history_summary": "pga/initial/2026/event_528/course_history_summary.json",
+    "tournament_summary": "pga/initial/2026/event_528/tournament_summary.json",
+    "field_teetimes": "pga/initial/2026/event_528/field_teetimes.csv",
+    "snapshot": "pga/initial/2026/event_528/snapshot.json",
+    "schedule": "pga/schedule.json"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-10-19T04:55:32Z",
+    "python_version": "3.10.22",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "606f09aec626a1e512ec13df0af36929ce980bfe798ef666b4fd134fc8b951d4",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "742f334f2466c386e2c44d8280f232999d4dea6a81434f5a88e9cf241e380dcf",
+      "src/utils_event.py": "205dfeba5e3f6651b8ec82e71edd66ef85fa04fea2ffbf44193bec74b4e08b02",
+      "src/final_snapshot.py": "7f009ec1b3be3ddbaed12ff139775c03d2fff48b905296df4de03b5e60fda073",
+      "src/player_integrity.py": "1506b29d6e67b166ffa8f8632f77df79c9dc81120b56bff5b4cc13243b5a2b76"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "course_fit_weights.json": "727c6b0ea191dde61ca26187068eb2f924bdfcc5aef059c026813fea6996f4d4",
+      "course_history_summary.json": "be487e5ed8266fe2610f300443fe357d1dbcdff93426404b5fbdee4c8a27f620",
+      "field_teetimes.csv": "b1c55dcfd72ec0cd996feb206c72126ee1806c3d6857ad870644f0246bd88829",
+      "leaderboard.csv": "c5ecb3fffee7a25b51177db33f39f7fe8fa410680db6b80a809922fb4e8bb540",
+      "leaderboard.html": "05291775f19851fa70956f5c83e96ad59ce0df77a2219e01b04080ca3196e8ca",
+      "leaderboard.json": "a8b826d7b83b36a7fcb072da3cd9574d5e15a617e3b9b5bac70469b0c6df0fcd",
+      "leaderboard_20261019T045532Z.csv": "c5ecb3fffee7a25b51177db33f39f7fe8fa410680db6b80a809922fb4e8bb540",
+      "leaderboard_20261019T045532Z.html": "05291775f19851fa70956f5c83e96ad59ce0df77a2219e01b04080ca3196e8ca",
+      "meta.json": "4f78aa0833901730a882bfaedd274cb90a852f3080fe83b198d6b15b02f2a9c2",
+      "model_page.html": "788ff6e246742f575bcc363ab05f129d58715ac21adcc4eeb6aa9c5f9290ee30",
+      "summary.json": "7adb62585ecb311dc6bd6913ae6dc8208b75e097c2360ea762f82ea142296763",
+      "tournament_summary.json": "aed7abed23a864560edc5df82a4eaa89f62950cca4c90db59de792e02e891c1c",
+      "weather_meta.json": "5e88c8f12dbc8f29e2a207b42d1d8ad6341c948529249d1585fc05f032c38a48",
+      "weather_round_neutral.json": "ac058b8f998009617923ebb1f53b53519009c5ff7ef24d1fa9cab11819ff933a",
+      "weather_round_wave.json": "e37981c5e695a49d146a9566bd850e61a37cb1222a73b1a096e78ba322eda790"
+    }
+  }
+}

@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "528",
+    "event_name": "Butterfield Bermuda Championship",
+    "tour": "pga",
+    "slug": "butterfield_bermuda_championship",
+    "year": "2026",
+    "start_date": "2026-10-22",
+    "csv_available": true,
+    "archived_at": "2026-10-19 04:55:32 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-10-19T04:55:32Z",
+    "model_page": "archive/2026/butterfield_bermuda_championship/model_page.html"
+  },
+  {
+    "event_id": "2026141",
+    "event_name": "Genesis Championship",
+    "tour": "euro",
+    "slug": "genesis_championship",
+    "year": "2026",
+    "start_date": "2026-10-22",
+    "csv_available": true,
+    "archived_at": "2026-10-19 04:56:05 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-10-19T04:56:05Z",
+    "model_page": "archive/2026/genesis_championship/model_page.html"
+  },
+  {
     "event_id": "2026140",
     "event_name": "DP World India Championship",
     "tour": "euro",
