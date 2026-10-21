@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-21T12:04:29Z",
+  "generated_utc": "2026-10-21T17:04:46Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -1812,7 +1812,7 @@
       "tour": "euro",
       "event_name": "Genesis Championship",
       "market": "win",
-      "last_updated": "2026-10-21 12:04:07 UTC",
+      "last_updated": "2026-10-21 15:44:36 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1959,7 +1959,7 @@
           "dg_id": 14975,
           "prices": {
             "bet365": "50/1",
-            "skybet": "40/1"
+            "skybet": "50/1"
           }
         },
         {
@@ -1991,7 +1991,7 @@
           "dg_id": 13923,
           "prices": {
             "bet365": "60/1",
-            "skybet": "40/1"
+            "skybet": "35/1"
           }
         },
         {
@@ -2007,7 +2007,7 @@
           "dg_id": 23733,
           "prices": {
             "bet365": "60/1",
-            "skybet": "70/1"
+            "skybet": "80/1"
           }
         },
         {
@@ -2087,7 +2087,7 @@
           "dg_id": 23248,
           "prices": {
             "bet365": "100/1",
-            "skybet": "100/1"
+            "skybet": "90/1"
           }
         },
         {
@@ -2095,7 +2095,7 @@
           "dg_id": 20522,
           "prices": {
             "bet365": "125/1",
-            "skybet": "100/1"
+            "skybet": "90/1"
           }
         },
         {
@@ -2135,7 +2135,7 @@
           "dg_id": 22231,
           "prices": {
             "bet365": "110/1",
-            "skybet": "100/1"
+            "skybet": "125/1"
           }
         },
         {
@@ -2206,7 +2206,7 @@
           "player_name": "Bae, Yongjun",
           "dg_id": 25628,
           "prices": {
-            "bet365": "200/1",
+            "bet365": "170/1",
             "skybet": "125/1"
           }
         },
@@ -2215,7 +2215,7 @@
           "dg_id": 21072,
           "prices": {
             "bet365": "140/1",
-            "skybet": "125/1"
+            "skybet": "100/1"
           }
         },
         {
@@ -2279,7 +2279,7 @@
           "dg_id": 10418,
           "prices": {
             "bet365": "175/1",
-            "skybet": "125/1"
+            "skybet": "150/1"
           }
         },
         {
@@ -2303,7 +2303,7 @@
           "dg_id": 26193,
           "prices": {
             "bet365": "100/1",
-            "skybet": "125/1"
+            "skybet": "100/1"
           }
         },
         {
@@ -2407,7 +2407,7 @@
           "dg_id": 7024,
           "prices": {
             "bet365": "350/1",
-            "skybet": "225/1"
+            "skybet": "200/1"
           }
         },
         {
@@ -2439,7 +2439,7 @@
           "dg_id": 7457,
           "prices": {
             "bet365": "200/1",
-            "skybet": "175/1"
+            "skybet": "200/1"
           }
         },
         {
@@ -2471,7 +2471,7 @@
           "dg_id": 13497,
           "prices": {
             "bet365": "175/1",
-            "skybet": "175/1"
+            "skybet": "200/1"
           }
         },
         {
@@ -2487,7 +2487,7 @@
           "dg_id": 15115,
           "prices": {
             "bet365": "450/1",
-            "skybet": "225/1"
+            "skybet": "200/1"
           }
         },
         {
@@ -2495,7 +2495,7 @@
           "dg_id": 13498,
           "prices": {
             "bet365": "160/1",
-            "skybet": "150/1"
+            "skybet": "125/1"
           }
         },
         {
@@ -2535,7 +2535,7 @@
           "dg_id": 28686,
           "prices": {
             "bet365": "350/1",
-            "skybet": "275/1"
+            "skybet": "225/1"
           }
         },
         {
@@ -2591,7 +2591,7 @@
           "dg_id": 23620,
           "prices": {
             "bet365": "400/1",
-            "skybet": "225/1"
+            "skybet": "275/1"
           }
         },
         {
@@ -2607,7 +2607,7 @@
           "dg_id": 23123,
           "prices": {
             "bet365": "350/1",
-            "skybet": "275/1"
+            "skybet": "325/1"
           }
         },
         {
@@ -2639,7 +2639,7 @@
           "dg_id": 31733,
           "prices": {
             "bet365": "600/1",
-            "skybet": "550/1"
+            "skybet": "400/1"
           }
         },
         {
@@ -2742,7 +2742,7 @@
           "player_name": "Kim, Minjun",
           "dg_id": 15536,
           "prices": {
-            "bet365": "1250/1",
+            "bet365": "500/1",
             "skybet": "1250/1"
           }
         },
@@ -2759,7 +2759,7 @@
           "dg_id": 24093,
           "prices": {
             "bet365": "1250/1",
-            "skybet": "1000/1"
+            "skybet": "800/1"
           }
         },
         {
@@ -2767,7 +2767,7 @@
           "dg_id": 13835,
           "prices": {
             "bet365": "1250/1",
-            "skybet": "1250/1"
+            "skybet": "1000/1"
           }
         },
         {
@@ -2823,7 +2823,7 @@
       "tour": "euro",
       "event_name": "Genesis Championship",
       "market": "top_10",
-      "last_updated": "2026-10-21 12:04:07 UTC",
+      "last_updated": "2026-10-21 15:44:36 UTC",
       "books": [
         "bet365",
         "skybet"
