@@ -1,0 +1,33 @@
+{
+  "event_name": "Butterfield Bermuda Championship",
+  "event_id": "528",
+  "course": "Port Royal Golf Course",
+  "total_yardage": null,
+  "course_location": "Southampton, Bermuda",
+  "start_date": "22-Oct-2026",
+  "field_size": 120,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Schenk, Adam",
+      "score": -12
+    },
+    {
+      "year": 2024,
+      "winner": "Campos, Rafael",
+      "score": -19
+    },
+    {
+      "year": 2022,
+      "winner": "Power, Seamus",
+      "score": -19
+    },
+    {
+      "year": 2021,
+      "winner": "Herbert, Lucas",
+      "score": -15
+    }
+  ]
+}

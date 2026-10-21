@@ -1,0 +1,12 @@
+{
+  "event_id": "528",
+  "event_name": "Butterfield Bermuda Championship",
+  "source_csv": "data/preds/pga/event_528_butterfield_bermuda_championship_2026-10-21_leaderboard.csv",
+  "generated_utc": "21-Oct-2026 23:27:53",
+  "metrics": {
+    "field_size": 120,
+    "p_win_max": 0.19263333333333332,
+    "p_win_median": 0.00048333333333333334,
+    "p_win_sum": 1.0
+  }
+}

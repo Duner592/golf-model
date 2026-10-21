@@ -10,7 +10,20 @@
     "archived_at": "2026-10-19 04:55:32 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-10-19T04:55:32Z",
-    "model_page": "archive/2026/butterfield_bermuda_championship/model_page.html"
+    "model_page": "archive/2026/butterfield_bermuda_championship/model_page.html",
+    "final_snapshot": {
+      "snapshot_type": "final",
+      "event_id": "528",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-10-22",
+      "timezone": "Atlantic/Bermuda",
+      "snapshot_created_utc": "2026-10-21T23:27:53Z",
+      "prediction_generated_utc": "2026-10-21T23:27:52Z",
+      "capture_window_open_utc": "2026-10-21T21:00:00Z",
+      "cutoff_utc": "2026-10-22T03:00:00Z",
+      "cutoff_basis": "midnight before local event start date"
+    }
   },
   {
     "event_id": "2026141",
