@@ -1,0 +1,39 @@
+{
+  "snapshot_type": "final",
+  "event_id": "2026141",
+  "tour": "euro",
+  "year": "2026",
+  "start_date": "2026-10-22",
+  "timezone": "Asia/Seoul",
+  "snapshot_created_utc": "2026-10-21T13:57:50Z",
+  "prediction_generated_utc": "2026-10-21T13:57:49Z",
+  "capture_window_open_utc": "2026-10-21T09:00:00Z",
+  "cutoff_utc": "2026-10-21T15:00:00Z",
+  "cutoff_basis": "midnight before local event start date",
+  "provenance": {
+    "schema_version": 1,
+    "captured_at_utc": "2026-10-21T13:57:50Z",
+    "python_version": "3.10.22",
+    "code_sha256": {
+      "scripts/simulate_event_with_course.py": "606f09aec626a1e512ec13df0af36929ce980bfe798ef666b4fd134fc8b951d4",
+      "scripts/build_course_fit_from_history.py": "6fd209a8fb1044f2bcb70671ac25106d5a848e03dcf23a56dc479e086b08e712",
+      "scripts/build_web_assets.py": "742f334f2466c386e2c44d8280f232999d4dea6a81434f5a88e9cf241e380dcf",
+      "src/utils_event.py": "205dfeba5e3f6651b8ec82e71edd66ef85fa04fea2ffbf44193bec74b4e08b02",
+      "src/final_snapshot.py": "7f009ec1b3be3ddbaed12ff139775c03d2fff48b905296df4de03b5e60fda073",
+      "src/player_integrity.py": "1506b29d6e67b166ffa8f8632f77df79c9dc81120b56bff5b4cc13243b5a2b76"
+    },
+    "config_sha256": {
+      "pyproject.toml": "2c0e44ab593c7c6baadc4193246a65b2622bd85ccf50955c15850d8f5db5971f",
+      "configs/datagolf.yaml": "56bec1d4a07e9534d366b05803793dd16b82c9109ea1b3fdd367a010f367d468",
+      "configs/event_rules.yaml": "331a2e1218fa726e5324d7ba08603b701cf1e62c2046c8224ce1647b9e4e6573"
+    },
+    "artifact_sha256": {
+      "field_teetimes.csv": "a650865959c60ecb44f05c238615c9cfb3dc7504677ef60ba40f6a31acff8b8d",
+      "leaderboard.csv": "2aa3c006220d25d647823e7dfc6912cabecca42bd09caa0693afdd9b4cd84cf4",
+      "leaderboard.json": "b63d5465825af9056347a63378aedccc7c449845ca5f417160b3905aa19f97ae",
+      "summary.json": "2715d5c4e4b67fc444f0d6aa5d1e9223db03644832f4e118b381681a4369ef65",
+      "tournament_summary.json": "12578f202c208b3d3a5a457d891fdefa66bc23087682be99cb18c90cb3489e2d",
+      "weather_meta.json": "25621d6a76dc98f9a0e26d238461a574873ced0a1f03684728c6152f140e692d"
+    }
+  }
+}

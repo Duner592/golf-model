@@ -1,0 +1,12 @@
+{
+  "event_id": "2026141",
+  "event_name": "Genesis Championship",
+  "source_csv": "data/preds/euro/event_2026141_genesis_championship_2026-10-21_leaderboard.csv",
+  "generated_utc": "21-Oct-2026 13:57:50",
+  "metrics": {
+    "field_size": 126,
+    "p_win_max": 0.2982666666666667,
+    "p_win_median": 0.00025,
+    "p_win_sum": 0.9999999999999999
+  }
+}
