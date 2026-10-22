@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-22T17:18:33Z",
+  "generated_utc": "2026-10-22T20:35:38Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -1812,7 +1812,7 @@
       "tour": "euro",
       "event_name": "Genesis Championship",
       "market": "win",
-      "last_updated": "2026-10-22 15:35:08 UTC",
+      "last_updated": "2026-10-22 19:23:56 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -2126,8 +2126,8 @@
           "player_name": "Bergstrom, Albin",
           "dg_id": 23620,
           "prices": {
-            "bet365": "350/1",
-            "skybet": "275/1"
+            "bet365": "300/1",
+            "skybet": "200/1"
           }
         },
         {
@@ -2447,7 +2447,7 @@
           "dg_id": 29740,
           "prices": {
             "bet365": "1000/1",
-            "skybet": "1000/1"
+            "skybet": "1250/1"
           }
         },
         {
@@ -2808,7 +2808,7 @@
       "tour": "euro",
       "event_name": "Genesis Championship",
       "market": "top_10",
-      "last_updated": "2026-10-22 15:35:08 UTC",
+      "last_updated": "2026-10-22 19:23:56 UTC",
       "books": [
         "bet365",
         "skybet"
