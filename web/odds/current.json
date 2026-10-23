@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-23T11:59:28Z",
+  "generated_utc": "2026-10-23T16:32:31Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
@@ -1821,7 +1821,7 @@
       "tour": "euro",
       "event_name": "Genesis Championship",
       "market": "win",
-      "last_updated": "2026-10-23 11:43:43 UTC",
+      "last_updated": "2026-10-23 16:16:31 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -1894,8 +1894,8 @@
           "player_name": "LaCroix, Frederic",
           "dg_id": 23733,
           "prices": {
-            "bet365": "45/1",
-            "skybet": "40/1"
+            "bet365": "40/1",
+            "skybet": "35/1"
           }
         },
         {
@@ -1942,7 +1942,7 @@
           "player_name": "Laporta, Francesco",
           "dg_id": 14987,
           "prices": {
-            "bet365": "100/1",
+            "bet365": "110/1",
             "skybet": "100/1"
           }
         },
@@ -1974,8 +1974,8 @@
           "player_name": "Park, Eunshin",
           "dg_id": 13221,
           "prices": {
-            "bet365": "250/1",
-            "skybet": "200/1"
+            "bet365": "225/1",
+            "skybet": "175/1"
           }
         },
         {
@@ -1990,7 +1990,7 @@
           "player_name": "Mun, Doyeob",
           "dg_id": 17386,
           "prices": {
-            "bet365": "250/1",
+            "bet365": "275/1",
             "skybet": "200/1"
           }
         },
@@ -2158,7 +2158,7 @@
           "dg_id": 15115,
           "prices": {
             "bet365": "1000/1",
-            "skybet": "1000/1"
+            "skybet": "1250/1"
           }
         },
         {
@@ -2389,7 +2389,7 @@
       "tour": "euro",
       "event_name": "Genesis Championship",
       "market": "top_10",
-      "last_updated": "2026-10-23 11:43:43 UTC",
+      "last_updated": "2026-10-23 16:16:31 UTC",
       "books": [
         "bet365",
         "skybet"
