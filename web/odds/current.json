@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-25T01:43:52Z",
+  "generated_utc": "2026-10-25T06:53:44Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "Butterfield Bermuda Championship",
       "market": "win",
-      "last_updated": "2026-10-24 23:30:41 UTC",
+      "last_updated": "2026-10-25 03:09:01 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -24,7 +24,7 @@
           "player_name": "Power, Seamus",
           "dg_id": 10104,
           "prices": {
-            "bet365": "2.1/1",
+            "bet365": "2.2/1",
             "skybet": "2.1/1"
           }
         },
@@ -112,7 +112,7 @@
           "player_name": "Sigg, Greyson",
           "dg_id": 23482,
           "prices": {
-            "bet365": "66/1",
+            "bet365": "60/1",
             "skybet": "60/1"
           }
         },
@@ -128,7 +128,7 @@
           "player_name": "McCarthy, Denny",
           "dg_id": 19870,
           "prices": {
-            "bet365": "100/1",
+            "bet365": "110/1",
             "skybet": "100/1"
           }
         },
@@ -176,7 +176,7 @@
           "player_name": "Noh, S.Y.",
           "dg_id": 11117,
           "prices": {
-            "bet365": "600/1",
+            "bet365": "500/1",
             "skybet": "475/1"
           }
         },
@@ -257,7 +257,7 @@
           "dg_id": 14926,
           "prices": {
             "bet365": "1000/1",
-            "skybet": "1250/1"
+            "skybet": "1000/1"
           }
         },
         {
@@ -296,7 +296,7 @@
           "player_name": "Shipley, Neal",
           "dg_id": 32055,
           "prices": {
-            "bet365": "1500/1",
+            "bet365": "2000/1",
             "skybet": "1250/1"
           }
         },
@@ -392,7 +392,7 @@
           "player_name": "Hodges, Lee",
           "dg_id": 25157,
           "prices": {
-            "bet365": "2500/1",
+            "bet365": "5000/1",
             "skybet": "1250/1"
           }
         },
@@ -594,7 +594,7 @@
       "tour": "pga",
       "event_name": "Butterfield Bermuda Championship",
       "market": "top_10",
-      "last_updated": "2026-10-24 23:30:41 UTC",
+      "last_updated": "2026-10-25 03:09:01 UTC",
       "books": [
         "bet365",
         "skybet"
