@@ -1,4 +1,250 @@
 event_id,event_name,tour,year,rank,player,p_win_pct,p_top10_pct,p_mc_pct,course_fit_score,finish_pos,finish_text,actual_win,actual_top10
+528,Butterfield Bermuda Championship,pga,2026,1,Chandler Phillips,19.26,75.6,97.9,-0.2214903850163477,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,2,Takumi Kanaya,18.5,74.7,97.6,0.3767155011985581,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,3,Taylor Pendrith,13.11,66.7,96.3,0.211963532651553,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,4,Adrien Dumont De Chassart,8.62,57.2,95.0,-0.0658246579807982,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,5,Seamus Power,7.49,53.9,94.3,0.1306642393400757,2.0,2,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,6,Andrew Novak,3.31,37.7,90.0,0.1331286443995353,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,7,Davis Riley,3.28,36.8,89.8,0.1649883510231313,52.0,T52,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,8,Rico Hoey,2.74,34.1,89.1,0.0293307470565896,52.0,T52,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,9,Vince Whaley,2.7,33.5,88.9,-0.2852920655976537,57.0,T57,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,10,Max McGreevy,2.58,33.3,88.6,0.1381042488735207,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,11,Denny McCarthy,2.41,30.9,87.6,0.0479027374930571,15.0,T15,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,12,Zecheng Dou,1.85,28.3,86.6,0.3939728848130234,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,13,Jesper Svensson,1.21,21.4,83.6,-0.0727648766229107,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,14,Jonathan Byrd,1.17,21.2,82.9,-0.0138805539368561,64.0,T64,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,15,Adam Schenk,0.95,19.1,81.4,0.078000165158486,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,16,Zac Blair,0.76,17.1,80.3,-0.3867560198842794,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,17,Justin Lower,0.73,15.6,78.6,-0.0124059917302484,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,18,Kevin Yu,0.67,15.2,78.3,0.3093581028420849,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,19,Trace Crowe,0.64,15.0,78.3,0.1645881423529459,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,20,Ben James,0.58,15.5,78.2,0.1195688818565361,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,21,Kristoffer Ventura,0.55,13.1,76.6,-0.0618651813465424,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,22,David Lingmerth,0.39,11.0,74.1,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,23,Greyson Sigg,0.38,12.0,74.8,0.0748323634172815,11.0,T11,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,24,Troy Merritt,0.36,10.2,73.2,0.1963756848236507,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,25,Hayden Springer,0.34,9.7,72.1,-0.1461116951019925,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,26,Chan Kim,0.34,10.5,73.2,-0.2120298813855957,6.0,T6,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,27,Isaiah Salinda,0.31,9.6,72.3,-0.2153932544722883,11.0,T11,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,28,Adam Hadwin,0.31,8.8,71.3,-0.1584935679494789,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,29,Rafael Campos,0.28,9.1,71.3,-0.096258224382721,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,30,Kevin Roy,0.26,8.5,70.2,0.2139374040447335,64.0,T64,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,31,Patrick Fishburn,0.25,8.5,70.4,-0.1618585349307669,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,32,Austin Smotherman,0.25,9.6,72.1,0.2516634811987304,1.0,1,1.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,33,Corey Conners,0.21,8.6,70.8,0.0711670938565361,3.0,T3,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,34,Erik Van Rooyen,0.18,6.6,67.3,0.1655628089572536,59.0,T59,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,35,John VanDerLaan,0.18,7.1,68.2,0.1691272796650686,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,36,C.T. Pan,0.17,6.5,67.3,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,37,Adam Long,0.17,6.9,66.8,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,38,Aaron Baddeley,0.17,6.3,66.3,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,39,Chris Kirk,0.14,6.6,67.5,0.1046577328565361,6.0,T6,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,40,S.Y. Noh,0.12,5.4,64.0,-0.0138805539368561,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,41,Austin Eckroat,0.12,6.0,66.8,0.3175263666296971,57.0,T57,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,42,Dylan Wu,0.12,3.9,60.7,0.0727067196190969,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,43,Neal Shipley,0.12,4.9,63.3,-0.0153551161434638,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,44,Mark Hubbard,0.11,5.0,63.5,-0.1424581143007914,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,45,Dylan Frittelli,0.1,5.5,64.6,-0.0657554297125217,71.0,T71,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,46,John Parry,0.09,4.2,60.9,0.0594568088565361,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,47,Peter Malnati,0.09,3.8,59.7,-0.2714559393429956,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,48,Chez Reavie,0.08,4.0,60.9,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,49,Davis Thompson,0.07,4.4,62.5,0.0319972118565361,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,50,Taylor Montgomery,0.06,2.8,55.9,-0.3988673993309763,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,51,Ben Kohles,0.06,3.8,59.3,0.0765802436627469,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,52,Mason Howell,0.06,2.6,54.7,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,53,William McGirt,0.06,3.8,60.3,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,54,Adam Svensson,0.06,2.2,52.8,-0.0648571239301654,59.0,T59,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,55,Virgilio Paz,0.06,2.5,54.6,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,56,Emiliano Grillo,0.05,2.4,54.7,-0.0224749591434638,52.0,T52,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,57,Nixon Lauritzen,0.05,2.5,54.9,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,58,Tyler Duncan,0.05,2.3,54.0,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,59,Rudy Sautron,0.05,2.4,55.0,-0.0138805539368561,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,60,Ren Yonezawa,0.05,2.5,54.5,-0.0138805539368561,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,61,Kihei Akina,0.04,2.6,55.3,-0.0138805539368561,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,62,Max Greyserman,0.04,3.8,59.3,0.0205217388565361,,WD,,
+528,Butterfield Bermuda Championship,pga,2026,63,Chad Ramey,0.04,2.5,54.3,0.1612212265455967,59.0,T59,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,64,Matthew Anderson,0.04,2.6,54.4,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,65,Charley Hoffman,0.03,2.4,54.4,0.0081831768249399,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,66,A.J. Ewart,0.03,2.6,55.5,0.0079594978565361,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,67,Haotong Li,0.03,2.0,52.0,-0.0551057581434638,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,68,Austin Lemieux,0.03,2.7,55.1,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,69,Camilo Villegas,0.03,1.6,48.5,-0.0466750942210016,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,70,Eric Cole,0.03,2.6,54.6,0.2594134609076326,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,71,Will Gordon,0.02,1.4,48.8,0.0999421864532884,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,72,Brendon Todd,0.02,1.4,48.2,-0.0138805539368561,64.0,T64,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,73,Jay Leng,0.02,2.6,55.0,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,74,Christo Lamprecht,0.02,2.3,54.0,-0.0352709018127898,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,75,Paul Peterson,0.02,1.0,44.3,-0.1791249824253504,59.0,T59,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,76,Harry Higgs,0.01,1.0,43.5,0.0150022863057198,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,77,Tom Hoge,0.01,0.8,41.6,-0.0276901841434638,6.0,T6,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,78,Pontus Nyholm,0.01,0.7,40.7,-0.0886821471434638,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,79,David Ford,0.01,1.0,44.5,0.1075834285522807,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,80,Jeffrey Kang,0.01,0.7,39.7,-0.0394438471434638,59.0,T59,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,81,Martin Laird,0.01,1.3,48.1,-0.0626270001610311,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,82,David Skinns,0.01,0.5,36.8,-0.1957554017797584,15.0,T15,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,83,Willie Mack III,0.01,0.8,42.2,-0.0138805539368561,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,84,Bill Haas,0.01,0.6,39.0,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,85,Jeremy Paul,0.01,1.0,43.5,-0.6093514194924767,70.0,70,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,86,Luke Clanton,0.0,0.4,35.5,-0.3873961175235385,11.0,T11,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,87,Davis Chatfield,0.0,0.8,41.5,-0.0336099841434638,52.0,T52,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,88,Kensei Hirata,0.0,0.2,29.7,-0.1112451831434639,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,89,Matthieu Pavon,0.0,0.1,24.3,-0.4246140014509177,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,90,Aldrich Potgieter,0.0,0.8,42.2,-0.1356772631434638,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,91,Robert Streb,0.0,0.6,38.4,-0.0138805539368561,52.0,T52,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,92,Jimmy Stanger,0.0,0.4,33.4,-0.1250369851434639,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,93,Mackenzie Hughes,0.0,0.2,28.9,0.1627963259778929,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,94,Lee Hodges,0.0,0.2,31.9,-0.2787869807752418,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,95,Hank Lebioda,0.0,0.1,26.9,0.1872584172892529,64.0,T64,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,96,Brice Garnett,0.0,0.1,21.8,0.2339171908504775,17.0,T17,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,97,Joel Dahmen,0.0,0.1,24.4,-0.2016445469703759,44.0,T44,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,98,Ryan Brehm,0.0,0.0,18.8,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,99,Chandler Blanchet,0.0,0.1,21.5,0.3813583442773063,6.0,T6,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,100,Cameron Champ,0.0,0.0,13.8,0.00406638942268,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,101,Austin Cook,0.0,0.2,31.0,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,102,Lucas Glover,0.0,0.4,35.8,0.0530842993137629,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,103,Cam Davis,0.0,0.2,30.6,-0.0899142561434638,11.0,T11,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,104,Nick Dunlap,0.0,0.3,32.9,-0.0106821961434638,25.0,T25,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,105,Patton Kizzire,0.0,0.3,33.3,-0.0107243291434638,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,106,Greg Koch,0.0,0.0,7.2,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,107,Nick Jones,0.0,0.0,11.7,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,108,Nick Hardy,0.0,0.7,41.0,0.0096280350289743,71.0,T71,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,109,Henrik Norlander,0.0,0.1,24.8,-0.0582176708887384,64.0,T64,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,110,Luke List,0.0,0.0,14.9,-0.5782904481874775,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,111,Ben Martin,0.0,0.6,38.0,-0.0044345275174905,34.0,T34,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,112,Taylor Moore,0.0,0.4,37.4,-0.4213919599881723,3.0,T3,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,113,Ben Silverman,0.0,0.0,22.0,0.0509514246353239,3.0,T3,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,114,Camiko Smith,0.0,0.1,23.5,-0.0138805539368561,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,115,Miles Russell,0.0,0.0,16.9,-0.0138805539368561,64.0,T64,0.0,0.0
+528,Butterfield Bermuda Championship,pga,2026,116,Marcelo Rozo,0.0,0.1,24.4,-0.1869485711434639,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,117,Alejandro Tosti,0.0,0.2,29.6,-0.1104205882666206,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,118,Kevin Streelman,0.0,0.0,20.3,-0.3387855725108721,,CUT,,
+528,Butterfield Bermuda Championship,pga,2026,119,Danny Walker,0.0,0.0,12.6,-0.3012887716575217,6.0,T6,0.0,1.0
+528,Butterfield Bermuda Championship,pga,2026,120,Aaron Wise,0.0,0.6,38.9,-0.0507095201434638,,CUT,,
+2026141,Genesis Championship,euro,2026,1,Antoine Rozner,34.0,87.1,99.0,0.2144691779999999,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,2,Si Woo Kim,11.7,66.7,96.4,0.394902053,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,3,Angel Ayora,6.35,52.9,94.4,0.133985892,,CUT,,
+2026141,Genesis Championship,euro,2026,4,Francesco Laporta,5.58,50.4,93.6,0.259249232,45.0,T45,0.0,0.0
+2026141,Genesis Championship,euro,2026,5,Thomas Detry,5.34,48.6,93.2,0.022402556,17.0,T17,0.0,0.0
+2026141,Genesis Championship,euro,2026,6,Eugenio Chacarra,4.37,46.0,92.5,0.334878495,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,7,Ignacio Elvira Mijares,3.98,44.8,92.2,-0.231141669,13.0,T13,0.0,0.0
+2026141,Genesis Championship,euro,2026,8,Minhyuk Song,3.38,39.2,91.0,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,9,Seungbin Choi,3.3,39.4,90.9,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,10,Casey Jarvis,2.92,37.8,90.4,0.258226252,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,11,Mikael Lindberg,2.61,36.4,89.8,0.0471409319999999,,CUT,,
+2026141,Genesis Championship,euro,2026,12,Daniel Hillier,2.61,34.8,89.0,0.27876045,11.0,T11,0.0,0.0
+2026141,Genesis Championship,euro,2026,13,Yuto Katsuragawa,2.53,35.0,89.5,-0.065049373,1.0,1,1.0,1.0
+2026141,Genesis Championship,euro,2026,14,Sungjae Im,1.81,27.8,86.4,0.24439401,54.0,T54,0.0,0.0
+2026141,Genesis Championship,euro,2026,15,Yongjun Bae,1.2,24.0,84.6,-0.1636157715,13.0,T13,0.0,0.0
+2026141,Genesis Championship,euro,2026,16,Jacob Skov Olesen,1.19,23.0,83.9,0.019292579,13.0,T13,0.0,0.0
+2026141,Genesis Championship,euro,2026,17,David Law,1.07,21.9,83.9,0.0009809099999999,,CUT,,
+2026141,Genesis Championship,euro,2026,18,Alejandro Del Rey,0.55,14.9,78.1,0.007112487,17.0,T17,0.0,0.0
+2026141,Genesis Championship,euro,2026,19,Jorge Campillo,0.53,13.6,77.3,-0.362649132,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,20,Johannes Veerman,0.53,15.1,78.7,-0.2229446999999999,13.0,T13,0.0,0.0
+2026141,Genesis Championship,euro,2026,21,Marcus Kinhult,0.45,13.4,76.9,-0.110918052,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,22,Jordan Gumberg,0.29,10.1,73.1,-0.023350823,,CUT,,
+2026141,Genesis Championship,euro,2026,23,Tom McKibbin,0.26,9.2,72.6,0.291299892,,,,
+2026141,Genesis Championship,euro,2026,24,Ricardo Gouveia,0.18,7.8,69.3,-0.125773649,,CUT,,
+2026141,Genesis Championship,euro,2026,25,Joel Girrbach,0.17,8.6,71.0,0.06081888,54.0,T54,0.0,0.0
+2026141,Genesis Championship,euro,2026,26,Wooyoung Cho,0.17,8.1,70.1,-0.1636157715,59.0,T59,0.0,0.0
+2026141,Genesis Championship,euro,2026,27,Filippo Celli,0.17,8.0,69.4,-0.1475082999999999,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,28,Ugo Coussaud,0.17,6.2,66.8,-0.053012707,31.0,T31,0.0,0.0
+2026141,Genesis Championship,euro,2026,29,Ryan Fox,0.16,7.1,68.4,0.078062546,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,30,Sang-hee Lee,0.16,7.8,69.8,-0.1636157715,17.0,T17,0.0,0.0
+2026141,Genesis Championship,euro,2026,31,Junghwan Lee,0.15,6.5,67.1,-0.296946193,,CUT,,
+2026141,Genesis Championship,euro,2026,32,Richard Sterne,0.15,7.0,67.7,-0.2504851569999999,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,33,Joakim Lagergren,0.15,6.8,67.4,0.0005583799999999,,CUT,,
+2026141,Genesis Championship,euro,2026,34,Adrian Otaegui,0.1,5.1,63.9,-0.1902214279999999,59.0,T59,0.0,0.0
+2026141,Genesis Championship,euro,2026,35,Ben Schmidt,0.09,5.5,65.0,-0.2113563419999999,,CUT,,
+2026141,Genesis Championship,euro,2026,36,Sangyeop Lee,0.07,3.4,58.8,-0.1636157715,64.0,T64,0.0,0.0
+2026141,Genesis Championship,euro,2026,37,Manuel Elvira,0.07,3.4,59.3,-0.047511185,,CUT,,
+2026141,Genesis Championship,euro,2026,38,Jiho Yang,0.07,3.1,59.2,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,39,Teayang Jung,0.07,3.3,58.7,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,40,Hongtaek Kim,0.07,4.2,61.6,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,41,Minjun Kim,0.07,3.6,58.6,-0.1636157715,,WD,,
+2026141,Genesis Championship,euro,2026,42,Chanmin Jung,0.06,3.4,58.8,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,43,Donghyun Moon,0.06,3.4,59.2,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,44,Sam Bairstow,0.06,4.2,61.8,0.0651856919999999,17.0,T17,0.0,0.0
+2026141,Genesis Championship,euro,2026,45,Jeunghun Wang,0.05,3.5,59.7,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,46,Ilhwan Park,0.05,3.5,58.4,-0.1636157715,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,47,Seungtaek Oh,0.05,3.4,59.0,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,48,Jaehyun Jung,0.05,3.4,58.5,-0.1636157715,63.0,63,0.0,0.0
+2026141,Genesis Championship,euro,2026,49,Brandon Kewalramani,0.05,3.4,59.1,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,50,Junghun Park,0.05,3.3,58.7,-0.1636157715,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,51,Jaewoong Eom,0.05,3.5,58.8,-0.1636157715,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,52,Chan Choi,0.04,3.3,59.5,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,53,Daihan Lee,0.04,3.4,58.5,-0.1636157715,51.0,T51,0.0,0.0
+2026141,Genesis Championship,euro,2026,54,Min-gyu Cho,0.04,3.3,58.8,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,55,Nathan Kimsey,0.03,3.1,58.3,0.221978664,54.0,T54,0.0,0.0
+2026141,Genesis Championship,euro,2026,56,Sanghun Shin,0.03,3.4,59.2,-0.1636157715,4.0,T4,0.0,1.0
+2026141,Genesis Championship,euro,2026,57,Maximilian Steinlechner,0.03,1.5,49.7,-0.09936476,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,58,Dan Bradbury,0.03,1.9,52.6,0.0843279149999999,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,59,Jinho Choi,0.02,1.5,49.7,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,60,Kota Kaneko,0.02,1.8,51.8,-0.1669422079999999,51.0,T51,0.0,0.0
+2026141,Genesis Championship,euro,2026,61,Gregorio De Leo,0.02,2.1,53.0,-0.034304532,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,62,Martin Couvra,0.02,3.0,56.1,0.120024659,2.0,T2,0.0,1.0
+2026141,Genesis Championship,euro,2026,63,Nicolai Von Dellingshausen,0.02,3.0,57.0,-0.166395247,,CUT,,
+2026141,Genesis Championship,euro,2026,64,David Ravetto,0.02,2.3,54.3,0.0962500739999999,,CUT,,
+2026141,Genesis Championship,euro,2026,65,Matteo Manassero,0.02,1.5,49.3,-0.307919337,45.0,T45,0.0,0.0
+2026141,Genesis Championship,euro,2026,66,Oihan Guillamoundeguy,0.02,1.4,47.9,-0.088955367,51.0,T51,0.0,0.0
+2026141,Genesis Championship,euro,2026,67,Yubin Jang,0.02,0.9,44.5,-0.028971993,45.0,T45,0.0,0.0
+2026141,Genesis Championship,euro,2026,68,Scott Jamieson,0.02,2.8,56.3,-0.2465307709999999,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,69,Angel Hidalgo,0.02,1.6,48.5,-0.050020295,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,70,Jason Scrivener,0.02,1.1,44.3,-0.282361932,,CUT,,
+2026141,Genesis Championship,euro,2026,71,Kazuma Kobori,0.02,1.4,47.3,-0.1249846709999999,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,72,Euan Walker,0.01,0.8,42.9,-0.265517685,,CUT,,
+2026141,Genesis Championship,euro,2026,73,Taehoon Ok,0.01,0.7,40.8,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,74,Andreas Halvorsen,0.01,1.4,48.3,0.000764785,59.0,T59,0.0,0.0
+2026141,Genesis Championship,euro,2026,75,Daniel Rodrigues,0.01,0.6,40.0,-0.315574325,64.0,T64,0.0,0.0
+2026141,Genesis Championship,euro,2026,76,Eunshin Park,0.01,0.9,42.9,-0.1636157715,31.0,T31,0.0,0.0
+2026141,Genesis Championship,euro,2026,77,Rikuya Hoshino,0.01,1.4,48.1,-0.329174341,22.0,T22,0.0,0.0
+2026141,Genesis Championship,euro,2026,78,Felix Mory,0.01,0.9,42.4,-0.1060490239999999,,WD,,
+2026141,Genesis Championship,euro,2026,79,Stefano Mazzoli,0.01,0.6,39.9,-0.308760251,,CUT,,
+2026141,Genesis Championship,euro,2026,80,Cameron Adam,0.01,0.6,38.5,-0.4378159619999999,,CUT,,
+2026141,Genesis Championship,euro,2026,81,Sebastian Soderberg,0.01,0.5,36.4,-0.318159244,,CUT,,
+2026141,Genesis Championship,euro,2026,82,Daniel Young,0.01,0.4,34.0,-0.372063453,,CUT,,
+2026141,Genesis Championship,euro,2026,83,Renato Paratore,0.01,0.4,35.7,-0.368945494,54.0,T54,0.0,0.0
+2026141,Genesis Championship,euro,2026,84,Niklas Lemke,0.01,1.0,44.0,-0.195698724,17.0,T17,0.0,0.0
+2026141,Genesis Championship,euro,2026,85,Elvis Smylie,0.01,0.4,35.6,-0.331544142,,CUT,,
+2026141,Genesis Championship,euro,2026,86,Rafa Cabrera Bello,0.0,0.7,41.4,-0.3230869009999999,,CUT,,
+2026141,Genesis Championship,euro,2026,87,Yanhan Zhou,0.0,0.7,41.0,-0.0973877469999999,,CUT,,
+2026141,Genesis Championship,euro,2026,88,Doyeob Mun,0.0,0.1,24.3,-0.34743043,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,89,Jacques Kruyswijk,0.0,0.8,40.9,-0.427232048,,CUT,,
+2026141,Genesis Championship,euro,2026,90,Kiradech Aphibarnrat,0.0,0.8,43.5,-0.1927889739999999,,WD,,
+2026141,Genesis Championship,euro,2026,91,Wenyi Ding,0.0,0.6,40.3,-0.2212864189999999,,,,
+2026141,Genesis Championship,euro,2026,92,Minchel Choi,0.0,0.2,30.2,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,93,Tobias Jonsson,0.0,0.5,36.3,-0.075332262,,CUT,,
+2026141,Genesis Championship,euro,2026,94,Sebastian Garcia Rodriguez,0.0,0.1,27.3,-0.275639414,,CUT,,
+2026141,Genesis Championship,euro,2026,95,Brandon Robinson Thompson,0.0,0.9,43.9,-0.160836296,54.0,T54,0.0,0.0
+2026141,Genesis Championship,euro,2026,96,Rocco Repetto Taylor,0.0,0.7,42.1,0.1523550639999999,64.0,T64,0.0,0.0
+2026141,Genesis Championship,euro,2026,97,Jack Senior,0.0,0.4,34.4,-0.338222311,42.0,T42,0.0,0.0
+2026141,Genesis Championship,euro,2026,98,Frederic LaCroix,0.0,1.0,43.6,-0.0082886989999999,2.0,T2,0.0,1.0
+2026141,Genesis Championship,euro,2026,99,Quim Vidal,0.0,0.5,36.0,-0.133302121,45.0,T45,0.0,0.0
+2026141,Genesis Championship,euro,2026,100,Jeong Weon Ko,0.0,0.0,5.2,-0.7457882650000001,,CUT,,
+2026141,Genesis Championship,euro,2026,101,Chanwoo Kim,0.0,0.0,11.7,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,102,Woohyun Kim,0.0,0.3,33.2,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,103,Ivan Cantero Gutierrez,0.0,0.8,42.6,-0.169923516,31.0,T31,0.0,0.0
+2026141,Genesis Championship,euro,2026,104,Sean Crocker,0.0,0.0,10.3,-0.116306223,34.0,T34,0.0,0.0
+2026141,Genesis Championship,euro,2026,105,Albin Bergstrom,0.0,0.4,34.8,-0.3375399149999999,70.0,70,0.0,0.0
+2026141,Genesis Championship,euro,2026,106,Hanmil Jung,0.0,0.3,31.1,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,107,In-hoi Hur,0.0,0.1,23.1,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,108,Ryggs Johnston,0.0,0.0,0.4,-0.538042019,42.0,T42,0.0,0.0
+2026141,Genesis Championship,euro,2026,109,Jens Dantorp,0.0,0.1,18.3,-0.4611403899999999,,CUT,,
+2026141,Genesis Championship,euro,2026,110,Ross Fisher,0.0,0.0,20.0,0.0553122959999999,,CUT,,
+2026141,Genesis Championship,euro,2026,111,Dylan Naidoo,0.0,0.0,19.3,-0.4722358419999999,,CUT,,
+2026141,Genesis Championship,euro,2026,112,Shaun Norris,0.0,0.1,22.7,-0.2326276139999999,,CUT,,
+2026141,Genesis Championship,euro,2026,113,David Micheluzzi,0.0,0.2,27.4,-0.5451951359999999,,CUT,,
+2026141,Genesis Championship,euro,2026,114,James Morrison,0.0,0.0,12.6,-0.4929744689999999,45.0,T45,0.0,0.0
+2026141,Genesis Championship,euro,2026,115,Zander Lombard,0.0,0.0,1.2,-0.509599069,,CUT,,
+2026141,Genesis Championship,euro,2026,116,Hyungjoon Lee,0.0,0.0,16.5,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,117,K.H. Lee,0.0,0.4,34.7,-0.2338037179999999,,,,
+2026141,Genesis Championship,euro,2026,118,Soomin Lee,0.0,0.4,33.4,-0.1636157715,69.0,69,0.0,0.0
+2026141,Genesis Championship,euro,2026,119,Pablo Larrazabal,0.0,0.1,27.5,-0.4682512539999999,,CUT,,
+2026141,Genesis Championship,euro,2026,120,Yuvraj Singh Sandhu,0.0,0.3,30.5,-0.271231212,,,,
+2026141,Genesis Championship,euro,2026,121,Sungkug Park,0.0,0.2,28.9,-0.1636157715,,CUT,,
+2026141,Genesis Championship,euro,2026,122,Yurav Premlall,0.0,0.3,33.2,-0.430933135,59.0,T59,0.0,0.0
+2026141,Genesis Championship,euro,2026,123,Marcel Siem,0.0,0.0,6.7,-0.39738014,,WD,,
+2026141,Genesis Championship,euro,2026,124,Hugo Townsend,0.0,0.3,32.1,-0.417240405,68.0,68,0.0,0.0
+2026141,Genesis Championship,euro,2026,125,Darius Van Driel,0.0,0.0,11.0,-0.148565981,45.0,T45,0.0,0.0
+2026141,Genesis Championship,euro,2026,126,Ashun Wu,0.0,0.0,18.9,-0.340198133,22.0,T22,0.0,0.0
 2026140,DP World India Championship,euro,2026,1,Tommy Fleetwood,66.63,99.4,99.9,0.533373885,5.0,T5,0.0,1.0
 2026140,DP World India Championship,euro,2026,2,Shane Lowry,17.22,92.6,99.4,0.5455227460000001,15.0,T15,0.0,0.0
 2026140,DP World India Championship,euro,2026,3,Daniel Hillier,3.5,68.4,96.8,0.248943868,2.0,2,0.0,1.0

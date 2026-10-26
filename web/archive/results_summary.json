@@ -1,4 +1,22 @@
 {
+  "2026_butterfield_bermuda_championship": {
+    "event_id": "528",
+    "event_name": "Butterfield Bermuda Championship",
+    "tour": "pga",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "butterfield_bermuda_championship"
+  },
+  "2026_genesis_championship": {
+    "event_id": "2026141",
+    "event_name": "Genesis Championship",
+    "tour": "euro",
+    "year": "2026",
+    "fetched_at": null,
+    "source": "historical-raw-data/rounds",
+    "slug": "genesis_championship"
+  },
   "2026_dp_world_india_championship": {
     "event_id": "2026140",
     "event_name": "DP World India Championship",
