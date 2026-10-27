@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-26T23:11:48Z",
+  "generated_utc": "2026-10-27T02:02:25Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "VidantaWorld Mexico Open",
       "market": "win",
-      "last_updated": "2026-10-26 20:54:34 UTC",
+      "last_updated": "2026-10-27 01:04:49 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -24,8 +24,8 @@
           "player_name": "Clark, Wyndham",
           "dg_id": 23604,
           "prices": {
-            "bet365": "12/1",
-            "skybet": "12/1"
+            "bet365": "11/1",
+            "skybet": "14/1"
           }
         },
         {
@@ -33,7 +33,7 @@
           "dg_id": 24766,
           "prices": {
             "bet365": "16/1",
-            "skybet": "18/1"
+            "skybet": "16/1"
           }
         },
         {
@@ -41,7 +41,7 @@
           "dg_id": 29827,
           "prices": {
             "bet365": "18/1",
-            "skybet": "22/1"
+            "skybet": "18/1"
           }
         },
         {
@@ -65,7 +65,7 @@
           "dg_id": 23475,
           "prices": {
             "bet365": "35/1",
-            "skybet": "35/1"
+            "skybet": "33/1"
           }
         },
         {
@@ -145,7 +145,7 @@
           "dg_id": 17538,
           "prices": {
             "bet365": "35/1",
-            "skybet": "35/1"
+            "skybet": "33/1"
           }
         },
         {
@@ -240,7 +240,7 @@
           "player_name": "Neergaard-Petersen, Rasmus",
           "dg_id": 23841,
           "prices": {
-            "bet365": "60/1",
+            "bet365": "55/1",
             "skybet": "50/1"
           }
         },
@@ -297,7 +297,7 @@
           "dg_id": 15470,
           "prices": {
             "bet365": "66/1",
-            "skybet": "55/1"
+            "skybet": "60/1"
           }
         },
         {
@@ -409,7 +409,7 @@
           "dg_id": 26190,
           "prices": {
             "bet365": "90/1",
-            "skybet": "90/1"
+            "skybet": "100/1"
           }
         },
         {
@@ -441,7 +441,7 @@
           "dg_id": 18103,
           "prices": {
             "bet365": "66/1",
-            "skybet": "55/1"
+            "skybet": "66/1"
           }
         },
         {
@@ -577,7 +577,7 @@
           "dg_id": 19960,
           "prices": {
             "bet365": "200/1",
-            "skybet": "175/1"
+            "skybet": "150/1"
           }
         },
         {
@@ -688,7 +688,7 @@
           "player_name": "Kang, Jeffrey",
           "dg_id": 21889,
           "prices": {
-            "bet365": "400/1",
+            "bet365": "350/1",
             "skybet": "275/1"
           }
         },
@@ -697,7 +697,7 @@
           "dg_id": 15980,
           "prices": {
             "bet365": "300/1",
-            "skybet": "200/1"
+            "skybet": "225/1"
           }
         },
         {
@@ -841,7 +841,7 @@
           "dg_id": 28270,
           "prices": {
             "bet365": "175/1",
-            "skybet": "150/1"
+            "skybet": "175/1"
           }
         },
         {
@@ -929,7 +929,7 @@
           "dg_id": 33198,
           "prices": {
             "bet365": "600/1",
-            "skybet": "550/1"
+            "skybet": "800/1"
           }
         },
         {
@@ -967,7 +967,7 @@
       "tour": "pga",
       "event_name": "VidantaWorld Mexico Open",
       "market": "top_10",
-      "last_updated": "2026-10-26 20:54:34 UTC",
+      "last_updated": "2026-10-27 01:04:49 UTC",
       "books": [
         "bet365",
         "skybet"
