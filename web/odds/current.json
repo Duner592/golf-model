@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-10-28T19:30:24Z",
+  "generated_utc": "2026-10-28T23:25:13Z",
   "source": "DataGolf betting-tools/outrights",
   "events": [
     {
       "tour": "pga",
       "event_name": "VidantaWorld Mexico Open",
       "market": "win",
-      "last_updated": "2026-10-28 16:39:08 UTC",
+      "last_updated": "2026-10-28 20:14:12 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -80,7 +80,7 @@
           "player_name": "Hall, Harry",
           "dg_id": 27194,
           "prices": {
-            "bet365": "40/1",
+            "bet365": "35/1",
             "skybet": "35/1"
           }
         },
@@ -89,7 +89,7 @@
           "dg_id": 32152,
           "prices": {
             "bet365": "28/1",
-            "skybet": "28/1"
+            "skybet": "33/1"
           }
         },
         {
@@ -120,8 +120,8 @@
           "player_name": "Suber, Jackson",
           "dg_id": 29279,
           "prices": {
-            "bet365": "40/1",
-            "skybet": "40/1"
+            "bet365": "33/1",
+            "skybet": "35/1"
           }
         },
         {
@@ -161,7 +161,7 @@
           "dg_id": 15651,
           "prices": {
             "bet365": "45/1",
-            "skybet": "35/1"
+            "skybet": "40/1"
           }
         },
         {
@@ -185,7 +185,7 @@
           "dg_id": 18424,
           "prices": {
             "bet365": "55/1",
-            "skybet": "45/1"
+            "skybet": "50/1"
           }
         },
         {
@@ -337,7 +337,7 @@
           "dg_id": 29925,
           "prices": {
             "bet365": "70/1",
-            "skybet": "66/1"
+            "skybet": "70/1"
           }
         },
         {
@@ -513,7 +513,7 @@
           "dg_id": 27900,
           "prices": {
             "bet365": "75/1",
-            "skybet": "90/1"
+            "skybet": "70/1"
           }
         },
         {
@@ -537,7 +537,7 @@
           "dg_id": 17639,
           "prices": {
             "bet365": "100/1",
-            "skybet": "90/1"
+            "skybet": "100/1"
           }
         },
         {
@@ -689,6 +689,14 @@
           "dg_id": 24342,
           "prices": {
             "bet365": "200/1",
+            "skybet": "150/1"
+          }
+        },
+        {
+          "player_name": "Hadwin, Adam",
+          "dg_id": 13965,
+          "prices": {
+            "bet365": "175/1",
             "skybet": "175/1"
           }
         },
@@ -753,7 +761,7 @@
           "dg_id": 13997,
           "prices": {
             "bet365": "350/1",
-            "skybet": "225/1"
+            "skybet": "275/1"
           }
         },
         {
@@ -857,7 +865,7 @@
           "dg_id": 18628,
           "prices": {
             "bet365": "225/1",
-            "skybet": "200/1"
+            "skybet": "175/1"
           }
         },
         {
@@ -888,7 +896,7 @@
           "player_name": "Villegas, Camilo",
           "dg_id": 9171,
           "prices": {
-            "bet365": "1000/1",
+            "bet365": "750/1",
             "skybet": "1000/1"
           }
         },
@@ -897,7 +905,7 @@
           "dg_id": 32432,
           "prices": {
             "bet365": "750/1",
-            "skybet": "1000/1"
+            "skybet": "800/1"
           }
         },
         {
@@ -959,7 +967,7 @@
       "tour": "pga",
       "event_name": "VidantaWorld Mexico Open",
       "market": "top_10",
-      "last_updated": "2026-10-28 16:39:08 UTC",
+      "last_updated": "2026-10-28 20:14:12 UTC",
       "books": [
         "bet365",
         "skybet"
@@ -969,7 +977,7 @@
           "player_name": "Ghim, Doug",
           "dg_id": 24550,
           "prices": {
-            "skybet": "2.4/1"
+            "skybet": "2.5/1"
           }
         },
         {
@@ -1060,7 +1068,7 @@
           "player_name": "Suber, Jackson",
           "dg_id": 29279,
           "prices": {
-            "skybet": "5/1"
+            "skybet": "4.5/1"
           }
         },
         {
@@ -1095,7 +1103,7 @@
           "player_name": "Ventura, Kristoffer",
           "dg_id": 15651,
           "prices": {
-            "skybet": "4.5/1"
+            "skybet": "5/1"
           }
         },
         {
@@ -1249,7 +1257,7 @@
           "player_name": "Yellamaraju, Sudarshan",
           "dg_id": 29925,
           "prices": {
-            "skybet": "7.5/1"
+            "skybet": "8/1"
           }
         },
         {
@@ -1277,7 +1285,7 @@
           "player_name": "Hojgaard, Rasmus",
           "dg_id": 23838,
           "prices": {
-            "skybet": "7/1"
+            "skybet": "7.5/1"
           }
         },
         {
@@ -1396,14 +1404,14 @@
           "player_name": "Ramey, Chad",
           "dg_id": 19840,
           "prices": {
-            "skybet": "14/1"
+            "skybet": "12/1"
           }
         },
         {
           "player_name": "Potgieter, Aldrich",
           "dg_id": 27900,
           "prices": {
-            "skybet": "10/1"
+            "skybet": "9/1"
           }
         },
         {
@@ -1417,7 +1425,7 @@
           "player_name": "Kim, Chan",
           "dg_id": 15004,
           "prices": {
-            "skybet": "9/1"
+            "skybet": "8/1"
           }
         },
         {
@@ -1515,7 +1523,7 @@
           "player_name": "Nyholm, Pontus",
           "dg_id": 25475,
           "prices": {
-            "skybet": "20/1"
+            "skybet": "22/1"
           }
         },
         {
@@ -1613,7 +1621,7 @@
           "player_name": "Svensson, Adam",
           "dg_id": 13997,
           "prices": {
-            "skybet": "25/1"
+            "skybet": "28/1"
           }
         },
         {
@@ -1683,7 +1691,7 @@
           "player_name": "Dunlap, Nick",
           "dg_id": 28270,
           "prices": {
-            "skybet": "22/1"
+            "skybet": "20/1"
           }
         },
         {
