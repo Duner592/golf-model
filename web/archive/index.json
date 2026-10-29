@@ -10,7 +10,20 @@
     "archived_at": "2026-10-26 13:19:48 UTC",
     "prediction_snapshot": "initial",
     "initial_snapshot_created_utc": "2026-10-26T13:19:48Z",
-    "model_page": "archive/2026/vidantaworld_mexico_open/model_page.html"
+    "model_page": "archive/2026/vidantaworld_mexico_open/model_page.html",
+    "final_snapshot": {
+      "snapshot_type": "final",
+      "event_id": "540",
+      "tour": "pga",
+      "year": "2026",
+      "start_date": "2026-10-29",
+      "timezone": "America/Bahia_Banderas",
+      "snapshot_created_utc": "2026-10-29T00:05:05Z",
+      "prediction_generated_utc": "2026-10-29T00:05:04Z",
+      "capture_window_open_utc": "2026-10-29T00:00:00Z",
+      "cutoff_utc": "2026-10-29T06:00:00Z",
+      "cutoff_basis": "midnight before local event start date"
+    }
   },
   {
     "event_id": "528",

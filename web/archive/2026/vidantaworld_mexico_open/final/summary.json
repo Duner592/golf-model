@@ -1,0 +1,12 @@
+{
+  "event_id": "540",
+  "event_name": "VidantaWorld Mexico Open",
+  "source_csv": "data/preds/pga/event_540_vidantaworld_mexico_open_2026-10-29_leaderboard.csv",
+  "generated_utc": "29-Oct-2026 00:05:05",
+  "metrics": {
+    "field_size": 120,
+    "p_win_max": 0.1821,
+    "p_win_median": 0.00036666666666666667,
+    "p_win_sum": 1.0
+  }
+}
