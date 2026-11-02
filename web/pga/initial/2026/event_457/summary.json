@@ -1,0 +1,12 @@
+{
+  "event_id": "457",
+  "event_name": "World Wide Technology Championship",
+  "source_csv": "data/preds/pga/event_457_world_wide_technology_championship_2026-11-02_leaderboard.csv",
+  "generated_utc": "02-Nov-2026 06:27:31",
+  "metrics": {
+    "field_size": 116,
+    "p_win_max": 0.4204333333333333,
+    "p_win_median": 0.0003,
+    "p_win_sum": 0.9999999999999999
+  }
+}

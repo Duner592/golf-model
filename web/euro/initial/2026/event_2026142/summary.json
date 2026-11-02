@@ -1,0 +1,12 @@
+{
+  "event_id": "2026142",
+  "event_name": "Abu Dhabi Aldar Championship",
+  "source_csv": "data/preds/euro/event_2026142_abu_dhabi_aldar_championship_2026-11-02_leaderboard.csv",
+  "generated_utc": "02-Nov-2026 06:27:39",
+  "metrics": {
+    "field_size": 70,
+    "p_win_max": 0.11646666666666666,
+    "p_win_median": 0.007366666666666667,
+    "p_win_sum": 1.0
+  }
+}

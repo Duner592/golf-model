@@ -1,0 +1,33 @@
+{
+  "event_name": "World Wide Technology Championship",
+  "event_id": "457",
+  "course": "El Cardonal at Diamante",
+  "total_yardage": null,
+  "course_location": "Cabo San Lucas, Mexico",
+  "start_date": "05-Nov-2026",
+  "field_size": 116,
+  "status": "upcoming",
+  "winner": null,
+  "previous_winners": [
+    {
+      "year": 2025,
+      "winner": "Griffin, Ben",
+      "score": -29
+    },
+    {
+      "year": 2024,
+      "winner": "Eckroat, Austin",
+      "score": -24
+    },
+    {
+      "year": 2022,
+      "winner": "Henley, Russell",
+      "score": -23
+    },
+    {
+      "year": 2021,
+      "winner": "Hovland, Viktor",
+      "score": -23
+    }
+  ]
+}

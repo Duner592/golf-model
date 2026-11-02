@@ -1,5 +1,31 @@
 [
   {
+    "event_id": "457",
+    "event_name": "World Wide Technology Championship",
+    "tour": "pga",
+    "slug": "world_wide_technology_championship",
+    "year": "2026",
+    "start_date": "2026-11-05",
+    "csv_available": true,
+    "archived_at": "2026-11-02 06:27:31 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-11-02T06:27:31Z",
+    "model_page": "archive/2026/world_wide_technology_championship/model_page.html"
+  },
+  {
+    "event_id": "2026142",
+    "event_name": "Abu Dhabi Aldar Championship",
+    "tour": "euro",
+    "slug": "abu_dhabi_aldar_championship",
+    "year": "2026",
+    "start_date": "2026-11-05",
+    "csv_available": true,
+    "archived_at": "2026-11-02 06:27:39 UTC",
+    "prediction_snapshot": "initial",
+    "initial_snapshot_created_utc": "2026-11-02T06:27:39Z",
+    "model_page": "archive/2026/abu_dhabi_aldar_championship/model_page.html"
+  },
+  {
     "event_id": "540",
     "event_name": "VidantaWorld Mexico Open",
     "tour": "pga",

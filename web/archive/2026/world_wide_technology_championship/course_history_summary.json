@@ -1,0 +1,109 @@
+{
+  "rows": 305,
+  "rounds_course_avg": 1.6524590163934427,
+  "sg_course_mean_shrunk_avg": -0.5045497267759563,
+  "top_rounds": [
+    {
+      "player_id": "13997",
+      "sg_course_mean_shrunk": 2.0645,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "11657",
+      "sg_course_mean_shrunk": 2.0992500000000005,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "14509",
+      "sg_course_mean_shrunk": 4.82925,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "15980",
+      "sg_course_mean_shrunk": 3.1257500000000005,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "16715",
+      "sg_course_mean_shrunk": 0.8957499999999996,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "17365",
+      "sg_course_mean_shrunk": -3.3865,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "16283",
+      "sg_course_mean_shrunk": 4.62575,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "24550",
+      "sg_course_mean_shrunk": 3.0645000000000002,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "24342",
+      "sg_course_mean_shrunk": 4.314500000000001,
+      "rounds_course": 4
+    },
+    {
+      "player_id": "17536",
+      "sg_course_mean_shrunk": 5.82925,
+      "rounds_course": 4
+    }
+  ],
+  "top_sg_course": [
+    {
+      "player_id": "23816",
+      "sg_course_mean_shrunk": 14.269,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "21880",
+      "sg_course_mean_shrunk": 13.269,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "18841",
+      "sg_course_mean_shrunk": 11.6055,
+      "rounds_course": 2
+    },
+    {
+      "player_id": "28270",
+      "sg_course_mean_shrunk": 11.269,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "14735",
+      "sg_course_mean_shrunk": 11.209,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "14139",
+      "sg_course_mean_shrunk": 10.209,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "18417",
+      "sg_course_mean_shrunk": 9.6055,
+      "rounds_course": 2
+    },
+    {
+      "player_id": "29279",
+      "sg_course_mean_shrunk": 9.269,
+      "rounds_course": 1
+    },
+    {
+      "player_id": "23656",
+      "sg_course_mean_shrunk": 9.036,
+      "rounds_course": 3
+    },
+    {
+      "player_id": "14815",
+      "sg_course_mean_shrunk": 9.001999999999999,
+      "rounds_course": 1
+    }
+  ]
+}
