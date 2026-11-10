@@ -369,6 +369,8 @@ def format_timedelta(delta: timedelta) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check generated web assets for site integrity issues.")
+    parser.add_argument("--allow-stale-models", action="store_true",
+                        help="Saved-data deployment: warn instead of failing on current-event model freshness only.")
     parser.add_argument(
         "--strict",
         action="store_true",
@@ -393,6 +395,8 @@ def main() -> int:
         archive_lookback_days=args.archive_lookback_days,
     )
     findings = checker.check()
+    if args.allow_stale_models:
+        findings = saved_data_findings(findings)
     errors = [finding for finding in findings if finding.severity == "error"]
     warnings = [finding for finding in findings if finding.severity == "warning"]
     infos = [finding for finding in findings if finding.severity == "info"]
@@ -408,6 +412,13 @@ def main() -> int:
     if errors or (args.strict and warnings):
         return 1
     return 0
+
+
+def saved_data_findings(findings: list[Finding]) -> list[Finding]:
+    """Keep structural, provenance and archive failures blocking in fallback mode."""
+    freshness_codes = {"active-event-mismatch", "active-event-no-predictions"}
+    return [Finding("warning", f.code, f.message) if f.code in freshness_codes and f.severity == "error" else f
+            for f in findings]
 
 
 if __name__ == "__main__":

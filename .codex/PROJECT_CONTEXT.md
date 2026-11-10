@@ -1,5 +1,13 @@
 # Golf Model Project Context
 
+## DataGolf-unavailable deployment (2026-11-10)
+
+- Static deployment attempts model refresh in a separate `model-refresh/` checkout with its own Python import path. Only a successful pipeline is copied into the publishing checkout; the manual betting CSV is explicitly excluded from this copy. Failed/partial runs cannot overwrite saved publishing assets or commit snapshots.
+- On refresh failure, publish the committed model/archive assets together with current betting/static files. These are the saved repository assets, not necessarily the latest assets from a previous ephemeral Pages deployment. Do not claim fresh predictions or fresh results.
+- `update_web_status.py --model-refresh failure` records the failed attempt and refreshes betting metadata without advancing model/schedule timestamps. Shared site status warns that saved predictions may be stale. A successful deploy refresh or scheduled model run clears the failure warning.
+- Fallback uses `check_site_integrity.py --allow-stale-models`: only current-event mismatch/missing current predictions are downgraded to warnings; malformed/missing assets, archive/player/provenance failures still block. Normal successful model deployments retain the original checks.
+- API workflows continue retrying (and may fail) while the subscription is unavailable; restoring DataGolf access requires no bypass toggle. This change does not fabricate model, odds, results or backtest updates.
+
 Last updated: 2026-08-19
 
 ## Purpose

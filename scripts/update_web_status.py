@@ -201,12 +201,18 @@ def main() -> None:
     parser.add_argument("--sync-assets", action="store_true", help="Refresh model event metadata from current web/{tour}/meta.json assets.")
     parser.add_argument("--tour", action="append", choices=["pga", "euro"], help="Tour for --model-run. Repeat for multiple tours.")
     parser.add_argument("--workflow", help="Workflow or command name that updated the status.")
+    parser.add_argument("--model-refresh", choices=["success", "failure"],
+                        help="Record deployment refresh outcome without changing model run timestamps.")
     args = parser.parse_args()
 
     if args.model_run and not args.tour:
         parser.error("--model-run requires at least one --tour")
 
     status = read_status()
+    if args.model_refresh:
+        status["model_refresh"] = {"outcome": args.model_refresh, "attempted_at_utc": utc_now()}
+    elif args.model_run:
+        status.pop("model_refresh", None)
     if args.sync_assets:
         sync_model_from_assets(status, args.workflow)
     if args.model_run:

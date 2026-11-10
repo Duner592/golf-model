@@ -45,10 +45,34 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e .
 
+      # A failed pipeline may partially overwrite files. Run in a separate checkout
+      # so the deploy checkout always retains its complete saved assets on failure.
+      - name: Checkout isolated model refresh
+        uses: actions/checkout@v5
+        with:
+          path: model-refresh
+          fetch-depth: 0
+
       - name: Refresh model assets
-        run: bash scripts/ci_run_model.sh
+        id: model
+        continue-on-error: true
+        working-directory: model-refresh
+        run: PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}" bash scripts/ci_run_model.sh
+
+      - name: Adopt successful model assets
+        if: steps.model.outcome == 'success'
+        run: |
+          rsync -a --exclude=spreadsheet_data.csv model-refresh/web/ web/
+          cp model-refresh/upcoming-events.json upcoming-events.json
+
+      - name: Report saved-data fallback
+        if: steps.model.outcome == 'failure'
+        run: |
+          echo "::warning::Model refresh failed. Publishing saved model assets and current betting data."
+          echo "Model refresh failed; saved predictions were retained. Betting and static-site updates will still publish. See the model refresh step for the failure details." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit durable prediction snapshots
+        if: steps.model.outcome == 'success'
         run: |
           # web/archive includes the separately captured final pre-event snapshots.
           snapshot_paths=(web/archive web/pga/initial web/euro/initial)
@@ -79,10 +103,15 @@ jobs:
           git push
 
       - name: Update site status
-        run: python3 scripts/update_web_status.py --sync-assets --workflow "deploy-pages"
+        run: python3 scripts/update_web_status.py --sync-assets --workflow "deploy-pages" --model-refresh "${{ steps.model.outcome }}"
 
       - name: Check site integrity
-        run: python3 scripts/check_site_integrity.py
+        run: |
+          args=()
+          if [ "${{ steps.model.outcome }}" = "failure" ]; then
+            args+=(--allow-stale-models)
+          fi
+          python3 scripts/check_site_integrity.py "${args[@]}"
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-10",
+    "title": "Betting updates without DataGolf",
+    "description": "Betting and site updates can publish when model refresh fails, retaining saved predictions with a visible freshness warning. Normal refresh retries automatically.",
+    "href": "betting_performance.html"
+  },
+  {
     "date": "2026-10-13",
     "title": "Unified betting performance",
     "description": "ROI and Tournament P/L now share year/tour filters, period/player/tournament views and running P/L. Explicit settled-only and include-pending modes preserve the previous calculation conventions.",
@@ -16,11 +22,5 @@
     "title": "Clearer site navigation",
     "description": "Separate Predictions, Performance and Betting menus, a direct Schedule link and clearer Explorer labels make pages easier to find.",
     "href": "index.html"
-  },
-  {
-    "date": "2026-10-12",
-    "title": "Easier backtest exploration",
-    "description": "Clearer summary cards and a searchable All/Included/Excluded event list make coverage easier to explore, with compact expandable player details and unchanged scoring.",
-    "href": "backtest_breakdowns.html"
   }
 ]

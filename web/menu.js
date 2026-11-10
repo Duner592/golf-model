@@ -713,6 +713,15 @@
         const bettingEl = document.getElementById('site-status-betting');
         const updatedEl = document.getElementById('site-status-updated');
 
+        let refreshNotice = document.getElementById('site-status-refresh-notice');
+        if (!refreshNotice) {
+            refreshNotice = document.createElement('p');
+            refreshNotice.id = 'site-status-refresh-notice';
+            document.getElementById('site-status')?.prepend(refreshNotice);
+        }
+        refreshNotice.hidden = status?.model_refresh?.outcome !== 'failure';
+        refreshNotice.textContent = 'Model refresh unavailable: saved predictions are shown and may be out of date. Betting data updates remain available. Check the model run dates below.';
+
         if (modelRunEl) {
             modelRunEl.textContent = latestRun ? formatStatusTime(latestRun.last_run_utc) : 'No model run recorded';
         }
